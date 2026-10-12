@@ -1,6 +1,6 @@
 // Service worker do Mots & Parole: guarda o app no aparelho para funcionar sem internet.
 // Ao publicar uma versão nova do index.html, troque o número em CACHE (v6 -> v7, e APP_VERSION no index.html).
-const CACHE = "mots-parole-v6"; // mesma versão da chave do LocalStorage (APP_VERSION no index.html)
+const CACHE = "mots-parole-v7"; // só o cache muda; a chave do LocalStorage (APP_VERSION) segue v6 para não apagar o progresso
 const ASSETS = [
   "./",
   "./index.html",
@@ -24,27 +24,30 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+// Rede primeiro (a versão nova aparece logo que há internet); sem internet ou com rede lenta, usa o que está guardado.
+function networkFirst(req, fallbackUrl) {
+  return caches.open(CACHE).then((cache) => {
+    const net = fetch(req).then((res) => {
+      if (res && res.ok) cache.put(req, res.clone());
+      return res;
+    });
+    const slow = new Promise((_, rej) => setTimeout(() => rej(new Error("lento")), 3500));
+    return Promise.race([net, slow]).catch(() =>
+      cache.match(req, { ignoreSearch: true }).then((hit) =>
+        hit || (fallbackUrl ? cache.match(fallbackUrl) : null) || net
+      )
+    );
+  });
+}
+
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
 
-  // Arquivos do próprio app: usa o que está guardado e atualiza em segundo plano.
+  // Arquivos do próprio app. Se abrir a página sem estar guardada, cai no index.html.
   if (url.origin === self.location.origin) {
-    event.respondWith(
-      caches.match(req).then((hit) => {
-        const update = fetch(req)
-          .then((res) => {
-            if (res && res.ok) {
-              const copy = res.clone();
-              caches.open(CACHE).then((c) => c.put(req, copy));
-            }
-            return res;
-          })
-          .catch(() => hit);
-        return hit || update;
-      })
-    );
+    event.respondWith(networkFirst(req, req.mode === "navigate" ? "./index.html" : null));
     return;
   }
 

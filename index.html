@@ -324,6 +324,33 @@ svg{display:block}
     <footer class="foot"><p class="credit" id="credit">Desenvolvido por <a href="https://github.com/calisants" target="_blank" rel="noopener">@calisants</a></p></footer>
   </section>
 
+  <section class="screen" id="s-profile" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="index" aria-label="Voltar ao índice"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Perfil</h2></div>
+    </header>
+    <div class="scroll">
+      <div class="cols">
+        <div class="stack">
+          <section>
+            <h2 class="lab">Perfil do jogador</h2>
+            <input class="field" id="player" type="text" maxlength="24" placeholder="Seu nome" autocomplete="off" aria-label="Nome do jogador">
+            <input class="field" id="motto" type="text" maxlength="60" placeholder="Uma frase sua (opcional)" autocomplete="off" aria-label="Frase do perfil" style="margin-top:8px">
+            <h2 class="lab" style="margin-top:12px">Logo</h2>
+            <div class="avgrid" id="avgrid" role="group" aria-label="Logo do perfil"></div>
+          </section>
+        </div>
+        <div class="stack">
+          <section>
+            <h2 class="lab">Estatísticas</h2>
+            <button type="button" class="btn wide" id="clear-stats" >Apagar estatísticas</button>
+            <p class="help" id="clear-stats-note" aria-live="polite"></p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="screen" id="s-settings" hidden>
     <header class="bar">
       <button type="button" class="btn icon" data-back="index" aria-label="Voltar ao índice"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -364,18 +391,9 @@ svg{display:block}
             <label class="custom" id="custom-row" for="custom-color" hidden>Sua cor <input type="color" id="custom-color" value="#7a3b8f"></label>
           </section>
           <section>
-            <h2 class="lab">Perfil do jogador</h2>
-            <input class="field" id="player" type="text" maxlength="24" placeholder="Seu nome" autocomplete="off" aria-label="Nome do jogador">
-            <input class="field" id="motto" type="text" maxlength="60" placeholder="Uma frase sua (opcional)" autocomplete="off" aria-label="Frase do perfil" style="margin-top:8px">
-            <h2 class="lab" style="margin-top:12px">Logo</h2>
-            <div class="avgrid" id="avgrid" role="group" aria-label="Logo do perfil"></div>
-          </section>
-          <section>
             <h2 class="lab">Caderno</h2>
             <button type="button" class="btn wide" id="clear-done">Apagar marcas de concluído</button>
             <p class="help" id="clear-note" aria-live="polite"></p>
-            <button type="button" class="btn wide" id="clear-stats" style="margin-top:10px">Apagar estatísticas</button>
-            <p class="help" id="clear-stats-note" aria-live="polite"></p>
           </section>
         </div>
       </div>
@@ -1520,7 +1538,8 @@ function skRec(w,label,ok){
 }
 function seedNow(){seedWith(S.lang+"|"+curVol().id+"|"+P.id);}
 
-const SCREENS=["index","settings","game"];
+let clearStatsArmed=false;
+const SCREENS=["index","settings","profile","game"];
 let clearArmed=false;
 function go(name){
   SCREENS.forEach(s=>{$("#s-"+s).hidden=s!==name;});
@@ -1528,6 +1547,7 @@ function go(name){
   if(name!=="game")fitFn=null;
   if(name==="index")renderIndex();
   if(name==="settings"){clearArmed=false;$("#clear-note").textContent="";syncPrefs();}
+  if(name==="profile"){clearStatsArmed=false;$("#clear-stats-note").textContent="";syncPrefs();}
 }
 $$("[data-back]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.back)));
 $("#open-settings").addEventListener("click",()=>go("settings"));
@@ -1659,8 +1679,8 @@ $("#custom-color").addEventListener("input",e=>{S.custom=e.target.value;save();a
 $("#player").addEventListener("input",e=>{S.player=e.target.value.slice(0,24);save();renderMe();});
 $("#motto").addEventListener("input",e=>{S.motto=e.target.value.slice(0,60);save();renderMe();});
 $("#avgrid").addEventListener("click",e=>{const b=e.target.closest("[data-av]");if(!b)return;S.avatar=b.dataset.av;save();syncPrefs();});
-$("#me-edit").addEventListener("click",()=>go("settings"));
-let clearStatsArmed=false;
+$("#me-edit").addEventListener("click",()=>go("profile"));
+$("#s-profile").addEventListener("click",onPrefClick);
 $("#clear-stats").addEventListener("click",()=>{
   if(!clearStatsArmed){clearStatsArmed=true;$("#clear-stats-note").textContent="Toque de novo para apagar as estatísticas (partidas, erros e palavras dominadas). As marcas de concluído ficam.";return;}
   S.plays={};S.sk={};save();clearStatsArmed=false;$("#clear-stats-note").textContent="Estatísticas apagadas.";
@@ -2350,6 +2370,19 @@ buildSettings();applyTheme();buildKb();go("index");
 
 </script>
 
-<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});}</script>
+<script>
+if("serviceWorker" in navigator){
+  var hadController=!!navigator.serviceWorker.controller,reloaded=false;
+  /* quando uma versão nova assume, recarrega sozinho, mas só na tela inicial (para não interromper uma partida) */
+  navigator.serviceWorker.addEventListener("controllerchange",function(){
+    if(!hadController||reloaded)return;
+    (function tryReload(){
+      var g=document.getElementById("s-game");
+      if(!g||g.hidden){reloaded=true;location.reload();}else setTimeout(tryReload,5000);
+    })();
+  });
+  window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});
+}
+</script>
 </body>
 </html>
