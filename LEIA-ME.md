@@ -47,5 +47,5 @@ Quando houver uma versão nova do index.html, substitua o arquivo no mesmo lugar
 ## Observações
 
 - As fontes do título vêm do Google Fonts. Se o aparelho nunca abriu o app com internet, usa uma fonte parecida do sistema.
-- Só é guardado o que está concluído (por idioma e página) e os ajustes (idioma, layout, claro/escuro, cor, som, teclado, nome). Nenhum progresso parcial é salvo, como num caderno de papel.
+- Só é guardado o que está concluído (por idioma e página) e os ajustes (idioma, layout, claro/escuro, cor, som, teclado), o perfil do jogador (nome, frase e logo) e as estatísticas (partidas concluídas, erros e palavras dominadas). Nenhum progresso parcial é salvo, como num caderno de papel.
 - Os sons são gerados pelo próprio app (Web Audio) e podem ser desligados em Ajustes.
