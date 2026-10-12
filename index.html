@@ -208,6 +208,14 @@ svg{display:block}
 .stats summary::after{content:"▾";color:var(--muted)}
 .stats[open] summary::after{content:"▴"}
 .stats .in{padding:4px 14px 14px;display:grid;gap:14px;border-top:var(--bw) solid var(--line)}
+.hero{padding:22px 0 6px;text-align:center}
+.hero .brand{margin:0;font-family:var(--font-title);font-weight:600;font-size:clamp(2.2rem,10vw,3rem);line-height:1.1}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.tile{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-height:132px;padding:16px;border:var(--bw) solid var(--grid);border-radius:var(--radius);background:var(--surface);color:var(--ink);text-align:left;cursor:pointer}
+.tile svg{color:var(--accent);margin-bottom:6px}
+.tile b{font-family:var(--font-title);font-size:1.25rem;font-weight:600}
+.tile small{color:var(--muted);line-height:1.3}
+.me{cursor:pointer}
 .stats h3{margin:10px 0 6px;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-family:var(--font-body);font-weight:700}
 .sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .sgrid div{padding:8px 6px;border:var(--bw) solid var(--line);border-radius:var(--radius);text-align:center}
@@ -284,24 +292,52 @@ svg{display:block}
 
 <div id="app" data-lang="fr">
 
-  <section class="screen" id="s-index">
-    <header class="bar">
-      <div class="ttl">
-        <h1 class="brand"><span class="fr">Mots</span> <i>&amp;</i> <span class="it">Parole</span></h1>
-        <p class="vol" id="vol-title">Volume 1</p>
-      </div>
-      <div class="right"><button type="button" class="btn" id="open-settings">Ajustes</button></div>
-    </header>
+  <section class="screen" id="s-home">
     <div class="scroll">
+      <div class="hero">
+        <h1 class="brand"><span class="fr">Mots</span> <i>&amp;</i> <span class="it">Parole</span></h1>
+        <p class="help">Seu caderno de francês, italiano e inglês.</p>
+      </div>
       <div class="me">
         <span class="avatar" id="me-av" aria-hidden="true"></span>
         <div class="who"><b id="me-name"></b><small id="me-motto"></small></div>
-        <button type="button" class="btn" id="me-edit">Perfil</button>
       </div>
-      <details class="stats" id="stats">
-        <summary><span>Seu caderno <small id="st-line"></small></span></summary>
-        <div class="in" id="st-body"></div>
-      </details>
+      <div class="tiles">
+        <button type="button" class="tile" id="go-games"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><b>Jogos</b><small>Cruzadas, caça-palavras e mais</small></button>
+        <button type="button" class="tile" id="go-profile"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><b>Perfil</b><small>Nome, frase e logo</small></button>
+        <button type="button" class="tile" id="go-stats"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg><b>Estatísticas</b><small>Seu progresso e o que treinar</small></button>
+        <button type="button" class="tile" id="go-settings"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><b>Ajustes</b><small>Layout, cor, claro/escuro, sons</small></button>
+      </div>
+    </div>
+    <footer class="foot"><p class="credit" id="credit">Desenvolvido por <a href="https://github.com/calisants" target="_blank" rel="noopener">@calisants</a></p></footer>
+  </section>
+
+  <section class="screen" id="s-stats" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Estatísticas</h2></div>
+    </header>
+    <div class="scroll">
+      <h2 class="lab">Idioma</h2>
+      <div class="seg" role="group" aria-label="Idioma das estatísticas">
+        <button type="button" data-k="lang" data-v="fr">Français</button>
+        <button type="button" data-k="lang" data-v="it">Italiano</button>
+        <button type="button" data-k="lang" data-v="en">English</button>
+      </div>
+      <p class="help" id="st-line" style="margin-top:10px"></p>
+      <div class="stats open"><div class="in" id="st-body"></div></div>
+    </div>
+  </section>
+
+  <section class="screen" id="s-index" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl">
+        <h2>Jogos</h2>
+        <p class="vol" id="vol-title">Volume 1</p>
+      </div>
+    </header>
+    <div class="scroll">
       <h2 class="lab" style="margin-top:18px">Volume</h2>
       <div class="seg" role="group" aria-label="Volume">
         <button type="button" data-k="vol" data-v="1">Volume 1</button>
@@ -321,12 +357,11 @@ svg{display:block}
       <p class="help" id="toc-help">Cada página é fixa, como num livro impresso. Toque em uma para jogar.</p>
       <div id="toc"></div>
     </div>
-    <footer class="foot"><p class="credit" id="credit">Desenvolvido por <a href="https://github.com/calisants" target="_blank" rel="noopener">@calisants</a></p></footer>
   </section>
 
   <section class="screen" id="s-profile" hidden>
     <header class="bar">
-      <button type="button" class="btn icon" data-back="index" aria-label="Voltar ao índice"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="ttl"><h2>Perfil</h2></div>
     </header>
     <div class="scroll">
@@ -353,7 +388,7 @@ svg{display:block}
 
   <section class="screen" id="s-settings" hidden>
     <header class="bar">
-      <button type="button" class="btn icon" data-back="index" aria-label="Voltar ao índice"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="ttl"><h2>Ajustes</h2></div>
     </header>
     <div class="scroll">
@@ -402,7 +437,7 @@ svg{display:block}
 
   <section class="screen" id="s-game" hidden>
     <header class="bar">
-      <button type="button" class="btn icon" data-back="index" aria-label="Voltar ao índice"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="ttl"><h2 id="g-title"></h2></div>
       <div class="right">
         <button type="button" class="btn" id="g-list" hidden>Lista</button>
@@ -1539,18 +1574,23 @@ function skRec(w,label,ok){
 function seedNow(){seedWith(S.lang+"|"+curVol().id+"|"+P.id);}
 
 let clearStatsArmed=false;
-const SCREENS=["index","settings","profile","game"];
+const SCREENS=["home","index","stats","settings","profile","game"];
 let clearArmed=false;
 function go(name){
   SCREENS.forEach(s=>{$("#s-"+s).hidden=s!==name;});
   $$(".scroll").forEach(n=>{n.scrollTop=0;});
   if(name!=="game")fitFn=null;
   if(name==="index")renderIndex();
+  if(name==="home")renderMe();
+  if(name==="stats"){syncPrefs();renderStats();}
   if(name==="settings"){clearArmed=false;$("#clear-note").textContent="";syncPrefs();}
   if(name==="profile"){clearStatsArmed=false;$("#clear-stats-note").textContent="";syncPrefs();}
 }
 $$("[data-back]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.back)));
-$("#open-settings").addEventListener("click",()=>go("settings"));
+$("#go-games").addEventListener("click",()=>go("index"));
+$("#go-profile").addEventListener("click",()=>go("profile"));
+$("#go-stats").addEventListener("click",()=>go("stats"));
+$("#go-settings").addEventListener("click",()=>go("settings"));
 
 function pageShown(p){
   if(S.fTheme!=="all"&&!(p.themes&&p.themes.indexOf(S.fTheme)>=0))return false;
@@ -1636,7 +1676,7 @@ function renderStats(){
   let mastered=0;Object.keys(sk).forEach(k=>{if(vs.has(k)&&sk[k][0]>=2&&sk[k][0]>sk[k][1])mastered++;});
   const total=Object.values(pl).reduce((a,b)=>a+b,0);
   const all=Object.keys(S.plays).reduce((n,l)=>n+Object.values(S.plays[l]).reduce((a,b)=>a+b,0),0);
-  $("#st-line").textContent="· "+doneN+" páginas · "+mastered+" palavras dominadas";
+  $("#st-line").textContent=doneN+" páginas · "+mastered+" palavras dominadas";
   const main=["cross","search","connect"].map(t=>"<div><b>"+(pl[t]||0)+"</b><small>"+GAMENAME[t]+"</small></div>").join("");
   const more=["odd","sentence","resposta","tema","ditado","sons"].filter(t=>pl[t]).map(t=>GAMENAME[t]+" "+pl[t]).join(" · ");
   const worst=Object.keys(sk).filter(k=>sk[k][1]>sk[k][0]).sort((a,b)=>(sk[b][1]-sk[b][0])-(sk[a][1]-sk[a][0])).slice(0,6);
@@ -1679,7 +1719,8 @@ $("#custom-color").addEventListener("input",e=>{S.custom=e.target.value;save();a
 $("#player").addEventListener("input",e=>{S.player=e.target.value.slice(0,24);save();renderMe();});
 $("#motto").addEventListener("input",e=>{S.motto=e.target.value.slice(0,60);save();renderMe();});
 $("#avgrid").addEventListener("click",e=>{const b=e.target.closest("[data-av]");if(!b)return;S.avatar=b.dataset.av;save();syncPrefs();});
-$("#me-edit").addEventListener("click",()=>go("profile"));
+$(".me").addEventListener("click",()=>go("profile"));
+$("#s-stats").addEventListener("click",e=>{onPrefClick(e);renderStats();});
 $("#s-profile").addEventListener("click",onPrefClick);
 $("#clear-stats").addEventListener("click",()=>{
   if(!clearStatsArmed){clearStatsArmed=true;$("#clear-stats-note").textContent="Toque de novo para apagar as estatísticas (partidas, erros e palavras dominadas). As marcas de concluído ficam.";return;}
@@ -2366,7 +2407,7 @@ $("#ls-next").addEventListener("click",()=>{
 });
 
 /* ===== Início ===== */
-buildSettings();applyTheme();buildKb();go("index");
+buildSettings();applyTheme();buildKb();go("home");
 
 </script>
 
