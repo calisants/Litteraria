@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f3d7a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mots &amp; Parole">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Mots &amp; Parole</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">
+<style>:root{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<style>
+/* Layout: cabeçalho sóbrio, três abas, uma barra de configuração (tema, modo, novo jogo) e o jogo logo abaixo. Poucas cores, bordas finas, cantos discretos. */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --surface-2:#eceef3; --ink:#141a24; --muted:#55606f; --line:#d7dce4;
+  --fr:#1f3d7a; --it:#1b5e43; --accent:var(--fr); --on-accent:#ffffff;
+  --g1:#e2bd62; --g2:#86bfaa; --g3:#a1acdc; --g4:#dc9494; --on-g:#141a24;
+  --ok:#1b6b45; --bad:#b3261e; --focus:#1f3d7a;
+  --font-display:"Newsreader","Iowan Old Style",Georgia,serif;
+  --font-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1218; --surface:#161c25; --surface-2:#202833; --ink:#ecf0f6; --muted:#9ba6b6; --line:#2c3643;
+    --fr:#8fa9e8; --it:#6fcf9f; --on-accent:#0e1218; --ok:#6fcf9f; --bad:#ff8a80; --focus:#8fa9e8; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1218; --surface:#161c25; --surface-2:#202833; --ink:#ecf0f6; --muted:#9ba6b6; --line:#2c3643;
+  --fr:#8fa9e8; --it:#6fcf9f; --on-accent:#0e1218; --ok:#6fcf9f; --bad:#ff8a80; --focus:#8fa9e8; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.5}
+.app{max-width:780px;margin-inline:auto;padding-inline:16px;padding-block:24px 64px}
+.app[data-lang="it"]{--accent:var(--it)}
+button,select,input{font-family:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+.top{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:flex-end;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.brand{min-width:0}
+h1{font-family:var(--font-display);font-weight:600;font-size:clamp(2.1rem,7vw,3rem);line-height:1;letter-spacing:-.015em;margin:0}
+h1 .fr{color:var(--fr)} h1 .it{color:var(--it)}
+h1 i{font-style:normal;font-weight:500;color:var(--muted);margin-inline:.1em}
+.sub{margin:8px 0 0;color:var(--muted);max-width:44ch}
+.seg{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.seg button{border:0;background:transparent;color:var(--ink);font-weight:700;font-size:1rem;padding:8px 14px;min-height:40px;border-radius:7px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+
+.tabs{display:flex;gap:2px;margin-top:18px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{border:0;background:transparent;color:var(--muted);font-weight:700;font-size:1rem;padding:12px 16px;min-height:46px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+
+.setup{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin-top:18px}
+.btn{min-height:44px;padding:8px 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:1rem;font-weight:700;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.pickbtn{flex:1 1 220px;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;padding-block:6px}
+.pickbtn .k{display:block;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);line-height:1.3}
+.pickbtn .v{display:block;line-height:1.3}
+.pickbtn svg{flex:none;transition:transform .15s}
+.pickbtn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.pickpanel{margin-top:10px;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;display:grid;gap:16px}
+.pgroup h3{margin:0 0 8px;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:40px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font-size:.95rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:700}
+.modehint{margin:12px 0 0;color:var(--muted);font-size:.95rem;max-width:64ch}
+
+.panel{padding-top:20px}
+.howto{margin:0 0 16px;color:var(--muted);max-width:64ch}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+.check{display:flex;align-items:center;gap:8px;min-height:44px;margin-left:auto}
+.check input{width:20px;height:20px;accent-color:var(--accent)}
+.status{min-height:1.6em;margin-top:12px;font-weight:700;color:var(--muted)}
+.status.ok{color:var(--ok)} .status.bad{color:var(--bad)}
+.grid-wrap{overflow-x:auto;padding:2px}
+
+/* Palavras cruzadas */
+.now{margin:0 0 12px;padding:10px 14px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;min-height:3.2em}
+.now b{color:var(--accent);margin-right:8px}
+.now span{color:var(--muted);margin-left:8px}
+.cw-grid,.ws-grid{--cell:clamp(26px,calc((min(100vw,780px) - 40px) / var(--cols,10)),46px);display:grid;grid-template-columns:repeat(var(--cols,10),var(--cell));gap:2px;width:max-content;max-width:none}
+.cwcell{position:relative;width:var(--cell);height:var(--cell);background:var(--surface);border-radius:4px;border:1px solid var(--line)}
+.blk{width:var(--cell);height:var(--cell)}
+.cwcell input{width:100%;height:100%;border:0;background:transparent;color:var(--ink);text-align:center;text-transform:uppercase;padding:6px 0 0;font-family:var(--font-body);font-weight:700;font-size:max(16px,calc(var(--cell)*.5));caret-color:var(--accent);border-radius:4px}
+.cwcell input:focus-visible{outline:none}
+.cwcell .num{position:absolute;top:2px;left:4px;font-size:.62rem;font-weight:700;color:var(--muted);pointer-events:none;line-height:1}
+.cwcell.inword{background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
+.cwcell.active{background:color-mix(in srgb,var(--accent) 32%,var(--surface));border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.cwcell.wrong{background:color-mix(in srgb,var(--bad) 28%,var(--surface))}
+.cwcell.hint input,.cwcell.revealed input{color:var(--accent)}
+.clues{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:22px;margin-top:24px}
+.clues h3{margin:0 0 8px;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.clues ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.clues li{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.clue-main{flex:1;min-width:0;display:flex;gap:10px;text-align:left;border:0;background:transparent;color:inherit;font-size:1rem;padding:8px 10px;border-radius:8px;cursor:pointer}
+.clues li.cur .clue-main{background:color-mix(in srgb,var(--accent) 12%,var(--surface))}
+.clue-main .n{font-weight:700;color:var(--accent);min-width:1.4em}
+.clue-main .pt{font-weight:700}
+.clue-main .meta{display:block;color:var(--muted);font-size:.85rem}
+.ans{font-weight:700;color:var(--ok);padding-left:10px}
+.clues li.done .clue-main{flex:0 1 auto}
+
+/* Caça-palavras */
+.ws-grid{touch-action:none;user-select:none;-webkit-user-select:none;margin-block:4px}
+.wcell{width:var(--cell);height:var(--cell);display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);border-radius:4px;font-family:var(--font-body);font-weight:700;font-size:calc(var(--cell)*.46);cursor:pointer}
+.wcell.f1{background:var(--g1);color:var(--on-g)} .wcell.f2{background:var(--g2);color:var(--on-g)}
+.wcell.f3{background:var(--g3);color:var(--on-g)} .wcell.f4{background:var(--g4);color:var(--on-g)}
+.wcell.rev{outline:3px solid var(--accent);outline-offset:-3px}
+.wcell.sel{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.wlist{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:16px 0 0;padding:0}
+.wlist li{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:var(--surface);border:1px solid var(--line)}
+.wlist .w{font-weight:700}
+.wlist .t{color:var(--muted)}
+.wlist .len{color:var(--muted);font-size:.85rem}
+.wlist li.found{border-color:transparent;color:var(--on-g)}
+.wlist li.found::before{content:"\2713";font-weight:700}
+.wlist li.found .t{color:inherit;opacity:.85}
+.wlist li.f1{background:var(--g1)} .wlist li.f2{background:var(--g2)} .wlist li.f3{background:var(--g3)} .wlist li.f4{background:var(--g4)}
+
+/* Conecte */
+.cn-count{margin:0 0 10px;color:var(--muted);font-size:.95rem}
+.cn-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.tile{min-height:68px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:1rem;font-weight:700;padding:8px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;overflow-wrap:anywhere;cursor:pointer}
+.tile .t{font-weight:400;font-size:.8rem;color:var(--muted)}
+.tile[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.tile[aria-pressed="true"] .t{color:inherit}
+.grp{border-radius:8px;padding:12px 14px;margin-bottom:8px;color:var(--on-g)}
+.grp.g1{background:var(--g1)} .grp.g2{background:var(--g2)} .grp.g3{background:var(--g3)} .grp.g4{background:var(--g4)}
+.grp h3{margin:0 0 6px;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase}
+.grp ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 16px}
+.grp li{display:flex;align-items:center;gap:4px}
+.grp small{opacity:.8;font-size:.85rem}
+
+.speak{display:inline-grid;place-items:center;width:36px;height:36px;border:0;border-radius:50%;background:transparent;color:var(--accent);cursor:pointer;flex:none}
+.grp .speak,.wlist li.found .speak{color:inherit}
+.no-speech .speak{display:none}
+@media (prefers-reduced-motion:no-preference){
+  .tile,.cwcell,.wcell,.btn,.chip{transition:background-color .12s}
+}
+@media (prefers-reduced-motion:reduce){.pickbtn svg{transition:none}}
+</style>
+
+</head>
+<body>
+<div class="app" id="app" data-lang="fr">
+  <header class="top">
+    <div class="brand">
+      <h1><span class="fr">Mots</span> <i>&amp;</i> <span class="it">Parole</span></h1>
+      <p class="sub">Vocabulário essencial para se comunicar em francês e italiano, sempre com a tradução.</p>
+    </div>
+    <div class="seg" role="group" aria-label="Idioma">
+      <button type="button" data-l="fr" id="l-fr" aria-pressed="true">Français</button>
+      <button type="button" data-l="it" id="l-it" aria-pressed="false">Italiano</button>
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Jogos">
+    <button type="button" role="tab" id="tab-cross" aria-selected="true" aria-controls="p-cross">Palavras cruzadas</button>
+    <button type="button" role="tab" id="tab-search" aria-selected="false" aria-controls="p-search">Caça-palavras</button>
+    <button type="button" role="tab" id="tab-connect" aria-selected="false" aria-controls="p-connect">Conecte</button>
+  </div>
+
+  <div class="setup">
+    <button type="button" class="btn pickbtn" id="pick-btn" aria-expanded="false" aria-controls="pick-panel">
+      <span><span class="k" id="pick-key">Tema</span><span class="v" id="pick-val"></span></span>
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="seg" role="group" aria-label="Modo de jogo">
+      <button type="button" data-mode="study" id="m-study" aria-pressed="true">Estudar</button>
+      <button type="button" data-mode="challenge" id="m-challenge" aria-pressed="false">Desafiar</button>
+    </div>
+    <button type="button" class="btn primary" id="new-btn">Novo jogo</button>
+  </div>
+  <div class="pickpanel" id="pick-panel" hidden></div>
+  <p class="modehint" id="modehint"></p>
+
+  <section class="panel" id="p-cross" role="tabpanel" aria-labelledby="tab-cross">
+    <p class="howto">Leia a dica em português e escreva a palavra em <span class="lname">francês</span>. Toque em uma casa para escolher a palavra. Toque de novo na mesma casa para trocar entre horizontal e vertical. Acentos não precisam ser digitados.</p>
+    <p class="now" id="cw-now" aria-live="polite"></p>
+    <div class="grid-wrap"><div class="cw-grid" id="cw-grid"></div></div>
+    <div class="actions">
+      <button type="button" class="btn" id="cw-hint">Dica de letra</button>
+      <button type="button" class="btn" id="cw-check">Verificar</button>
+      <button type="button" class="btn" id="cw-reveal">Mostrar respostas</button>
+    </div>
+    <p class="status" id="cw-status" aria-live="polite"></p>
+    <div class="clues">
+      <div><h3>Horizontais</h3><ol id="cw-across"></ol></div>
+      <div><h3>Verticais</h3><ol id="cw-down"></ol></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-search" role="tabpanel" aria-labelledby="tab-search" hidden>
+    <p class="howto">Encontre as palavras em <span class="lname">francês</span> escondidas na grade. Arraste o dedo sobre as letras, ou toque na primeira letra e depois na última.</p>
+    <div class="grid-wrap"><div class="ws-grid" id="ws-grid"></div></div>
+    <p class="status" id="ws-status" aria-live="polite"></p>
+    <ul class="wlist" id="ws-list"></ul>
+    <div class="actions">
+      <button type="button" class="btn" id="ws-reveal">Mostrar respostas</button>
+      <label class="check" for="ws-hard"><input type="checkbox" id="ws-hard"> Palavras de trás pra frente</label>
+    </div>
+  </section>
+
+  <section class="panel" id="p-connect" role="tabpanel" aria-labelledby="tab-connect" hidden>
+    <p class="howto">Estas 16 palavras em <span class="lname">francês</span> formam 4 grupos de 4, cada grupo com um tema. Toque em 4 palavras do mesmo tema e depois em Enviar. Você pode errar quantas vezes quiser.</p>
+    <p class="cn-count" id="cn-count"></p>
+    <div id="cn-solved"></div>
+    <div class="cn-grid" id="cn-grid"></div>
+    <div class="actions">
+      <button type="button" class="btn primary" id="cn-submit">Enviar</button>
+      <button type="button" class="btn" id="cn-shuffle">Embaralhar</button>
+      <button type="button" class="btn" id="cn-clear">Limpar seleção</button>
+      <button type="button" class="btn" id="cn-hint">Dica de tema</button>
+    </div>
+    <p class="status" id="cn-status" aria-live="polite"></p>
+  </section>
+</div>
+
+<script>
+(function(){
+"use strict";
+/*PURE-START*/
+const RAW={
+ fr:{
+  saudacoes:["bonjour||bom dia / olá","bonsoir||boa tarde / boa noite","bonne nuit||boa noite (ao dormir)","salut||oi (informal)","au revoir||tchau","merci||obrigado(a)","de rien||de nada","pardon||desculpa","excusez-moi||com licença / desculpe","bienvenue||bem-vindo","enchanté||prazer em conhecer","oui||sim","non||não"],
+  perguntas:["quand||quando","pourquoi||por que","comment||como","combien||quanto","qui||quem","quoi||o quê","quel||qual","parce que||porque","beaucoup||muito","peu||pouco","aussi||também","toujours||sempre","jamais||nunca","peut-être||talvez"],
+  pessoas:["homme|l'|homem","femme|la|mulher","enfant|l'|criança","ami|l'|amigo","voisin|le|vizinho","professeur|le|professor","étudiant|l'|estudante","garçon|le|menino","personne|la|pessoa","monsieur|le|senhor"],
+  familia:["mère|la|mãe","père|le|pai","frère|le|irmão","sœur|la|irmã","fils|le|filho","fille|la|filha","oncle|l'|tio","tante|la|tia","cousin|le|primo","grand-père|le|avô"],
+  descricoes:["heureux||feliz","triste||triste","fatigué||cansado","grand||grande","petit||pequeno","beau||bonito","bon||bom","mauvais||ruim","facile||fácil","difficile||difícil"],
+  comida:["pomme|la|maçã","pain|le|pão","fromage|le|queijo","lait|le|leite","poisson|le|peixe","riz|le|arroz","gâteau|le|bolo","fraise|la|morango","poulet|le|frango","sucre|le|açúcar"],
+  restaurante:["menu|le|cardápio","addition|l'|conta","serveur|le|garçom","eau|l'|água","vin|le|vinho","café|le|café","bière|la|cerveja","assiette|l'|prato","verre|le|copo","fourchette|la|garfo"],
+  compras:["argent|l'|dinheiro","prix|le|preço","magasin|le|loja","cher||caro","gratuit||grátis","monnaie|la|troco","panier|le|cesta","taille|la|tamanho","reçu|le|recibo","caisse|la|caixa"],
+  casa:["porte|la|porta","fenêtre|la|janela","table|la|mesa","chaise|la|cadeira","lit|le|cama","cuisine|la|cozinha","salon|le|sala de estar","jardin|le|jardim","toit|le|telhado","mur|le|parede"],
+  roupas:["chemise|la|camisa","pantalon|le|calça","robe|la|vestido","jupe|la|saia","manteau|le|casaco","chapeau|le|chapéu","chaussure|la|sapato","chaussette|la|meia","veste|la|jaqueta","sac|le|bolsa"],
+  corpo:["tête|la|cabeça","main|la|mão","pied|le|pé","bras|le|braço","jambe|la|perna","bouche|la|boca","nez|le|nariz","dos|le|costas","cœur|le|coração","oreille|l'|orelha"],
+  saude:["médecin|le|médico","hôpital|l'|hospital","pharmacie|la|farmácia","douleur|la|dor","fièvre|la|febre","médicament|le|remédio","malade||doente","santé|la|saúde","rhume|le|resfriado","toux|la|tosse"],
+  trabalho:["travail|le|trabalho","bureau|le|escritório","ordinateur|l'|computador","téléphone|le|telefone","réunion|la|reunião","patron|le|chefe","collègue||colega","salaire|le|salário","livre|le|livro","stylo|le|caneta"],
+  cidade:["rue|la|rua","gare|la|estação de trem","avion|l'|avião","train|le|trem","voiture|la|carro","hôtel|l'|hotel","plage|la|praia","ville|la|cidade","pont|le|ponte","marché|le|mercado","aéroport|l'|aeroporto","billet|le|bilhete / passagem","valise|la|mala","passeport|le|passaporte","métro|le|metrô","taxi|le|táxi"],
+  direcoes:["gauche||esquerda","droite||direita","loin||longe","près||perto","ici||aqui","devant||na frente","derrière||atrás","haut||em cima","bas||embaixo","coin|le|esquina"],
+  clima:["soleil|le|sol","pluie|la|chuva","vent|le|vento","neige|la|neve","nuage|le|nuvem","orage|l'|tempestade","chaud||quente","froid||frio","ciel|le|céu","lune|la|lua"],
+  natureza:["arbre|l'|árvore","fleur|la|flor","forêt|la|floresta","montagne|la|montanha","rivière|la|rio","mer|la|mar","herbe|l'|grama","feuille|la|folha","pierre|la|pedra","île|l'|ilha"],
+  animais:["chat|le|gato","chien|le|cachorro","cheval|le|cavalo","oiseau|l'|pássaro","vache|la|vaca","lapin|le|coelho","souris|la|rato","lion|le|leão","ours|l'|urso","loup|le|lobo"],
+  laboratorio:["chimie|la|química","biologie|la|biologia","algue|l'|alga","plante|la|planta","cellule|la|célula","molécule|la|molécula","résultat|le|resultado","solution|la|solução","mélange|le|mistura","acide|l'|ácido"],
+  numeros:["deux||dois","trois||três","quatre||quatro","cinq||cinco","six||seis","sept||sete","huit||oito","neuf||nove","dix||dez","vingt||vinte"],
+  dias:["lundi||segunda-feira","mardi||terça-feira","mercredi||quarta-feira","jeudi||quinta-feira","vendredi||sexta-feira","samedi||sábado","dimanche||domingo","hier||ontem","demain||amanhã","matin|le|manhã"],
+  cores:["rouge||vermelho","bleu||azul","vert||verde","jaune||amarelo","noir||preto","blanc||branco","gris||cinza","rose||rosa","orange||laranja","violet||roxo"],
+  verbos:["manger||comer","boire||beber","dormir||dormir","parler||falar","aimer||amar / gostar","aller||ir","voir||ver","lire||ler","écrire||escrever","courir||correr","avoir||ter","être||ser / estar","faire||fazer","pouvoir||poder","vouloir||querer","prendre||pegar","donner||dar","acheter||comprar","payer||pagar","comprendre||entender"]
+ },
+ it:{
+  saudacoes:["buongiorno||bom dia","buonasera||boa tarde / boa noite","buonanotte||boa noite (ao dormir)","ciao||oi / tchau","salve||olá (formal)","grazie||obrigado(a)","prego||de nada","scusi||com licença / desculpe","benvenuto||bem-vindo","piacere||prazer em conhecer","certo||claro / certo","bene||bem"],
+  perguntas:["dove||onde","quando||quando","perché||por que","come||como","quanto||quanto","chi||quem","cosa||o quê","quale||qual","molto||muito","poco||pouco","anche||também","sempre||sempre","mai||nunca","forse||talvez"],
+  pessoas:["uomo|l'|homem","donna|la|mulher","bambino|il|criança","amico|l'|amigo","vicino|il|vizinho","professore|il|professor","studente|lo|estudante","ragazzo|il|garoto","persona|la|pessoa","signore|il|senhor"],
+  familia:["madre|la|mãe","padre|il|pai","fratello|il|irmão","sorella|la|irmã","figlio|il|filho","figlia|la|filha","zio|lo|tio","zia|la|tia","cugino|il|primo","nonno|il|avô"],
+  descricoes:["felice||feliz","triste||triste","stanco||cansado","grande||grande","piccolo||pequeno","bello||bonito","buono||bom","cattivo||ruim","facile||fácil","difficile||difícil"],
+  comida:["mela|la|maçã","pane|il|pão","formaggio|il|queijo","latte|il|leite","pesce|il|peixe","riso|il|arroz","torta|la|bolo","fragola|la|morango","pollo|il|frango","zucchero|lo|açúcar"],
+  restaurante:["menu|il|cardápio","conto|il|conta","cameriere|il|garçom","acqua|l'|água","vino|il|vinho","caffè|il|café","birra|la|cerveja","piatto|il|prato","bicchiere|il|copo","forchetta|la|garfo"],
+  compras:["soldi|i|dinheiro","prezzo|il|preço","negozio|il|loja","caro||caro","gratis||grátis","resto|il|troco","carrello|il|carrinho de compras","taglia|la|tamanho","scontrino|lo|recibo","cassa|la|caixa"],
+  casa:["porta|la|porta","finestra|la|janela","tavolo|il|mesa","sedia|la|cadeira","letto|il|cama","cucina|la|cozinha","salotto|il|sala de estar","giardino|il|jardim","tetto|il|telhado","parete|la|parede"],
+  roupas:["camicia|la|camisa","pantaloni|i|calça","vestito|il|vestido","gonna|la|saia","cappotto|il|casaco","cappello|il|chapéu","scarpa|la|sapato","calzino|il|meia","giacca|la|jaqueta","borsa|la|bolsa"],
+  corpo:["testa|la|cabeça","mano|la|mão","piede|il|pé","braccio|il|braço","gamba|la|perna","occhio|l'|olho","bocca|la|boca","naso|il|nariz","cuore|il|coração","dente|il|dente"],
+  saude:["medico|il|médico","ospedale|l'|hospital","farmacia|la|farmácia","dolore|il|dor","febbre|la|febre","medicina|la|remédio","malato||doente","salute|la|saúde","tosse|la|tosse","pillola|la|comprimido"],
+  trabalho:["lavoro|il|trabalho","ufficio|l'|escritório","computer|il|computador","telefono|il|telefone","riunione|la|reunião","capo|il|chefe","collega||colega","stipendio|lo|salário","libro|il|livro","penna|la|caneta"],
+  cidade:["strada|la|rua","stazione|la|estação","aereo|l'|avião","treno|il|trem","macchina|la|carro","albergo|l'|hotel","spiaggia|la|praia","città|la|cidade","ponte|il|ponte","mercato|il|mercado","aeroporto|l'|aeroporto","biglietto|il|bilhete / passagem","valigia|la|mala","passaporto|il|passaporte","metro|la|metrô","taxi|il|táxi"],
+  direcoes:["sinistra||esquerda","destra||direita","lontano||longe","accanto||ao lado","qui||aqui","davanti||na frente","dietro||atrás","sopra||em cima","sotto||embaixo","angolo|l'|esquina"],
+  clima:["sole|il|sol","pioggia|la|chuva","vento|il|vento","neve|la|neve","nuvola|la|nuvem","temporale|il|tempestade","caldo||quente","freddo||frio","cielo|il|céu","luna|la|lua"],
+  natureza:["albero|l'|árvore","fiore|il|flor","foresta|la|floresta","montagna|la|montanha","fiume|il|rio","mare|il|mar","erba|l'|grama","foglia|la|folha","pietra|la|pedra","isola|l'|ilha"],
+  animais:["gatto|il|gato","cane|il|cachorro","cavallo|il|cavalo","uccello|l'|pássaro","mucca|la|vaca","coniglio|il|coelho","topo|il|rato","leone|il|leão","orso|l'|urso","lupo|il|lobo"],
+  laboratorio:["chimica|la|química","biologia|la|biologia","alga|l'|alga","pianta|la|planta","cellula|la|célula","molecola|la|molécula","risultato|il|resultado","soluzione|la|solução","miscela|la|mistura","acido|l'|ácido"],
+  numeros:["due||dois","tre||três","quattro||quatro","cinque||cinco","sei||seis","sette||sete","otto||oito","nove||nove","dieci||dez","venti||vinte"],
+  dias:["lunedì||segunda-feira","martedì||terça-feira","mercoledì||quarta-feira","giovedì||quinta-feira","venerdì||sexta-feira","sabato||sábado","domenica||domingo","ieri||ontem","domani||amanhã","mattina|la|manhã"],
+  cores:["rosso||vermelho","blu||azul","verde||verde","giallo||amarelo","nero||preto","bianco||branco","grigio||cinza","rosa||rosa","arancione||laranja","viola||roxo"],
+  verbos:["mangiare||comer","bere||beber","dormire||dormir","parlare||falar","amare||amar","andare||ir","vedere||ver","leggere||ler","scrivere||escrever","correre||correr","avere||ter","essere||ser / estar","fare||fazer","potere||poder","volere||querer","prendere||pegar","dare||dar","comprare||comprar","pagare||pagar","capire||entender"]
+ }
+};
+const GROUPS=[["conversar","Conversar"],["diaadia","Dia a dia"],["mundo","Mundo e ciência"],["base","Base"]];
+const CATS=[
+ ["saudacoes","Cumprimentos e cortesia","conversar"],["perguntas","Perguntas e palavras úteis","conversar"],["pessoas","Pessoas","conversar"],["familia","Família","conversar"],["descricoes","Descrições e sentimentos","conversar"],
+ ["comida","Comida","diaadia"],["restaurante","Restaurante","diaadia"],["compras","Compras e dinheiro","diaadia"],["casa","Casa","diaadia"],["roupas","Roupas","diaadia"],["corpo","Corpo","diaadia"],["saude","Saúde","diaadia"],["trabalho","Trabalho e estudo","diaadia"],
+ ["cidade","Cidade e viagem","mundo"],["direcoes","Direções e posição","mundo"],["clima","Clima","mundo"],["natureza","Natureza","mundo"],["animais","Animais","mundo"],["laboratorio","Laboratório e ciência","mundo"],
+ ["numeros","Números","base"],["dias","Dias e momentos","base"],["cores","Cores","base"],["verbos","Verbos","base"]
+];
+const rnd=n=>Math.floor(Math.random()*n);
+const key=(r,c)=>r+","+c;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
+function norm(s){return s.toLowerCase().replace(/œ/g,"oe").replace(/æ/g,"ae").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z]/g,"").toUpperCase();}
+const VOCAB={},POOL={};
+for(const lang in RAW){
+  VOCAB[lang]={};POOL[lang]="";
+  for(const cat in RAW[lang]){
+    VOCAB[lang][cat]=RAW[lang][cat].map(row=>{const p=row.split("|");return {w:p[0],a:p[1],pt:p[2],s:norm(p[0]),cat:cat};});
+    VOCAB[lang][cat].forEach(it=>{POOL[lang]+=it.s;});
+  }
+}
+function full(it){return it.a?(it.a.endsWith("'")?it.a+it.w:it.a+" "+it.w):it.w;}
+function poolFor(lang,cat){
+  const all=cat==="all"?Object.values(VOCAB[lang]).flat():VOCAB[lang][cat];
+  return all.filter(it=>it.s.length>=3&&it.s.length<=10);
+}
+
+function genSearch(items,size,hard,letters){
+  const dirs=hard?[[0,1],[1,0],[1,1],[0,-1],[-1,0],[-1,-1],[1,-1],[-1,1]]:[[0,1],[1,0],[1,1]];
+  const sorted=items.slice().sort((a,b)=>b.s.length-a.s.length);
+  for(let attempt=0;attempt<80;attempt++){
+    const g=Array.from({length:size},()=>Array(size).fill(""));
+    const placed=[];let ok=true;
+    for(const it of sorted){
+      let done=false;
+      for(let t=0;t<300&&!done;t++){
+        const d=dirs[rnd(dirs.length)],dr=d[0],dc=d[1],L=it.s.length;
+        const r0=rnd(size),c0=rnd(size),r1=r0+dr*(L-1),c1=c0+dc*(L-1);
+        if(r1<0||r1>=size||c1<0||c1>=size)continue;
+        let fits=true;
+        for(let i=0;i<L;i++){const ch=g[r0+dr*i][c0+dc*i];if(ch&&ch!==it.s[i]){fits=false;break;}}
+        if(!fits)continue;
+        const cells=[];
+        for(let i=0;i<L;i++){g[r0+dr*i][c0+dc*i]=it.s[i];cells.push([r0+dr*i,c0+dc*i]);}
+        placed.push({it:it,cells:cells});done=true;
+      }
+      if(!done){ok=false;break;}
+    }
+    if(ok){
+      for(let r=0;r<size;r++)for(let c=0;c<size;c++)if(!g[r][c])g[r][c]=letters[rnd(letters.length)];
+      return {grid:g,placed:placed,size:size};
+    }
+  }
+  return null;
+}
+
+function makeCrossword(items){
+  const W=items.filter(it=>it.s.length>=3);
+  let best=null,bestScore=-1e9;
+  for(let t=0;t<800;t++){
+    const order=shuffle(W);
+    let mi=0;order.forEach((x,i)=>{if(x.s.length>order[mi].s.length)mi=i;});
+    const first=order.splice(mi,1)[0];
+    const cells=new Map(),placed=[];
+    const bb={a:0,b:0,c:0,d:0};
+    const can=(x,r,c,d)=>{
+      const dr=d,dc=1-d,L=x.s.length;
+      if(Math.max(bb.b,r+dr*(L-1))-Math.min(bb.a,r)>11||Math.max(bb.d,c+dc*(L-1))-Math.min(bb.c,c)>11)return -1;
+      if(cells.has(key(r-dr,c-dc))||cells.has(key(r+dr*L,c+dc*L)))return -1;
+      let cross=0;
+      for(let i=0;i<L;i++){
+        const rr=r+dr*i,cc=c+dc*i,ex=cells.get(key(rr,cc));
+        if(ex){
+          if(ex.ch!==x.s[i])return -1;
+          if(d===0?ex.h:ex.v)return -1;
+          cross++;
+        }else if(cells.has(key(rr+dc,cc+dr))||cells.has(key(rr-dc,cc-dr)))return -1;
+      }
+      return cross;
+    };
+    const put=(x,r,c,d)=>{
+      const dr=d,dc=1-d;
+      for(let i=0;i<x.s.length;i++){
+        const k=key(r+dr*i,c+dc*i),ex=cells.get(k)||{ch:x.s[i],h:false,v:false};
+        if(d===0)ex.h=true;else ex.v=true;
+        cells.set(k,ex);
+      }
+      bb.a=Math.min(bb.a,r);bb.b=Math.max(bb.b,r+dr*(x.s.length-1));bb.c=Math.min(bb.c,c);bb.d=Math.max(bb.d,c+dc*(x.s.length-1));
+      placed.push({it:x,r:r,c:c,d:d});
+    };
+    put(first,0,0,0);
+    for(const x of order){
+      let cands=[],bestCross=0;
+      for(const p of placed){
+        for(let i=0;i<x.s.length;i++)for(let j=0;j<p.it.s.length;j++){
+          if(x.s[i]!==p.it.s[j])continue;
+          let r,c,d;
+          if(p.d===0){d=1;r=p.r-i;c=p.c+j;}else{d=0;r=p.r+j;c=p.c-i;}
+          const cr=can(x,r,c,d);
+          if(cr>=1){if(cr>bestCross){bestCross=cr;cands=[];}if(cr===bestCross)cands.push([r,c,d]);}
+        }
+      }
+      if(cands.length){const pick=cands[rnd(cands.length)];put(x,pick[0],pick[1],pick[2]);}
+    }
+    let minR=1e9,minC=1e9,maxR=-1e9,maxC=-1e9;
+    cells.forEach((v,k)=>{const p=k.split(",").map(Number);minR=Math.min(minR,p[0]);maxR=Math.max(maxR,p[0]);minC=Math.min(minC,p[1]);maxC=Math.max(maxC,p[1]);});
+    const area=(maxR-minR+1)*(maxC-minC+1);
+    const score=placed.length*40-area;
+    if(score>bestScore){bestScore=score;best={placed:placed.slice(),cells:cells,minR:minR,minC:minC,rows:maxR-minR+1,cols:maxC-minC+1};}
+  }
+  const entries=best.placed.map(p=>{
+    const L=p.it.s.length,r=p.r-best.minR,c=p.c-best.minC;
+    return {it:p.it,d:p.d,r:r,c:c,cells:Array.from({length:L},(_,i)=>[r+(p.d?i:0),c+(p.d?0:i)])};
+  });
+  const starts=Array.from(new Set(entries.map(e=>key(e.r,e.c)))).sort((a,b)=>{
+    const x=a.split(",").map(Number),y=b.split(",").map(Number);return x[0]-y[0]||x[1]-y[1];
+  });
+  const sol={};
+  entries.forEach(e=>{e.num=starts.indexOf(key(e.r,e.c))+1;e.cells.forEach((cell,i)=>{sol[key(cell[0],cell[1])]=e.it.s[i];});});
+  return {rows:best.rows,cols:best.cols,entries:entries,sol:sol,nums:Object.fromEntries(starts.map((k,i)=>[k,i+1]))};
+}
+/*PURE-END*/
+
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const app=$("#app");
+const CATLABEL=Object.fromEntries(CATS.map(c=>[c[0],c[1]]));
+const GROUPLABEL=Object.fromEntries(GROUPS);
+const LNAME={fr:"francês",it:"italiano"};
+const S={lang:"fr",mode:"study",tab:"cross",cat:"saudacoes",sec:"all"};
+try{
+  const sv=JSON.parse(localStorage.getItem("mots-parole")||"{}");
+  if(sv.lang==="fr"||sv.lang==="it")S.lang=sv.lang;
+  if(sv.mode==="study"||sv.mode==="challenge")S.mode=sv.mode;
+  if(["cross","search","connect"].indexOf(sv.tab)>=0)S.tab=sv.tab;
+  if(sv.cat==="all"||CATLABEL[sv.cat])S.cat=sv.cat;
+  if(sv.sec==="all"||GROUPLABEL[sv.sec])S.sec=sv.sec;
+}catch(_){}
+function save(){try{localStorage.setItem("mots-parole",JSON.stringify(S));}catch(_){}}
+
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+const SPK='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+function speakBtn(t){return '<button class="speak" type="button" data-say="'+esc(t)+'" aria-label="Ouvir '+esc(t)+'">'+SPK+'</button>';}
+function speak(t){
+  try{
+    if(!window.speechSynthesis)return;
+    const u=new SpeechSynthesisUtterance(t);u.lang=S.lang==="fr"?"fr-FR":"it-IT";u.rate=.9;
+    speechSynthesis.cancel();speechSynthesis.speak(u);
+  }catch(_){}
+}
+if(!("speechSynthesis" in window))app.classList.add("no-speech");
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".speak");if(b)speak(b.dataset.say);});
+function setStatus(sel,msg,kind){const n=$(sel);n.textContent=msg;n.className="status"+(kind?" "+kind:"");}
+const plural=(n,a,b)=>n+" "+(n===1?a:b);
+
+/* ---------- Palavras cruzadas ---------- */
+const cw={p:null,map:{},inputs:{},cellEl:{},dir:0,active:null,wasActive:false,finished:false,sig:""};
+function newCross(){
+  const picks=shuffle(poolFor(S.lang,S.cat)).slice(0,10);
+  const p=makeCrossword(picks);
+  cw.p=p;cw.map={};cw.inputs={};cw.cellEl={};cw.dir=0;cw.active=null;cw.finished=false;cw.sig="";
+  const g=$("#cw-grid");g.innerHTML="";g.style.setProperty("--cols",p.cols);
+  p.entries.forEach(e=>e.cells.forEach(c=>{const k=key(c[0],c[1]);(cw.map[k]=cw.map[k]||{})[e.d]=e;}));
+  for(let r=0;r<p.rows;r++)for(let c=0;c<p.cols;c++){
+    const k=key(r,c);
+    if(!p.sol[k]){const b=document.createElement("div");b.className="blk";g.appendChild(b);continue;}
+    const d=document.createElement("div");d.className="cwcell";d.dataset.k=k;
+    if(p.nums[k])d.insertAdjacentHTML("beforeend",'<span class="num">'+p.nums[k]+"</span>");
+    const inp=document.createElement("input");
+    inp.type="text";inp.maxLength=1;inp.id="cw-in-"+r+"-"+c;inp.autocomplete="off";inp.spellcheck=false;
+    inp.setAttribute("autocapitalize","characters");inp.setAttribute("aria-label","Linha "+(r+1)+", coluna "+(c+1));
+    inp.dataset.k=k;d.appendChild(inp);g.appendChild(d);
+    cw.inputs[k]=inp;cw.cellEl[k]=d;
+  }
+  setStatus("#cw-status","");
+  const firstE=p.entries.slice().sort((a,b)=>a.num-b.num)[0];
+  cw.dir=firstE.d;cw.active=key(firstE.cells[0][0],firstE.cells[0][1]);
+  renderClues();
+}
+function entryVal(e){return e.cells.map(c=>cw.inputs[key(c[0],c[1])].value).join("");}
+function entrySolved(e){return entryVal(e)===e.it.s;}
+function curEntry(){const m=cw.active&&cw.map[cw.active];return m?m[cw.dir]:null;}
+function renderClues(){
+  const A=$("#cw-across"),D=$("#cw-down");A.innerHTML="";D.innerHTML="";
+  cw.p.entries.slice().sort((a,b)=>a.num-b.num).forEach(e=>{
+    const li=document.createElement("li");li.dataset.n=e.num;li.dataset.d=e.d;
+    const solved=cw.finished||entrySolved(e);
+    if(solved)li.className="done";
+    const art=S.mode==="study"&&e.it.a?" · "+e.it.a+(e.it.a.endsWith("'")?"…":" …"):"";
+    li.innerHTML='<button class="clue-main" type="button" data-n="'+e.num+'" data-d="'+e.d+'"><span class="n">'+e.num+'</span><span><span class="pt">'+esc(e.it.pt)+'</span><span class="meta">'+plural(e.it.s.length,"letra","letras")+art+"</span></span></button>"+(solved?'<span class="ans">'+esc(full(e.it))+"</span>"+speakBtn(full(e.it)):"");
+    (e.d?D:A).appendChild(li);
+  });
+  paintCross();
+}
+function paintCross(){
+  $$("#cw-grid .cwcell").forEach(c=>c.classList.remove("inword","active"));
+  const e=curEntry();
+  if(!e){$("#cw-now").textContent="";return;}
+  e.cells.forEach(c=>cw.cellEl[key(c[0],c[1])].classList.add("inword"));
+  cw.cellEl[cw.active].classList.add("active");
+  const art=S.mode==="study"&&e.it.a?" · artigo: "+esc(e.it.a):"";
+  $("#cw-now").innerHTML="<b>"+e.num+" "+(e.d?"Vertical":"Horizontal")+"</b>"+esc(e.it.pt)+"<span>"+plural(e.it.s.length,"letra","letras")+art+"</span>";
+  $$("#cw-across li, #cw-down li").forEach(li=>li.classList.toggle("cur",+li.dataset.n===e.num&&+li.dataset.d===e.d));
+}
+function setActive(k,toggle,focus){
+  const m=cw.map[k];if(!m)return;
+  if(toggle&&cw.active===k&&m[0]&&m[1])cw.dir=1-cw.dir;
+  else if(!m[cw.dir])cw.dir=m[0]?0:1;
+  cw.active=k;paintCross();
+  if(focus)cw.inputs[k].focus();
+}
+function stepInEntry(k,delta){
+  const e=cw.map[k]&&cw.map[k][cw.dir];if(!e)return null;
+  const i=e.cells.findIndex(c=>key(c[0],c[1])===k)+delta;
+  return i>=0&&i<e.cells.length?key(e.cells[i][0],e.cells[i][1]):null;
+}
+function afterChange(){
+  const sig=cw.p.entries.map(e=>entrySolved(e)?"1":"0").join("");
+  if(sig!==cw.sig){cw.sig=sig;renderClues();}
+  if(!cw.finished&&cw.p.entries.every(entrySolved)){
+    cw.finished=true;renderClues();
+    setStatus("#cw-status","Completo! Veja abaixo cada palavra com a tradução.","ok");
+  }
+}
+const cg=$("#cw-grid");
+cg.addEventListener("pointerdown",e=>{const c=e.target.closest(".cwcell");if(c)cw.wasActive=cw.active===c.dataset.k;});
+cg.addEventListener("focusin",e=>{const k=e.target.dataset&&e.target.dataset.k;if(k&&k!==cw.active)setActive(k,false,false);});
+cg.addEventListener("click",e=>{const c=e.target.closest(".cwcell");if(!c)return;const k=c.dataset.k;if(cw.wasActive)setActive(k,true,true);else setActive(k,false,true);cw.wasActive=false;});
+cg.addEventListener("input",e=>{
+  const inp=e.target,k=inp.dataset.k;
+  const ch=norm(inp.value.slice(-1));inp.value=ch;
+  cw.cellEl[k].classList.remove("wrong");
+  if(ch){const nk=stepInEntry(k,1);if(nk)setActive(nk,false,true);}
+  afterChange();
+});
+cg.addEventListener("keydown",e=>{
+  const inp=e.target,k=inp.dataset&&inp.dataset.k;if(!k)return;
+  const rc=k.split(",").map(Number);
+  const arrows={ArrowRight:[0,1],ArrowLeft:[0,-1],ArrowDown:[1,0],ArrowUp:[-1,0]};
+  if(arrows[e.key]){
+    e.preventDefault();
+    const d=arrows[e.key],nk=key(rc[0]+d[0],rc[1]+d[1]);
+    if(cw.map[nk]){const want=d[0]?1:0;if(cw.map[nk][want])cw.dir=want;setActive(nk,false,true);}
+  }else if(e.key==="Backspace"&&!inp.value){
+    e.preventDefault();
+    const pk=stepInEntry(k,-1);
+    if(pk){cw.inputs[pk].value="";cw.cellEl[pk].classList.remove("wrong");setActive(pk,false,true);afterChange();}
+  }else if(e.key==="Enter"||e.key===" "){
+    e.preventDefault();setActive(k,true,true);
+  }
+});
+$("#cw-across").addEventListener("click",clueClick);$("#cw-down").addEventListener("click",clueClick);
+function clueClick(e){
+  const b=e.target.closest(".clue-main");if(!b)return;
+  const en=cw.p.entries.find(x=>x.num===+b.dataset.n&&x.d===+b.dataset.d);if(!en)return;
+  cw.dir=en.d;setActive(key(en.cells[0][0],en.cells[0][1]),false,true);
+}
+$("#cw-hint").addEventListener("click",()=>{
+  let k=cw.active;
+  if(!k||cw.inputs[k].value===cw.p.sol[k]){
+    const e=curEntry();
+    const empty=e&&e.cells.map(c=>key(c[0],c[1])).find(x=>cw.inputs[x].value!==cw.p.sol[x]);
+    k=empty||Object.keys(cw.inputs).find(x=>cw.inputs[x].value!==cw.p.sol[x]);
+  }
+  if(!k){setStatus("#cw-status","Todas as letras já estão certas.","ok");return;}
+  cw.inputs[k].value=cw.p.sol[k];cw.cellEl[k].classList.remove("wrong");cw.cellEl[k].classList.add("hint");
+  afterChange();setStatus("#cw-status","Letra revelada.");
+});
+$("#cw-check").addEventListener("click",()=>{
+  let wrong=0,empty=0;
+  Object.keys(cw.inputs).forEach(k=>{
+    const v=cw.inputs[k].value,c=cw.cellEl[k];c.classList.remove("wrong");
+    if(!v)empty++;else if(v!==cw.p.sol[k]){wrong++;c.classList.add("wrong");}
+  });
+  if(wrong)setStatus("#cw-status",plural(wrong,"letra errada","letras erradas")+", marcadas em vermelho.","bad");
+  else if(empty)setStatus("#cw-status","Nenhuma letra errada até agora. Faltam "+plural(empty,"casa","casas")+".","ok");
+});
+$("#cw-reveal").addEventListener("click",()=>{
+  Object.keys(cw.inputs).forEach(k=>{
+    if(cw.inputs[k].value!==cw.p.sol[k])cw.cellEl[k].classList.add("revealed");
+    cw.inputs[k].value=cw.p.sol[k];cw.cellEl[k].classList.remove("wrong");
+  });
+  cw.finished=true;renderClues();
+  setStatus("#cw-status","Respostas reveladas. Use os botões de som para ouvir cada palavra.");
+});
+
+/* ---------- Caça-palavras ---------- */
+const ws={p:null,found:new Map(),cellEl:[],anchor:null,hover:null,dragging:false,tap:false,over:false};
+function newSearch(){
+  const picks=shuffle(poolFor(S.lang,S.cat)).slice(0,8);
+  const hard=$("#ws-hard").checked;
+  ws.p=genSearch(picks,10,hard,POOL[S.lang])||genSearch(picks.slice(0,6),10,hard,POOL[S.lang]);
+  ws.found=new Map();ws.anchor=ws.hover=null;ws.dragging=ws.tap=ws.over=false;
+  const g=$("#ws-grid");g.innerHTML="";g.style.setProperty("--cols",ws.p.size);ws.cellEl=[];
+  for(let r=0;r<ws.p.size;r++){
+    ws.cellEl[r]=[];
+    for(let c=0;c<ws.p.size;c++){
+      const d=document.createElement("div");d.className="wcell";d.dataset.r=r;d.dataset.c=c;d.textContent=ws.p.grid[r][c];
+      g.appendChild(d);ws.cellEl[r][c]=d;
+    }
+  }
+  setStatus("#ws-status","");renderSearchList();
+}
+function renderSearchList(){
+  $("#ws-list").innerHTML=ws.p.placed.map((p,i)=>{
+    const f=ws.found.has(i),it=p.it;
+    if(f)return '<li class="found f'+ws.found.get(i)+'"><span class="w">'+esc(full(it))+'</span><span class="t">'+esc(it.pt)+"</span>"+speakBtn(full(it))+"</li>";
+    if(S.mode==="study")return '<li><span class="w">'+esc(it.w)+'</span><span class="t">'+esc(it.pt)+"</span></li>";
+    return '<li><span class="t">'+esc(it.pt)+'</span><span class="len">'+plural(it.s.length,"letra","letras")+"</span></li>";
+  }).join("");
+}
+function lineCells(a,b,size){
+  const dr=b.r-a.r,dc=b.c-a.c,adr=Math.abs(dr),adc=Math.abs(dc);
+  if(!adr&&!adc)return [a];
+  let sr,sc,len;
+  if(adr>=2*adc){sr=Math.sign(dr);sc=0;len=adr;}
+  else if(adc>=2*adr){sr=0;sc=Math.sign(dc);len=adc;}
+  else{sr=Math.sign(dr);sc=Math.sign(dc);len=Math.max(adr,adc);}
+  const out=[];
+  for(let i=0;i<=len;i++){
+    const r=a.r+sr*i,c=a.c+sc*i;
+    if(r<0||c<0||r>=size||c>=size)break;
+    out.push({r:r,c:c});
+  }
+  return out;
+}
+function clearSel(){$$("#ws-grid .sel").forEach(c=>c.classList.remove("sel"));}
+function paintSel(){
+  clearSel();
+  if(!ws.anchor)return;
+  lineCells(ws.anchor,ws.hover||ws.anchor,ws.p.size).forEach(x=>ws.cellEl[x.r][x.c].classList.add("sel"));
+}
+function finishSel(){
+  const cells=lineCells(ws.anchor,ws.hover,ws.p.size);
+  ws.anchor=ws.hover=null;ws.tap=false;ws.dragging=false;clearSel();
+  if(cells.length<2)return;
+  const str=cells.map(x=>ws.p.grid[x.r][x.c]).join(""),rev=str.split("").reverse().join("");
+  const hit=p=>p.it.s===str||p.it.s===rev;
+  const idx=ws.p.placed.findIndex((p,i)=>!ws.found.has(i)&&hit(p));
+  if(idx>=0){
+    const col=ws.found.size%4+1;ws.found.set(idx,col);
+    cells.forEach(x=>{const el=ws.cellEl[x.r][x.c];el.classList.remove("f1","f2","f3","f4","rev");el.classList.add("f"+col);});
+    const it=ws.p.placed[idx].it;
+    if(ws.found.size===ws.p.placed.length){ws.over=true;setStatus("#ws-status","Parabéns! Você encontrou todas as palavras. "+full(it)+" = "+it.pt+".","ok");}
+    else setStatus("#ws-status","Achou: "+full(it)+" = "+it.pt+". Faltam "+(ws.p.placed.length-ws.found.size)+".","ok");
+    renderSearchList();
+  }else if(ws.p.placed.some((p,i)=>ws.found.has(i)&&hit(p)))setStatus("#ws-status","Você já encontrou essa palavra.");
+  else setStatus("#ws-status","Essa sequência não está na lista. Tente de novo.","bad");
+}
+const wg=$("#ws-grid");
+function cellFromEvent(e){
+  const el=document.elementFromPoint(e.clientX,e.clientY),c=el&&el.closest&&el.closest(".wcell");
+  return c?{r:+c.dataset.r,c:+c.dataset.c}:null;
+}
+wg.addEventListener("pointerdown",e=>{
+  if(!ws.p)return;const cell=cellFromEvent(e);if(!cell)return;
+  e.preventDefault();
+  if(ws.tap&&ws.anchor){ws.hover=cell;finishSel();return;}
+  ws.anchor=cell;ws.hover=cell;ws.dragging=true;ws.tap=false;
+  try{wg.setPointerCapture(e.pointerId);}catch(_){}
+  paintSel();
+});
+wg.addEventListener("pointermove",e=>{
+  if(!ws.dragging)return;const cell=cellFromEvent(e);
+  if(cell&&(cell.r!==ws.hover.r||cell.c!==ws.hover.c)){ws.hover=cell;paintSel();}
+});
+wg.addEventListener("pointerup",()=>{
+  if(!ws.dragging)return;ws.dragging=false;
+  if(ws.hover.r===ws.anchor.r&&ws.hover.c===ws.anchor.c){ws.tap=true;paintSel();}else finishSel();
+});
+wg.addEventListener("pointercancel",()=>{ws.dragging=false;ws.anchor=ws.hover=null;ws.tap=false;clearSel();});
+$("#ws-reveal").addEventListener("click",()=>{
+  ws.p.placed.forEach((p,i)=>{if(!ws.found.has(i))p.cells.forEach(c=>ws.cellEl[c[0]][c[1]].classList.add("rev"));});
+  setStatus("#ws-status","Respostas marcadas na grade. Confira as traduções na lista.");
+});
+$("#ws-hard").addEventListener("change",newSearch);
+
+/* ---------- Conecte ---------- */
+const cn={groups:[],tiles:[],sel:new Set(),solved:[],mistakes:0,done:false};
+function newConnect(){
+  const keys=CATS.filter(c=>S.sec==="all"||c[2]===S.sec).map(c=>c[0]);
+  const cats=shuffle(keys).slice(0,4);
+  cn.groups=cats.map(cat=>({cat:cat,label:CATLABEL[cat],items:shuffle(VOCAB[S.lang][cat]).slice(0,4)}));
+  let id=0;
+  cn.tiles=shuffle(cn.groups.flatMap((g,gi)=>g.items.map(it=>({id:id++,it:it,gi:gi}))));
+  cn.sel=new Set();cn.solved=[];cn.mistakes=0;cn.done=false;
+  setStatus("#cn-status","");renderConnect();
+}
+function renderConnect(){
+  $("#cn-solved").innerHTML=cn.solved.map((gi,n)=>{
+    const g=cn.groups[gi];
+    return '<div class="grp g'+(n%4+1)+'"><h3>'+esc(g.label)+"</h3><ul>"+g.items.map(it=>"<li><b>"+esc(full(it))+"</b> <small>"+esc(it.pt)+"</small>"+speakBtn(full(it))+"</li>").join("")+"</ul></div>";
+  }).join("");
+  const remaining=cn.tiles.filter(t=>cn.solved.indexOf(t.gi)<0);
+  $("#cn-grid").innerHTML=remaining.map(t=>'<button type="button" class="tile" data-id="'+t.id+'" aria-pressed="'+cn.sel.has(t.id)+'"><span>'+esc(t.it.w)+"</span>"+(S.mode==="study"?'<span class="t">'+esc(t.it.pt)+"</span>":"")+"</button>").join("");
+  $("#cn-submit").disabled=cn.sel.size!==4||cn.done;
+  $("#cn-count").textContent="Grupos achados: "+cn.solved.length+" de 4. Tentativas erradas: "+cn.mistakes+".";
+}
+$("#cn-grid").addEventListener("click",e=>{
+  const b=e.target.closest(".tile");if(!b||cn.done)return;
+  const id=+b.dataset.id;
+  if(cn.sel.has(id))cn.sel.delete(id);else if(cn.sel.size<4)cn.sel.add(id);
+  renderConnect();
+});
+$("#cn-submit").addEventListener("click",()=>{
+  if(cn.sel.size!==4)return;
+  const picked=cn.tiles.filter(t=>cn.sel.has(t.id)),counts={};
+  picked.forEach(t=>{counts[t.gi]=(counts[t.gi]||0)+1;});
+  const top=Math.max.apply(null,Object.values(counts));
+  if(top===4){
+    const gi=picked[0].gi;cn.solved.push(gi);cn.sel=new Set();
+    if(cn.solved.length===4){
+      cn.done=true;
+      setStatus("#cn-status","Parabéns! Você achou os 4 grupos com "+plural(cn.mistakes,"tentativa errada","tentativas erradas")+".","ok");
+    }else setStatus("#cn-status","Certo! Tema: "+cn.groups[gi].label+".","ok");
+  }else{
+    cn.mistakes++;
+    setStatus("#cn-status",top===3?"Quase! 3 dessas palavras são do mesmo tema.":"Essas 4 palavras não formam um grupo. Tente outra combinação.","bad");
+  }
+  renderConnect();
+});
+$("#cn-shuffle").addEventListener("click",()=>{cn.tiles=shuffle(cn.tiles);renderConnect();});
+$("#cn-clear").addEventListener("click",()=>{cn.sel=new Set();renderConnect();});
+$("#cn-hint").addEventListener("click",()=>{
+  const left=cn.groups.map((g,i)=>i).filter(i=>cn.solved.indexOf(i)<0);
+  if(!left.length)return;
+  setStatus("#cn-status","Um dos temas é: "+cn.groups[left[rnd(left.length)]].label+".");
+});
+
+/* ---------- Seletor de tema ---------- */
+const isConn=()=>S.tab==="connect";
+function curPick(){return isConn()?S.sec:S.cat;}
+function pickLabel(v){
+  if(v==="all")return isConn()?"Todas as seções":"Mistura de todos os temas";
+  return isConn()?GROUPLABEL[v]:CATLABEL[v];
+}
+function chipsHTML(items,cur){
+  return '<div class="chips">'+items.map(i=>'<button type="button" class="chip" data-v="'+i.v+'" aria-pressed="'+(i.v===cur)+'">'+esc(i.label)+"</button>").join("")+"</div>";
+}
+function refreshPicker(){
+  const cur=curPick();
+  $("#pick-key").textContent=isConn()?"Seção (4 temas sorteados dela)":"Tema";
+  $("#pick-val").textContent=pickLabel(cur);
+  let html;
+  if(isConn()){
+    html='<div class="pgroup">'+chipsHTML([{v:"all",label:"Todas as seções"}].concat(GROUPS.map(g=>({v:g[0],label:g[1]}))),cur)+"</div>";
+  }else{
+    html='<div class="pgroup">'+chipsHTML([{v:"all",label:"Mistura de todos os temas"}],cur)+"</div>"+
+      GROUPS.map(g=>'<div class="pgroup"><h3>'+esc(g[1])+"</h3>"+chipsHTML(CATS.filter(c=>c[2]===g[0]).map(c=>({v:c[0],label:c[1]})),cur)+"</div>").join("");
+  }
+  $("#pick-panel").innerHTML=html;
+}
+function closePicker(){$("#pick-panel").hidden=true;$("#pick-btn").setAttribute("aria-expanded","false");}
+$("#pick-btn").addEventListener("click",()=>{
+  const open=$("#pick-panel").hidden;
+  $("#pick-panel").hidden=!open;$("#pick-btn").setAttribute("aria-expanded",String(open));
+});
+$("#pick-panel").addEventListener("click",e=>{
+  const c=e.target.closest(".chip");if(!c)return;
+  if(isConn()){S.sec=c.dataset.v;dirty.connect=true;}
+  else{S.cat=c.dataset.v;dirty.cross=true;dirty.search=true;}
+  save();closePicker();showTab(S.tab);
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#pick-panel").hidden){closePicker();$("#pick-btn").focus();}});
+
+/* ---------- Abas, idioma e modo ---------- */
+const TABS=["cross","search","connect"],GEN={cross:newCross,search:newSearch,connect:newConnect};
+const dirty={cross:true,search:true,connect:true};
+function showTab(t){
+  S.tab=t;save();closePicker();
+  TABS.forEach(k=>{
+    const b=$("#tab-"+k);b.setAttribute("aria-selected",String(k===t));b.tabIndex=k===t?0:-1;
+    $("#p-"+k).hidden=k!==t;
+  });
+  refreshPicker();
+  if(dirty[t]){dirty[t]=false;GEN[t]();}
+}
+TABS.forEach(k=>$("#tab-"+k).addEventListener("click",()=>showTab(k)));
+$(".tabs").addEventListener("keydown",e=>{
+  const i=TABS.indexOf(S.tab);
+  if(e.key==="ArrowRight"||e.key==="ArrowLeft"){
+    const n=TABS[(i+(e.key==="ArrowRight"?1:TABS.length-1))%TABS.length];showTab(n);$("#tab-"+n).focus();
+  }
+});
+$("#new-btn").addEventListener("click",()=>{dirty[S.tab]=false;closePicker();GEN[S.tab]();});
+const MODEHINT={
+  study:"Modo Estudar: você vê a palavra e a tradução juntas, com artigo e pronúncia.",
+  challenge:"Modo Desafiar: você vê só a tradução em português e descobre a palavra."
+};
+function applyMode(){
+  $$("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mode===S.mode)));
+  $("#modehint").textContent=MODEHINT[S.mode];
+}
+function applyLang(){
+  app.dataset.lang=S.lang;
+  $$("[data-l]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.l===S.lang)));
+  $$(".lname").forEach(n=>{n.textContent=LNAME[S.lang];});
+}
+$$("[data-mode]").forEach(b=>b.addEventListener("click",()=>{
+  S.mode=b.dataset.mode;save();applyMode();
+  if(!dirty.cross&&cw.p)renderClues();
+  if(!dirty.search&&ws.p)renderSearchList();
+  if(!dirty.connect&&cn.groups.length)renderConnect();
+}));
+$$("[data-l]").forEach(b=>b.addEventListener("click",()=>{
+  if(S.lang===b.dataset.l)return;
+  S.lang=b.dataset.l;save();applyLang();
+  TABS.forEach(k=>{dirty[k]=true;});
+  showTab(S.tab);
+}));
+applyLang();applyMode();showTab(S.tab);
+})();
+</script>
+
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});}</script>
+</body>
+</html>
