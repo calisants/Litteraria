@@ -1,6 +1,6 @@
 // Service worker do Mots & Parole: guarda o app no aparelho para funcionar sem internet.
-// Ao publicar uma versão nova do index.html, troque o número em CACHE (v1 -> v2).
-const CACHE = "mots-parole-v1";
+// Ao publicar uma versão nova do index.html, troque o número em CACHE (v6 -> v7, e APP_VERSION no index.html).
+const CACHE = "mots-parole-v6"; // mesma versão da chave do LocalStorage (APP_VERSION no index.html)
 const ASSETS = [
   "./",
   "./index.html",

@@ -1,7 +1,7 @@
 {
   "name": "Mots & Parole",
   "short_name": "Mots & Parole",
-  "description": "Vocabulário essencial em francês e italiano com palavras cruzadas, caça-palavras e conecte.",
+  "description": "Caderno de passatempos em francês, italiano e inglês: cruzadas, caça-palavras, conecte, conversação e intruso.",
   "lang": "pt-BR",
   "start_url": "./",
   "scope": "./",
