@@ -192,6 +192,10 @@ svg{display:block}
 .filters .flt{display:grid;gap:4px;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .filters .flt.one{grid-column:1/-1}
 .flt[hidden]{display:none}
+.filters .flt.game{grid-column:1/-1}
+.tiles.one{grid-template-columns:1fr}
+.tile.plain{min-height:96px;justify-content:center}
+#s-lang .tile b,#s-vol .tile b{font-size:1.35rem}
 .filters select.field{text-transform:none;letter-spacing:0;font-weight:400;font-size:1rem;color:var(--ink,inherit)}
 .empty{margin:18px 0;color:var(--muted)}
 .lopt.long{font-weight:400;font-size:1rem;text-align:left;justify-content:flex-start;line-height:1.35}
@@ -329,30 +333,49 @@ svg{display:block}
     </div>
   </section>
 
+  <section class="screen" id="s-lang" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Idioma do caderno</h2></div>
+    </header>
+    <div class="scroll">
+      <p class="help">Qual idioma você quer praticar agora?</p>
+      <div class="tiles one">
+        <button type="button" class="tile plain" data-pick-lang="fr"><b>Français</b><small>Francês: palavras, sons e conversas</small></button>
+        <button type="button" class="tile plain" data-pick-lang="it"><b>Italiano</b><small>Italiano: palavras, sons e conversas</small></button>
+        <button type="button" class="tile plain" data-pick-lang="en"><b>English</b><small>Inglês: palavras, sons e conversas</small></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="s-vol" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="lang" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Volume do caderno</h2><p class="vol" id="vol-lang"></p></div>
+    </header>
+    <div class="scroll">
+      <p class="help">Cada volume é um caderno diferente.</p>
+      <div class="tiles one">
+        <button type="button" class="tile plain" data-pick-vol="1"><b>Volume 1 · Jogos de palavras</b><small>Cruzadas, caça-palavras, conecte e intruso</small></button>
+        <button type="button" class="tile plain" data-pick-vol="2"><b>Volume 2 · Pronúncia</b><small>Alfabeto, sons, ditado e construção de frases</small></button>
+        <button type="button" class="tile plain" data-pick-vol="3"><b>Volume 3 · Conversação</b><small>Diálogos: monte as falas e escolha a resposta</small></button>
+      </div>
+    </div>
+  </section>
+
   <section class="screen" id="s-index" hidden>
     <header class="bar">
-      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="btn icon" data-back="vol" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="ttl">
-        <h2>Jogos</h2>
+        <h2>Escolha o jogo</h2>
         <p class="vol" id="vol-title">Volume 1</p>
       </div>
     </header>
     <div class="scroll">
-      <h2 class="lab" style="margin-top:18px">Volume</h2>
-      <div class="seg" role="group" aria-label="Volume">
-        <button type="button" data-k="vol" data-v="1">Volume 1</button>
-        <button type="button" data-k="vol" data-v="2">Volume 2</button>
-        <button type="button" data-k="vol" data-v="3">Volume 3</button>
-      </div>
-      <h2 class="lab" style="margin-top:18px">Idioma do caderno</h2>
-      <div class="seg" role="group" aria-label="Idioma">
-        <button type="button" data-k="lang" data-v="fr">Français</button>
-        <button type="button" data-k="lang" data-v="it">Italiano</button>
-        <button type="button" data-k="lang" data-v="en">English</button>
-      </div>
       <div class="filters" id="filters">
         <label class="flt" id="f-theme-w">Tema <select class="field" id="f-theme" aria-label="Filtrar por tema"></select></label>
         <label class="flt" id="f-level-w">Nível <select class="field" id="f-level" aria-label="Filtrar por nível"><option value="all">Todos</option><option value="easy">Fácil</option><option value="classic">Clássico</option><option value="adv">Avançado</option></select></label>
+        <label class="flt game" id="f-game-w">Jogo <select class="field" id="f-game" aria-label="Filtrar por jogo"></select></label>
       </div>
       <p class="help" id="toc-help">Cada página é fixa, como num livro impresso. Toque em uma para jogar.</p>
       <div id="toc"></div>
@@ -1397,7 +1420,7 @@ Object.keys(PALS).forEach(k=>{if(PALS[k].l)PALS[k].bg=PALS[k].l;});
 const AUTO_ACC={fr:["#1f3d7a","#8fa9e8"],it:["#1b5e43","#6fcf9f"],en:["#8a2a45","#e58aa5"]};
 
 /* ----- preferências e páginas concluídas (nada de progresso parcial) ----- */
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",done:{}};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{}};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -1420,6 +1443,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(sv.vol===1||sv.vol===2||sv.vol===3)S.vol=sv.vol;
   if(sv.fTheme==="all"||CATS.some(c=>c[0]===sv.fTheme))S.fTheme=sv.fTheme;
   if(sv.fLevel==="all"||LVN[sv.fLevel])S.fLevel=sv.fLevel;
+  if(typeof sv.fGame==="string"&&/^[a-z]+$/.test(sv.fGame))S.fGame=sv.fGame;
   /* as marcas de concluído das versões antigas não são trazidas: os ids das páginas mudaram */
   if(!old&&sv.done&&typeof sv.done==="object")Object.keys(sv.done).forEach(k=>{if(/^(fr|it|en):[a-z0-9-]+$/.test(k))S.done[k]=1;});
 })();
@@ -1574,7 +1598,7 @@ function skRec(w,label,ok){
 function seedNow(){seedWith(S.lang+"|"+curVol().id+"|"+P.id);}
 
 let clearStatsArmed=false;
-const SCREENS=["home","index","stats","settings","profile","game"];
+const SCREENS=["home","lang","vol","index","stats","settings","profile","game"];
 let clearArmed=false;
 function go(name){
   SCREENS.forEach(s=>{$("#s-"+s).hidden=s!==name;});
@@ -1582,12 +1606,15 @@ function go(name){
   if(name!=="game")fitFn=null;
   if(name==="index")renderIndex();
   if(name==="home")renderMe();
+  if(name==="vol")$("#vol-lang").textContent=LNAME[S.lang];
   if(name==="stats"){syncPrefs();renderStats();}
   if(name==="settings"){clearArmed=false;$("#clear-note").textContent="";syncPrefs();}
   if(name==="profile"){clearStatsArmed=false;$("#clear-stats-note").textContent="";syncPrefs();}
 }
 $$("[data-back]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.back)));
-$("#go-games").addEventListener("click",()=>go("index"));
+$("#go-games").addEventListener("click",()=>go("lang"));
+$("#s-lang").addEventListener("click",e=>{const b=e.target.closest("[data-pick-lang]");if(!b)return;S.lang=b.dataset.pickLang;save();syncPrefs();go("vol");});
+$("#s-vol").addEventListener("click",e=>{const b=e.target.closest("[data-pick-vol]");if(!b)return;S.vol=+b.dataset.pickVol;S.fGame="all";save();go("index");});
 $("#go-profile").addEventListener("click",()=>go("profile"));
 $("#go-stats").addEventListener("click",()=>go("stats"));
 $("#go-settings").addEventListener("click",()=>go("settings"));
@@ -1595,6 +1622,7 @@ $("#go-settings").addEventListener("click",()=>go("settings"));
 function pageShown(p){
   if(S.fTheme!=="all"&&!(p.themes&&p.themes.indexOf(S.fTheme)>=0))return false;
   if(S.vol===1&&S.fLevel!=="all"&&p.level!==S.fLevel)return false;
+  if(S.fGame!=="all"&&p.type!==S.fGame)return false;
   return true;
 }
 function buildThemeSelect(){
@@ -1603,7 +1631,10 @@ function buildThemeSelect(){
 }
 function renderIndex(){
   const V=curVol();
-  $("#vol-title").textContent=V.title;
+  if(S.fGame!=="all"&&!V.types.some(t=>t[0]===S.fGame))S.fGame="all";
+  $("#vol-title").textContent=LNAME[S.lang]+" · "+V.title;
+  $("#f-game").innerHTML='<option value="all">Todos os jogos</option>'+V.types.map(t=>'<option value="'+t[0]+'">'+esc(t[2])+"</option>").join("");
+  $("#f-game").value=S.fGame;
   const num={};V.pages.forEach((p,i)=>{num[p.id]=i+1;});
   $("#f-theme").value=S.fTheme;$("#f-level").value=S.fLevel;
   $("#f-level-w").hidden=S.vol!==1;
@@ -1623,7 +1654,7 @@ function renderIndex(){
     }).join("");
     return '<section class="toc-sec"><h2 class="lab">'+t[1]+'</h2><div class="toc">'+rows+"</div></section>";
   }).join("");
-  $("#toc").innerHTML=html||'<p class="empty">Nenhuma página com esse tema neste volume. Escolha outro tema ou outro volume.</p>';
+  $("#toc").innerHTML=html||'<p class="empty">Nenhuma página com esses filtros. Troque o tema, o nível ou o jogo.</p>';
   $("#toc-help").textContent=shown+" de "+V.pages.length+" páginas. Cada página é fixa, como num livro impresso. Toque em uma para jogar.";
   syncPrefs();
   renderStats();
@@ -1631,11 +1662,12 @@ function renderIndex(){
 $("#toc").addEventListener("click",e=>{const b=e.target.closest("[data-id]");if(b)startPage(b.dataset.id);});
 
 function onFilter(e){
-  if(e.target.id==="f-theme")S.fTheme=e.target.value;else if(e.target.id==="f-level")S.fLevel=e.target.value;else return;
+  if(e.target.id==="f-theme")S.fTheme=e.target.value;else if(e.target.id==="f-level")S.fLevel=e.target.value;else if(e.target.id==="f-game")S.fGame=e.target.value;else return;
   save();renderIndex();
 }
 $("#f-theme").addEventListener("change",onFilter);
 $("#f-level").addEventListener("change",onFilter);
+$("#f-game").addEventListener("change",onFilter);
 
 /* ----- perfil do jogador: logos desenhadas em SVG ----- */
 const AVATARS={
