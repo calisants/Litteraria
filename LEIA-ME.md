@@ -4,7 +4,7 @@ Esta pasta é o app completo. Ele precisa ficar em um endereço https para o cel
 
 ## Arquivos
 
-- index.html: o app, com 314 páginas em francês, italiano e inglês. Volume 1: jogos de palavras (216 páginas, filtráveis por tema e nível). Volume 2: pronúncia com IPA (62 páginas). Volume 3: conversação (36 páginas)
+- index.html: o app, com 331 páginas em francês, italiano e inglês. Volume 1: pronúncia com IPA (62 páginas). Volume 2: jogos de palavras (216 páginas, filtráveis por tema e nível). Volume 3: gramática (17 páginas por idioma). Volume 4: conversação (36 páginas)
 - manifest.webmanifest: nome, cores e ícones do app
 - sw.js: guarda o app no aparelho para funcionar sem internet
 - icon-192.png, icon-512.png, icon-maskable-512.png: ícones
@@ -43,6 +43,14 @@ Quando houver uma versão nova do index.html, substitua o arquivo no mesmo lugar
 - "Como fala": aproximação em português feita por regras a partir do IPA (acento em MAIÚSCULAS; ã, ẽ, õ para nasais; ü e ö para os sons do francês). Não substitui ouvir.
 - Larousse e Treccani não publicam IPA em texto acessível, então não foram usados para isso. Traduções, gêneros e artigos do vocabulário foram escritos à mão e conferidos só quanto à existência da palavra; vale uma leitura de alguém fluente.
 - A voz do botão de som vem do próprio aparelho (Web Speech) e varia entre celulares.
+
+## De onde vem a gramática (Volume 3)
+
+Cada página tem um cartão de regra e 6 perguntas. O cartão mostra a fonte de cada regra, com um destes níveis:
+
+- Conferido em fonte: formas verbais do francês e do italiano conferidas pela biblioteca de conjugação verbecc; formas do inglês pela biblioteca lemminflect; francês (grupos de verbos, auxiliares, passé composé) conferido no Wiktionnaire, «Conjugaison:français»; artigos do italiano conferidos na Treccani (Enciclopedia dell'Italiano, «articolo»); plural, presente, passado, negação e preposições de tempo do inglês conferidos no Cambridge Grammar of English (Carter e McCarthy), cujo PDF foi fornecido pela usuária.
+- Escrito por Claude, sem fonte conferida: artigos e plural do francês, plural do italiano, negação e perguntas do francês e do italiano, preposições de lugar do francês e do italiano, classes de palavras e falsos amigos nos três idiomas, além das regras de a/an e de preposições de lugar do inglês. Gêneros dos substantivos usados também foram escritos de memória.
+- Os livros não foram copiados: as regras foram reescritas e os exemplos são próprios. Use o volume como apoio de estudo e confirme em uma gramática impressa antes de decidir dúvidas finas.
 
 ## Observações
 
