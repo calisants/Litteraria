@@ -41,15 +41,17 @@ Quando houver uma versão nova do index.html, substitua o arquivo no mesmo lugar
 
 - IPA: dados abertos derivados do Wiktionary (WikiPron para italiano; ipa-dict para francês e inglês britânico). Para a posição do acento em italiano e inglês, o espeak-ng ajudou nos poucos casos sem registro.
 - "Como fala": aproximação em português feita por regras a partir do IPA (acento em MAIÚSCULAS; ã, ẽ, õ para nasais; ü e ö para os sons do francês). Não substitui ouvir.
-- Larousse e Treccani não publicam IPA em texto acessível, então não foram usados para isso. Traduções, gêneros e artigos do vocabulário foram escritos à mão e conferidos só quanto à existência da palavra; vale uma leitura de alguém fluente.
+- Larousse e Treccani não publicam IPA em texto acessível, então não foram usados para isso.
+- Vocabulário do italiano: conferido contra o dicionário do Kaikki (Wiktionary em dados abertos). Todas as palavras tiveram entrada (exceto "beige"), os gêneros dos substantivos com il/lo/la/le/i/gli batem com o dicionário, e as traduções foram lidas uma a uma contra as definições, sem erros. Ajuste feito: "costume" agora indica "traje de banho (costume da bagno)", porque sozinho significa outra coisa. Os artigos com l' não têm como ser conferidos assim.
+- Vocabulário do francês e do inglês: traduções, gêneros e artigos foram escritos à mão e conferidos só quanto à existência da palavra; vale uma leitura de alguém fluente (ou os dumps do Kaikki para essas línguas, para repetir a conferência do italiano).
 - A voz do botão de som vem do próprio aparelho (Web Speech) e varia entre celulares.
 
 ## De onde vem a gramática (Volume 3)
 
 Cada página tem um cartão de regra e 6 perguntas. O cartão mostra a fonte de cada regra, com um destes níveis:
 
-- Conferido em fonte: formas verbais do francês e do italiano conferidas pela biblioteca de conjugação verbecc; formas do inglês pela biblioteca lemminflect; francês (grupos de verbos, auxiliares, passé composé) conferido no Wiktionnaire, «Conjugaison:français»; artigos do italiano conferidos na Treccani (Enciclopedia dell'Italiano, «articolo»); plural, presente, passado, negação e preposições de tempo do inglês conferidos no Cambridge Grammar of English (Carter e McCarthy), cujo PDF foi fornecido pela usuária.
-- Escrito por Claude, sem fonte conferida: artigos e plural do francês, plural do italiano, negação e perguntas do francês e do italiano, preposições de lugar do francês e do italiano, classes de palavras e falsos amigos nos três idiomas, além das regras de a/an e de preposições de lugar do inglês. Gêneros dos substantivos usados também foram escritos de memória.
+- Conferido em fonte: formas verbais do francês e do italiano conferidas pela biblioteca de conjugação verbecc; formas do inglês pela biblioteca lemminflect; francês (grupos de verbos, auxiliares, passé composé) conferido no Wiktionnaire, «Conjugaison:français»; artigos do italiano conferidos na Treccani (Enciclopedia dell'Italiano, «articolo»); gêneros, plurais e falsos amigos do italiano conferidos no dicionário Kaikki (Wiktionary); plural, presente, passado, negação e preposições de tempo do inglês conferidos no Cambridge Grammar of English (Carter e McCarthy), cujo PDF foi fornecido pela usuária.
+- Escrito por Claude, sem fonte conferida: artigos e plural do francês, negação e perguntas do francês e do italiano, preposições de lugar do francês e do italiano, classes de palavras (três idiomas) e falsos amigos do francês e do inglês, além das regras de a/an e de preposições de lugar do inglês. Gêneros dos substantivos usados também foram escritos de memória.
 - Os livros não foram copiados: as regras foram reescritas e os exemplos são próprios. Use o volume como apoio de estudo e confirme em uma gramática impressa antes de decidir dúvidas finas.
 
 ## Observações
