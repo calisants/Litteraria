@@ -1,3 +1,15 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0F6E56">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Massas">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <title>Quebra-cabeça de Massas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -110,6 +122,8 @@ details dl{margin:10px 0 0;display:grid;gap:8px}details dt{font-weight:600}detai
 .mhint{font-size:.88rem;color:var(--muted);margin:-6px 0 12px}
 @media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}.card:hover{border-color:var(--keep)}}
 </style>
+</head>
+<body>
 
 <div class="wrap">
   <h1>Quebra-cabeça de massas</h1>
@@ -496,3 +510,10 @@ $('#glos').innerHTML=[['+ (cátion)','Fragmento com carga positiva e nenhum elé
 curEx=6;$('#inM').value=60;$('#inP').value='59, 42, 31';
 buildChips();analyze();drawTable();calc();ivEx=6;drawIVChips();drawIV();$('#ivq').addEventListener('input',ivLookup);
 </script>
+<script>
+if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){
+  window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});
+}
+</script>
+</body>
+</html>
