@@ -225,8 +225,8 @@ EN_PREP = [
     ("I wake up ___ 7 o'clock.", "at", "Horas exatas: «at»."), ("We have class ___ Monday.", "on", "Dias da semana: «on»."),
     ("My birthday is ___ July.", "in", "Meses: «in»."), ("She was born ___ 2001.", "in", "Anos: «in»."),
     ("I sleep ___ night.", "at", "Expressão fixa: «at night»."), ("The book is ___ the table.", "on", "Sobre uma superfície: «on»."),
-    ("He lives ___ Brazil.", "in", "Países e cidades: «in»."), ("Wait for me ___ the bus stop.", "at", "Ponto específico: «at»."),
-    ("I'm ___ home.", "at", "Expressão fixa: «at home»."), ("We eat ___ the kitchen.", "in", "Dentro de um espaço: «in»."),
+    ("He lives ___ Brazil.", "in", "Países e cidades: «in»."), ("She always did well ___ school.", "at", "Com school, college e university usa-se «at»."),
+    ("I was sitting ___ my desk.", "at", "Posição vista como um ponto: «at»."), ("We eat ___ the kitchen.", "in", "Dentro de um espaço: «in»."),
     ("I work ___ the morning.", "in", "Partes do dia (manhã, tarde, noite como período): «in the morning/afternoon/evening»."), ("We meet ___ my birthday.", "on", "Dias específicos (datas, aniversário): «on»."),
 ]
 EN_PREP_OPT = ["in", "on", "at", "to"]

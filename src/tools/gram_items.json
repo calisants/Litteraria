@@ -3742,7 +3742,7 @@
 "k": "He lives in Brazil."
 },
 {
-"q": "Wait for me ___ the bus stop.",
+"q": "She always did well ___ school.",
 "o": [
 "in",
 "on",
@@ -3750,12 +3750,12 @@
 "at"
 ],
 "a": 3,
-"w": "Ponto específico: «at».",
-"s": "Wait for me at the bus stop.",
-"k": "Wait for me at the bus stop."
+"w": "Com school, college e university usa-se «at».",
+"s": "She always did well at school.",
+"k": "She always did well at school."
 },
 {
-"q": "I'm ___ home.",
+"q": "I was sitting ___ my desk.",
 "o": [
 "on",
 "in",
@@ -3763,9 +3763,9 @@
 "to"
 ],
 "a": 2,
-"w": "Expressão fixa: «at home».",
-"s": "I'm at home.",
-"k": "I'm at home."
+"w": "Posição vista como um ponto: «at».",
+"s": "I was sitting at my desk.",
+"k": "I was sitting at my desk."
 },
 {
 "q": "We eat ___ the kitchen.",
