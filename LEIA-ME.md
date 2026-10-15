@@ -62,8 +62,14 @@ Cada página tem um cartão de regra e 6 perguntas. O cartão mostra a fonte de 
 
 
 ## Novidades desta versão
-- Hoje: botão na tela inicial que traz primeiro a revisão dos erros e depois a próxima página nova.
-- Revisão: os erros de primeira voltam em 1, 3, 7 e 14 dias (acertar avança, errar volta ao início).
-- Digitar a resposta: nas páginas de verbos (presente, passado, futuro, condicional, subjuntivo e reflexivos), no lugar de escolher entre 4 opções. Aceita maiúsculas/minúsculas e avisa quando só os acentos estão errados.
+- Hoje: botão na tela inicial que traz primeiro a revisão e depois a próxima página nova. Mostra a meta do dia (10, 20 ou 40 respostas, em Ajustes), sem sequência nem punição.
+- Revisão: os erros de primeira, de gramática e de vocabulário, voltam em 1, 3, 7 e 14 dias (acertar avança, errar volta ao início). Os erros de palavras vêm dos jogos e do Treino.
+- Treino: rodadas de 10 itens novos e digitados, de verbos (6 tempos em francês e italiano; 3 em inglês) ou de palavras (português para o idioma). As formas verbais vêm do verbecc (FR/IT) e do lemminflect (EN).
+- Digitar a resposta: também nas páginas de verbos (presente, passado, futuro, condicional, subjuntivo e reflexivos). Aceita maiúsculas/minúsculas e avisa quando só os acentos estão errados.
+- Erro explicado: nas conjugações de francês e italiano, a alternativa errada que você escolheu diz que forma ela é (pessoa e tempo), segundo o verbecc.
+- Sinônimos e antônimos: 2 páginas por idioma, com alternativas-armadilha (antônimo numa pergunta de sinônimo e o inverso), todas conferidas nas listas do Kaikki (FR/IT) e do WordNet 3.0 (EN).
 - Backup: Ajustes > Backup do progresso baixa um arquivo e restaura por ele.
-- Nova página: sinônimos e antônimos (2 páginas por idioma).
+
+## Conferências desta rodada
+- Vocabulário inglês: 470 das 483 palavras estão no WordNet 3.0; as 13 restantes são palavras funcionais, plurais e expressões (see you, excuse me, cheers, when, how, how much, what, which, where, because, parents, trousers, boots). O significado de cada uma foi comparado com a glosa do WordNet, lida por Claude, e não apareceu divergência. A tradução em si não vem de dicionário bilíngue.
+- Pronúncia do italiano: os nomes das letras, gli [ʎ], sci [ʃ], «ch/gh» e as consoantes dobradas conferem com o capítulo «Pronunciation and alphabet» do Wikibooks. O IPA de cada palavra vem do WikiPron (Wiktionary).
