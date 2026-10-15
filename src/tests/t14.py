@@ -17,15 +17,18 @@ try:
     assert 'Italiano' in pg.inner_text('#sheet-in')
     pg.click('[data-train=w]');pg.wait_for_timeout(200);assert 'Italiano' in pg.inner_text('#g-sub');print('sub:',pg.inner_text('#g-sub'))
     pg.evaluate("()=>go('home')");assert 'Italiano' in pg.inner_text('#train-sub')
-    # sugestões
-    pg.evaluate("()=>go('settings')");pg.click('#s-settings [data-feedback]');assert pg.is_visible('#fb-text')
-    pg.click('#fb-send');assert 'Escreva algo' in pg.inner_text('#fb-note')
-    pg.fill('#fb-text','teste');
-    with ctx.expect_page() as np_: pg.click('#fb-send')
-    from urllib.parse import unquote
-    u=unquote(unquote(np_.value.url));print('url:',u[:120]);assert 'github.com' in u and 'calisants/motsparole/issues/new?title=' in u
-    assert 'Versão 1.1.0' in u and 'camilimasiv' not in u
-    pg.evaluate("()=>closeSheet()")
+    # sugestões: tela própria, sem GitHub; envio por formulário quando configurado
+    pg.evaluate("()=>go('settings')");pg.click('#s-settings [data-feedback]');assert pg.is_visible('#s-feedback') and pg.is_visible('#fb-text')
+    assert pg.is_disabled('#fb-send') and 'ainda não foi ativado' in pg.inner_text('#fb-note')
+    assert 'github.com/calisants/motsparole/issues' not in pg.content()
+    posts=[]
+    pg.route('https://docs.google.com/forms/**',lambda r:(posts.append(r.request.post_data),r.fulfill(status=200,body='ok')))
+    pg.evaluate("()=>{FB_FORM.action='https://docs.google.com/forms/d/e/TESTE/formResponse';FB_FORM.kind='entry.1';FB_FORM.text='entry.2';FB_FORM.info='entry.3'}")
+    pg.evaluate("()=>{$('#fb-send').disabled=false}");pg.click('#fb-send');assert 'Escreva algo' in pg.inner_text('#fb-note')
+    pg.fill('#fb-text','teste de envio');pg.click('[data-fbk=Erro]');pg.click('#fb-send');pg.wait_for_timeout(500)
+    print('post:',posts);assert posts and 'entry.2=teste' in posts[0] and 'entry.1=Erro' in posts[0] and 'entry.3=Vers' in posts[0] and 'camilimasiv' not in posts[0]
+    assert 'Enviado' in pg.inner_text('#fb-note') and pg.input_value('#fb-text')==''
+    pg.click('#fb-back');assert pg.is_visible('#s-settings')
     # volumes
     v=pg.evaluate("()=>VOLUMES.map(v=>v.title+' :: '+v.types.map(t=>t[0]).join(','))");print(*v,sep='\n')
     assert [x.split(' ·')[0] for x in v]==['Volume 1','Volume 2','Volume 3','Volume 4','Volume 5']
@@ -61,6 +64,9 @@ try:
     pg.evaluate("()=>{S.sound='off';sfx('bad')}")
     assert pg.evaluate("()=>[...document.querySelectorAll('#s-game .tremble')].length")>=1,'tremor na tela'
     pg.evaluate("()=>go('settings')");pg.click('#s-settings [data-k=snd][data-v=high]');assert pg.evaluate("()=>S.snd")=='high'
+    pg.click('#s-settings [data-k=trem][data-v=off]');assert pg.evaluate("()=>S.trem")=='off'
+    pg.evaluate("()=>{go('game');document.querySelector('#gstage').hidden=false;document.querySelectorAll('.tremble').forEach(e=>e.classList.remove('tremble'));sfx('bad')}");assert pg.evaluate("()=>document.querySelectorAll('.tremble').length")==0
+    pg.evaluate("()=>go('settings')")
     pg.click('#s-settings [data-k=hap][data-v=off]');assert pg.evaluate("()=>S.hap")=='off'
     pg.reload();pg.wait_for_timeout(500);assert pg.evaluate("()=>[S.snd,S.hap]")==['high','off']
     print('erros:',errs);assert not errs

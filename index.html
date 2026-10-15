@@ -502,7 +502,15 @@ svg{display:block}
               <button type="button" data-k="hap" data-v="on">Ligada</button>
               <button type="button" data-k="hap" data-v="off">Desligada</button>
             </div>
-            <p class="help">Vibração leve no celular (não funciona em iPhone). O tremor suave na tela acontece sempre, a menos que o aparelho peça menos movimento.</p>
+            <p class="help">Vibração leve no celular (não funciona em iPhone).</p>
+          </section>
+          <section>
+            <h2 class="lab">Tremor da tela ao errar</h2>
+            <div class="seg" role="group" aria-label="Tremor da tela ao errar">
+              <button type="button" data-k="trem" data-v="on">Ligado</button>
+              <button type="button" data-k="trem" data-v="off">Desligado</button>
+            </div>
+            <p class="help">Se o aparelho estiver com "reduzir movimento", o tremor fica desligado de qualquer jeito.</p>
           </section>
         </div>
         <div class="stack">
@@ -547,6 +555,22 @@ svg{display:block}
     </div>
   </section>
 
+  <section class="screen" id="s-feedback" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" id="fb-back" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Sugestão ou erro</h2></div>
+    </header>
+    <div class="scroll">
+      <p class="help">Conte o que você gostaria de melhorar ou o que deu errado. Vai para a Camila, que cuida do app.</p>
+      <div class="seg" role="group" aria-label="Tipo" style="margin-bottom:12px"><button type="button" data-fbk="Sugestão" aria-pressed="true">Sugestão</button><button type="button" data-fbk="Erro" aria-pressed="false">Aviso de erro</button></div>
+      <label for="fb-text" class="help">Sua mensagem (se for erro: em qual página e o que apareceu)</label>
+      <textarea id="fb-text" class="fbta" maxlength="1500"></textarea>
+      <label class="fbck"><input type="checkbox" id="fb-diag" checked> Enviar junto a versão do app, o idioma e o modelo do aparelho. Seu progresso e seu nome não vão.</label>
+      <button type="button" class="btn primary wide" id="fb-send" style="margin-bottom:8px">Enviar</button>
+      <button type="button" class="btn wide" id="fb-copy">Copiar o texto</button>
+      <p class="help" id="fb-note" aria-live="polite"></p>
+    </div>
+  </section>
   <section class="screen" id="s-game" hidden>
     <header class="bar">
       <button type="button" class="btn icon" data-back="index" aria-label="Voltar ao índice"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -661,7 +685,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.1.0",d:"2026-10-15"};
+const APP_REL={v:"1.2.0",d:"2026-10-15"};
 
 
 const RAW={
@@ -1554,7 +1578,7 @@ Object.keys(PALS).forEach(k=>{if(PALS[k].l)PALS[k].bg=PALS[k].l;});
 const AUTO_ACC={fr:["#1f3d7a","#8fa9e8"],it:["#1b5e43","#6fcf9f"],en:["#8a2a45","#e58aa5"]};
 
 /* ----- preferências e páginas concluídas (nada de progresso parcial) ----- */
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -1582,6 +1606,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(sv.sound==="on"||sv.sound==="off")S.sound=sv.sound;
   if(sv.snd==="low"||sv.snd==="mid"||sv.snd==="high")S.snd=sv.snd;
   if(sv.hap==="on"||sv.hap==="off")S.hap=sv.hap;
+  if(sv.trem==="on"||sv.trem==="off")S.trem=sv.trem;
   if(typeof sv.kb==="boolean")S.kb=sv.kb;
   if(sv.vol===1||sv.vol===2||sv.vol===3||sv.vol===4||sv.vol===5)S.vol=sv.vol;
   if(sv.fTheme==="all"||CATS.some(c=>c[0]===sv.fTheme))S.fTheme=sv.fTheme;
@@ -1644,7 +1669,7 @@ const VOLG={low:1,mid:2.2,high:3.4};
 function wrongFx(){
   if(S.hap==="on"){try{if(navigator.vibrate)navigator.vibrate([40,30,40]);}catch(_){}}
   const mot=!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches);
-  if(mot)$$("#s-game .stage:not([hidden]), #s-game .cstage:not([hidden]), #s-game .sstage:not([hidden]), #s-game .ostage:not([hidden])").forEach(el=>{
+  if(mot&&S.trem==="on")$$("#s-game .stage:not([hidden]), #s-game .cstage:not([hidden]), #s-game .sstage:not([hidden]), #s-game .ostage:not([hidden])").forEach(el=>{
     el.classList.remove("tremble");void el.offsetWidth;el.classList.add("tremble");
     setTimeout(()=>el.classList.remove("tremble"),500);
   });
@@ -1755,7 +1780,7 @@ function skRec(w,label,ok){
 function seedNow(){seedWith(S.lang+"|"+(P.vid||curVol().id)+"|"+P.id);}
 
 let clearStatsArmed=false;
-const SCREENS=["home","lang","vol","index","stats","settings","profile","game"];
+const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback"];
 let clearArmed=false;
 function go(name){
   SCREENS.forEach(s=>{$("#s-"+s).hidden=s!==name;});
@@ -2937,32 +2962,35 @@ function verText(){return "Versão "+APP_REL.v+" · atualizado em "+APP_REL.d.sp
 function showVer(){["#ver-line","#ver-set"].forEach(s=>{const e=$(s);if(e)e.textContent=verText();});trainSub();}
 showVer();
 const _ri=renderIndex;renderIndex=function(){_ri.apply(this,arguments);trainSub();};
+/* Formulário do Google: preencha action (URL terminada em /formResponse) e os três campos entry.NNN.
+   Enquanto action estiver vazio, o envio fica desligado e o app só oferece "Copiar o texto". */
+const FB_FORM={action:"",kind:"",text:"",info:""};
+let fbFrom="home";
 function fbDiag(){return "Versão "+APP_REL.v+" ("+APP_REL.d+") · idioma "+S.lang+" · volume "+S.vol+" · tela "+innerWidth+"x"+innerHeight+" · "+navigator.userAgent;}
 function openFeedback(){
-  openSheet("Sugestão ou aviso de erro",
-    '<div class="seg" role="group" aria-label="Tipo" style="margin-bottom:10px"><button type="button" data-fbk="Sugestão" aria-pressed="true">Sugestão</button><button type="button" data-fbk="Erro" aria-pressed="false">Aviso de erro</button></div>'+
-    '<label for="fb-text" class="help">Conte o que aconteceu ou o que você gostaria. Se for erro, diga em qual página e o que apareceu.</label>'+
-    '<textarea id="fb-text" class="fbta" maxlength="1500"></textarea>'+
-    '<label class="fbck"><input type="checkbox" id="fb-diag" checked> Incluir versão do app, idioma e modelo do aparelho (ajuda a achar o erro). Seu progresso e seu nome não são enviados.</label>'+
-    '<button type="button" class="btn wide" id="fb-send" style="margin-bottom:8px">Enviar pelo GitHub</button>'+
-    '<button type="button" class="btn wide" id="fb-copy">Copiar o texto</button>'+
-    '<p class="help" id="fb-note">O envio abre uma página do GitHub com o texto já preenchido; é preciso ter conta lá. Sem conta, use "Copiar o texto" e mande para quem te passou o app.</p>',false);
+  const cur=SCREENS.find(s=>!$("#s-"+s).hidden);fbFrom=cur&&cur!=="feedback"?cur:"home";if(fbFrom==="game")fbFrom="home";
+  closeSheet();go("feedback");
+  $("#fb-note").textContent=FB_FORM.action?"":"O envio direto ainda não foi ativado neste app. Use \"Copiar o texto\" e mande para a Camila.";
+  $("#fb-send").disabled=!FB_FORM.action;
 }
 function fbBody(){const tx=$("#fb-text").value.trim();return tx+($("#fb-diag").checked?"\n\n---\n"+fbDiag():"");}
+$("#fb-back").addEventListener("click",()=>go(fbFrom));
 document.addEventListener("click",e=>{
   if(e.target.closest("[data-feedback]")){openFeedback();return;}
   const k=e.target.closest("[data-fbk]");
   if(k){$$("[data-fbk]").forEach(b=>b.setAttribute("aria-pressed",String(b===k)));return;}
   if(e.target.closest("#fb-send")){
-    const kind=($('[data-fbk][aria-pressed="true"]')||{dataset:{fbk:"Sugestão"}}).dataset.fbk,tx=$("#fb-text").value.trim();
-    if(!tx){$("#fb-note").textContent="Escreva algo antes de enviar.";$("#fb-text").focus();return;}
-    const url="https://github.com/calisants/motsparole/issues/new?title="+encodeURIComponent(kind+": "+tx.slice(0,60).replace(/\s+/g," "))+"&body="+encodeURIComponent(fbBody());
-    window.open(url,"_blank","noopener");
+    const tx=$("#fb-text").value.trim();if(!tx){$("#fb-note").textContent="Escreva algo antes de enviar.";$("#fb-text").focus();return;}
+    const kind=$('[data-fbk][aria-pressed="true"]').dataset.fbk,fd=new URLSearchParams();
+    fd.set(FB_FORM.kind,kind);fd.set(FB_FORM.text,tx);if($("#fb-diag").checked)fd.set(FB_FORM.info,fbDiag());
+    $("#fb-send").disabled=true;$("#fb-note").textContent="Enviando...";
+    fetch(FB_FORM.action,{method:"POST",mode:"no-cors",body:fd}).then(()=>{$("#fb-text").value="";$("#fb-note").textContent="Enviado. Obrigada!";say("Enviado. Obrigada!");$("#fb-send").disabled=false;})
+    .catch(()=>{$("#fb-note").textContent="Não consegui enviar (sem internet?). Seu texto continua aqui; tente de novo ou use \"Copiar o texto\".";$("#fb-send").disabled=false;});
     return;
   }
   if(e.target.closest("#fb-copy")){
     const tx=$("#fb-text").value.trim();if(!tx){$("#fb-note").textContent="Escreva algo antes de copiar.";return;}
-    const body=fbBody();
+    const body=$('[data-fbk][aria-pressed="true"]').dataset.fbk+": "+fbBody();
     (navigator.clipboard?navigator.clipboard.writeText(body):Promise.reject()).then(()=>say("Texto copiado.")).catch(()=>{$("#fb-text").value=body;$("#fb-text").select();$("#fb-note").textContent="Não consegui copiar sozinho: o texto está selecionado, copie com o seu aparelho.";});
   }
 });

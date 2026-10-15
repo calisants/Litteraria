@@ -169,7 +169,15 @@
               <button type="button" data-k="hap" data-v="on">Ligada</button>
               <button type="button" data-k="hap" data-v="off">Desligada</button>
             </div>
-            <p class="help">Vibração leve no celular (não funciona em iPhone). O tremor suave na tela acontece sempre, a menos que o aparelho peça menos movimento.</p>
+            <p class="help">Vibração leve no celular (não funciona em iPhone).</p>
+          </section>
+          <section>
+            <h2 class="lab">Tremor da tela ao errar</h2>
+            <div class="seg" role="group" aria-label="Tremor da tela ao errar">
+              <button type="button" data-k="trem" data-v="on">Ligado</button>
+              <button type="button" data-k="trem" data-v="off">Desligado</button>
+            </div>
+            <p class="help">Se o aparelho estiver com "reduzir movimento", o tremor fica desligado de qualquer jeito.</p>
           </section>
         </div>
         <div class="stack">
@@ -214,6 +222,22 @@
     </div>
   </section>
 
+  <section class="screen" id="s-feedback" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" id="fb-back" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Sugestão ou erro</h2></div>
+    </header>
+    <div class="scroll">
+      <p class="help">Conte o que você gostaria de melhorar ou o que deu errado. Vai para a Camila, que cuida do app.</p>
+      <div class="seg" role="group" aria-label="Tipo" style="margin-bottom:12px"><button type="button" data-fbk="Sugestão" aria-pressed="true">Sugestão</button><button type="button" data-fbk="Erro" aria-pressed="false">Aviso de erro</button></div>
+      <label for="fb-text" class="help">Sua mensagem (se for erro: em qual página e o que apareceu)</label>
+      <textarea id="fb-text" class="fbta" maxlength="1500"></textarea>
+      <label class="fbck"><input type="checkbox" id="fb-diag" checked> Enviar junto a versão do app, o idioma e o modelo do aparelho. Seu progresso e seu nome não vão.</label>
+      <button type="button" class="btn primary wide" id="fb-send" style="margin-bottom:8px">Enviar</button>
+      <button type="button" class="btn wide" id="fb-copy">Copiar o texto</button>
+      <p class="help" id="fb-note" aria-live="polite"></p>
+    </div>
+  </section>
   <section class="screen" id="s-game" hidden>
     <header class="bar">
       <button type="button" class="btn icon" data-back="index" aria-label="Voltar ao índice"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>

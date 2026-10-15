@@ -31,7 +31,7 @@ Object.keys(PALS).forEach(k=>{if(PALS[k].l)PALS[k].bg=PALS[k].l;});
 const AUTO_ACC={fr:["#1f3d7a","#8fa9e8"],it:["#1b5e43","#6fcf9f"],en:["#8a2a45","#e58aa5"]};
 
 /* ----- preferências e páginas concluídas (nada de progresso parcial) ----- */
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -59,6 +59,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(sv.sound==="on"||sv.sound==="off")S.sound=sv.sound;
   if(sv.snd==="low"||sv.snd==="mid"||sv.snd==="high")S.snd=sv.snd;
   if(sv.hap==="on"||sv.hap==="off")S.hap=sv.hap;
+  if(sv.trem==="on"||sv.trem==="off")S.trem=sv.trem;
   if(typeof sv.kb==="boolean")S.kb=sv.kb;
   if(sv.vol===1||sv.vol===2||sv.vol===3||sv.vol===4||sv.vol===5)S.vol=sv.vol;
   if(sv.fTheme==="all"||CATS.some(c=>c[0]===sv.fTheme))S.fTheme=sv.fTheme;
@@ -121,7 +122,7 @@ const VOLG={low:1,mid:2.2,high:3.4};
 function wrongFx(){
   if(S.hap==="on"){try{if(navigator.vibrate)navigator.vibrate([40,30,40]);}catch(_){}}
   const mot=!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches);
-  if(mot)$$("#s-game .stage:not([hidden]), #s-game .cstage:not([hidden]), #s-game .sstage:not([hidden]), #s-game .ostage:not([hidden])").forEach(el=>{
+  if(mot&&S.trem==="on")$$("#s-game .stage:not([hidden]), #s-game .cstage:not([hidden]), #s-game .sstage:not([hidden]), #s-game .ostage:not([hidden])").forEach(el=>{
     el.classList.remove("tremble");void el.offsetWidth;el.classList.add("tremble");
     setTimeout(()=>el.classList.remove("tremble"),500);
   });
@@ -232,7 +233,7 @@ function skRec(w,label,ok){
 function seedNow(){seedWith(S.lang+"|"+(P.vid||curVol().id)+"|"+P.id);}
 
 let clearStatsArmed=false;
-const SCREENS=["home","lang","vol","index","stats","settings","profile","game"];
+const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback"];
 let clearArmed=false;
 function go(name){
   SCREENS.forEach(s=>{$("#s-"+s).hidden=s!==name;});
