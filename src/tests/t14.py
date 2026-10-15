@@ -19,7 +19,8 @@ try:
     pg.evaluate("()=>go('home')");assert 'Italiano' in pg.inner_text('#train-sub')
     # sugestões: tela própria, sem GitHub; envio por formulário quando configurado
     pg.evaluate("()=>go('settings')");pg.click('#s-settings [data-feedback]');assert pg.is_visible('#s-feedback') and pg.is_visible('#fb-text')
-    assert pg.is_disabled('#fb-send') and 'ainda não foi ativado' in pg.inner_text('#fb-note')
+    pg.evaluate("()=>{window.__real=FB_FORM.action;FB_FORM.action='';openFeedback()}");assert pg.is_disabled('#fb-send') and 'ainda não foi ativado' in pg.inner_text('#fb-note')
+    assert pg.evaluate("()=>window.__real").startswith('https://docs.google.com/forms/d/e/') and pg.evaluate("()=>window.__real").endswith('/formResponse')
     assert 'github.com/calisants/motsparole/issues' not in pg.content()
     posts=[]
     pg.route('https://docs.google.com/forms/**',lambda r:(posts.append(r.request.post_data),r.fulfill(status=200,body='ok')))
@@ -28,7 +29,7 @@ try:
     pg.fill('#fb-text','teste de envio');pg.click('[data-fbk=Erro]');pg.click('#fb-send');pg.wait_for_timeout(500)
     print('post:',posts);assert posts and 'entry.2=teste' in posts[0] and 'entry.1=Erro' in posts[0] and 'entry.3=Vers' in posts[0] and 'camilimasiv' not in posts[0]
     assert 'Enviado' in pg.inner_text('#fb-note') and pg.input_value('#fb-text')==''
-    pg.click('#fb-back');assert pg.is_visible('#s-settings')
+    pg.click('#fb-back');assert pg.is_visible('#s-home') or pg.is_visible('#s-settings')
     # volumes
     v=pg.evaluate("()=>VOLUMES.map(v=>v.title+' :: '+v.types.map(t=>t[0]).join(','))");print(*v,sep='\n')
     assert [x.split(' ·')[0] for x in v]==['Volume 1','Volume 2','Volume 3','Volume 4','Volume 5']

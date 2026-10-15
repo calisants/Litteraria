@@ -198,7 +198,7 @@ showVer();
 const _ri=renderIndex;renderIndex=function(){_ri.apply(this,arguments);trainSub();};
 /* Formulário do Google: preencha action (URL terminada em /formResponse) e os três campos entry.NNN.
    Enquanto action estiver vazio, o envio fica desligado e o app só oferece "Copiar o texto". */
-const FB_FORM={action:"",kind:"",text:"",info:""};
+const FB_FORM={action:"https://docs.google.com/forms/d/e/1FAIpQLSccWT9AFf5q5ALhaijoAje_E96RPcUB4FiNrWkkfnLsV9cC9A/formResponse",kind:"entry.958003478",text:"entry.474885746",info:"entry.1734770126"};
 let fbFrom="home";
 function fbDiag(){return "Versão "+APP_REL.v+" ("+APP_REL.d+") · idioma "+S.lang+" · volume "+S.vol+" · tela "+innerWidth+"x"+innerHeight+" · "+navigator.userAgent;}
 function openFeedback(){

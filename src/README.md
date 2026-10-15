@@ -25,4 +25,4 @@ Os arquivos `gram_items*.json`, `bank.json` e `syn_*.json` já estão prontos aq
 Troque o número do cache em `../sw.js` (mots-parole-vNN) e a linha de `VERSION`. Não mude `APP_VERSION` em `p3.js`, senão o progresso some.
 
 ## Formulário de sugestões
-O app envia para um Google Forms. Em `p10.js`, preencha `FB_FORM` (`action` = URL do formulário terminando em `/formResponse`; `kind`, `text`, `info` = `entry.NNN` de cada pergunta). Enquanto `action` estiver vazio, o envio fica desligado e só há "Copiar o texto". Formulário e planilha de respostas: pasta «motseparole» no Drive da Camila.
+O app envia para um Google Forms. Em `p10.js`, preencha `FB_FORM` (`action` = URL do formulário terminando em `/formResponse`; `kind`, `text`, `info` = `entry.NNN` de cada pergunta). Já configurado (formulário «Mots & Parole · Sugestões e erros»). Se `action` ficar vazio, o envio fica desligado e só há "Copiar o texto". Formulário e planilha de respostas: pasta «motseparole» no Drive da Camila.
