@@ -4,7 +4,7 @@ Esta pasta é o app completo. Ele precisa ficar em um endereço https para o cel
 
 ## Arquivos
 
-- index.html: o app, com 353 páginas em francês, italiano e inglês. Volume 1: pronúncia com IPA (62 páginas). Volume 2: jogos de palavras (216 páginas, filtráveis por tema e nível). Volume 3: gramática (35 páginas por idioma, 17 temas). Volume 4: conversação (36 páginas)
+- index.html: o app, em francês, italiano e inglês, em 5 volumes na ordem de aprendizado: 1 Pronúncia (alfabeto, sons, sons difíceis), 2 Vocabulário (reconheça, ouça e entenda, complete, embaralhe, escreva, ditado; os de escrita não precisam de áudio), 3 Jogos (intruso, conecte, caça-palavras, cruzadas), 4 Gramática, 5 Conversação (frases, falas, respostas). Versão e data: arquivo `src/VERSION`.
 - manifest.webmanifest: nome, cores e ícones do app
 - sw.js: guarda o app no aparelho para funcionar sem internet
 - icon-192.png, icon-512.png, icon-maskable-512.png: ícones

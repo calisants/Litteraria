@@ -245,10 +245,16 @@ svg{display:block}
 .kbt{flex:none;margin-right:12px;min-height:34px;padding:2px 10px;border:var(--bw) solid var(--grid);border-radius:var(--radius);background:var(--surface);font-weight:700;font-size:.85rem;cursor:pointer}
 .native{position:fixed;left:-1000px;top:0;width:1px;height:1px;opacity:0}
 
+.linkbtn{background:none;border:0;padding:6px 4px;color:inherit;font:inherit;text-decoration:underline;cursor:pointer;min-height:36px}
+.fbta{width:100%;min-height:120px;padding:10px;border:var(--bw) solid var(--grid);border-radius:var(--radius);background:var(--surface);color:inherit;font:inherit;box-sizing:border-box;resize:vertical}
+.fbck{display:flex;gap:8px;align-items:flex-start;margin:10px 0;font-size:.92rem}
 /* Tremor discreto em resposta errada */
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
 .shake{animation:shake .4s ease-in-out}
+@keyframes tremble{0%,100%{transform:translateX(0)}15%{transform:translateX(-3px)}30%{transform:translateX(3px)}45%{transform:translateX(-2px)}60%{transform:translateX(2px)}80%{transform:translateX(-1px)}}
+.tremble{animation:tremble .35s ease-in-out}
 @media (prefers-reduced-motion:reduce){
+  .tremble{animation:none}
   .shake{animation:none;outline:3px solid var(--bad);outline-offset:2px}
 }
 

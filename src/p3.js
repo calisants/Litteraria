@@ -31,7 +31,7 @@ Object.keys(PALS).forEach(k=>{if(PALS[k].l)PALS[k].bg=PALS[k].l;});
 const AUTO_ACC={fr:["#1f3d7a","#8fa9e8"],it:["#1b5e43","#6fcf9f"],en:["#8a2a45","#e58aa5"]};
 
 /* ----- preferências e páginas concluídas (nada de progresso parcial) ----- */
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -57,8 +57,10 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(typeof sv.zoom==="boolean")S.zoom=sv.zoom;
   ["bk","bks","since"].forEach(k=>{const n=+sv[k];if(n>0&&n<4e12)S[k]=n;});
   if(sv.sound==="on"||sv.sound==="off")S.sound=sv.sound;
+  if(sv.snd==="low"||sv.snd==="mid"||sv.snd==="high")S.snd=sv.snd;
+  if(sv.hap==="on"||sv.hap==="off")S.hap=sv.hap;
   if(typeof sv.kb==="boolean")S.kb=sv.kb;
-  if(sv.vol===1||sv.vol===2||sv.vol===3||sv.vol===4)S.vol=sv.vol;
+  if(sv.vol===1||sv.vol===2||sv.vol===3||sv.vol===4||sv.vol===5)S.vol=sv.vol;
   if(sv.fTheme==="all"||CATS.some(c=>c[0]===sv.fTheme))S.fTheme=sv.fTheme;
   if(sv.fLevel==="all"||LVN[sv.fLevel])S.fLevel=sv.fLevel;
   if(typeof sv.fGame==="string"&&/^[a-z]+$/.test(sv.fGame))S.fGame=sv.fGame;
@@ -115,7 +117,17 @@ const TONES={
   done:[[523.25,0,.13,"sine"],[659.25,.1,.13,"sine"],[783.99,.2,.3,"sine"]],
   bad:[[196,0,.16,"triangle"],[155.56,.1,.22,"triangle"]]
 };
+const VOLG={low:1,mid:2.2,high:3.4};
+function wrongFx(){
+  if(S.hap==="on"){try{if(navigator.vibrate)navigator.vibrate([40,30,40]);}catch(_){}}
+  const mot=!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches);
+  if(mot)$$("#s-game .stage:not([hidden]), #s-game .cstage:not([hidden]), #s-game .sstage:not([hidden]), #s-game .ostage:not([hidden])").forEach(el=>{
+    el.classList.remove("tremble");void el.offsetWidth;el.classList.add("tremble");
+    setTimeout(()=>el.classList.remove("tremble"),500);
+  });
+}
 function sfx(kind){
+  if(kind==="bad")wrongFx();
   if(S.sound!=="on")return;
   try{
     const Ctx=window.AudioContext||window.webkitAudioContext;if(!Ctx)return;
@@ -125,7 +137,7 @@ function sfx(kind){
       const o=AC.createOscillator(),g=AC.createGain(),s=t0+n[1];
       o.type=n[3];o.frequency.value=n[0];
       g.gain.setValueAtTime(.0001,s);
-      g.gain.exponentialRampToValueAtTime(kind==="bad"?.07:.05,s+.02);
+      g.gain.exponentialRampToValueAtTime((kind==="bad"?.07:.05)*(VOLG[S.snd]||2.2),s+.02);
       g.gain.exponentialRampToValueAtTime(.0001,s+n[2]);
       o.connect(g);g.connect(AC.destination);o.start(s);o.stop(s+n[2]+.05);
     });
@@ -217,7 +229,7 @@ function skRec(w,label,ok){
   if(ks.length>1500)ks.slice(0,ks.length-1500).forEach(x=>delete L[x]);
   save();
 }
-function seedNow(){seedWith(S.lang+"|"+curVol().id+"|"+P.id);}
+function seedNow(){seedWith(S.lang+"|"+(P.vid||curVol().id)+"|"+P.id);}
 
 let clearStatsArmed=false;
 const SCREENS=["home","lang","vol","index","stats","settings","profile","game"];
@@ -321,7 +333,7 @@ function renderMe(){
 }
 
 /* ----- resumo do caderno (tela inicial) ----- */
-const GAMENAME={artigos:"Artigos",plural:"Plural",presente:"Presente",passado:"Passado",negacao:"Negação",prep:"Preposições",classes:"Classes",falsos:"Falsos amigos",cross:"Cruzadas",search:"Caça-palavras",connect:"Conecte",odd:"Intruso",sentence:"Conversação",resposta:"Respostas",alfabeto:"Alfabeto",sons:"Pares de sons",fala:"Sons difíceis",tema:"Palavras",ditado:"Ditado",frases:"Frases"};
+const GAMENAME={reco:"Reconheça",completar:"Complete",embaralhar:"Embaralhe",escreva:"Escreva",frases:"Frases",artigos:"Artigos",plural:"Plural",presente:"Presente",passado:"Passado",negacao:"Negação",prep:"Preposições",classes:"Classes",falsos:"Falsos amigos",cross:"Cruzadas",search:"Caça-palavras",connect:"Conecte",odd:"Intruso",sentence:"Conversação",resposta:"Respostas",alfabeto:"Alfabeto",sons:"Pares de sons",fala:"Sons difíceis",tema:"Palavras",ditado:"Ditado",frases:"Frases"};
 function vocabSet(){const set=new Set();Object.values(VOCAB[S.lang]).flat().forEach(it=>set.add(it.w.toLowerCase()));return set;}
 function renderStats(){
   const L=S.lang,pl=S.plays[L]||{},sk=S.sk[L]||{};
@@ -333,7 +345,7 @@ function renderStats(){
   const all=Object.keys(S.plays).reduce((n,l)=>n+Object.values(S.plays[l]).reduce((a,b)=>a+b,0),0);
   $("#st-line").textContent=doneN+" páginas · "+mastered+" palavras dominadas";
   const main=["cross","search","connect"].map(t=>"<div><b>"+(pl[t]||0)+"</b><small>"+GAMENAME[t]+"</small></div>").join("");
-  const more=["odd","sentence","resposta","tema","ditado","sons"].concat(VOLUME4.types.map(t=>t[0])).filter(t=>pl[t]).map(t=>GAMENAME[t]+" "+pl[t]).join(" · ");
+  const more=["odd","sentence","resposta","tema","ditado","sons","frases","reco","completar","embaralhar","escreva"].concat(VOLUME4.types.map(t=>t[0])).filter(t=>pl[t]).map(t=>GAMENAME[t]+" "+pl[t]).join(" · ");
   const worst=Object.keys(sk).filter(k=>sk[k][1]>sk[k][0]).sort((a,b)=>(sk[b][1]-sk[b][0])-(sk[a][1]-sk[a][0])).slice(0,6);
   const pct=n=>Math.round(100*n/Math.max(1,pages));
   $("#st-body").innerHTML=
@@ -366,7 +378,8 @@ function onPrefClick(e){
   if(k)S[k.dataset.k]=k.dataset.k==="vol"?+k.dataset.v:k.dataset.v;else if(p)S.pal=p.dataset.pal;else return;
   save();applyTheme();
   if(k&&(k.dataset.k==="lang"||k.dataset.k==="vol"))renderIndex();else syncPrefs();
-  if(k&&k.dataset.k==="sound")sfx("ok");
+  if(k&&(k.dataset.k==="sound"||k.dataset.k==="snd"))sfx("ok");
+  if(k&&k.dataset.k==="hap"&&S.hap==="on"){try{navigator.vibrate&&navigator.vibrate([40,30,40]);}catch(_){}}
 }
 $("#s-index").addEventListener("click",onPrefClick);
 $("#s-settings").addEventListener("click",onPrefClick);

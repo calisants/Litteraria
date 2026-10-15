@@ -36,7 +36,7 @@ dump = lambda o: json.dumps(o, ensure_ascii=False, separators=(',', ':'))
 types = "[" + ", ".join(json.dumps(list(t), ensure_ascii=False) for t in ORDER) + "]"
 js = ("/* ===== Volume 3 (id 4): Gramática. Dados gerados por gram_gen.py, gram_gen2.py e gram_rules*.py; conjugações conferidas por verbecc/lemminflect ===== */\n"
       "const GRAM={items:" + dump(items) + ",rules:" + dump(rules) + "};\n"
-      "const VOLUME4={id:4,title:\"Volume 3 · Gramática\",types:" + types + ",pages:[]};\n"
+      "const VOLUME4={id:4,title:\"Volume 4 · Gramática\",types:" + types + ",pages:[]};\n"
       "VOLUME4.types.forEach(t=>{const n=GRAM.items.fr[t[0]].length;for(let i=1;i<=n;i++)VOLUME4.pages.push({id:t[0]+\"-\"+i,type:t[0],n:i,meta:\"6 perguntas · \"+t[1],themes:[]});});\n"
       "VOLUMES.push(VOLUME4);\n"
       "const DRILL=" + open('bank.json', encoding='utf8').read() + ";\n")

@@ -29,7 +29,7 @@ function startCross(){
   const c=CFG.cross[P.level];cw.cfg=c;seedNow();
   let p=null;
   for(let at=0;at<10;at++){
-    if(at)seedWith(S.lang+"|"+curVol().id+"|"+P.id+"#"+at);
+    if(at)seedWith(S.lang+"|"+(P.vid||curVol().id)+"|"+P.id+"#"+at);
     const q=makeCrossword(pickWords(S.lang,P.cat,c.n,3,c.max),c.span,c.tries);
     if(!p||q.entries.length>p.entries.length)p=q;
     if(p.entries.length>=Math.ceil(c.n*.75))break;

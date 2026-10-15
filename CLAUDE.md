@@ -10,10 +10,13 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Não copie texto protegido por direitos autorais (Treccani, Cambridge etc.): use os fatos e escreva com palavras próprias.
 
 ## Regras técnicas
-- Ao publicar, troque o número do cache em `sw.js` (mots-parole-vNN). **Não mude `APP_VERSION` em `src/p3.js`** (v6), senão o progresso dela some.
+- Ao publicar, troque o número do cache em `sw.js` (mots-parole-vNN) e a linha de `src/VERSION` (versão e data mostradas no app). **Não mude `APP_VERSION` em `src/p3.js`** (v6), senão o progresso dela some.
 - Rodar antes de publicar: `python3 -I tests/gt.py`, `t10.py`, `t11.py`, `t13.py` (dentro de `src/`). O único erro esperado no t11 é o de fontes não encontradas (ele abre o arquivo fora do site).
 - Conteúdo de gramática: `src/tools/` (geradores) e `src/content5.js` (gerado por `tools/mk_content5.py`). As correções de rótulo e de texto dos cartões ficam em `tools/gram_rules3.py` (dicionário `OV`).
 - Commits terminam com os trailers de atribuição pedidos pela sessão.
+
+- Volumes: 1 Pronúncia, 2 Vocabulário, 3 Jogos, 4 Gramática, 5 Conversação (`src/content6.js`). Cada jogo/exercício precisa funcionar sem áudio; os com áudio levam «(com áudio)» no nome.
+- Sugestões e erros vão para as Issues do GitHub (botão no app, com cópia de texto como alternativa).
 
 ## Estado e pendências (outubro de 2026)
 - Ordem didática das páginas de gramática já aplicada (está no `LEIA-ME.md`).

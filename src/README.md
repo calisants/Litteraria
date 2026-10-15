@@ -5,11 +5,12 @@ O `index.html` da raiz é **gerado** a partir desta pasta. Não edite o `index.h
 ## Como reconstruir
     cd src
     python3 build.py        # monta o app e atualiza ../index.html
-    python3 tests/gt.py     # 35 páginas por idioma (precisa de playwright)
-    python3 tests/t10.py ; python3 tests/t11.py
+    python3 -I tests/gt.py ; python3 -I tests/t10.py ; python3 -I tests/t11.py ; python3 -I tests/t13.py ; python3 -I tests/t14.py
 
 ## O que é cada parte
-- `p1.html` (CSS) e `p2.html` (telas) · `p3.js` (estado, salvar/carregar) · `p4`–`p7.js` (jogos) · `p9.js` (motor de gramática) · `p10.js` (Hoje, revisão, Treino, backup).
+- `p1.html` (CSS) e `p2.html` (telas) · `p3.js` (estado, salvar/carregar) · `p4`–`p7.js` (jogos) · `p9.js` (motor de gramática) · `p10.js` (Hoje, revisão, Treino, backup, versão, envio de sugestões) · `p11.js` (exercícios de escrita do Vocabulário).
+- `content6.js` define a ordem final dos volumes (ids internos: 1 jogos, 2 pronúncia, 3 conversação, 4 gramática, 5 vocabulário; páginas movidas guardam `vid` para manter o sorteio).
+- `VERSION` (ex.: `1.1.0 2026-10-15`): o `build.py` gera `version.js`. Atualize a cada publicação.
 - `data.js`, `content*.js`, `pron.js`, `sons.js`: dados. `content5.js` é **gerado** por `tools/mk_content5.py`.
 
 ## Gerar o conteúdo de gramática (`tools/`)
@@ -21,4 +22,4 @@ verbecc/lemminflect via pip). Ajuste os caminhos no topo de cada script (`sys.pa
 Os arquivos `gram_items*.json`, `bank.json` e `syn_*.json` já estão prontos aqui.
 
 ## Ao publicar
-Troque o número do cache em `../sw.js` (mots-parole-vNN). Não mude `APP_VERSION` em `p3.js`, senão o progresso some.
+Troque o número do cache em `../sw.js` (mots-parole-vNN) e a linha de `VERSION`. Não mude `APP_VERSION` em `p3.js`, senão o progresso some.

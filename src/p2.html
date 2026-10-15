@@ -17,13 +17,13 @@
       <div class="tiles">
         <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small><span class="gbar" aria-hidden="true"><i id="goal-fill"></i></span><small id="goal-txt"></small></button>
         <button type="button" class="tile" id="go-games"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><b>Jogos</b><small>Cruzadas, caça-palavras e mais</small></button>
-        <button type="button" class="tile" id="go-train"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><b>Treino</b><small>Digitar verbos e palavras</small></button>
+        <button type="button" class="tile" id="go-train"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><b>Treino</b><small id="train-sub">Digitar verbos e palavras</small></button>
         <button type="button" class="tile" id="go-profile"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><b>Perfil</b><small>Nome, frase e logo</small></button>
         <button type="button" class="tile" id="go-stats"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg><b>Estatísticas</b><small>Seu progresso e o que treinar</small></button>
         <button type="button" class="tile" id="go-settings"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><b>Ajustes</b><small>Layout, cor, claro/escuro, sons</small></button>
       </div>
     </div>
-    <footer class="foot"><p class="credit" id="credit">Desenvolvido por <a href="https://github.com/calisants" target="_blank" rel="noopener">@calisants</a></p></footer>
+    <footer class="foot"><p class="credit" id="ver-line"></p><p class="credit"><button type="button" class="linkbtn" data-feedback>Enviar sugestão ou avisar de erro</button></p><p class="credit" id="credit">Desenvolvido por <a href="https://github.com/calisants" target="_blank" rel="noopener">@calisants</a></p></footer>
   </section>
 
   <section class="screen" id="s-stats" hidden>
@@ -64,12 +64,13 @@
       <div class="ttl"><h2>Volume do caderno</h2><p class="vol" id="vol-lang"></p></div>
     </header>
     <div class="scroll">
-      <p class="help">Cada volume é um caderno diferente.</p>
+      <p class="help">Siga a ordem de 1 a 5: cada volume prepara o seguinte. Você também pode pular para o que quiser.</p>
       <div class="tiles one">
-        <button type="button" class="tile plain" data-pick-vol="2"><b>Volume 1 · Pronúncia</b><small>Alfabeto, sons, ditado e construção de frases</small></button>
-        <button type="button" class="tile plain" data-pick-vol="1"><b>Volume 2 · Jogos de palavras</b><small>Cruzadas, caça-palavras, conecte e intruso</small></button>
-        <button type="button" class="tile plain" data-pick-vol="4"><b>Volume 3 · Gramática</b><small>Regras e exercícios: artigos, verbos e tempos, subjuntivo, pronomes, conjunções, advérbios e ordem da frase</small></button>
-        <button type="button" class="tile plain" data-pick-vol="3"><b>Volume 4 · Conversação</b><small>Diálogos: monte as falas e escolha a resposta</small></button>
+        <button type="button" class="tile plain" data-pick-vol="2"><b>Volume 1 · Pronúncia</b><small>Comece aqui: alfabeto, sons e sons difíceis</small></button>
+        <button type="button" class="tile plain" data-pick-vol="5"><b>Volume 2 · Vocabulário</b><small>Palavras por tema: reconhecer, completar e escrever</small></button>
+        <button type="button" class="tile plain" data-pick-vol="1"><b>Volume 3 · Jogos de palavras</b><small>Intruso, conecte, caça-palavras e cruzadas, do mais fácil ao mais difícil</small></button>
+        <button type="button" class="tile plain" data-pick-vol="4"><b>Volume 4 · Gramática</b><small>Regras e exercícios: artigos, verbos e tempos, pronomes, conjunções e mais</small></button>
+        <button type="button" class="tile plain" data-pick-vol="3"><b>Volume 5 · Conversação</b><small>Frases, diálogos e respostas</small></button>
       </div>
     </div>
   </section>
@@ -150,6 +151,25 @@
               <button type="button" data-k="sound" data-v="on">Ligados</button>
               <button type="button" data-k="sound" data-v="off">Desligados</button>
             </div>
+            <h2 class="lab" style="margin-top:12px">Volume dos sons</h2>
+            <div class="seg" role="group" aria-label="Volume dos sons">
+              <button type="button" data-k="snd" data-v="low">Baixo</button>
+              <button type="button" data-k="snd" data-v="mid">Médio</button>
+              <button type="button" data-k="snd" data-v="high">Alto</button>
+            </div>
+          </section>
+          <section>
+            <h2 class="lab">Sobre e ajuda</h2>
+            <p class="help" id="ver-set"></p>
+            <button type="button" class="btn wide" data-feedback>Enviar sugestão ou avisar de erro</button>
+          </section>
+          <section>
+            <h2 class="lab">Vibração ao errar</h2>
+            <div class="seg" role="group" aria-label="Vibração ao errar">
+              <button type="button" data-k="hap" data-v="on">Ligada</button>
+              <button type="button" data-k="hap" data-v="off">Desligada</button>
+            </div>
+            <p class="help">Vibração leve no celular (não funciona em iPhone). O tremor suave na tela acontece sempre, a menos que o aparelho peça menos movimento.</p>
           </section>
         </div>
         <div class="stack">

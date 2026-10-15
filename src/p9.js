@@ -2,7 +2,7 @@
 const gm={items:[],ids:[],types:null,i:0,sel:null,solved:false,bad:false,miss:0,open:true,txt:"",tries:0,review:false,drill:false};
 const DAY=864e5,RV_STEPS=[1,3,7,14,30];
 const TYPABLE=["presente","passado","futuro","condicional","subjuntivo","reflexivos"];
-const isGramP=()=>!!P&&(GRAMTYPES.indexOf(P.type)>=0||P.type==="revisao"||P.type==="treino");
+const isGramP=()=>!!P&&(GRAMTYPES.indexOf(P.type)>=0||(typeof VOCTYPES!=="undefined"&&["reco","completar","embaralhar","escreva"].indexOf(P.type)>=0)||P.type==="revisao"||P.type==="treino");
 const curType=()=>gm.types?gm.types[gm.i]:P.type;
 const nrm=s=>String(s).trim().replace(/[’‘`´]/g,"'").replace(/\s+/g," ").toLowerCase();
 const noAcc=s=>nrm(s).normalize("NFD").replace(/[̀-ͯ]/g,"");
@@ -42,7 +42,8 @@ function loadGram(){
   gm.sel=null;gm.solved=false;gm.bad=false;gm.txt="";gm.tries=0;
   renderGram();
   const it=gm.items[gm.i];
-  setStatus("#gm-status",gm.i===0?(gm.drill?"Digite a forma certa.":gm.review?"Revise: escolha ou digite a resposta certa.":"Leia a regra e escolha a resposta certa."):(it._force?"Digite a forma certa.":"Escolha a resposta certa."));
+  const vocP=!!P&&["reco","completar","embaralhar","escreva"].indexOf(P.type)>=0;
+  setStatus("#gm-status",vocP?(it._force?"Digite a palavra.":"Escolha a palavra certa."):gm.i===0?(gm.drill?"Digite a forma certa.":gm.review?"Revise: escolha ou digite a resposta certa.":"Leia a regra e escolha a resposta certa."):(it._force?"Digite a forma certa.":"Escolha a resposta certa."));
 }
 function ruleCard(){
   const t=curType();if(!hasRule(t))return "";

@@ -4,8 +4,10 @@
 import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 r = lambda f: open(f, encoding='utf8').read()
-JS = ['data.js','content.js','content2.js','content3.js','content4.js','content5.js',
-      'pron.js','sons.js','p3.js','p4.js','p5.js','p6.js','p7.js','p9.js','p10.js','p8.js']
+v, d = r('VERSION').split()
+open('version.js', 'w', encoding='utf8').write('const APP_REL={v:"%s",d:"%s"};\n' % (v, d))
+JS = ['version.js','data.js','content.js','content2.js','content3.js','content4.js','content5.js','content6.js',
+      'pron.js','sons.js','p3.js','p4.js','p5.js','p6.js','p7.js','p9.js','p10.js','p11.js','p8.js']
 built = r('p1.html') + "\n" + r('p2.html') + "\n<script>\n" + "\n".join(r(f) for f in JS) + "\n</script>\n"
 open('mots-parole-v4.html', 'w', encoding='utf8').write(built)
 idx = r('../index.html')

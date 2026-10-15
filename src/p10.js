@@ -107,13 +107,18 @@ function startDrill(kind,tid){
 STAGES.treino="#gstage";DOCKS.treino="gram";GAMEFN.treino=()=>lastDrill?startDrill(lastDrill.kind,lastDrill.tid):openTrainMenu();
 function openTrainMenu(){
   const L=DRILL.labels[S.lang];
-  openSheet("Treino: itens novos, digitados",
+  openSheet("Treino de "+LNAME[S.lang],
+    '<p class="help">Idioma do treino (é o mesmo idioma do app):</p>'+
+    '<div class="seg" role="group" aria-label="Idioma do treino" style="margin-bottom:12px">'+Object.keys(LNAME).map(l=>'<button type="button" data-trainlang="'+l+'" aria-pressed="'+(l===S.lang)+'">'+LNAME[l]+"</button>").join("")+"</div>"+
     '<p class="help">Cada rodada tem 10 itens diferentes. Sem regra na tela: é para testar o que você já sabe. Erros de palavras entram na revisão.</p>'+
-    Object.keys(L).map(t=>'<button type="button" class="btn wide" data-train="v|'+esc(t)+'" style="margin-bottom:8px">Verbos: '+esc(L[t])+"</button>").join("")+
+    Object.keys(L).map(t=>'<button type="button" class="btn wide" data-train="v|'+esc(t)+'" style="margin-bottom:8px">Verbos em '+esc(LNAME[S.lang])+": "+esc(L[t])+"</button>").join("")+
     '<button type="button" class="btn wide" data-train="w" style="margin-bottom:8px">Palavras: português → '+esc(LNAME[S.lang])+"</button>",false);
 }
+function trainSub(){const e=$("#train-sub");if(e)e.textContent=LNAME[S.lang]+" · digitar verbos e palavras";}
 $("#go-train").addEventListener("click",openTrainMenu);
 $("#sheet-in").addEventListener("click",e=>{
+  const tl=e.target.closest("[data-trainlang]");
+  if(tl){S.lang=tl.dataset.trainlang;lastDrill=null;save();syncPrefs();renderIndex();trainSub();openTrainMenu();return;}
   const t=e.target.closest("[data-train]");
   if(t){closeSheet();const v=t.dataset.train;if(v==="w")startDrill("w");else startDrill("v",v.slice(2));return;}
   if(e.target.closest("#drill-more")){closeSheet();GAMEFN.treino();return;}
@@ -185,3 +190,38 @@ function renderBkWarn(){
 $("#bk-warn-go").addEventListener("click",()=>{go("settings");const b=$("#bk-save");if(b)b.focus();});
 $("#bk-warn-later").addEventListener("click",()=>{S.bks=Date.now()+7*DAY;save();renderBkWarn();});
 const _rt=renderToday;renderToday=function(){_rt();renderBkWarn();};
+
+/* ----- versão e envio de sugestões ----- */
+function verText(){return "Versão "+APP_REL.v+" · atualizado em "+APP_REL.d.split("-").reverse().join("/");}
+function showVer(){["#ver-line","#ver-set"].forEach(s=>{const e=$(s);if(e)e.textContent=verText();});trainSub();}
+showVer();
+const _ri=renderIndex;renderIndex=function(){_ri.apply(this,arguments);trainSub();};
+function fbDiag(){return "Versão "+APP_REL.v+" ("+APP_REL.d+") · idioma "+S.lang+" · volume "+S.vol+" · tela "+innerWidth+"x"+innerHeight+" · "+navigator.userAgent;}
+function openFeedback(){
+  openSheet("Sugestão ou aviso de erro",
+    '<div class="seg" role="group" aria-label="Tipo" style="margin-bottom:10px"><button type="button" data-fbk="Sugestão" aria-pressed="true">Sugestão</button><button type="button" data-fbk="Erro" aria-pressed="false">Aviso de erro</button></div>'+
+    '<label for="fb-text" class="help">Conte o que aconteceu ou o que você gostaria. Se for erro, diga em qual página e o que apareceu.</label>'+
+    '<textarea id="fb-text" class="fbta" maxlength="1500"></textarea>'+
+    '<label class="fbck"><input type="checkbox" id="fb-diag" checked> Incluir versão do app, idioma e modelo do aparelho (ajuda a achar o erro). Seu progresso e seu nome não são enviados.</label>'+
+    '<button type="button" class="btn wide" id="fb-send" style="margin-bottom:8px">Enviar pelo GitHub</button>'+
+    '<button type="button" class="btn wide" id="fb-copy">Copiar o texto</button>'+
+    '<p class="help" id="fb-note">O envio abre uma página do GitHub com o texto já preenchido; é preciso ter conta lá. Sem conta, use "Copiar o texto" e mande para quem te passou o app.</p>',false);
+}
+function fbBody(){const tx=$("#fb-text").value.trim();return tx+($("#fb-diag").checked?"\n\n---\n"+fbDiag():"");}
+document.addEventListener("click",e=>{
+  if(e.target.closest("[data-feedback]")){openFeedback();return;}
+  const k=e.target.closest("[data-fbk]");
+  if(k){$$("[data-fbk]").forEach(b=>b.setAttribute("aria-pressed",String(b===k)));return;}
+  if(e.target.closest("#fb-send")){
+    const kind=($('[data-fbk][aria-pressed="true"]')||{dataset:{fbk:"Sugestão"}}).dataset.fbk,tx=$("#fb-text").value.trim();
+    if(!tx){$("#fb-note").textContent="Escreva algo antes de enviar.";$("#fb-text").focus();return;}
+    const url="https://github.com/calisants/motsparole/issues/new?title="+encodeURIComponent(kind+": "+tx.slice(0,60).replace(/\s+/g," "))+"&body="+encodeURIComponent(fbBody());
+    window.open(url,"_blank","noopener");
+    return;
+  }
+  if(e.target.closest("#fb-copy")){
+    const tx=$("#fb-text").value.trim();if(!tx){$("#fb-note").textContent="Escreva algo antes de copiar.";return;}
+    const body=fbBody();
+    (navigator.clipboard?navigator.clipboard.writeText(body):Promise.reject()).then(()=>say("Texto copiado.")).catch(()=>{$("#fb-text").value=body;$("#fb-text").select();$("#fb-note").textContent="Não consegui copiar sozinho: o texto está selecionado, copie com o seu aparelho.";});
+  }
+});
