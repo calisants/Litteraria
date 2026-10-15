@@ -10,7 +10,9 @@ try:
     pg.on('pageerror',lambda e:errs.append(str(e)));pg.on('console',lambda m:errs.append(m.text) if m.type=='error' else None)
     pg.goto('http://localhost:8766/index.html');pg.wait_for_timeout(800)
     # versão
-    print('versao:',pg.inner_text('#ver-line'));assert 'Versão' in pg.inner_text('#ver-line') and '/' in pg.inner_text('#ver-line')
+    assert not pg.query_selector('#ver-line') and not pg.is_visible('[data-feedback]')
+    pg.evaluate("()=>go('settings')");v=pg.inner_text('#ver-set');print('versao:',v);assert 'Versão' in v and '/' in v
+    pg.evaluate("()=>go('home')")
     # Treino: idioma explícito e troca
     pg.click('#go-train');t=pg.inner_text('#sheet-title');print('treino:',t);assert t.startswith('Treino de ')
     pg.click('[data-trainlang=it]');assert pg.inner_text('#sheet-title')=='Treino de Italiano' and pg.evaluate("()=>S.lang")=='it'
