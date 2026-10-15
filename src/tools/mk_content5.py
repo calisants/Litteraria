@@ -8,24 +8,24 @@ for l in items: items[l].update(items2[l]); items[l].update(items3[l])
 import hints
 NH = hints.hint_items(items)
 rules = {l: {**G1.R[l], **G2.R2[l], **G3.R3[l]} for l in G1.R}
-ORDER = [
+ORDER = [  # ordem didática: vocabulário da gramática -> frase simples no presente -> estruturas -> passado e futuro -> frases complexas
+ ("classes", "Classes de palavras", "Classes"),
  ("artigos", "Artigos e gênero", "Artigos"),
  ("plural", "Plural dos substantivos", "Plural"),
- ("possessivos", "Possessivos e pronomes", "Possessivos"),
  ("presente", "Verbos no presente", "Presente"),
+ ("negacao", "Negação e perguntas", "Negação"),
+ ("possessivos", "Possessivos e pronomes", "Possessivos"),
+ ("falsos", "Falsos amigos (semântica)", "Falsos amigos"),
+ ("prep", "Preposições", "Preposições"),
+ ("reflexivos", "Verbos e pronomes reflexivos", "Reflexivos"),
+ ("ordem", "Ordem da frase (sintaxe)", "Ordem da frase"),
+ ("adverbios", "Advérbios", "Advérbios"),
  ("passado", "Passado básico", "Passado"),
  ("futuro", "Futuro", "Futuro"),
  ("condicional", "Condicional e frases com «se»", "Condicional"),
  ("subjuntivo", "Subjuntivo", "Subjuntivo"),
- ("reflexivos", "Verbos e pronomes reflexivos", "Reflexivos"),
- ("negacao", "Negação e perguntas", "Negação"),
- ("ordem", "Ordem da frase (sintaxe)", "Ordem da frase"),
- ("prep", "Preposições", "Preposições"),
- ("adverbios", "Advérbios", "Advérbios"),
  ("conjuncoes", "Conjunções", "Conjunções"),
  ("sinonimos", "Sinônimos e antônimos", "Sinônimos"),
- ("classes", "Classes de palavras", "Classes"),
- ("falsos", "Falsos amigos (semântica)", "Falsos amigos"),
 ]
 for _l,_d in G3.OV.items():
     for _t,_o in _d.items(): rules[_l][_t].update(_o)

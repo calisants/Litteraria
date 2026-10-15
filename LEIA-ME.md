@@ -76,3 +76,6 @@ Cada página tem um cartão de regra e 6 perguntas. O cartão mostra a fonte de 
 ## Conferências desta rodada
 - Vocabulário inglês: 470 das 483 palavras estão no WordNet 3.0; as 13 restantes são palavras funcionais, plurais e expressões (see you, excuse me, cheers, when, how, how much, what, which, where, because, parents, trousers, boots). O significado de cada uma foi comparado com a glosa do WordNet, lida por Claude, e não apareceu divergência. A tradução em si não vem de dicionário bilíngue.
 - Pronúncia do italiano: os nomes das letras, gli [ʎ], sci [ʃ], «ch/gh» e as consoantes dobradas conferem com o capítulo «Pronunciation and alphabet» do Wikibooks. O IPA de cada palavra vem do WikiPron (Wiktionary).
+
+## Ordem das páginas de gramática
+Classes → artigos → plural → presente → negação e perguntas → possessivos → falsos amigos → preposições → reflexivos → ordem da frase → advérbios → passado → futuro → condicional → subjuntivo → conjunções → sinônimos. É um critério didático meu (do mais básico ao mais complexo), não vem de uma fonte. O progresso não depende da ordem.
