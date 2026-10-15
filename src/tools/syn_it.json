@@ -1,0 +1,2782 @@
+{
+"gratis": {
+"pos": [
+"adj",
+"adv"
+],
+"syn": [
+"gratuitamente",
+"gratuito"
+],
+"ant": [],
+"pt": "grátis"
+},
+"zero": {
+"pos": [
+"intj"
+],
+"syn": [
+"nient'affatto"
+],
+"ant": [],
+"pt": "zero"
+},
+"euro": {
+"pos": [
+"noun"
+],
+"syn": [
+"levante",
+"scirocco"
+],
+"ant": [],
+"pt": "euro"
+},
+"computer": {
+"pos": [
+"noun"
+],
+"syn": [
+"calcolatore",
+"elaboratore"
+],
+"ant": [],
+"pt": "computador"
+},
+"weekend": {
+"pos": [
+"noun"
+],
+"syn": [
+"fine settimana"
+],
+"ant": [],
+"pt": "fim de semana"
+},
+"grazie": {
+"pos": [
+"noun"
+],
+"syn": [
+"gratitudine",
+"riconoscenza",
+"ringraziamento"
+],
+"ant": [],
+"pt": "obrigado(a)"
+},
+"torta": {
+"pos": [
+"noun"
+],
+"syn": [
+"piegatura",
+"torcitura"
+],
+"ant": [],
+"pt": "bolo"
+},
+"camera": {
+"pos": [
+"noun"
+],
+"syn": [
+"sala",
+"stanza",
+"telecamera"
+],
+"ant": [],
+"pt": "quarto"
+},
+"albero": {
+"pos": [
+"noun"
+],
+"syn": [
+"pioppo"
+],
+"ant": [],
+"pt": "árvore"
+},
+"essere": {
+"pos": [
+"noun",
+"verb"
+],
+"syn": [
+"buone condizioni",
+"condizione",
+"costare",
+"creatura",
+"esercizio",
+"esistenza",
+"esistere",
+"essenza",
+"essere vivente",
+"modo di essere",
+"pronto",
+"stare",
+"stato",
+"venire",
+"vita",
+"vivere"
+],
+"ant": [],
+"pt": "ser / estar"
+},
+"mela": {
+"pos": [
+"noun"
+],
+"syn": [
+"pomo"
+],
+"ant": [],
+"pt": "maçã"
+},
+"sole": {
+"pos": [
+"name",
+"noun"
+],
+"syn": [
+"Ra",
+"oro",
+"stella"
+],
+"ant": [],
+"pt": "sol"
+},
+"testa": {
+"pos": [
+"noun"
+],
+"syn": [
+"capo"
+],
+"ant": [
+"coda"
+],
+"pt": "cabeça"
+},
+"forte": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"alto",
+"bicocca",
+"fortezza",
+"fortilizio",
+"fortino",
+"piazzaforte",
+"ridotta",
+"robusto",
+"roccaforte"
+],
+"ant": [
+"debole"
+],
+"pt": "forte"
+},
+"ape": {
+"pos": [
+"noun"
+],
+"syn": [
+"ape da miele",
+"ape domestica",
+"pecchia"
+],
+"ant": [],
+"pt": "abelha"
+},
+"est": {
+"pos": [
+"noun"
+],
+"syn": [
+"levante",
+"oriente"
+],
+"ant": [],
+"pt": "leste"
+},
+"primavera": {
+"pos": [
+"noun"
+],
+"syn": [
+"anni",
+"anno",
+"primula"
+],
+"ant": [],
+"pt": "primavera"
+},
+"rosa": {
+"pos": [
+"noun"
+],
+"syn": [
+"erosione",
+"pizzicore",
+"prurito"
+],
+"ant": [],
+"pt": "rosa"
+},
+"lento": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"svelto",
+"veloce"
+],
+"pt": "lento"
+},
+"nord": {
+"pos": [
+"noun"
+],
+"syn": [
+"mezzanotte",
+"settentrione"
+],
+"ant": [
+"sud"
+],
+"pt": "norte"
+},
+"topo": {
+"pos": [
+"noun"
+],
+"syn": [
+"sorcio"
+],
+"ant": [],
+"pt": "rato"
+},
+"zio": {
+"pos": [
+"noun"
+],
+"syn": [
+"barba"
+],
+"ant": [],
+"pt": "tio"
+},
+"luna": {
+"pos": [
+"name",
+"noun"
+],
+"syn": [
+"Selene",
+"satellite naturale"
+],
+"ant": [],
+"pt": "lua"
+},
+"lago": {
+"pos": [
+"noun"
+],
+"syn": [
+"bacino"
+],
+"ant": [],
+"pt": "lago"
+},
+"moneta": {
+"pos": [
+"noun"
+],
+"syn": [
+"divisa",
+"valuta"
+],
+"ant": [],
+"pt": "moeda"
+},
+"nipote": {
+"pos": [
+"noun"
+],
+"syn": [
+"abiatico"
+],
+"ant": [],
+"pt": "sobrinho, neto"
+},
+"nonno": {
+"pos": [
+"noun"
+],
+"syn": [],
+"ant": [
+"nonna"
+],
+"pt": "avô"
+},
+"uomo": {
+"pos": [
+"noun"
+],
+"syn": [
+"umanità",
+"umano"
+],
+"ant": [],
+"pt": "homem"
+},
+"uccello": {
+"pos": [
+"noun"
+],
+"syn": [
+"augello",
+"pennuto",
+"volatile"
+],
+"ant": [],
+"pt": "pássaro"
+},
+"carta": {
+"pos": [
+"noun"
+],
+"syn": [
+"carta geografica",
+"mappa",
+"menu",
+"pianta",
+"scheda"
+],
+"ant": [],
+"pt": "cardápio (lista)"
+},
+"ghiaccio": {
+"pos": [
+"adj"
+],
+"syn": [
+"freddo",
+"gelato",
+"ghiacciato"
+],
+"ant": [
+"bollente",
+"caldo"
+],
+"pt": "gelo"
+},
+"ciao": {
+"pos": [
+"intj"
+],
+"syn": [
+"arrivederci",
+"arrivederla",
+"buongiorno",
+"ci vediamo",
+"salve"
+],
+"ant": [],
+"pt": "oi / tchau"
+},
+"padre": {
+"pos": [
+"name",
+"noun"
+],
+"syn": [
+"Dio",
+"Signore",
+"babbo",
+"curato",
+"papà",
+"parroco",
+"prete",
+"sacerdote"
+],
+"ant": [],
+"pt": "pai"
+},
+"pagare": {
+"pos": [
+"verb"
+],
+"syn": [
+"mettere mano al portafoglio",
+"offrire",
+"sborsare",
+"versare"
+],
+"ant": [],
+"pt": "pagar"
+},
+"pasta": {
+"pos": [
+"noun"
+],
+"syn": [
+"brioche",
+"merendina",
+"pasticcino"
+],
+"ant": [],
+"pt": "massa"
+},
+"pioggia": {
+"pos": [
+"noun"
+],
+"syn": [
+"sacco"
+],
+"ant": [],
+"pt": "chuva"
+},
+"pelle": {
+"pos": [
+"noun"
+],
+"syn": [
+"cuoio"
+],
+"ant": [],
+"pt": "pele"
+},
+"amare": {
+"pos": [
+"verb"
+],
+"syn": [],
+"ant": [
+"odiare"
+],
+"pt": "amar"
+},
+"aereo": {
+"pos": [
+"noun"
+],
+"syn": [
+"aeroplano"
+],
+"ant": [],
+"pt": "avião"
+},
+"albergo": {
+"pos": [
+"noun"
+],
+"syn": [
+"hotel"
+],
+"ant": [],
+"pt": "hotel"
+},
+"terra": {
+"pos": [
+"noun"
+],
+"syn": [
+"pianeta",
+"suolo",
+"terreno"
+],
+"ant": [],
+"pt": "terra"
+},
+"dormire": {
+"pos": [
+"verb"
+],
+"syn": [
+"buttare al vento",
+"giacere",
+"riposare",
+"sonnecchiare",
+"sprecare"
+],
+"ant": [],
+"pt": "dormir"
+},
+"gente": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"discendenza",
+"fine",
+"genia",
+"gentile",
+"leggiadro",
+"lignaggio",
+"nobile",
+"popolazione",
+"progenie",
+"razza",
+"schiatta",
+"stirpe"
+],
+"ant": [],
+"pt": "gente"
+},
+"ballare": {
+"pos": [
+"verb"
+],
+"syn": [
+"danzare"
+],
+"ant": [],
+"pt": "dançar"
+},
+"bene": {
+"pos": [
+"adv",
+"noun"
+],
+"syn": [
+"amato",
+"amore",
+"attentamente",
+"correttamente",
+"felicità",
+"minuziosamente",
+"possedimenti",
+"proprietà",
+"tesoro",
+"valore di"
+],
+"ant": [
+"erratamente",
+"erroneamente",
+"male",
+"tristezza"
+],
+"pt": "bem"
+},
+"bicicletta": {
+"pos": [
+"noun"
+],
+"syn": [
+"bici",
+"biciclo",
+"ciclo",
+"velocipede"
+],
+"ant": [],
+"pt": "bicicleta"
+},
+"braccio": {
+"pos": [
+"noun"
+],
+"syn": [
+"membro"
+],
+"ant": [],
+"pt": "braço"
+},
+"bello": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"buono",
+"forte",
+"grande",
+"grosso",
+"sereno"
+],
+"ant": [],
+"pt": "bonito"
+},
+"giacca": {
+"pos": [
+"noun"
+],
+"syn": [
+"giacchetta"
+],
+"ant": [],
+"pt": "jaqueta"
+},
+"guanto": {
+"pos": [
+"noun"
+],
+"syn": [
+"preservativo",
+"profilattico"
+],
+"ant": [],
+"pt": "luva"
+},
+"metro": {
+"pos": [
+"noun"
+],
+"syn": [
+"metrò"
+],
+"ant": [],
+"pt": "metrô"
+},
+"taxi": {
+"pos": [
+"noun"
+],
+"syn": [
+"tassì"
+],
+"ant": [],
+"pt": "táxi"
+},
+"bianco": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"albo"
+],
+"ant": [
+"nero"
+],
+"pt": "branco"
+},
+"avere": {
+"pos": [
+"verb"
+],
+"syn": [
+"esserci",
+"possedere",
+"tenere"
+],
+"ant": [],
+"pt": "ter"
+},
+"tra": {
+"pos": [
+"prep"
+],
+"syn": [
+"fra"
+],
+"ant": [],
+"pt": "entre"
+},
+"triste": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"allegro"
+],
+"pt": "triste"
+},
+"autobus": {
+"pos": [
+"noun"
+],
+"syn": [
+"pullman"
+],
+"ant": [],
+"pt": "ônibus"
+},
+"mangiare": {
+"pos": [
+"noun",
+"verb"
+],
+"syn": [
+"campare",
+"cibo",
+"consumare",
+"manducare",
+"mangiarsi",
+"nutrimento",
+"rodere",
+"rosicchiare",
+"vivere"
+],
+"ant": [],
+"pt": "comer"
+},
+"prendere": {
+"pos": [
+"verb"
+],
+"syn": [
+"abbagliare",
+"accadere",
+"acchiappare",
+"acciuffare",
+"acquisire",
+"acquistare",
+"adottare",
+"affacciarsi",
+"afferrare",
+"agguantare",
+"allettare",
+"ammaliare",
+"appiccare",
+"arrestare",
+"assumere",
+"attaccare",
+"attirare",
+"attrarre",
+"avviarsi",
+"azzeccare",
+"battere",
+"bere",
+"brandire",
+"capitare",
+"captare",
+"catturare",
+"colpire",
+"comperare",
+"comprare",
+"confondere",
+"conquistare",
+"contrarre",
+"credere",
+"danneggiare",
+"derivare",
+"derubare",
+"ereditare",
+"espugnare",
+"estasiare",
+"fare presa",
+"ferire",
+"fregare",
+"ghermire",
+"imbroccare",
+"immettersi",
+"impugnare",
+"incanalarsi",
+"incantare",
+"indurire",
+"infilare",
+"ingerire",
+"innamorare",
+"intendere",
+"interpretare",
+"ledere",
+"mangiare",
+"occupare",
+"percuotere",
+"pigliare",
+"prenderle",
+"procurarsi",
+"rapire",
+"ricevere",
+"ritenere",
+"scambiare",
+"scegliere",
+"sedurre",
+"servirsi",
+"sgraffignare",
+"solidificarsi",
+"sopraggiungere",
+"stregare",
+"stringere",
+"tenere"
+],
+"ant": [],
+"pt": "pegar"
+},
+"volere": {
+"pos": [
+"noun"
+],
+"syn": [
+"volontà"
+],
+"ant": [],
+"pt": "querer"
+},
+"ancora": {
+"pos": [
+"adv",
+"noun"
+],
+"syn": [
+"(di) più",
+"a tutt'oggi",
+"addirittura",
+"altro",
+"anche",
+"di nuovo",
+"finanche",
+"fino ad ora",
+"finora",
+"nuovamente",
+"ormeggio",
+"per ora",
+"perfino",
+"persino",
+"pure",
+"sino ad ora",
+"sinora",
+"tuttora",
+"ulteriore",
+"ulteriormente",
+"un'altra volta"
+],
+"ant": [],
+"pt": "ainda, de novo"
+},
+"molto": {
+"pos": [
+"adv",
+"det",
+"pron"
+],
+"syn": [
+"tanto"
+],
+"ant": [
+"poco"
+],
+"pt": "muito"
+},
+"capo": {
+"pos": [
+"noun"
+],
+"syn": [
+"estremità",
+"fine",
+"testa"
+],
+"ant": [],
+"pt": "chefe"
+},
+"medico": {
+"pos": [
+"noun"
+],
+"syn": [
+"dottore"
+],
+"ant": [],
+"pt": "médico"
+},
+"scimmia": {
+"pos": [
+"noun"
+],
+"syn": [
+"dipendenza",
+"imitatore",
+"sbornia",
+"sbronza",
+"ubriacatura"
+],
+"ant": [],
+"pt": "macaco"
+},
+"piccolo": {
+"pos": [
+"adj"
+],
+"syn": [
+"piccino"
+],
+"ant": [
+"grande",
+"grosso"
+],
+"pt": "pequeno"
+},
+"pianta": {
+"pos": [
+"noun"
+],
+"syn": [
+"albero",
+"carta",
+"piantina"
+],
+"ant": [],
+"pt": "planta"
+},
+"adesso": {
+"pos": [
+"adv"
+],
+"syn": [
+"ora"
+],
+"ant": [],
+"pt": "agora"
+},
+"povero": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"ricco"
+],
+"pt": "pobre"
+},
+"notte": {
+"pos": [
+"noun"
+],
+"syn": [],
+"ant": [
+"giorno"
+],
+"pt": "noite"
+},
+"sabbia": {
+"pos": [
+"noun"
+],
+"syn": [
+"rena"
+],
+"ant": [],
+"pt": "areia"
+},
+"borsa": {
+"pos": [
+"noun"
+],
+"syn": [
+"borsa valori",
+"borsetta",
+"marsupio"
+],
+"ant": [],
+"pt": "bolsa"
+},
+"letto": {
+"pos": [
+"noun"
+],
+"syn": [
+"poltro"
+],
+"ant": [],
+"pt": "cama"
+},
+"qui": {
+"pos": [
+"adv"
+],
+"syn": [
+"qua"
+],
+"ant": [],
+"pt": "aqui"
+},
+"quando": {
+"pos": [
+"noun"
+],
+"syn": [
+"attimo",
+"circostanza",
+"momento",
+"occasione",
+"tempo"
+],
+"ant": [],
+"pt": "quando"
+},
+"spesso": {
+"pos": [
+"adj"
+],
+"syn": [
+"denso",
+"erto",
+"fitto",
+"molto",
+"numeroso"
+],
+"ant": [
+"rado",
+"sottile"
+],
+"pt": "frequentemente"
+},
+"giorno": {
+"pos": [
+"noun"
+],
+"syn": [
+"dì"
+],
+"ant": [
+"notte"
+],
+"pt": "dia"
+},
+"destra": {
+"pos": [
+"noun"
+],
+"syn": [
+"dritta"
+],
+"ant": [
+"sinistra"
+],
+"pt": "direita"
+},
+"scrivere": {
+"pos": [
+"verb"
+],
+"syn": [
+"arruolare",
+"ascrivere",
+"attribuire",
+"registrare"
+],
+"ant": [],
+"pt": "escrever"
+},
+"figlia": {
+"pos": [
+"noun"
+],
+"syn": [
+"donzella",
+"fanciulla",
+"figliola",
+"ragazza"
+],
+"ant": [],
+"pt": "filha"
+},
+"giocare": {
+"pos": [
+"verb"
+],
+"syn": [
+"scherzare"
+],
+"ant": [],
+"pt": "jogar, brincar"
+},
+"debole": {
+"pos": [
+"adj"
+],
+"syn": [
+"debile"
+],
+"ant": [
+"forte"
+],
+"pt": "fraco"
+},
+"persona": {
+"pos": [
+"noun"
+],
+"syn": [
+"aspetto",
+"corpo",
+"gente",
+"nessuno",
+"personale",
+"qualcuno"
+],
+"ant": [],
+"pt": "pessoa"
+},
+"viola": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"violaceo",
+"violetta",
+"violetto"
+],
+"ant": [],
+"pt": "roxo"
+},
+"vicino": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"lontano"
+],
+"pt": "vizinho"
+},
+"zuppa": {
+"pos": [
+"noun"
+],
+"syn": [
+"brodo",
+"minestra",
+"minestrone"
+],
+"ant": [],
+"pt": "sopa"
+},
+"ora": {
+"pos": [
+"adv",
+"noun"
+],
+"syn": [
+"adesso",
+"aura",
+"brezza",
+"venticello"
+],
+"ant": [],
+"pt": "hora"
+},
+"prego": {
+"pos": [
+"noun"
+],
+"syn": [
+"preghiera",
+"supplica"
+],
+"ant": [],
+"pt": "de nada"
+},
+"abitare": {
+"pos": [
+"verb"
+],
+"syn": [
+"vivere"
+],
+"ant": [],
+"pt": "morar"
+},
+"città": {
+"pos": [
+"noun"
+],
+"syn": [
+"abitato",
+"capoluogo",
+"centro",
+"metropoli"
+],
+"ant": [
+"campagna"
+],
+"pt": "cidade"
+},
+"perché": {
+"pos": [
+"adv"
+],
+"syn": [
+"come mai"
+],
+"ant": [],
+"pt": "por que"
+},
+"davanti": {
+"pos": [
+"adj",
+"adv"
+],
+"syn": [
+"dinanzi"
+],
+"ant": [],
+"pt": "na frente"
+},
+"davvero": {
+"pos": [
+"adv"
+],
+"syn": [
+"realmente",
+"veramente"
+],
+"ant": [],
+"pt": "de verdade"
+},
+"grande": {
+"pos": [
+"adj"
+],
+"syn": [
+"bravo"
+],
+"ant": [],
+"pt": "grande"
+},
+"cattivo": {
+"pos": [
+"adj"
+],
+"syn": [
+"biasimevole",
+"brutto",
+"ignobile",
+"indegno",
+"intrattabile",
+"irascibile",
+"malvagio",
+"riprovevole",
+"scellerato",
+"scortese",
+"sgarbato",
+"spregevole",
+"villano",
+"vizioso"
+],
+"ant": [
+"bravo",
+"buono",
+"degno",
+"dolce",
+"garbato",
+"gentile",
+"giusto",
+"nobile",
+"simpatetico"
+],
+"pt": "ruim"
+},
+"figlio": {
+"pos": [
+"noun"
+],
+"syn": [
+"criaturo"
+],
+"ant": [],
+"pt": "filho"
+},
+"marrone": {
+"pos": [
+"noun"
+],
+"syn": [
+"castagna",
+"coglione",
+"marone",
+"palle"
+],
+"ant": [],
+"pt": "marrom"
+},
+"quale": {
+"pos": [
+"adv",
+"det"
+],
+"syn": [
+"che",
+"come",
+"tipo"
+],
+"ant": [],
+"pt": "qual"
+},
+"donna": {
+"pos": [
+"noun"
+],
+"syn": [
+"attrice",
+"dama",
+"moglie",
+"regina",
+"signora"
+],
+"ant": [
+"ragazza",
+"uomo"
+],
+"pt": "mulher"
+},
+"serpente": {
+"pos": [
+"noun"
+],
+"syn": [
+"angue",
+"aspide",
+"basilisco",
+"biscia",
+"colubro",
+"drago",
+"dragone",
+"idra",
+"ofide",
+"scitale",
+"serpe"
+],
+"ant": [],
+"pt": "serpente"
+},
+"costume": {
+"pos": [
+"noun"
+],
+"syn": [
+"abitudine",
+"costume da bagno",
+"usanza",
+"uso"
+],
+"ant": [],
+"pt": "traje de banho"
+},
+"sinistra": {
+"pos": [
+"noun"
+],
+"syn": [
+"babordo"
+],
+"ant": [
+"destra",
+"dritta"
+],
+"pt": "esquerda"
+},
+"lontano": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"vicino"
+],
+"pt": "longe"
+},
+"freddo": {
+"pos": [
+"adj"
+],
+"syn": [
+"gelato",
+"ghiaccio",
+"scostante"
+],
+"ant": [
+"appassionato",
+"caldo"
+],
+"pt": "frio"
+},
+"nuvola": {
+"pos": [
+"noun"
+],
+"syn": [
+"nube"
+],
+"ant": [],
+"pt": "nuvem"
+},
+"piazza": {
+"pos": [
+"noun"
+],
+"syn": [
+"chierica",
+"mercato"
+],
+"ant": [],
+"pt": "praça"
+},
+"quartiere": {
+"pos": [
+"noun"
+],
+"syn": [
+"appartamento",
+"rione",
+"zona"
+],
+"ant": [],
+"pt": "bairro"
+},
+"trovare": {
+"pos": [
+"verb"
+],
+"syn": [
+"avere",
+"incontrare",
+"ottenere",
+"riconoscere",
+"scorgere"
+],
+"ant": [],
+"pt": "encontrar"
+},
+"macchina": {
+"pos": [
+"noun"
+],
+"syn": [
+"automobile"
+],
+"ant": [],
+"pt": "carro"
+},
+"piatto": {
+"pos": [
+"adj"
+],
+"syn": [
+"piano"
+],
+"ant": [],
+"pt": "prato"
+},
+"caldo": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"freddo"
+],
+"pt": "quente"
+},
+"energia": {
+"pos": [
+"noun"
+],
+"syn": [
+"forza",
+"vigore"
+],
+"ant": [],
+"pt": "energia"
+},
+"dopo": {
+"pos": [
+"adv",
+"prep"
+],
+"syn": [
+"appo",
+"dipoi",
+"in seguito",
+"più tardi",
+"poi",
+"poscia",
+"successivamente"
+],
+"ant": [
+"prima",
+"prima di"
+],
+"pt": "depois de"
+},
+"certo": {
+"pos": [
+"adj",
+"adv"
+],
+"syn": [
+"certamente",
+"di certo",
+"di sicuro",
+"sicuramente"
+],
+"ant": [
+"incerto"
+],
+"pt": "claro / certo"
+},
+"buonanotte": {
+"pos": [
+"intj"
+],
+"syn": [],
+"ant": [
+"buongiorno"
+],
+"pt": "boa noite (ao dormir)"
+},
+"sempre": {
+"pos": [
+"adv"
+],
+"syn": [
+"ancora"
+],
+"ant": [],
+"pt": "sempre"
+},
+"capire": {
+"pos": [
+"verb"
+],
+"syn": [
+"afferrare",
+"comprendere",
+"entrare",
+"intendere",
+"starci"
+],
+"ant": [],
+"pt": "entender"
+},
+"salve": {
+"pos": [
+"intj"
+],
+"syn": [
+"ciao"
+],
+"ant": [],
+"pt": "olá (formal)"
+},
+"caffè": {
+"pos": [
+"noun"
+],
+"syn": [
+"bar"
+],
+"ant": [],
+"pt": "café"
+},
+"felice": {
+"pos": [
+"adj"
+],
+"syn": [
+"appropriato",
+"fecondo",
+"fertile",
+"fortunato",
+"lieto",
+"opportuno"
+],
+"ant": [
+"inappropriato",
+"infecondo",
+"infelice",
+"infertile",
+"inopportuno",
+"sfortunato",
+"sterile"
+],
+"pt": "feliz"
+},
+"ordine": {
+"pos": [
+"noun"
+],
+"syn": [
+"comando",
+"direttiva",
+"disposizione"
+],
+"ant": [
+"disordine"
+],
+"pt": "pedido"
+},
+"quanto": {
+"pos": [
+"conj",
+"noun",
+"pron"
+],
+"syn": [
+"cheessere,different syntax>",
+"ciò che",
+"come",
+"quantum",
+"quello che",
+"tanto quanto"
+],
+"ant": [],
+"pt": "quanto"
+},
+"resto": {
+"pos": [
+"noun"
+],
+"syn": [
+"avanzo",
+"residuo"
+],
+"ant": [],
+"pt": "troco"
+},
+"università": {
+"pos": [
+"noun"
+],
+"syn": [
+"corporazione",
+"gilda",
+"totalità",
+"universalità"
+],
+"ant": [],
+"pt": "universidade"
+},
+"prima": {
+"pos": [
+"adv"
+],
+"syn": [],
+"ant": [
+"dopo"
+],
+"pt": "antes"
+},
+"ufficio": {
+"pos": [
+"noun"
+],
+"syn": [
+"dovere",
+"obbligo"
+],
+"ant": [],
+"pt": "escritório"
+},
+"comprare": {
+"pos": [
+"verb"
+],
+"syn": [
+"acquistare"
+],
+"ant": [
+"vendere"
+],
+"pt": "comprar"
+},
+"frutta": {
+"pos": [
+"noun"
+],
+"syn": [
+"frutto"
+],
+"ant": [],
+"pt": "fruta"
+},
+"valigia": {
+"pos": [
+"noun"
+],
+"syn": [
+"bagaglio"
+],
+"ant": [],
+"pt": "mala"
+},
+"chiesa": {
+"pos": [
+"noun"
+],
+"syn": [
+"parrocchia"
+],
+"ant": [],
+"pt": "igreja"
+},
+"signora": {
+"pos": [
+"noun"
+],
+"syn": [
+"dama",
+"donna",
+"gna",
+"lady"
+],
+"ant": [],
+"pt": "senhora"
+},
+"signore": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"amato",
+"benestante",
+"eccellente",
+"eccezionale",
+"ottimo",
+"padrone",
+"pregevole",
+"ricco"
+],
+"ant": [],
+"pt": "senhor"
+},
+"già": {
+"pos": [
+"adv"
+],
+"syn": [
+"ex-",
+"fin d'ora",
+"ormai"
+],
+"ant": [],
+"pt": "já"
+},
+"ricco": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"abbiente",
+"facoltoso",
+"fastoso",
+"pieno"
+],
+"ant": [
+"povero"
+],
+"pt": "rico"
+},
+"aprire": {
+"pos": [
+"verb"
+],
+"syn": [
+"dischiudere",
+"schiudere"
+],
+"ant": [
+"chiudere",
+"serrare"
+],
+"pt": "abrir"
+},
+"regalo": {
+"pos": [
+"noun"
+],
+"syn": [
+"dono",
+"presente"
+],
+"ant": [],
+"pt": "presente"
+},
+"poco": {
+"pos": [
+"noun",
+"pron"
+],
+"syn": [
+"po'"
+],
+"ant": [
+"molto"
+],
+"pt": "pouco"
+},
+"lato": {
+"pos": [
+"adj"
+],
+"syn": [
+"ampio",
+"largo"
+],
+"ant": [
+"stretto"
+],
+"pt": "lado"
+},
+"formaggio": {
+"pos": [
+"noun"
+],
+"syn": [
+"cacio"
+],
+"ant": [],
+"pt": "queijo"
+},
+"buono": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"bravo",
+"clemente",
+"debole",
+"gustoso",
+"indulgente",
+"ottimo"
+],
+"ant": [
+"brutto",
+"cattivo",
+"orribile",
+"pessimo"
+],
+"pt": "bom"
+},
+"biglietto": {
+"pos": [
+"noun"
+],
+"syn": [
+"banconota"
+],
+"ant": [],
+"pt": "bilhete / passagem"
+},
+"forchetta": {
+"pos": [
+"noun"
+],
+"syn": [
+"fettone",
+"forbice",
+"forcella"
+],
+"ant": [],
+"pt": "garfo"
+},
+"chiaro": {
+"pos": [
+"adj"
+],
+"syn": [
+"limpido",
+"luminoso"
+],
+"ant": [
+"scuro",
+"torbido"
+],
+"pt": "claro"
+},
+"difficile": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"facile"
+],
+"pt": "difícil"
+},
+"vecchio": {
+"pos": [
+"adj"
+],
+"syn": [
+"antico"
+],
+"ant": [
+"giovane",
+"nuovo",
+"recente"
+],
+"pt": "velho"
+},
+"lavorare": {
+"pos": [
+"verb"
+],
+"syn": [
+"adoperarsi",
+"agire",
+"coltivare",
+"dissodare",
+"elaborare",
+"esercitare",
+"funzionare",
+"impegnarsi",
+"ingegnarsi",
+"intarsiare",
+"lavorarsi",
+"manipolare",
+"occuparsi",
+"operare",
+"produrre",
+"professare",
+"sbalzare",
+"scolpire",
+"svolgere",
+"trattare"
+],
+"ant": [],
+"pt": "trabalhar"
+},
+"sud": {
+"pos": [
+"noun"
+],
+"syn": [
+"meridione",
+"mezzogiorno"
+],
+"ant": [
+"nord"
+],
+"pt": "sul"
+},
+"tenda": {
+"pos": [
+"noun"
+],
+"syn": [
+"tappezzeria",
+"tenda da sole",
+"tendone"
+],
+"ant": [],
+"pt": "cortina"
+},
+"orso": {
+"pos": [
+"noun"
+],
+"syn": [
+"orso bruno"
+],
+"ant": [],
+"pt": "urso"
+},
+"nebbia": {
+"pos": [
+"noun"
+],
+"syn": [
+"foschia"
+],
+"ant": [],
+"pt": "neblina"
+},
+"fulmine": {
+"pos": [
+"noun"
+],
+"syn": [
+"folgore",
+"saetta"
+],
+"ant": [],
+"pt": "raio"
+},
+"lavoro": {
+"pos": [
+"noun"
+],
+"syn": [
+"mestiere"
+],
+"ant": [],
+"pt": "trabalho"
+},
+"buongiorno": {
+"pos": [
+"intj"
+],
+"syn": [
+"buon pomeriggio"
+],
+"ant": [],
+"pt": "bom dia"
+},
+"sopra": {
+"pos": [
+"noun"
+],
+"syn": [],
+"ant": [
+"sotto"
+],
+"pt": "em cima"
+},
+"sotto": {
+"pos": [
+"adv"
+],
+"syn": [],
+"ant": [
+"sopra"
+],
+"pt": "embaixo"
+},
+"maiale": {
+"pos": [
+"noun"
+],
+"syn": [
+"porco",
+"suino"
+],
+"ant": [],
+"pt": "porco"
+},
+"asino": {
+"pos": [
+"noun"
+],
+"syn": [
+"ciuco",
+"somaro"
+],
+"ant": [],
+"pt": "burro"
+},
+"negozio": {
+"pos": [
+"noun"
+],
+"syn": [
+"bottega",
+"esercizio commerciale",
+"magazzino",
+"punto vendita"
+],
+"ant": [],
+"pt": "loja"
+},
+"carino": {
+"pos": [
+"adj"
+],
+"syn": [
+"grazioso"
+],
+"ant": [],
+"pt": "bonitinho, gentil"
+},
+"cassa": {
+"pos": [
+"noun"
+],
+"syn": [
+"scatola"
+],
+"ant": [],
+"pt": "caixa"
+},
+"viso": {
+"pos": [
+"noun"
+],
+"syn": [
+"faccia",
+"volto"
+],
+"ant": [],
+"pt": "rosto"
+},
+"giovane": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [],
+"ant": [
+"vecchio"
+],
+"pt": "jovem"
+},
+"ragazzo": {
+"pos": [
+"noun"
+],
+"syn": [
+"adolescente",
+"apprendista",
+"commesso",
+"fidanzato",
+"garzone",
+"giovane",
+"moroso",
+"zito"
+],
+"ant": [],
+"pt": "garoto"
+},
+"mattina": {
+"pos": [
+"noun"
+],
+"syn": [
+"mattinata",
+"mattino"
+],
+"ant": [],
+"pt": "manhã"
+},
+"temporale": {
+"pos": [
+"noun"
+],
+"syn": [
+"muscolo temporale",
+"osso temporale"
+],
+"ant": [],
+"pt": "tempestade"
+},
+"fratello": {
+"pos": [
+"noun"
+],
+"syn": [
+"confratello"
+],
+"ant": [],
+"pt": "irmão"
+},
+"campione": {
+"pos": [
+"noun"
+],
+"syn": [
+"asso"
+],
+"ant": [],
+"pt": "amostra"
+},
+"ovest": {
+"pos": [
+"noun"
+],
+"syn": [
+"occidente",
+"ponente"
+],
+"ant": [],
+"pt": "oeste"
+},
+"malato": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"ammalato",
+"indisposto",
+"infermo",
+"paziente"
+],
+"ant": [],
+"pt": "doente"
+},
+"arrivederci": {
+"pos": [
+"intj"
+],
+"syn": [
+"arrivederla",
+"ci si vede",
+"ci vediamo"
+],
+"ant": [],
+"pt": "até logo"
+},
+"ospedale": {
+"pos": [
+"noun"
+],
+"syn": [
+"clinica",
+"nosocomio"
+],
+"ant": [],
+"pt": "hospital"
+},
+"raffreddore": {
+"pos": [
+"noun"
+],
+"syn": [
+"colpo d'aria",
+"infreddatura",
+"rinite"
+],
+"ant": [],
+"pt": "resfriado"
+},
+"tovagliolo": {
+"pos": [
+"noun"
+],
+"syn": [
+"salvietta"
+],
+"ant": [],
+"pt": "guardanapo"
+},
+"stipendio": {
+"pos": [
+"noun"
+],
+"syn": [
+"paga",
+"salario"
+],
+"ant": [],
+"pt": "salário"
+},
+"tappeto": {
+"pos": [
+"noun"
+],
+"syn": [
+"tapis roulant"
+],
+"ant": [],
+"pt": "tapete"
+},
+"sedia": {
+"pos": [
+"noun"
+],
+"syn": [
+"seggiola"
+],
+"ant": [],
+"pt": "cadeira"
+},
+"bevanda": {
+"pos": [
+"noun"
+],
+"syn": [
+"drink"
+],
+"ant": [],
+"pt": "bebida"
+},
+"scarpa": {
+"pos": [
+"noun"
+],
+"syn": [
+"calzatura"
+],
+"ant": [],
+"pt": "sapato"
+},
+"stivale": {
+"pos": [
+"name"
+],
+"syn": [
+"Italia",
+"bel paese"
+],
+"ant": [],
+"pt": "bota"
+},
+"azienda": {
+"pos": [
+"noun"
+],
+"syn": [
+"ditta",
+"faccenda",
+"impresa",
+"società"
+],
+"ant": [],
+"pt": "empresa"
+},
+"vestito": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"abbigliato",
+"abito",
+"indumento",
+"veste"
+],
+"ant": [
+"nudo",
+"svestito"
+],
+"pt": "vestido"
+},
+"veloce": {
+"pos": [
+"adj"
+],
+"syn": [
+"celere",
+"lesto",
+"rapido",
+"sollecito",
+"svelto"
+],
+"ant": [
+"lento"
+],
+"pt": "rápido"
+},
+"misura": {
+"pos": [
+"noun"
+],
+"syn": [
+"misurazione",
+"parsimonia",
+"taglia"
+],
+"ant": [],
+"pt": "medida"
+},
+"schiena": {
+"pos": [
+"noun"
+],
+"syn": [
+"dorso",
+"groppone",
+"spina dorsale"
+],
+"ant": [],
+"pt": "costas"
+},
+"aspettare": {
+"pos": [
+"verb"
+],
+"syn": [
+"attendere",
+"bramare",
+"desiderare",
+"fermarsi",
+"indugiare",
+"sospirare",
+"stare fermo",
+"traccheggiare",
+"trattenersi"
+],
+"ant": [],
+"pt": "esperar"
+},
+"divano": {
+"pos": [
+"noun"
+],
+"syn": [
+"sofà"
+],
+"ant": [],
+"pt": "sofá"
+},
+"forse": {
+"pos": [
+"adv"
+],
+"syn": [
+"magari",
+"probabilmente"
+],
+"ant": [],
+"pt": "talvez"
+},
+"esame": {
+"pos": [
+"noun"
+],
+"syn": [
+"controllo",
+"investigazione",
+"ispezione"
+],
+"ant": [],
+"pt": "exame"
+},
+"esatto": {
+"pos": [
+"adj",
+"intj"
+],
+"syn": [
+"accurato",
+"appunto!",
+"corretto",
+"difatti!",
+"diligente",
+"giusto",
+"giusto!",
+"in punto",
+"preciso",
+"proprio così!",
+"sì!",
+"è così!"
+],
+"ant": [
+"approssimativo",
+"inesatto",
+"scorretto"
+],
+"pt": "exato"
+},
+"parco": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"area verde",
+"frugale",
+"giardino",
+"parsimonioso",
+"riserva",
+"sobrio",
+"verde pubblico"
+],
+"ant": [
+"dissoluto",
+"sprecone"
+],
+"pt": "parque"
+},
+"prezzo": {
+"pos": [
+"noun"
+],
+"syn": [
+"condizione",
+"condizioni",
+"costo",
+"tariffa",
+"valore"
+],
+"ant": [],
+"pt": "preço"
+},
+"pulito": {
+"pos": [
+"adj",
+"adv"
+],
+"syn": [
+"al verde",
+"con garbo",
+"garbatamente"
+],
+"ant": [
+"sporco"
+],
+"pt": "limpo"
+},
+"parete": {
+"pos": [
+"noun"
+],
+"syn": [
+"lato",
+"mura",
+"muro",
+"superficie"
+],
+"ant": [],
+"pt": "parede"
+},
+"professore": {
+"pos": [
+"noun"
+],
+"syn": [
+"aio",
+"docente",
+"educatore",
+"insegnante",
+"maestro",
+"precettore",
+"prof"
+],
+"ant": [],
+"pt": "professor"
+},
+"risultato": {
+"pos": [
+"noun"
+],
+"syn": [
+"risultanza"
+],
+"ant": [],
+"pt": "resultado"
+},
+"fattura": {
+"pos": [
+"noun"
+],
+"syn": [
+"lavorazione",
+"malocchio"
+],
+"ant": [],
+"pt": "fatura"
+},
+"scuro": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"buio",
+"imposta",
+"oscurità",
+"persiana",
+"tetro",
+"torvo"
+],
+"ant": [
+"chiaro",
+"luminoso"
+],
+"pt": "escuro"
+},
+"stazione": {
+"pos": [
+"noun"
+],
+"syn": [
+"arresto",
+"biotopo",
+"fermata"
+],
+"ant": [],
+"pt": "estação"
+},
+"foresta": {
+"pos": [
+"noun"
+],
+"syn": [
+"bosco",
+"selva"
+],
+"ant": [],
+"pt": "floresta"
+},
+"commesso": {
+"pos": [
+"noun"
+],
+"syn": [
+"venditore"
+],
+"ant": [],
+"pt": "vendedor"
+},
+"ottimo": {
+"pos": [
+"adj"
+],
+"syn": [
+"buonissimo",
+"eccellente",
+"magnifico",
+"splendido",
+"stupendo"
+],
+"ant": [
+"pessimo"
+],
+"pt": "ótimo"
+},
+"sconto": {
+"pos": [
+"noun"
+],
+"syn": [
+"detrazione",
+"ribasso",
+"riduzione"
+],
+"ant": [],
+"pt": "desconto"
+},
+"riunione": {
+"pos": [
+"noun"
+],
+"syn": [
+"assemblea",
+"incontro"
+],
+"ant": [],
+"pt": "reunião"
+},
+"direttore": {
+"pos": [
+"noun"
+],
+"syn": [
+"direttore d'orchestra",
+"dirigente scolastico",
+"preside",
+"rettore"
+],
+"ant": [],
+"pt": "diretor"
+},
+"contratto": {
+"pos": [
+"adj"
+],
+"syn": [
+"rattrappito",
+"teso"
+],
+"ant": [],
+"pt": "contrato"
+},
+"sporco": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"disonesto",
+"lordo",
+"osceno",
+"poco",
+"sporcizia",
+"sudiceria",
+"sudicio",
+"sudiciume",
+"turpe"
+],
+"ant": [
+"pulito"
+],
+"pt": "sujo"
+},
+"impiego": {
+"pos": [
+"noun"
+],
+"syn": [
+"collocamento",
+"lavoro",
+"occupazione",
+"posizione",
+"posto",
+"uso",
+"utilizzo"
+],
+"ant": [],
+"pt": "emprego"
+},
+"cerotto": {
+"pos": [
+"noun"
+],
+"syn": [
+"sparadrappo"
+],
+"ant": [],
+"pt": "curativo"
+},
+"dorato": {
+"pos": [
+"adj"
+],
+"syn": [
+"rosolato",
+"saltato",
+"sauté"
+],
+"ant": [],
+"pt": "dourado"
+},
+"contanti": {
+"pos": [
+"noun"
+],
+"syn": [
+"soldi"
+],
+"ant": [],
+"pt": "dinheiro vivo"
+},
+"talvolta": {
+"pos": [
+"adv"
+],
+"syn": [
+"talora"
+],
+"ant": [],
+"pt": "às vezes"
+},
+"soldi": {
+"pos": [
+"noun"
+],
+"syn": [
+"denaro",
+"quattrini"
+],
+"ant": [],
+"pt": "dinheiro"
+},
+"calzino": {
+"pos": [
+"noun"
+],
+"syn": [
+"calza"
+],
+"ant": [],
+"pt": "meia"
+},
+"bebè": {
+"pos": [
+"noun"
+],
+"syn": [
+"bimba",
+"bimbo",
+"neonata",
+"neonato"
+],
+"ant": [],
+"pt": "bebê"
+}
+}

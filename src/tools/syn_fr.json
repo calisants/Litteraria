@@ -1,0 +1,2303 @@
+{
+"gratuit": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"payant"
+],
+"pt": "grátis"
+},
+"livre": {
+"pos": [
+"name",
+"noun"
+],
+"syn": [
+"Bible",
+"bouquin"
+],
+"ant": [],
+"pt": "livro"
+},
+"chien": {
+"pos": [
+"noun"
+],
+"syn": [
+"cabot",
+"clebs"
+],
+"ant": [],
+"pt": "cachorro"
+},
+"euro": {
+"pos": [
+"noun"
+],
+"syn": [
+"balle"
+],
+"ant": [],
+"pt": "euro"
+},
+"ami": {
+"pos": [
+"noun"
+],
+"syn": [
+"amie",
+"amiliée",
+"amille",
+"aminche",
+"amise",
+"amix",
+"camarade",
+"chum",
+"compagne",
+"compagnon",
+"compagnonne",
+"copain",
+"copine",
+"familier",
+"familière",
+"frère",
+"frérot",
+"intime",
+"nègre",
+"padna",
+"pote",
+"potesse",
+"poto",
+"proche"
+],
+"ant": [
+"adversaire",
+"antagoniste",
+"contradicteur",
+"détracteur",
+"ennemi",
+"ennemi juré",
+"opposant",
+"rival"
+],
+"pt": "amigo"
+},
+"réunion": {
+"pos": [
+"name"
+],
+"syn": [
+"île Bourbon"
+],
+"ant": [],
+"pt": "reunião"
+},
+"cousin": {
+"pos": [
+"noun"
+],
+"syn": [
+"maringouin",
+"moustique",
+"tipule"
+],
+"ant": [],
+"pt": "primo"
+},
+"verre": {
+"pos": [
+"noun"
+],
+"syn": [
+"lentille"
+],
+"ant": [],
+"pt": "copo"
+},
+"vert": {
+"pos": [
+"adj"
+],
+"syn": [
+"éco-",
+"écologique"
+],
+"ant": [],
+"pt": "verde"
+},
+"sale": {
+"pos": [
+"adj"
+],
+"syn": [
+"crasseux",
+"malpropre",
+"méprisable",
+"vil"
+],
+"ant": [
+"net",
+"propre"
+],
+"pt": "sujo"
+},
+"chat": {
+"pos": [
+"noun"
+],
+"syn": [
+"chat domestique",
+"tchat"
+],
+"ant": [],
+"pt": "gato"
+},
+"laid": {
+"pos": [
+"adj"
+],
+"syn": [
+"moche",
+"vilain"
+],
+"ant": [
+"beau"
+],
+"pt": "feio"
+},
+"lent": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"rapide"
+],
+"pt": "lento"
+},
+"lit": {
+"pos": [
+"noun"
+],
+"syn": [
+"plumard"
+],
+"ant": [],
+"pt": "cama"
+},
+"addition": {
+"pos": [
+"noun"
+],
+"syn": [
+"douloureuse"
+],
+"ant": [],
+"pt": "conta"
+},
+"pull": {
+"pos": [
+"noun"
+],
+"syn": [
+"chandail",
+"tricot"
+],
+"ant": [],
+"pt": "suéter"
+},
+"courage": {
+"pos": [
+"noun"
+],
+"syn": [
+"bravoure"
+],
+"ant": [],
+"pt": "força, coragem"
+},
+"femme": {
+"pos": [
+"noun"
+],
+"syn": [
+"épouse"
+],
+"ant": [],
+"pt": "mulher"
+},
+"panier": {
+"pos": [
+"noun"
+],
+"syn": [
+"banaste",
+"corbeille",
+"manne"
+],
+"ant": [],
+"pt": "cesta"
+},
+"pomme": {
+"pos": [
+"noun"
+],
+"syn": [
+"pommeau"
+],
+"ant": [],
+"pt": "maçã"
+},
+"être": {
+"pos": [
+"verb"
+],
+"syn": [
+"se situer",
+"se trouver"
+],
+"ant": [],
+"pt": "ser / estar"
+},
+"avoir": {
+"pos": [
+"verb"
+],
+"syn": [
+"posséder"
+],
+"ant": [],
+"pt": "ter"
+},
+"dame": {
+"pos": [
+"noun"
+],
+"syn": [
+"de",
+"lady",
+"madame"
+],
+"ant": [],
+"pt": "senhora"
+},
+"soleil": {
+"pos": [
+"noun"
+],
+"syn": [
+"tournesol"
+],
+"ant": [],
+"pt": "sol"
+},
+"fleur": {
+"pos": [
+"noun"
+],
+"syn": [
+"aide",
+"angiosperme",
+"crème de la crème",
+"faveur",
+"gratin",
+"meilleur",
+"nec plus ultra",
+"service",
+"vertu",
+"virginité",
+"élite"
+],
+"ant": [],
+"pt": "flor"
+},
+"couleur": {
+"pos": [
+"noun"
+],
+"syn": [
+"enseigne",
+"flush"
+],
+"ant": [],
+"pt": "cor"
+},
+"abeille": {
+"pos": [
+"noun"
+],
+"syn": [
+"mouche à miel"
+],
+"ant": [],
+"pt": "abelha"
+},
+"poisson": {
+"pos": [
+"noun"
+],
+"syn": [
+"poissecaille"
+],
+"ant": [],
+"pt": "peixe"
+},
+"mer": {
+"pos": [
+"noun"
+],
+"syn": [
+"océan"
+],
+"ant": [],
+"pt": "mar"
+},
+"café": {
+"pos": [
+"noun"
+],
+"syn": [
+"caoua",
+"noir",
+"petit noir"
+],
+"ant": [],
+"pt": "café"
+},
+"ouest": {
+"pos": [
+"noun"
+],
+"syn": [
+"occident",
+"ponant"
+],
+"ant": [],
+"pt": "oeste"
+},
+"personne": {
+"pos": [
+"pron"
+],
+"syn": [
+"qui que ce soit",
+"quiconque",
+"âme qui vive"
+],
+"ant": [],
+"pt": "pessoa"
+},
+"bus": {
+"pos": [
+"noun"
+],
+"syn": [
+"autobus"
+],
+"ant": [],
+"pt": "ônibus"
+},
+"pied": {
+"pos": [
+"noun"
+],
+"syn": [
+"panard",
+"peton"
+],
+"ant": [],
+"pt": "pé"
+},
+"vague": {
+"pos": [
+"noun"
+],
+"syn": [
+"distrait"
+],
+"ant": [],
+"pt": "onda"
+},
+"vent": {
+"pos": [
+"noun"
+],
+"syn": [
+"instrument à vent",
+"paroles en l'air",
+"pet"
+],
+"ant": [],
+"pt": "vento"
+},
+"cent": {
+"pos": [
+"noun"
+],
+"syn": [
+"cenne",
+"centime",
+"sou"
+],
+"ant": [],
+"pt": "cem"
+},
+"plan": {
+"pos": [
+"noun"
+],
+"syn": [
+"projet"
+],
+"ant": [],
+"pt": "mapa"
+},
+"main": {
+"pos": [
+"noun"
+],
+"syn": [
+"louche",
+"mimine",
+"paluche",
+"pince"
+],
+"ant": [],
+"pt": "mão"
+},
+"est": {
+"pos": [
+"noun"
+],
+"syn": [
+"levant",
+"orient"
+],
+"ant": [],
+"pt": "leste"
+},
+"nord": {
+"pos": [
+"noun"
+],
+"syn": [
+"septentrion"
+],
+"ant": [],
+"pt": "norte"
+},
+"bonjour": {
+"pos": [
+"intj"
+],
+"syn": [
+"beaujour",
+"bonjour/hi",
+"boujou",
+"salut"
+],
+"ant": [
+"au revoir"
+],
+"pt": "bom dia / olá"
+},
+"rouge": {
+"pos": [
+"noun"
+],
+"syn": [
+"gueules"
+],
+"ant": [],
+"pt": "vermelho"
+},
+"dormir": {
+"pos": [
+"verb"
+],
+"syn": [
+"pioncer"
+],
+"ant": [],
+"pt": "dormir"
+},
+"bon": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"bien",
+"billet",
+"canon",
+"chaud",
+"coupon",
+"exact",
+"sexy"
+],
+"ant": [
+"faux",
+"incorrect",
+"mal",
+"mauvais"
+],
+"pt": "bom"
+},
+"fils": {
+"pos": [
+"noun"
+],
+"syn": [],
+"ant": [
+"fille",
+"père"
+],
+"pt": "filho"
+},
+"vélo": {
+"pos": [
+"noun"
+],
+"syn": [
+"bicyclette",
+"bécane",
+"cyclisme"
+],
+"ant": [],
+"pt": "bicicleta"
+},
+"analyse": {
+"pos": [
+"noun"
+],
+"syn": [],
+"ant": [
+"synthèse"
+],
+"pt": "análise"
+},
+"dos": {
+"pos": [
+"noun"
+],
+"syn": [],
+"ant": [
+"tranchant"
+],
+"pt": "costas"
+},
+"patron": {
+"pos": [
+"noun"
+],
+"syn": [
+"proxénète"
+],
+"ant": [],
+"pt": "chefe"
+},
+"monsieur": {
+"pos": [
+"noun"
+],
+"syn": [
+"M.",
+"Mr"
+],
+"ant": [],
+"pt": "senhor"
+},
+"manger": {
+"pos": [
+"noun",
+"verb"
+],
+"syn": [
+"avaler",
+"becqueter",
+"bouffe",
+"casser la croûte",
+"consommer",
+"déguster",
+"dévorer",
+"engloutir",
+"festoyer",
+"grignoter",
+"ingurgiter",
+"ingérer",
+"mange",
+"nourriture",
+"s'alimenter",
+"s'empiffrer",
+"se bâfrer",
+"se goinfrer",
+"se sustenter"
+],
+"ant": [],
+"pt": "comer"
+},
+"boisson": {
+"pos": [
+"noun"
+],
+"syn": [
+"boire",
+"consommation d'alcool",
+"potation"
+],
+"ant": [],
+"pt": "bebida"
+},
+"bientôt": {
+"pos": [
+"adv"
+],
+"syn": [
+"d'ici peu",
+"sous peu"
+],
+"ant": [],
+"pt": "em breve"
+},
+"bravo": {
+"pos": [
+"noun"
+],
+"syn": [
+"spadassin"
+],
+"ant": [],
+"pt": "muito bem"
+},
+"visage": {
+"pos": [
+"noun"
+],
+"syn": [
+"bouille",
+"face",
+"figure",
+"gueule",
+"tronche"
+],
+"ant": [],
+"pt": "rosto"
+},
+"faire": {
+"pos": [
+"verb"
+],
+"syn": [
+"s'adapter à",
+"s'habituer à"
+],
+"ant": [],
+"pt": "fazer"
+},
+"frère": {
+"pos": [
+"noun"
+],
+"syn": [
+"frérot"
+],
+"ant": [],
+"pt": "irmão"
+},
+"clair": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"foncé"
+],
+"pt": "claro"
+},
+"sœur": {
+"pos": [
+"noun"
+],
+"syn": [
+"nonne",
+"religieuse"
+],
+"ant": [],
+"pt": "irmã"
+},
+"où": {
+"pos": [
+"adv"
+],
+"syn": [
+"ousque",
+"oùsque",
+"éyoù"
+],
+"ant": [],
+"pt": "onde"
+},
+"pierre": {
+"pos": [
+"noun"
+],
+"syn": [
+"immobilier"
+],
+"ant": [],
+"pt": "pedra"
+},
+"facile": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"difficile"
+],
+"pt": "fácil"
+},
+"blanc": {
+"pos": [
+"noun"
+],
+"syn": [
+"albumen",
+"blanc d'œuf",
+"blanco",
+"correcteur liquide",
+"glaire",
+"tipex"
+],
+"ant": [],
+"pt": "branco"
+},
+"bleu": {
+"pos": [
+"noun"
+],
+"syn": [
+"contusion",
+"craie",
+"ecchymose"
+],
+"ant": [],
+"pt": "azul"
+},
+"avant": {
+"pos": [
+"prep"
+],
+"syn": [],
+"ant": [
+"après"
+],
+"pt": "antes"
+},
+"triste": {
+"pos": [
+"adj"
+],
+"syn": [
+"chagriné",
+"désappointé",
+"désenchanté",
+"déçu",
+"malheureux"
+],
+"ant": [
+"bienheureux",
+"béat",
+"comblé",
+"content",
+"enchanté",
+"gai",
+"heureux",
+"joyeux",
+"ravi",
+"réjoui",
+"satisfait",
+"épanoui"
+],
+"pt": "triste"
+},
+"chaud": {
+"pos": [
+"adj"
+],
+"syn": [
+"aviné",
+"beurré",
+"bittu",
+"bleu",
+"blindé",
+"bourasse",
+"bourré",
+"bu",
+"canon",
+"casquette",
+"cassé",
+"charasse",
+"chaud",
+"chaudasse",
+"cointché",
+"complet",
+"compliqué",
+"cramé",
+"cuit",
+"dechir",
+"dur",
+"déchenillé",
+"empégué",
+"fait",
+"fracassé",
+"imbibé",
+"ivre",
+"limite",
+"noir",
+"paf",
+"partant",
+"parti",
+"picolé",
+"pilo",
+"plein",
+"poivré",
+"prêt",
+"pété",
+"raide",
+"rond",
+"rôti",
+"saoul",
+"schlass",
+"tendu",
+"torchon",
+"éméché"
+],
+"ant": [],
+"pt": "quente"
+},
+"loin": {
+"pos": [
+"adv"
+],
+"syn": [
+"éloigné"
+],
+"ant": [
+"proche",
+"près"
+],
+"pt": "longe"
+},
+"père": {
+"pos": [
+"noun"
+],
+"syn": [],
+"ant": [
+"fils"
+],
+"pt": "pai"
+},
+"poulet": {
+"pos": [
+"noun"
+],
+"syn": [
+"flic",
+"keuf",
+"policier"
+],
+"ant": [],
+"pt": "frango"
+},
+"heureux": {
+"pos": [
+"adj"
+],
+"syn": [
+"bon",
+"content"
+],
+"ant": [
+"malheureux"
+],
+"pt": "feliz"
+},
+"beaucoup": {
+"pos": [
+"adv"
+],
+"syn": [
+"brâment",
+"en ciboire",
+"en câlisse",
+"en mautadit",
+"en ostie",
+"en sacrament",
+"en sale",
+"en tabarnak",
+"moult",
+"très",
+"énormément"
+],
+"ant": [],
+"pt": "muito"
+},
+"comment": {
+"pos": [
+"adv",
+"intj"
+],
+"syn": [
+"comment c’est que",
+"pardon",
+"quoi"
+],
+"ant": [],
+"pt": "como"
+},
+"dehors": {
+"pos": [
+"adv",
+"noun",
+"prep"
+],
+"syn": [],
+"ant": [
+"dedans"
+],
+"pt": "fora"
+},
+"grand": {
+"pos": [
+"adj"
+],
+"syn": [
+"gros"
+],
+"ant": [],
+"pt": "grande"
+},
+"serviette": {
+"pos": [
+"noun"
+],
+"syn": [
+"attaché-case",
+"drap de bain",
+"mallette",
+"porte-documents",
+"serviette de bain",
+"serviette de table",
+"serviette hygiénique"
+],
+"ant": [],
+"pt": "guardanapo"
+},
+"argent": {
+"pos": [
+"noun"
+],
+"syn": [
+"argent",
+"artiche",
+"bidou",
+"bif",
+"blé",
+"djai",
+"flouze",
+"foin",
+"fric",
+"liards",
+"liquide",
+"mitraille",
+"motton",
+"oseille",
+"pognon",
+"pèze",
+"rond",
+"sous",
+"thune"
+],
+"ant": [],
+"pt": "dinheiro"
+},
+"santé": {
+"pos": [
+"intj"
+],
+"syn": [
+"tchin-tchin",
+"à ta santé",
+"à votre santé"
+],
+"ant": [],
+"pt": "saúde"
+},
+"singe": {
+"pos": [
+"noun"
+],
+"syn": [
+"macaque",
+"renard"
+],
+"ant": [],
+"pt": "macaco"
+},
+"courriel": {
+"pos": [
+"noun"
+],
+"syn": [
+"courrier électronique",
+"e-mail",
+"mail",
+"message électronique",
+"messagerie électronique",
+"mél"
+],
+"ant": [],
+"pt": "e-mail"
+},
+"fenêtre": {
+"pos": [
+"noun"
+],
+"syn": [
+"châssis"
+],
+"ant": [],
+"pt": "janela"
+},
+"avion": {
+"pos": [
+"noun"
+],
+"syn": [
+"aéroplane"
+],
+"ant": [],
+"pt": "avião"
+},
+"fort": {
+"pos": [
+"adj"
+],
+"syn": [
+"ferme",
+"grand",
+"gros",
+"robuste"
+],
+"ant": [
+"faible"
+],
+"pt": "forte"
+},
+"directeur": {
+"pos": [
+"noun"
+],
+"syn": [
+"dirlo"
+],
+"ant": [],
+"pt": "diretor"
+},
+"vin": {
+"pos": [
+"noun"
+],
+"syn": [
+"pinard"
+],
+"ant": [],
+"pt": "vinho"
+},
+"oui": {
+"pos": [
+"adv",
+"intj"
+],
+"syn": [
+"ouais",
+"vouai",
+"wi"
+],
+"ant": [
+"non"
+],
+"pt": "sim"
+},
+"viande": {
+"pos": [
+"noun"
+],
+"syn": [
+"barbaque",
+"bidoche"
+],
+"ant": [],
+"pt": "carne"
+},
+"sur": {
+"pos": [
+"prep"
+],
+"syn": [
+"au-dessus de",
+"dans",
+"en",
+"sur ce",
+"à"
+],
+"ant": [
+"au-dessous de",
+"dessous",
+"sous"
+],
+"pt": "sobre"
+},
+"pont": {
+"pos": [
+"noun"
+],
+"syn": [
+"bridge"
+],
+"ant": [],
+"pt": "ponte"
+},
+"ville": {
+"pos": [
+"name",
+"noun"
+],
+"syn": [
+"Nouvelle-Orléans",
+"cité"
+],
+"ant": [],
+"pt": "cidade"
+},
+"prendre": {
+"pos": [
+"verb"
+],
+"syn": [
+"falloir"
+],
+"ant": [],
+"pt": "pegar"
+},
+"mouton": {
+"pos": [
+"noun"
+],
+"syn": [
+"moumoute"
+],
+"ant": [],
+"pt": "carneiro"
+},
+"blessure": {
+"pos": [
+"noun"
+],
+"syn": [
+"plaie"
+],
+"ant": [],
+"pt": "ferimento"
+},
+"habitant": {
+"pos": [
+"noun"
+],
+"syn": [
+"agriculteur",
+"fermier"
+],
+"ant": [],
+"pt": "habitante"
+},
+"soir": {
+"pos": [
+"noun"
+],
+"syn": [
+"soirée"
+],
+"ant": [],
+"pt": "noite (início)"
+},
+"trop": {
+"pos": [
+"adv"
+],
+"syn": [
+"fin",
+"méga"
+],
+"ant": [],
+"pt": "demais"
+},
+"gauche": {
+"pos": [
+"adj"
+],
+"syn": [
+"empoté",
+"lourd",
+"maladroit",
+"senestre"
+],
+"ant": [],
+"pt": "esquerda"
+},
+"maintenant": {
+"pos": [
+"adv"
+],
+"syn": [
+"actuellement",
+"aujourd'hui",
+"en ce moment",
+"à cette heure",
+"à présent"
+],
+"ant": [],
+"pt": "agora"
+},
+"fille": {
+"pos": [
+"noun"
+],
+"syn": [
+"fille des rues"
+],
+"ant": [],
+"pt": "filha"
+},
+"aussi": {
+"pos": [
+"adv"
+],
+"syn": [
+"aussitte",
+"également"
+],
+"ant": [],
+"pt": "também"
+},
+"toujours": {
+"pos": [
+"adv"
+],
+"syn": [
+"encore"
+],
+"ant": [
+"jamais"
+],
+"pt": "sempre"
+},
+"feuille": {
+"pos": [
+"noun"
+],
+"syn": [
+"phylle"
+],
+"ant": [],
+"pt": "folha"
+},
+"déjeuner": {
+"pos": [
+"noun"
+],
+"syn": [
+"dîner",
+"grand déjeuner",
+"lunch"
+],
+"ant": [],
+"pt": "almoço"
+},
+"ici": {
+"pos": [
+"adv"
+],
+"syn": [
+"icitte"
+],
+"ant": [],
+"pt": "aqui"
+},
+"d'accord": {
+"pos": [
+"intj"
+],
+"syn": [
+"d'ac",
+"dakor",
+"ça marche"
+],
+"ant": [],
+"pt": "de acordo"
+},
+"marron": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"ensauvagé",
+"féral",
+"noir marron",
+"sauvage"
+],
+"ant": [],
+"pt": "marrom"
+},
+"fraise": {
+"pos": [
+"noun"
+],
+"syn": [
+"mamelon",
+"tétin",
+"téton"
+],
+"ant": [],
+"pt": "morango"
+},
+"petit": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"grand"
+],
+"pt": "pequeno"
+},
+"travail": {
+"pos": [
+"noun"
+],
+"syn": [
+"boulot",
+"job",
+"taf",
+"turbin"
+],
+"ant": [],
+"pt": "trabalho"
+},
+"riche": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"argenté"
+],
+"ant": [
+"pauvre"
+],
+"pt": "rico"
+},
+"quoi": {
+"pos": [
+"phrase"
+],
+"syn": [
+"comment",
+"pardon",
+"plaît-il"
+],
+"ant": [],
+"pt": "o quê"
+},
+"homme": {
+"pos": [
+"noun"
+],
+"syn": [
+"amant",
+"beau",
+"espoir",
+"mari",
+"prétendu",
+"vieux",
+"époux"
+],
+"ant": [],
+"pt": "homem"
+},
+"manteau": {
+"pos": [
+"noun"
+],
+"syn": [
+"pardessus"
+],
+"ant": [],
+"pt": "casaco"
+},
+"écrire": {
+"pos": [
+"verb"
+],
+"syn": [
+"composer",
+"correspondre",
+"griffonner",
+"rédiger"
+],
+"ant": [],
+"pt": "escrever"
+},
+"vieux": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"mon vieux",
+"âgé"
+],
+"ant": [
+"jeune",
+"neuf",
+"nouveau"
+],
+"pt": "velho"
+},
+"ouvrir": {
+"pos": [
+"verb"
+],
+"syn": [],
+"ant": [
+"fermer"
+],
+"pt": "abrir"
+},
+"oreille": {
+"pos": [
+"noun"
+],
+"syn": [
+"esgourde",
+"feuille"
+],
+"ant": [],
+"pt": "orelha"
+},
+"souris": {
+"pos": [
+"noun"
+],
+"syn": [
+"sourire"
+],
+"ant": [],
+"pt": "rato"
+},
+"déjà": {
+"pos": [
+"adv"
+],
+"syn": [
+"de un",
+"encore"
+],
+"ant": [
+"pas encore"
+],
+"pt": "já"
+},
+"marché": {
+"pos": [
+"noun"
+],
+"syn": [
+"contrat"
+],
+"ant": [],
+"pt": "mercado"
+},
+"après": {
+"pos": [
+"prep"
+],
+"syn": [],
+"ant": [
+"avant"
+],
+"pt": "depois de"
+},
+"encore": {
+"pos": [
+"adv"
+],
+"syn": [
+"davantage",
+"déjà",
+"toujours",
+"à nouveau"
+],
+"ant": [],
+"pt": "ainda, de novo"
+},
+"pauvre": {
+"pos": [
+"adj"
+],
+"syn": [
+"sale"
+],
+"ant": [],
+"pt": "pobre"
+},
+"devant": {
+"pos": [
+"prep"
+],
+"syn": [],
+"ant": [
+"derrière"
+],
+"pt": "na frente"
+},
+"bouche": {
+"pos": [
+"noun"
+],
+"syn": [
+"clapet",
+"gueule"
+],
+"ant": [],
+"pt": "boca"
+},
+"peau": {
+"pos": [
+"noun"
+],
+"syn": [
+"épiderme"
+],
+"ant": [],
+"pt": "pele"
+},
+"froid": {
+"pos": [
+"adj"
+],
+"syn": [
+"frette"
+],
+"ant": [
+"chaud"
+],
+"pt": "frio"
+},
+"quel": {
+"pos": [
+"det"
+],
+"syn": [
+"équel"
+],
+"ant": [],
+"pt": "qual"
+},
+"cascade": {
+"pos": [
+"noun"
+],
+"syn": [
+"chute d'eau"
+],
+"ant": [],
+"pt": "cachoeira"
+},
+"souvent": {
+"pos": [
+"adv"
+],
+"syn": [
+"fréquemment"
+],
+"ant": [
+"rarement"
+],
+"pt": "frequentemente"
+},
+"mauvais": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"bon"
+],
+"pt": "ruim"
+},
+"taille": {
+"pos": [
+"noun"
+],
+"syn": [
+"coupe",
+"gabarit",
+"grandeur"
+],
+"ant": [],
+"pt": "tamanho"
+},
+"aujourd'hui": {
+"pos": [
+"adv"
+],
+"syn": [
+"actuellement",
+"de nos jours",
+"en ce moment",
+"maintenant",
+"à cette heure"
+],
+"ant": [],
+"pt": "hoje"
+},
+"pièce": {
+"pos": [
+"noun"
+],
+"syn": [
+"morceau",
+"part"
+],
+"ant": [],
+"pt": "moeda"
+},
+"travailler": {
+"pos": [
+"verb"
+],
+"syn": [
+"bosser",
+"taffer",
+"turbiner"
+],
+"ant": [],
+"pt": "trabalhar"
+},
+"jouer": {
+"pos": [
+"verb"
+],
+"syn": [
+"ne tenir qu’à un fil"
+],
+"ant": [],
+"pt": "jogar, brincar"
+},
+"fatigué": {
+"pos": [
+"adj"
+],
+"syn": [
+"dormitique",
+"las"
+],
+"ant": [],
+"pt": "cansado"
+},
+"côté": {
+"pos": [
+"prep"
+],
+"syn": [
+"en termes de",
+"quant à"
+],
+"ant": [],
+"pt": "lado"
+},
+"aider": {
+"pos": [
+"verb"
+],
+"syn": [
+"obliger"
+],
+"ant": [],
+"pt": "ajudar"
+},
+"tante": {
+"pos": [
+"noun"
+],
+"syn": [
+"matante",
+"tata"
+],
+"ant": [],
+"pt": "tia"
+},
+"mois": {
+"pos": [
+"noun"
+],
+"syn": [
+"règles"
+],
+"ant": [],
+"pt": "mês"
+},
+"difficile": {
+"pos": [
+"adj"
+],
+"syn": [
+"ardu",
+"compliqué"
+],
+"ant": [
+"facile"
+],
+"pt": "difícil"
+},
+"merci": {
+"pos": [
+"noun"
+],
+"syn": [
+"grâce",
+"miséricorde",
+"pitié"
+],
+"ant": [],
+"pt": "obrigado(a)"
+},
+"ensuite": {
+"pos": [
+"adv"
+],
+"syn": [
+"par la suite"
+],
+"ant": [],
+"pt": "depois"
+},
+"derrière": {
+"pos": [
+"adv",
+"prep"
+],
+"syn": [
+"après",
+"en arrière",
+"à l'arrière"
+],
+"ant": [],
+"pt": "atrás"
+},
+"pourquoi": {
+"pos": [
+"adv"
+],
+"syn": [
+"pourquoi que"
+],
+"ant": [],
+"pt": "por que"
+},
+"voiture": {
+"pos": [
+"noun"
+],
+"syn": [
+"auto",
+"automobile",
+"bagnole",
+"cage",
+"caisse",
+"char",
+"chignole",
+"chiotte",
+"guive",
+"rougne",
+"teuf-teuf",
+"voiture"
+],
+"ant": [],
+"pt": "carro"
+},
+"propre": {
+"pos": [
+"adj"
+],
+"syn": [
+"spécifique"
+],
+"ant": [],
+"pt": "limpo"
+},
+"sud": {
+"pos": [
+"noun"
+],
+"syn": [
+"midi"
+],
+"ant": [
+"nord"
+],
+"pt": "sul"
+},
+"chapeau": {
+"pos": [
+"intj"
+],
+"syn": [
+"chapeau bas"
+],
+"ant": [],
+"pt": "chapéu"
+},
+"résultat": {
+"pos": [
+"noun"
+],
+"syn": [
+"résultat financier"
+],
+"ant": [],
+"pt": "resultado"
+},
+"parfois": {
+"pos": [
+"adv"
+],
+"syn": [
+"des fois",
+"quelquefois"
+],
+"ant": [],
+"pt": "às vezes"
+},
+"garçon": {
+"pos": [
+"noun"
+],
+"syn": [
+"gamin",
+"homme"
+],
+"ant": [],
+"pt": "menino"
+},
+"dîner": {
+"pos": [
+"verb"
+],
+"syn": [
+"déjeuner",
+"manger"
+],
+"ant": [],
+"pt": "jantar"
+},
+"faible": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [],
+"ant": [
+"fort"
+],
+"pt": "fraco"
+},
+"ordinateur": {
+"pos": [
+"noun"
+],
+"syn": [
+"calculateur",
+"ordi"
+],
+"ant": [],
+"pt": "computador"
+},
+"rapide": {
+"pos": [
+"noun"
+],
+"syn": [],
+"ant": [
+"lent"
+],
+"pt": "rápido"
+},
+"chaussette": {
+"pos": [
+"noun"
+],
+"syn": [
+"bas",
+"chausson"
+],
+"ant": [],
+"pt": "meia"
+},
+"chaussure": {
+"pos": [
+"noun"
+],
+"syn": [
+"godasse",
+"pompe",
+"soulier"
+],
+"ant": [],
+"pt": "sapato"
+},
+"écharpe": {
+"pos": [
+"noun"
+],
+"syn": [
+"foulard"
+],
+"ant": [],
+"pt": "cachecol"
+},
+"lapin": {
+"pos": [
+"noun"
+],
+"syn": [
+"connil"
+],
+"ant": [],
+"pt": "coelho"
+},
+"voisin": {
+"pos": [
+"adj"
+],
+"syn": [
+"limitrophe",
+"proche",
+"similaire"
+],
+"ant": [],
+"pt": "vizinho"
+},
+"près": {
+"pos": [
+"prep"
+],
+"syn": [
+"auprès de"
+],
+"ant": [],
+"pt": "perto"
+},
+"gare": {
+"pos": [
+"intj"
+],
+"syn": [
+"attention"
+],
+"ant": [],
+"pt": "estação de trem"
+},
+"droite": {
+"pos": [
+"noun"
+],
+"syn": [],
+"ant": [
+"gauche"
+],
+"pt": "direita"
+},
+"maillot": {
+"pos": [
+"noun"
+],
+"syn": [
+"t-shirt",
+"tricot",
+"tricot de peau"
+],
+"ant": [],
+"pt": "maiô"
+},
+"joli": {
+"pos": [
+"adj"
+],
+"syn": [
+"agréable",
+"mignon"
+],
+"ant": [],
+"pt": "bonito, gracioso"
+},
+"couteau": {
+"pos": [
+"noun"
+],
+"syn": [
+"lingue",
+"schlass",
+"solen"
+],
+"ant": [],
+"pt": "faca"
+},
+"malade": {
+"pos": [
+"adj",
+"noun"
+],
+"syn": [
+"cinglé",
+"folle",
+"fou",
+"taré"
+],
+"ant": [],
+"pt": "doente"
+},
+"magasin": {
+"pos": [
+"noun"
+],
+"syn": [
+"boutique",
+"chargeur",
+"grange"
+],
+"ant": [],
+"pt": "loja"
+},
+"serveur": {
+"pos": [
+"noun"
+],
+"syn": [
+"garçon de salle"
+],
+"ant": [],
+"pt": "garçom"
+},
+"assiette": {
+"pos": [
+"noun"
+],
+"syn": [
+"assiettée",
+"assise",
+"platée"
+],
+"ant": [],
+"pt": "prato"
+},
+"légume": {
+"pos": [
+"noun"
+],
+"syn": [
+"gousse",
+"jardinage",
+"verdage",
+"verdure",
+"végétable"
+],
+"ant": [],
+"pt": "legume"
+},
+"grand-mère": {
+"pos": [
+"noun"
+],
+"syn": [
+"aïeule"
+],
+"ant": [],
+"pt": "avó"
+},
+"caisse": {
+"pos": [
+"noun"
+],
+"syn": [
+"chiotte",
+"voiture"
+],
+"ant": [],
+"pt": "caixa"
+},
+"médecin": {
+"pos": [
+"noun"
+],
+"syn": [
+"toubib"
+],
+"ant": [],
+"pt": "médico"
+},
+"grand-père": {
+"pos": [
+"noun"
+],
+"syn": [
+"aïeul"
+],
+"ant": [],
+"pt": "avô"
+},
+"entreprise": {
+"pos": [
+"noun"
+],
+"syn": [
+"société"
+],
+"ant": [],
+"pt": "empresa"
+},
+"expérience": {
+"pos": [
+"noun"
+],
+"syn": [
+"expérimentation"
+],
+"ant": [],
+"pt": "experimento"
+},
+"adulte": {
+"pos": [
+"noun"
+],
+"syn": [
+"grand monde"
+],
+"ant": [],
+"pt": "adulto"
+},
+"belle-mère": {
+"pos": [
+"noun"
+],
+"syn": [
+"marâtre"
+],
+"ant": [
+"parâtre"
+],
+"pt": "sogra"
+},
+"tonnerre": {
+"pos": [
+"phrase"
+],
+"syn": [
+"tonnerre mes chiens"
+],
+"ant": [],
+"pt": "trovão"
+},
+"désolé": {
+"pos": [
+"intj"
+],
+"syn": [
+"navré"
+],
+"ant": [],
+"pt": "sinto muito"
+},
+"week-end": {
+"pos": [
+"noun"
+],
+"syn": [
+"W-E",
+"W.-E.",
+"W.E.",
+"WE"
+],
+"ant": [],
+"pt": "fim de semana"
+},
+"foncé": {
+"pos": [
+"adj"
+],
+"syn": [],
+"ant": [
+"clair"
+],
+"pt": "escuro"
+},
+"pourboire": {
+"pos": [
+"noun"
+],
+"syn": [
+"dringuelle",
+"lagniappe"
+],
+"ant": [],
+"pt": "gorjeta"
+},
+"ordonnance": {
+"pos": [
+"noun"
+],
+"syn": [
+"ordo",
+"prescription"
+],
+"ant": [],
+"pt": "receita médica"
+},
+"volontiers": {
+"pos": [
+"adv"
+],
+"syn": [
+"avec plaisir",
+"de bon gré"
+],
+"ant": [],
+"pt": "com prazer"
+},
+"félicitations": {
+"pos": [
+"intj"
+],
+"syn": [
+"bravo"
+],
+"ant": [],
+"pt": "parabéns"
+}
+}

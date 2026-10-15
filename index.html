@@ -12,8 +12,11 @@
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Mots &amp; Parole</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">
 <style>
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-weight:700;font-style:normal;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Newsreader";font-weight:500;font-style:normal;font-display:swap;src:url(fonts/newsreader-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Newsreader";font-weight:600;font-style:normal;font-display:swap;src:url(fonts/newsreader-latin-600-normal.woff2) format("woff2")}
 /* Layout: o app ocupa a altura da janela. Três telas: índice do caderno, ajustes e a página de jogo. Só o miolo de cada tela rola; a grade do jogo se ajusta ao espaço livre. */
 :root{
   --bg0:#f4f5f7; --surface0:#ffffff; --surface20:#e7eaf0; --line0:#c9d0db; --grid0:#6f798b;
@@ -315,6 +318,11 @@ svg{display:block}
 #go-settings svg{margin:0}
 #go-settings small{display:none}
 .tiles .tile:not(.today):not(#go-settings){min-height:112px}
+.bkwarn{margin:12px 0 0;padding:12px 14px;border:var(--bw) solid var(--accent);border-radius:var(--radius);background:var(--soft)}
+.bkwarn p{margin:0 0 10px;font-size:.95rem}
+.bkwarn .row{display:flex;gap:8px;flex-wrap:wrap}
+.bkwarn .btn{flex:1 1 140px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:40;max-width:min(92vw,420px);padding:12px 16px;border-radius:var(--radius);background:var(--ink);color:var(--bg);font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.3)}
 </style>
 
 <div id="app" data-lang="fr">
@@ -328,6 +336,10 @@ svg{display:block}
       <div class="me">
         <span class="avatar" id="me-av" aria-hidden="true"></span>
         <div class="who"><b id="me-name"></b><small id="me-motto"></small></div>
+      </div>
+      <div class="bkwarn" id="bk-warn" hidden>
+        <p id="bk-warn-txt"></p>
+        <div class="row"><button type="button" class="btn primary" id="bk-warn-go">Fazer backup agora</button><button type="button" class="btn" id="bk-warn-later">Lembrar em 7 dias</button></div>
       </div>
       <div class="tiles">
         <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small><span class="gbar" aria-hidden="true"><i id="goal-fill"></i></span><small id="goal-txt"></small></button>
@@ -484,6 +496,14 @@ svg{display:block}
             </div>
           </section>
           <section>
+            <h2 class="lab">Zoom com dois dedos</h2>
+            <p class="help">Ligado: você pode ampliar a tela com o gesto de pinça. O toque duplo nunca amplia, esteja ligado ou não. Desligado é o padrão.</p>
+            <div class="seg" role="group" aria-label="Zoom com dois dedos" id="zoom-seg">
+              <button type="button" data-zoom="on">Ligado</button>
+              <button type="button" data-zoom="off">Desligado</button>
+            </div>
+          </section>
+          <section>
             <h2 class="lab">Backup do progresso</h2>
             <p class="help">Seu progresso fica só neste aparelho. Baixe um arquivo de vez em quando; se trocar de celular ou limpar os dados do navegador, restaure por ele.</p>
             <button type="button" class="btn wide" id="bk-save">Baixar backup</button>
@@ -612,6 +632,7 @@ svg{display:block}
     </div>
   </div>
 </div>
+<div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
 
@@ -1479,7 +1500,7 @@ Object.keys(PALS).forEach(k=>{if(PALS[k].l)PALS[k].bg=PALS[k].l;});
 const AUTO_ACC={fr:["#1f3d7a","#8fa9e8"],it:["#1b5e43","#6fcf9f"],en:["#8a2a45","#e58aa5"]};
 
 /* ----- preferências e páginas concluídas (nada de progresso parcial) ----- */
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0}};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -1497,11 +1518,13 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(typeof sv.avatar==="string"&&/^[a-z]+$/.test(sv.avatar))S.avatar=sv.avatar;
   if(sv.plays&&typeof sv.plays==="object")Object.keys(sv.plays).forEach(l=>{if(LNAME[l]&&sv.plays[l]&&typeof sv.plays[l]==="object"){S.plays[l]={};Object.keys(sv.plays[l]).forEach(t=>{const n=+sv.plays[l][t];if(/^[a-z]+$/.test(t)&&n>0)S.plays[l][t]=Math.min(n,1e6);});}});
   if(sv.sk&&typeof sv.sk==="object")Object.keys(sv.sk).forEach(l=>{if(LNAME[l]&&sv.sk[l]&&typeof sv.sk[l]==="object"){S.sk[l]={};Object.keys(sv.sk[l]).forEach(k=>{const a=sv.sk[l][k];if(Array.isArray(a)&&a.length>=2)S.sk[l][k]=[Math.max(0,+a[0]||0),Math.max(0,+a[1]||0),String(a[2]||"").slice(0,120)];});}});
-  if(sv.rv&&typeof sv.rv==="object")Object.keys(sv.rv).forEach(k=>{const a=sv.rv[k];if(/^(fr|it|en):[a-z]+\|\d+\|\d+$/.test(k)&&Array.isArray(a)&&+a[0]>0)S.rv[k]=[+a[0],Math.min(3,Math.max(0,+a[1]||0))];});
-  if(sv.rvv&&typeof sv.rvv==="object")Object.keys(sv.rvv).slice(0,400).forEach(k=>{const a=sv.rvv[k];if(/^(fr|it|en):v\|[^|]{1,40}$/.test(k)&&Array.isArray(a)&&+a[0]>0)S.rvv[k]=[+a[0],Math.min(3,Math.max(0,+a[1]||0))];});
+  if(sv.rv&&typeof sv.rv==="object")Object.keys(sv.rv).forEach(k=>{const a=sv.rv[k];if(/^(fr|it|en):[a-z]+\|\d+\|\d+$/.test(k)&&Array.isArray(a)&&+a[0]>0)S.rv[k]=[+a[0],Math.min(4,Math.max(0,+a[1]||0)),Math.min(99,Math.max(0,+a[2]||0))];});
+  if(sv.rvv&&typeof sv.rvv==="object")Object.keys(sv.rvv).slice(0,400).forEach(k=>{const a=sv.rvv[k];if(/^(fr|it|en):v\|[^|]{1,40}$/.test(k)&&Array.isArray(a)&&+a[0]>0)S.rvv[k]=[+a[0],Math.min(4,Math.max(0,+a[1]||0)),Math.min(99,Math.max(0,+a[2]||0))];});
   if(sv.goal===10||sv.goal===20||sv.goal===40)S.goal=sv.goal;
   if(sv.day&&typeof sv.day==="object"&&/^\d{4}-\d\d-\d\d$/.test(sv.day.d)&&+sv.day.n>=0)S.day={d:sv.day.d,n:Math.min(+sv.day.n,100000)};
   if(typeof sv.typed==="boolean")S.typed=sv.typed;
+  if(typeof sv.zoom==="boolean")S.zoom=sv.zoom;
+  ["bk","bks","since"].forEach(k=>{const n=+sv[k];if(n>0&&n<4e12)S[k]=n;});
   if(sv.sound==="on"||sv.sound==="off")S.sound=sv.sound;
   if(typeof sv.kb==="boolean")S.kb=sv.kb;
   if(sv.vol===1||sv.vol===2||sv.vol===3||sv.vol===4)S.vol=sv.vol;
@@ -1511,7 +1534,11 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   /* as marcas de concluído das versões antigas não são trazidas: os ids das páginas mudaram */
   if(!old&&sv.done&&typeof sv.done==="object")Object.keys(sv.done).forEach(k=>{if(/^(fr|it|en):[a-z0-9-]+$/.test(k))S.done[k]=1;});
 })();
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(_){}}
+function save(){
+  if(!S.since)S.since=Date.now();
+  try{localStorage.setItem(KEY,JSON.stringify(S));return true;}
+  catch(_){if(typeof saveFail==="function")saveFail();return false;}
+}
 
 /* ----- tema e cores ----- */
 const mq=window.matchMedia?matchMedia("(prefers-color-scheme: dark)"):null;
@@ -2511,7 +2538,7 @@ $("#ls-next").addEventListener("click",()=>{
 
 /* ===== Volume 3: Gramática (cartão de regra + perguntas de escolha ou digitadas), revisão e treino ===== */
 const gm={items:[],ids:[],types:null,i:0,sel:null,solved:false,bad:false,miss:0,open:true,txt:"",tries:0,review:false,drill:false};
-const DAY=864e5,RV_STEPS=[1,3,7,14];
+const DAY=864e5,RV_STEPS=[1,3,7,14,30];
 const TYPABLE=["presente","passado","futuro","condicional","subjuntivo","reflexivos"];
 const isGramP=()=>!!P&&(GRAMTYPES.indexOf(P.type)>=0||P.type==="revisao"||P.type==="treino");
 const curType=()=>gm.types?gm.types[gm.i]:P.type;
@@ -2521,20 +2548,31 @@ const hasRule=t=>!!(GRAM.rules[S.lang]&&GRAM.rules[S.lang][t]);
 const canTypeIt=it=>!!it._force||!!it._v||(TYPABLE.indexOf(curType())>=0&&/___/.test(it.q)&&/\(/.test(it.q));
 const typedOn=it=>!!it._force||(S.typed&&canTypeIt(it));
 const accepts=it=>it.ok||[it.o[it.a]];
-/* revisão espaçada: erro de primeira vira item a rever em 1, 3, 7 e 14 dias */
+/* revisão espaçada. Erro de primeira entra na fila para amanhã (a partir da meia-noite, então aparece logo cedo).
+   Acertou na revisão: sobe um degrau (1, 3, 7, 14, 30 dias); passou do último, sai da fila.
+   Errou na revisão: desce dois degraus e conta um "tropeço"; item com tropeços volta em 60% do prazo normal. */
+const rvDue=n=>{const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+n);return d.getTime();};
+const rvIvl=(st,lp)=>Math.max(1,Math.round(RV_STEPS[st]*(lp>0?.6:1)));
+function shufItem(it){
+  if(!it||it._v||it._force||!it.o||it.o.length<2)return it;
+  const ix=it.o.map((_,k)=>k);
+  for(let k=ix.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[ix[k],ix[j]]=[ix[j],ix[k]];}
+  return Object.assign({},it,{o:ix.map(k=>it.o[k]),a:ix.indexOf(it.a)});
+}
 function rvUpdate(ok){
   if(gm.drill)return;
   const id=gm.ids[gm.i],T=id.indexOf("v|")===0?S.rvv:S.rv,key=S.lang+":"+id,cur=T[key];
   if(gm.review){
     if(!cur)return;
-    if(ok){const st=cur[1]+1;if(st>=RV_STEPS.length)delete T[key];else T[key]=[Date.now()+RV_STEPS[st]*DAY,st];}
-    else T[key]=[Date.now()+DAY,0];
-  }else if(!ok){T[key]=[Date.now()+DAY,0];}
+    const lp=cur[2]||0;
+    if(ok){const st=cur[1]+1;if(st>=RV_STEPS.length)delete T[key];else T[key]=[rvDue(rvIvl(st,lp)),st,lp];}
+    else T[key]=[rvDue(1),Math.max(0,cur[1]-2),Math.min(99,lp+1)];
+  }else if(!ok){T[key]=[rvDue(1),0,cur?Math.min(99,(cur[2]||0)+1):0];}
   save();
 }
 function startGram(){
   seedNow();fitFn=null;
-  gm.items=GRAM.items[S.lang][P.type][P.n-1];gm.ids=gm.items.map((_,k)=>P.type+"|"+P.n+"|"+k);gm.types=null;gm.review=false;gm.drill=false;
+  gm.items=GRAM.items[S.lang][P.type][P.n-1].map(shufItem);gm.ids=gm.items.map((_,k)=>P.type+"|"+P.n+"|"+k);gm.types=null;gm.review=false;gm.drill=false;
   gm.i=0;gm.miss=0;gm.open=true;
   loadGram();
 }
@@ -2656,7 +2694,7 @@ skRec=function(w,label,ok){
   _sk(w,label,ok);bump();
   if(!ok&&w){
     const e=vIdx()[S.lang][String(w).toLowerCase()];
-    if(e){const key=S.lang+":v|"+e.w.toLowerCase();if(!S.rvv[key]&&Object.keys(S.rvv).length<400){S.rvv[key]=[Date.now()+DAY,0];save();}}
+    if(e){const key=S.lang+":v|"+e.w.toLowerCase();if(!S.rvv[key]&&Object.keys(S.rvv).length<400){S.rvv[key]=[rvDue(1),0,0];save();}}
   }
 };
 function vocabItem(e){
@@ -2685,7 +2723,7 @@ function dueKeys(){
 const dueCount=()=>dueKeys().length;
 function dueItems(max){
   return dueKeys().slice(0,max).map(([,k,v])=>{
-    if(!v){const r=rvItem(k);return {type:r.type,id:r.id,it:r.it};}
+    if(!v){const r=rvItem(k);return {type:r.type,id:r.id,it:shufItem(r.it)};}
     const r=rvVocab(k);return {type:"vocab",id:r.id,it:vocabItem(r.e)};
   });
 }
@@ -2773,6 +2811,7 @@ $("#bk-save").addEventListener("click",()=>{
     const blob=new Blob([JSON.stringify(S)],{type:"application/json"}),a=document.createElement("a");
     a.href=URL.createObjectURL(blob);a.download="mots-parole-progresso-"+ymd()+".json";
     document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),3000);
+    S.bk=Date.now();save();renderBkWarn();
     $("#bk-note").textContent="Backup baixado: procure o arquivo mots-parole-progresso-"+ymd()+".json em Downloads.";
   }catch(_){$("#bk-note").textContent="Não consegui gerar o arquivo neste navegador.";}
 });
@@ -2795,6 +2834,30 @@ $("#bk-go").addEventListener("click",()=>{
   if(!bkPending)return;
   try{localStorage.setItem(KEY,bkPending);location.reload();}catch(_){$("#bk-note").textContent="O navegador não deixou gravar. Nada foi alterado.";}
 });
+
+/* ===== zoom opcional, aviso de backup e erro ao salvar ===== */
+const VP_LOCK="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover";
+const VP_FREE="width=device-width, initial-scale=1, viewport-fit=cover";
+function applyZoom(){const m=document.querySelector('meta[name="viewport"]');if(m)m.setAttribute("content",S.zoom?VP_FREE:VP_LOCK);}
+function syncZoom(){$$("#zoom-seg [data-zoom]").forEach(b=>b.setAttribute("aria-pressed",String((b.dataset.zoom==="on")===S.zoom)));}
+$("#zoom-seg").addEventListener("click",e=>{const b=e.target.closest("[data-zoom]");if(!b)return;S.zoom=b.dataset.zoom==="on";save();applyZoom();syncZoom();});
+const _go2=go;go=function(n){_go2(n);if(n==="settings")syncZoom();};
+applyZoom();
+let toastT=0;
+function say(msg){const t=$("#toast");if(!t)return;t.textContent=msg;t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>{t.hidden=true;},6000);}
+let failShown=false;
+function saveFail(){if(failShown)return;failShown=true;say("Não consegui salvar o progresso neste navegador. Baixe um backup em Ajustes para não perder nada.");}
+function renderBkWarn(){
+  const el=$("#bk-warn");if(!el)return;
+  const now=Date.now(),has=Object.keys(S.done).length>=3;
+  const idle=S.bk?now-S.bk:now-(S.since||now);
+  const show=has&&idle>(S.bk?14:7)*DAY&&now>S.bks;
+  el.hidden=!show;
+  if(show)$("#bk-warn-txt").textContent=S.bk?"Seu último backup foi há "+Math.floor((now-S.bk)/DAY)+" dias. Se trocar de celular ou limpar o navegador, o progresso some.":"Você ainda não fez backup do progresso, que fica só neste aparelho.";
+}
+$("#bk-warn-go").addEventListener("click",()=>{go("settings");const b=$("#bk-save");if(b)b.focus();});
+$("#bk-warn-later").addEventListener("click",()=>{S.bks=Date.now()+7*DAY;save();renderBkWarn();});
+const _rt=renderToday;renderToday=function(){_rt();renderBkWarn();};
 
 /* ===== Início ===== */
 buildSettings();applyTheme();buildKb();go("home");

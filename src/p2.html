@@ -1,0 +1,308 @@
+<div id="app" data-lang="fr">
+
+  <section class="screen" id="s-home">
+    <div class="scroll">
+      <div class="hero">
+        <h1 class="brand"><span class="fr">Mots</span> <i>&amp;</i> <span class="it">Parole</span></h1>
+        <p class="help">Seu caderno de francês, italiano e inglês.</p>
+      </div>
+      <div class="me">
+        <span class="avatar" id="me-av" aria-hidden="true"></span>
+        <div class="who"><b id="me-name"></b><small id="me-motto"></small></div>
+      </div>
+      <div class="bkwarn" id="bk-warn" hidden>
+        <p id="bk-warn-txt"></p>
+        <div class="row"><button type="button" class="btn primary" id="bk-warn-go">Fazer backup agora</button><button type="button" class="btn" id="bk-warn-later">Lembrar em 7 dias</button></div>
+      </div>
+      <div class="tiles">
+        <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small><span class="gbar" aria-hidden="true"><i id="goal-fill"></i></span><small id="goal-txt"></small></button>
+        <button type="button" class="tile" id="go-games"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><b>Jogos</b><small>Cruzadas, caça-palavras e mais</small></button>
+        <button type="button" class="tile" id="go-train"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><b>Treino</b><small>Digitar verbos e palavras</small></button>
+        <button type="button" class="tile" id="go-profile"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><b>Perfil</b><small>Nome, frase e logo</small></button>
+        <button type="button" class="tile" id="go-stats"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg><b>Estatísticas</b><small>Seu progresso e o que treinar</small></button>
+        <button type="button" class="tile" id="go-settings"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><b>Ajustes</b><small>Layout, cor, claro/escuro, sons</small></button>
+      </div>
+    </div>
+    <footer class="foot"><p class="credit" id="credit">Desenvolvido por <a href="https://github.com/calisants" target="_blank" rel="noopener">@calisants</a></p></footer>
+  </section>
+
+  <section class="screen" id="s-stats" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Estatísticas</h2></div>
+    </header>
+    <div class="scroll">
+      <h2 class="lab">Idioma</h2>
+      <div class="seg" role="group" aria-label="Idioma das estatísticas">
+        <button type="button" data-k="lang" data-v="fr">Français</button>
+        <button type="button" data-k="lang" data-v="it">Italiano</button>
+        <button type="button" data-k="lang" data-v="en">English</button>
+      </div>
+      <p class="help" id="st-line" style="margin-top:10px"></p>
+      <div class="stats open"><div class="in" id="st-body"></div></div>
+    </div>
+  </section>
+
+  <section class="screen" id="s-lang" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Idioma do caderno</h2></div>
+    </header>
+    <div class="scroll">
+      <p class="help">Qual idioma você quer praticar agora?</p>
+      <div class="tiles one">
+        <button type="button" class="tile plain" data-pick-lang="fr"><b>Français</b><small>Francês: palavras, sons e conversas</small></button>
+        <button type="button" class="tile plain" data-pick-lang="it"><b>Italiano</b><small>Italiano: palavras, sons e conversas</small></button>
+        <button type="button" class="tile plain" data-pick-lang="en"><b>English</b><small>Inglês: palavras, sons e conversas</small></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="s-vol" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="lang" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Volume do caderno</h2><p class="vol" id="vol-lang"></p></div>
+    </header>
+    <div class="scroll">
+      <p class="help">Cada volume é um caderno diferente.</p>
+      <div class="tiles one">
+        <button type="button" class="tile plain" data-pick-vol="2"><b>Volume 1 · Pronúncia</b><small>Alfabeto, sons, ditado e construção de frases</small></button>
+        <button type="button" class="tile plain" data-pick-vol="1"><b>Volume 2 · Jogos de palavras</b><small>Cruzadas, caça-palavras, conecte e intruso</small></button>
+        <button type="button" class="tile plain" data-pick-vol="4"><b>Volume 3 · Gramática</b><small>Regras e exercícios: artigos, verbos e tempos, subjuntivo, pronomes, conjunções, advérbios e ordem da frase</small></button>
+        <button type="button" class="tile plain" data-pick-vol="3"><b>Volume 4 · Conversação</b><small>Diálogos: monte as falas e escolha a resposta</small></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="s-index" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="vol" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl">
+        <h2>Escolha o jogo</h2>
+        <p class="vol" id="vol-title">Volume 1</p>
+      </div>
+    </header>
+    <div class="scroll">
+      <div class="filters" id="filters">
+        <label class="flt" id="f-theme-w">Tema <select class="field" id="f-theme" aria-label="Filtrar por tema"></select></label>
+        <label class="flt" id="f-level-w">Nível <select class="field" id="f-level" aria-label="Filtrar por nível"><option value="all">Todos</option><option value="easy">Fácil</option><option value="classic">Clássico</option><option value="adv">Avançado</option></select></label>
+        <label class="flt game" id="f-game-w">Jogo <select class="field" id="f-game" aria-label="Filtrar por jogo"></select></label>
+      </div>
+      <p class="help" id="toc-help">Cada página é fixa, como num livro impresso. Toque em uma para jogar.</p>
+      <div id="toc"></div>
+    </div>
+  </section>
+
+  <section class="screen" id="s-profile" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Perfil</h2></div>
+    </header>
+    <div class="scroll">
+      <div class="cols">
+        <div class="stack">
+          <section>
+            <h2 class="lab">Perfil do jogador</h2>
+            <input class="field" id="player" type="text" maxlength="24" placeholder="Seu nome" autocomplete="off" aria-label="Nome do jogador">
+            <input class="field" id="motto" type="text" maxlength="60" placeholder="Uma frase sua (opcional)" autocomplete="off" aria-label="Frase do perfil" style="margin-top:8px">
+            <h2 class="lab" style="margin-top:12px">Logo</h2>
+            <div class="avgrid" id="avgrid" role="group" aria-label="Logo do perfil"></div>
+          </section>
+        </div>
+        <div class="stack">
+          <section>
+            <h2 class="lab">Estatísticas</h2>
+            <button type="button" class="btn wide" id="clear-stats" >Apagar estatísticas</button>
+            <p class="help" id="clear-stats-note" aria-live="polite"></p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="s-settings" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Ajustes</h2></div>
+    </header>
+    <div class="scroll">
+      <div class="cols">
+        <div class="stack">
+          <section>
+            <h2 class="lab">Layout</h2>
+            <div class="seg" role="group" aria-label="Layout">
+              <button type="button" data-k="layout" data-v="classic">Clássico</button>
+              <button type="button" data-k="layout" data-v="soft">Suave</button>
+              <button type="button" data-k="layout" data-v="sharp">Nítido</button>
+            </div>
+          </section>
+          <section>
+            <h2 class="lab">Claro ou escuro</h2>
+            <div class="seg" role="group" aria-label="Claro ou escuro">
+              <button type="button" data-k="mode" data-v="auto">Automático</button>
+              <button type="button" data-k="mode" data-v="light">Claro</button>
+              <button type="button" data-k="mode" data-v="dark">Escuro</button>
+            </div>
+          </section>
+          <section>
+            <h2 class="lab">Sons suaves</h2>
+            <div class="seg" role="group" aria-label="Sons">
+              <button type="button" data-k="sound" data-v="on">Ligados</button>
+              <button type="button" data-k="sound" data-v="off">Desligados</button>
+            </div>
+          </section>
+        </div>
+        <div class="stack">
+          <section>
+            <h2 class="lab">Cor</h2>
+            <div class="swatches" id="swatches" role="group" aria-label="Cor do app"></div>
+            <p class="swlabel" id="swlabel"></p>
+            <label class="custom" id="custom-row" for="custom-color" hidden>Sua cor <input type="color" id="custom-color" value="#7a3b8f"></label>
+          </section>
+          <section>
+            <h2 class="lab">Meta diária</h2>
+            <p class="help">Quantas respostas por dia contam como meta cumprida. Sem sequência nem punição: se um dia passar em branco, nada se perde.</p>
+            <div class="seg" role="group" aria-label="Meta diária" id="goal-seg">
+              <button type="button" data-goal="10">10</button>
+              <button type="button" data-goal="20">20</button>
+              <button type="button" data-goal="40">40</button>
+            </div>
+          </section>
+          <section>
+            <h2 class="lab">Zoom com dois dedos</h2>
+            <p class="help">Ligado: você pode ampliar a tela com o gesto de pinça. O toque duplo nunca amplia, esteja ligado ou não. Desligado é o padrão.</p>
+            <div class="seg" role="group" aria-label="Zoom com dois dedos" id="zoom-seg">
+              <button type="button" data-zoom="on">Ligado</button>
+              <button type="button" data-zoom="off">Desligado</button>
+            </div>
+          </section>
+          <section>
+            <h2 class="lab">Backup do progresso</h2>
+            <p class="help">Seu progresso fica só neste aparelho. Baixe um arquivo de vez em quando; se trocar de celular ou limpar os dados do navegador, restaure por ele.</p>
+            <button type="button" class="btn wide" id="bk-save">Baixar backup</button>
+            <label class="btn wide" id="bk-pick-l" style="margin-top:8px;display:grid;place-items:center">Escolher arquivo de backup<input type="file" id="bk-file" accept=".json,application/json" hidden></label>
+            <button type="button" class="btn wide primary" id="bk-go" style="margin-top:8px" hidden>Restaurar (substitui o progresso atual)</button>
+            <p class="help" id="bk-note" aria-live="polite"></p>
+          </section>
+          <section>
+            <h2 class="lab">Caderno</h2>
+            <button type="button" class="btn wide" id="clear-done">Apagar marcas de concluído</button>
+            <p class="help" id="clear-note" aria-live="polite"></p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="s-game" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="index" aria-label="Voltar ao índice"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2 id="g-title"></h2></div>
+      <div class="right">
+        <button type="button" class="btn" id="g-list" hidden>Lista</button>
+        <button type="button" class="btn" id="g-new">Recomeçar</button>
+      </div>
+    </header>
+    <div class="strip-row">
+      <p class="strip" id="g-sub"></p>
+      <button type="button" class="kbt zbt" id="zoom-toggle" hidden>Ampliar</button>
+      <button type="button" class="kbt" id="kb-toggle" hidden>Exibir teclado</button>
+    </div>
+
+    <div class="stage" id="stage"><div class="fit" id="fit"></div></div>
+    <div class="cstage" id="cstage" hidden><div id="cn-solved"></div><div class="tiles" id="cn-grid"></div></div>
+    <div class="sstage" id="sstage" hidden></div>
+    <div class="ostage" id="ostage" hidden></div>
+    <div class="ostage" id="lstage" hidden></div>
+    <div class="ostage" id="rstage" hidden></div>
+    <div class="ostage" id="gstage" hidden></div>
+    <input class="native" id="native" type="text" inputmode="text" autocapitalize="characters" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Digitar letra">
+
+    <div class="dock" id="dock-cross">
+      <p class="status" id="cw-status" aria-live="polite"></p>
+      <div class="clue">
+        <button type="button" class="btn icon" id="cw-prev" aria-label="Palavra anterior"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="clue-txt" id="cw-clue" aria-live="polite"></div>
+        <button type="button" class="btn icon" id="cw-next" aria-label="Próxima palavra"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="kb" id="kb" hidden></div>
+      <div class="row">
+        <button type="button" class="btn" id="cw-hint">Dica</button>
+        <button type="button" class="btn" id="cw-check">Verificar</button>
+        <button type="button" class="btn" id="cw-reveal">Revelar</button>
+      </div>
+    </div>
+
+    <div class="dock" id="dock-search" hidden>
+      <p class="status" id="ws-status" aria-live="polite"></p>
+      <ul class="wlist" id="ws-list"></ul>
+      <div class="row"><button type="button" class="btn" id="ws-reveal">Mostrar respostas</button></div>
+    </div>
+
+    <div class="dock" id="dock-connect" hidden>
+      <p class="status" id="cn-status" aria-live="polite"></p>
+      <div class="row">
+        <button type="button" class="btn primary" id="cn-submit">Enviar</button>
+        <button type="button" class="btn" id="cn-shuffle">Misturar</button>
+        <button type="button" class="btn" id="cn-clear">Limpar</button>
+        <button type="button" class="btn" id="cn-hint">Dica</button>
+      </div>
+    </div>
+
+    <div class="dock" id="dock-sentence" hidden>
+      <p class="status" id="sn-status" aria-live="polite"></p>
+      <div class="row">
+        <button type="button" class="btn primary" id="sn-submit">Conferir</button>
+        <button type="button" class="btn" id="sn-clear">Limpar</button>
+        <button type="button" class="btn" id="sn-next">Próxima fala</button>
+      </div>
+    </div>
+
+    <div class="dock" id="dock-listen" hidden>
+      <p class="status" id="ls-status" aria-live="polite"></p>
+      <div class="row">
+        <button type="button" class="btn primary" id="ls-go">Começar o teste de ouvido</button>
+        <button type="button" class="btn primary" id="ls-submit" hidden>Conferir</button>
+        <button type="button" class="btn" id="ls-replay" hidden>Ouvir</button>
+        <button type="button" class="btn" id="ls-study" hidden>Lista</button>
+        <button type="button" class="btn" id="ls-next" hidden>Próxima</button>
+      </div>
+    </div>
+
+    <div class="dock" id="dock-resp" hidden>
+      <p class="status" id="rs-status" aria-live="polite"></p>
+      <div class="row">
+        <button type="button" class="btn primary" id="rs-submit">Conferir</button>
+        <button type="button" class="btn" id="rs-next">Próxima</button>
+      </div>
+    </div>
+
+    <div class="dock" id="dock-gram" hidden>
+      <p class="status" id="gm-status" aria-live="polite"></p>
+      <div class="row">
+        <button type="button" class="btn primary" id="gm-submit">Conferir</button>
+        <button type="button" class="btn" id="gm-next">Próxima</button>
+      </div>
+    </div>
+
+    <div class="dock" id="dock-odd" hidden>
+      <p class="status" id="od-status" aria-live="polite"></p>
+      <div class="row">
+        <button type="button" class="btn primary" id="od-submit">Conferir</button>
+        <button type="button" class="btn" id="od-next">Próxima</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="sheet" id="sheet" hidden>
+    <div class="sheet-body" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+      <header><h2 id="sheet-title"></h2><button type="button" class="btn" id="sheet-close">Fechar</button></header>
+      <div class="sheet-in" id="sheet-in"></div>
+      <div class="sheet-foot" id="sheet-foot" hidden>
+        <button type="button" class="btn primary" id="sheet-again">Recomeçar</button>
+        <button type="button" class="btn" id="sheet-index">Índice</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="toast" role="status" aria-live="polite" hidden></div>

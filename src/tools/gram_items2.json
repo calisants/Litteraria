@@ -1,0 +1,3896 @@
+{
+"fr": {
+"futuro": [
+[
+{
+"q": "tu ___  (parler, futuro)",
+"o": [
+"parles",
+"parlais",
+"parleras",
+"parlerais"
+],
+"a": 2,
+"w": "Futuro de «parler»: je parlerai · tu parleras · il parlera · nous parlerons · vous parlerez · ils parleront.",
+"s": "tu parleras",
+"k": "tu parleras"
+},
+{
+"q": "je ___  (finir, futuro)",
+"o": [
+"finissais",
+"finirais",
+"finis",
+"finirai"
+],
+"a": 3,
+"w": "Futuro de «finir»: je finirai · tu finiras · il finira · nous finirons · vous finirez · ils finiront.",
+"s": "je finirai",
+"k": "je finirai"
+},
+{
+"q": "ils ___  (vendre, futuro)",
+"o": [
+"vendront",
+"vendent",
+"vendraient",
+"vendaient"
+],
+"a": 0,
+"w": "Futuro de «vendre»: je vendrai · tu vendras · il vendra · nous vendrons · vous vendrez · ils vendront.",
+"s": "ils vendront",
+"k": "ils vendront"
+},
+{
+"q": "vous ___  (manger, futuro)",
+"o": [
+"mangez",
+"mangerez",
+"mangiez",
+"mangeriez"
+],
+"a": 1,
+"w": "Futuro de «manger»: je mangerai · tu mangeras · il mangera · nous mangerons · vous mangerez · ils mangeront.",
+"s": "vous mangerez",
+"k": "vous mangerez"
+},
+{
+"q": "Demain, nous ___ visiter le musée. (futur proche)",
+"o": [
+"allez",
+"va",
+"allons",
+"vont"
+],
+"a": 2,
+"w": "Futur proche = «aller» no presente + infinitivo: nous allons visiter. Equivale a 'ir + verbo'.",
+"s": "Demain, nous allons visiter le musée. (futur proche)",
+"k": "Demain, nous allons visiter le musée. (futur proche)"
+},
+{
+"q": "Tu ___ nager ? (futur proche)",
+"o": [
+"vas",
+"va",
+"allons",
+"vont"
+],
+"a": 0,
+"w": "Futur proche = «aller» no presente + infinitivo: tu vas nager. Exemplo do capítulo: «Je vais nager».",
+"s": "Tu vas nager ? (futur proche)",
+"k": "Tu vas nager ? (futur proche)"
+}
+],
+[
+{
+"q": "il ___  (être, futuro)",
+"o": [
+"serait",
+"est",
+"sera",
+"était"
+],
+"a": 2,
+"w": "Futuro de «être»: je serai · tu seras · il sera · nous serons · vous serez · ils seront.",
+"s": "il sera",
+"k": "il sera"
+},
+{
+"q": "tu ___  (avoir, futuro)",
+"o": [
+"aurais",
+"as",
+"avais",
+"auras"
+],
+"a": 3,
+"w": "Futuro de «avoir»: j'aurai · tu auras · il aura · nous aurons · vous aurez · ils auront.",
+"s": "tu auras",
+"k": "tu auras"
+},
+{
+"q": "j'___  (aller, futuro)",
+"o": [
+"vais",
+"allais",
+"irai",
+"irais"
+],
+"a": 2,
+"w": "Futuro de «aller»: j'irai · tu iras · il ira · nous irons · vous irez · ils iront.",
+"s": "j'irai",
+"k": "j'irai"
+},
+{
+"q": "ils ___  (faire, futuro)",
+"o": [
+"feraient",
+"faisaient",
+"font",
+"feront"
+],
+"a": 3,
+"w": "Futuro de «faire»: je ferai · tu feras · il fera · nous ferons · vous ferez · ils feront.",
+"s": "ils feront",
+"k": "ils feront"
+},
+{
+"q": "vous ___  (pouvoir, futuro)",
+"o": [
+"pouviez",
+"pourrez",
+"pouvez",
+"pourriez"
+],
+"a": 1,
+"w": "Futuro de «pouvoir»: je pourrai · tu pourras · il pourra · nous pourrons · vous pourrez · ils pourront.",
+"s": "vous pourrez",
+"k": "vous pourrez"
+},
+{
+"q": "nous ___  (voir, futuro)",
+"o": [
+"verrons",
+"voyons",
+"verrions",
+"voyions"
+],
+"a": 0,
+"w": "Futuro de «voir»: je verrai · tu verras · il verra · nous verrons · vous verrez · ils verront.",
+"s": "nous verrons",
+"k": "nous verrons"
+}
+]
+],
+"condicional": [
+[
+{
+"q": "tu ___  (jouer, condicional)",
+"o": [
+"jouerais",
+"jouais",
+"joues",
+"joueras"
+],
+"a": 0,
+"w": "Condicional de «jouer»: je jouerais · tu jouerais · il jouerait · nous jouerions · vous joueriez · ils joueraient.",
+"s": "tu jouerais",
+"k": "tu jouerais"
+},
+{
+"q": "j'___  (aimer, condicional)",
+"o": [
+"aimais",
+"aimerais",
+"aime",
+"aimerai"
+],
+"a": 1,
+"w": "Condicional de «aimer»: j'aimerais · tu aimerais · il aimerait · nous aimerions · vous aimeriez · ils aimeraient.",
+"s": "j'aimerais",
+"k": "j'aimerais"
+},
+{
+"q": "ils ___  (finir, condicional)",
+"o": [
+"finiraient",
+"finissent",
+"finissaient",
+"finiront"
+],
+"a": 0,
+"w": "Condicional de «finir»: je finirais · tu finirais · il finirait · nous finirions · vous finiriez · ils finiraient.",
+"s": "ils finiraient",
+"k": "ils finiraient"
+},
+{
+"q": "vous ___  (vendre, condicional)",
+"o": [
+"vendiez",
+"vendrez",
+"vendez",
+"vendriez"
+],
+"a": 3,
+"w": "Condicional de «vendre»: je vendrais · tu vendrais · il vendrait · nous vendrions · vous vendriez · ils vendraient.",
+"s": "vous vendriez",
+"k": "vous vendriez"
+},
+{
+"q": "nous ___  (aller, condicional)",
+"o": [
+"allions",
+"irions",
+"irons",
+"allons"
+],
+"a": 1,
+"w": "Condicional de «aller»: j'irais · tu irais · il irait · nous irions · vous iriez · ils iraient.",
+"s": "nous irions",
+"k": "nous irions"
+},
+{
+"q": "il ___  (pouvoir, condicional)",
+"o": [
+"peut",
+"pourra",
+"pouvait",
+"pourrait"
+],
+"a": 3,
+"w": "Condicional de «pouvoir»: je pourrais · tu pourrais · il pourrait · nous pourrions · vous pourriez · ils pourraient.",
+"s": "il pourrait",
+"k": "il pourrait"
+}
+],
+[
+{
+"q": "Si j'ai le temps, j'___ au cinéma. (aller; condição possível)",
+"o": [
+"serais allé",
+"allais",
+"irais",
+"irai"
+],
+"a": 3,
+"w": "«si» + presente → futuro no resultado: j'irai.",
+"s": "Si j'ai le temps, j'irai au cinéma. (aller; condição possível)",
+"k": "Si j'ai le temps, j'irai au cinéma. (aller; condição possível)"
+},
+{
+"q": "Si j'avais du temps, je ___ en Italie. (voyager)",
+"o": [
+"voyageais",
+"voyagerait",
+"voyagerai",
+"voyagerais"
+],
+"a": 3,
+"w": "«si» + imparfait → condicional no resultado: je voyagerais.",
+"s": "Si j'avais du temps, je voyagerais en Italie. (voyager)",
+"k": "Si j'avais du temps, je voyagerais en Italie. (voyager)"
+},
+{
+"q": "Si nous gagnions, nous ___ contents. (être)",
+"o": [
+"serons",
+"sommes",
+"étions",
+"serions"
+],
+"a": 3,
+"w": "«si» + imparfait → condicional: nous serions.",
+"s": "Si nous gagnions, nous serions contents. (être)",
+"k": "Si nous gagnions, nous serions contents. (être)"
+},
+{
+"q": "Si tu étais riche, qu'est-ce que tu ___ ? (faire)",
+"o": [
+"faisais",
+"feras",
+"ferais",
+"fais"
+],
+"a": 2,
+"w": "Condicional de «faire»: ferais. O radical «fer-» é irregular, como no futuro.",
+"s": "Si tu étais riche, qu'est-ce que tu ferais ? (faire)",
+"k": "Si tu étais riche, qu'est-ce que tu ferais ? (faire)"
+},
+{
+"q": "Si elle ___ faim, elle mangerait. (avoir)",
+"o": [
+"aurait",
+"a",
+"avait",
+"aura"
+],
+"a": 2,
+"w": "Na oração com «si», usa-se o imparfait e nunca o condicional: si elle avait.",
+"s": "Si elle avait faim, elle mangerait. (avoir)",
+"k": "Si elle avait faim, elle mangerait. (avoir)"
+},
+{
+"q": "Si vous ___ venir, ce serait super. (pouvoir)",
+"o": [
+"pouvez",
+"pourriez",
+"pourrez",
+"pouviez"
+],
+"a": 3,
+"w": "Imparfait depois de «si» (e condicional na outra parte): si vous pouviez.",
+"s": "Si vous pouviez venir, ce serait super. (pouvoir)",
+"k": "Si vous pouviez venir, ce serait super. (pouvoir)"
+}
+]
+],
+"subjuntivo": [
+[
+{
+"q": "que tu ___  (finir, subjuntivo)",
+"o": [
+"finisses",
+"finissais",
+"finis",
+"finiras"
+],
+"a": 0,
+"w": "Subjuntivo de «finir»: que je finisse · que tu finisses · qu'il finisse · que nous finissions · que vous finissiez · qu'ils finissent.",
+"s": "que tu finisses",
+"k": "que tu finisses"
+},
+{
+"q": "que j'___  (attendre, subjuntivo)",
+"o": [
+"attendrai",
+"attends",
+"attendais",
+"attende"
+],
+"a": 3,
+"w": "Subjuntivo de «attendre»: que j'attende · que tu attendes · qu'il attende · que nous attendions · que vous attendiez · qu'ils attendent.",
+"s": "que j'attende",
+"k": "que j'attende"
+},
+{
+"q": "que vous ___  (venir, subjuntivo)",
+"o": [
+"veniez",
+"viendrez",
+"viendriez",
+"venez"
+],
+"a": 0,
+"w": "Subjuntivo de «venir»: que je vienne · que tu viennes · qu'il vienne · que nous venions · que vous veniez · qu'ils viennent.",
+"s": "que vous veniez",
+"k": "que vous veniez"
+},
+{
+"q": "qu'il ___  (aller, subjuntivo)",
+"o": [
+"allait",
+"aille",
+"va",
+"ira"
+],
+"a": 1,
+"w": "Subjuntivo de «aller»: que j'aille · que tu ailles · qu'il aille · que nous allions · que vous alliez · qu'ils aillent.",
+"s": "qu'il aille",
+"k": "qu'il aille"
+},
+{
+"q": "que nous ___  (prendre, subjuntivo)",
+"o": [
+"prenons",
+"prendrions",
+"prendrons",
+"prenions"
+],
+"a": 3,
+"w": "Subjuntivo de «prendre»: que je prenne · que tu prennes · qu'il prenne · que nous prenions · que vous preniez · qu'ils prennent.",
+"s": "que nous prenions",
+"k": "que nous prenions"
+},
+{
+"q": "que tu ___  (boire, subjuntivo)",
+"o": [
+"buvais",
+"boiras",
+"boives",
+"bois"
+],
+"a": 2,
+"w": "Subjuntivo de «boire»: que je boive · que tu boives · qu'il boive · que nous buvions · que vous buviez · qu'ils boivent.",
+"s": "que tu boives",
+"k": "que tu boives"
+}
+],
+[
+{
+"q": "Il faut que tu ___ le vin. (choisir)",
+"o": [
+"choisisses",
+"choisiras",
+"choisir",
+"choisis"
+],
+"a": 0,
+"w": "«il faut que» exige o subjuntivo, com dois sujeitos diferentes. Subjuntivo de «choisir» com «tu»: choisisses.",
+"s": "Il faut que tu choisisses le vin. (choisir)",
+"k": "Il faut que tu choisisses le vin. (choisir)"
+},
+{
+"q": "Il est important que nous ___ tôt. (partir)",
+"o": [
+"partirons",
+"partir",
+"partions",
+"partons"
+],
+"a": 2,
+"w": "«il est important que» (necessidade) também exige o subjuntivo. Subjuntivo de «partir» com «nous»: partions.",
+"s": "Il est important que nous partions tôt. (partir)",
+"k": "Il est important que nous partions tôt. (partir)"
+},
+{
+"q": "Elle travaille pour que vous ___ contents. (être)",
+"o": [
+"êtes",
+"serez",
+"soyez",
+"être"
+],
+"a": 2,
+"w": "«pour que» (intenção) é uma das conjunções que pedem subjuntivo. Subjuntivo de «être» com «vous»: soyez.",
+"s": "Elle travaille pour que vous soyez contents. (être)",
+"k": "Elle travaille pour que vous soyez contents. (être)"
+},
+{
+"q": "Nous partirons avant que tu ___ ton travail. (finir)",
+"o": [
+"finir",
+"finiras",
+"finisses",
+"finis"
+],
+"a": 2,
+"w": "«avant que» (tempo) pede subjuntivo. Subjuntivo de «finir» com «tu»: finisses.",
+"s": "Nous partirons avant que tu finisses ton travail. (finir)",
+"k": "Nous partirons avant que tu finisses ton travail. (finir)"
+},
+{
+"q": "Bien qu'il ___ froid, nous sortons. (faire)",
+"o": [
+"fera",
+"faire",
+"fasse",
+"fait"
+],
+"a": 2,
+"w": "«bien que» (obstáculo, 'embora') pede subjuntivo. Subjuntivo de «faire» com «il»: fasse.",
+"s": "Bien qu'il fasse froid, nous sortons. (faire)",
+"k": "Bien qu'il fasse froid, nous sortons. (faire)"
+},
+{
+"q": "Il vaut mieux que je ___ la vérité. (savoir)",
+"o": [
+"sache",
+"sais",
+"saurai",
+"savoir"
+],
+"a": 0,
+"w": "«il vaut mieux que» está na lista de expressões de necessidade que pedem subjuntivo. Subjuntivo de «savoir» com «je»: sache.",
+"s": "Il vaut mieux que je sache la vérité. (savoir)",
+"k": "Il vaut mieux que je sache la vérité. (savoir)"
+}
+]
+],
+"possessivos": [
+[
+{
+"q": "___ frère s'appelle Trey. (meu)",
+"o": [
+"Ma",
+"Mes",
+"Son",
+"Mon"
+],
+"a": 3,
+"w": "«frère» é masculino singular: mon frère.",
+"s": "Mon frère s'appelle Trey. (meu)",
+"k": "Mon frère s'appelle Trey. (meu)"
+},
+{
+"q": "Voici ___ sœur, Rita. (minha)",
+"o": [
+"mes",
+"ta",
+"mon",
+"ma"
+],
+"a": 3,
+"w": "«sœur» é feminino singular: ma sœur.",
+"s": "Voici ma sœur, Rita. (minha)",
+"k": "Voici ma sœur, Rita. (minha)"
+},
+{
+"q": "___ amie Tammy est sympa. (minha amiga)",
+"o": [
+"Mon",
+"Notre",
+"Ma",
+"Mes"
+],
+"a": 0,
+"w": "Diante de substantivo feminino que começa com som de vogal, usa-se mon/ton/son: mon amie. É a regra da ligação (liaison) do capítulo.",
+"s": "Mon amie Tammy est sympa. (minha amiga)",
+"k": "Mon amie Tammy est sympa. (minha amiga)"
+},
+{
+"q": "Nous aimons ___ famille. (nossa)",
+"o": [
+"mon",
+"votre",
+"nos",
+"notre"
+],
+"a": 3,
+"w": "«notre» serve para masculino e feminino singular; «nos» é o plural.",
+"s": "Nous aimons notre famille. (nossa)",
+"k": "Nous aimons notre famille. (nossa)"
+},
+{
+"q": "Ils adorent ___ chien. (deles)",
+"o": [
+"ses",
+"leurs",
+"leur",
+"son"
+],
+"a": 2,
+"w": "«leur» (singular) e «leurs» (plural) concordam com a coisa possuída: um só chien, então leur.",
+"s": "Ils adorent leur chien. (deles)",
+"k": "Ils adorent leur chien. (deles)"
+},
+{
+"q": "Elle présente ___ enfants. (dela)",
+"o": [
+"ses",
+"leurs",
+"son",
+"sa"
+],
+"a": 0,
+"w": "«enfants» é plural, então ses. O «son/sa/ses» pode ser 'dele' ou 'dela', e o contexto decide.",
+"s": "Elle présente ses enfants. (dela)",
+"k": "Elle présente ses enfants. (dela)"
+}
+],
+[
+{
+"q": "— C'est ton béret, Tex ? — Oui, c'est ___ . (o meu)",
+"o": [
+"la mienne",
+"les miens",
+"le tien",
+"le mien"
+],
+"a": 3,
+"w": "O pronome possessivo concorda com a coisa possuída (béret é masculino singular): le mien. Exemplo do capítulo.",
+"s": "— C'est ton béret, Tex ? — Oui, c'est le mien . (o meu)",
+"k": "— C'est ton béret, Tex ? — Oui, c'est le mien . (o meu)"
+},
+{
+"q": "Ma sœur est secrétaire. ___ est PDG. (a minha)",
+"o": [
+"Les miennes",
+"La sienne",
+"Le mien",
+"La mienne"
+],
+"a": 3,
+"w": "Pronome possessivo feminino singular de «eu»: la mienne. Exemplo do capítulo: «La mienne est PDG».",
+"s": "Ma sœur est secrétaire. La mienne est PDG. (a minha)",
+"k": "Ma sœur est secrétaire. La mienne est PDG. (a minha)"
+},
+{
+"q": "Tes parents sont américains. ___ aussi. (os meus)",
+"o": [
+"Les miens",
+"Les tiens",
+"Le mien",
+"Les miennes"
+],
+"a": 0,
+"w": "Plural masculino de «eu»: les miens.",
+"s": "Tes parents sont américains. Les miens aussi. (os meus)",
+"k": "Tes parents sont américains. Les miens aussi. (os meus)"
+},
+{
+"q": "Notre maison est grande, ___ est petite. (a de vocês)",
+"o": [
+"le vôtre",
+"la leur",
+"la nôtre",
+"la vôtre"
+],
+"a": 3,
+"w": "«maison» é feminino singular: la vôtre (de vocês).",
+"s": "Notre maison est grande, la vôtre est petite. (a de vocês)",
+"k": "Notre maison est grande, la vôtre est petite. (a de vocês)"
+},
+{
+"q": "Leurs enfants sont petits, ___ sont grands. (os nossos)",
+"o": [
+"les miens",
+"les leurs",
+"les nôtres",
+"les vôtres"
+],
+"a": 2,
+"w": "Plural de «nosso»: les nôtres. Com acento circunflexo, ao contrário de «notre».",
+"s": "Leurs enfants sont petits, les nôtres sont grands. (os nossos)",
+"k": "Leurs enfants sont petits, les nôtres sont grands. (os nossos)"
+},
+{
+"q": "Qual é um pronome possessivo (substitui o substantivo)?",
+"o": [
+"le mien",
+"mes",
+"mon",
+"ma"
+],
+"a": 0,
+"w": "«mon, ma, mes» acompanham um substantivo (determinantes). «le mien» substitui o substantivo (pronome).",
+"s": "le mien",
+"k": "le mien"
+}
+]
+],
+"conjuncoes": [
+[
+{
+"q": "Je prends du thé ___ du café ? (ou)",
+"o": [
+"car",
+"ou",
+"mais",
+"donc"
+],
+"a": 1,
+"w": "«ou» liga alternativas.",
+"s": "Je prends du thé ou du café ? (ou)",
+"k": "Je prends du thé ou du café ? (ou)"
+},
+{
+"q": "Il pleut, ___ je prends un parapluie. (por isso)",
+"o": [
+"ou",
+"donc",
+"mais",
+"car"
+],
+"a": 1,
+"w": "«donc» indica consequência ('então, portanto').",
+"s": "Il pleut, donc je prends un parapluie. (por isso)",
+"k": "Il pleut, donc je prends un parapluie. (por isso)"
+},
+{
+"q": "Il ne sort pas ___ il est malade. (porque)",
+"o": [
+"ou",
+"car",
+"donc",
+"mais"
+],
+"a": 1,
+"w": "«car» introduz a causa ('pois').",
+"s": "Il ne sort pas car il est malade. (porque)",
+"k": "Il ne sort pas car il est malade. (porque)"
+},
+{
+"q": "Tex ___ Tammy sont fatigués. (e)",
+"o": [
+"et",
+"ou",
+"mais",
+"puis"
+],
+"a": 0,
+"w": "«et» liga elementos da mesma categoria.",
+"s": "Tex et Tammy sont fatigués. (e)",
+"k": "Tex et Tammy sont fatigués. (e)"
+},
+{
+"q": "Trey n'est ni intellectuel ___ cultivé.",
+"o": [
+"ou",
+"ni",
+"mais",
+"et"
+],
+"a": 1,
+"w": "«ne … ni … ni» significa 'nem … nem'.",
+"s": "Trey n'est ni intellectuel ni cultivé.",
+"k": "Trey n'est ni intellectuel ni cultivé."
+},
+{
+"q": "Ils sont pauvres ___ heureux. (mas)",
+"o": [
+"car",
+"donc",
+"ni",
+"mais"
+],
+"a": 3,
+"w": "«mais» indica oposição.",
+"s": "Ils sont pauvres mais heureux. (mas)",
+"k": "Ils sont pauvres mais heureux. (mas)"
+}
+],
+[
+{
+"q": "Je lis ___ tu dors. (enquanto)",
+"o": [
+"puisque",
+"pendant que",
+"parce que",
+"depuis que"
+],
+"a": 1,
+"w": "«pendant que» = enquanto. Conjunção subordinativa.",
+"s": "Je lis pendant que tu dors. (enquanto)",
+"k": "Je lis pendant que tu dors. (enquanto)"
+},
+{
+"q": "Il est évident ___ Trey est curieux.",
+"o": [
+"pendant",
+"que",
+"quand",
+"depuis"
+],
+"a": 1,
+"w": "«que» (= que) é a conjunção subordinativa mais usada.",
+"s": "Il est évident que Trey est curieux.",
+"k": "Il est évident que Trey est curieux."
+},
+{
+"q": "Tex a changé ___ il connaît Trey. (desde que)",
+"o": [
+"tandis que",
+"depuis que",
+"pendant que",
+"parce que"
+],
+"a": 1,
+"w": "«depuis que» = desde que (tempo).",
+"s": "Tex a changé depuis que il connaît Trey. (desde que)",
+"k": "Tex a changé depuis que il connaît Trey. (desde que)"
+},
+{
+"q": "Trey se lève ___ le soleil se couche. (quando)",
+"o": [
+"quand",
+"car",
+"donc",
+"mais"
+],
+"a": 0,
+"w": "«quand» (ou «lorsque») = quando.",
+"s": "Trey se lève quand le soleil se couche. (quando)",
+"k": "Trey se lève quand le soleil se couche. (quando)"
+},
+{
+"q": "Elle travaille ___ tu sois content. (para que)",
+"o": [
+"parce que",
+"pour que",
+"depuis que",
+"puisque"
+],
+"a": 1,
+"w": "«pour que» (intenção) pede subjuntivo, por isso «sois».",
+"s": "Elle travaille pour que tu sois content. (para que)",
+"k": "Elle travaille pour que tu sois content. (para que)"
+},
+{
+"q": "___ elle soit fatiguée, elle travaille. (embora)",
+"o": [
+"Puisqu'",
+"Parce qu'",
+"Quand",
+"Bien qu'"
+],
+"a": 3,
+"w": "«bien que» (obstáculo, 'embora') pede subjuntivo («soit»).",
+"s": "Bien qu' elle soit fatiguée, elle travaille. (embora)",
+"k": "Bien qu' elle soit fatiguée, elle travaille. (embora)"
+}
+]
+],
+"adverbios": [
+[
+{
+"q": "Advérbio de «lent(e)»:",
+"o": [
+"lentement",
+"lentemment",
+"lentiment",
+"lentment"
+],
+"a": 0,
+"w": "Regra geral: feminino do adjetivo + -ment (lente → lentement).",
+"s": "lentement",
+"k": "lentement"
+},
+{
+"q": "Advérbio de «heureux»:",
+"o": [
+"heureusement",
+"heureusemment",
+"heureusment",
+"heureuxment"
+],
+"a": 0,
+"w": "Feminino «heureuse» + -ment → heureusement. Exemplo do capítulo.",
+"s": "heureusement",
+"k": "heureusement"
+},
+{
+"q": "Advérbio de «poli(e)»:",
+"o": [
+"poliement",
+"polimment",
+"politement",
+"poliment"
+],
+"a": 3,
+"w": "Adjetivos que acabam em vogal recebem -ment no masculino: poli → poliment. Exemplo do capítulo.",
+"s": "poliment",
+"k": "poliment"
+},
+{
+"q": "Advérbio de «vrai(e)»:",
+"o": [
+"vraiemment",
+"vraiement",
+"vraiyment",
+"vraiment"
+],
+"a": 3,
+"w": "Adjetivo terminado em vogal: vrai → vraiment. Exemplo do capítulo.",
+"s": "vraiment",
+"k": "vraiment"
+},
+{
+"q": "Advérbio de «récent»:",
+"o": [
+"récentment",
+"récentement",
+"récemment",
+"récentiment"
+],
+"a": 2,
+"w": "Adjetivos em -ent: troca-se por -emment (récent → récemment). Exemplo do capítulo.",
+"s": "récemment",
+"k": "récemment"
+},
+{
+"q": "Advérbio de «suffisant»:",
+"o": [
+"suffisantement",
+"suffisamment",
+"suffisantment",
+"suffisemment"
+],
+"a": 1,
+"w": "Adjetivos em -ant: troca-se por -amment (suffisant → suffisamment). Exemplo do capítulo.",
+"s": "suffisamment",
+"k": "suffisamment"
+}
+],
+[
+{
+"q": "Como dizer: Joe-Bob gosta muito de ketchup.",
+"o": [
+"Joe-Bob aime beaucoup le ketchup.",
+"Joe-Bob aime le ketchup beaucoup.",
+"Beaucoup Joe-Bob aime le ketchup.",
+"Joe-Bob beaucoup aime le ketchup."
+],
+"a": 0,
+"w": "O advérbio vem logo depois do verbo conjugado, antes do objeto. Exemplo do capítulo: «J'aime beaucoup le ketchup».",
+"s": "Joe-Bob aime beaucoup le ketchup.",
+"k": "Joe-Bob aime beaucoup le ketchup."
+},
+{
+"q": "Como dizer: Edouard não anda depressa.",
+"o": [
+"Edouard ne marche pas vite.",
+"Edouard vite ne marche pas.",
+"Edouard ne vite marche pas.",
+"Edouard ne marche vite pas."
+],
+"a": 0,
+"w": "Quando o verbo é negativo, o advérbio vem depois da negação: ne marche pas vite. Exemplo do capítulo.",
+"s": "Edouard ne marche pas vite.",
+"k": "Edouard ne marche pas vite."
+},
+{
+"q": "O que significa «souvent»?",
+"o": [
+"nunca",
+"sempre",
+"às vezes",
+"com frequência"
+],
+"a": 3,
+"w": "«souvent» = often (lista de advérbios de tempo do capítulo).",
+"s": "com frequência",
+"k": "com frequência"
+},
+{
+"q": "O que significa «toujours»?",
+"o": [
+"às vezes",
+"nunca",
+"com frequência",
+"sempre"
+],
+"a": 3,
+"w": "«toujours» = always. «jamais» = never.",
+"s": "sempre",
+"k": "sempre"
+},
+{
+"q": "O que significa «tôt»?",
+"o": [
+"tarde",
+"hoje",
+"cedo",
+"agora"
+],
+"a": 2,
+"w": "«tôt» = early; «tard» = late.",
+"s": "cedo",
+"k": "cedo"
+},
+{
+"q": "O que significa «demain»?",
+"o": [
+"agora",
+"amanhã",
+"ontem",
+"hoje"
+],
+"a": 1,
+"w": "«demain» = tomorrow; «hier» = yesterday; «aujourd'hui» = today.",
+"s": "amanhã",
+"k": "amanhã"
+}
+]
+],
+"reflexivos": [
+[
+{
+"q": "tu ___  (se laver, presente)",
+"o": [
+"te laves",
+"nous lavons",
+"me lave",
+"se lave"
+],
+"a": 0,
+"w": "Presente de «se laver»: je me lave · tu te laves · il se lave · nous nous lavons · vous vous lavez · ils se lavent.",
+"s": "tu te laves",
+"k": "tu te laves"
+},
+{
+"q": "je ___  (se lever, presente)",
+"o": [
+"me lève",
+"nous levons",
+"te lèves",
+"se lève"
+],
+"a": 0,
+"w": "Presente de «se lever»: je me lève · tu te lèves · il se lève · nous nous levons · vous vous levez · ils se lèvent.",
+"s": "je me lève",
+"k": "je me lève"
+},
+{
+"q": "ils ___  (se coucher, presente)",
+"o": [
+"te couches",
+"me couche",
+"se couche",
+"se couchent"
+],
+"a": 3,
+"w": "Presente de «se coucher»: je me couche · tu te couches · il se couche · nous nous couchons · vous vous couchez · ils se couchent.",
+"s": "ils se couchent",
+"k": "ils se couchent"
+},
+{
+"q": "vous ___  (s'habiller, presente)",
+"o": [
+"m'habille",
+"t'habilles",
+"s'habille",
+"vous habillez"
+],
+"a": 3,
+"w": "Presente de «s'habiller»: je m'habille · tu t'habilles · il s'habille · nous nous habillons · vous vous habillez · ils s'habillent.",
+"s": "vous vous habillez",
+"k": "vous vous habillez"
+},
+{
+"q": "nous ___  (se réveiller, presente)",
+"o": [
+"me réveille",
+"se réveille",
+"te réveilles",
+"nous réveillons"
+],
+"a": 3,
+"w": "Presente de «se réveiller»: je me réveille · tu te réveilles · il se réveille · nous nous réveillons · vous vous réveillez · ils se réveillent.",
+"s": "nous nous réveillons",
+"k": "nous nous réveillons"
+},
+{
+"q": "il ___  (se promener, presente)",
+"o": [
+"me promène",
+"se promène",
+"te promènes",
+"nous promenons"
+],
+"a": 1,
+"w": "Presente de «se promener»: je me promène · tu te promènes · il se promène · nous nous promenons · vous vous promenez · ils se promènent.",
+"s": "il se promène",
+"k": "il se promène"
+}
+],
+[
+{
+"q": "Como dizer: Eu não me barbeio.",
+"o": [
+"Je me ne rase pas.",
+"Je ne rase me pas.",
+"Je ne me rase pas.",
+"Je me rase ne pas."
+],
+"a": 2,
+"w": "Na negativa, o «ne» vem antes do pronome reflexivo e o «pas» depois do verbo. Exemplo do capítulo.",
+"s": "Je ne me rase pas.",
+"k": "Je ne me rase pas."
+},
+{
+"q": "Como dizer: Tex lava as mãos.",
+"o": [
+"Tex se lave les mains.",
+"Tex lave les mains.",
+"Tex se lave mains.",
+"Tex se lave ses mains."
+],
+"a": 0,
+"w": "Com partes do corpo, usa-se o artigo definido (les) e não o possessivo. Exemplo do capítulo: «Tex se lave les mains».",
+"s": "Tex se lave les mains.",
+"k": "Tex se lave les mains."
+},
+{
+"q": "Em qual frase Tex faz a ação nele mesmo?",
+"o": [
+"Tex rase Tammy.",
+"Tex se rase.",
+"Tex rase Joe-Bob.",
+"Tex rase le chat."
+],
+"a": 1,
+"w": "Verbo reflexivo: o sujeito faz a ação em si mesmo. Quem raspa outra pessoa usa o verbo sem reflexivo.",
+"s": "Tex se rase.",
+"k": "Tex se rase."
+},
+{
+"q": "Nous ___ amusons beaucoup. (nos divertimos)",
+"o": [
+"vous",
+"nous",
+"me",
+"se"
+],
+"a": 1,
+"w": "O pronome reflexivo de «nous» é «nous»: nous nous amusons. Reflexivos: me, te, se, nous, vous, se.",
+"s": "Nous nous amusons beaucoup. (nos divertimos)",
+"k": "Nous nous amusons beaucoup. (nos divertimos)"
+},
+{
+"q": "Ils ___ réveillent à sept heures.",
+"o": [
+"te",
+"nous",
+"se",
+"me"
+],
+"a": 2,
+"w": "O pronome reflexivo de «ils» é «se».",
+"s": "Ils se réveillent à sept heures.",
+"k": "Ils se réveillent à sept heures."
+},
+{
+"q": "O que significa «s'amuser»?",
+"o": [
+"levantar-se",
+"lavar-se",
+"divertir-se",
+"vestir-se"
+],
+"a": 2,
+"w": "É um verbo pronominal idiomático: s'amuser = divertir-se. Lista do capítulo.",
+"s": "divertir-se",
+"k": "divertir-se"
+}
+]
+],
+"ordem": [
+[
+{
+"q": "Como dizer: Eu o vejo.",
+"o": [
+"Le je vois.",
+"Je vois lui.",
+"Je vois le.",
+"Je le vois."
+],
+"a": 3,
+"w": "O pronome objeto vem antes do verbo (exceto no imperativo afirmativo).",
+"s": "Je le vois.",
+"k": "Je le vois."
+},
+{
+"q": "Como dizer: Ele me dá o livro.",
+"o": [
+"Il me donne le livre.",
+"Me il donne le livre.",
+"Il me le donne livre.",
+"Il donne me le livre."
+],
+"a": 0,
+"w": "Pronome objeto antes do verbo: il me donne.",
+"s": "Il me donne le livre.",
+"k": "Il me donne le livre."
+},
+{
+"q": "Como dizer: Eu o dou a ele. (le + lui)",
+"o": [
+"Je le lui donne.",
+"Je lui le donne.",
+"Le je lui donne.",
+"Je donne le lui."
+],
+"a": 0,
+"w": "Ordem dos pronomes: me/te/nous/vous/se, depois le/la/les, depois lui/leur, depois y, depois en.",
+"s": "Je le lui donne.",
+"k": "Je le lui donne."
+},
+{
+"q": "Como dizer: Eu te dou ele. (te + le)",
+"o": [
+"Je te le donne.",
+"Je donne te le.",
+"Je le te donne.",
+"Te je le donne."
+],
+"a": 0,
+"w": "Ordem dos pronomes: me/te/nous/vous antes de le/la/les.",
+"s": "Je te le donne.",
+"k": "Je te le donne."
+},
+{
+"q": "Como dizer: Há alguns lá. (y + en)",
+"o": [
+"Il y en a.",
+"Il en y a.",
+"Y il en a.",
+"Il y a en."
+],
+"a": 0,
+"w": "O «y» sempre vem antes do «en». Exemplo do capítulo: «Oui, il y en a».",
+"s": "Il y en a.",
+"k": "Il y en a."
+},
+{
+"q": "Como dizer: Vá lá! (imperativo afirmativo)",
+"o": [
+"Y vas !",
+"Vas y !",
+"Vas-y !",
+"Y va !"
+],
+"a": 2,
+"w": "No imperativo afirmativo, o pronome vem depois do verbo, ligado por hífen. Exemplo do capítulo: «Vas-y avec Bette».",
+"s": "Vas-y !",
+"k": "Vas-y !"
+}
+],
+[
+{
+"q": "Como dizer: Eu não vou nadar.",
+"o": [
+"Je ne vais nager pas.",
+"Je ne pas vais nager.",
+"Je vais ne pas nager.",
+"Je ne vais pas nager."
+],
+"a": 3,
+"w": "No futur proche, o «ne … pas» envolve o verbo «aller». Exemplo do capítulo.",
+"s": "Je ne vais pas nager.",
+"k": "Je ne vais pas nager."
+},
+{
+"q": "Como dizer: Tex não foi gentil. (passé composé)",
+"o": [
+"Tex n'a pas été gentil.",
+"Tex a pas n'été gentil.",
+"Tex n'a pas gentil été.",
+"Tex n'a été pas gentil."
+],
+"a": 0,
+"w": "Nos tempos compostos, «ne … pas» envolve o auxiliar. Exemplo do capítulo.",
+"s": "Tex n'a pas été gentil.",
+"k": "Tex n'a pas été gentil."
+},
+{
+"q": "Como dizer: Ele come bem.",
+"o": [
+"Il mange bien.",
+"Il bien mange.",
+"Il mange le bien.",
+"Bien il mange."
+],
+"a": 0,
+"w": "O advérbio vem depois do verbo conjugado.",
+"s": "Il mange bien.",
+"k": "Il mange bien."
+},
+{
+"q": "Como dizer: Você gosta de filmes? (com «est-ce que»)",
+"o": [
+"Est-ce que tu aimes les films ?",
+"Est-ce tu que aimes les films ?",
+"Tu est-ce que aimes les films ?",
+"Que est-ce tu aimes les films ?"
+],
+"a": 0,
+"w": "«est-ce que» vem no início, antes de uma frase afirmativa normal. Exemplo do capítulo.",
+"s": "Est-ce que tu aimes les films ?",
+"k": "Est-ce que tu aimes les films ?"
+},
+{
+"q": "Como dizer: um gato pequeno.",
+"o": [
+"un petit chat",
+"un chat petit",
+"chat petit un",
+"petit un chat"
+],
+"a": 0,
+"w": "Adjetivos de Beleza, Idade, Número, Bondade e Tamanho (BANGS) vêm antes do substantivo: petit, grand, jeune, beau, bon…",
+"s": "un petit chat",
+"k": "un petit chat"
+},
+{
+"q": "Como dizer: uma música francesa.",
+"o": [
+"une française musique",
+"musique une française",
+"une musique française",
+"française une musique"
+],
+"a": 2,
+"w": "A maioria dos adjetivos vem depois do substantivo.",
+"s": "une musique française",
+"k": "une musique française"
+}
+]
+]
+},
+"it": {
+"futuro": [
+[
+{
+"q": "tu ___  (parlare, futuro)",
+"o": [
+"parli",
+"parleresti",
+"parlavi",
+"parlerai"
+],
+"a": 3,
+"w": "Futuro de «parlare»: io parlerò · tu parlerai · lui parlerà · noi parleremo · voi parlerete · loro parleranno.",
+"s": "tu parlerai",
+"k": "tu parlerai"
+},
+{
+"q": "io ___  (vendere, futuro)",
+"o": [
+"vendo",
+"venderò",
+"vendevo",
+"venderei"
+],
+"a": 1,
+"w": "Futuro de «vendere»: io venderò · tu venderai · lui venderà · noi venderemo · voi venderete · loro venderanno.",
+"s": "io venderò",
+"k": "io venderò"
+},
+{
+"q": "loro ___  (finire, futuro)",
+"o": [
+"finiranno",
+"finiscono",
+"finirebbero",
+"finivano"
+],
+"a": 0,
+"w": "Futuro de «finire»: io finirò · tu finirai · lui finirà · noi finiremo · voi finirete · loro finiranno.",
+"s": "loro finiranno",
+"k": "loro finiranno"
+},
+{
+"q": "voi ___  (dimenticare, futuro)",
+"o": [
+"dimenticate",
+"dimentichereste",
+"dimenticavate",
+"dimenticherete"
+],
+"a": 3,
+"w": "Futuro de «dimenticare»: io dimenticherò · tu dimenticherai · lui dimenticherà · noi dimenticheremo · voi dimenticherete · loro dimenticheranno.",
+"s": "voi dimenticherete",
+"k": "voi dimenticherete"
+},
+{
+"q": "noi ___  (mangiare, futuro)",
+"o": [
+"mangiavamo",
+"mangiamo",
+"mangeremmo",
+"mangeremo"
+],
+"a": 3,
+"w": "Futuro de «mangiare»: io mangerò · tu mangerai · lui mangerà · noi mangeremo · voi mangerete · loro mangeranno.",
+"s": "noi mangeremo",
+"k": "noi mangeremo"
+},
+{
+"q": "lui ___  (guardare, futuro)",
+"o": [
+"guarderebbe",
+"guarda",
+"guardava",
+"guarderà"
+],
+"a": 3,
+"w": "Futuro de «guardare»: io guarderò · tu guarderai · lui guarderà · noi guarderemo · voi guarderete · loro guarderanno.",
+"s": "lui guarderà",
+"k": "lui guarderà"
+}
+],
+[
+{
+"q": "lui ___  (essere, futuro)",
+"o": [
+"sarà",
+"era",
+"è",
+"sarebbe"
+],
+"a": 0,
+"w": "Futuro de «essere»: io sarò · tu sarai · lui sarà · noi saremo · voi sarete · loro saranno.",
+"s": "lui sarà",
+"k": "lui sarà"
+},
+{
+"q": "tu ___  (avere, futuro)",
+"o": [
+"avresti",
+"avevi",
+"hai",
+"avrai"
+],
+"a": 3,
+"w": "Futuro de «avere»: io avrò · tu avrai · lui avrà · noi avremo · voi avrete · loro avranno.",
+"s": "tu avrai",
+"k": "tu avrai"
+},
+{
+"q": "io ___  (andare, futuro)",
+"o": [
+"vado",
+"andavo",
+"andrò",
+"andrei"
+],
+"a": 2,
+"w": "Futuro de «andare»: io andrò · tu andrai · lui andrà · noi andremo · voi andrete · loro andranno.",
+"s": "io andrò",
+"k": "io andrò"
+},
+{
+"q": "loro ___  (fare, futuro)",
+"o": [
+"farebbero",
+"faranno",
+"facevano",
+"fanno"
+],
+"a": 1,
+"w": "Futuro de «fare»: io farò · tu farai · lui farà · noi faremo · voi farete · loro faranno.",
+"s": "loro faranno",
+"k": "loro faranno"
+},
+{
+"q": "voi ___  (potere, futuro)",
+"o": [
+"potete",
+"potrete",
+"potreste",
+"potevate"
+],
+"a": 1,
+"w": "Futuro de «potere»: io potrò · tu potrai · lui potrà · noi potremo · voi potrete · loro potranno.",
+"s": "voi potrete",
+"k": "voi potrete"
+},
+{
+"q": "noi ___  (vedere, futuro)",
+"o": [
+"vedremo",
+"vediamo",
+"vedremmo",
+"vedevamo"
+],
+"a": 0,
+"w": "Futuro de «vedere»: io vedrò · tu vedrai · lui vedrà · noi vedremo · voi vedrete · loro vedranno.",
+"s": "noi vedremo",
+"k": "noi vedremo"
+}
+]
+],
+"condicional": [
+[
+{
+"q": "tu ___  (parlare, condizionale)",
+"o": [
+"parleresti",
+"parlavi",
+"parli",
+"parlerai"
+],
+"a": 0,
+"w": "Condizionale de «parlare»: io parlerei · tu parleresti · lui parlerebbe · noi parleremmo · voi parlereste · loro parlerebbero.",
+"s": "tu parleresti",
+"k": "tu parleresti"
+},
+{
+"q": "io ___  (vendere, condizionale)",
+"o": [
+"vendo",
+"venderò",
+"vendevo",
+"venderei"
+],
+"a": 3,
+"w": "Condizionale de «vendere»: io venderei · tu venderesti · lui venderebbe · noi venderemmo · voi vendereste · loro venderebbero.",
+"s": "io venderei",
+"k": "io venderei"
+},
+{
+"q": "loro ___  (finire, condizionale)",
+"o": [
+"finivano",
+"finiranno",
+"finirebbero",
+"finiscono"
+],
+"a": 2,
+"w": "Condizionale de «finire»: io finirei · tu finiresti · lui finirebbe · noi finiremmo · voi finireste · loro finirebbero.",
+"s": "loro finirebbero",
+"k": "loro finirebbero"
+},
+{
+"q": "voi ___  (mangiare, condizionale)",
+"o": [
+"mangerete",
+"mangereste",
+"mangiate",
+"mangiavate"
+],
+"a": 1,
+"w": "Condizionale de «mangiare»: io mangerei · tu mangeresti · lui mangerebbe · noi mangeremmo · voi mangereste · loro mangerebbero.",
+"s": "voi mangereste",
+"k": "voi mangereste"
+},
+{
+"q": "noi ___  (essere, condizionale)",
+"o": [
+"saremmo",
+"eravamo",
+"siamo",
+"saremo"
+],
+"a": 0,
+"w": "Condizionale de «essere»: io sarei · tu saresti · lui sarebbe · noi saremmo · voi sareste · loro sarebbero.",
+"s": "noi saremmo",
+"k": "noi saremmo"
+},
+{
+"q": "Se piove, ___ a casa. (stare)",
+"o": [
+"starò",
+"starei",
+"stavo",
+"stato"
+],
+"a": 0,
+"w": "O capítulo traz o exemplo «Se piove, starò a casa» (se + presente, futuro no resultado).",
+"s": "Se piove, starò a casa. (stare)",
+"k": "Se piove, starò a casa. (stare)"
+}
+],
+[
+{
+"q": "lui ___  (andare, condizionale)",
+"o": [
+"andava",
+"andrebbe",
+"va",
+"andrà"
+],
+"a": 1,
+"w": "Condizionale de «andare»: io andrei · tu andresti · lui andrebbe · noi andremmo · voi andreste · loro andrebbero.",
+"s": "lui andrebbe",
+"k": "lui andrebbe"
+},
+{
+"q": "tu ___  (fare, condizionale)",
+"o": [
+"faresti",
+"farai",
+"facevi",
+"fai"
+],
+"a": 0,
+"w": "Condizionale de «fare»: io farei · tu faresti · lui farebbe · noi faremmo · voi fareste · loro farebbero.",
+"s": "tu faresti",
+"k": "tu faresti"
+},
+{
+"q": "io ___  (potere, condizionale)",
+"o": [
+"potrò",
+"potrei",
+"potevo",
+"posso"
+],
+"a": 1,
+"w": "Condizionale de «potere»: io potrei · tu potresti · lui potrebbe · noi potremmo · voi potreste · loro potrebbero.",
+"s": "io potrei",
+"k": "io potrei"
+},
+{
+"q": "loro ___  (dovere, condizionale)",
+"o": [
+"dovranno",
+"dovrebbero",
+"devono",
+"dovevano"
+],
+"a": 1,
+"w": "Condizionale de «dovere»: io dovrei · tu dovresti · lui dovrebbe · noi dovremmo · voi dovreste · loro dovrebbero.",
+"s": "loro dovrebbero",
+"k": "loro dovrebbero"
+},
+{
+"q": "voi ___  (vedere, condizionale)",
+"o": [
+"vedete",
+"vedreste",
+"vedevate",
+"vedrete"
+],
+"a": 1,
+"w": "Condizionale de «vedere»: io vedrei · tu vedresti · lui vedrebbe · noi vedremmo · voi vedreste · loro vedrebbero.",
+"s": "voi vedreste",
+"k": "voi vedreste"
+},
+{
+"q": "noi ___  (volere, condizionale)",
+"o": [
+"vorremmo",
+"volevamo",
+"vogliamo",
+"vorremo"
+],
+"a": 0,
+"w": "Condizionale de «volere»: io vorrei · tu vorresti · lui vorrebbe · noi vorremmo · voi vorreste · loro vorrebbero.",
+"s": "noi vorremmo",
+"k": "noi vorremmo"
+}
+]
+],
+"subjuntivo": [
+[
+{
+"q": "che voi ___  (parlare, congiuntivo presente)",
+"o": [
+"parlate",
+"parlerete",
+"parliate",
+"parlaste"
+],
+"a": 2,
+"w": "Congiuntivo presente de «parlare»: che io parli · che tu parli · che lui parli · che noi parliamo · che voi parliate · che loro parlino.",
+"s": "che voi parliate",
+"k": "che voi parliate"
+},
+{
+"q": "che io ___  (mettere, congiuntivo presente)",
+"o": [
+"metto",
+"mettessi",
+"metterò",
+"metta"
+],
+"a": 3,
+"w": "Congiuntivo presente de «mettere»: che io metta · che tu metta · che lui metta · che noi mettiamo · che voi mettiate · che loro mettano.",
+"s": "che io metta",
+"k": "che io metta"
+},
+{
+"q": "che tu ___  (sentire, congiuntivo presente)",
+"o": [
+"senti",
+"sentirai",
+"sentissi",
+"senta"
+],
+"a": 3,
+"w": "Congiuntivo presente de «sentire»: che io senta · che tu senta · che lui senta · che noi sentiamo · che voi sentiate · che loro sentano.",
+"s": "che tu senta",
+"k": "che tu senta"
+},
+{
+"q": "che io ___  (essere, congiuntivo presente)",
+"o": [
+"sono",
+"fossi",
+"sia",
+"sarò"
+],
+"a": 2,
+"w": "Congiuntivo presente de «essere»: che io sia · che tu sia · che lui sia · che noi siamo · che voi siate · che loro siano.",
+"s": "che io sia",
+"k": "che io sia"
+},
+{
+"q": "che voi ___  (avere, congiuntivo presente)",
+"o": [
+"aveste",
+"avrete",
+"avete",
+"abbiate"
+],
+"a": 3,
+"w": "Congiuntivo presente de «avere»: che io abbia · che tu abbia · che lui abbia · che noi abbiamo · che voi abbiate · che loro abbiano.",
+"s": "che voi abbiate",
+"k": "che voi abbiate"
+},
+{
+"q": "che io ___  (finire, congiuntivo presente)",
+"o": [
+"finisco",
+"finissi",
+"finirò",
+"finisca"
+],
+"a": 3,
+"w": "Congiuntivo presente de «finire»: che io finisca · che tu finisca · che lui finisca · che noi finiamo · che voi finiate · che loro finiscano.",
+"s": "che io finisca",
+"k": "che io finisca"
+}
+],
+[
+{
+"q": "Studio duramente affinché ___ ottenere buoni risultati. (potere, io)",
+"o": [
+"potevo",
+"possa",
+"posso",
+"potrò"
+],
+"a": 1,
+"w": "O capítulo traz «Studio duramente affinché possa ottenere buoni risultati»: depois de «affinché» vem o congiuntivo.",
+"s": "Studio duramente affinché possa ottenere buoni risultati. (potere, io)",
+"k": "Studio duramente affinché possa ottenere buoni risultati. (potere, io)"
+},
+{
+"q": "Preferirei parlare con lui prima che ___ via. (andare)",
+"o": [
+"vada",
+"andava",
+"va",
+"andrà"
+],
+"a": 0,
+"w": "Exemplo do capítulo: «prima che vada via». Depois de «prima che» vem o congiuntivo.",
+"s": "Preferirei parlare con lui prima che vada via. (andare)",
+"k": "Preferirei parlare con lui prima che vada via. (andare)"
+},
+{
+"q": "Puoi prendere la mia macchina purché la ___ entro le 8. (riportare)",
+"o": [
+"riporta",
+"riporterai",
+"riportavi",
+"riporti"
+],
+"a": 3,
+"w": "Exemplo do capítulo: «purché la riporti entro le 8». Depois de «purché» vem o congiuntivo.",
+"s": "Puoi prendere la mia macchina purché la riporti entro le 8. (riportare)",
+"k": "Puoi prendere la mia macchina purché la riporti entro le 8. (riportare)"
+},
+{
+"q": "Non posso cucinare senza che tu mi ___ gli ingredienti. (dare)",
+"o": [
+"darai",
+"davi",
+"dia",
+"dai"
+],
+"a": 2,
+"w": "Exemplo do capítulo: «senza che tu mi dia gli ingredienti». Depois de «senza che» vem o congiuntivo.",
+"s": "Non posso cucinare senza che tu mi dia gli ingredienti. (dare)",
+"k": "Non posso cucinare senza che tu mi dia gli ingredienti. (dare)"
+},
+{
+"q": "Non verrò alla festa a meno che tu non ___ anche tu. (venire)",
+"o": [
+"verrai",
+"venga",
+"vieni",
+"venivi"
+],
+"a": 1,
+"w": "Exemplo do capítulo: «a meno che tu non venga anche tu». Depois de «a meno che» vem o congiuntivo.",
+"s": "Non verrò alla festa a meno che tu non venga anche tu. (venire)",
+"k": "Non verrò alla festa a meno che tu non venga anche tu. (venire)"
+},
+{
+"q": "«Che io ___» (That I eat). Complete com o congiuntivo presente. (mangiare)",
+"o": [
+"mangi",
+"mangio",
+"mangerò",
+"mangiassi"
+],
+"a": 0,
+"w": "O capítulo dá «Che io mangi» (presente do congiuntivo) e «Che io mangiassi» (imperfeito do congiuntivo).",
+"s": "«Che io mangi» (That I eat). Complete com o congiuntivo presente. (mangiare)",
+"k": "«Che io mangi» (That I eat). Complete com o congiuntivo presente. (mangiare)"
+}
+]
+],
+"possessivos": [
+[
+{
+"q": "___ zio è simpatico. (meu tio)",
+"o": [
+"Mie",
+"Miei",
+"Mio",
+"Mia"
+],
+"a": 2,
+"w": "Com parente no singular, o possessivo vai sem artigo: mio zio.",
+"s": "Mio zio è simpatico. (meu tio)",
+"k": "Mio zio è simpatico. (meu tio)"
+},
+{
+"q": "Hanno rubato ___ automobile! (minha)",
+"o": [
+"il mio",
+"mia",
+"la mia",
+"le mie"
+],
+"a": 2,
+"w": "Com coisas, o possessivo leva artigo: la mia automobile. Exemplo do capítulo.",
+"s": "Hanno rubato la mia automobile! (minha)",
+"k": "Hanno rubato la mia automobile! (minha)"
+},
+{
+"q": "Mi piace ___ lavoro. (meu)",
+"o": [
+"il mio",
+"la mia",
+"i miei",
+"mio"
+],
+"a": 0,
+"w": "«lavoro» não é parente: leva artigo, il mio lavoro. Exemplo do capítulo.",
+"s": "Mi piace il mio lavoro. (meu)",
+"k": "Mi piace il mio lavoro. (meu)"
+},
+{
+"q": "Sara è ___ sorella. (minha)",
+"o": [
+"mia",
+"mie",
+"mio",
+"la mia"
+],
+"a": 0,
+"w": "Parente no singular: sem artigo. «Sara è mia sorella» é exemplo do capítulo.",
+"s": "Sara è mia sorella. (minha)",
+"k": "Sara è mia sorella. (minha)"
+},
+{
+"q": "___ sorella è malata. (a deles)",
+"o": [
+"Le loro",
+"La loro",
+"Loro",
+"La lora"
+],
+"a": 1,
+"w": "«loro» sempre leva o artigo e nunca muda de forma. «La lora» não existe.",
+"s": "La loro sorella è malata. (a deles)",
+"k": "La loro sorella è malata. (a deles)"
+},
+{
+"q": "___ zie sono vecchie. (as minhas tias)",
+"o": [
+"Le mie",
+"Mie",
+"Le miei",
+"La mia"
+],
+"a": 0,
+"w": "No plural, mesmo com parentes, volta o artigo: le mie zie. Exemplo do capítulo.",
+"s": "Le mie zie sono vecchie. (as minhas tias)",
+"k": "Le mie zie sono vecchie. (as minhas tias)"
+}
+],
+[
+{
+"q": "Questa macchina è ___ . (a minha)",
+"o": [
+"i miei",
+"le mie",
+"la mia",
+"il mio"
+],
+"a": 2,
+"w": "O possessivo concorda com a coisa possuída (macchina é feminino singular): la mia. Exemplo do capítulo: «Questa macchina è la mia».",
+"s": "Questa macchina è la mia . (a minha)",
+"k": "Questa macchina è la mia . (a minha)"
+},
+{
+"q": "Un ___ figlio è malato. (um dos meus filhos)",
+"o": [
+"mia",
+"il mio",
+"mio",
+"miei"
+],
+"a": 2,
+"w": "Para «um dos meus», usa-se o artigo indefinido + possessivo: un mio figlio. Exemplo do capítulo.",
+"s": "Un mio figlio è malato. (um dos meus filhos)",
+"k": "Un mio figlio è malato. (um dos meus filhos)"
+},
+{
+"q": "Fatti gli affari ___ ! (os seus)",
+"o": [
+"tuoi",
+"tua",
+"tue",
+"tuo"
+],
+"a": 0,
+"w": "Na expressão fixa, o possessivo vem depois do substantivo e concorda com ele: gli affari tuoi (masculino plural).",
+"s": "Fatti gli affari tuoi ! (os seus)",
+"k": "Fatti gli affari tuoi ! (os seus)"
+},
+{
+"q": "Le chiavi sono ___ . (as minhas)",
+"o": [
+"le mie",
+"il mio",
+"la mia",
+"i miei"
+],
+"a": 0,
+"w": "«chiavi» é feminino plural: le mie.",
+"s": "Le chiavi sono le mie . (as minhas)",
+"k": "Le chiavi sono le mie . (as minhas)"
+},
+{
+"q": "___ vedo. (Eu te vejo.)",
+"o": [
+"Ci",
+"Ti",
+"Lo",
+"Mi"
+],
+"a": 1,
+"w": "Pronome de objeto direto de «tu»: ti. Vai antes do verbo: Ti vedo. Exemplo do capítulo.",
+"s": "Ti vedo. (Eu te vejo.)",
+"k": "Ti vedo. (Eu te vejo.)"
+},
+{
+"q": "___ problema non si può risolvere. (aquele)",
+"o": [
+"Quel",
+"Quello",
+"Quei",
+"Quella"
+],
+"a": 0,
+"w": "«Quello» encurta antes de substantivo conforme o artigo: il problema → quel problema. Exemplo do capítulo.",
+"s": "Quel problema non si può risolvere. (aquele)",
+"k": "Quel problema non si può risolvere. (aquele)"
+}
+]
+],
+"conjuncoes": [
+[
+{
+"q": "Non posso uscire ___ sono malato. (porque)",
+"o": [
+"oppure",
+"perché",
+"quindi",
+"ma"
+],
+"a": 1,
+"w": "Exemplo do capítulo: «perché» dá a causa.",
+"s": "Non posso uscire perché sono malato. (porque)",
+"k": "Non posso uscire perché sono malato. (porque)"
+},
+{
+"q": "Mi piace il calcio, ___ non mi piace giocare. (mas)",
+"o": [
+"o",
+"quindi",
+"ma",
+"e"
+],
+"a": 2,
+"w": "«ma» = mas. Exemplo do capítulo.",
+"s": "Mi piace il calcio, ma non mi piace giocare. (mas)",
+"k": "Mi piace il calcio, ma non mi piace giocare. (mas)"
+},
+{
+"q": "Ho comprato pane ___ latte. (e)",
+"o": [
+"tuttavia",
+"quindi",
+"ma",
+"e"
+],
+"a": 3,
+"w": "«e» liga dois elementos. Exemplo do capítulo.",
+"s": "Ho comprato pane e latte. (e)",
+"k": "Ho comprato pane e latte. (e)"
+},
+{
+"q": "Vuoi la pasta ___ la pizza? (ou)",
+"o": [
+"quindi",
+"o",
+"ma",
+"tuttavia"
+],
+"a": 1,
+"w": "«o» (ou «oppure») apresenta alternativas. Exemplo do capítulo.",
+"s": "Vuoi la pasta o la pizza? (ou)",
+"k": "Vuoi la pasta o la pizza? (ou)"
+},
+{
+"q": "Ho fame, ___ mangerò una pizza. (então)",
+"o": [
+"o",
+"quindi",
+"perché",
+"ma"
+],
+"a": 1,
+"w": "«quindi» (ou «dunque», «perciò») dá a consequência. Exemplo do capítulo.",
+"s": "Ho fame, quindi mangerò una pizza. (então)",
+"k": "Ho fame, quindi mangerò una pizza. (então)"
+},
+{
+"q": "Non mi piace lo sport, ___ devo fare esercizio. (no entanto)",
+"o": [
+"quindi",
+"perché",
+"e",
+"tuttavia"
+],
+"a": 3,
+"w": "«tuttavia» = no entanto. Exemplo do capítulo.",
+"s": "Non mi piace lo sport, tuttavia devo fare esercizio. (no entanto)",
+"k": "Non mi piace lo sport, tuttavia devo fare esercizio. (no entanto)"
+}
+],
+[
+{
+"q": "___ abbia studiato tanto, non ho superato l'esame. (embora)",
+"o": [
+"Poiché",
+"Benché",
+"Quindi",
+"Perché"
+],
+"a": 1,
+"w": "«benché» (ou «sebbene») = embora. Exemplo do capítulo, com o verbo no congiuntivo.",
+"s": "Benché abbia studiato tanto, non ho superato l'esame. (embora)",
+"k": "Benché abbia studiato tanto, non ho superato l'esame. (embora)"
+},
+{
+"q": "Studio ___ possa ottenere buoni risultati. (para que)",
+"o": [
+"finché",
+"dopo che",
+"affinché",
+"benché"
+],
+"a": 2,
+"w": "«affinché» = para que. Exemplo do capítulo, com o congiuntivo («possa»).",
+"s": "Studio affinché possa ottenere buoni risultati. (para que)",
+"k": "Studio affinché possa ottenere buoni risultati. (para que)"
+},
+{
+"q": "Non verrò alla festa ___ tu non venga anche tu. (a menos que)",
+"o": [
+"poiché",
+"quindi",
+"dopo che",
+"a meno che"
+],
+"a": 3,
+"w": "«a meno che» = a menos que. Exemplo do capítulo, com o congiuntivo.",
+"s": "Non verrò alla festa a meno che tu non venga anche tu. (a menos que)",
+"k": "Non verrò alla festa a meno che tu non venga anche tu. (a menos que)"
+},
+{
+"q": "Puoi prendere la mia macchina ___ la riporti entro le 8. (contanto que)",
+"o": [
+"tuttavia",
+"purché",
+"dopo che",
+"oppure"
+],
+"a": 1,
+"w": "«purché» = contanto que. Exemplo do capítulo, com o congiuntivo.",
+"s": "Puoi prendere la mia macchina purché la riporti entro le 8. (contanto que)",
+"k": "Puoi prendere la mia macchina purché la riporti entro le 8. (contanto que)"
+},
+{
+"q": "O que significa «se» em «Se piove, starò a casa»?",
+"o": [
+"embora",
+"se (condição)",
+"portanto",
+"porque"
+],
+"a": 1,
+"w": "«se» introduz uma condição. Exemplo do capítulo.",
+"s": "se (condição)",
+"k": "se (condição)"
+},
+{
+"q": "Preferirei parlare con lui ___ vada via. (antes que)",
+"o": [
+"dopo che",
+"a meno che",
+"senza che",
+"prima che"
+],
+"a": 3,
+"w": "«prima che» = antes que. Exemplo do capítulo, com o congiuntivo («vada»).",
+"s": "Preferirei parlare con lui prima che vada via. (antes que)",
+"k": "Preferirei parlare con lui prima che vada via. (antes que)"
+}
+]
+],
+"adverbios": [
+[
+{
+"q": "Advérbio de «veloce»:",
+"o": [
+"veloceente",
+"velocimente",
+"velocemente",
+"velocemento"
+],
+"a": 2,
+"w": "Regra geral: forma feminina singular do adjetivo + -mente. Exemplo do capítulo: veloce → velocemente.",
+"s": "velocemente",
+"k": "velocemente"
+},
+{
+"q": "O que significa «spesso»?",
+"o": [
+"sempre",
+"pouco",
+"nunca",
+"com frequência"
+],
+"a": 3,
+"w": "Lista de advérbios comuns do capítulo: spesso = often.",
+"s": "com frequência",
+"k": "com frequência"
+},
+{
+"q": "O que significa «mai»?",
+"o": [
+"sempre",
+"tarde",
+"nunca",
+"muito"
+],
+"a": 2,
+"w": "Lista do capítulo: mai = never.",
+"s": "nunca",
+"k": "nunca"
+},
+{
+"q": "O que significa «tardi»?",
+"o": [
+"tarde",
+"aqui",
+"cedo",
+"bem"
+],
+"a": 0,
+"w": "Lista do capítulo: tardi = late.",
+"s": "tarde",
+"k": "tarde"
+},
+{
+"q": "O que significa «bene»?",
+"o": [
+"mal",
+"muito",
+"bem",
+"pouco"
+],
+"a": 2,
+"w": "Lista do capítulo: bene = well; male = badly.",
+"s": "bem",
+"k": "bem"
+},
+{
+"q": "O que significa «troppo»?",
+"o": [
+"bastante",
+"pouco",
+"demais",
+"nunca"
+],
+"a": 2,
+"w": "Lista do capítulo: troppo = too much; poco = little; abbastanza = enough/quite.",
+"s": "demais",
+"k": "demais"
+}
+],
+[
+{
+"q": "È ___ bello. (muito)",
+"o": [
+"spesso",
+"bene",
+"molto",
+"male"
+],
+"a": 2,
+"w": "Advérbio que modifica um adjetivo vem antes dele. Exemplo do capítulo: «È molto bello».",
+"s": "È molto bello. (muito)",
+"k": "È molto bello. (muito)"
+},
+{
+"q": "Sono ___ stanco. (bastante)",
+"o": [
+"mai",
+"qui",
+"tardi",
+"abbastanza"
+],
+"a": 3,
+"w": "«abbastanza» = bastante, antes do adjetivo. Exemplo do capítulo.",
+"s": "Sono abbastanza stanco. (bastante)",
+"k": "Sono abbastanza stanco. (bastante)"
+},
+{
+"q": "La casa è ___ grande. (extremamente)",
+"o": [
+"spesso",
+"qui",
+"estremamente",
+"mai"
+],
+"a": 2,
+"w": "Advérbio de intensidade antes do adjetivo. Exemplo do capítulo.",
+"s": "La casa è estremamente grande. (extremamente)",
+"k": "La casa è estremamente grande. (extremamente)"
+},
+{
+"q": "Parla ___ chiaramente. (muito)",
+"o": [
+"molto",
+"qui",
+"mai",
+"tardi"
+],
+"a": 0,
+"w": "Advérbio que modifica outro advérbio vem antes dele. Exemplo do capítulo: «Parla molto chiaramente».",
+"s": "Parla molto chiaramente. (muito)",
+"k": "Parla molto chiaramente. (muito)"
+},
+{
+"q": "Non bevo ___ . (nunca)",
+"o": [
+"sempre",
+"spesso",
+"mai",
+"molto"
+],
+"a": 2,
+"w": "«mai» = nunca, e na frase negativa vem depois do verbo: Non bevo mai.",
+"s": "Non bevo mai . (nunca)",
+"k": "Non bevo mai . (nunca)"
+},
+{
+"q": "Ho ___ vissuto qui. (sempre)",
+"o": [
+"poco",
+"mai",
+"sempre",
+"tardi"
+],
+"a": 2,
+"w": "Exemplo do capítulo: «Ho sempre vissuto qui».",
+"s": "Ho sempre vissuto qui. (sempre)",
+"k": "Ho sempre vissuto qui. (sempre)"
+}
+]
+],
+"reflexivos": [
+[
+{
+"q": "tu ___  (lavarsi, presente)",
+"o": [
+"ci laviamo",
+"ti lavi",
+"si lava",
+"mi lavo"
+],
+"a": 1,
+"w": "Presente de «lavarsi»: io mi lavo · tu ti lavi · lui si lava · noi ci laviamo · voi vi lavate · loro si lavano.",
+"s": "tu ti lavi",
+"k": "tu ti lavi"
+},
+{
+"q": "io ___  (alzarsi, presente)",
+"o": [
+"ci alziamo",
+"ti alzi",
+"si alza",
+"mi alzo"
+],
+"a": 3,
+"w": "Presente de «alzarsi»: io mi alzo · tu ti alzi · lui si alza · noi ci alziamo · voi vi alzate · loro si alzano.",
+"s": "io mi alzo",
+"k": "io mi alzo"
+},
+{
+"q": "loro ___  (svegliarsi, presente)",
+"o": [
+"si sveglia",
+"mi sveglio",
+"ti svegli",
+"si svegliano"
+],
+"a": 3,
+"w": "Presente de «svegliarsi»: io mi sveglio · tu ti svegli · lui si sveglia · noi ci svegliamo · voi vi svegliate · loro si svegliano.",
+"s": "loro si svegliano",
+"k": "loro si svegliano"
+},
+{
+"q": "voi ___  (vestirsi, presente)",
+"o": [
+"ti vesti",
+"mi vesto",
+"vi vestite",
+"si veste"
+],
+"a": 2,
+"w": "Presente de «vestirsi»: io mi vesto · tu ti vesti · lui si veste · noi ci vestiamo · voi vi vestite · loro si vestono.",
+"s": "voi vi vestite",
+"k": "voi vi vestite"
+},
+{
+"q": "noi ___  (divertirsi, presente)",
+"o": [
+"mi diverto",
+"si diverte",
+"ci divertiamo",
+"ti diverti"
+],
+"a": 2,
+"w": "Presente de «divertirsi»: io mi diverto · tu ti diverti · lui si diverte · noi ci divertiamo · voi vi divertite · loro si divertono.",
+"s": "noi ci divertiamo",
+"k": "noi ci divertiamo"
+},
+{
+"q": "lui ___  (sentirsi, presente)",
+"o": [
+"mi sento",
+"si sente",
+"ci sentiamo",
+"ti senti"
+],
+"a": 1,
+"w": "Presente de «sentirsi»: io mi sento · tu ti senti · lui si sente · noi ci sentiamo · voi vi sentite · loro si sentono.",
+"s": "lui si sente",
+"k": "lui si sente"
+}
+],
+[
+{
+"q": "Os verbos reflexivos usam, no passato prossimo, o auxiliar:",
+"o": [
+"avere",
+"andare",
+"essere",
+"fare"
+],
+"a": 2,
+"w": "Capítulo «Verbs»: todos os verbos reflexivos usam essere no passato prossimo.",
+"s": "essere",
+"k": "essere"
+},
+{
+"q": "Ieri mi ___ alzato presto. (passato prossimo)",
+"o": [
+"sono",
+"hai",
+"sia",
+"ho"
+],
+"a": 0,
+"w": "Reflexivo + essere: mi sono alzato. Auxiliar «essere» na 1ª pessoa do singular: sono.",
+"s": "Ieri mi sono alzato presto. (passato prossimo)",
+"k": "Ieri mi sono alzato presto. (passato prossimo)"
+},
+{
+"q": "Loro si ___ divertiti. (passato prossimo)",
+"o": [
+"ha",
+"sono",
+"hanno",
+"è"
+],
+"a": 1,
+"w": "Reflexivo + essere: si sono divertiti.",
+"s": "Loro si sono divertiti. (passato prossimo)",
+"k": "Loro si sono divertiti. (passato prossimo)"
+},
+{
+"q": "Noi ci ___ svegliati presto. (passato prossimo)",
+"o": [
+"siete",
+"siamo",
+"abbiamo",
+"sono"
+],
+"a": 1,
+"w": "Reflexivo + essere: ci siamo svegliati.",
+"s": "Noi ci siamo svegliati presto. (passato prossimo)",
+"k": "Noi ci siamo svegliati presto. (passato prossimo)"
+},
+{
+"q": "Voi vi ___ divertiti? (passato prossimo)",
+"o": [
+"siamo",
+"sono",
+"siete",
+"avete"
+],
+"a": 2,
+"w": "Reflexivo + essere: vi siete divertiti.",
+"s": "Voi vi siete divertiti? (passato prossimo)",
+"k": "Voi vi siete divertiti? (passato prossimo)"
+},
+{
+"q": "Lui si ___ vestito. (passato prossimo)",
+"o": [
+"sono",
+"ha",
+"è",
+"era"
+],
+"a": 2,
+"w": "Reflexivo + essere: si è vestito.",
+"s": "Lui si è vestito. (passato prossimo)",
+"k": "Lui si è vestito. (passato prossimo)"
+}
+]
+],
+"ordem": [
+[
+{
+"q": "Como dizer: um carro vermelho.",
+"o": [
+"macchina rossa una",
+"rossa una macchina",
+"una macchina rossa",
+"macchina una rossa"
+],
+"a": 2,
+"w": "Em italiano, a ordem normal é substantivo + adjetivo. Exemplo do capítulo.",
+"s": "una macchina rossa",
+"k": "una macchina rossa"
+},
+{
+"q": "Como dizer: Marta me deu o livro.",
+"o": [
+"Marta il libro mi ha dato.",
+"Marta ha dato mi il libro.",
+"Marta ha dato il libro mi.",
+"Marta mi ha dato il libro."
+],
+"a": 3,
+"w": "O pronome de objeto indireto vem antes do verbo. Exemplo do capítulo.",
+"s": "Marta mi ha dato il libro.",
+"k": "Marta mi ha dato il libro."
+},
+{
+"q": "Como dizer: cinco meninas.",
+"o": [
+"cinque ragazze",
+"cinque ragazzi",
+"ragazze cinque",
+"cinquanta ragazze"
+],
+"a": 0,
+"w": "Numerais vêm antes do substantivo. Exemplo do capítulo: «cinque ragazze».",
+"s": "cinque ragazze",
+"k": "cinque ragazze"
+},
+{
+"q": "Como dizer: este livro.",
+"o": [
+"libro questo",
+"questo libro",
+"questo libri",
+"libro questa"
+],
+"a": 1,
+"w": "Demonstrativos vêm antes do substantivo. Exemplo do capítulo: «questo libro».",
+"s": "questo libro",
+"k": "questo libro"
+},
+{
+"q": "Como dizer: Eu te vejo.",
+"o": [
+"Vedo ti.",
+"Ti vedo.",
+"Vedo ti lo.",
+"Ti io vedo."
+],
+"a": 1,
+"w": "Os pronomes de objeto direto e indireto vêm antes do verbo: Ti vedo. Exemplo do capítulo.",
+"s": "Ti vedo.",
+"k": "Ti vedo."
+},
+{
+"q": "Como dizer: Eu quero vê-lo.",
+"o": [
+"Voglio vedere-lo.",
+"Voglio lo vedere.",
+"Voglio vederlo.",
+"Voglio vedere lo."
+],
+"a": 2,
+"w": "Com o infinitivo, o pronome gruda no fim do verbo (sem o «e» final). O capítulo diz: Voglio vederlo, e não voglio lo vedere.",
+"s": "Voglio vederlo.",
+"k": "Voglio vederlo."
+}
+],
+[
+{
+"q": "Como dizer: Eu gosto de livros. (piacere)",
+"o": [
+"Piaccio i libri.",
+"Io piaccio i libri.",
+"Mi piacciono i libri.",
+"Mi piace i libri."
+],
+"a": 2,
+"w": "«piacere» funciona como 'ser agradável para': Mi piacciono i libri = os livros me agradam. Exemplo do capítulo.",
+"s": "Mi piacciono i libri.",
+"k": "Mi piacciono i libri."
+},
+{
+"q": "Como dizer: Anna precisa de um guarda-chuva. (servire)",
+"o": [
+"Un ombrello serve Anna.",
+"Anna serve un ombrello.",
+"Anna serve all'ombrello.",
+"Ad Anna serve un ombrello."
+],
+"a": 3,
+"w": "«servire» indica necessidade e a pessoa vem com «a». Exemplo do capítulo: «Ad Anna serve un ombrello».",
+"s": "Ad Anna serve un ombrello.",
+"k": "Ad Anna serve un ombrello."
+},
+{
+"q": "Como dizer: Eu sinto sua falta. (mancare)",
+"o": [
+"Mi manchi.",
+"Io manchi te.",
+"Ti manco.",
+"Ti manchi."
+],
+"a": 0,
+"w": "«mancare» inverte sujeito e objeto: Mi manchi = você me falta. Exemplo do capítulo.",
+"s": "Mi manchi.",
+"k": "Mi manchi."
+},
+{
+"q": "Qual frase está na ordem mais comum (sujeito–verbo–objeto)?",
+"o": [
+"Una macchina Luca ha comprato.",
+"Luca ha comprato una macchina.",
+"Una macchina ha comprato Luca.",
+"Ha comprato una macchina Luca."
+],
+"a": 1,
+"w": "O capítulo diz que a maioria das frases segue sujeito–verbo–objeto: Luca ha comprato una nuova macchina.",
+"s": "Luca ha comprato una macchina.",
+"k": "Luca ha comprato una macchina."
+},
+{
+"q": "Como dizer: minha casa.",
+"o": [
+"casa la mia",
+"la mia casa",
+"mia casa la",
+"mia la casa"
+],
+"a": 1,
+"w": "O possessivo geralmente vem antes do substantivo, com artigo. Exemplo do capítulo: «la mia casa».",
+"s": "la mia casa",
+"k": "la mia casa"
+},
+{
+"q": "Como dizer: os livros interessantes.",
+"o": [
+"libri i interessanti",
+"interessanti i libri",
+"i libri interessanti",
+"i interessanti libri"
+],
+"a": 2,
+"w": "Ordem normal: artigo + substantivo + adjetivo, com concordância.",
+"s": "i libri interessanti",
+"k": "i libri interessanti"
+}
+]
+]
+},
+"en": {
+"futuro": [
+[
+{
+"q": "Next year, she ___ 30. (be)",
+"o": [
+"will be",
+"will been",
+"will is",
+"is will"
+],
+"a": 0,
+"w": "Futuro com «will» + verbo no infinitivo sem «to»: she will be.",
+"s": "Next year, she will be 30. (be)",
+"k": "Next year, she will be 30. (be)"
+},
+{
+"q": "We ___ you tomorrow. (see)",
+"o": [
+"will sees",
+"will seen",
+"will saw",
+"will see"
+],
+"a": 3,
+"w": "«will» é seguido da forma base do verbo: will see.",
+"s": "We will see you tomorrow. (see)",
+"k": "We will see you tomorrow. (see)"
+},
+{
+"q": "They are going to ___ a new car. (buy)",
+"o": [
+"buys",
+"bought",
+"buy",
+"buying"
+],
+"a": 2,
+"w": "«be going to» + verbo na forma base: going to buy.",
+"s": "They are going to buy a new car. (buy)",
+"k": "They are going to buy a new car. (buy)"
+},
+{
+"q": "She isn't going to ___ my car. (borrow)",
+"o": [
+"borrowing",
+"borrowed",
+"borrow",
+"borrows"
+],
+"a": 2,
+"w": "Na negativa, «be» recebe o «not» e o verbo continua na forma base: isn't going to borrow.",
+"s": "She isn't going to borrow my car. (borrow)",
+"k": "She isn't going to borrow my car. (borrow)"
+},
+{
+"q": "He ___ to the party. (não virá)",
+"o": [
+"won't came",
+"won't comes",
+"doesn't will come",
+"won't come"
+],
+"a": 3,
+"w": "«won't» = will not. O verbo seguinte fica na forma base: won't come.",
+"s": "He won't come to the party. (não virá)",
+"k": "He won't come to the party. (não virá)"
+},
+{
+"q": "I think it ___ tomorrow. (rain)",
+"o": [
+"is will rain",
+"will to rain",
+"rains will",
+"will rain"
+],
+"a": 3,
+"w": "Previsão baseada em opinião: will + forma base.",
+"s": "I think it will rain tomorrow. (rain)",
+"k": "I think it will rain tomorrow. (rain)"
+}
+],
+[
+{
+"q": "Look at those black clouds! It ___ rain any minute.",
+"o": [
+"'s going to",
+"rains",
+"'s raining",
+"rained"
+],
+"a": 0,
+"w": "Previsão com evidência no presente usa «be going to». O livro avisa que o present progressive («It's raining any minute») não é usado nesse caso.",
+"s": "Look at those black clouds! It 's going to rain any minute.",
+"k": "Look at those black clouds! It 's going to rain any minute."
+},
+{
+"q": "My flight ___ at nine tomorrow morning. (horário)",
+"o": [
+"leaving",
+"is leave",
+"leaved",
+"leaves"
+],
+"a": 3,
+"w": "O present simple também refere o futuro, com horários: «My flight leaves in two hours' time».",
+"s": "My flight leaves at nine tomorrow morning. (horário)",
+"k": "My flight leaves at nine tomorrow morning. (horário)"
+},
+{
+"q": "She ___ next Thursday. (come)",
+"o": [
+"come",
+"coming",
+"is coming",
+"has came"
+],
+"a": 2,
+"w": "O present progressive refere o futuro para planos combinados: «She's coming next Thursday».",
+"s": "She is coming next Thursday. (come)",
+"k": "She is coming next Thursday. (come)"
+},
+{
+"q": "If Sally ___ too, there'll be five of us.",
+"o": [
+"came",
+"would come",
+"comes",
+"will come"
+],
+"a": 2,
+"w": "Na oração com «if» usa-se o present simple. «Will» fica na oração principal, não na do «if».",
+"s": "If Sally comes too, there'll be five of us.",
+"k": "If Sally comes too, there'll be five of us."
+},
+{
+"q": "We're ___ buy a new camera.",
+"o": [
+"goes to",
+"go to",
+"gone to",
+"going to"
+],
+"a": 3,
+"w": "«be going to + verbo»: We're going to buy.",
+"s": "We're going to buy a new camera.",
+"k": "We're going to buy a new camera."
+},
+{
+"q": "Don't let him cook. He ___ even burn the toast.",
+"o": [
+"does",
+"is",
+"has",
+"'ll"
+],
+"a": 3,
+"w": "«Will» ('ll) vale para julgamentos do falante: «He'll even burn the toast».",
+"s": "Don't let him cook. He 'll even burn the toast.",
+"k": "Don't let him cook. He 'll even burn the toast."
+}
+]
+],
+"condicional": [
+[
+{
+"q": "If it ___ tomorrow, we will stay at home.",
+"o": [
+"rained",
+"will rain",
+"rains",
+"would rain"
+],
+"a": 2,
+"w": "1º condicional: if + present simple, e «will» na oração principal.",
+"s": "If it rains tomorrow, we will stay at home.",
+"k": "If it rains tomorrow, we will stay at home."
+},
+{
+"q": "If he moves to Manchester, he ___ sell his house in Bristol.",
+"o": [
+"would have to",
+"had to",
+"will have to",
+"having to"
+],
+"a": 2,
+"w": "1º condicional: if + present simple + will/shall/may. Exemplo do livro: «he will have to sell his house».",
+"s": "If he moves to Manchester, he will have to sell his house in Bristol.",
+"k": "If he moves to Manchester, he will have to sell his house in Bristol."
+},
+{
+"q": "We won't have enough time if we ___ do some shopping too.",
+"o": [
+"want to",
+"would want to",
+"wanted to",
+"will want to"
+],
+"a": 0,
+"w": "No 1º condicional, «will» e «shall» ficam na oração principal e nunca na do «if».",
+"s": "We won't have enough time if we want to do some shopping too.",
+"k": "We won't have enough time if we want to do some shopping too."
+},
+{
+"q": "If I won the lottery, I ___ travel the world.",
+"o": [
+"would",
+"am going to",
+"will",
+"did"
+],
+"a": 0,
+"w": "2º condicional: if + passado simples + would/could/might.",
+"s": "If I won the lottery, I would travel the world.",
+"k": "If I won the lottery, I would travel the world."
+},
+{
+"q": "If I knew what you wanted, maybe I ___ help you.",
+"o": [
+"could",
+"can",
+"will",
+"am"
+],
+"a": 0,
+"w": "2º condicional: if + passado simples + would/could/might. Exemplo do livro: «maybe I could help you».",
+"s": "If I knew what you wanted, maybe I could help you.",
+"k": "If I knew what you wanted, maybe I could help you."
+},
+{
+"q": "I would do a computer course if I ___ the time.",
+"o": [
+"had",
+"have",
+"would have",
+"will have"
+],
+"a": 0,
+"w": "2º condicional: a oração com «if» fica no passado simples: if I had the time.",
+"s": "I would do a computer course if I had the time.",
+"k": "I would do a computer course if I had the time."
+}
+],
+[
+{
+"q": "If I had seen you walking, I ___ offered you a lift.",
+"o": [
+"could has",
+"could",
+"could have",
+"can have"
+],
+"a": 2,
+"w": "3º condicional: if + past perfect + would/could/might + have + particípio. Exemplo do livro.",
+"s": "If I had seen you walking, I could have offered you a lift.",
+"k": "If I had seen you walking, I could have offered you a lift."
+},
+{
+"q": "Tessa would have been furious if she ___ him say that.",
+"o": [
+"heard",
+"would hear",
+"had heard",
+"has heard"
+],
+"a": 2,
+"w": "3º condicional: a oração com «if» usa o past perfect (had + particípio). Exemplo do livro.",
+"s": "Tessa would have been furious if she had heard him say that.",
+"k": "Tessa would have been furious if she had heard him say that."
+},
+{
+"q": "I would have called you if I ___ your number.",
+"o": [
+"had had",
+"would have",
+"have had",
+"had"
+],
+"a": 0,
+"w": "3º condicional: if + past perfect. Past perfect de «have» = had had.",
+"s": "I would have called you if I had had your number.",
+"k": "I would have called you if I had had your number."
+},
+{
+"q": "If she had studied, she ___ the exam.",
+"o": [
+"would have passed",
+"had passed",
+"would pass",
+"will have passed"
+],
+"a": 0,
+"w": "3º condicional: would + have + particípio passado na oração principal.",
+"s": "If she had studied, she would have passed the exam.",
+"k": "If she had studied, she would have passed the exam."
+},
+{
+"q": "If they ___ earlier, they wouldn't have missed the train.",
+"o": [
+"had left",
+"left",
+"would leave",
+"have left"
+],
+"a": 0,
+"w": "3º condicional: if + past perfect (had left).",
+"s": "If they had left earlier, they wouldn't have missed the train.",
+"k": "If they had left earlier, they wouldn't have missed the train."
+},
+{
+"q": "Qual frase fala de algo que NÃO aconteceu no passado?",
+"o": [
+"If I had seen you, I could have offered you a lift.",
+"If I see you, I will offer you a lift.",
+"If I saw you, I would offer you a lift.",
+"If I see you, I offer you a lift."
+],
+"a": 0,
+"w": "O 3º condicional (had + particípio, could have + particípio) imagina um passado que não aconteceu.",
+"s": "If I had seen you, I could have offered you a lift.",
+"k": "If I had seen you, I could have offered you a lift."
+}
+]
+],
+"subjuntivo": [
+[
+{
+"q": "Subjuntivo formal: They insisted that she ___ a psychiatrist. (consult)",
+"o": [
+"consulting",
+"consulted",
+"consults",
+"consult"
+],
+"a": 3,
+"w": "O subjuntivo inglês usa a forma base do verbo, sem -s. Exemplo do livro: «They insisted that she consult a psychiatrist».",
+"s": "Subjuntivo formal: They insisted that she consult a psychiatrist. (consult)",
+"k": "Subjuntivo formal: They insisted that she consult a psychiatrist. (consult)"
+},
+{
+"q": "Subjuntivo formal: It is imperative that they ___ served a good meal. (be)",
+"o": [
+"been",
+"be",
+"are",
+"is"
+],
+"a": 1,
+"w": "Depois de expressões de necessidade (imperative, essential, important), o subjuntivo de «be» é «be». Exemplo do livro: «it is imperative they be served».",
+"s": "Subjuntivo formal: It is imperative that they be served a good meal. (be)",
+"k": "Subjuntivo formal: It is imperative that they be served a good meal. (be)"
+},
+{
+"q": "I can remember it as if it ___ yesterday.",
+"o": [
+"were",
+"are",
+"be",
+"been"
+],
+"a": 0,
+"w": "O livro dá «as if it were yesterday». Depois de if, as if, though e as though, usa-se o «were» hipotético.",
+"s": "I can remember it as if it were yesterday.",
+"k": "I can remember it as if it were yesterday."
+},
+{
+"q": "I would be careful if I ___ you.",
+"o": [
+"am",
+"be",
+"were",
+"been"
+],
+"a": 2,
+"w": "«If I were you» é o exemplo do livro do «were» hipotético, para todas as pessoas.",
+"s": "I would be careful if I were you.",
+"k": "I would be careful if I were you."
+},
+{
+"q": "Subjuntivo formal: The committee demanded that the report ___ finished by Friday. (be)",
+"o": [
+"being",
+"be",
+"is",
+"was"
+],
+"a": 1,
+"w": "Depois de verbos como suggest, insist, recommend e demand, o subjuntivo usa a forma base: that the report be finished.",
+"s": "Subjuntivo formal: The committee demanded that the report be finished by Friday. (be)",
+"k": "Subjuntivo formal: The committee demanded that the report be finished by Friday. (be)"
+},
+{
+"q": "Subjuntivo formal: We recommend that he ___ a doctor. (see)",
+"o": [
+"sees",
+"saw",
+"seeing",
+"see"
+],
+"a": 3,
+"w": "Depois de «recommend that», o subjuntivo usa a forma base do verbo, sem -s.",
+"s": "Subjuntivo formal: We recommend that he see a doctor. (see)",
+"k": "Subjuntivo formal: We recommend that he see a doctor. (see)"
+}
+],
+[
+{
+"q": "Subjuntivo formal: The doctor recommended that he ___ more water. (drink)",
+"o": [
+"drinking",
+"drank",
+"drinks",
+"drink"
+],
+"a": 3,
+"w": "«recommend that» pede a forma base: that he drink.",
+"s": "Subjuntivo formal: The doctor recommended that he drink more water. (drink)",
+"k": "Subjuntivo formal: The doctor recommended that he drink more water. (drink)"
+},
+{
+"q": "Subjuntivo formal: It is essential that every student ___ on time. (arrive)",
+"o": [
+"arriving",
+"arrive",
+"arrives",
+"arrived"
+],
+"a": 1,
+"w": "Depois de «it is essential that», o subjuntivo usa a forma base.",
+"s": "Subjuntivo formal: It is essential that every student arrive on time. (arrive)",
+"k": "Subjuntivo formal: It is essential that every student arrive on time. (arrive)"
+},
+{
+"q": "He talks as if he ___ the boss.",
+"o": [
+"were",
+"are",
+"be",
+"been"
+],
+"a": 0,
+"w": "Depois de «as if», o subjuntivo usa o «were» hipotético para todas as pessoas.",
+"s": "He talks as if he were the boss.",
+"k": "He talks as if he were the boss."
+},
+{
+"q": "Subjuntivo formal: They insisted that he ___ the truth. (tell)",
+"o": [
+"told",
+"tells",
+"tell",
+"telling"
+],
+"a": 2,
+"w": "«insist that» pede a forma base: that he tell.",
+"s": "Subjuntivo formal: They insisted that he tell the truth. (tell)",
+"k": "Subjuntivo formal: They insisted that he tell the truth. (tell)"
+},
+{
+"q": "Subjuntivo formal: It is imperative that he ___ us today. (call)",
+"o": [
+"calling",
+"call",
+"calls",
+"called"
+],
+"a": 1,
+"w": "«it is imperative that» pede a forma base: that he call.",
+"s": "Subjuntivo formal: It is imperative that he call us today. (call)",
+"k": "Subjuntivo formal: It is imperative that he call us today. (call)"
+},
+{
+"q": "Subjuntivo formal: She suggested that he ___ at home. (stay)",
+"o": [
+"stays",
+"stayed",
+"staying",
+"stay"
+],
+"a": 3,
+"w": "«suggest that» pede a forma base: that he stay.",
+"s": "Subjuntivo formal: She suggested that he stay at home. (stay)",
+"k": "Subjuntivo formal: She suggested that he stay at home. (stay)"
+}
+]
+],
+"possessivos": [
+[
+{
+"q": "Is this coat ___ ?",
+"o": [
+"yours",
+"your",
+"yourself",
+"you"
+],
+"a": 0,
+"w": "Possessivo que fica sozinho (pronome): mine, yours, his, hers, ours, theirs. Exemplo do livro: «Is this coat yours?».",
+"s": "Is this coat yours ?",
+"k": "Is this coat yours ?"
+},
+{
+"q": "Here's ___ ticket. (deles)",
+"o": [
+"their",
+"they",
+"theirs",
+"them"
+],
+"a": 0,
+"w": "Antes de um substantivo usa-se o possessivo determinante: my, your, his, her, its, our, their.",
+"s": "Here's their ticket. (deles)",
+"k": "Here's their ticket. (deles)"
+},
+{
+"q": "Have you given the rabbit ___ dinner yet?",
+"o": [
+"it's",
+"itself",
+"its",
+"it"
+],
+"a": 2,
+"w": "«its» (sem apóstrofo) é o possessivo. O livro usa esse exemplo.",
+"s": "Have you given the rabbit its dinner yet?",
+"k": "Have you given the rabbit its dinner yet?"
+},
+{
+"q": "I can't believe that the house is ___ at last. (nossa)",
+"o": [
+"us",
+"our",
+"ourselves",
+"ours"
+],
+"a": 3,
+"w": "Possessivo sozinho de «we»: ours. Exemplo do livro.",
+"s": "I can't believe that the house is ours at last. (nossa)",
+"k": "I can't believe that the house is ours at last. (nossa)"
+},
+{
+"q": "It's ___ own fault. (dele)",
+"o": [
+"his",
+"he",
+"him",
+"hers"
+],
+"a": 0,
+"w": "«own» vem depois do possessivo determinante: his own fault. Exemplo do livro: «It's his own fault».",
+"s": "It's his own fault. (dele)",
+"k": "It's his own fault. (dele)"
+},
+{
+"q": "The book is ___ . (dela)",
+"o": [
+"hers",
+"hers's",
+"her's",
+"hers'"
+],
+"a": 0,
+"w": "Os possessivos terminados em -s não levam apóstrofo: hers, yours, ours, theirs.",
+"s": "The book is hers . (dela)",
+"k": "The book is hers . (dela)"
+}
+],
+[
+{
+"q": "That bag isn't mine; it's ___ . (dele)",
+"o": [
+"his",
+"he's",
+"her",
+"him"
+],
+"a": 0,
+"w": "Possessivo sozinho de «he»: his. «he's» é 'he is'.",
+"s": "That bag isn't mine; it's his . (dele)",
+"k": "That bag isn't mine; it's his . (dele)"
+},
+{
+"q": "The best man at Jane's and ___ wedding couldn't stop telling jokes.",
+"o": [
+"my",
+"I",
+"mine",
+"me"
+],
+"a": 0,
+"w": "Exemplo do livro: «Jane's and my wedding». Quando o possessivo determinante e o 's modificam o mesmo substantivo, o determinante vem em segundo.",
+"s": "The best man at Jane's and my wedding couldn't stop telling jokes.",
+"k": "The best man at Jane's and my wedding couldn't stop telling jokes."
+},
+{
+"q": "Can I borrow your pen? I forgot ___ .",
+"o": [
+"my",
+"me",
+"mine",
+"myself"
+],
+"a": 2,
+"w": "Possessivo sozinho (pronome) de «I»: mine.",
+"s": "Can I borrow your pen? I forgot mine .",
+"k": "Can I borrow your pen? I forgot mine ."
+},
+{
+"q": "A cat will use every garden except ___ own as a toilet.",
+"o": [
+"it",
+"it's",
+"itself",
+"its"
+],
+"a": 3,
+"w": "«its own» é o exemplo do livro. «Its» só aparece sozinho como pronome quando vem com (very) own.",
+"s": "A cat will use every garden except its own as a toilet.",
+"k": "A cat will use every garden except its own as a toilet."
+},
+{
+"q": "Their house is big, but ___ is bigger. (a nossa)",
+"o": [
+"ours",
+"us",
+"our",
+"ours'"
+],
+"a": 0,
+"w": "Possessivo sozinho de «we»: ours.",
+"s": "Their house is big, but ours is bigger. (a nossa)",
+"k": "Their house is big, but ours is bigger. (a nossa)"
+},
+{
+"q": "Now that you've got your very ___ flat, how does it feel?",
+"o": [
+"own",
+"one",
+"self",
+"itself"
+],
+"a": 0,
+"w": "«(very) own» reforça o possessivo: your very own flat. Exemplo do livro.",
+"s": "Now that you've got your very own flat, how does it feel?",
+"k": "Now that you've got your very own flat, how does it feel?"
+}
+]
+],
+"conjuncoes": [
+[
+{
+"q": "You can join now ___ wait and discuss things with your partner. (ou)",
+"o": [
+"or",
+"although",
+"because",
+"but"
+],
+"a": 0,
+"w": "«or» liga alternativas. Conjunção coordenativa (and, or, but).",
+"s": "You can join now or wait and discuss things with your partner. (ou)",
+"k": "You can join now or wait and discuss things with your partner. (ou)"
+},
+{
+"q": "I like football, ___ I don't like playing it. (mas)",
+"o": [
+"because",
+"or",
+"so",
+"but"
+],
+"a": 3,
+"w": "«but» liga ideias que se opõem.",
+"s": "I like football, but I don't like playing it. (mas)",
+"k": "I like football, but I don't like playing it. (mas)"
+},
+{
+"q": "She neither eats meat ___ drinks coffee.",
+"o": [
+"and",
+"or",
+"nor",
+"but"
+],
+"a": 2,
+"w": "Correlativas: neither … nor …. Exemplo do livro.",
+"s": "She neither eats meat nor drinks coffee.",
+"k": "She neither eats meat nor drinks coffee."
+},
+{
+"q": "The class can meet either on Friday ___ on Thursday afternoon.",
+"o": [
+"than",
+"and",
+"or",
+"nor"
+],
+"a": 2,
+"w": "Correlativas: either … or …. Exemplo do livro.",
+"s": "The class can meet either on Friday or on Thursday afternoon.",
+"k": "The class can meet either on Friday or on Thursday afternoon."
+},
+{
+"q": "Both my brother ___ my sister are doctors.",
+"o": [
+"and",
+"or",
+"nor",
+"but"
+],
+"a": 0,
+"w": "Correlativas: both … and ….",
+"s": "Both my brother and my sister are doctors.",
+"k": "Both my brother and my sister are doctors."
+},
+{
+"q": "Neither I ___ my family feel that an interview is appropriate.",
+"o": [
+"or",
+"but",
+"nor",
+"and"
+],
+"a": 2,
+"w": "Correlativas: neither … nor …. Exemplo do livro.",
+"s": "Neither I nor my family feel that an interview is appropriate.",
+"k": "Neither I nor my family feel that an interview is appropriate."
+}
+],
+[
+{
+"q": "They had to cancel their holiday ___ Anne's mother was seriously ill.",
+"o": [
+"because",
+"until",
+"unless",
+"although"
+],
+"a": 0,
+"w": "«because» dá a causa. Exemplo do livro.",
+"s": "They had to cancel their holiday because Anne's mother was seriously ill.",
+"k": "They had to cancel their holiday because Anne's mother was seriously ill."
+},
+{
+"q": "___ you have not explained your action, the school will make a formal report. (já que)",
+"o": [
+"Unless",
+"Although",
+"Until",
+"As"
+],
+"a": 3,
+"w": "«as» pode ser 'já que'. Exemplo do livro.",
+"s": "As you have not explained your action, the school will make a formal report. (já que)",
+"k": "As you have not explained your action, the school will make a formal report. (já que)"
+},
+{
+"q": "Walkers need to be prepared for a steep climb ___ reach the village. (a fim de)",
+"o": [
+"although",
+"because",
+"in order to",
+"unless"
+],
+"a": 2,
+"w": "«in order to» = a fim de. Exemplo do livro.",
+"s": "Walkers need to be prepared for a steep climb in order to reach the village. (a fim de)",
+"k": "Walkers need to be prepared for a steep climb in order to reach the village. (a fim de)"
+},
+{
+"q": "Just ___ I arrived, I got a phone call.",
+"o": [
+"unless",
+"because",
+"when",
+"although"
+],
+"a": 2,
+"w": "«when» pode ser modificado por um advérbio: just when. Exemplo do livro.",
+"s": "Just when I arrived, I got a phone call.",
+"k": "Just when I arrived, I got a phone call."
+},
+{
+"q": "I've been afraid to go out after dark ever ___ I heard about it.",
+"o": [
+"since",
+"until",
+"because",
+"unless"
+],
+"a": 0,
+"w": "«since» (tempo) também pode ser modificado por advérbio: ever since. Exemplo do livro.",
+"s": "I've been afraid to go out after dark ever since I heard about it.",
+"k": "I've been afraid to go out after dark ever since I heard about it."
+},
+{
+"q": "Tex is a poet, ___ Trey is a musician. (contraste)",
+"o": [
+"because",
+"until",
+"whereas",
+"unless"
+],
+"a": 2,
+"w": "«whereas» e «while» ligam dois contrastes. Está na lista de subordinativas do livro.",
+"s": "Tex is a poet, whereas Trey is a musician. (contraste)",
+"k": "Tex is a poet, whereas Trey is a musician. (contraste)"
+}
+]
+],
+"adverbios": [
+[
+{
+"q": "She sings ___ . (beautiful)",
+"o": [
+"beautify",
+"beautifully",
+"beauty",
+"beautiful"
+],
+"a": 1,
+"w": "A maioria dos advérbios é o adjetivo + -ly. Exemplo do livro: beautiful → beautifully.",
+"s": "She sings beautifully . (beautiful)",
+"k": "She sings beautifully . (beautiful)"
+},
+{
+"q": "They walked ___ across the narrow bridge. (careful)",
+"o": [
+"careful",
+"carefulness",
+"care",
+"carefully"
+],
+"a": 3,
+"w": "Adjetivo + -ly. Exemplo do livro: careful → carefully.",
+"s": "They walked carefully across the narrow bridge. (careful)",
+"k": "They walked carefully across the narrow bridge. (careful)"
+},
+{
+"q": "He works very ___ . (duro, com esforço)",
+"o": [
+"hardy",
+"hard",
+"hardly",
+"harder"
+],
+"a": 1,
+"w": "«hard» tem a mesma forma de adjetivo e advérbio. «hardly» existe, mas significa 'quase não'.",
+"s": "He works very hard . (duro, com esforço)",
+"k": "He works very hard . (duro, com esforço)"
+},
+{
+"q": "The train arrived ___ . (atrasado)",
+"o": [
+"lateness",
+"lately",
+"latly",
+"late"
+],
+"a": 3,
+"w": "«late» também tem a mesma forma de adjetivo e advérbio. «lately» significa 'ultimamente'.",
+"s": "The train arrived late . (atrasado)",
+"k": "The train arrived late . (atrasado)"
+},
+{
+"q": "soon – ___ – soonest",
+"o": [
+"soonish",
+"soonner",
+"sooner",
+"more soon"
+],
+"a": 2,
+"w": "Alguns advérbios têm comparativo e superlativo: soon – sooner – soonest. Exemplo do livro.",
+"s": "soon – sooner – soonest",
+"k": "soon – sooner – soonest"
+},
+{
+"q": "hard – harder – ___",
+"o": [
+"harderest",
+"most hard",
+"hardest",
+"hardiest"
+],
+"a": 2,
+"w": "Comparativo e superlativo de «hard»: harder, hardest. Exemplo do livro.",
+"s": "hard – harder – hardest",
+"k": "hard – harder – hardest"
+}
+],
+[
+{
+"q": "Qual destas palavras é um advérbio que NÃO vem de um adjetivo?",
+"o": [
+"carefully",
+"very",
+"beautifully",
+"quickly"
+],
+"a": 1,
+"w": "O livro cita just, quite, so, soon, too e very como advérbios sem adjetivo relacionado.",
+"s": "very",
+"k": "very"
+},
+{
+"q": "Qual destas palavras tem a mesma forma de adjetivo e de advérbio?",
+"o": [
+"quickly",
+"happily",
+"slowly",
+"late"
+],
+"a": 3,
+"w": "O livro cita hard, outside, right, straight, late, well.",
+"s": "late",
+"k": "late"
+},
+{
+"q": "A maioria dos advérbios de modo é formada com o adjetivo +",
+"o": [
+"-ing",
+"-ly",
+"-ed",
+"-er"
+],
+"a": 1,
+"w": "Exemplo do livro: beautiful → beautifully, careful → carefully.",
+"s": "-ly",
+"k": "-ly"
+},
+{
+"q": "Como dizer: Eu muitas vezes visito minha tia aos domingos.",
+"o": [
+"Often I my visit aunt on Sundays.",
+"I visit often my aunt on Sundays.",
+"I visit my often aunt on Sundays.",
+"I often visit my aunt on Sundays."
+],
+"a": 3,
+"w": "O advérbio de frequência fica na posição do meio, antes do verbo principal, e não entre o verbo e o objeto.",
+"s": "I often visit my aunt on Sundays.",
+"k": "I often visit my aunt on Sundays."
+},
+{
+"q": "They walked carefully across the narrow bridge. Qual palavra é o advérbio?",
+"o": [
+"bridge",
+"walked",
+"carefully",
+"narrow"
+],
+"a": 2,
+"w": "«carefully» descreve como eles andaram (modo). Exemplo do livro.",
+"s": "carefully",
+"k": "carefully"
+},
+{
+"q": "It all happened rather suddenly. Qual palavra modifica um advérbio?",
+"o": [
+"suddenly",
+"happened",
+"rather",
+"all"
+],
+"a": 2,
+"w": "Um advérbio pode ser modificado por outro advérbio: rather suddenly. Exemplo do livro.",
+"s": "rather",
+"k": "rather"
+}
+]
+],
+"reflexivos": [
+[
+{
+"q": "He hurt ___ quite badly in the fall.",
+"o": [
+"him",
+"hisself",
+"his",
+"himself"
+],
+"a": 3,
+"w": "Reflexivo: o sujeito e o objeto são a mesma pessoa. Exemplo do livro: «He hurt himself».",
+"s": "He hurt himself quite badly in the fall.",
+"k": "He hurt himself quite badly in the fall."
+},
+{
+"q": "She looks very pleased with ___ . (ela mesma)",
+"o": [
+"she",
+"herself",
+"hers",
+"her"
+],
+"a": 1,
+"w": "O reflexivo deixa claro que é a mesma pessoa. Exemplo do livro: «pleased with herself».",
+"s": "She looks very pleased with herself . (ela mesma)",
+"k": "She looks very pleased with herself . (ela mesma)"
+},
+{
+"q": "When are you going to stop pushing ___ so hard? (você mesmo)",
+"o": [
+"yourself",
+"yours",
+"your",
+"you"
+],
+"a": 0,
+"w": "Reflexivo de «you»: yourself. Exemplo do livro.",
+"s": "When are you going to stop pushing yourself so hard? (você mesmo)",
+"k": "When are you going to stop pushing yourself so hard? (você mesmo)"
+},
+{
+"q": "Children always hurt ___ when they play that game. (cada um se machuca)",
+"o": [
+"themselves",
+"theirselves",
+"them",
+"theirs"
+],
+"a": 0,
+"w": "Reflexivo de «they»: themselves. Exemplo do livro.",
+"s": "Children always hurt themselves when they play that game. (cada um se machuca)",
+"k": "Children always hurt themselves when they play that game. (cada um se machuca)"
+},
+{
+"q": "We painted the house ___ . (nós mesmos)",
+"o": [
+"ourself",
+"ourselves",
+"us",
+"ours"
+],
+"a": 1,
+"w": "Reflexivo de «we»: ourselves.",
+"s": "We painted the house ourselves . (nós mesmos)",
+"k": "We painted the house ourselves . (nós mesmos)"
+},
+{
+"q": "The Head of Department ___ knows that the staff are unhappy. (ênfase)",
+"o": [
+"herself",
+"she",
+"hers",
+"her"
+],
+"a": 0,
+"w": "O reflexivo pode dar ênfase ao sujeito. Exemplo do livro: «The Head of Department herself knows …»",
+"s": "The Head of Department herself knows that the staff are unhappy. (ênfase)",
+"k": "The Head of Department herself knows that the staff are unhappy. (ênfase)"
+}
+],
+[
+{
+"q": "Qual frase está correta?",
+"o": [
+"Himself told me he was retiring.",
+"Hisself told me he was retiring.",
+"Him told me he was retiring.",
+"He himself told me he was retiring."
+],
+"a": 3,
+"w": "O reflexivo não pode ser o sujeito sozinho. Só serve como ênfase depois de um pronome pessoal sujeito: He himself …",
+"s": "He himself told me he was retiring.",
+"k": "He himself told me he was retiring."
+},
+{
+"q": "Children always hurt ___ when they play that game. (uma criança machuca a outra)",
+"o": [
+"myself",
+"each other",
+"itself",
+"themselves"
+],
+"a": 1,
+"w": "«each other» é recíproco: uma pessoa machuca a outra. Contraste do livro: hurt themselves / hurt each other.",
+"s": "Children always hurt each other when they play that game. (uma criança machuca a outra)",
+"k": "Children always hurt each other when they play that game. (uma criança machuca a outra)"
+},
+{
+"q": "Reflexivo de «it»:",
+"o": [
+"itself",
+"hisself",
+"its'self",
+"itselves"
+],
+"a": 0,
+"w": "Lista do livro: myself, yourself, himself, herself, itself, oneself, ourselves, yourselves, themselves.",
+"s": "itself",
+"k": "itself"
+},
+{
+"q": "Reflexivo de «they»:",
+"o": [
+"themselves",
+"themselfs",
+"theirselves",
+"theirself"
+],
+"a": 0,
+"w": "Lista do livro: themselves.",
+"s": "themselves",
+"k": "themselves"
+},
+{
+"q": "Reflexivo de «you» no plural (vocês):",
+"o": [
+"yoursselves",
+"yourselves",
+"yourselfs",
+"yourself"
+],
+"a": 1,
+"w": "No plural, «-self» vira «-selves»: yourselves.",
+"s": "yourselves",
+"k": "yourselves"
+},
+{
+"q": "She looks very pleased with herself. Qual palavra é o pronome reflexivo?",
+"o": [
+"herself",
+"pleased",
+"looks",
+"She"
+],
+"a": 0,
+"w": "Exemplo do livro: «pleased with herself».",
+"s": "herself",
+"k": "herself"
+}
+]
+],
+"ordem": [
+[
+{
+"q": "Qual frase tem a ordem normal (sujeito–verbo–objeto)?",
+"o": [
+"Football he loves.",
+"He loves football.",
+"He football loves.",
+"Loves he football."
+],
+"a": 1,
+"w": "A ordem não marcada do inglês é S–V–O. O livro dá «He loves football.» como exemplo.",
+"s": "He loves football.",
+"k": "He loves football."
+},
+{
+"q": "Como dizer: um carro vermelho.",
+"o": [
+"red a car",
+"car a red",
+"a car red",
+"a red car"
+],
+"a": 3,
+"w": "Em inglês, o adjetivo vem antes do substantivo.",
+"s": "a red car",
+"k": "a red car"
+},
+{
+"q": "Como dizer: sapatos vermelhos baratos.",
+"o": [
+"shoes cheap red",
+"red cheap shoes",
+"red shoes cheap",
+"cheap red shoes"
+],
+"a": 3,
+"w": "Os modificadores vêm antes do substantivo principal. Exemplo do livro: «cheap red shoes».",
+"s": "cheap red shoes",
+"k": "cheap red shoes"
+},
+{
+"q": "Como dizer: uma reunião muito importante.",
+"o": [
+"a very important meeting",
+"very a important meeting",
+"a meeting very important",
+"a important very meeting"
+],
+"a": 0,
+"w": "Os modificadores vêm antes do substantivo principal. Exemplo do livro: «a very important meeting».",
+"s": "a very important meeting",
+"k": "a very important meeting"
+},
+{
+"q": "Como dizer: um muro de pedra.",
+"o": [
+"a stone wall",
+"a wall stone",
+"wall a stone",
+"stone a wall"
+],
+"a": 0,
+"w": "Substantivos também podem modificar substantivos, antes do principal. Exemplo do livro: «a stone wall».",
+"s": "a stone wall",
+"k": "a stone wall"
+},
+{
+"q": "Como dizer: um relatório publicado na semana passada.",
+"o": [
+"published a report last week",
+"a report last week published",
+"a report published last week",
+"a published report last week"
+],
+"a": 2,
+"w": "Alguns modificadores vêm depois do substantivo. Exemplo do livro: «a long-awaited government report published last week».",
+"s": "a report published last week",
+"k": "a report published last week"
+}
+],
+[
+{
+"q": "Qual frase tem a ordem normal?",
+"o": [
+"This furniture I bought years ago.",
+"I bought this furniture years ago.",
+"I this furniture bought years ago.",
+"Bought I this furniture years ago."
+],
+"a": 1,
+"w": "A ordem normal é sujeito–verbo–objeto. Colocar o objeto na frente é possível, mas menos comum.",
+"s": "I bought this furniture years ago.",
+"k": "I bought this furniture years ago."
+},
+{
+"q": "Como dizer: Eu muitas vezes visito minha tia.",
+"o": [
+"I visit my often aunt.",
+"Often I my visit aunt.",
+"I visit often my aunt.",
+"I often visit my aunt."
+],
+"a": 3,
+"w": "O advérbio de frequência vem antes do verbo principal e não entre o verbo e o objeto.",
+"s": "I often visit my aunt.",
+"k": "I often visit my aunt."
+},
+{
+"q": "Como dizer: um estudante universitário.",
+"o": [
+"university a student",
+"a student university",
+"student a university",
+"a university student"
+],
+"a": 3,
+"w": "O modificador vem antes do substantivo principal. Exemplo do livro: «all university students».",
+"s": "a university student",
+"k": "a university student"
+},
+{
+"q": "Como dizer: uma gaveta cheia de canetas.",
+"o": [
+"a drawer full of pens",
+"full a drawer of pens",
+"a drawer of pens full",
+"a full drawer of pens"
+],
+"a": 0,
+"w": "Alguns modificadores vêm depois do substantivo. Exemplo do livro: «a drawer full of pens and pencils».",
+"s": "a drawer full of pens",
+"k": "a drawer full of pens"
+},
+{
+"q": "Como dizer: o primeiro capítulo do livro.",
+"o": [
+"the first chapter of the book",
+"the chapter first of the book",
+"the first of the book chapter",
+"first the chapter of the book"
+],
+"a": 0,
+"w": "Ordem do sintagma nominal: determinante + modificador + substantivo + complemento. Exemplo do livro.",
+"s": "the first chapter of the book",
+"k": "the first chapter of the book"
+},
+{
+"q": "Como dizer: muitas cidades grandes perto daqui.",
+"o": [
+"many towns big nearby",
+"nearby many big towns",
+"many big towns nearby",
+"big many towns nearby"
+],
+"a": 2,
+"w": "Determinante, modificador, substantivo e, no fim, o advérbio de lugar. Exemplo do livro: «many big towns nearby».",
+"s": "many big towns nearby",
+"k": "many big towns nearby"
+}
+]
+]
+}
+}
