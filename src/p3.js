@@ -334,7 +334,7 @@ function renderMe(){
 }
 
 /* ----- resumo do caderno (tela inicial) ----- */
-const GAMENAME={reco:"Reconheça",completar:"Complete",embaralhar:"Embaralhe",escreva:"Escreva",frases:"Frases",artigos:"Artigos",plural:"Plural",presente:"Presente",passado:"Passado",negacao:"Negação",prep:"Preposições",classes:"Classes",falsos:"Falsos amigos",cross:"Cruzadas",search:"Caça-palavras",connect:"Conecte",odd:"Intruso",sentence:"Conversação",resposta:"Respostas",alfabeto:"Alfabeto",sons:"Pares de sons",fala:"Sons difíceis",tema:"Palavras",ditado:"Ditado",frases:"Frases"};
+const GAMENAME={conheca:"Conheça",reco:"Reconheça",completar:"Complete",embaralhar:"Embaralhe",escreva:"Escreva",frases:"Frases",artigos:"Artigos",plural:"Plural",presente:"Presente",passado:"Passado",negacao:"Negação",prep:"Preposições",classes:"Classes",falsos:"Falsos amigos",cross:"Cruzadas",search:"Caça-palavras",connect:"Conecte",odd:"Intruso",sentence:"Conversação",resposta:"Respostas",alfabeto:"Alfabeto",sons:"Pares de sons",fala:"Sons difíceis",tema:"Palavras",ditado:"Ditado",frases:"Frases"};
 function vocabSet(){const set=new Set();Object.values(VOCAB[S.lang]).flat().forEach(it=>set.add(it.w.toLowerCase()));return set;}
 function renderStats(){
   const L=S.lang,pl=S.plays[L]||{},sk=S.sk[L]||{};
@@ -346,7 +346,7 @@ function renderStats(){
   const all=Object.keys(S.plays).reduce((n,l)=>n+Object.values(S.plays[l]).reduce((a,b)=>a+b,0),0);
   $("#st-line").textContent=doneN+" páginas · "+mastered+" palavras dominadas";
   const main=["cross","search","connect"].map(t=>"<div><b>"+(pl[t]||0)+"</b><small>"+GAMENAME[t]+"</small></div>").join("");
-  const more=["odd","sentence","resposta","tema","ditado","sons","frases","reco","completar","embaralhar","escreva"].concat(VOLUME4.types.map(t=>t[0])).filter(t=>pl[t]).map(t=>GAMENAME[t]+" "+pl[t]).join(" · ");
+  const more=["odd","sentence","resposta","tema","ditado","sons","frases","conheca","reco","completar","embaralhar","escreva"].concat(VOLUME4.types.map(t=>t[0])).filter(t=>pl[t]).map(t=>GAMENAME[t]+" "+pl[t]).join(" · ");
   const worst=Object.keys(sk).filter(k=>sk[k][1]>sk[k][0]).sort((a,b)=>(sk[b][1]-sk[b][0])-(sk[a][1]-sk[a][0])).slice(0,6);
   const pct=n=>Math.round(100*n/Math.max(1,pages));
   $("#st-body").innerHTML=

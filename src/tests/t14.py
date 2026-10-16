@@ -47,6 +47,17 @@ try:
           if([...q].sort().join('')!==[...it.k.toLowerCase()].sort().join(''))out.push(['letras',it.k,q]);}
         if(t==='completar'&&!/[?]/.test(it.q.split('\\n')[1]))out.push(['semfalta',it.k]);});}
       return out}""");print('problemas:',res[:8],len(res));assert not res
+    # «Conheça»: cada palavra é apresentada (significado, tema, classe) e escrita 3 vezes; só a 3ª conta para a revisão
+    pg.evaluate("()=>{S.lang='fr';S.vol=5;S.rvv={};startPage('conheca-familia-1')}");pg.wait_for_timeout(200)
+    r=pg.evaluate("()=>({n:gm.items.length,q:gm.items[0].q,rec:gm.items.map(i=>!i._noRec),K:P.K})");print(r)
+    assert r['n']==15 and r['rec']==[False,False,True]*5 and 'Tema: Família' in r['q'] and 'Classe: substantivo' in r['q'] and 'artigo' in r['q']
+    pg.fill('#gm-typed','xxx');pg.click('#gm-submit');assert pg.evaluate("()=>Object.keys(S.rvv).length")==0,'cópia errada não entra na revisão'
+    assert pg.evaluate("()=>VOLUME5.pages[0].type")=='conheca'
+    tot=pg.evaluate("()=>['fr','it','en'].map(l=>{S.lang=l;return CATS.map(c=>{let n=0;VOLUME5.pages.filter(p=>p.type==='conheca'&&p.cat===c[0]).forEach(p=>{P=p;n+=vocWords().length});return [c[0],n,VOCAB[l][c[0]].length]}).filter(x=>x[1]!==x[2])})");print('cobertura conheca',tot);assert tot==[[],[],[]]
+    # introdução das palavras nas demais páginas: cartão aberto na 1ª pergunta
+    for t in ['reco','completar','embaralhar','escreva']:
+        pg.evaluate("(t)=>{S.lang='it';S.vol=5;startPage(t+'-comida-1')}",t);pg.wait_for_timeout(150)
+        assert pg.evaluate("()=>{const d=document.querySelector('#gstage details.rule');return !!d&&d.open&&/Palavras desta página/.test(d.innerText)}"),t
     # jogar uma página de escrever: erro entra na revisão como palavra; acerto não
     pg.evaluate("()=>{S.lang='fr';S.vol=5;S.rvv={};S.day={d:'',n:0};startPage('escreva-saudacoes-1')}");pg.wait_for_timeout(200)
     assert pg.is_visible('#gm-typed')

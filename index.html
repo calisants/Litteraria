@@ -685,7 +685,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.2.2",d:"2026-10-15"};
+const APP_REL={v:"1.3.0",d:"2026-10-16"};
 
 
 const RAW={
@@ -1402,14 +1402,18 @@ const DRILL={"bank":{"fr":{"presente":[["parler",["je ","tu ","il ","nous ","vou
    1 Pronúncia → 2 Vocabulário → 3 Jogos → 4 Gramática → 5 Conversação.
    Os ids internos (1 jogos, 2 pronúncia, 3 conversação, 4 gramática, 5 vocabulário) NÃO mudam o que já existia,
    e as páginas movidas guardam `vid` (volume de origem) para continuarem com o mesmo sorteio. */
-const VOCTYPES=[["reco","Reconheça: escolha a palavra","Reconheça"],["tema","Ouça e entenda (com áudio)","Tema"],["completar","Complete a palavra","Complete"],["embaralhar","Letras embaralhadas","Embaralhe"],["escreva","Escreva a palavra","Escreva"],["ditado","Ditado: como se escreve (com áudio)","Ditado"]];
+const VOCGAMES=["conheca","reco","completar","embaralhar","escreva"];
+const VOCTYPES=[["conheca","Conheça as palavras","Conheça"],["reco","Reconheça: escolha a palavra","Reconheça"],["tema","Ouça e entenda (com áudio)","Tema"],["completar","Complete a palavra","Complete"],["embaralhar","Letras embaralhadas","Embaralhe"],["escreva","Escreva a palavra","Escreva"],["ditado","Ditado: como se escreve (com áudio)","Ditado"]];
 const VOLUME5={id:5,title:"Volume 2 · Vocabulário",types:VOCTYPES,pages:[]};
 (function(){
   const take=ts=>{const out=[];VOLUME2.pages=VOLUME2.pages.filter(p=>{if(ts.indexOf(p.type)>=0){out.push(p);return false;}return true;});return out;};
   const moved=take(["tema","ditado"]),frases=take(["frases"]);
   moved.concat(frases).forEach(p=>{p.vid=2;});
   /* Vocabulário: cada tema vira duas partes (a 1ª e a 2ª metade das palavras) por exercício */
-  ["reco","completar","embaralhar","escreva"].forEach(t=>CATS.forEach((c,i)=>[1,2].forEach(part=>VOLUME5.pages.push({id:t+"-"+c[0]+"-"+part,type:t,n:i*2+part,cat:c[0],part:part,themes:[c[0]],sub:c[1],meta:c[1]+" · parte "+part}))));
+  /* «Conheça»: grupos de ~5 palavras (K páginas por tema, o mesmo para os 3 idiomas) */
+  const KP={};CATS.forEach(c=>{KP[c[0]]=Math.ceil(Math.max(...["fr","it","en"].map(l=>(VOCAB[l][c[0]]||[]).length))/5);});
+  CATS.forEach((c,i)=>{for(let k=1;k<=KP[c[0]];k++)VOLUME5.pages.push({id:"conheca-"+c[0]+"-"+k,type:"conheca",n:VOLUME5.pages.filter(x=>x.type==="conheca").length+1,cat:c[0],part:k,K:KP[c[0]],themes:[c[0]],sub:c[1],meta:c[1]+" · parte "+k+" de "+KP[c[0]]});});
+  VOCGAMES.filter(t=>t!=="conheca").forEach(t=>CATS.forEach((c,i)=>[1,2].forEach(part=>VOLUME5.pages.push({id:t+"-"+c[0]+"-"+part,type:t,n:i*2+part,cat:c[0],part:part,themes:[c[0]],sub:c[1],meta:c[1]+" · parte "+part}))));
   VOLUME5.pages=VOLUME5.pages.concat(moved);
   VOLUME2.types=VOLUME2.types.filter(t=>["alfabeto","sons","fala"].indexOf(t[0])>=0);
   VOLUME2.title="Volume 1 · Pronúncia";
@@ -1881,7 +1885,7 @@ function renderMe(){
 }
 
 /* ----- resumo do caderno (tela inicial) ----- */
-const GAMENAME={reco:"Reconheça",completar:"Complete",embaralhar:"Embaralhe",escreva:"Escreva",frases:"Frases",artigos:"Artigos",plural:"Plural",presente:"Presente",passado:"Passado",negacao:"Negação",prep:"Preposições",classes:"Classes",falsos:"Falsos amigos",cross:"Cruzadas",search:"Caça-palavras",connect:"Conecte",odd:"Intruso",sentence:"Conversação",resposta:"Respostas",alfabeto:"Alfabeto",sons:"Pares de sons",fala:"Sons difíceis",tema:"Palavras",ditado:"Ditado",frases:"Frases"};
+const GAMENAME={conheca:"Conheça",reco:"Reconheça",completar:"Complete",embaralhar:"Embaralhe",escreva:"Escreva",frases:"Frases",artigos:"Artigos",plural:"Plural",presente:"Presente",passado:"Passado",negacao:"Negação",prep:"Preposições",classes:"Classes",falsos:"Falsos amigos",cross:"Cruzadas",search:"Caça-palavras",connect:"Conecte",odd:"Intruso",sentence:"Conversação",resposta:"Respostas",alfabeto:"Alfabeto",sons:"Pares de sons",fala:"Sons difíceis",tema:"Palavras",ditado:"Ditado",frases:"Frases"};
 function vocabSet(){const set=new Set();Object.values(VOCAB[S.lang]).flat().forEach(it=>set.add(it.w.toLowerCase()));return set;}
 function renderStats(){
   const L=S.lang,pl=S.plays[L]||{},sk=S.sk[L]||{};
@@ -1893,7 +1897,7 @@ function renderStats(){
   const all=Object.keys(S.plays).reduce((n,l)=>n+Object.values(S.plays[l]).reduce((a,b)=>a+b,0),0);
   $("#st-line").textContent=doneN+" páginas · "+mastered+" palavras dominadas";
   const main=["cross","search","connect"].map(t=>"<div><b>"+(pl[t]||0)+"</b><small>"+GAMENAME[t]+"</small></div>").join("");
-  const more=["odd","sentence","resposta","tema","ditado","sons","frases","reco","completar","embaralhar","escreva"].concat(VOLUME4.types.map(t=>t[0])).filter(t=>pl[t]).map(t=>GAMENAME[t]+" "+pl[t]).join(" · ");
+  const more=["odd","sentence","resposta","tema","ditado","sons","frases","conheca","reco","completar","embaralhar","escreva"].concat(VOLUME4.types.map(t=>t[0])).filter(t=>pl[t]).map(t=>GAMENAME[t]+" "+pl[t]).join(" · ");
   const worst=Object.keys(sk).filter(k=>sk[k][1]>sk[k][0]).sort((a,b)=>(sk[b][1]-sk[b][0])-(sk[a][1]-sk[a][0])).slice(0,6);
   const pct=n=>Math.round(100*n/Math.max(1,pages));
   $("#st-body").innerHTML=
@@ -2632,7 +2636,7 @@ $("#ls-next").addEventListener("click",()=>{
 const gm={items:[],ids:[],types:null,i:0,sel:null,solved:false,bad:false,miss:0,open:true,txt:"",tries:0,review:false,drill:false};
 const DAY=864e5,RV_STEPS=[1,3,7,14,30];
 const TYPABLE=["presente","passado","futuro","condicional","subjuntivo","reflexivos"];
-const isGramP=()=>!!P&&(GRAMTYPES.indexOf(P.type)>=0||(typeof VOCTYPES!=="undefined"&&["reco","completar","embaralhar","escreva"].indexOf(P.type)>=0)||P.type==="revisao"||P.type==="treino");
+const isGramP=()=>!!P&&(GRAMTYPES.indexOf(P.type)>=0||(typeof VOCGAMES!=="undefined"&&VOCGAMES.indexOf(P.type)>=0)||P.type==="revisao"||P.type==="treino");
 const curType=()=>gm.types?gm.types[gm.i]:P.type;
 const nrm=s=>String(s).trim().replace(/[’‘`´]/g,"'").replace(/\s+/g," ").toLowerCase();
 const noAcc=s=>nrm(s).normalize("NFD").replace(/[̀-ͯ]/g,"");
@@ -2672,10 +2676,11 @@ function loadGram(){
   gm.sel=null;gm.solved=false;gm.bad=false;gm.txt="";gm.tries=0;
   renderGram();
   const it=gm.items[gm.i];
-  const vocP=!!P&&["reco","completar","embaralhar","escreva"].indexOf(P.type)>=0;
-  setStatus("#gm-status",vocP?(it._force?"Digite a palavra.":"Escolha a palavra certa."):gm.i===0?(gm.drill?"Digite a forma certa.":gm.review?"Revise: escolha ou digite a resposta certa.":"Leia a regra e escolha a resposta certa."):(it._force?"Digite a forma certa.":"Escolha a resposta certa."));
+  const vocP=isVocP();
+  setStatus("#gm-status",vocP?(P.type==="conheca"?"Cada palavra nova: leia, copie, escreva de novo e depois sem olhar.":it._force?"Digite a palavra.":"Escolha a palavra certa."):gm.i===0?(gm.drill?"Digite a forma certa.":gm.review?"Revise: escolha ou digite a resposta certa.":"Leia a regra e escolha a resposta certa."):(it._force?"Digite a forma certa.":"Escolha a resposta certa."));
 }
 function ruleCard(){
+  if(isVocP())return P.type==="conheca"?"":vocCard();
   const t=curType();if(!hasRule(t))return "";
   const R=GRAM.rules[S.lang][t];
   return '<details class="rule"'+(gm.open?" open":"")+"><summary>Regra · "+esc(R.t)+"</summary><div class=\"in\">"+
@@ -2722,12 +2727,12 @@ $("#gm-submit").addEventListener("click",()=>{
   if(typed?!gm.txt.trim():gm.sel===null)return;
   const ok=typed?acc.some(a=>nrm(a)===nrm(gm.txt)):gm.sel===it.a;
   if(ok){
-    if(!gm.bad){skRec(it.k,R.t,true);rvUpdate(true);}
+    if(!gm.bad&&!it._noRec){skRec(it.k,R.t,true);rvUpdate(true);}
     gramSolve(it);setStatus("#gm-status","Certo!","ok");
     return;
   }
   gm.tries++;
-  if(!gm.bad){gm.bad=true;gm.miss++;skRec(it.k,R.t,false);rvUpdate(false);}
+  if(!gm.bad){gm.bad=true;gm.miss++;if(!it._noRec){skRec(it.k,R.t,false);rvUpdate(false);}}
   sfx("bad");
   if(!typed){
     const o=it.o[gm.sel];
@@ -2998,15 +3003,39 @@ document.addEventListener("click",e=>{
 /* ===== Volume 2: Vocabulário, exercícios de escrita (sem áudio) =====
    Usam o mesmo motor da gramática (p9.js). Cada resposta errada entra na revisão como palavra ("v|palavra"). */
 VOCTYPES.forEach(t=>{GAMENAME[t[0]]=t[2];});
-["reco","completar","embaralhar","escreva"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="gram";GAMEFN[t]=startVoc;});
+VOCGAMES.forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="gram";GAMEFN[t]=startVoc;});
+const isVocP=()=>!!P&&VOCGAMES.indexOf(P.type)>=0&&P.type!==undefined&&gm.types===null&&!gm.review&&!gm.drill;
+/* Apresentação das palavras: aparece aberta na 1ª pergunta de cada página de vocabulário (como o cartão de regra na gramática) */
+function vocCard(){
+  const ws=vocWords();
+  return '<details class="rule"'+(gm.open?" open":"")+"><summary>Palavras desta página · "+esc(ws.length)+"</summary><div class=\"in\">"+
+    "<p>Estas são as palavras que aparecem nas perguntas. Leia, ouça (se puder) e só então responda.</p>"+
+    '<ul class="rex">'+ws.map(e=>"<li><b>"+esc(full(e))+"</b> <span>"+esc(e.pt)+"</span> "+speakBtn(full(e))+"</li>").join("")+"</ul></div></details>";
+}
 function vocWords(){
-  const arr=(VOCAB[S.lang]&&VOCAB[S.lang][P.cat])||[],h=Math.ceil(arr.length/2);
-  return P.part===1?arr.slice(0,h):arr.slice(h);
+  const arr=(VOCAB[S.lang]&&VOCAB[S.lang][P.cat])||[],K=P.K||2,n=arr.length;
+  return arr.slice(Math.round((P.part-1)*n/K),Math.round(P.part*n/K));
 }
 const sameLetters=(a,b)=>a.length===b.length&&a.every((x,i)=>x===b[i]);
 function vocBase(e,q){
   const f=full(e);
   return {q:q,o:[f],a:0,w:"«"+e.pt+"» = «"+f+"».",s:f,k:e.w,lbl:e.pt,ok:[...new Set([e.w,f])],_force:true};
+}
+/* Classe da palavra, só quando o próprio tema ou o artigo permite afirmar (sem inventar) */
+const CLS={verbos:"verbo (forma do infinitivo)",cores:"cor",numeros:"número",descricoes:"descrição (como alguém ou algo é)",saudacoes:"saudação ou expressão",perguntas:"palavra ou expressão de pergunta",dias:"dia da semana, mês ou período",direcoes:"direção ou lugar"};
+const catName=c=>(CATS.find(x=>x[0]===c)||[0,c])[1];
+function classOf(e){return CLS[e.cat]||(e.a?"substantivo (nome de coisa, pessoa ou lugar)":"");}
+function wordIntro(e){
+  const f=full(e),cl=classOf(e);
+  return "Palavra nova em "+LNAME[S.lang]+":\n«"+f+"» significa «"+e.pt+"».\nTema: "+catName(e.cat)+(cl?" · Classe: "+cl:"")+(e.a?"\nVem com o artigo «"+(e.a.endsWith("'")?e.a:e.a)+"»: escreva com ele ou sem ele.":"");
+}
+/* cada palavra: 1) apresentação + copiar, 2) escrever de novo, 3) escrever sem olhar */
+function itemsKnow(e){
+  const f=full(e),a=vocBase(e,wordIntro(e)+"\n\n1 de 3 · Copie: "+f);
+  const b=vocBase(e,"2 de 3 · Escreva de novo: "+f+"\n(«"+e.pt+"»)");
+  const c=vocBase(e,"3 de 3 · Agora sem olhar. Escreva «"+e.pt+"» em "+LNAME[S.lang]+":");
+  a._noRec=b._noRec=true;
+  return [a,b,c];
 }
 function itemComplete(e){
   const ch=Array.from(e.w),ix=[];
@@ -3030,9 +3059,9 @@ function startVoc(){
   let ws=vocWords();
   if(P.type==="embaralhar"){const one=ws.filter(e=>/^\p{L}{3,}$/u.test(e.w));if(one.length>=4)ws=one;}
   const mk={reco:vocabItem,completar:itemComplete,embaralhar:itemScramble,escreva:itemWrite}[P.type];
-  const items=sh0(ws).map(mk);
+  const items=P.type==="conheca"?ws.flatMap(itemsKnow):sh0(ws).map(mk);
   gm.items=items;gm.ids=items.map(it=>"v|"+it.k.toLowerCase());gm.types=null;gm.review=false;gm.drill=false;
-  gm.i=0;gm.miss=0;gm.open=false;
+  gm.i=0;gm.miss=0;gm.open=true;
   loadGram();
 }
 

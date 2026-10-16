@@ -11,12 +11,13 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 
 ## Regras técnicas
 - Ao publicar, troque o número do cache em `sw.js` (mots-parole-vNN) e a linha de `src/VERSION` (versão e data mostradas no app). **Não mude `APP_VERSION` em `src/p3.js`** (v6), senão o progresso dela some.
-- Rodar antes de publicar: `python3 -I tests/gt.py`, `t10.py`, `t11.py`, `t13.py` (dentro de `src/`). O único erro esperado no t11 é o de fontes não encontradas (ele abre o arquivo fora do site).
+- Rodar antes de publicar: `python3 -I tests/gt.py`, `t10.py`, `t11.py`, `t13.py` e `t14.py` (dentro de `src/`). O único erro esperado no t11 é o de fontes não encontradas (ele abre o arquivo fora do site).
 - Conteúdo de gramática: `src/tools/` (geradores) e `src/content5.js` (gerado por `tools/mk_content5.py`). As correções de rótulo e de texto dos cartões ficam em `tools/gram_rules3.py` (dicionário `OV`).
 - Commits terminam com os trailers de atribuição pedidos pela sessão.
 
 - Volumes: 1 Pronúncia, 2 Vocabulário, 3 Jogos, 4 Gramática, 5 Conversação (`src/content6.js`). Cada jogo/exercício precisa funcionar sem áudio; os com áudio levam «(com áudio)» no nome.
-- Sugestões e erros vão para as Issues do GitHub (botão no app, com cópia de texto como alternativa).
+- Sugestões e erros: tela própria em Ajustes → Google Forms (`FB_FORM` em `p10.js`; formulário e planilha na pasta «motseparole» do Drive dela), com «Copiar o texto» como alternativa.
+- Vocabulário: toda página de exercício abre com o cartão «Palavras desta página» (as palavras antes das perguntas); a 1ª página de cada tema é «Conheça as palavras».
 
 ## Estado e pendências (outubro de 2026)
 - Ordem didática das páginas de gramática já aplicada (está no `LEIA-ME.md`).

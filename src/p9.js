@@ -2,7 +2,7 @@
 const gm={items:[],ids:[],types:null,i:0,sel:null,solved:false,bad:false,miss:0,open:true,txt:"",tries:0,review:false,drill:false};
 const DAY=864e5,RV_STEPS=[1,3,7,14,30];
 const TYPABLE=["presente","passado","futuro","condicional","subjuntivo","reflexivos"];
-const isGramP=()=>!!P&&(GRAMTYPES.indexOf(P.type)>=0||(typeof VOCTYPES!=="undefined"&&["reco","completar","embaralhar","escreva"].indexOf(P.type)>=0)||P.type==="revisao"||P.type==="treino");
+const isGramP=()=>!!P&&(GRAMTYPES.indexOf(P.type)>=0||(typeof VOCGAMES!=="undefined"&&VOCGAMES.indexOf(P.type)>=0)||P.type==="revisao"||P.type==="treino");
 const curType=()=>gm.types?gm.types[gm.i]:P.type;
 const nrm=s=>String(s).trim().replace(/[’‘`´]/g,"'").replace(/\s+/g," ").toLowerCase();
 const noAcc=s=>nrm(s).normalize("NFD").replace(/[̀-ͯ]/g,"");
@@ -42,10 +42,11 @@ function loadGram(){
   gm.sel=null;gm.solved=false;gm.bad=false;gm.txt="";gm.tries=0;
   renderGram();
   const it=gm.items[gm.i];
-  const vocP=!!P&&["reco","completar","embaralhar","escreva"].indexOf(P.type)>=0;
-  setStatus("#gm-status",vocP?(it._force?"Digite a palavra.":"Escolha a palavra certa."):gm.i===0?(gm.drill?"Digite a forma certa.":gm.review?"Revise: escolha ou digite a resposta certa.":"Leia a regra e escolha a resposta certa."):(it._force?"Digite a forma certa.":"Escolha a resposta certa."));
+  const vocP=isVocP();
+  setStatus("#gm-status",vocP?(P.type==="conheca"?"Cada palavra nova: leia, copie, escreva de novo e depois sem olhar.":it._force?"Digite a palavra.":"Escolha a palavra certa."):gm.i===0?(gm.drill?"Digite a forma certa.":gm.review?"Revise: escolha ou digite a resposta certa.":"Leia a regra e escolha a resposta certa."):(it._force?"Digite a forma certa.":"Escolha a resposta certa."));
 }
 function ruleCard(){
+  if(isVocP())return P.type==="conheca"?"":vocCard();
   const t=curType();if(!hasRule(t))return "";
   const R=GRAM.rules[S.lang][t];
   return '<details class="rule"'+(gm.open?" open":"")+"><summary>Regra · "+esc(R.t)+"</summary><div class=\"in\">"+
@@ -92,12 +93,12 @@ $("#gm-submit").addEventListener("click",()=>{
   if(typed?!gm.txt.trim():gm.sel===null)return;
   const ok=typed?acc.some(a=>nrm(a)===nrm(gm.txt)):gm.sel===it.a;
   if(ok){
-    if(!gm.bad){skRec(it.k,R.t,true);rvUpdate(true);}
+    if(!gm.bad&&!it._noRec){skRec(it.k,R.t,true);rvUpdate(true);}
     gramSolve(it);setStatus("#gm-status","Certo!","ok");
     return;
   }
   gm.tries++;
-  if(!gm.bad){gm.bad=true;gm.miss++;skRec(it.k,R.t,false);rvUpdate(false);}
+  if(!gm.bad){gm.bad=true;gm.miss++;if(!it._noRec){skRec(it.k,R.t,false);rvUpdate(false);}}
   sfx("bad");
   if(!typed){
     const o=it.o[gm.sel];
