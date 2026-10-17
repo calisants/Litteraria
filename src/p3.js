@@ -268,7 +268,7 @@ function renderIndex(){
   const V=curVol();
   if(S.fGame!=="all"&&!V.types.some(t=>t[0]===S.fGame))S.fGame="all";
   $("#vol-title").textContent=LNAME[S.lang]+" · "+V.title;
-  $("#f-game").innerHTML='<option value="all">Todos os jogos</option>'+V.types.map(t=>'<option value="'+t[0]+'">'+esc(t[2])+"</option>").join("");
+  $("#f-game").innerHTML='<option value="all">Todos os tipos de lição</option>'+V.types.map(t=>'<option value="'+t[0]+'">'+esc(t[2])+"</option>").join("");
   $("#f-game").value=S.fGame;
   const num={};V.pages.forEach((p,i)=>{num[p.id]=i+1;});
   $("#f-theme").value=S.fTheme;$("#f-level").value=S.fLevel;

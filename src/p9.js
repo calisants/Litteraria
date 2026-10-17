@@ -127,7 +127,7 @@ $("#gm-next").addEventListener("click",()=>{
   if(gm.review){
     sfx("done");
     openSheet("Revisão concluída",'<p class="help">'+(n-gm.miss)+" de "+n+" certas de primeira.</p>"+goalLine+
-      '<button type="button" class="btn primary wide" id="rv-next" style="margin-bottom:10px">Fazer a próxima página nova</button>'+list,true);
+      '<button type="button" class="btn primary wide" id="rv-next" style="margin-bottom:10px">Fazer a próxima lição</button>'+list,true);
     setStatus("#gm-status","Revisão concluída.","ok");return;
   }
   markDone();sfx("done");

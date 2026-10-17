@@ -54,11 +54,9 @@ function dueItems(max){
     const r=rvVocab(k);return {type:"vocab",id:r.id,it:vocabItem(r.e)};
   });
 }
-function nextNewPage(){return VOLUME4.pages.find(p=>!S.done[S.lang+":"+p.id])||null;}
 function renderToday(){
   const el=$("#today-sub");if(!el)return;
-  const d=dueCount(),np=nextNewPage();
-  el.textContent=LNAME[S.lang]+" · "+(d?d+" para revisar":(np?"próxima: "+VOLUME4.types.find(t=>t[0]===np.type)[2]+" #"+np.n:"tudo em dia"));
+  el.textContent=LNAME[S.lang]+" · "+planText();
   const n=dayN();
   $("#goal-fill").style.width=Math.min(100,Math.round(100*n/S.goal))+"%";
   $("#goal-txt").textContent=n>=S.goal?"Meta cumprida hoje ("+n+")":"Meta de hoje: "+n+" de "+S.goal;
@@ -98,20 +96,23 @@ function drillWord(){
 function startDrill(kind,tid){
   lastDrill={kind:kind,tid:tid};
   P={id:"treino",type:"treino",n:0};
-  showGame("Treino",LNAME[S.lang]+" · "+(kind==="v"?"verbos: "+DRILL.labels[S.lang][tid]:"palavras: português → "+LNAME[S.lang]));
+  showGame("Treino",LNAME[S.lang]+" · "+(kind==="v"?"verbos: "+DRILL.labels[S.lang][tid]:kind==="r"?"palavras que você errou":"palavras: português → "+LNAME[S.lang]));
   const items=[];
-  for(let i=0;i<10;i++)items.push(kind==="v"?drillConj(tid):drillWord());
+  if(kind==="r"){sh0(weakWords().slice(0,15)).slice(0,10).forEach(e=>{const it=vocabItem(e);it._force=true;items.push(it);});}
+  else for(let i=0;i<10;i++)items.push(kind==="v"?drillConj(tid):drillWord());
+  if(!items.length){openSheet("Nenhuma palavra errada","<p class=\"help\">Você não tem palavras erradas em "+esc(LNAME[S.lang])+" no momento. Continue as lições e as palavras que você errar aparecem aqui.</p>",false);return;}
   gm.items=items;gm.ids=items.map((_,i)=>"d|"+i);gm.types=items.map(()=>"drill");gm.review=false;gm.drill=true;gm.i=0;gm.miss=0;gm.open=false;
   loadGram();
 }
 STAGES.treino="#gstage";DOCKS.treino="gram";GAMEFN.treino=()=>lastDrill?startDrill(lastDrill.kind,lastDrill.tid):openTrainMenu();
 function openTrainMenu(){
-  const L=DRILL.labels[S.lang];
+  const L=DRILL.labels[S.lang],nw=weakWords().length;
   openSheet("Treino de "+LNAME[S.lang],
     '<p class="help">Idioma do treino (é o mesmo idioma do app):</p>'+
     '<div class="seg" role="group" aria-label="Idioma do treino" style="margin-bottom:12px">'+Object.keys(LNAME).map(l=>'<button type="button" data-trainlang="'+l+'" aria-pressed="'+(l===S.lang)+'">'+LNAME[l]+"</button>").join("")+"</div>"+
-    '<p class="help">Cada rodada tem 10 itens diferentes. Sem regra na tela: é para testar o que você já sabe. Erros de palavras entram na revisão.</p>'+
+    '<p class="help">Cada rodada tem 10 itens. Sem regra na tela: é para testar o que você já sabe. «Revisar palavras que errei» usa as palavras em que você errou mais do que acertou; cada acerto aqui as tira da lista.</p>'+
     Object.keys(L).map(t=>'<button type="button" class="btn wide" data-train="v|'+esc(t)+'" style="margin-bottom:8px">Verbos em '+esc(LNAME[S.lang])+": "+esc(L[t])+"</button>").join("")+
+    '<button type="button" class="btn wide" data-train="r" style="margin-bottom:8px"'+(nw?"":" disabled")+'>Revisar palavras que errei ('+nw+")</button>"+
     '<button type="button" class="btn wide" data-train="w" style="margin-bottom:8px">Palavras: português → '+esc(LNAME[S.lang])+"</button>",false);
 }
 function trainSub(){const e=$("#train-sub");if(e)e.textContent=LNAME[S.lang]+" · digitar verbos e palavras";}
@@ -120,15 +121,16 @@ $("#sheet-in").addEventListener("click",e=>{
   const tl=e.target.closest("[data-trainlang]");
   if(tl){S.lang=tl.dataset.trainlang;lastDrill=null;save();syncPrefs();renderIndex();trainSub();openTrainMenu();return;}
   const t=e.target.closest("[data-train]");
-  if(t){closeSheet();const v=t.dataset.train;if(v==="w")startDrill("w");else startDrill("v",v.slice(2));return;}
+  if(t){closeSheet();const v=t.dataset.train;if(v==="w")startDrill("w");else if(v==="r")startDrill("r");else startDrill("v",v.slice(2));return;}
   if(e.target.closest("#drill-more")){closeSheet();GAMEFN.treino();return;}
-  if(e.target.closest("#rv-next")){closeSheet();const np=nextNewPage();if(np){S.vol=4;S.fGame="all";save();startPage(np.id);}else go("home");}
+  if(e.target.closest("#rv-next")){closeSheet();const np=nextNewPage();if(np)startLesson(np);else go("home");}
 });
 function startToday(){
-  if(dueCount())return startReview();
-  const np=nextNewPage();
-  if(!np){openSheet("Tudo em dia","<p class=\"help\">Você concluiu todas as páginas de gramática em "+esc(LNAME[S.lang])+" e não há nada para revisar. Experimente o Treino, que gera itens novos a cada rodada.</p>",false);return;}
-  S.vol=4;S.fGame="all";save();startPage(np.id);
+  const pl=todayPlan();
+  if(pl.kind==="review")return startReview();
+  if(pl.kind==="weak")return startDrill("r");
+  if(pl.kind==="lesson")return startLesson(pl.ref);
+  openSheet("Tudo em dia","<p class=\"help\">Você concluiu todas as lições da trilha em "+esc(LNAME[S.lang])+" e não há nada para revisar. Experimente o Treino, que gera itens novos a cada rodada.</p>",false);
 }
 $("#go-today").addEventListener("click",startToday);
 /* meta diária nos ajustes */
