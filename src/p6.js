@@ -2,7 +2,7 @@
 const sn={lines:[],i:0,words:[],bank:[],slot:[],solved:false,doneLines:0};
 function startSentence(){
   seedNow();
-  sn.fr=P.type==="frases";sn.lines=(sn.fr?FRASES:DIALOGS)[S.lang][P.n-1];sn.i=0;sn.doneLines=0;fitFn=null;
+  sn.fr=P.type==="frases";sn.lines=P.lines||(sn.fr?FRASES:DIALOGS)[S.lang][P.n-1];sn.i=0;sn.doneLines=0;fitFn=null;
   loadLine();
 }
 function loadLine(){
@@ -18,6 +18,7 @@ function renderSentence(){
   const l=sn.lines[sn.i],spk=sn.i%2===0?"A":"B";
   const prev=sn.i>0&&!sn.fr?'<p class="said"><small>Fala anterior</small>'+esc(sn.lines[sn.i-1].s)+"</p>":"";
   let h=prev+'<p class="prompt"><small>'+(sn.fr?"Frase ":"Fala ")+(sn.i+1)+" de "+sn.lines.length+(sn.fr?" · monte em ":" · pessoa "+spk+" diz, em ")+LNAME[S.lang]+":</small>"+esc(l.pt)+"</p>";
+  if(P.book)h+='<p class="note"><small>Frase copiada do livro «'+esc(P.sub)+'» (Projeto Gutenberg, domínio público). Tradução e nota: escritas por Claude, sem fonte conferida.</small></p>';
   h+='<div class="slot" id="sn-slot" aria-label="Sua frase">'+sn.slot.map(b=>'<button type="button" class="blk" data-un="'+b.id+'">'+esc(b.w)+"</button>").join("")+"</div>";
   const used=new Set(sn.slot.map(b=>b.id));
   h+='<div class="bank" id="sn-bank">'+sn.bank.map(b=>'<button type="button" class="blk'+(used.has(b.id)?" used":"")+'" data-w="'+b.id+'"'+(used.has(b.id)?" tabindex=-1 aria-hidden=true":"")+">"+esc(b.w)+"</button>").join("")+"</div>";

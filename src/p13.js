@@ -16,7 +16,7 @@ function lessonPath(){
   const gids=GROUPS.map(g=>g[0]).filter(g=>CATS.some(c=>c[2]===g));
   const chunk=(arr,i,n)=>arr.slice(Math.round(i*arr.length/n),Math.round((i+1)*arr.length/n));
   const gram=VOLUME4.pages,conv=[];
-  VOLUME3.pages.filter(p=>p.type==="frases").forEach(p=>conv.push(p));
+  VOLUME3.pages.filter(p=>p.type==="frases"&&!p.book).forEach(p=>conv.push(p));
   const pairs=VOLUME3.pages.filter(p=>p.type==="sentence").map(s=>[s,M[3].get("resposta-"+s.n)]);
   pairs.forEach(pr=>pr.forEach(p=>{if(p)conv.push(p);}));
   gids.forEach((g,gi)=>{
@@ -34,6 +34,7 @@ function lessonPath(){
     VOLUME5.pages.filter(p=>p.cat===c.cat&&p.type==="conheca").forEach(p=>out.push({vol:5,page:p,voc:true}));
     ["reco","completar","embaralhar","escreva"].forEach(t=>[1,2].forEach(k=>add(5,t+"-"+c.cat+"-"+k,{voc:true})));
   }));
+  BOOKS.forEach(b=>VOLUME3.pages.filter(p=>p.book===b.id).forEach(p=>out.push({vol:3,page:p})));
   return(_path=out);
 }
 function pageMastered(p){

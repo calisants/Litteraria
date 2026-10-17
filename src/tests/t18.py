@@ -55,6 +55,19 @@ try:
     pg.evaluate("()=>go('profile')");assert not pg.is_visible('#clear-stats')
     pg.evaluate("()=>go('settings')");g=pg.evaluate("()=>[...document.querySelectorAll('#s-settings .grp')].map(x=>x.textContent)");print(g);assert g==['Aparência','Som e vibração','Estudo','Dados','Sobre e ajuda']
     assert pg.is_visible('#sec-layout');pg.evaluate("()=>{S.style='fofo';save();applyTheme();syncPrefs()}");assert not pg.is_visible('#sec-layout') and pg.is_visible('#sec-estilo')
+    # frases dos livros: 2 páginas por livro, só no idioma certo, no fim da trilha, jogáveis
+    r=pg.evaluate("()=>VOLUME3.pages.filter(p=>p.book).map(p=>p.id+'|'+p.langs[0]+'|'+p.lines.length)");print(r);assert len(r)==6 and all(x.endswith('|5') for x in r)
+    for lang,pid in (('fr','frases-livro-verne-2'),('it','frases-livro-pinocchio-1'),('en','frases-livro-alice-2')):
+        pg.evaluate("(a)=>{S.lang=a[0];S.vol=3;save();syncPrefs();go('vol');startPage(a[1])}",[lang,pid]);pg.wait_for_timeout(250)
+        assert pg.evaluate("()=>sn.lines.length")==5 and pg.evaluate("()=>pageInLang(P)")
+        for i in range(5):
+            for w in pg.evaluate("()=>sn.words"):
+                pg.evaluate("(w)=>{const b=sn.bank.find(x=>x.w===w&&!sn.slot.includes(x));sn.slot.push(b);renderSentence()}",w)
+            pg.click('#sn-submit');pg.wait_for_timeout(80)
+            assert pg.evaluate("()=>sn.solved"),(pid,i)
+            if i<4:pg.click('#sn-next');pg.wait_for_timeout(80)
+    pg.evaluate("()=>{S.lang='it'}");assert not pg.evaluate("()=>pageInLang(VOLUME3.pages.find(p=>p.id==='frases-livro-verne-1'))")
+    last=pg.evaluate("()=>{S.lang='fr';_path=null;const L=lessonPath().filter(r=>pageInLang(r.page));return L[L.length-1].page.id}");print('última da trilha fr:',last);assert last=='frases-livro-verne-2'
     print('erros:',errs);assert not errs
     print('t18 ok')
 finally:
