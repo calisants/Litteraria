@@ -32,7 +32,7 @@ function dictRender(){
   $("#dict-count").textContent=rows.length+(rows.length===1?" palavra":" palavras")+(q?" encontradas":" em ordem alfabética")+" · "+LNAME[S.lang];
   $("#dict-title").textContent="Dicionário de "+LNAME[S.lang];
   const nEx=EX[S.lang]?Object.keys(EX[S.lang]).length:0;
-  $("#dict-src").textContent=SIL_SRC[S.lang]+" "+(nEx?"Exemplos: frases do Wikcionário (licença CC BY-SA 4.0), traduzidas para o português por Claude. Só aparecem "+nEx+" exemplos: escolhi apenas frases que usam a palavra no mesmo sentido do app e descartei expressões, frases antigas e sentidos diferentes.":"Exemplos: ainda não há para o inglês, porque o arquivo do Wikcionário em inglês não foi enviado e o site dele está bloqueado para mim.")+" "+bookNote(S.lang);
+  $("#dict-src").textContent=SIL_SRC[S.lang]+" "+(nEx?"Exemplos: frases do Wikcionário (licença CC BY-SA 4.0), traduzidas para o português por Claude. Só aparecem "+nEx+" exemplos: escolhi apenas frases que usam a palavra no mesmo sentido do app e descartei expressões, frases antigas e sentidos diferentes.":"Exemplos: ainda não há para este idioma.")+" "+bookNote(S.lang);
 }
 function dictOpen(){
   $("#dict-lang").innerHTML=Object.keys(LNAME).map(l=>'<button type="button" data-dictlang="'+l+'" aria-pressed="'+(l===S.lang)+'">'+LNAME[l]+"</button>").join("");

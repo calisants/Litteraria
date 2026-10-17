@@ -26,7 +26,7 @@ try:
     for l,w,sy in (('it','telefono','te·le·fo·no'),('en','computer','com·put·er')):
         pg.click('[data-dictlang=%s]'%l);pg.fill('#dict-q',w);t=pg.inner_text('#dict-list');print(l,t.replace(chr(10),' | ')[:90]);assert sy in t and pg.evaluate("()=>S.lang")==l
     pg.click('[data-dictlang=it]');pg.fill('#dict-q','burattino');t=pg.inner_text('#dict-list');assert 'il burattino' in t and 'bu·rat·ti·no' in t and 'As Aventuras de Pinóquio' in t and 'As Aventuras de Pinóquio' in pg.inner_text('#dict-src')
-    pg.click('[data-dictlang=en]');assert 'ainda não há para o inglês' in pg.inner_text('#dict-src') and 'Alice no País das Maravilhas' in pg.inner_text('#dict-src')
+    pg.click('[data-dictlang=en]');assert '154 exemplos' in pg.inner_text('#dict-src') and 'Alice no País das Maravilhas' in pg.inner_text('#dict-src')
     pg.fill('#dict-q','rabbit');pg.fill('#dict-q','curious');t=pg.inner_text('#dict-list');assert 'cu·ri·ous' in t and 'curioso' in t and 'Alice no País das Maravilhas' in t
     pg.click('[data-dictlang=it]');pg.fill('#dict-q','birra');assert 'Mi piace la birra' in pg.inner_text('#dict-list') and 'Eu gosto de cerveja' in pg.inner_text('#dict-list') and 'CC BY-SA' in pg.inner_text('#dict-src')
     # toda palavra do vocabulário tem divisão que reconstrói a palavra

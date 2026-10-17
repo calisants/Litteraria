@@ -40,6 +40,18 @@ const STYLES={
   soft:{name:"Soft elegante",desc:"Bege, dourado e salmão, linhas finas",schemes:[
     ["Branco, bege, dourado",0,"#faf6ef","#fffdf9","#efe6d6","#e0d3bb","#9a8250","#2e2a22","#62594a","#7d5f16","#2d6a4a","#a8362b"],
     ["Nude e salmão",0,"#fbf1ec","#ffffff","#f3dccf","#e6c7b8","#a56a5c","#3b2620","#6d4a40","#b04a38","#2d6a4a","#a8362b"]]},
+  pp:{name:"Céu estrelado",desc:"Inspirado em O Pequeno Príncipe: estrelas, trigo e um planetinha",schemes:[
+    ["Noite de estrelas",1,"#101b3a","#18264d","#22336a","#34457e","#c9a94f","#f8f1d6","#cfc8aa","#f2c94c","#7fdca8","#ff9a8f"],
+    ["Trigo dourado",0,"#fbf2d3","#fffaea","#f1e2b3","#e0cc8b","#8a6d1d","#23305a","#4d4a3a","#2c4a9a","#2d6a4a","#a8362b"]]},
+  alice:{name:"País das Maravilhas",desc:"Inspirado em Alice: cartas, chá e relógio de bolso",schemes:[
+    ["Chá das cinco",0,"#eaf6f7","#ffffff","#d3ecee","#a9d3d8","#2f7480","#12333a","#3f5a60","#b4204f","#1f7a55","#c0392b"],
+    ["Jardim da Rainha",1,"#10242a","#18343c","#224650","#336068","#6fb7c0","#eef8f6","#b8d3d3","#ff7fa3","#7fdca8","#ff9a8f"]]},
+  pinocchio:{name:"Oficina de Pinóquio",desc:"Inspirado em Pinóquio: madeira, estrelas e cerejas",schemes:[
+    ["Madeira e cerejas",0,"#f7ecd6","#fffaf0","#ecd9b4","#d9bf90","#8a5a2b","#3a2412","#5e4630","#a8321e","#2d6a4a","#a8362b"],
+    ["Oficina à noite",1,"#24160d","#33200f","#47301a","#5e4426","#d6a35c","#fbeed8","#d9c3a0","#f2b24c","#7fdca8","#ff9a8f"]]},
+  verne:{name:"Volta ao Mundo",desc:"Inspirado em Verne: mapa, bússola e rota de viagem",schemes:[
+    ["Mapa antigo",0,"#f4e9cf","#fffaf0","#e9d9b2","#d4be8a","#7a5c1e","#1d2b36","#4a4a3c","#0b5a7a","#2d6a4a","#a8362b"],
+    ["Travessia noturna",1,"#0b1d2c","#12293c","#1b3a53","#2d5170","#d9b04a","#f3ecd8","#b9c4cc","#e8bf55","#7fdca8","#ff9a8f"]]},
   min:{name:"Minimalista",desc:"Muito branco, alto contraste",schemes:[
     ["Branco e preto",0,"#ffffff","#ffffff","#f1f1f1","#d9d9d9","#595959","#111111","#454545","#111111","#16683c","#b3261e"],
     ["Papel e azul",0,"#fafaf7","#ffffff","#efeee8","#dcdbd2","#5c5c55","#16160f","#47473f","#0b3d91","#16683c","#b3261e"],
