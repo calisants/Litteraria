@@ -1,0 +1,330 @@
+burattino|boneco de madeira, marionete|s|m
+casa|casa|s|f
+babbo|papai|s|m
+legno|madeira|s|m
+paese|país, vilarejo|s|m
+compagno|colega, companheiro|s|m
+volto|rosto|s|m
+parola|palavra|s|f
+orecchio|orelha|s|m
+voce|voz|s|f
+paura|medo|s|f
+maestro|mestre, professor|s|m
+assassino|assassino|s|m
+minuto|minuto|s|m
+tempo|tempo|s|m
+pezzo|pedaço|s|m
+capello|cabelo|s|m
+nome|nome|s|m
+coda|cauda, rabo|s|f
+padrona|patroa, dona|s|f
+vocina|vozinha|s|f
+pescatore|pescador|s|m
+carro|carroça, carro|s|m
+volta|vez, volta|s|f
+soldo|moeda pequena, dinheiro|s|m
+modo|modo, maneira|s|m
+vita|vida|s|f
+caso|caso|s|m
+corpo|corpo|s|m
+mamma|mamãe|s|f
+figliuolo|filho|s|m
+buio|escuridão|s|m
+disgrazia|desgraça|s|f
+contadino|camponês|s|m
+omino|homenzinho|s|m
+momento|momento|s|m
+fuoco|fogo|s|m
+aria|ar|s|f
+carità|caridade|s|f
+compagnia|companhia|s|f
+colpo|golpe|s|m
+fortuna|sorte, fortuna|s|f
+miracolo|milagre|s|m
+prigione|prisão|s|f
+furia|fúria|s|f
+paglia|palha|s|f
+tasca|bolso|s|f
+ragione|razão|s|f
+gola|garganta|s|f
+noia|tédio|s|f
+colazione|café da manhã, almoço leve|s|f
+storia|história|s|f
+falegname|marceneiro|s|m
+stanza|quarto, cômodo|s|f
+risata|risada|s|f
+lume|luz, lume|s|m
+aglio|alho|s|m
+mezzanotte|meia-noite|s|f
+sacco|saco|s|m
+guardia|guarda|s|f
+riva|margem|s|f
+barchetta|barquinho|s|f
+monello|moleque|s|m
+grotta|gruta|s|f
+capanna|cabana|s|f
+uscio|porta, entrada|s|m
+grido|grito|s|m
+lezione|lição, aula|s|f
+rumore|barulho|s|m
+atto|ato|s|m
+distanza|distância|s|f
+scoglio|rochedo|s|m
+compratore|comprador|s|m
+spettacolo|espetáculo|s|m
+boccone|bocado|s|m
+guaio|apuro, encrenca|s|m
+uva|uva|s|f
+ala|asa|s|f
+candela|vela (de cera)|s|f
+malattia|doença|s|f
+gallina|galinha|s|f
+ladro|ladrão|s|m
+pollaio|galinheiro|s|m
+onore|honra|s|m
+cerchio|círculo|s|m
+babbino|papaizinho|s|m
+contentezza|contentamento|s|f
+occhiata|olhada|s|f
+coraggio|coragem|s|m
+petto|peito|s|m
+consiglio|conselho|s|m
+fosso|vala|s|m
+disperazione|desespero|s|f
+bestia|bicho, animal|s|f
+giudizio|juízo|s|m
+giudice|juiz|s|m
+festa|festa|s|f
+commedia|comédia|s|f
+verità|verdade|s|f
+compassione|compaixão|s|f
+grazia|graça|s|f
+carbone|carvão|s|m
+notizia|notícia|s|f
+nodo|nó|s|m
+seta|seda|s|f
+bugia|mentira|s|f
+galantuomo|homem honesto, cavalheiro|s|m
+giornata|dia (inteiro)|s|f
+guadagno|ganho|s|m
+patto|pacto, acordo|s|m
+cotone|algodão|s|m
+ortolano|hortelão|s|m
+scena|cena|s|f
+teatro|teatro|s|m
+barba|barba|s|f
+corsa|corrida|s|f
+alba|aurora|s|f
+diavolo|diabo|s|m
+morte|morte|s|f
+tavola|mesa|s|f
+oste|hospedeiro, dono de hospedaria|s|m
+denaro|dinheiro|s|m
+ramo|galho|s|m
+manico|cabo|s|m
+pace|paz|s|f
+roba|coisa, mercadoria|s|f
+ragazzino|garotinho|s|m
+barca|barca|s|f
+bastimento|navio|s|m
+amore|amor|s|m
+consolazione|consolo|s|f
+muso|focinho, cara|s|m
+palla|bola|s|f
+rete|rede|s|f
+fune|corda|s|f
+pagliaccio|palhaço|s|m
+dire|dizer|v
+sapere|saber|v
+cominciare|começar|v
+sentire|sentir, ouvir|v
+gridare|gritar|v
+diventare|tornar-se|v
+venire|vir|v
+domandare|perguntar|v
+rispondere|responder|v
+passare|passar|v
+piangere|chorar|v
+ridere|rir|v
+rimanere|ficar, permanecer|v
+stare|estar, ficar|v
+tornare|voltar|v
+tirare|puxar, atirar|v
+saltare|pular|v
+lasciare|deixar|v
+portare|levar, trazer|v
+vivere|viver|v
+finire|terminar|v
+mettere|pôr, colocar|v
+guardare|olhar|v
+arrivare|chegar|v
+chiamare|chamar|v
+studiare|estudar|v
+entrare|entrar|v
+camminare|andar, caminhar|v
+dovere|dever, ter que|v
+morire|morrer|v
+uscire|sair|v
+ritornare|voltar|v
+urlare|berrar, urrar|v
+pensare|pensar|v
+promettere|prometer|v
+condurre|conduzir|v
+gettare|jogar, lançar|v
+replicare|replicar|v
+nuotare|nadar|v
+restare|ficar, restar|v
+provare|provar, tentar|v
+credere|acreditar|v
+incontrare|encontrar|v
+scappare|fugir|v
+crescere|crescer|v
+perdere|perder|v
+mostrare|mostrar|v
+battere|bater|v
+ritrovare|reencontrar|v
+tenere|segurar, manter|v
+partire|partir|v
+bussare|bater (à porta)|v
+tremare|tremer|v
+riconoscere|reconhecer|v
+girare|girar|v
+perdonare|perdoar|v
+conoscere|conhecer|v
+vendere|vender|v
+viaggiare|viajar|v
+levare|levantar, tirar|v
+raggiungere|alcançar|v
+cogliere|colher|v
+sedere|sentar|v
+salvare|salvar|v
+intendere|entender|v
+vergognarsi|ter vergonha|v
+nascondere|esconder|v
+mandare|mandar, enviar|v
+durare|durar|v
+toccare|tocar|v
+porre|pôr|v
+vestire|vestir|v
+inghiottire|engolir|v
+riuscire|conseguir|v
+fermare|parar|v
+raccontare|contar, narrar|v
+ferire|ferir|v
+spaventare|assustar|v
+cadere|cair|v
+sognare|sonhar|v
+volare|voar|v
+baciare|beijar|v
+regalare|presentear|v
+svegliare|acordar|v
+fuggire|fugir|v
+stringere|apertar|v
+mantenere|manter|v
+continuare|continuar|v
+allungare|esticar, alongar|v
+alzare|levantar|v
+meritare|merecer|v
+posare|pousar, apoiar|v
+capitare|acontecer|v
+chiedere|pedir|v
+rammentare|lembrar|v
+attraversare|atravessar|v
+raccogliere|recolher, colher|v
+importare|importar|v
+usare|usar|v
+imparare|aprender|v
+scendere|descer|v
+mancare|faltar|v
+attaccare|atacar, prender|v
+coprire|cobrir|v
+muovere|mover|v
+dispiacere|desagradar, lamentar|v
+sospirare|suspirar|v
+ringraziare|agradecer|v
+mordere|morder|v
+rendere|devolver, tornar|v
+sparire|desaparecer|v
+meravigliare|maravilhar, espantar|v
+affogare|afogar|v
+accadere|acontecer|v
+invitare|convidar|v
+montare|montar, subir|v
+commuovere|comover|v
+contare|contar|v
+liberare|libertar|v
+respirare|respirar|v
+brontolare|resmungar|v
+apparire|aparecer|v
+singhiozzare|soluçar|v
+guarire|curar, sarar|v
+insegnare|ensinar|v
+guadagnare|ganhar|v
+costringere|obrigar|v
+scusare|desculpar|v
+sorridere|sorrir|v
+chiudere|fechar|v
+difendere|defender|v
+suonare|tocar (instrumento), soar|v
+ripetere|repetir|v
+inseguire|perseguir|v
+legare|amarrar|v
+sperare|esperar (ter esperança)|v
+pregare|rezar, pedir|v
+rubare|roubar|v
+permettere|permitir|v
+sbadigliare|bocejar|v
+scavare|cavar|v
+giurare|jurar|v
+fabbricare|fabricar|v
+raccomandare|recomendar|v
+ricordare|lembrar|v
+digerire|digerir|v
+non|não|adv
+tutto|tudo, todo|adj
+tanto|tanto|adv
+così|assim|adv
+invece|em vez disso|adv
+gran|grande|adj
+primo|primeiro|adj
+dunque|portanto|adv
+senza|sem|adv
+grosso|grosso, grande|adj
+vero|verdadeiro|adj
+bel|bonito|adj
+fino|até|adv
+quasi|quase|adv
+lungo|longo|adj
+solo|só, sozinho|adj
+nuovo|novo|adj
+pieno|cheio|adj
+sicuro|seguro|adj
+indietro|para trás|adv
+meglio|melhor|adv
+nemmeno|nem sequer|adv
+oramai|agora, já|adv
+giù|para baixo|adv
+alto|alto|adj
+chiuso|fechado|adj
+aperto|aberto|adj
+terribile|terrível|adj
+puro|puro|adj
+nostro|nosso|adj
+insieme|juntos|adv
+intorno|em volta|adv
+subito|logo|adv
+sottile|fino, sutil|adj
+orribile|horrível|adj
+amaro|amargo|adj
+largo|largo|adj
+duro|duro|adj
+inutile|inútil|adj
+allegro|alegre|adj
+serio|sério|adj
+comodo|cômodo|adj
+sicuramente|com certeza|adv
+soltanto|somente|adv
+solamente|somente|adv
+almeno|pelo menos|adv
+perfino|até mesmo|adv
+piuttosto|em vez disso|adv

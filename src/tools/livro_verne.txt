@@ -1,0 +1,378 @@
+maître|mestre, patrão|s|le
+paquebot|navio a vapor, transatlântico|s|le
+passager|passageiro|s|le
+bord|bordo, borda|s|le
+wagon|vagão|s|le
+affaire|assunto, negócio|s|l'
+domestique|empregado doméstico|s|le
+inspecteur|inspetor|s|l'
+instant|instante|s|l'
+station|estação, parada|s|la
+agent|agente|s|l'
+vitesse|velocidade|s|la
+guide|guia|s|le
+capitaine|capitão|s|le
+compagnon|companheiro|s|le
+navire|navio|s|le
+retard|atraso|s|le
+fer|ferro|s|le
+vapeur|vapor|s|la
+voleur|ladrão|s|le
+pays|país|s|le
+midi|meio-dia|s|le
+moyen|meio, recurso|s|le
+chemin|caminho|s|le
+quai|cais, plataforma|s|le
+parole|palavra (fala), promessa|s|la
+port|porto|s|le
+mandat|mandado|s|le
+mécanicien|maquinista, mecânico|s|le
+voile|véu, vela|s|le
+coeur|coração|s|le
+cri|grito|s|le
+ligne|linha|s|la
+lieu|lugar|s|le
+côte|costa|s|la
+condition|condição|s|la
+service|serviço|s|le
+cabine|cabine|s|la
+conducteur|condutor, motorista|s|le
+esprit|espírito, mente|s|l'
+feu|fogo|s|le
+fortune|fortuna, sorte|s|la
+intérêt|interesse|s|l'
+arrivée|chegada|s|l'
+territoire|território|s|le
+membre|membro|s|le
+bateau|barco|s|le
+habitude|hábito|s|l'
+animal|animal|s|l'
+projet|projeto|s|le
+soin|cuidado|s|le
+obstacle|obstáculo|s|l'
+fait|fato|s|le
+temple|templo|s|le
+club|clube|s|le
+nombre|número, quantidade|s|le
+itinéraire|itinerário|s|l'
+arrestation|prisão (ato de prender)|s|l'
+troupe|tropa|s|la
+personnage|personagem|s|le
+journal|jornal, diário|s|le
+intérieur|interior|s|l'
+soldat|soldado|s|le
+oeil|olho|s|l'
+gouvernement|governo|s|le
+horloge|relógio (de parede)|s|l'
+adversaire|adversário|s|l'
+scène|cena|s|la
+roue|roda|s|la
+tempête|tempestade|s|la
+récit|relato|s|le
+salle|sala|s|la
+suite|continuação, sequência|s|la
+sol|solo, chão|s|le
+situation|situação|s|la
+victime|vítima|s|la
+équipage|tripulação|s|l'
+conversation|conversa|s|la
+étranger|estrangeiro|s|l'
+manière|maneira|s|la
+retour|volta, retorno|s|le
+émotion|emoção|s|l'
+quart|quarto, um quarto|s|le
+religion|religião|s|la
+chef|chefe|s|le
+colère|raiva|s|la
+dieu|deus|s|le
+brume|névoa|s|la
+impatience|impaciência|s|l'
+aventure|aventura|s|l'
+ingénieur|engenheiro|s|l'
+succès|sucesso|s|le
+marin|marinheiro|s|le
+charbon|carvão|s|le
+rive|margem|s|la
+horizon|horizonte|s|l'
+sacrifice|sacrifício|s|le
+ton|tom|s|le
+groupe|grupo|s|le
+inquiétude|inquietação|s|l'
+rapidité|rapidez|s|la
+bâtiment|edifício, navio|s|le
+surface|superfície|s|la
+usage|uso|s|l'
+fin|fim|s|la
+accident|acidente|s|l'
+serviteur|criado, servo|s|le
+instrument|instrumento|s|l'
+hauteur|altura|s|la
+occasion|ocasião, oportunidade|s|l'
+parent|parente|s|le
+habit|roupa, traje|s|l'
+soulier|sapato|s|le
+apparence|aparência|s|l'
+mission|missão|s|la
+continent|continente|s|le
+race|raça|s|la
+commerce|comércio|s|le
+population|população|s|la
+rang|posição, fileira|s|le
+base|base|s|la
+arrêt|parada|s|l'
+prison|prisão|s|la
+fil|fio|s|le
+valeur|valor|s|la
+connaissance|conhecimento|s|la
+joie|alegria|s|la
+époque|época|s|l'
+perte|perda|s|la
+intention|intenção|s|l'
+loi|lei|s|la
+flanc|lado, flanco|s|le
+signal|sinal|s|le
+soie|seda|s|la
+aile|asa|s|l'
+direction|direção|s|la
+bonheur|felicidade|s|le
+bourse|bolsa (de valores), bolsinha|s|la
+banc|banco (de sentar)|s|le
+gain|ganho|s|le
+vérité|verdade|s|la
+colonne|coluna|s|la
+appareil|aparelho|s|l'
+repos|descanso|s|le
+action|ação|s|l'
+existence|existência|s|l'
+article|artigo|s|l'
+vêtement|roupa, peça de roupa|s|le
+confiance|confiança|s|la
+folie|loucura|s|la
+moitié|metade|s|la
+malle|baú, mala grande|s|la
+couverture|cobertor, capa|s|la
+phrase|frase|s|la
+point|ponto|s|le
+course|corrida|s|la
+campagne|campo, campanha|s|la
+défaut|defeito|s|le
+sommeil|sono|s|le
+goutte|gota|s|la
+précaution|precaução|s|la
+balle|bala, bola pequena|s|la
+satisfaction|satisfação|s|la
+position|posição|s|la
+douane|alfândega|s|la
+tabagie|casa de fumo, tabacaria|s|la
+prairie|pradaria|s|la
+décembre|dezembro|s|le
+octobre|outubro|s|l'
+novembre|novembro|s|le
+descendre|descer|v
+parcourir|percorrer|v
+traverser|atravessar|v
+offrir|oferecer|v
+convenir|convir, combinar|v
+retenir|reter, segurar|v
+accomplir|realizar, cumprir|v
+monter|subir, montar|v
+franchir|transpor, atravessar|v
+échapper|escapar|v
+élever|elevar, criar|v
+séparer|separar|v
+employer|empregar, usar|v
+conduire|conduzir|v
+diriger|dirigir|v
+présenter|apresentar|v
+permettre|permitir|v
+battre|bater, vencer|v
+espérer|esperar (ter esperança)|v
+lutter|lutar|v
+calmer|acalmar|v
+approcher|aproximar|v
+former|formar|v
+embarquer|embarcar|v
+disparaître|desaparecer|v
+forcer|forçar|v
+brûler|queimar|v
+prononcer|pronunciar|v
+précipiter|precipitar, lançar|v
+briser|quebrar|v
+adresser|dirigir, endereçar|v
+sonner|tocar (campainha, sino)|v
+demeurer|permanecer, morar|v
+observer|observar|v
+prévenir|avisar, prevenir|v
+citer|citar|v
+retarder|atrasar|v
+couvrir|cobrir|v
+continuer|continuar|v
+charger|carregar|v
+tenter|tentar|v
+abandonner|abandonar|v
+établir|estabelecer|v
+produire|produzir|v
+fixer|fixar|v
+appartenir|pertencer|v
+glisser|escorregar, deslizar|v
+débarquer|desembarcar|v
+empêcher|impedir|v
+amener|trazer, levar|v
+sauver|salvar|v
+indiquer|indicar|v
+admettre|admitir|v
+annoncer|anunciar|v
+relever|levantar, erguer de novo|v
+couper|cortar|v
+accepter|aceitar|v
+accuser|acusar|v
+accompagner|acompanhar|v
+étendre|estender|v
+pénétrer|penetrar, entrar|v
+traiter|tratar|v
+assurer|garantir, assegurar|v
+inquiéter|preocupar|v
+affirmer|afirmar|v
+renverser|derrubar, virar|v
+finir|terminar|v
+recommander|recomendar|v
+enlever|retirar, tirar|v
+engager|contratar, comprometer|v
+rouler|rolar, rodar|v
+refuser|recusar|v
+obliger|obrigar|v
+résoudre|resolver|v
+marquer|marcar|v
+retentir|ressoar|v
+réserver|reservar|v
+contenir|conter|v
+composer|compor|v
+garder|guardar|v
+interrompre|interromper|v
+veiller|vigiar, velar|v
+combattre|combater|v
+nommer|nomear, chamar|v
+prévoir|prever|v
+coûter|custar|v
+soutenir|sustentar, afirmar|v
+parier|apostar|v
+dépasser|ultrapassar|v
+consulter|consultar|v
+signer|assinar|v
+dépenser|gastar|v
+réfléchir|refletir, pensar|v
+détacher|soltar, desamarrar|v
+rechercher|procurar|v
+mêler|misturar|v
+célébrer|celebrar|v
+terminer|terminar|v
+transporter|transportar|v
+fuir|fugir|v
+saisir|agarrar|v
+expliquer|explicar|v
+examiner|examinar|v
+troubler|perturbar|v
+armer|armar|v
+rapporter|trazer de volta, relatar|v
+appuyer|apoiar|v
+régler|acertar, regular|v
+prolonger|prolongar|v
+commander|comandar, encomendar|v
+cesser|cessar, parar|v
+vendre|vender|v
+profiter|aproveitar|v
+retirer|retirar|v
+remonter|subir de novo|v
+convaincre|convencer|v
+réunir|reunir|v
+prétendre|pretender, afirmar|v
+constater|constatar|v
+disposer|dispor|v
+rompre|romper|v
+défendre|defender, proibir|v
+distinguer|distinguir|v
+partager|compartilhar, dividir|v
+diminuer|diminuir|v
+calculer|calcular|v
+mesurer|medir|v
+baisser|baixar|v
+subir|sofrer, passar por|v
+commettre|cometer|v
+éloigner|afastar|v
+obtenir|obter|v
+repousser|rechaçar, adiar|v
+promettre|prometer|v
+souffler|soprar|v
+nourrir|alimentar|v
+insister|insistir|v
+échanger|trocar|v
+éviter|evitar|v
+murmurer|murmurar|v
+percer|furar, perfurar|v
+conclure|concluir|v
+fumer|fumar|v
+honnête|honesto|adj
+honorable|honrado|adj
+immense|imenso|adj
+absolument|absolutamente|adv
+plusieurs|vários|adj
+brave|corajoso, bom|adj
+vaste|vasto|adj
+évidemment|evidentemente|adv
+impossible|impossível|adj
+divers|diverso|adj
+nombreux|numeroso|adj
+rapidement|rapidamente|adv
+froidement|friamente|adv
+admirable|admirável|adj
+directement|diretamente|adv
+principal|principal|adj
+presque|quase|adv
+confortable|confortável|adj
+extrême|extremo|adj
+extrêmement|extremamente|adv
+certainement|certamente|adv
+considérable|considerável|adj
+immédiatement|imediatamente|adv
+précisément|precisamente|adv
+nécessaire|necessário|adj
+vivement|vivamente|adv
+audacieux|audacioso|adj
+prudent|prudente|adj
+impassible|impassível|adj
+vigoureux|vigoroso|adj
+ancien|antigo|adj
+tranquillement|tranquilamente|adv
+sauvage|selvagem|adj
+humain|humano|adj
+épais|espesso|adj
+heureusement|felizmente|adv
+libre|livre|adj
+digne|digno|adj
+parfaitement|perfeitamente|adv
+excentrique|excêntrico|adj
+singulier|singular, estranho|adj
+égal|igual|adj
+meilleur|melhor|adj
+singulièrement|singularmente|adv
+fidèle|fiel|adj
+charmant|encantador|adj
+sérieusement|seriamente|adv
+plutôt|em vez disso, antes|adv
+autrement|de outro modo|adv
+pourtant|no entanto|adv
+sacré|sagrado|adj
+surpris|surpreso|adj
+partout|em toda parte|adv
+généreux|generoso|adj
+immobile|imóvel|adj
+sec|seco|adj
+quelconque|qualquer|adj
+pareil|igual, semelhante|adj
+élégant|elegante|adj
+fameux|famoso|adj
+debout|em pé|adv
+suprême|supremo|adj
+irrésistible|irresistível|adj
+pittoresque|pitoresco|adj
+superbe|soberbo, magnífico|adj

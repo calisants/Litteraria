@@ -16,13 +16,13 @@ try:
         pg2=b.new_page();pg2.goto('file://'+OLD);pg2.wait_for_timeout(600);old=pg2.evaluate(IDS)
         assert old==new,'ids/ordem/numeração das lições antigas mudaram';print('lições antigas idênticas:',sum(len(x[1]) for x in new))
     r=pg.evaluate("()=>{const o={};for(const l of ['fr','it','en']){S.lang=l;o[l]=VOLUME5.pages.filter(pageInLang).length}return o}");print(r)
-    assert r['fr']>r['it'] and r['en']>r['it'] and r['it']==r['fr']-pg.evaluate("()=>VOLUME5.pages.filter(p=>p.langs&&p.langs[0]==='fr').length")
+    assert r['fr']>r['it']>0 and r['en']>r['it'] and r['it']==pg.evaluate("()=>VOLUME5.pages.filter(p=>!p.langs).length+VOLUME5.pages.filter(p=>p.langs&&p.langs[0]==='it').length")
     # trilha: livros ficam no fim e só no idioma certo; com tudo feito, a próxima lição é do livro
     pg.evaluate("()=>{S.lang='fr';S.done={};S.sk={};save()}")
     pg.evaluate("()=>lessonPath().forEach(r=>{if(!r.page.langs)S.done['fr:'+r.page.id]=1})")
     nx=pg.evaluate("()=>nextNewPage().page.id");print('próxima (fr, tudo feito):',nx);assert nx=='conheca-pp1-1'
     pg.evaluate("()=>{S.lang='it';S.done={};lessonPath().forEach(r=>{if(!r.page.langs)S.done['it:'+r.page.id]=1})}")
-    assert pg.evaluate("()=>nextNewPage()")is None
+    assert pg.evaluate("()=>nextNewPage().page.id")=='conheca-pinocchio1-1'
     pg.evaluate("()=>{S.lang='en';S.done={};lessonPath().forEach(r=>{if(!r.page.langs)S.done['en:'+r.page.id]=1})}")
     assert pg.evaluate("()=>nextNewPage().page.id")=='conheca-alice1-1'
     # sumário: fr mostra, it não mostra; filtro de tema do livro
@@ -33,9 +33,10 @@ try:
     n=pg.evaluate("()=>document.querySelectorAll('#toc [data-id]').length");print('páginas do tema livro-pp:',n);assert n>=12*16-1
     pg.evaluate("()=>{S.lang='it';renderIndex()}")
     assert pg.evaluate("()=>document.querySelectorAll('#toc [data-id]').length")==0
+    pg.evaluate("()=>{S.fTheme='livro-pinocchio';renderIndex()}");assert pg.evaluate("()=>document.querySelectorAll('#toc [data-id]').length")>=100
     pg.evaluate("()=>{S.fTheme='all';S.lang='fr';save()}")
     # abre e joga cada tipo de lição em fr e en
-    for lang,cat in (('fr','pp1'),('en','alice3')):
+    for lang,cat in (('fr','pp1'),('fr','verne2'),('it','pinocchio3'),('en','alice3')):
         for pid in ['conheca-%s-1'%cat,'reco-%s-1'%cat,'completar-%s-2'%cat,'embaralhar-%s-1'%cat,'escreva-%s-2'%cat]:
             pg.evaluate("(a)=>{S.lang=a[0];S.vol=5;save();syncPrefs();go('vol');startPage(a[1])}",[lang,pid]);pg.wait_for_timeout(250)
             ok=pg.evaluate("()=>gm.items.length>0&&gm.items.every(i=>i.q||i.k)")

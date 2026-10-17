@@ -17,4 +17,4 @@ const BOOKTHEMES=BOOKS.map(b=>["livro-"+b.id,b.name+" ("+b.ln+")"]);
   });
 })();
 const pageInLang=p=>!p.langs||p.langs.indexOf(S.lang)>=0;
-const bookNote=l=>BOOKS.filter(b=>b.lang===l).map(b=>"Temas «"+b.name+"»: palavras escolhidas do texto do livro por frequência (só as palavras; nenhuma frase foi copiada). A existência de cada palavra"+(l==="fr"?" e o gênero dos substantivos foram conferidos no Wikcionário":" foi conferida no dicionário de pronúncia CMU")+"; as sílabas seguem as regras acima; a tradução foi escrita por Claude, sem fonte conferida.").join(" ");
+const bookNote=l=>BOOKS.filter(b=>b.lang===l).map(b=>"Temas «"+b.name+"»: palavras escolhidas do texto do livro por frequência (só as palavras; nenhuma frase foi copiada). A existência de cada palavra"+(l==="en"?" foi conferida no dicionário de pronúncia CMU":(l==="it"?", o gênero dos substantivos e as sílabas foram conferidos no Wikcionário (2 palavras sem sílabas lá foram divididas pelo padrão de hifenização do LibreOffice)":" e o gênero dos substantivos foram conferidos no Wikcionário"))+"; a tradução foi escrita por Claude, sem fonte conferida.").join(" ");
