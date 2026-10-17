@@ -11,7 +11,7 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 
 ## Regras técnicas
 - Ao publicar, troque o número do cache em `sw.js` (mots-parole-vNN) e a linha de `src/VERSION` (versão e data mostradas no app). **Não mude `APP_VERSION` em `src/p3.js`** (v6), senão o progresso dela some.
-- Rodar antes de publicar: `python3 -I tests/gt.py`, `t10.py`, `t11.py`, `t13.py`, `t14.py` e `t15.py` (dentro de `src/`). O único erro esperado no t11 é o de fontes não encontradas (ele abre o arquivo fora do site).
+- Rodar antes de publicar: `python3 -I tests/gt.py`, `t10.py`, `t11.py`, `t13.py`, `t14.py`, `t15.py`, `t16.py` e `t17.py` (dentro de `src/`). O único erro esperado no t11 é o de fontes não encontradas (ele abre o arquivo fora do site).
 - Conteúdo de gramática: `src/tools/` (geradores) e `src/content5.js` (gerado por `tools/mk_content5.py`). As correções de rótulo e de texto dos cartões ficam em `tools/gram_rules3.py` (dicionário `OV`).
 - Commits terminam com os trailers de atribuição pedidos pela sessão.
 
@@ -19,7 +19,9 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Sugestões e erros: tela própria em Ajustes → Google Forms (`FB_FORM` em `p10.js`; formulário e planilha na pasta «motseparole» do Drive dela), com «Copiar o texto» como alternativa.
 - Vocabulário: toda página de exercício abre com o cartão «Palavras desta página» (as palavras antes das perguntas); a 1ª página de cada tema é «Conheça as palavras».
 
-- Dicionário (`src/p12.js`, sílabas em `src/sil.js`): cada idioma mostra a fonte das sílabas na própria tela; não afirme mais do que a fonte permite. Ainda sem exemplos de uso por palavra (sugestão do Luís, 17/10).
+- Dicionário (`src/p12.js`, sílabas em `src/sil.js`, exemplos em `src/exemplos.js`): cada idioma mostra a fonte das sílabas e dos exemplos na própria tela; não afirme mais do que a fonte permite. Exemplos (Wikcionário, CC BY-SA 4.0, traduzidos por Claude) só para 116 palavras do francês e 55 do italiano; inglês sem exemplos.
+- Palavras de «O Pequeno Príncipe» (francês): `src/tools/pp_words.txt` (palavra|tradução|classe|artigo) → `tools/mk_pp.py` → `src/petitprince.js`. Só aparecem no Dicionário (não entram em jogos/Treino). Não copiar frases do livro. Existência/gênero conferidos no Wikcionário; tradução de Claude, sem fonte conferida.
+- Estilos visuais (Ajustes → Estilo visual): 7 estilos + Padrão em `STYLES` (`p3.js`, cores por variação) e CSS `:root[data-style=...]` no fim de `p1.html`; `S.style` e `S.scheme`. Todo esquema novo precisa passar no teste de contraste do `t17.py`.
 - Sugestões novas: ler a planilha de respostas na pasta «motseparole» do Drive (conector do Google Drive).
 
 ## Estado e pendências (outubro de 2026)

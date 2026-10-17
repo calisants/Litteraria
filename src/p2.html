@@ -8,7 +8,7 @@
       </div>
       <div class="me">
         <span class="avatar" id="me-av" aria-hidden="true"></span>
-        <div class="who"><b id="me-name"></b><small id="me-motto"></small></div>
+        <div class="who"><b id="me-name"></b><small id="me-motto"></small><span class="game-only" id="me-xp"></span></div>
       </div>
       <div class="bkwarn" id="bk-warn" hidden>
         <p id="bk-warn-txt"></p>
@@ -113,7 +113,9 @@
         </div>
         <div class="stack">
           <section>
-            <h2 class="lab">Estatísticas</h2>
+            <h2 class="lab">Estilo visual</h2>
+            <button type="button" class="btn wide" id="go-style">Mudar o estilo visual</button>
+            <h2 class="lab" style="margin-top:14px">Estatísticas</h2>
             <button type="button" class="btn wide" id="clear-stats" >Apagar estatísticas</button>
             <p class="help" id="clear-stats-note" aria-live="polite"></p>
           </section>
@@ -138,7 +140,7 @@
               <button type="button" data-k="layout" data-v="sharp">Nítido</button>
             </div>
           </section>
-          <section>
+          <section id="sec-modo">
             <h2 class="lab">Claro ou escuro</h2>
             <div class="seg" role="group" aria-label="Claro ou escuro">
               <button type="button" data-k="mode" data-v="auto">Automático</button>
@@ -182,7 +184,14 @@
           </section>
         </div>
         <div class="stack">
-          <section>
+          <section id="sec-estilo">
+            <h2 class="lab">Estilo visual</h2>
+            <p class="help">Muda o visual de todas as telas: botões, cartões, lições e estatísticas. O Padrão é o visual de sempre.</p>
+            <div class="stgrid" id="style-grid" role="group" aria-label="Estilo visual"></div>
+            <div id="scheme-row" hidden><h2 class="lab" style="margin-top:12px">Variação de cores</h2><div class="schs" role="group" aria-label="Variação de cores"></div></div>
+            <p class="help" id="style-note" hidden></p>
+          </section>
+          <section id="sec-cor">
             <h2 class="lab">Cor</h2>
             <div class="swatches" id="swatches" role="group" aria-label="Cor do app"></div>
             <p class="swlabel" id="swlabel"></p>

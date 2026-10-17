@@ -31,7 +31,39 @@ Object.keys(PALS).forEach(k=>{if(PALS[k].l)PALS[k].bg=PALS[k].l;});
 const AUTO_ACC={fr:["#1f3d7a","#8fa9e8"],it:["#1b5e43","#6fcf9f"],en:["#8a2a45","#e58aa5"]};
 
 /* ----- preferências e páginas concluídas (nada de progresso parcial) ----- */
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0};
+/* ----- estilos visuais: cada estilo tem variações de cor. Esquema: [nome, escuro?, fundo, cartão, cartão2, linha, borda, texto, texto2, destaque, ok, erro] ----- */
+const STYLES={
+  fofo:{name:"Fofo",desc:"Pastel, cantos bem redondos",schemes:[
+    ["Rosa bebê",0,"#fff1f5","#ffffff","#ffe0ea","#f3c6d5","#b5658a","#4a2535","#7a4a5e","#c2457a","#1f7a55","#c0392b"],
+    ["Azul céu",0,"#eef6ff","#ffffff","#dcebff","#bcd6f5","#5f86b4","#1f3350","#4a6283","#3b6fc4","#1f7a55","#c0392b"],
+    ["Menta e creme",0,"#fbf7ec","#ffffff","#e2f3ea","#c5e2d2","#5e957b","#2b3d33","#4f6558","#2a7f58","#1f7a55","#c0392b"]]},
+  soft:{name:"Soft elegante",desc:"Nude, lavanda, linhas finas",schemes:[
+    ["Branco, bege, dourado",0,"#faf6ef","#fffdf9","#efe6d6","#e0d3bb","#9a8250","#2e2a22","#62594a","#7d5f16","#2d6a4a","#a8362b"],
+    ["Rosa, dourado, preto",1,"#141114","#1f1a1d","#33262d","#4a3a40","#b08a96","#f7e9ee","#cdb5be","#e9b872","#6fcf9f","#ff8f85"],
+    ["Lavanda e champagne",0,"#f6f1fa","#ffffff","#e8dff2","#d6c8e6","#7f6c99","#2f2640","#5b4f70","#76489f","#2d6a4a","#a8362b"],
+    ["Nude e salmão",0,"#fbf1ec","#ffffff","#f3dccf","#e6c7b8","#a56a5c","#3b2620","#6d4a40","#b04a38","#2d6a4a","#a8362b"]]},
+  tech:{name:"Dark Tech",desc:"Grafite com neon, cantos retos",schemes:[
+    ["Azul elétrico",1,"#0b0e14","#141923","#1e2634","#2c3748","#6b82a6","#e6edf7","#a3b1c6","#4d8dff","#3ddc97","#ff6b6b"],
+    ["Ciano",1,"#080d10","#10181d","#18262d","#243942","#5f8c9c","#e4f4f8","#9fc0ca","#22d3ee","#3ddc97","#ff6b6b"],
+    ["Verde neon",1,"#090c09","#121812","#1b251b","#2a3a2a","#668c66","#e6f5e6","#a3c2a3","#3dff7e","#3dff7e","#ff6b6b"]]},
+  game:{name:"Gamificado",desc:"Cores vibrantes, botões em relevo",schemes:[
+    ["Arcade roxo",0,"#fff3c4","#ffffff","#ffe08a","#1a1a2e","#1a1a2e","#1a1a2e","#44446a","#6a3df0","#0e8a43","#d81f38"],
+    ["Laranja e azul",0,"#e3f2ff","#ffffff","#bfe0ff","#10243d","#10243d","#10243d","#35506f","#d9540a","#0e8a43","#d81f38"],
+    ["Verde vivo",0,"#eaffd6","#ffffff","#c9f4a0","#16301a","#16301a","#16301a","#3b5a3f","#26750a","#0e8a43","#d81f38"],
+    ["Noite arcade",1,"#1b1038","#2a1a52","#3c2670","#0a0618","#ffd23f","#ffffff","#d6c8f5","#ffd23f","#5ef2a0","#ff7a8a"]]},
+  min:{name:"Minimalista",desc:"Muito branco, alto contraste",schemes:[
+    ["Branco e preto",0,"#ffffff","#ffffff","#f1f1f1","#d9d9d9","#595959","#111111","#454545","#111111","#16683c","#b3261e"],
+    ["Papel e azul",0,"#fafaf7","#ffffff","#efeee8","#dcdbd2","#5c5c55","#16160f","#47473f","#0b3d91","#16683c","#b3261e"],
+    ["Preto e branco",1,"#000000","#0a0a0a","#1a1a1a","#2e2e2e","#9a9a9a","#ffffff","#c4c4c4","#ffffff","#6fcf9f","#ff8f85"]]},
+  cultural:{name:"Cultural",desc:"Cores da bandeira do idioma",schemes:[
+    ["Bandeira clara",0],["Bandeira escura",1],["Bandeira e creme",0]]},
+  exec:{name:"Analítico",desc:"Painéis, métricas e gráficos",schemes:[
+    ["Marinho e cinza",0,"#eef1f5","#ffffff","#dde3ec","#cbd3df","#6b778a","#0f1b2d","#475569","#12315f","#16683c","#b3261e"],
+    ["Grafite azul",1,"#0c1626","#14233a","#1f3350","#2b4468","#7d93b5","#eaf0fa","#aebdd4","#7fb0ff","#6fcf9f","#ff8f85"],
+    ["Cinza e branco",0,"#f3f4f6","#ffffff","#e5e7eb","#d1d5db","#6b7280","#111827","#4b5563","#374151","#16683c","#b3261e"]]}
+};
+const FLAGS={fr:{c:["#1f3d7a","#ffffff","#c62828"],n:"França"},it:{c:["#1b6b3a","#ffffff","#c62828"],n:"Itália"},en:{c:["#1c2f6b","#ffffff","#b71c1c"],n:"Reino Unido / EUA"}};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -43,6 +75,8 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(["classic","soft","sharp"].indexOf(sv.layout)>=0)S.layout=sv.layout;
   if(["auto","light","dark"].indexOf(sv.mode)>=0)S.mode=sv.mode;
   if(PALS[sv.pal])S.pal=sv.pal;
+  if(sv.style==="padrao"||(typeof sv.style==="string"&&Object.prototype.hasOwnProperty.call(STYLES,sv.style)))S.style=sv.style;
+  if(Number.isInteger(sv.scheme)&&sv.scheme>=0&&sv.scheme<6)S.scheme=sv.scheme;
   if(typeof sv.custom==="string"&&/^#[0-9a-f]{6}$/i.test(sv.custom))S.custom=sv.custom;
   if(typeof sv.player==="string")S.player=sv.player.slice(0,24);else if(typeof sv.dev==="string")S.player=sv.dev.slice(0,24);
   if(typeof sv.motto==="string")S.motto=sv.motto.slice(0,60);
@@ -97,10 +131,36 @@ function fromHsl(h,s,l){
   const f=n=>{const k=(n+h/30)%12;const c=l-a*Math.max(-1,Math.min(k-3,9-k,1));return Math.round(255*c).toString(16).padStart(2,"0");};
   return "#"+f(0)+f(8)+f(4);
 }
+
+function mixHex(a,b,t){const x=hexRgb(a),y=hexRgb(b);return "#"+[0,1,2].map(i=>Math.round(x[i]*(1-t)+y[i]*t).toString(16).padStart(2,"0")).join("");}
+function cultSchemes(lang){
+  const f=FLAGS[lang]||FLAGS.fr,a=f.c[0],r=f.c[2];
+  const ar=mixHex(a,"#ffffff",.42);
+  return [
+    ["Bandeira clara",0,mixHex(a,"#ffffff",.94),"#ffffff",mixHex(a,"#ffffff",.84),mixHex(a,"#ffffff",.7),mixHex(a,"#808080",.55),mixHex(a,"#000000",.8),mixHex(a,"#000000",.45),a,"#17663f",r],
+    ["Bandeira escura",1,mixHex(a,"#000000",.86),mixHex(a,"#000000",.78),mixHex(a,"#000000",.62),mixHex(a,"#ffffff",.2),mixHex(a,"#ffffff",.58),"#f4f6fa","#c4ccdb",ar,"#6fcf9f","#ff8f85"],
+    ["Bandeira e creme",0,"#f8f3e8","#fffdf8","#ece3cf",mixHex("#e0d3bb",a,.2),mixHex(a,"#808080",.5),"#1d1b16",mixHex(a,"#000000",.5),a,"#17663f",r]];
+}
+function schemeList(id){return id==="cultural"?cultSchemes(S.lang):STYLES[id].schemes;}
+function curScheme(){
+  if(S.style==="padrao")return null;
+  const l=schemeList(S.style);return l[Math.min(S.scheme,l.length-1)];
+}
+const SCH_VARS=["--bg0","--surface0","--surface20","--line0","--grid0","--ink","--muted","--accent","--ok","--bad"];
 function applyTheme(){
-  const root=document.documentElement,dark=isDark();
-  if(S.mode==="auto")root.removeAttribute("data-appmode");else root.setAttribute("data-appmode",S.mode);
+  const root=document.documentElement,sc=curScheme();
   root.setAttribute("data-layout",S.layout);
+  root.setAttribute("data-style",S.style);
+  if(sc){
+    root.setAttribute("data-appmode",sc[1]?"dark":"light");
+    [2,3,4,5,6,7,8,9,10,11].forEach((n,i)=>root.style.setProperty(SCH_VARS[i],sc[n]));
+    root.style.setProperty("--on-accent",lum(sc[9])<.19?"#ffffff":"#0d1117");
+    if(S.style==="cultural"){const f=FLAGS[S.lang]||FLAGS.fr;root.style.setProperty("--flag1",f.c[0]);root.style.setProperty("--flag2",f.c[1]);root.style.setProperty("--flag3",f.c[2]);}
+    return;
+  }
+  SCH_VARS.concat(["--flag1","--flag2","--flag3"]).forEach(v=>root.style.removeProperty(v));
+  const dark=isDark();
+  if(S.mode==="auto")root.removeAttribute("data-appmode");else root.setAttribute("data-appmode",S.mode);
   let acc;
   if(S.pal==="auto")acc=AUTO_ACC[S.lang][dark?1:0];
   else if(S.pal==="custom"){const h=toHsl(S.custom);acc=fromHsl(h[0],Math.min(h[1],.85),dark?Math.max(h[2],.66):Math.min(h[2],.36));}
@@ -253,6 +313,7 @@ $("#s-vol").addEventListener("click",e=>{const b=e.target.closest("[data-pick-vo
 $("#go-profile").addEventListener("click",()=>go("profile"));
 $("#go-stats").addEventListener("click",()=>go("stats"));
 $("#go-settings").addEventListener("click",()=>go("settings"));
+$("#go-style").addEventListener("click",()=>{go("settings");const g=$("#sec-estilo");if(g&&g.scrollIntoView)g.scrollIntoView();});
 
 function pageShown(p){
   if(S.vol!==4&&S.fTheme!=="all"&&!(p.themes&&p.themes.indexOf(S.fTheme)>=0))return false;
@@ -349,19 +410,54 @@ function renderStats(){
   const more=["odd","sentence","resposta","tema","ditado","sons","frases","conheca","reco","completar","embaralhar","escreva"].concat(VOLUME4.types.map(t=>t[0])).filter(t=>pl[t]).map(t=>GAMENAME[t]+" "+pl[t]).join(" · ");
   const worst=Object.keys(sk).filter(k=>sk[k][1]>sk[k][0]).sort((a,b)=>(sk[b][1]-sk[b][0])-(sk[a][1]-sk[a][0])).slice(0,6);
   const pct=n=>Math.round(100*n/Math.max(1,pages));
+  const lv=[0,0,0,0,0];
+  Object.keys(S.rv).concat(Object.keys(S.rvv)).forEach(k=>{if(k.indexOf(L+":")===0){const v=S.rv[k]||S.rvv[k];if(v)lv[Math.min(4,Math.max(0,+v[1]||0))]++;}});
+  const lvMax=Math.max(1,Math.max.apply(null,lv)),lvTot=lv.reduce((a,b)=>a+b,0);
+  const hard=Object.keys(sk).filter(k=>sk[k][1]>sk[k][0]).length,midN=Math.max(0,vocabN-mastered-hard);
+  const wp=n=>Math.round(100*n/Math.max(1,vocabN));
+  const execHtml=
+    '<div class="exec-only wide"><h3>Painel</h3><div class="kpis"><div><b>'+doneN+'</b><small>páginas</small></div><div><b>'+mastered+'</b><small>palavras dominadas</small></div><div><b>'+total+'</b><small>partidas</small></div></div></div>'+
+    '<div class="exec-only"><h3>Retenção por nível</h3><div class="ret" role="img" aria-label="Palavras em revisão por nível, de 0 a 4">'+lv.map((n,i)=>"<div><b>"+n+'</b><i style="height:'+Math.round(100*n/lvMax)+'%"></i><small>nível '+i+"</small></div>").join("")+'</div><p class="help">'+lvTot+" itens em revisão espaçada. Quanto mais à direita, mais firme está na memória.</p></div>"+
+    '<div class="exec-only"><h3>Domínio do vocabulário</h3><div class="stackbar" role="img" aria-label="Dominadas, a reforçar e ainda não treinadas"><i style="width:'+wp(mastered)+'%;background:var(--ok)"></i><i style="width:'+wp(hard)+'%;background:var(--bad)"></i></div><p class="help">'+mastered+" dominadas (verde) · "+hard+" a reforçar (vermelho) · "+midN+" ainda sem domínio, de "+vocabN+".</p></div>";
+  const xp=total*10+mastered*5,lvl=Math.floor(Math.sqrt(xp/20))+1;
+  const xpEl=$("#me-xp");if(xpEl)xpEl.innerHTML='<span class="badge">Nível '+lvl+'</span><span class="badge b2">'+xp+' XP</span><span class="badge b3">'+mastered+' palavras</span>';
   $("#st-body").innerHTML=
     "<div><h3>Partidas concluídas em "+LNAME[L]+"</h3><div class=\"sgrid\">"+main+"</div>"+
     '<p class="help">'+(more?esc(more)+". ":"")+"Total em "+LNAME[L]+": "+total+(all!==total?" · em todos os idiomas: "+all:"")+".</p></div>"+
     "<div><h3>Páginas do caderno</h3><div class=\"bar2\"><i style=\"width:"+pct(doneN)+"%\"></i></div><p class=\"help\">"+doneN+" de "+pages+" páginas concluídas em "+LNAME[L]+".</p></div>"+
     "<div><h3>Palavras dominadas</h3><div class=\"bar2\"><i style=\"width:"+Math.round(100*mastered/Math.max(1,vocabN))+"%\"></i></div><p class=\"help\">"+mastered+" de "+vocabN+" palavras. Conta quando você acerta a palavra pelo menos 2 vezes e acerta mais do que erra.</p></div>"+
-    "<div><h3>Para treinar</h3>"+(worst.length?'<div class="train">'+worst.map(k=>'<div class="tr"><span><b>'+esc(k)+"</b><br><small>"+esc(sk[k][2]||"")+" · errou "+sk[k][1]+"x, acertou "+sk[k][0]+"x</small></span>"+(k.length<=40?speakBtn(k):"")+"</div>").join("")+"</div>":'<p class="help">Ainda sem erros registrados. Eles aparecem aqui conforme você joga.</p>')+"</div>";
+    "<div><h3>Para treinar</h3>"+(worst.length?'<div class="train">'+worst.map(k=>'<div class="tr"><span><b>'+esc(k)+"</b><br><small>"+esc(sk[k][2]||"")+" · errou "+sk[k][1]+"x, acertou "+sk[k][0]+"x</small></span>"+(k.length<=40?speakBtn(k):"")+"</div>").join("")+"</div>":'<p class="help">Ainda sem erros registrados. Eles aparecem aqui conforme você joga.</p>')+"</div>"+execHtml;
 }
 function buildSettings(){
   buildThemeSelect();
   $("#avgrid").innerHTML=["initial"].concat(Object.keys(AVATARS)).map(k=>'<button type="button" data-av="'+k+'" aria-label="Logo '+k+'">'+avatarHtml(k,40)+"</button>").join("");
+  buildStylePicker();
   $("#swatches").innerHTML=Object.keys(PALS).map(k=>'<button type="button" class="sw" data-pal="'+k+'" style="background:'+PALS[k].bg+'" aria-label="'+esc(PALS[k].name)+'"></button>').join("");
 }
+
+function stylePrev(id,i){
+  const sc=id==="padrao"?null:schemeList(id)[i||0];
+  const bg=sc?sc[2]:"#f4f5f7",su=sc?sc[3]:"#ffffff",ac=sc?sc[9]:"#1f3d7a",ln=sc?sc[6]:"#6f798b";
+  return '<span class="stpv" data-pv="'+id+'" style="background:'+bg+';border-color:'+ln+'"><i style="background:'+su+'"></i><i style="background:'+ac+'"></i><i style="background:'+su+'"></i></span>';
+}
+function buildStylePicker(){
+  const ids=["padrao"].concat(Object.keys(STYLES));
+  $("#style-grid").innerHTML=ids.map(id=>'<button type="button" class="stcard" data-style="'+id+'">'+stylePrev(id,0)+"<b>"+(id==="padrao"?"Padrão":STYLES[id].name)+"</b><small>"+(id==="padrao"?"Como era antes":STYLES[id].desc)+"</small></button>").join("");
+}
+function syncStyle(){
+  $$("#style-grid .stcard").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.style===S.style)));
+  const sw=$("#scheme-row"),on=S.style!=="padrao";
+  sw.hidden=!on;$("#sec-cor").hidden=on;$("#sec-modo").hidden=on;$("#style-note").hidden=!on;
+  if(on){
+    const l=schemeList(S.style),cur=Math.min(S.scheme,l.length-1);
+    sw.querySelector(".schs").innerHTML=l.map((s,i)=>'<button type="button" class="sch" data-scheme="'+i+'" aria-pressed="'+(i===cur)+'" aria-label="Cores: '+esc(s[0])+'"><span style="background:linear-gradient(90deg,'+s[2]+' 33%,'+s[3]+' 33% 66%,'+s[9]+' 66%)"></span><small>'+esc(s[0])+"</small></button>").join("");
+    $("#style-note").textContent=S.style==="cultural"?"As cores acompanham o idioma que você está estudando ("+(FLAGS[S.lang]||FLAGS.fr).n+"). Cor e claro/escuro seguem a variação escolhida acima.":"Neste estilo, a cor e o claro/escuro seguem a variação escolhida acima. Para usar as cores livres de antes, volte ao Padrão.";
+  }
+}
+$("#style-grid").addEventListener("click",e=>{const b=e.target.closest("[data-style]");if(!b)return;S.style=b.dataset.style;S.scheme=0;save();applyTheme();syncStyle();});
+$("#scheme-row").addEventListener("click",e=>{const b=e.target.closest("[data-scheme]");if(!b)return;S.scheme=+b.dataset.scheme;save();applyTheme();syncStyle();});
 function syncPrefs(){
+  syncStyle();
   $$("[data-k]").forEach(b=>b.setAttribute("aria-pressed",String(String(S[b.dataset.k])===b.dataset.v)));
   $$("#swatches .sw").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.pal===S.pal)));
   $("#swlabel").textContent=PALS[S.pal].name;

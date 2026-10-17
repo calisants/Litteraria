@@ -47,7 +47,12 @@ def syl(w,merge_e=False):
     cuts.append(len(w))
     parts=[w[i:j] for i,j in zip(cuts,cuts[1:])]
     return parts
-OVR={"client":["cli","ent"],"nuage":["nu","age"],"payer":["pa","yer"],"tchao":["tcha","o"],"réunion":["ré","u","nion"]}
+OVR={"client":["cli","ent"],"nuage":["nu","age"],"payer":["pa","yer"],"tchao":["tcha","o"],"réunion":["ré","u","nion"],
+ # palavras de «O Pequeno Príncipe» (hiatos e ajustes conferidos contra o IPA do Wikcionário)
+ "baobab":["ba","o","bab"],"boa":["bo","a"],"crayon":["cray","on"],"crier":["cri","er"],"créer":["cré","er"],"dédier":["dé","di","er"],
+ "confier":["con","fi","er"],"envier":["en","vi","er"],"oublier":["ou","bli","er"],"ennuyer":["en","nuy","er"],"essayer":["es","say","er"],
+ "géographe":["gé","o","graphe"],"géographie":["gé","o","gra","phie"],"extraordinaire":["ex","tra","or","di","naire"],"obéir":["o","bé","ir"],
+ "océan":["o","cé","an"],"réussir":["ré","us","sir"],"rayonner":["ray","on","ner"],"rayonnement":["ray","on","ne","ment"],"réflexion":["ré","fle","xion"]}
 def word(w,merge_e=False):
     out=[]
     for tok in re.split("([-'’ ])",w):

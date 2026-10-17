@@ -1,0 +1,497 @@
+prince|príncipe|s|le
+planète|planeta|s|la
+étoile|estrela|s|l'
+roi|rei|s|le
+chapitre|capítulo|s|le
+chose|coisa|s|la
+dessin|desenho|s|le
+géographe|geógrafo|s|le
+baobab|baobá|s|le
+allumeur|acendedor de lampiões|s|l'
+volcan|vulcão|s|le
+monde|mundo|s|le
+boa|jiboia|s|le
+question|pergunta|s|la
+temps|tempo|s|le
+vie|vida|s|la
+bonhomme|homenzinho|s|le
+explorateur|explorador|s|l'
+an|ano|s|l'
+épine|espinho|s|l'
+puits|poço|s|le
+peine|pena, dificuldade|s|la
+silence|silêncio|s|le
+maison|casa|s|la
+besoin|necessidade|s|le
+peur|medo|s|la
+soif|sede|s|la
+idée|ideia|s|l'
+histoire|história|s|l'
+tour|vez, volta|s|le
+numéro|número|s|le
+bruit|barulho|s|le
+coup|golpe, pancada|s|le
+globe|globo|s|le
+ordre|ordem|s|l'
+adieu|adeus|s|l'
+réverbère|poste de luz, lampião de rua|s|le
+poulie|polia, roldana|s|la
+faute|culpa, erro|s|la
+hasard|acaso|s|le
+exemple|exemplo|s|l'
+arbuste|arbusto|s|l'
+blé|trigo|s|le
+marchand|comerciante|s|le
+éléphant|elefante|s|l'
+géographie|geografia|s|la
+âge|idade|s|l'
+danger|perigo|s|le
+graine|semente|s|la
+secret|segredo|s|le
+muselière|focinheira|s|la
+monarque|monarca|s|le
+général|general|s|le
+minute|minuto|s|la
+poule|galinha|s|la
+crayon|lápis|s|le
+calcul|cálculo, conta|s|le
+tas|pilha, monte|s|le
+océan|oceano|s|l'
+voix|voz|s|la
+région|região|s|la
+mot|palavra|s|le
+mélancolie|melancolia|s|la
+papillon|borboleta|s|le
+preuve|prova|s|la
+effort|esforço|s|l'
+brindille|graveto|s|la
+boulon|parafuso|s|le
+honte|vergonha|s|la
+cheveu|cabelo|s|le
+chance|sorte|s|la
+plaisir|prazer|s|le
+route|estrada|s|la
+fontaine|fonte, chafariz|s|la
+grelot|guizo|s|le
+faim|fome|s|la
+explication|explicação|s|l'
+métier|ofício, profissão|s|le
+panne|pane, avaria|s|la
+moteur|motor|s|le
+portrait|retrato|s|le
+fatigue|cansaço|s|la
+mystère|mistério|s|le
+endroit|lugar|s|l'
+trésor|tesouro|s|le
+astronome|astrônomo|s|l'
+détail|detalhe|s|le
+chiffre|algarismo, número|s|le
+réflexion|reflexão|s|la
+grâce|graça|s|la
+troupeau|rebanho|s|le
+problème|problema|s|le
+effet|efeito|s|l'
+toilette|toalete, higiene pessoal|s|la
+douceur|doçura, suavidade|s|la
+marteau|martelo|s|le
+pétale|pétala|s|le
+rayonnement|brilho, irradiação|s|le
+griffe|garra|s|la
+paravent|biombo|s|le
+tort|erro, culpa|s|le
+importance|importância|s|l'
+activité|atividade|s|l'
+bête|bicho, animal|s|la
+hermine|arminho|s|l'
+sujet|assunto, tema|s|le
+autorité|autoridade|s|l'
+ivrogne|bêbado|s|l'
+fleuve|rio (que deságua no mar)|s|le
+écho|eco|s|l'
+chasseur|caçador|s|le
+rite|rito|s|le
+village|vilarejo|s|le
+lumière|luz|s|la
+seau|balde|s|le
+paysage|paisagem|s|le
+grammaire|gramática|s|la
+peintre|pintor|s|le
+apparition|aparição|s|l'
+papier|papel|s|le
+corne|chifre|s|la
+éclat|brilho|s|l'
+présence|presença|s|la
+nom|nome|s|le
+raison|razão|s|la
+démonstration|demonstração|s|la
+réputation|reputação|s|la
+jeu|jogo|s|le
+façon|jeito, maneira|s|la
+chagrin|tristeza, mágoa|s|le
+drame|drama|s|le
+rosier|roseira|s|le
+racine|raiz|s|la
+réponse|resposta|s|la
+sentiment|sentimento|s|le
+journée|dia (o dia inteiro)|s|la
+champignon|cogumelo|s|le
+larme|lágrima|s|la
+abri|abrigo|s|l'
+beauté|beleza|s|la
+horreur|horror|s|l'
+éruption|erupção|s|l'
+chenille|lagarta|s|la
+occupation|ocupação|s|l'
+geste|gesto|s|le
+ministre|ministro|s|le
+justice|justiça|s|la
+rat|rato|s|le
+soupir|suspiro|s|le
+admirateur|admirador|s|l'
+exercice|exercício|s|l'
+collection|coleção|s|la
+bouteille|garrafa|s|la
+cou|pescoço|s|le
+front|testa|s|le
+regret|arrependimento, pesar|s|le
+moralité|moral (da história)|s|la
+mouvement|movimento|s|le
+pôle|polo|s|le
+cheville|tornozelo|s|la
+univers|universo|s|l'
+lien|laço, vínculo|s|le
+lendemain|dia seguinte|s|le
+voyageur|viajante|s|le
+lèvre|lábio|s|la
+chant|canto|s|le
+promesse|promessa|s|la
+anniversaire|aniversário|s|l'
+machine|máquina|s|la
+venin|veneno|s|le
+corps|corpo|s|le
+dire|dizer|v
+répondre|responder|v
+savoir|saber|v
+suivre|seguir|v
+regarder|olhar|v
+rire|rir|v
+connaître|conhecer|v
+croire|acreditar, crer|v
+mourir|morrer|v
+demander|pedir, perguntar|v
+éteindre|apagar|v
+coucher|deitar, pôr (o sol)|v
+venir|vir|v
+importer|importar|v
+posséder|possuir|v
+ajouter|acrescentar|v
+asseoir|sentar|v
+apprivoiser|cativar, domesticar|v
+dessiner|desenhar|v
+oublier|esquecer|v
+entendre|ouvir, entender|v
+ressembler|parecer-se com|v
+voyager|viajar|v
+revenir|voltar|v
+marcher|andar, caminhar|v
+partir|partir, ir embora|v
+signifier|significar|v
+sembler|parecer|v
+commencer|começar|v
+apercevoir|avistar, perceber|v
+sentir|sentir|v
+ordonner|ordenar|v
+suffire|bastar|v
+laisser|deixar|v
+servir|servir|v
+paraître|parecer, aparecer|v
+mettre|pôr, colocar|v
+juger|julgar|v
+tenir|segurar, manter|v
+tomber|cair|v
+placer|colocar|v
+bâiller|bocejar|v
+changer|mudar, trocar|v
+réussir|conseguir, ter sucesso|v
+lever|levantar|v
+interroger|interrogar|v
+durer|durar|v
+pleurer|chorar|v
+livrer|entregar|v
+apprendre|aprender|v
+perdre|perder|v
+répéter|repetir|v
+emporter|levar embora|v
+découvrir|descobrir|v
+agir|agir|v
+passer|passar|v
+intéresser|interessar|v
+surprendre|surpreender|v
+sortir|sair|v
+exister|existir|v
+rougir|ficar vermelho, corar|v
+visiter|visitar|v
+manquer|faltar|v
+entrer|entrar|v
+reconnaître|reconhecer|v
+vivre|viver|v
+préparer|preparar|v
+essayer|tentar|v
+endormir|adormecer|v
+réveiller|acordar|v
+falloir|ser preciso|v
+habiller|vestir|v
+raconter|contar, narrar|v
+tirer|puxar, tirar|v
+occuper|ocupar|v
+compter|contar|v
+ramoner|limpar a chaminé|v
+rester|ficar, permanecer|v
+exiger|exigir|v
+saluer|cumprimentar|v
+noter|anotar|v
+arriver|chegar|v
+montrer|mostrar|v
+conseiller|aconselhar|v
+voler|voar, roubar|v
+imaginer|imaginar|v
+frapper|bater|v
+rappeler|lembrar, chamar de volta|v
+sourire|sorrir|v
+illuminer|iluminar|v
+désirer|desejar|v
+attacher|amarrar, prender|v
+remarquer|reparar, notar|v
+devenir|tornar-se|v
+tromper|enganar|v
+hésiter|hesitar|v
+serrer|apertar|v
+apparaître|aparecer|v
+reprendre|retomar|v
+consoler|consolar|v
+deviner|adivinhar|v
+écouter|escutar|v
+obéir|obedecer|v
+recevoir|receber|v
+reposer|descansar|v
+amuser|divertir|v
+admirer|admirar|v
+rallumer|reacender|v
+allumer|acender|v
+poursuivre|perseguir, continuar|v
+quitter|deixar, sair de|v
+revoir|rever|v
+trembler|tremer|v
+excuser|desculpar|v
+appeler|chamar|v
+représenter|representar|v
+avaler|engolir|v
+décourager|desanimar|v
+égarer|perder, extraviar|v
+rencontrer|encontrar|v
+oser|ousar|v
+refaire|refazer|v
+hâter|apressar|v
+pencher|inclinar|v
+irriter|irritar|v
+peupler|povoar|v
+gagner|ganhar|v
+parvenir|conseguir chegar|v
+éprouver|sentir, experimentar|v
+remettre|recolocar, entregar|v
+douter|duvidar|v
+pousser|empurrar, crescer|v
+planter|plantar|v
+arracher|arrancar|v
+assister|assistir|v
+craindre|temer|v
+renoncer|renunciar|v
+rassurer|tranquilizar|v
+déranger|incomodar, atrapalhar|v
+respirer|respirar|v
+rendre|devolver, tornar|v
+penser|pensar|v
+installer|instalar, acomodar|v
+tousser|tossir|v
+fatiguer|cansar|v
+jeter|jogar, lançar|v
+regretter|lamentar|v
+soulever|levantar, erguer|v
+enfermer|trancar|v
+émouvoir|comover|v
+promener|passear|v
+chasser|caçar|v
+rentrer|voltar para casa|v
+gronder|ralhar, roncar|v
+rêver|sonhar|v
+dédier|dedicar|v
+bouger|mexer-se|v
+tracer|traçar|v
+choisir|escolher|v
+sauter|pular|v
+fermer|fechar|v
+lancer|lançar|v
+poser|colocar, pousar|v
+révéler|revelar|v
+compliquer|complicar|v
+plonger|mergulhar|v
+étonner|espantar|v
+confier|confiar, entregar|v
+moquer|zombar|v
+décrire|descrever|v
+éclater|estourar, explodir|v
+valoir|valer|v
+fabriquer|fabricar|v
+atteindre|alcançar|v
+rejoindre|encontrar, juntar-se a|v
+surveiller|vigiar|v
+tourmenter|atormentar|v
+embaumer|perfumar|v
+agacer|irritar|v
+éclairer|iluminar|v
+arroser|regar|v
+envier|invejar|v
+supporter|suportar|v
+décider|decidir|v
+tolérer|tolerar|v
+régner|reinar|v
+exécuter|executar|v
+informer|informar|v
+ennuyer|entediar, aborrecer|v
+repartir|partir de novo|v
+condamner|condenar|v
+achever|terminar|v
+crier|gritar|v
+recommencer|recomeçar|v
+plaindre|ter pena de|v
+avouer|confessar|v
+flâner|vaguear, passear sem pressa|v
+rêvasser|devanear|v
+songer|pensar, sonhar|v
+cueillir|colher|v
+loger|morar, hospedar|v
+tourner|virar, girar|v
+avancer|avançar|v
+mentir|mentir|v
+fournir|fornecer|v
+risquer|arriscar|v
+retrouver|reencontrar|v
+toucher|tocar|v
+gêner|incomodar|v
+retourner|voltar|v
+créer|criar|v
+agiter|agitar|v
+ignorer|ignorar, não saber|v
+rayonner|irradiar, brilhar|v
+cacher|esconder|v
+protéger|proteger|v
+gémir|gemer|v
+répliquer|replicar|v
+couler|escorrer, afundar|v
+presser|apressar, apertar|v
+mordre|morder|v
+alors|então|adv
+très|muito|adv
+tellement|tanto, tão|adv
+ainsi|assim|adv
+doucement|devagar, suavemente|adv
+longtemps|por muito tempo|adv
+cependant|no entanto|adv
+enfin|finalmente, enfim|adv
+tard|tarde|adv
+vite|rápido|adv
+tantôt|ora, daqui a pouco|adv
+vraiment|de verdade|adv
+brusquement|de repente, bruscamente|adv
+quelquefois|às vezes|adv
+autrefois|antigamente|adv
+gravement|gravemente, seriamente|adv
+aussitôt|logo em seguida|adv
+seulement|somente|adv
+malheureusement|infelizmente|adv
+lentement|lentamente|adv
+justement|justamente|adv
+décidément|decididamente|adv
+simplement|simplesmente|adv
+assez|bastante, o suficiente|adv
+attentivement|com atenção|adv
+sûrement|com certeza|adv
+modestement|modestamente|adv
+timidement|timidamente|adv
+soigneusement|com cuidado|adv
+régulièrement|regularmente|adv
+soudain|de repente|adv
+poliment|educadamente|adv
+sinon|senão|adv
+depuis|desde|adv
+là-bas|lá longe|adv
+autour|em volta|adv
+surtout|sobretudo|adv
+dedans|dentro|adv
+sérieux|sério|adj
+seul|sozinho, único|adj
+autre|outro|adj
+sûr|seguro, certo|adj
+vaniteux|vaidoso|adj
+nouveau|novo|adj
+content|contente|adj
+drôle|engraçado, esquisito|adj
+vrai|verdadeiro|adj
+gros|grande, gordo|adj
+unique|único|adj
+semblable|semelhante|adj
+important|importante|adj
+second|segundo|adj
+utile|útil|adj
+raisonnable|razoável|adj
+invisible|invisível|adj
+simple|simples|adj
+éphémère|efêmero, passageiro|adj
+responsable|responsável|adj
+ouvert|aberto|adj
+fermé|fechado|adj
+exact|exato|adj
+extraordinaire|extraordinário|adj
+absurde|absurdo|adj
+mélancolique|melancólico|adj
+fier|orgulhoso|adj
+différent|diferente|adj
+dernier|último|adj
+premier|primeiro|adj
+magnifique|magnífico|adj
+mystérieux|misterioso|adj
+pâle|pálido|adj
+naïf|ingênuo|adj
+terrible|terrível|adj
+doux|doce, suave|adj
+bizarre|estranho, esquisito|adj
+véritable|verdadeiro|adj
+éteint|apagado|adj
+lourd|pesado|adj
+fragile|frágil|adj
+gentil|gentil|adj
+possible|possível|adj
+essentiel|essencial|adj
+énorme|enorme|adj
+confus|confuso|adj
+malheureux|infeliz|adj
+majestueux|majestoso|adj
+favorable|favorável|adj
+étrange|estranho|adj
+rare|raro|adj
+éternel|eterno|adj
+inutile|inútil|adj
+puissant|poderoso|adj
+merveilleux|maravilhoso|adj
+ordinaire|comum|adj
+certain|certo (algum)|adj
+léger|leve|adj
+tranquille|tranquilo|adj
+paresseux|preguiçoso|adj
+grandiose|grandioso|adj
+pur|puro|adj
+soucieux|preocupado|adj
+vierge|virgem|adj
+rond|redondo|adj
+long|longo|adj
+chaque|cada|adj
