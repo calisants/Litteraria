@@ -248,6 +248,16 @@ svg{display:block}
 .linkbtn{background:none;border:0;padding:6px 4px;color:inherit;font:inherit;text-decoration:underline;cursor:pointer;min-height:36px}
 .fbta{width:100%;min-height:120px;padding:10px;border:var(--bw) solid var(--grid);border-radius:var(--radius);background:var(--surface);color:inherit;font:inherit;box-sizing:border-box;resize:vertical}
 .fbck{display:flex;gap:8px;align-items:flex-start;margin:10px 0;font-size:.92rem}
+.tile.wide{grid-column:1/-1;min-height:64px;flex-direction:row;align-items:center;gap:12px}
+.tile.wide b{white-space:nowrap}
+.tile.wide small{display:block}
+.dl-h{margin:14px 0 4px;font:700 1.1rem var(--serif,Newsreader,serif);border-bottom:var(--bw) solid var(--grid)}
+.dl-row{display:flex;align-items:center;gap:8px;padding:10px 2px;border-bottom:1px solid var(--grid)}
+.dl-row .tx{flex:1;min-width:0}
+.dl-row b{font-size:1.05rem}
+.dl-row .sy{color:var(--muted,#566);letter-spacing:.02em}
+.dl-row .pt{display:block}
+.dl-row small{display:block;opacity:.75}
 /* Tremor discreto em resposta errada */
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
 .shake{animation:shake .4s ease-in-out}

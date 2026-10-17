@@ -26,3 +26,6 @@ Troque o número do cache em `../sw.js` (mots-parole-vNN) e a linha de `VERSION`
 
 ## Formulário de sugestões
 O app envia para um Google Forms. Em `p10.js`, preencha `FB_FORM` (`action` = URL do formulário terminando em `/formResponse`; `kind`, `text`, `info` = `entry.NNN` de cada pergunta). Já configurado (formulário «Mots & Parole · Sugestões e erros»). Se `action` ficar vazio, o envio fica desligado e só há "Copiar o texto". Formulário e planilha de respostas: pasta «motseparole» no Drive da Camila.
+
+## Dicionário e sílabas
+`p12.js` é o dicionário (tela «Dicionário» na página inicial). As sílabas ficam em `sil.js`, **gerado** por `tools/mk_syl.py` (usa `syl_fr.py`, `syl_en.py`, o arquivo Kaikki do italiano e os pacotes pip `pyphen` e `cmudict`; ver o topo do script para a fonte de cada idioma). Se mudar as palavras em `data.js`, rode o gerador de novo (o `t15.py` falha se faltar divisão).
