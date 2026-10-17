@@ -21,8 +21,8 @@ function vocBase(e,q){
 }
 /* Classe da palavra, só quando o próprio tema ou o artigo permite afirmar (sem inventar) */
 const CLS={verbos:"verbo (forma do infinitivo)",cores:"cor",numeros:"número",descricoes:"descrição (como alguém ou algo é)",saudacoes:"saudação ou expressão",perguntas:"palavra ou expressão de pergunta",dias:"dia da semana, mês ou período",direcoes:"direção ou lugar"};
-const catName=c=>(CATS.find(x=>x[0]===c)||[0,c])[1];
-function classOf(e){return CLS[e.cat]||(e.a?"substantivo (nome de coisa, pessoa ou lugar)":"");}
+const catName=c=>(CATS.find(x=>x[0]===c)||[0,(BOOKCAT[c]||{name:c}).name])[1];
+function classOf(e){return e.cls||CLS[e.cat]||(e.a?"substantivo (nome de coisa, pessoa ou lugar)":"");}
 function wordIntro(e){
   const f=full(e),cl=classOf(e);
   return "Palavra nova em "+LNAME[S.lang]+":\n«"+f+"» significa «"+e.pt+"».\nTema: "+catName(e.cat)+(cl?" · Classe: "+cl:"")+(e.a?"\nVem com o artigo «"+(e.a.endsWith("'")?e.a:e.a)+"»: escreva com ele ou sem ele.":"");

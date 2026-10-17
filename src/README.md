@@ -5,7 +5,7 @@ O `index.html` da raiz é **gerado** a partir desta pasta. Não edite o `index.h
 ## Como reconstruir
     cd src
     python3 build.py        # monta o app e atualiza ../index.html
-    python3 -I tests/gt.py ; python3 -I tests/t10.py ; python3 -I tests/t11.py ; python3 -I tests/t13.py ; python3 -I tests/t14.py ; python3 -I tests/t15.py ; python3 -I tests/t16.py ; python3 -I tests/t17.py
+    python3 -I tests/gt.py ; python3 -I tests/t10.py ; python3 -I tests/t11.py ; python3 -I tests/t13.py ; python3 -I tests/t14.py ; python3 -I tests/t15.py ; python3 -I tests/t16.py ; python3 -I tests/t17.py ; python3 -I tests/t18.py
 
 ## O que é cada parte
 - `p1.html` (CSS) e `p2.html` (telas) · `p3.js` (estado, salvar/carregar) · `p4`–`p7.js` (jogos) · `p9.js` (motor de gramática) · `p10.js` (Hoje, revisão, Treino, backup, versão, envio de sugestões) · `p11.js` (exercícios de escrita do Vocabulário).

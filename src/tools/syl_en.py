@@ -3,7 +3,7 @@ import re
 V="aeiouy"
 ONS=("bl","br","cl","cr","dr","fl","fr","gl","gr","pl","pr","tr","sc","sk","sl","sm","sn","sp","st","sw","tw","str","spr","spl","scr","thr","shr","chr")
 DG=("ch","sh","th","ph","wh","gh","ck","ng","qu")
-OVR={"cheerio":["chee","ri","o"],"evening":["eve","ning"],"hour":["hour"],"laboratory":["lab","o","ra","to","ry"],"maybe":["may","be"],"temperature":["tem","per","a","ture"],"tired":["tired"]}
+OVR={"cheerio":["chee","ri","o"],"evening":["eve","ning"],"hour":["hour"],"laboratory":["lab","o","ra","to","ry"],"maybe":["may","be"],"temperature":["tem","per","a","ture"],"tired":["tired"],"every":["ev","ery"],"everything":["ev","ery","thing"],"everybody":["ev","ery","bod","y"],"ready":["read","y"],"nobody":["no","bod","y"],"sleepy":["sleep","y"],"deeply":["deep","ly"],"whether":["wheth","er"],"courage":["cour","age"],"quietly":["qui","et","ly"]}
 def nuc(w):
     out=[]
     for m in re.finditer("[aeiouy]+",w):

@@ -29,6 +29,11 @@ function lessonPath(){
     chunk(gram,gi,gids.length).forEach(p=>out.push({vol:4,page:p}));
     chunk(conv,gi,gids.length).forEach(p=>out.push({vol:3,page:p}));
   });
+  /* temas de livros: novas lições no fim da trilha (só no idioma do livro) */
+  BOOKS.forEach(b=>b.chunks.forEach(c=>{
+    VOLUME5.pages.filter(p=>p.cat===c.cat&&p.type==="conheca").forEach(p=>out.push({vol:5,page:p,voc:true}));
+    ["reco","completar","embaralhar","escreva"].forEach(t=>[1,2].forEach(k=>add(5,t+"-"+c.cat+"-"+k,{voc:true})));
+  }));
   return(_path=out);
 }
 function pageMastered(p){
@@ -39,7 +44,7 @@ function pageMastered(p){
 }
 const canHear=()=>"speechSynthesis" in window;
 function nextNewPage(){
-  return lessonPath().find(r=>!S.done[S.lang+":"+r.page.id]&&!(r.audio&&!canHear())&&!(r.voc&&pageMastered(r.page)))||null;
+  return lessonPath().find(r=>pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&!(r.audio&&!canHear())&&!(r.voc&&pageMastered(r.page)))||null;
 }
 function weakWords(){
   const sk=S.sk[S.lang]||{},ix=vIdx()[S.lang],out=[];

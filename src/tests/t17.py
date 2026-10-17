@@ -7,7 +7,7 @@ srv=subprocess.Popen(['python3','-m','http.server','8774','-d',root],stdout=subp
 SH=os.environ.get('SHOTS')
 CONTR="""()=>{const out=[];const L=h=>{const c=[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255).map(v=>v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4));return .2126*c[0]+.7152*c[1]+.0722*c[2]};
 const cr=(a,b)=>{const x=L(a),y=L(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
-['fofo','soft','tech','game','min','cultural','exec'].forEach(id=>['fr','it','en'].forEach(lg=>{S.lang=lg;schemeList(id).forEach((s,i)=>{
+['fofo','soft','min'].forEach(id=>['fr'].forEach(lg=>{S.lang=lg;schemeList(id).forEach((s,i)=>{
  const ink=cr(s[7],s[2]),mut=cr(s[8],s[3]),acc=cr(s[9],s[3]),oa=cr(lum(s[9])<.19?'#ffffff':'#0d1117',s[9]),ok=cr(s[10],s[3]),bad=cr(s[11],s[3]);
  if(ink<7||mut<4.5||acc<3||oa<4.5||ok<3||bad<3)out.push([id,lg,s[0],+ink.toFixed(1),+mut.toFixed(1),+acc.toFixed(1),+oa.toFixed(1),+ok.toFixed(1),+bad.toFixed(1)])})}));return out}"""
 try:
@@ -18,35 +18,35 @@ try:
     bad=pg.evaluate(CONTR);print('contraste abaixo do mínimo:',bad);assert not bad
     assert pg.evaluate("()=>S.style")=='padrao' and pg.evaluate("()=>document.documentElement.dataset.style")=='padrao'
     pg.click('#go-settings');pg.wait_for_timeout(200)
-    assert pg.locator('#style-grid .stcard').count()==8
-    ids=['fofo','soft','tech','game','min','cultural','exec']
+    assert pg.locator('#style-grid .stcard').count()==4
+    ids=['fofo','soft','min']
+    assert [pg.locator('#style-grid [data-style=%s]'%i).count() for i in ('tech','game','cultural','exec')]==[0,0,0,0]
+    assert [pg.locator('#scheme-row .sch').count() for _ in [pg.click('#style-grid [data-style=fofo]')]]==[3]
     for i in ids:
       pg.click('#style-grid [data-style=%s]'%i);pg.wait_for_timeout(100)
       assert pg.evaluate("()=>document.documentElement.dataset.style")==i
       assert pg.is_hidden('#sec-cor') and pg.is_visible('#scheme-row')
-      n=pg.locator('#scheme-row .sch').count();assert n>=3
+      n=pg.locator('#scheme-row .sch').count();assert n>=2
       acc0=pg.evaluate("()=>getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()")
       pg.click('#scheme-row .sch >> nth=1');pg.wait_for_timeout(100)
       acc1=pg.evaluate("()=>getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()")
       assert pg.evaluate("()=>S.scheme")==1 and (acc0!=acc1 or i in('min',)),(i,acc0,acc1)
       if SH:pg.screenshot(path=SH+'/set-%s.png'%i)
-    # escuro: tech/game-noite/soft-preto => data-appmode dark
-    pg.click('#style-grid [data-style=tech]');assert pg.evaluate("()=>document.documentElement.dataset.appmode")=='dark'
-    # persistência
+    # escuro: minimalista 3ª variação => data-appmode dark
+    pg.click('#style-grid [data-style=min]');pg.click('#scheme-row .sch >> nth=2');assert pg.evaluate("()=>document.documentElement.dataset.appmode")=='dark'
     pg.reload();pg.wait_for_timeout(600)
-    assert pg.evaluate("()=>S.style")=='tech' and pg.evaluate("()=>document.documentElement.dataset.style")=='tech'
-    # cultural segue o idioma
-    pg.evaluate("()=>{S.style='cultural';S.scheme=0;S.lang='fr';save();applyTheme()}")
-    a=pg.evaluate("()=>getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()")
-    pg.evaluate("()=>{S.lang='it';applyTheme()}")
-    c=pg.evaluate("()=>getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()")
-    f3=pg.evaluate("()=>[document.documentElement.style.getPropertyValue('--flag1'),document.documentElement.style.getPropertyValue('--flag3')]")
-    print(a,c,f3);assert a!=c and f3[0]=='#1b6b3a'
+    assert pg.evaluate("()=>[S.style,S.scheme]")==['min',2] and pg.evaluate("()=>document.documentElement.dataset.style")=='min'
+    # estilos removidos salvos por versões anteriores caem no Padrão
+    for old in ('tech','game','cultural','exec'):
+        pg.evaluate("(o)=>{const x=JSON.parse(localStorage.getItem(KEY));x.style=o;x.scheme=1;localStorage.setItem(KEY,JSON.stringify(x))}",old);pg.reload();pg.wait_for_timeout(400)
+        assert pg.evaluate("()=>S.style")=='padrao',old
+    assert pg.evaluate("()=>schemeList('fofo').map(s=>s[0])")==['Rosa bebê','Azul céu','Lavanda e champagne']
+    assert pg.evaluate("()=>schemeList('soft').map(s=>s[0])")==['Branco, bege, dourado','Nude e salmão']
     # valor inválido salvo é descartado
     pg.evaluate("()=>{const o=JSON.parse(localStorage.getItem(KEY));o.style='hack';o.scheme=99;localStorage.setItem(KEY,JSON.stringify(o))}")
     pg.reload();pg.wait_for_timeout(500);assert pg.evaluate("()=>[S.style,S.scheme]")==['padrao',0]
     # voltar ao padrão restaura Cor e remove cores forçadas
-    pg.evaluate("()=>{S.style='exec';save();applyTheme()}");pg.evaluate("()=>{S.style='padrao';save();applyTheme();syncPrefs()}")
+    pg.evaluate("()=>{S.style='soft';save();applyTheme()}");pg.evaluate("()=>{S.style='padrao';save();applyTheme();syncPrefs()}")
     assert pg.evaluate("()=>document.documentElement.style.getPropertyValue('--ink')")==''
     # telas em cada estilo: início, lição, estatísticas, sem erros
     pg.evaluate("()=>{S.sk={fr:{a:[1,3,'x'],b:[4,0,'y']}};S.rv={};S.plays={fr:{cross:5}};save()}")
@@ -58,9 +58,6 @@ try:
       pg.evaluate("()=>{go('home');startPage('cross-comida-adv')}");pg.wait_for_timeout(300)
       if SH:pg.screenshot(path=SH+'/game-%s.png'%i)
       pg.evaluate("()=>go('home')")
-    assert pg.evaluate("()=>document.querySelector('#st-body .ret')!==null")
-    pg.evaluate("()=>{S.style='game';save();applyTheme();go('home')}")
-    assert 'XP' in pg.inner_text('#me-xp')
     # sem rolagem horizontal em nenhum estilo
     for i in ids:
       pg.evaluate("(i)=>{S.style=i;applyTheme();go('settings')}",i)

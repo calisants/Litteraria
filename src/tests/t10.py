@@ -6,7 +6,7 @@ with sync_playwright() as p:
     print('today sub:',pg.inner_text('#today-sub'))
     pg.screenshot(path='t-home.png')
     # abrir presente #1 fr pelo indice
-    pg.click('#go-games');pg.click('[data-pick-lang=fr]');pg.click('[data-pick-vol="4"]')
+    pg.click('#go-games');pg.click('#s-vol [data-k=lang][data-v=fr]');pg.click('[data-pick-vol="4"]')
     pg.click('.toc-row[data-id="presente-1"]');pg.wait_for_timeout(100)
     # errar primeiro item, acertar o resto
     for i in range(6):
@@ -16,7 +16,7 @@ with sync_playwright() as p:
         pg.click(f'#gstage .lopt[data-k="{a}"]');pg.click('#gm-submit');pg.click('#gm-next')
     print('sheet:',pg.inner_text('#sheet-in')[:80].replace('\n',' '))
     print('rv:',pg.evaluate("()=>JSON.stringify(S.rv)"))
-    pg.click('#sheet-close');pg.click('#s-game [data-back]');pg.click('#s-index [data-back]');pg.click('#s-vol [data-back]');pg.click('#s-lang [data-back]')
+    pg.click('#sheet-close');pg.click('#s-game [data-back]');pg.click('#s-index [data-back]');pg.click('#s-vol [data-back]')
     pg.evaluate("()=>{Object.keys(S.rv).forEach(k=>S.rv[k][0]=Date.now()-1000);save();renderMe();}")
     print('today sub:',pg.inner_text('#today-sub'))
     pg.click('#go-today');pg.wait_for_timeout(100)

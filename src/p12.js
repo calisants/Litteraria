@@ -16,11 +16,6 @@ function dictBuild(){
     const k=e.w+"|"+e.pt;if(seen.has(k))return;seen.add(k);
     rows.push({e:e,key:dnorm(e.w),txt:dnorm(full(e)+" "+e.pt)});
   });
-  if(S.lang==="fr"&&typeof PPW!=="undefined"){
-    PPW.forEach(x=>{const e={w:x.w,pt:x.pt,a:x.a||"",cat:"livro",book:x.c,sy:x.sy};
-      const k=e.w+"|"+e.pt;if(seen.has(k))return;seen.add(k);
-      rows.push({e:e,key:dnorm(e.w),txt:dnorm(full(e)+" "+e.pt+" livro pequeno principe")});});
-  }
   rows.sort((a,b)=>a.key.localeCompare(b.key,S.lang)||a.e.pt.localeCompare(b.e.pt,"pt"));
   dictRows=rows;
 }
@@ -30,14 +25,14 @@ function dictRender(){
   rows.forEach(r=>{
     const L=(r.key.charAt(0)||"#").toUpperCase();
     if(!q&&L!==last){h+='<h3 class="dl-h">'+esc(L)+"</h3>";last=L;}
-    const e=r.e,sy=e.sy||(SIL[S.lang]&&SIL[S.lang][e.w])||e.w;
-    h+='<div class="dl-row"><div class="tx"><b>'+esc(full(e))+'</b><span class="pt">'+esc(e.pt)+'</span><small>sílabas: <span class="sy">'+esc(sy)+"</span> · "+esc(e.book?"do livro «O Pequeno Príncipe» · "+e.book:catName(e.cat))+"</small>"+exHtml(e)+"</div>"+speakBtn(full(e))+"</div>";
+    const e=r.e,sy=(SIL[S.lang]&&SIL[S.lang][e.w])||e.w;
+    h+='<div class="dl-row"><div class="tx"><b>'+esc(full(e))+'</b><span class="pt">'+esc(e.pt)+'</span><small>sílabas: <span class="sy">'+esc(sy)+"</span> · "+esc(catName(e.cat))+"</small>"+exHtml(e)+"</div>"+speakBtn(full(e))+"</div>";
   });
   $("#dict-list").innerHTML=h||'<p class="empty">Nenhuma palavra encontrada.</p>';
   $("#dict-count").textContent=rows.length+(rows.length===1?" palavra":" palavras")+(q?" encontradas":" em ordem alfabética")+" · "+LNAME[S.lang];
   $("#dict-title").textContent="Dicionário de "+LNAME[S.lang];
   const nEx=EX[S.lang]?Object.keys(EX[S.lang]).length:0;
-  $("#dict-src").textContent=SIL_SRC[S.lang]+" "+(nEx?"Exemplos: frases do Wikcionário (licença CC BY-SA 4.0), traduzidas para o português por Claude. Só aparecem "+nEx+" exemplos: escolhi apenas frases que usam a palavra no mesmo sentido do app e descartei expressões, frases antigas e sentidos diferentes.":"Exemplos: ainda não há para o inglês, porque o arquivo do Wikcionário em inglês não foi enviado e o site dele está bloqueado para mim.")+(S.lang==="fr"?" Palavras «do livro»: foram escolhidas do texto de «O Pequeno Príncipe» por frequência (só as palavras; nenhuma frase foi copiada). Conferi no Wikcionário que cada uma existe e o gênero dos substantivos; as sílabas seguem as regras acima; a tradução foi escrita por Claude, sem fonte conferida.":"");
+  $("#dict-src").textContent=SIL_SRC[S.lang]+" "+(nEx?"Exemplos: frases do Wikcionário (licença CC BY-SA 4.0), traduzidas para o português por Claude. Só aparecem "+nEx+" exemplos: escolhi apenas frases que usam a palavra no mesmo sentido do app e descartei expressões, frases antigas e sentidos diferentes.":"Exemplos: ainda não há para o inglês, porque o arquivo do Wikcionário em inglês não foi enviado e o site dele está bloqueado para mim.")+" "+bookNote(S.lang);
 }
 function dictOpen(){
   $("#dict-lang").innerHTML=Object.keys(LNAME).map(l=>'<button type="button" data-dictlang="'+l+'" aria-pressed="'+(l===S.lang)+'">'+LNAME[l]+"</button>").join("");

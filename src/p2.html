@@ -8,7 +8,7 @@
       </div>
       <div class="me">
         <span class="avatar" id="me-av" aria-hidden="true"></span>
-        <div class="who"><b id="me-name"></b><small id="me-motto"></small><span class="game-only" id="me-xp"></span></div>
+        <div class="who"><b id="me-name"></b><small id="me-motto"></small></div>
       </div>
       <div class="bkwarn" id="bk-warn" hidden>
         <p id="bk-warn-txt"></p>
@@ -41,6 +41,9 @@
       </div>
       <p class="help" id="st-line" style="margin-top:10px"></p>
       <div class="stats open"><div class="in" id="st-body"></div></div>
+      <h2 class="lab" style="margin-top:18px">Apagar estatísticas</h2>
+      <button type="button" class="btn wide" id="clear-stats">Apagar estatísticas</button>
+      <p class="help" id="clear-stats-note" aria-live="polite"></p>
     </div>
   </section>
 
@@ -61,14 +64,15 @@
 
   <section class="screen" id="s-vol" hidden>
     <header class="bar">
-      <button type="button" class="btn icon" data-back="lang" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="ttl"><h2>Volume do caderno</h2><p class="vol" id="vol-lang"></p></div>
     </header>
     <div class="scroll">
+      <div class="seg" role="group" aria-label="Idioma" style="margin-bottom:10px"><button type="button" data-k="lang" data-v="fr">Français</button><button type="button" data-k="lang" data-v="it">Italiano</button><button type="button" data-k="lang" data-v="en">English</button></div>
       <p class="help">Siga a ordem de 1 a 5: cada volume prepara o seguinte. Você também pode pular para o que quiser.</p>
       <div class="tiles one">
         <button type="button" class="tile plain" data-pick-vol="2"><b>Volume 1 · Pronúncia</b><small>Comece aqui: alfabeto, sons e sons difíceis</small></button>
-        <button type="button" class="tile plain" data-pick-vol="5"><b>Volume 2 · Vocabulário</b><small>Palavras por tema: reconhecer, completar e escrever</small></button>
+        <button type="button" class="tile plain" data-pick-vol="5"><b>Volume 2 · Vocabulário</b><small>Palavras por tema e dos livros: conhecer, reconhecer, completar e escrever</small></button>
         <button type="button" class="tile plain" data-pick-vol="1"><b>Volume 3 · Jogos de palavras</b><small>Intruso, conecte, caça-palavras e cruzadas, do mais fácil ao mais difícil</small></button>
         <button type="button" class="tile plain" data-pick-vol="4"><b>Volume 4 · Gramática</b><small>Regras e exercícios: artigos, verbos e tempos, pronomes, conjunções e mais</small></button>
         <button type="button" class="tile plain" data-pick-vol="3"><b>Volume 5 · Conversação</b><small>Frases, diálogos e respostas</small></button>
@@ -115,9 +119,6 @@
           <section>
             <h2 class="lab">Estilo visual</h2>
             <button type="button" class="btn wide" id="go-style">Mudar o estilo visual</button>
-            <h2 class="lab" style="margin-top:14px">Estatísticas</h2>
-            <button type="button" class="btn wide" id="clear-stats" >Apagar estatísticas</button>
-            <p class="help" id="clear-stats-note" aria-live="polite"></p>
           </section>
         </div>
       </div>
@@ -132,7 +133,15 @@
     <div class="scroll">
       <div class="cols">
         <div class="stack">
-          <section>
+          <h2 class="grp">Aparência</h2>
+          <section id="sec-estilo">
+            <h2 class="lab">Estilo visual</h2>
+            <p class="help">Muda o visual de todas as telas: botões, cartões, lições e estatísticas. O Padrão é o visual de sempre.</p>
+            <div class="stgrid" id="style-grid" role="group" aria-label="Estilo visual"></div>
+            <div id="scheme-row" hidden><h2 class="lab" style="margin-top:12px">Variação de cores</h2><div class="schs" role="group" aria-label="Variação de cores"></div></div>
+            <p class="help" id="style-note" hidden></p>
+          </section>
+          <section id="sec-layout">
             <h2 class="lab">Layout</h2>
             <div class="seg" role="group" aria-label="Layout">
               <button type="button" data-k="layout" data-v="classic">Clássico</button>
@@ -148,6 +157,13 @@
               <button type="button" data-k="mode" data-v="dark">Escuro</button>
             </div>
           </section>
+          <section id="sec-cor">
+            <h2 class="lab">Cor</h2>
+            <div class="swatches" id="swatches" role="group" aria-label="Cor do app"></div>
+            <p class="swlabel" id="swlabel"></p>
+            <label class="custom" id="custom-row" for="custom-color" hidden>Sua cor <input type="color" id="custom-color" value="#7a3b8f"></label>
+          </section>
+          <h2 class="grp">Som e vibração</h2>
           <section>
             <h2 class="lab">Sons suaves</h2>
             <div class="seg" role="group" aria-label="Sons">
@@ -160,11 +176,6 @@
               <button type="button" data-k="snd" data-v="mid">Médio</button>
               <button type="button" data-k="snd" data-v="high">Alto</button>
             </div>
-          </section>
-          <section>
-            <h2 class="lab">Sobre e ajuda</h2>
-            <p class="help" id="ver-set"></p>
-            <button type="button" class="btn wide" data-feedback>Enviar sugestão ou avisar de erro</button>
           </section>
           <section>
             <h2 class="lab">Vibração ao errar</h2>
@@ -184,19 +195,7 @@
           </section>
         </div>
         <div class="stack">
-          <section id="sec-estilo">
-            <h2 class="lab">Estilo visual</h2>
-            <p class="help">Muda o visual de todas as telas: botões, cartões, lições e estatísticas. O Padrão é o visual de sempre.</p>
-            <div class="stgrid" id="style-grid" role="group" aria-label="Estilo visual"></div>
-            <div id="scheme-row" hidden><h2 class="lab" style="margin-top:12px">Variação de cores</h2><div class="schs" role="group" aria-label="Variação de cores"></div></div>
-            <p class="help" id="style-note" hidden></p>
-          </section>
-          <section id="sec-cor">
-            <h2 class="lab">Cor</h2>
-            <div class="swatches" id="swatches" role="group" aria-label="Cor do app"></div>
-            <p class="swlabel" id="swlabel"></p>
-            <label class="custom" id="custom-row" for="custom-color" hidden>Sua cor <input type="color" id="custom-color" value="#7a3b8f"></label>
-          </section>
+          <h2 class="grp">Estudo</h2>
           <section>
             <h2 class="lab">Meta diária</h2>
             <p class="help">Quantas respostas por dia contam como meta cumprida. Sem sequência nem punição: se um dia passar em branco, nada se perde.</p>
@@ -214,6 +213,7 @@
               <button type="button" data-zoom="off">Desligado</button>
             </div>
           </section>
+          <h2 class="grp">Dados</h2>
           <section>
             <h2 class="lab">Backup do progresso</h2>
             <p class="help">Seu progresso fica só neste aparelho. Baixe um arquivo de vez em quando; se trocar de celular ou limpar os dados do navegador, restaure por ele.</p>
@@ -223,9 +223,15 @@
             <p class="help" id="bk-note" aria-live="polite"></p>
           </section>
           <section>
-            <h2 class="lab">Caderno</h2>
+            <h2 class="lab">Marcas de concluído</h2>
             <button type="button" class="btn wide" id="clear-done">Apagar marcas de concluído</button>
             <p class="help" id="clear-note" aria-live="polite"></p>
+          </section>
+          <h2 class="grp">Sobre e ajuda</h2>
+          <section>
+            <h2 class="lab">Sobre e ajuda</h2>
+            <p class="help" id="ver-set"></p>
+            <button type="button" class="btn wide" data-feedback>Enviar sugestão ou avisar de erro</button>
           </section>
         </div>
       </div>

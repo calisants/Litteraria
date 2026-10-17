@@ -5,7 +5,7 @@ with sync_playwright() as p:
     pg.goto('file://'+os.path.abspath('mots-parole-v4.html'));pg.wait_for_timeout(800)
     pg.click('#go-games')
     for lang in ('fr','it','en'):
-        pg.click(f'[data-pick-lang={lang}]')
+        pg.click(f'#s-vol [data-k=lang][data-v={lang}]')
         print(lang,pg.locator('#s-vol .tile b').all_inner_texts())
         pg.click('[data-pick-vol="4"]');pg.wait_for_timeout(100)
         print(' jogos:',pg.locator('#f-game option').all_inner_texts(),'theme visible',pg.is_visible('#f-theme-w'),'level',pg.is_visible('#f-level-w'),'rows',pg.locator('#toc .toc-row').count())
@@ -21,6 +21,6 @@ with sync_playwright() as p:
             pg.click('#s-game [data-back]')
         n=pg.evaluate(f"()=>VOLUME4.pages.filter(p=>S.done['{lang}:'+p.id]).length")
         print(' concluidas',n,'de',len(ids))
-        pg.click('#s-index [data-back]');pg.click('#s-vol [data-back]')
+        pg.click('#s-index [data-back]')
     pg.screenshot(path='g0.png')
     print(errs);b.close()

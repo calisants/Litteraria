@@ -1,0 +1,467 @@
+think|pensar|v
+get|conseguir, obter, ficar|v
+know|saber, conhecer|v
+look|olhar, parecer|v
+come|vir|v
+begin|começar|v
+thing|coisa|s
+time|tempo, vez|s
+make|fazer|v
+queen|rainha|s
+king|rei|s
+way|caminho, jeito|s
+quite|bastante|adv
+much|muito|adv
+first|primeiro|adj
+voice|voz|s
+hear|ouvir|v
+try|tentar|v
+tell|contar, dizer|v
+turn|virar, girar|v
+large|grande|adj
+round|redondo, em volta|adj
+seem|parecer|v
+other|outro|adj
+great|grande, ótimo|adj
+long|longo|adj
+sit|sentar|v
+last|último, durar|adj
+nothing|nada|pron
+once|uma vez|adv
+put|pôr, colocar|v
+reply|responder, resposta|v
+use|usar, uso|v
+ask|perguntar, pedir|v
+dear|querido|adj
+minute|minuto|s
+grow|crescer|v
+word|palavra|s
+talk|conversar|v
+next|próximo|adj
+leave|deixar, sair|v
+moment|momento|s
+mean|significar, querer dizer|v
+without|sem|prep
+wonder|imaginar, maravilha|v
+while|enquanto|conj
+cry|chorar, gritar|v
+keep|manter, continuar|v
+course|curso, rumo|s
+rather|bastante, preferir|adv
+soon|logo|adv
+away|embora, longe|adv
+yet|ainda, porém|adv
+call|chamar|v
+even|até, mesmo|adv
+same|mesmo, igual|adj
+add|acrescentar|v
+hurry|apressar-se, pressa|v
+sort|tipo, espécie|s
+half|metade|s
+another|outro (mais um)|adj
+happen|acontecer|v
+wish|desejar, desejo|v
+question|pergunta|s
+ever|já, sempre|adv
+curious|curioso|adj
+remember|lembrar|v
+repeat|repetir|v
+house|casa|s
+end|fim|s
+tea|chá|s
+bite|morder, mordida|v
+finish|terminar|v
+court|tribunal, corte|s
+perhaps|talvez|adv
+low|baixo|adj
+high|alto|adj
+hold|segurar|v
+close|fechar, perto|v
+air|ar|s
+feel|sentir|v
+idea|ideia|s
+set|colocar, conjunto|v
+mad|louco, bravo|adj
+notice|notar, aviso|v
+answer|resposta, responder|s
+puzzle|enigma, intrigar|s
+suppose|supor|v
+creature|criatura|s
+silence|silêncio|s
+stand|ficar de pé, suportar|v
+mind|mente, importar-se|s
+suddenly|de repente|adv
+watch|observar, relógio|v
+fall|cair, queda|v
+lesson|lição|s
+sound|som, soar|s
+really|realmente|adv
+forget|esquecer|v
+follow|seguir|v
+game|jogo|s
+queer|esquisito|adj
+whole|inteiro|adj
+shake|sacudir|v
+room|quarto, sala, espaço|s
+draw|desenhar, puxar|v
+cook|cozinheiro, cozinhar|s
+chapter|capítulo|s
+manage|conseguir, administrar|v
+learn|aprender|v
+name|nome|s
+afraid|com medo|adj
+every|cada, todo|adj
+best|melhor|adj
+hardly|dificilmente|adv
+surprise|surpresa|s
+life|vida|s
+deal|lidar, negócio|v
+fan|leque, ventilador|s
+everything|tudo|pron
+tail|cauda, rabo|s
+swim|nadar|v
+rest|descanso, resto|s
+sigh|suspirar, suspiro|v
+join|juntar-se|v
+interrupt|interromper|v
+conversation|conversa|s
+whether|se (ou não)|conj
+though|embora|conj
+listen|escutar|v
+glad|contente|adj
+else|mais, além disso|adv
+matter|importar, assunto|v
+tear|lágrima, rasgar|s
+box|caixa|s
+pool|poça, piscina|s
+grin|sorriso largo|s
+nearly|quase|adv
+offend|ofender|v
+move|mover|v
+explain|explicar|v
+place|lugar|s
+shout|gritar|v
+appear|aparecer|v
+soldier|soldado|s
+consider|considerar|v
+own|próprio|adj
+either|qualquer um dos dois|adv
+stop|parar|v
+fancy|imaginar, fantasia|v
+dry|seco, secar|adj
+jump|pular|v
+sight|visão, vista|s
+lie|mentir, deitar|v
+yourself|você mesmo|pron
+party|festa|s
+believe|acreditar|v
+break|quebrar, pausa|v
+reason|razão, motivo|s
+late|tarde, atrasado|adj
+top|topo|s
+catch|pegar|v
+dream|sonho, sonhar|s
+hall|salão, corredor|s
+few|poucos|adj
+mark|marca, marcar|s
+bring|trazer|v
+against|contra|prep
+different|diferente|adj
+beg|implorar, pedir|v
+tremble|tremer|v
+crowd|multidão|s
+continue|continuar|v
+piece|pedaço|s
+whisper|sussurrar|v
+least|menos|adv
+together|juntos|adv
+deep|profundo|adj
+slowly|devagar|adv
+opportunity|oportunidade|s
+distance|distância|s
+bright|brilhante|adj
+rule|regra|s
+history|história|s
+fact|fato|s
+direction|direção|s
+ready|pronto|adj
+hard|duro, difícil|adj
+frighten|assustar|v
+throw|jogar, atirar|v
+everybody|todo mundo|pron
+story|história, conto|s
+nobody|ninguém|pron
+become|tornar-se|v
+each|cada|adj
+verse|verso|s
+asleep|dormindo|adj
+adventure|aventura|s
+tire|cansar|v
+stupid|burro, bobo|adj
+pocket|bolso|s
+world|mundo|s
+drop|deixar cair, gota|v
+somebody|alguém|pron
+girl|menina|s
+shut|fechar|v
+neck|pescoço|s
+generally|geralmente|adv
+myself|eu mesmo|pron
+kind|tipo, gentil|s
+nonsense|bobagem|s
+sentence|frase|s
+subject|assunto|s
+fetch|buscar|v
+important|importante|adj
+rise|subir, levantar-se|v
+confuse|confundir|v
+business|negócio|s
+loud|alto (volume)|adj
+scream|gritar|v
+silent|silencioso|adj
+carry|carregar|v
+song|canção|s
+evidence|prova|s
+picture|figura, imagem|s
+trouble|problema|s
+pass|passar|v
+nice|legal, agradável|adj
+miss|sentir falta, errar|v
+inch|polegada|s
+along|ao longo de|prep
+cut|cortar|v
+almost|quase|adv
+taste|gosto, provar|s
+blow|soprar|v
+care|cuidado, importar-se|s
+pair|par|s
+send|enviar|v
+present|presente, apresentar|s
+cross|cruzar, zangado|v
+smile|sorrir, sorriso|v
+stay|ficar|v
+guess|adivinhar|v
+race|corrida|s
+politely|educadamente|adv
+meet|encontrar|v
+prize|prêmio|s
+short|curto|adj
+interest|interesse|s
+full|cheio|adj
+sharp|afiado|adj
+youth|juventude|s
+fly|voar, mosca|v
+beat|bater, vencer|v
+deny|negar|v
+dish|prato|s
+hole|buraco|s
+twice|duas vezes|adv
+sleepy|sonolento|adj
+pick|escolher, colher|v
+across|através de|prep
+fear|medo|s
+home|casa, lar|s
+likely|provável|adj
+mile|milha|s
+aloud|em voz alta|adv
+show|mostrar|v
+new|novo|adj
+stick|pau, grudar|s
+lose|perder|v
+sadly|tristemente|adv
+delight|prazer, alegria|s
+fit|caber, em forma|v
+lead|liderar, conduzir|v
+wander|vaguear|v
+simple|simples|adj
+teach|ensinar|v
+shrink|encolher|v
+nervous|nervoso|adj
+altogether|totalmente|adv
+reach|alcançar|v
+remain|permanecer|v
+plan|plano|s
+until|até|prep
+usual|usual|adj
+wrong|errado|adj
+strange|estranho|adj
+sudden|repentino|adj
+cause|causa, causar|s
+case|caso|s
+number|número|s
+dig|cavar|v
+angry|zangado|adj
+wash|lavar|v
+animal|animal|s
+tale|conto|s
+argument|discussão, argumento|s
+point|ponto, apontar|s
+dare|ousar|v
+laugh|rir|v
+bow|reverência, arco|s
+judge|juiz, julgar|s
+attend|assistir, atender|v
+vanish|desaparecer|v
+knock|bater (à porta)|v
+chance|chance, acaso|s
+prove|provar|v
+fellow|companheiro, sujeito|s
+thank|agradecer|v
+instantly|instantaneamente|adv
+difficulty|dificuldade|s
+height|altura|s
+quietly|em silêncio, quietamente|adv
+settle|acomodar-se, resolver|v
+pack|pacote, embalar|s
+officer|oficial|s
+worth|valor, que vale|adj
+natural|natural|adj
+burn|queimar|v
+fill|encher|v
+hang|pendurar|v
+true|verdadeiro|adj
+several|vários|adj
+passage|passagem|s
+lock|trancar, fechadura|v
+except|exceto|prep
+tiny|minúsculo|adj
+paper|papel|s
+letter|carta, letra|s
+deeply|profundamente|adv
+fond|apegado|adj
+expect|esperar, supor|v
+boot|bota|s
+age|idade|s
+besides|além disso|adv
+spread|espalhar|v
+alone|sozinho|adj
+escape|fugir, escapar|v
+splash|respingar|v
+clear|claro, limpo|adj
+fire|fogo|s
+pale|pálido|adj
+shore|margem, costa|s
+shape|forma|s
+press|apertar, pressionar|v
+noise|barulho|s
+breath|fôlego, respiração|s
+pity|pena, dó|s
+particular|particular, específico|adj
+since|desde|prep
+elbow|cotovelo|s
+master|mestre|s
+dead|morto|adj
+doubt|dúvida, duvidar|s
+stretch|esticar|v
+fold|dobrar|v
+encourage|encorajar|v
+perfectly|perfeitamente|adv
+none|nenhum|pron
+otherwise|caso contrário|adv
+star|estrela|s
+howl|uivar|v
+figure|figura, número|s
+toss|jogar|v
+less|menos|adj
+crumb|migalha|s
+quarrel|briga, brigar|s
+bottom|fundo, parte de baixo|s
+upset|chateado, perturbar|adj
+player|jogador|s
+hope|esperança, esperar|s
+past|passado|s
+tumble|tropeçar, cair|v
+stair|degrau|s
+somewhere|em algum lugar|adv
+knowledge|conhecimento|s
+funny|engraçado|adj
+hurt|machucar|v
+belong|pertencer|v
+lovely|adorável|adj
+impossible|impossível|adj
+poison|veneno|s
+beast|fera, animal|s
+certain|certo, seguro|adj
+candle|vela|s
+decide|decidir|v
+possibly|possivelmente|adv
+dull|chato, sem brilho|adj
+return|voltar, retorno|v
+timid|tímido|adj
+gently|suavemente|adv
+declare|declarar|v
+slip|escorregar|v
+general|geral, general|adj
+notion|noção|s
+allow|permitir|v
+frog|sapo|s
+crown|coroa|s
+bend|curvar|v
+pause|pausa, pausar|s
+win|ganhar|v
+speech|discurso, fala|s
+cheer|aplaudir, ânimo|v
+grave|sério, túmulo|adj
+simply|simplesmente|adv
+solemn|solene|adj
+promise|promessa, prometer|s
+waste|desperdiçar|v
+easily|facilmente|adv
+quick|rápido|adj
+crab|caranguejo|s
+address|endereço, discursar|s
+carefully|com cuidado|adv
+suit|terno, combinar|s
+mention|mencionar|v
+hunt|caçar|v
+mistake|erro|s
+real|real, verdadeiro|adj
+floor|chão, andar|s
+effect|efeito|s
+attempt|tentativa, tentar|s
+below|abaixo|adv
+kick|chutar|v
+sense|sentido, sentir|s
+swallow|engolir|v
+rush|correr, pressa|v
+bark|latir|v
+hungry|com fome|adj
+lean|inclinar-se|v
+edge|beira, borda|s
+immediately|imediatamente|adv
+smoke|fumaça, fumar|s
+choose|escolher|v
+succeed|ter sucesso|v
+raise|levantar|v
+branch|galho|s
+instance|exemplo, caso|s
+manner|maneira|s
+courage|coragem|s
+introduce|apresentar|v
+advantage|vantagem|s
+line|linha|s
+double|dobro, duplo|adj
+proper|apropriado|adj
+wide|largo|adj
+explanation|explicação|s
+instead|em vez disso|adv
+fun|diversão|s
+riddle|charada|s
+breathe|respirar|v
+music|música|s
+account|conta, relato|s
+wake|acordar|v
+rub|esfregar|v
+rose|rosa|s
+paint|pintar, tinta|v
+check|verificar|v
+eager|ansioso, empolgado|adj
+guest|convidado|s
+examine|examinar|v
+unfortunate|infeliz, azarado|adj
+share|compartilhar|v
+pie|torta|s
+steal|roubar|v
+pencil|lápis|s
+list|lista|s
+sign|sinal, assinar|s

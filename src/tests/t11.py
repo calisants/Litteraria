@@ -5,11 +5,11 @@ with sync_playwright() as p:
     pg.goto('file://'+os.path.abspath('mots-parole-v4.html'));pg.wait_for_timeout(500)
     print('goal:',pg.inner_text('#goal-txt'),'|',pg.inner_text('#today-sub'))
     # dica de alternativa errada
-    pg.click('#go-games');pg.click('[data-pick-lang=fr]');pg.click('[data-pick-vol="4"]');pg.click('.toc-row[data-id="presente-1"]')
+    pg.click('#go-games');pg.click('#s-vol [data-k=lang][data-v=fr]');pg.click('[data-pick-vol="4"]');pg.click('.toc-row[data-id="presente-1"]')
     d=pg.evaluate("()=>gm.items[gm.i].d");bad=[k for k,o in enumerate(pg.evaluate("()=>gm.items[gm.i].o")) if pg.evaluate("(k)=>gm.items[gm.i].d&&gm.items[gm.i].d[gm.items[gm.i].o[k]]",k)][0]
     pg.click(f'#gstage .lopt[data-k="{bad}"]');pg.click('#gm-submit');print('hint:',pg.inner_text('#gm-status'))
     print('goal n apos 1 resposta:',pg.evaluate("()=>dayN()"))
-    pg.click('#s-game [data-back]');pg.click('#s-index [data-back]');pg.click('#s-vol [data-back]');pg.click('#s-lang [data-back]')
+    pg.click('#s-game [data-back]');pg.click('#s-index [data-back]');pg.click('#s-vol [data-back]')
     # vocabulario errado entra na fila
     pg.evaluate("()=>{skRec('bonjour','bom dia',false);skRec('bonsoir','x',false);Object.keys(S.rvv).forEach(k=>S.rvv[k][0]=Date.now()-5);save();renderMe();}")
     print('rvv:',pg.evaluate("()=>Object.keys(S.rvv)"),'| due:',pg.evaluate("()=>dueCount()"))

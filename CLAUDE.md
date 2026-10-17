@@ -11,17 +11,18 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 
 ## Regras técnicas
 - Ao publicar, troque o número do cache em `sw.js` (mots-parole-vNN) e a linha de `src/VERSION` (versão e data mostradas no app). **Não mude `APP_VERSION` em `src/p3.js`** (v6), senão o progresso dela some.
-- Rodar antes de publicar: `python3 -I tests/gt.py`, `t10.py`, `t11.py`, `t13.py`, `t14.py`, `t15.py`, `t16.py` e `t17.py` (dentro de `src/`). O único erro esperado no t11 é o de fontes não encontradas (ele abre o arquivo fora do site).
+- Rodar antes de publicar: `python3 -I tests/gt.py`, `t10.py`, `t11.py`, `t13.py`, `t14.py`, `t15.py`, `t16.py`, `t17.py` e `t18.py` (dentro de `src/`). O único erro esperado no t11 é o de fontes não encontradas (ele abre o arquivo fora do site).
 - Conteúdo de gramática: `src/tools/` (geradores) e `src/content5.js` (gerado por `tools/mk_content5.py`). As correções de rótulo e de texto dos cartões ficam em `tools/gram_rules3.py` (dicionário `OV`).
 - Commits terminam com os trailers de atribuição pedidos pela sessão.
 
+- Navegação: Início → Lições abre direto os volumes (com seletor de idioma); Ajustes agrupados (Aparência, Som e vibração, Estudo, Dados, Sobre e ajuda); «Apagar estatísticas» fica em Estatísticas.
 - Volumes: 1 Pronúncia, 2 Vocabulário, 3 Jogos, 4 Gramática, 5 Conversação (`src/content6.js`). Cada jogo/exercício precisa funcionar sem áudio; os com áudio levam «(com áudio)» no nome.
 - Sugestões e erros: tela própria em Ajustes → Google Forms (`FB_FORM` em `p10.js`; formulário e planilha na pasta «motseparole» do Drive dela), com «Copiar o texto» como alternativa.
 - Vocabulário: toda página de exercício abre com o cartão «Palavras desta página» (as palavras antes das perguntas); a 1ª página de cada tema é «Conheça as palavras».
 
 - Dicionário (`src/p12.js`, sílabas em `src/sil.js`, exemplos em `src/exemplos.js`): cada idioma mostra a fonte das sílabas e dos exemplos na própria tela; não afirme mais do que a fonte permite. Exemplos (Wikcionário, CC BY-SA 4.0, traduzidos por Claude) só para 116 palavras do francês e 55 do italiano; inglês sem exemplos.
-- Palavras de «O Pequeno Príncipe» (francês): `src/tools/pp_words.txt` (palavra|tradução|classe|artigo) → `tools/mk_pp.py` → `src/petitprince.js`. Só aparecem no Dicionário (não entram em jogos/Treino). Não copiar frases do livro. Existência/gênero conferidos no Wikcionário; tradução de Claude, sem fonte conferida.
-- Estilos visuais (Ajustes → Estilo visual): 7 estilos + Padrão em `STYLES` (`p3.js`, cores por variação) e CSS `:root[data-style=...]` no fim de `p1.html`; `S.style` e `S.scheme`. Todo esquema novo precisa passar no teste de contraste do `t17.py`.
+- Temas de livros (lições novas de Vocabulário, só no idioma do livro, no fim da trilha; as lições antigas não mudam): `src/tools/pp_words.txt` (fr, «O Pequeno Príncipe») e `src/tools/livro_alice.txt` (en, «Alice no País das Maravilhas», texto de domínio público do Gutenberg via nltk_data) → `tools/mk_livros.py` → `src/livros_data.js`; lógica em `src/livros.js` (páginas com `langs`, `BOOKCAT`, `BOOKTHEMES`). Só as palavras, nenhuma frase do livro. Existência/gênero conferidos (fr: Wikcionário; en: dicionário CMU); tradução de Claude, sem fonte conferida. Livros candidatos que ela pode enviar em PDF: «Le tour du monde en quatre-vingts jours» (gutenberg.org/ebooks/800) e «Le avventure di Pinocchio» (gutenberg.org/ebooks/52484); o Gutenberg não abre pelo sandbox (só GitHub/PyPI).
+- Estilos visuais (Ajustes → Aparência): Padrão + Fofo (rosa bebê, azul céu, lavanda e champagne), Soft elegante (branco/bege/dourado, nude e salmão) e Minimalista, em `STYLES` (`p3.js`) e CSS `:root[data-style=...]` no fim de `p1.html`; `S.style` e `S.scheme`. Gamificado, Dark Tech, Cultural e Analítico foram retirados por decisão dela. Todo esquema novo precisa passar no teste de contraste do `t17.py`.
 - Sugestões novas: ler a planilha de respostas na pasta «motseparole» do Drive (conector do Google Drive).
 
 ## Estado e pendências (outubro de 2026)
