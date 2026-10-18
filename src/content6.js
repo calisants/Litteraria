@@ -2,8 +2,8 @@
    1 Pronúncia → 2 Vocabulário → 3 Jogos → 4 Gramática → 5 Conversação.
    Os ids internos (1 jogos, 2 pronúncia, 3 conversação, 4 gramática, 5 vocabulário) NÃO mudam o que já existia,
    e as páginas movidas guardam `vid` (volume de origem) para continuarem com o mesmo sorteio. */
-const VOCGAMES=["conheca","reco","completar","embaralhar","escreva"];
-const VOCTYPES=[["conheca","Conheça as palavras","Conheça"],["reco","Reconheça: escolha a palavra","Reconheça"],["tema","Ouça e entenda (com áudio)","Tema"],["completar","Complete a palavra","Complete"],["embaralhar","Letras embaralhadas","Embaralhe"],["escreva","Escreva a palavra","Escreva"],["ditado","Ditado: como se escreve (com áudio)","Ditado"]];
+const VOCGAMES=["conheca","contexto","reco","completar","embaralhar","escreva"];
+const VOCTYPES=[["conheca","Conheça as palavras","Conheça"],["contexto","Use a palavra na frase","Frase"],["reco","Reconheça: escolha a palavra","Reconheça"],["tema","Ouça e entenda (com áudio)","Tema"],["completar","Complete a palavra","Complete"],["embaralhar","Letras embaralhadas","Embaralhe"],["escreva","Escreva a palavra","Escreva"],["ditado","Ditado: como se escreve (com áudio)","Ditado"]];
 const VOLUME5={id:5,title:"Volume 2 · Vocabulário",types:VOCTYPES,pages:[]};
 (function(){
   const take=ts=>{const out=[];VOLUME2.pages=VOLUME2.pages.filter(p=>{if(ts.indexOf(p.type)>=0){out.push(p);return false;}return true;});return out;};

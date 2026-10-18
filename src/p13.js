@@ -6,7 +6,7 @@ function wordsOf(p){
   const arr=(VOCAB[S.lang]&&VOCAB[S.lang][p.cat])||[],K=p.K||2,n=arr.length;
   return arr.slice(Math.round((p.part-1)*n/K),Math.round(p.part*n/K));
 }
-const VOCLESSON=["conheca","reco","completar","embaralhar","escreva"];
+const VOCLESSON=["conheca","contexto","reco","completar","embaralhar","escreva"];
 let _path=null;
 function lessonPath(){
   if(_path)return _path;
@@ -22,7 +22,7 @@ function lessonPath(){
   gids.forEach((g,gi)=>{
     CATS.filter(c=>c[2]===g).forEach(c=>{
       VOLUME5.pages.filter(p=>p.cat===c[0]&&p.type==="conheca").forEach(p=>out.push({vol:5,page:p,voc:true}));
-      ["reco","completar","embaralhar","escreva"].forEach(t=>[1,2].forEach(k=>add(5,t+"-"+c[0]+"-"+k,{voc:true})));
+      ["contexto","reco","completar","embaralhar","escreva"].forEach(t=>[1,2].forEach(k=>add(5,t+"-"+c[0]+"-"+k,{voc:true})));
       add(1,"odd-"+c[0]);add(1,"search-"+c[0]+"-easy");add(1,"cross-"+c[0]+"-easy");
     });
     add(1,"connect-"+g+"-easy-1");
@@ -44,9 +44,21 @@ function pageMastered(p){
   return ok/ws.length>=.8;
 }
 const canHear=()=>"speechSynthesis" in window;
+const eligible=r=>pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&!(r.audio&&!canHear())&&!(r.voc&&pageMastered(r.page));
 function nextNewPage(){
-  return lessonPath().find(r=>pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&!(r.audio&&!canHear())&&!(r.voc&&pageMastered(r.page)))||null;
+  return lessonPath().find(eligible)||null;
 }
+/* «Próximo» (folha de página concluída): segue a trilha a partir da página que acabou de terminar, sem voltar ao início.
+   Se não há mais nada à frente, cai na primeira lição ainda não feita; sem nenhuma, o botão nem aparece. */
+function nextAfter(p){
+  const L=lessonPath(),i=L.findIndex(r=>r.page.id===p.id);
+  return (i>=0&&L.slice(i+1).find(eligible))||nextNewPage();
+}
+const canGoNext=()=>!!P&&P.type!=="revisao"&&P.type!=="treino"&&isDone(P)&&!!nextAfter(P);
+$("#sheet-next").addEventListener("click",()=>{
+  const np=P&&nextAfter(P);closeSheet();
+  if(np)startLesson(np);else go("home");
+});
 function weakWords(){
   const sk=S.sk[S.lang]||{},ix=vIdx()[S.lang],out=[];
   for(const k in sk){const a=sk[k];if(a[1]>a[0]&&ix[k])out.push([a[1]-a[0],ix[k]]);}

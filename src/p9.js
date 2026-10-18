@@ -43,26 +43,26 @@ function loadGram(){
   renderGram();
   const it=gm.items[gm.i];
   const vocP=isVocP();
-  setStatus("#gm-status",vocP?(P.type==="conheca"?"Cada palavra nova: leia, copie, escreva de novo e depois sem olhar.":it._force?"Digite a palavra.":"Escolha a palavra certa."):gm.i===0?(gm.drill?"Digite a forma certa.":gm.review?"Revise: escolha ou digite a resposta certa.":"Leia a regra e escolha a resposta certa."):(it._force?"Digite a forma certa.":"Escolha a resposta certa."));
+  setStatus("#gm-status",vocP?(P.type==="conheca"?"Cada palavra nova: leia, copie, escreva de novo e depois sem olhar.":P.type==="contexto"?"Escreva a palavra que falta na frase.":it._force?"Digite a palavra.":"Escolha a palavra certa."):gm.i===0?(gm.drill?"Digite a forma certa.":gm.review?"Revise: escolha ou digite a resposta certa.":"Leia a regra e escolha a resposta certa."):(it._force?"Digite a forma certa.":"Escolha a resposta certa."));
 }
 function ruleCard(){
   if(isVocP())return P.type==="conheca"?"":vocCard();
   const t=curType();if(!hasRule(t))return "";
   const R=GRAM.rules[S.lang][t];
-  return '<details class="rule"'+(gm.open?" open":"")+"><summary>Regra · "+esc(R.t)+"</summary><div class=\"in\">"+
-    R.p.map(x=>"<p>"+esc(x)+"</p>").join("")+
-    '<ul class="rex">'+R.ex.map(e=>"<li><b>"+esc(e[0])+"</b>"+(e[1]?" <span>"+esc(e[1])+"</span>":"")+"</li>").join("")+"</ul>"+
+  return '<details class="rule"'+(gm.open?" open":"")+"><summary>Regra · "+hl(R.t)+"</summary><div class=\"in\">"+
+    R.p.map(x=>"<p>"+hl(x)+"</p>").join("")+
+    '<ul class="rex">'+R.ex.map(e=>"<li><b>"+hl(e[0])+"</b>"+(e[1]?" <span>"+hl(e[1])+"</span>":"")+"</li>").join("")+"</ul>"+
     '<p class="src"><b>Fonte:</b> '+esc(R.src)+"</p></div></details>";
 }
 function renderGram(){
   const it=gm.items[gm.i],lines=it.q.split("\n"),typed=typedOn(it),canType=canTypeIt(it)&&!it._force;
   let h='<p class="ocount">'+(gm.drill?"Treino · ":gm.review?"Revisão · ":"")+"Pergunta "+(gm.i+1)+" de "+gm.items.length+"</p>"+ruleCard();
   if(canType&&!gm.solved)h+='<button type="button" class="btn tgl" id="typed-toggle" aria-pressed="'+S.typed+'">Digitar a resposta: '+(S.typed?"sim":"não")+"</button>";
-  h+='<p class="prompt gq">'+lines.map(esc).join("<br>")+"</p>";
+  h+='<p class="prompt gq">'+lines.map(hl).join("<br>")+"</p>";
   if(typed&&!gm.solved)h+='<input class="tin" id="gm-typed" type="text" inputmode="text" enterkeyhint="done" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Sua resposta" placeholder="Digite a resposta" value="'+esc(gm.txt)+'">';
   else if(typed&&gm.solved)h+='<p class="prompt gq"><b>'+esc(accepts(it)[0])+"</b></p>";
   else h+='<div class="lopts">'+it.o.map((o,k)=>'<button type="button" class="lopt'+(gm.solved&&k===it.a?" right":"")+'" data-k="'+k+'" aria-pressed="'+(gm.sel===k)+'"'+(gm.solved?" disabled":"")+">"+esc(o)+"</button>").join("")+"</div>";
-  if(gm.solved)h+='<div class="heard">'+(it.s?speakBtn(it.s):"")+"<span>"+esc(it.s||it.o[it.a])+'</span></div><p class="note"><b>Por quê:</b> '+esc(it.w)+"</p>";
+  if(gm.solved)h+='<div class="heard">'+(it.s?speakBtn(it.s):"")+"<span>"+esc(it.s||it.o[it.a])+'</span></div><p class="note"><b>'+esc(it.lab||"Por quê:")+"</b> "+hl(it.w)+"</p>";
   $("#gstage").innerHTML=h;
   syncGramBtns();
   if(typed&&!gm.solved&&(gm.tries>0||gm.drill)){const n=$("#gm-typed");if(n&&!gm.__noFocus)n.focus();}
@@ -117,7 +117,7 @@ $("#gm-submit").addEventListener("click",()=>{
 $("#gm-next").addEventListener("click",()=>{
   if(!gm.solved)return;
   if(gm.i<gm.items.length-1){gm.i++;gm.open=false;loadGram();return;}
-  const n=gm.items.length,list=gm.items.map(it=>'<div class="srow"><span class="pt"><b>'+esc(it.s||it.o[it.a])+"</b><br><small>"+esc(it.w)+"</small></span>"+(it.s?speakBtn(it.s):"")+"</div>").join("");
+  const n=gm.items.length,list=gm.items.map(it=>'<div class="srow"><span class="pt"><b>'+esc(it.s||it.o[it.a])+"</b><br><small>"+hl(it.w)+"</small></span>"+(it.s?speakBtn(it.s):"")+"</div>").join("");
   const goalLine=typeof goalText==="function"?'<p class="help">'+esc(goalText())+"</p>":"";
   if(gm.drill){
     sfx("done");

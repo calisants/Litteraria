@@ -1,0 +1,416 @@
+# Frases de contexto (francês) escritas por Claude, sem fonte conferida.
+# Só para palavras que NÃO têm exemplo do Wikcionário em exemplos.js (esses vêm de lá).
+# Formato: palavra|frase (com a palavra exatamente como no vocabulário, uma vez só)|tradução da frase
+# Conferência automática: tools/mk_ctx.py (palavra aparece inteira, uma vez, na frase)
+
+# pessoas
+femme|Cette femme est médecin.|Essa mulher é médica.
+enfant|L'enfant joue dans le jardin.|A criança brinca no jardim.
+ami|Mon ami habite à Paris.|Meu amigo mora em Paris.
+voisin|Mon voisin a un chien.|Meu vizinho tem um cachorro.
+étudiant|L'étudiant lit un livre.|O estudante lê um livro.
+adulte|Un adulte travaille tous les jours.|Um adulto trabalha todos os dias.
+jeune|Elle est très jeune.|Ela é muito jovem.
+vieux|Mon grand-père est vieux.|Meu avô é velho.
+dame|La dame attend le bus.|A senhora espera o ônibus.
+habitant|Cet habitant connaît bien la ville.|Esse habitante conhece bem a cidade.
+bébé|Le bébé dort.|O bebê dorme.
+directeur|Le directeur est dans son bureau.|O diretor está no escritório dele.
+client|Le client attend à la caisse.|O cliente espera no caixa.
+touriste|Le touriste prend une photo.|O turista tira uma foto.
+
+# corpo
+tête|J'ai mal à la tête.|Estou com dor de cabeça.
+main|Elle a un stylo dans la main.|Ela tem uma caneta na mão.
+pied|Il a mal au pied.|Ele está com dor no pé.
+bras|Il lève le bras.|Ele levanta o braço.
+jambe|Elle a mal à la jambe.|Ela está com dor na perna.
+bouche|Ouvre la bouche, s'il te plaît.|Abra a boca, por favor.
+nez|Il a le nez rouge.|Ele está com o nariz vermelho.
+dos|J'ai mal au dos.|Estou com dor nas costas.
+cœur|Son cœur bat très vite.|O coração dele bate muito rápido.
+oreille|Il a mal à l'oreille.|Ele está com dor na orelha.
+visage|Elle a un beau visage.|Ela tem um rosto bonito.
+cheveux|Elle a les cheveux longs.|Ela tem cabelos compridos.
+œil|Il a mal à l'œil.|Ele está com dor no olho.
+dent|Ma dent est cassée.|Meu dente está quebrado.
+doigt|Il a mal au doigt.|Ele está com dor no dedo.
+genou|J'ai mal au genou.|Estou com dor no joelho.
+épaule|Il porte le sac sur l'épaule.|Ele carrega a bolsa no ombro.
+ventre|J'ai mal au ventre.|Estou com dor de barriga.
+peau|Sa peau est très douce.|A pele dela é muito macia.
+langue|Le chat a la langue rose.|O gato tem a língua rosa.
+
+# familia
+mère|Ma mère cuisine très bien.|Minha mãe cozinha muito bem.
+père|Mon père travaille à Lyon.|Meu pai trabalha em Lyon.
+frère|Mon frère joue au football.|Meu irmão joga futebol.
+sœur|Ma sœur étudie la chimie.|Minha irmã estuda química.
+fils|Leur fils a dix ans.|O filho deles tem dez anos.
+fille|Sa fille aime chanter.|A filha dele adora cantar.
+grand-père|Mon grand-père habite à la campagne.|Meu avô mora no campo.
+mari|Son mari est médecin.|O marido dela é médico.
+épouse|Son épouse s'appelle Claire.|A esposa dele se chama Claire.
+neveu|Mon neveu a cinq ans.|Meu sobrinho tem cinco anos.
+petit-fils|Leur petit-fils vient les voir le dimanche.|O neto deles vem vê-los aos domingos.
+petite-fille|Leur petite-fille est très gentille.|A neta deles é muito gentil.
+grand-mère|Ma grand-mère fait un gâteau.|Minha avó faz um bolo.
+parents|Mes parents habitent à Marseille.|Meus pais moram em Marselha.
+beau-père|Son beau-père est très gentil.|O sogro dele é muito gentil.
+belle-mère|Sa belle-mère cuisine très bien.|A sogra dela cozinha muito bem.
+
+# numeros
+deux|J'ai deux frères.|Tenho dois irmãos.
+trois|Il y a trois chats dans le jardin.|Há três gatos no jardim.
+quatre|La table a quatre chaises.|A mesa tem quatro cadeiras.
+six|Il est six heures.|São seis horas.
+sept|La semaine a sept jours.|A semana tem sete dias.
+huit|Il y a huit élèves dans la classe.|Há oito alunos na turma.
+neuf|Le train part à neuf heures.|O trem parte às nove horas.
+dix|Mon fils a dix ans.|Meu filho tem dez anos.
+vingt|Il y a vingt personnes ici.|Há vinte pessoas aqui.
+zéro|Il fait zéro degré.|Está zero grau.
+un|J'ai un chat.|Tenho um gato.
+onze|Le match commence à onze heures.|O jogo começa às onze horas.
+douze|Une année a douze mois.|Um ano tem doze meses.
+quinze|J'ai quinze euros.|Tenho quinze euros.
+trente|Le mois a trente jours.|O mês tem trinta dias.
+quarante|Mon père a quarante ans.|Meu pai tem quarenta anos.
+cinquante|Ce livre coûte cinquante euros.|Este livro custa cinquenta euros.
+cent|Il y a cent personnes dans la salle.|Há cem pessoas na sala.
+
+# perguntas
+comment|Comment tu t'appelles ?|Como você se chama?
+quoi|Tu fais quoi ce soir ?|O que você faz hoje à noite?
+parce que|Je reste à la maison parce que je suis malade.|Fico em casa porque estou doente.
+parfois|Parfois, je mange au restaurant.|Às vezes, como no restaurante.
+maintenant|Je suis à la maison maintenant.|Estou em casa agora.
+ensuite|Je lis, ensuite je dors.|Eu leio e depois durmo.
+
+# saude
+médecin|Le médecin travaille à l'hôpital.|O médico trabalha no hospital.
+hôpital|Il est à l'hôpital.|Ele está no hospital.
+pharmacie|La pharmacie ferme à huit heures.|A farmácia fecha às oito horas.
+douleur|J'ai une douleur dans le dos.|Tenho uma dor nas costas.
+fièvre|L'enfant a de la fièvre.|A criança está com febre.
+médicament|Il prend un médicament chaque matin.|Ele toma um remédio toda manhã.
+toux|J'ai une toux depuis hier.|Estou com tosse desde ontem.
+dentiste|Le dentiste regarde mes dents.|O dentista olha meus dentes.
+infirmier|L'infirmier aide le patient.|O enfermeiro ajuda o paciente.
+ambulance|L'ambulance arrive vite.|A ambulância chega rápido.
+blessure|La blessure est petite.|O ferimento é pequeno.
+allergie|Elle a une allergie au lait.|Ela tem alergia a leite.
+pilule|Il prend une pilule le matin.|Ele toma um comprimido de manhã.
+sang|Il y a du sang sur le doigt.|Há sangue no dedo.
+ordonnance|Le médecin écrit une ordonnance.|O médico escreve uma receita.
+vaccin|Le vaccin est gratuit.|A vacina é gratuita.
+pansement|Je mets un pansement sur le doigt.|Coloco um curativo no dedo.
+
+# direcoes
+gauche|Tourne à gauche.|Vire à esquerda.
+droite|Le parc est à droite.|O parque fica à direita.
+ici|Je travaille ici.|Eu trabalho aqui.
+haut|La chambre est en haut.|O quarto fica em cima.
+bas|La cuisine est en bas.|A cozinha fica embaixo.
+nord|Lille est dans le nord de la France.|Lille fica no norte da França.
+sud|Marseille est dans le sud.|Marselha fica no sul.
+est|Le soleil se lève à l'est.|O sol nasce no leste.
+ouest|Le soleil se couche à l'ouest.|O sol se põe no oeste.
+milieu|La table est au milieu de la salle.|A mesa está no meio da sala.
+sur|Le livre est sur la table.|O livro está sobre a mesa.
+sous|Le chat dort sous la chaise.|O gato dorme debaixo da cadeira.
+
+# natureza
+arbre|Il y a un grand arbre dans le jardin.|Há uma árvore grande no jardim.
+fleur|Cette fleur est rouge.|Esta flor é vermelha.
+forêt|Nous marchons dans la forêt.|Nós caminhamos na floresta.
+montagne|La montagne est très haute.|A montanha é muito alta.
+rivière|La rivière traverse la ville.|O rio atravessa a cidade.
+mer|J'aime nager dans la mer.|Gosto de nadar no mar.
+herbe|Le chat dort dans l'herbe.|O gato dorme na grama.
+feuille|Cette feuille est verte.|Esta folha é verde.
+pierre|Il y a une grosse pierre dans le champ.|Há uma pedra grande no campo.
+île|Cette île est très belle.|Esta ilha é muito bonita.
+lac|Nous nageons dans le lac.|Nós nadamos no lago.
+désert|Il fait très chaud dans le désert.|Faz muito calor no deserto.
+colline|La maison est sur la colline.|A casa fica na colina.
+terre|La terre est sèche.|A terra está seca.
+vallée|La rivière passe dans la vallée.|O rio passa pelo vale.
+cascade|La cascade est très haute.|A cachoeira é muito alta.
+champ|Le fermier travaille dans le champ.|O fazendeiro trabalha no campo.
+vague|La vague est grande.|A onda é grande.
+bois|Nous marchons dans le bois.|Nós caminhamos no bosque.
+
+# comida
+pomme|Je mange une pomme.|Eu como uma maçã.
+pain|Je mange du pain au petit-déjeuner.|Eu como pão no café da manhã.
+fromage|J'aime le fromage.|Eu gosto de queijo.
+lait|Je bois du lait le matin.|Eu bebo leite de manhã.
+riz|Nous mangeons du riz ce soir.|Nós comemos arroz hoje à noite.
+gâteau|Ma mère fait un gâteau.|Minha mãe faz um bolo.
+fraise|La fraise est rouge.|O morango é vermelho.
+poulet|Le poulet est délicieux.|O frango está delicioso.
+sucre|Je mets du sucre dans mon café.|Eu coloco açúcar no meu café.
+viande|Il ne mange pas de viande.|Ele não come carne.
+légume|Le brocoli est un légume.|O brócolis é um legume.
+fruit|La pomme est un fruit.|A maçã é uma fruta.
+œuf|Je mange un œuf au petit-déjeuner.|Eu como um ovo no café da manhã.
+beurre|Je mets du beurre sur le pain.|Eu coloco manteiga no pão.
+salade|Je mange une salade.|Eu como uma salada.
+jambon|Un sandwich au jambon, s'il vous plaît.|Um sanduíche de presunto, por favor.
+miel|Je mets du miel dans mon thé.|Eu coloco mel no meu chá.
+
+# descricoes
+heureux|Il est très heureux.|Ele está muito feliz.
+triste|Le film est très triste.|O filme é muito triste.
+fatigué|Je suis fatigué ce soir.|Estou cansado hoje à noite.
+petit|Mon frère est petit.|Meu irmão é pequeno.
+beau|Ce tableau est beau.|Este quadro é bonito.
+bon|Ce gâteau est très bon.|Este bolo é muito bom.
+mauvais|Ce café est mauvais.|Este café está ruim.
+joli|Ce jardin est très joli.|Este jardim é muito bonito.
+rapide|Ce train est très rapide.|Este trem é muito rápido.
+lent|Le bus est lent aujourd'hui.|O ônibus está lento hoje.
+fort|Il est très fort.|Ele é muito forte.
+faible|Le vent est faible aujourd'hui.|O vento está fraco hoje.
+pauvre|Cet homme est pauvre.|Esse homem é pobre.
+sale|Mon manteau est sale.|Meu casaco está sujo.
+
+# compras
+argent|Je n'ai pas d'argent.|Eu não tenho dinheiro.
+cher|Ce sac est trop cher.|Esta bolsa é cara demais.
+gratuit|Le musée est gratuit le dimanche.|O museu é gratuito aos domingos.
+panier|Je mets les fruits dans le panier.|Coloco as frutas na cesta.
+taille|Quelle est votre taille ?|Qual é o seu tamanho?
+reçu|Gardez le reçu, s'il vous plaît.|Guarde o recibo, por favor.
+caisse|Payez à la caisse.|Pague no caixa.
+boutique|Cette boutique vend des robes.|Esta lojinha vende vestidos.
+vendeur|Le vendeur aide la cliente.|O vendedor ajuda a cliente.
+soldes|Les soldes commencent demain.|A liquidação começa amanhã.
+espèces|Je paie en espèces.|Eu pago em dinheiro vivo.
+euro|Ce café coûte un euro.|Este café custa um euro.
+cadeau|Ce cadeau est pour ma mère.|Este presente é para minha mãe.
+commande|Ma commande arrive demain.|Meu pedido chega amanhã.
+facture|La facture est sur la table.|A fatura está sobre a mesa.
+pièce|Je cherche une pièce de deux euros.|Estou procurando uma moeda de dois euros.
+
+# restaurante
+menu|Le menu est sur la table.|O cardápio está sobre a mesa.
+serveur|Le serveur apporte l'eau.|O garçom traz a água.
+eau|Je voudrais de l'eau, s'il vous plaît.|Eu gostaria de água, por favor.
+vin|Il boit du vin rouge.|Ele bebe vinho tinto.
+café|Je bois un café le matin.|Eu tomo um café de manhã.
+bière|Une bière, s'il vous plaît.|Uma cerveja, por favor.
+assiette|L'assiette est sur la table.|O prato está sobre a mesa.
+fourchette|Je prends une fourchette.|Pego um garfo.
+dessert|Je prends un dessert.|Eu peço uma sobremesa.
+déjeuner|Le déjeuner est à midi.|O almoço é ao meio-dia.
+dîner|Le dîner est à huit heures.|O jantar é às oito horas.
+couteau|J'ai besoin d'un couteau.|Preciso de uma faca.
+cuillère|Je prends une cuillère.|Pego uma colher.
+réservation|J'ai une réservation pour deux personnes.|Tenho uma reserva para duas pessoas.
+pourboire|Je laisse un pourboire.|Deixo uma gorjeta.
+carte|Je voudrais voir la carte, s'il vous plaît.|Eu gostaria de ver o cardápio, por favor.
+
+# verbos
+manger|Je veux manger une pomme.|Quero comer uma maçã.
+boire|Je veux boire de l'eau.|Quero beber água.
+voir|Je veux voir la mer.|Quero ver o mar.
+lire|J'aime lire le soir.|Gosto de ler à noite.
+courir|J'aime courir dans le parc.|Gosto de correr no parque.
+pouvoir|Je veux pouvoir parler français.|Quero poder falar francês.
+vouloir|Il faut vouloir pour réussir.|É preciso querer para conseguir.
+donner|Je vais donner un livre à mon ami.|Vou dar um livro ao meu amigo.
+acheter|Je vais acheter du pain.|Vou comprar pão.
+payer|Je vais payer par carte.|Vou pagar com cartão.
+chanter|Elle aime chanter.|Ela gosta de cantar.
+danser|J'aime danser le samedi.|Gosto de dançar aos sábados.
+habiter|Je voudrais habiter à Paris.|Eu gostaria de morar em Paris.
+aider|Je peux vous aider ?|Posso ajudá-lo?
+chercher|Je vais chercher mes clés.|Vou procurar minhas chaves.
+trouver|Je ne peux pas trouver mon sac.|Não consigo encontrar minha bolsa.
+attendre|Je dois attendre le bus.|Preciso esperar o ônibus.
+
+# dias
+lundi|Lundi, je travaille.|Na segunda-feira, eu trabalho.
+mardi|Mardi, j'ai un cours.|Na terça-feira, tenho aula.
+mercredi|Mercredi, je vais à la piscine.|Na quarta-feira, vou à piscina.
+jeudi|Jeudi, je vois mon médecin.|Na quinta-feira, vejo meu médico.
+vendredi|Vendredi soir, nous dînons dehors.|Na sexta à noite, jantamos fora.
+samedi|Samedi, je dors tard.|No sábado, durmo até tarde.
+dimanche|Dimanche, nous mangeons chez ma grand-mère.|No domingo, almoçamos na casa da minha avó.
+hier|Hier, j'étais fatigué.|Ontem, eu estava cansado.
+matin|Le matin, je lis le journal.|De manhã, leio o jornal.
+aujourd'hui|Aujourd'hui, il fait chaud.|Hoje faz calor.
+mois|Ce mois a trente jours.|Este mês tem trinta dias.
+année|Cette année, je vais en France.|Este ano, vou à França.
+jour|Quel jour sommes-nous ?|Que dia é hoje?
+nuit|La nuit, il fait froid.|À noite, faz frio.
+soir|Le soir, je lis un livre.|À noite, leio um livro.
+après-midi|L'après-midi, je travaille.|À tarde, eu trabalho.
+week-end|Ce week-end, nous allons à la plage.|Neste fim de semana, vamos à praia.
+
+# trabalho
+bureau|Mon bureau est au premier étage.|Meu escritório fica no primeiro andar.
+téléphone|Mon téléphone est sur la table.|Meu telefone está sobre a mesa.
+réunion|La réunion commence à dix heures.|A reunião começa às dez horas.
+collègue|Mon collègue est très gentil.|Meu colega é muito gentil.
+salaire|Mon salaire est bon.|Meu salário é bom.
+livre|Ce livre est très intéressant.|Este livro é muito interessante.
+stylo|Je cherche mon stylo.|Estou procurando minha caneta.
+entreprise|Mon père travaille dans une grande entreprise.|Meu pai trabalha em uma grande empresa.
+carrière|Elle a une belle carrière.|Ela tem uma bela carreira.
+contrat|Je signe le contrat demain.|Assino o contrato amanhã.
+école|L'école commence à huit heures.|A escola começa às oito horas.
+université|Elle étudie à l'université.|Ela estuda na universidade.
+classe|La classe est très calme.|A turma é muito calma.
+
+# laboratorio
+chimie|J'étudie la chimie.|Eu estudo química.
+biologie|La biologie est ma matière préférée.|A biologia é a minha matéria preferida.
+algue|Cette algue est rouge.|Esta alga é vermelha.
+plante|Cette plante a besoin d'eau.|Esta planta precisa de água.
+cellule|La cellule est très petite.|A célula é muito pequena.
+molécule|Cette molécule est grande.|Esta molécula é grande.
+résultat|Le résultat est bon.|O resultado é bom.
+solution|La solution est transparente.|A solução é transparente.
+mélange|Le mélange est jaune.|A mistura é amarela.
+acide|Le citron contient de l'acide.|O limão contém ácido.
+microscope|Je regarde la cellule au microscope.|Olho a célula no microscópio.
+atome|L'atome est très petit.|O átomo é muito pequeno.
+oxygène|Nous respirons de l'oxygène.|Nós respiramos oxigênio.
+laboratoire|Elle travaille au laboratoire.|Ela trabalha no laboratório.
+échantillon|J'analyse un échantillon d'eau.|Analiso uma amostra de água.
+mesure|La mesure est correcte.|A medida está correta.
+analyse|L'analyse prend deux heures.|A análise leva duas horas.
+
+# cidade
+rue|Ma rue est calme.|Minha rua é calma.
+gare|La gare est près d'ici.|A estação fica perto daqui.
+train|Je prends le train pour Lyon.|Pego o trem para Lyon.
+voiture|Ma voiture est rouge.|Meu carro é vermelho.
+hôtel|L'hôtel est près de la gare.|O hotel fica perto da estação.
+plage|Nous allons à la plage.|Nós vamos à praia.
+ville|J'habite dans une grande ville.|Moro em uma cidade grande.
+pont|Le pont est très vieux.|A ponte é muito velha.
+marché|Le marché ouvre le samedi.|O mercado abre aos sábados.
+aéroport|L'aéroport est loin.|O aeroporto é longe.
+valise|Ma valise est lourde.|Minha mala é pesada.
+passeport|Mon passeport est dans mon sac.|Meu passaporte está na minha bolsa.
+métro|Je prends le métro le matin.|Pego o metrô de manhã.
+taxi|Je prends un taxi.|Pego um táxi.
+église|L'église est sur la place.|A igreja fica na praça.
+banque|La banque ferme à cinq heures.|O banco fecha às cinco horas.
+parc|Les enfants jouent dans le parc.|As crianças brincam no parque.
+bus|Le bus passe à huit heures.|O ônibus passa às oito horas.
+quartier|J'aime mon quartier.|Gosto do meu bairro.
+centre|L'hôtel est au centre de la ville.|O hotel fica no centro da cidade.
+place|Il y a un marché sur la place.|Há uma feira na praça.
+
+# roupas
+chemise|Il porte une chemise blanche.|Ele usa uma camisa branca.
+robe|Elle porte une robe bleue.|Ela usa um vestido azul.
+jupe|Elle porte une jupe noire.|Ela usa uma saia preta.
+manteau|Il fait froid, je mets mon manteau.|Está frio, vou vestir meu casaco.
+chapeau|Il porte un chapeau.|Ele usa um chapéu.
+chaussure|Cette chaussure est trop petite.|Este sapato é pequeno demais.
+chaussette|J'ai une chaussette rouge.|Tenho uma meia vermelha.
+veste|Il met sa veste.|Ele veste a jaqueta.
+sac|Mon sac est lourd.|Minha bolsa é pesada.
+cravate|Il porte une cravate rouge.|Ele usa uma gravata vermelha.
+gant|J'ai perdu un gant.|Perdi uma luva.
+écharpe|Il met une écharpe en hiver.|Ele usa um cachecol no inverno.
+bonnet|Le bébé porte un bonnet.|O bebê usa um gorro.
+ceinture|Il porte une ceinture noire.|Ele usa um cinto preto.
+lunettes|Elle porte des lunettes.|Ela usa óculos.
+botte|Cette botte est trop grande.|Esta bota é grande demais.
+maillot|Elle met son maillot pour nager.|Ela veste o maiô para nadar.
+
+# saudacoes
+bonsoir|Bonsoir, madame.|Boa noite, senhora.
+bonne nuit|Bonne nuit, à demain !|Boa noite, até amanhã!
+au revoir|Au revoir, à bientôt !|Tchau, até breve!
+de rien|Merci beaucoup ! — De rien.|Muito obrigado! — De nada.
+pardon|Pardon, je suis en retard.|Desculpe, estou atrasado.
+excusez-moi|Excusez-moi, où est la gare ?|Com licença, onde fica a estação?
+bienvenue|Bienvenue à Paris !|Bem-vindo a Paris!
+enchanté|Je m'appelle Paul, enchanté !|Meu nome é Paul, prazer em conhecer!
+oui|Oui, je comprends.|Sim, eu entendo.
+non|Non, merci.|Não, obrigado.
+bravo|Bravo, c'est parfait !|Muito bem, está perfeito!
+bientôt|On se voit bientôt.|A gente se vê em breve.
+exactement|Oui, exactement !|Sim, exatamente!
+d'accord|D'accord, je viens demain.|De acordo, eu venho amanhã.
+coucou|Coucou ! Ça va ?|Olá! Tudo bem?
+
+# cores
+bleu|Le ciel est bleu.|O céu é azul.
+vert|Mon sac est vert.|Minha bolsa é verde.
+blanc|Le lait est blanc.|O leite é branco.
+gris|Le ciel est gris aujourd'hui.|O céu está cinza hoje.
+rose|Cette fleur est rose.|Esta flor é rosa.
+violet|Le chapeau est violet.|O chapéu é roxo.
+marron|Mon manteau est marron.|Meu casaco é marrom.
+doré|Le cadeau a un ruban doré.|O presente tem uma fita dourada.
+clair|Le bleu clair est joli.|O azul claro é bonito.
+foncé|Il porte un manteau bleu foncé.|Ele usa um casaco azul-escuro.
+couleur|Quelle est ta couleur préférée ?|Qual é a sua cor preferida?
+beige|Le canapé est beige.|O sofá é bege.
+turquoise|La mer est turquoise.|O mar é turquesa.
+argenté|Il porte un manteau argenté.|Ele usa um casaco prateado.
+bordeaux|Elle porte une robe bordeaux.|Ela usa um vestido vinho.
+ocre|Le mur est ocre.|A parede é ocre.
+
+# animais
+chat|Le chat dort sur le canapé.|O gato dorme no sofá.
+chien|Le chien court dans le jardin.|O cachorro corre no jardim.
+cheval|Le cheval mange de l'herbe.|O cavalo come grama.
+oiseau|L'oiseau chante le matin.|O pássaro canta de manhã.
+vache|La vache mange de l'herbe.|A vaca come grama.
+lapin|Le lapin mange une carotte.|O coelho come uma cenoura.
+souris|La souris a peur du chat.|O rato tem medo do gato.
+ours|L'ours dort en hiver.|O urso dorme no inverno.
+loup|Le loup vit dans la forêt.|O lobo vive na floresta.
+canard|Le canard nage dans le lac.|O pato nada no lago.
+cochon|Le cochon est dans la ferme.|O porco está na fazenda.
+mouton|Le mouton mange de l'herbe.|O carneiro come grama.
+chèvre|La chèvre est dans le champ.|A cabra está no campo.
+âne|L'âne porte un sac.|O burro carrega uma bolsa.
+renard|Le renard court dans la forêt.|A raposa corre na floresta.
+tigre|Le tigre est un grand animal.|O tigre é um animal grande.
+singe|Le singe mange une banane.|O macaco come uma banana.
+serpent|Le serpent est dans l'herbe.|A serpente está na grama.
+
+# clima
+pluie|La pluie tombe depuis ce matin.|A chuva cai desde esta manhã.
+vent|Il y a beaucoup de vent aujourd'hui.|Há muito vento hoje.
+nuage|Il y a un nuage dans le ciel.|Há uma nuvem no céu.
+orage|L'orage arrive ce soir.|A tempestade chega esta noite.
+chaud|Il fait chaud en été.|Faz calor no verão.
+froid|Il fait froid en hiver.|Faz frio no inverno.
+ciel|Il n'y a pas de nuages dans le ciel.|Não há nuvens no céu.
+lune|La lune est ronde ce soir.|A lua está redonda esta noite.
+brouillard|Il y a du brouillard ce matin.|Há neblina esta manhã.
+tonnerre|J'entends le tonnerre.|Eu ouço o trovão.
+éclair|Un éclair traverse le ciel.|Um relâmpago atravessa o céu.
+été|En été, nous allons à la plage.|No verão, vamos à praia.
+hiver|En hiver, il fait froid.|No inverno, faz frio.
+automne|En automne, les feuilles tombent.|No outono, as folhas caem.
+
+# casa
+porte|Ferme la porte, s'il te plaît.|Feche a porta, por favor.
+fenêtre|J'ouvre la fenêtre.|Eu abro a janela.
+chaise|Il y a une chaise dans la cuisine.|Há uma cadeira na cozinha.
+salon|Le salon est grand.|A sala de estar é grande.
+jardin|Le chien joue dans le jardin.|O cachorro brinca no jardim.
+toit|Le chat est sur le toit.|O gato está no telhado.
+mur|Il y a un tableau sur le mur.|Há um quadro na parede.
+escalier|L'escalier est étroit.|A escada é estreita.
+chambre|Ma chambre est petite.|Meu quarto é pequeno.
+canapé|Nous regardons la télé sur le canapé.|Assistimos à TV no sofá.
+armoire|Mes vêtements sont dans l'armoire.|Minhas roupas estão no armário.
+miroir|Elle se regarde dans le miroir.|Ela se olha no espelho.
+lampe|La lampe est sur la table.|A luminária está sobre a mesa.
+tapis|Le tapis est rouge.|O tapete é vermelho.
+rideau|Le rideau est bleu.|A cortina é azul.
+plafond|Le plafond est blanc.|O teto é branco.

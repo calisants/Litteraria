@@ -22,7 +22,7 @@ function renderSentence(){
   h+='<div class="slot" id="sn-slot" aria-label="Sua frase">'+sn.slot.map(b=>'<button type="button" class="blk" data-un="'+b.id+'">'+esc(b.w)+"</button>").join("")+"</div>";
   const used=new Set(sn.slot.map(b=>b.id));
   h+='<div class="bank" id="sn-bank">'+sn.bank.map(b=>'<button type="button" class="blk'+(used.has(b.id)?" used":"")+'" data-w="'+b.id+'"'+(used.has(b.id)?" tabindex=-1 aria-hidden=true":"")+">"+esc(b.w)+"</button>").join("")+"</div>";
-  if(sn.solved)h+='<div class="heard">'+speakBtn(l.s)+'<span>'+esc(l.s)+'</span></div><p class="note"><b>Nota:</b> '+esc(l.note)+"</p>";
+  if(sn.solved)h+='<div class="heard">'+speakBtn(l.s)+'<span>'+esc(l.s)+'</span></div><p class="note"><b>Nota:</b> '+hl(l.note)+"</p>";
   $("#sstage").innerHTML=h;
   $("#sn-submit").disabled=sn.solved||sn.slot.length!==sn.words.length;
   $("#sn-clear").disabled=sn.solved||!sn.slot.length;
@@ -152,7 +152,7 @@ function renderResp(){
   h+=rs.said.map((x,k)=>'<p class="said"><small>Pessoa '+(k%2===0?"A":"B")+"</small>"+esc(x.s)+"</p>").join("");
   h+='<p class="prompt"><small>Pessoa '+(rs.i%2===0?"A":"B")+" responde:</small>"+(rs.i===0?"Qual fala abre a conversa?":"Qual fala vem agora?")+"</p>";
   h+='<div class="lopts">'+rs.opts.map((o,k)=>'<button type="button" class="lopt long'+(rs.solved&&o.ok?" right":"")+'" data-k="'+k+'" aria-pressed="'+(rs.sel===k)+'"'+(rs.solved?" disabled":"")+">"+esc(o.x.s)+"</button>").join("")+"</div>";
-  if(rs.solved)h+='<div class="heard">'+speakBtn(l.s)+"<span>"+esc(l.pt)+'</span></div><p class="note"><b>Nota:</b> '+esc(l.note)+"</p>";
+  if(rs.solved)h+='<div class="heard">'+speakBtn(l.s)+"<span>"+esc(l.pt)+'</span></div><p class="note"><b>Nota:</b> '+hl(l.note)+"</p>";
   $("#rstage").innerHTML=h;
   $("#rs-submit").disabled=rs.solved||rs.sel===null;
   $("#rs-next").disabled=!rs.solved;

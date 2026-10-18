@@ -29,8 +29,8 @@ function wordIntro(e){
 }
 /* cada palavra: 1) apresentação + copiar, 2) escrever de novo, 3) escrever sem olhar */
 function itemsKnow(e){
-  const f=full(e),a=vocBase(e,wordIntro(e)+"\n\n1 de 3 · Copie: "+f);
-  const b=vocBase(e,"2 de 3 · Escreva de novo: "+f+"\n(«"+e.pt+"»)");
+  const f=full(e),a=vocBase(e,wordIntro(e)+"\n\n1 de 3 · Copie: «"+f+"»");
+  const b=vocBase(e,"2 de 3 · Escreva de novo: «"+f+"»\nSignifica: «"+e.pt+"»");
   const c=vocBase(e,"3 de 3 · Agora sem olhar. Escreva «"+e.pt+"» em "+LNAME[S.lang]+":");
   a._noRec=b._noRec=true;
   return [a,b,c];
@@ -48,15 +48,31 @@ function itemScramble(e){
   return vocBase(e,"Coloque as letras em ordem para escrever «"+e.pt+"» em "+LNAME[S.lang]+":\n"+s.join(" ").toUpperCase());
 }
 function itemWrite(e){
-  const it=vocBase(e,"Escreva «"+e.pt+"» em "+LNAME[S.lang]+":"+(e.a?"\n(com ou sem o artigo)":""));
+  const it=vocBase(e,"Escreva «"+e.pt+"» em "+LNAME[S.lang]+":"+(e.a?"\nPode escrever com ou sem o artigo.":""));
   it.ok=[...new Set(Object.values(VOCAB[S.lang]).flat().filter(x=>x.pt===e.pt).flatMap(x=>[x.w,full(x)]))];
+  return it;
+}
+/* Frase de contexto: do Wikcionário (EX) quando há; senão escrita por Claude (CTXC, sem fonte conferida) */
+function ctxFor(e){
+  const k=e.w.toLowerCase(),x=EX[S.lang]&&EX[S.lang][k];
+  if(x)return {s:x[0],pt:x[1],src:"Frase do Wikcionário (CC BY-SA 4.0), traduzida por Claude."};
+  const c=CTXC[S.lang]&&(CTXC[S.lang][e.w]||CTXC[S.lang][k]);
+  return c?{s:c[0],pt:c[1],src:"Frase escrita por Claude, sem fonte conferida."}:null;
+}
+function itemContexto(e){
+  const c=ctxFor(e),it=vocBase(e,"");
+  const re=new RegExp("(^|[^\\p{L}\\p{N}])"+e.w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?![\\p{L}\\p{N}])","giu");
+  const gap=c.s.replace(re,(m,p)=>p+"_____");
+  it.q="Complete a frase em "+LNAME[S.lang]+":\n«"+gap+"»\nSignifica: "+c.pt+"\nPalavra que falta: «"+e.pt+"»"+(e.a?"\nPode escrever só a palavra, sem o artigo.":"");
+  it.s=c.s;it.lab="Fonte:";it.w=c.src;it.ok=[...new Set([e.w])];
   return it;
 }
 function startVoc(){
   fitFn=null;
   let ws=vocWords();
+  if(P.type==="contexto")ws=ws.filter(ctxFor);
   if(P.type==="embaralhar"){const one=ws.filter(e=>/^\p{L}{3,}$/u.test(e.w));if(one.length>=4)ws=one;}
-  const mk={reco:vocabItem,completar:itemComplete,embaralhar:itemScramble,escreva:itemWrite}[P.type];
+  const mk={reco:vocabItem,completar:itemComplete,embaralhar:itemScramble,escreva:itemWrite,contexto:itemContexto}[P.type];
   const items=P.type==="conheca"?ws.flatMap(itemsKnow):sh0(ws).map(mk);
   gm.items=items;gm.ids=items.map(it=>"v|"+it.k.toLowerCase());gm.types=null;gm.review=false;gm.drill=false;
   gm.i=0;gm.miss=0;gm.open=true;

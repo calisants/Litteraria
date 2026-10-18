@@ -1,0 +1,475 @@
+# Frases de contexto (italiano) escritas por Claude, sem fonte conferida.
+# Só para palavras que NÃO têm exemplo do Wikcionário em exemplos.js (esses vêm de lá).
+# Formato: palavra|frase (com a palavra exatamente como no vocabulário, uma vez só)|tradução da frase
+# Conferência automática: tools/mk_ctx.py (palavra aparece inteira, uma vez, na frase)
+
+# pessoas
+uomo|L'uomo legge il giornale.|O homem lê o jornal.
+donna|La donna aspetta l'autobus.|A mulher espera o ônibus.
+bambino|Il bambino gioca in giardino.|A criança brinca no jardim.
+amico|Il mio amico abita a Roma.|Meu amigo mora em Roma.
+vicino|Il mio vicino ha un cane.|Meu vizinho tem um cachorro.
+professore|Il professore scrive alla lavagna.|O professor escreve na lousa.
+studente|Lo studente legge un libro.|O estudante lê um livro.
+ragazzo|Il ragazzo corre nel parco.|O garoto corre no parque.
+persona|Questa persona è molto gentile.|Esta pessoa é muito gentil.
+adulto|Un adulto lavora ogni giorno.|Um adulto trabalha todos os dias.
+giovane|Lei è molto giovane.|Ela é muito jovem.
+vecchio|Mio nonno è vecchio.|Meu avô é velho.
+gente|C'è molta gente in piazza.|Há muita gente na praça.
+abitante|Questo abitante conosce bene la città.|Este habitante conhece bem a cidade.
+bebè|Il bebè dorme.|O bebê dorme.
+direttore|Il direttore è nel suo ufficio.|O diretor está no escritório dele.
+cliente|Il cliente aspetta alla cassa.|O cliente espera no caixa.
+turista|Il turista fa una foto.|O turista tira uma foto.
+
+# corpo
+mano|Ho una penna in mano.|Tenho uma caneta na mão.
+piede|Mi fa male il piede.|Meu pé está doendo.
+braccio|Alzo il braccio.|Levanto o braço.
+gamba|Mi fa male la gamba.|Minha perna está doendo.
+occhio|Ho un occhio rosso.|Estou com um olho vermelho.
+bocca|Apri la bocca, per favore.|Abra a boca, por favor.
+naso|Ha il naso rosso.|Ele está com o nariz vermelho.
+cuore|Il mio cuore batte forte.|Meu coração bate forte.
+dente|Il mio dente è rotto.|Meu dente está quebrado.
+viso|Lei ha un bel viso.|Ela tem um rosto bonito.
+capelli|Lei ha i capelli lunghi.|Ela tem cabelos compridos.
+dito|Mi fa male un dito.|Um dedo meu está doendo.
+ginocchio|Mi fa male il ginocchio.|Meu joelho está doendo.
+spalla|Porto la borsa sulla spalla.|Carrego a bolsa no ombro.
+pancia|Ho mal di pancia.|Estou com dor de barriga.
+pelle|La sua pelle è molto morbida.|A pele dela é muito macia.
+lingua|Il gatto ha la lingua rosa.|O gato tem a língua rosa.
+collo|Ho mal di collo.|Estou com dor no pescoço.
+schiena|Ho mal di schiena.|Estou com dor nas costas.
+
+# familia
+madre|Mia madre cucina molto bene.|Minha mãe cozinha muito bem.
+padre|Mio padre lavora a Milano.|Meu pai trabalha em Milão.
+fratello|Mio fratello gioca a calcio.|Meu irmão joga futebol.
+sorella|Mia sorella studia chimica.|Minha irmã estuda química.
+figlio|Suo figlio ha dieci anni.|O filho dele tem dez anos.
+figlia|Sua figlia ama cantare.|A filha dele adora cantar.
+zio|Mio zio abita in campagna.|Meu tio mora no campo.
+zia|Mia zia fa una torta.|Minha tia faz um bolo.
+cugino|Mio cugino ha cinque anni.|Meu primo tem cinco anos.
+nonno|Mio nonno legge il giornale.|Meu avô lê o jornal.
+marito|Suo marito è medico.|O marido dela é médico.
+moglie|Sua moglie si chiama Anna.|A esposa dele se chama Anna.
+genitori|I miei genitori abitano a Torino.|Meus pais moram em Turim.
+suocero|Mio suocero è molto gentile.|Meu sogro é muito gentil.
+suocera|Mia suocera cucina molto bene.|Minha sogra cozinha muito bem.
+cognato|Mio cognato lavora in banca.|Meu cunhado trabalha em um banco.
+cognata|Mia cognata abita a Napoli.|Minha cunhada mora em Nápoles.
+gemello|Mio fratello ha un gemello.|Meu irmão tem um gêmeo.
+famiglia|La mia famiglia è grande.|Minha família é grande.
+
+# numeros
+due|Ho due fratelli.|Tenho dois irmãos.
+tre|Ci sono tre gatti in giardino.|Há três gatos no jardim.
+quattro|Il tavolo ha quattro sedie.|A mesa tem quatro cadeiras.
+cinque|Sono le cinque.|São cinco horas.
+sei|Ho sei libri.|Tenho seis livros.
+sette|La settimana ha sette giorni.|A semana tem sete dias.
+otto|Ci sono otto studenti in classe.|Há oito estudantes na turma.
+nove|Il treno parte alle nove.|O trem parte às nove.
+dieci|Mio figlio ha dieci anni.|Meu filho tem dez anos.
+venti|Ci sono venti persone qui.|Há vinte pessoas aqui.
+zero|Fuori ci sono zero gradi.|Lá fora estão zero graus.
+undici|La partita inizia alle undici.|O jogo começa às onze.
+dodici|L'anno ha dodici mesi.|O ano tem doze meses.
+quindici|Ho quindici euro.|Tenho quinze euros.
+trenta|Il mese ha trenta giorni.|O mês tem trinta dias.
+quaranta|Mio padre ha quaranta anni.|Meu pai tem quarenta anos.
+cinquanta|Questo libro costa cinquanta euro.|Este livro custa cinquenta euros.
+cento|Ci sono cento persone nella sala.|Há cem pessoas na sala.
+mille|Ci sono mille persone alla festa.|Há mil pessoas na festa.
+
+# perguntas
+chi|Chi è quel ragazzo?|Quem é aquele garoto?
+cosa|Cosa mangi stasera?|O que você come esta noite?
+poco|Ho poco tempo.|Tenho pouco tempo.
+anche|Vengo anche io.|Eu também vou.
+sempre|Mangio sempre a casa.|Eu sempre como em casa.
+mai|Non mangio mai carne.|Eu nunca como carne.
+forse|Forse domani piove.|Talvez chova amanhã.
+talvolta|Talvolta mangio al ristorante.|Às vezes como no restaurante.
+già|Ho già mangiato.|Já comi.
+adesso|Adesso sono a casa.|Agora estou em casa.
+poi|Prima leggo, poi dormo.|Primeiro leio, depois durmo.
+troppo|Questo caffè è troppo caldo.|Este café está quente demais.
+
+# saude
+medico|Il medico lavora in ospedale.|O médico trabalha no hospital.
+ospedale|Lui è in ospedale.|Ele está no hospital.
+farmacia|La farmacia chiude alle otto.|A farmácia fecha às oito.
+dolore|Ho un dolore alla schiena.|Tenho uma dor nas costas.
+febbre|Il bambino ha la febbre.|A criança está com febre.
+medicina|Prendo una medicina ogni mattina.|Tomo um remédio toda manhã.
+tosse|Ho la tosse da ieri.|Estou com tosse desde ontem.
+pillola|Lui prende una pillola la mattina.|Ele toma um comprimido de manhã.
+dentista|Il dentista guarda i miei denti.|O dentista olha meus dentes.
+infermiere|L'infermiere aiuta il paziente.|O enfermeiro ajuda o paciente.
+ambulanza|L'ambulanza arriva presto.|A ambulância chega logo.
+ferita|La ferita è piccola.|O ferimento é pequeno.
+allergia|Lei ha un'allergia al latte.|Ela tem alergia a leite.
+sangue|C'è del sangue sul dito.|Há sangue no dedo.
+ricetta|Il medico scrive una ricetta.|O médico escreve uma receita.
+vaccino|Il vaccino è gratuito.|A vacina é gratuita.
+cerotto|Metto un cerotto sul dito.|Coloco um curativo no dedo.
+raffreddore|Ho il raffreddore.|Estou resfriado.
+
+# direcoes
+sinistra|Gira a sinistra.|Vire à esquerda.
+destra|Il parco è a destra.|O parque fica à direita.
+lontano|La stazione è lontano da qui.|A estação fica longe daqui.
+qui|Lavoro qui.|Trabalho aqui.
+davanti|Il bambino è davanti alla porta.|A criança está na frente da porta.
+dietro|Il giardino è dietro la casa.|O jardim fica atrás da casa.
+sopra|Il libro è sopra il tavolo.|O livro está em cima da mesa.
+sotto|Il gatto dorme sotto il tavolo.|O gato dorme embaixo da mesa.
+angolo|Il bar è all'angolo.|O bar fica na esquina.
+nord|Milano è nel nord dell'Italia.|Milão fica no norte da Itália.
+sud|Napoli è nel sud.|Nápoles fica no sul.
+est|Il sole sorge a est.|O sol nasce no leste.
+ovest|Il sole tramonta a ovest.|O sol se põe no oeste.
+mezzo|Il tavolo è in mezzo alla stanza.|A mesa está no meio da sala.
+lato|Il bar è dall'altro lato della strada.|O bar fica do outro lado da rua.
+dentro|Il gatto è dentro la casa.|O gato está dentro da casa.
+fuori|I bambini giocano fuori.|As crianças brincam lá fora.
+
+# natureza
+albero|C'è un grande albero in giardino.|Há uma árvore grande no jardim.
+fiore|Questo fiore è rosso.|Esta flor é vermelha.
+foresta|Camminiamo nella foresta.|Nós caminhamos na floresta.
+montagna|La montagna è molto alta.|A montanha é muito alta.
+fiume|Il fiume attraversa la città.|O rio atravessa a cidade.
+mare|Mi piace nuotare nel mare.|Gosto de nadar no mar.
+foglia|Questa foglia è verde.|Esta folha é verde.
+pietra|C'è una grande pietra nel campo.|Há uma pedra grande no campo.
+isola|Questa isola è molto bella.|Esta ilha é muito bonita.
+lago|Nuotiamo nel lago.|Nós nadamos no lago.
+deserto|Fa molto caldo nel deserto.|Faz muito calor no deserto.
+collina|La casa è sulla collina.|A casa fica na colina.
+sabbia|La sabbia è calda.|A areia está quente.
+terra|La terra è secca.|A terra está seca.
+valle|Il fiume passa nella valle.|O rio passa pelo vale.
+cascata|La cascata è molto alta.|A cachoeira é muito alta.
+campo|Il contadino lavora nel campo.|O agricultor trabalha no campo.
+onda|L'onda è grande.|A onda é grande.
+bosco|Camminiamo nel bosco.|Nós caminhamos no bosque.
+
+# comida
+mela|Mangio una mela.|Eu como uma maçã.
+pane|Mangio il pane a colazione.|Eu como pão no café da manhã.
+formaggio|Mi piace il formaggio.|Eu gosto de queijo.
+latte|Bevo il latte la mattina.|Eu bebo leite de manhã.
+pesce|Stasera mangiamo il pesce.|Esta noite comemos peixe.
+riso|Oggi mangiamo il riso.|Hoje comemos arroz.
+torta|Mia madre fa una torta.|Minha mãe faz um bolo.
+fragola|La fragola è rossa.|O morango é vermelho.
+pollo|Il pollo è delizioso.|O frango está delicioso.
+zucchero|Metto lo zucchero nel caffè.|Coloco açúcar no café.
+carne|Lui non mangia carne.|Ele não come carne.
+verdura|Mangio la verdura ogni giorno.|Como verdura todos os dias.
+burro|Metto il burro sul pane.|Coloco manteiga no pão.
+zuppa|La zuppa è calda.|A sopa está quente.
+insalata|Mangio un'insalata.|Eu como uma salada.
+pasta|Mangiamo la pasta a pranzo.|Comemos massa no almoço.
+prosciutto|Un panino con il prosciutto, per favore.|Um sanduíche de presunto, por favor.
+miele|Metto il miele nel tè.|Coloco mel no chá.
+
+# descricoes
+felice|Lei è molto felice.|Ela está muito feliz.
+triste|Il film è molto triste.|O filme é muito triste.
+grande|La casa è molto grande.|A casa é muito grande.
+piccolo|Mio fratello è piccolo.|Meu irmão é pequeno.
+bello|Questo quadro è bello.|Este quadro é bonito.
+buono|Questo caffè è buono.|Este café é bom.
+facile|L'esame è facile.|O exame é fácil.
+difficile|Il compito è difficile.|O dever de casa é difícil.
+carino|Il cane è molto carino.|O cachorro é muito bonitinho.
+brutto|Il tempo è brutto oggi.|O tempo está feio hoje.
+veloce|Questo treno è molto veloce.|Este trem é muito rápido.
+lento|L'autobus è lento oggi.|O ônibus está lento hoje.
+debole|Il vento è debole oggi.|O vento está fraco hoje.
+ricco|Quell'uomo è ricco.|Aquele homem é rico.
+povero|Quest'uomo è povero.|Este homem é pobre.
+pulito|Il tavolo è pulito.|A mesa está limpa.
+sporco|Il mio cappotto è sporco.|Meu casaco está sujo.
+
+# compras
+soldi|Non ho soldi.|Não tenho dinheiro.
+prezzo|Il prezzo è basso.|O preço é baixo.
+negozio|Il negozio apre alle nove.|A loja abre às nove.
+caro|Questo libro è troppo caro.|Este livro é caro demais.
+gratis|L'ingresso è gratis.|A entrada é grátis.
+resto|Tenga il resto.|Fique com o troco.
+carrello|Metto la frutta nel carrello.|Coloco a fruta no carrinho.
+taglia|Che taglia porta?|Qual tamanho você usa?
+scontrino|Tenga lo scontrino, per favore.|Guarde o recibo, por favor.
+cassa|Si paga alla cassa.|Paga-se no caixa.
+vetrina|Guardo la vetrina del negozio.|Olho a vitrine da loja.
+commesso|Il commesso aiuta la cliente.|O vendedor ajuda a cliente.
+sconto|Oggi c'è uno sconto.|Hoje há um desconto.
+saldi|I saldi cominciano domani.|A liquidação começa amanhã.
+contanti|Pago in contanti.|Pago em dinheiro vivo.
+euro|Questo caffè costa un euro.|Este café custa um euro.
+regalo|Questo regalo è per mia madre.|Este presente é para minha mãe.
+fattura|La fattura è sul tavolo.|A fatura está sobre a mesa.
+moneta|Cerco una moneta da due euro.|Estou procurando uma moeda de dois euros.
+
+# restaurante
+menu|Il menu è sul tavolo.|O cardápio está sobre a mesa.
+conto|Il conto, per favore.|A conta, por favor.
+cameriere|Il cameriere porta l'acqua.|O garçom traz a água.
+caffè|Bevo un caffè la mattina.|Eu tomo um café de manhã.
+piatto|Il piatto è sul tavolo.|O prato está sobre a mesa.
+forchetta|Prendo una forchetta.|Pego um garfo.
+bevanda|Vorrei una bevanda fredda.|Eu gostaria de uma bebida gelada.
+dolce|Prendo un dolce.|Eu peço uma sobremesa.
+pranzo|Il pranzo è a mezzogiorno.|O almoço é ao meio-dia.
+cena|La cena è alle otto.|O jantar é às oito.
+coltello|Ho bisogno di un coltello.|Preciso de uma faca.
+tovagliolo|Mi serve un tovagliolo.|Preciso de um guardanapo.
+prenotazione|Ho una prenotazione per due persone.|Tenho uma reserva para duas pessoas.
+carta|Vorrei vedere la carta, per favore.|Eu gostaria de ver o cardápio, por favor.
+
+# verbos
+mangiare|Voglio mangiare una mela.|Quero comer uma maçã.
+bere|Voglio bere dell'acqua.|Quero beber água.
+dormire|Voglio dormire.|Quero dormir.
+parlare|Voglio parlare italiano.|Quero falar italiano.
+amare|Amare è bello.|Amar é lindo.
+andare|Voglio andare al mare.|Quero ir à praia.
+vedere|Voglio vedere il mare.|Quero ver o mar.
+leggere|Mi piace leggere la sera.|Gosto de ler à noite.
+scrivere|Devo scrivere una lettera.|Preciso escrever uma carta.
+correre|Mi piace correre nel parco.|Gosto de correr no parque.
+avere|Voglio avere una casa grande.|Quero ter uma casa grande.
+essere|Voglio essere felice.|Quero ser feliz.
+fare|Cosa vuoi fare stasera?|O que você quer fazer esta noite?
+potere|Il verbo potere è molto utile.|O verbo poder é muito útil.
+volere|Il verbo volere è molto utile.|O verbo querer é muito útil.
+prendere|Vado a prendere il pane.|Vou pegar o pão.
+dare|Voglio dare un libro a un amico.|Quero dar um livro a um amigo.
+comprare|Vado a comprare il pane.|Vou comprar pão.
+capire|Non riesco a capire.|Não consigo entender.
+cantare|Mi piace cantare.|Gosto de cantar.
+lavorare|Devo lavorare domani.|Preciso trabalhar amanhã.
+abitare|Vorrei abitare a Roma.|Eu gostaria de morar em Roma.
+aiutare|Voglio aiutare i miei amici.|Quero ajudar meus amigos.
+cercare|Devo cercare le chiavi.|Preciso procurar as chaves.
+trovare|Non riesco a trovare la borsa.|Não consigo encontrar a bolsa.
+aspettare|Devo aspettare l'autobus.|Preciso esperar o ônibus.
+aprire|Devo aprire la finestra.|Preciso abrir a janela.
+
+# dias
+lunedì|Lunedì lavoro.|Na segunda-feira, eu trabalho.
+martedì|Martedì ho lezione.|Na terça-feira, tenho aula.
+mercoledì|Mercoledì vado in piscina.|Na quarta-feira, vou à piscina.
+giovedì|Giovedì vedo il medico.|Na quinta-feira, vejo o médico.
+venerdì|Venerdì sera ceniamo fuori.|Na sexta à noite, jantamos fora.
+sabato|Sabato dormo fino a tardi.|No sábado, durmo até tarde.
+domenica|Domenica mangiamo dalla nonna.|No domingo, almoçamos na casa da vovó.
+ieri|Ieri ero stanco.|Ontem eu estava cansado.
+domani|Domani vado al mare.|Amanhã vou à praia.
+mattina|La mattina leggo il giornale.|De manhã, leio o jornal.
+oggi|Oggi fa caldo.|Hoje faz calor.
+settimana|Questa settimana lavoro molto.|Esta semana trabalho muito.
+mese|Il mese prossimo vado in Italia.|No mês que vem vou à Itália.
+anno|Quest'anno vado in Italia.|Este ano vou à Itália.
+giorno|Che giorno è oggi?|Que dia é hoje?
+notte|Di notte fa freddo.|À noite faz frio.
+sera|La sera leggo un libro.|À noite, leio um livro.
+pomeriggio|Il pomeriggio lavoro.|À tarde, eu trabalho.
+weekend|Questo weekend andiamo al mare.|Neste fim de semana, vamos à praia.
+
+# trabalho
+ufficio|Il mio ufficio è al primo piano.|Meu escritório fica no primeiro andar.
+computer|Il computer è sulla scrivania.|O computador está sobre a escrivaninha.
+riunione|La riunione inizia alle dieci.|A reunião começa às dez.
+capo|Il mio capo è molto gentile.|Meu chefe é muito gentil.
+collega|La mia collega parla tre lingue.|Minha colega fala três línguas.
+stipendio|Il mio stipendio è buono.|Meu salário é bom.
+libro|Questo libro è molto interessante.|Este livro é muito interessante.
+penna|Cerco la mia penna.|Estou procurando minha caneta.
+impiego|Mio fratello cerca un impiego.|Meu irmão procura um emprego.
+carriera|Lei ha una bella carriera.|Ela tem uma bela carreira.
+contratto|Firmo il contratto domani.|Assino o contrato amanhã.
+esame|L'esame è domani.|O exame é amanhã.
+scuola|La scuola inizia alle otto.|A escola começa às oito.
+università|Lei studia all'università.|Ela estuda na universidade.
+classe|La classe è molto tranquilla.|A turma é muito tranquila.
+compito|Faccio il compito di matematica.|Faço o dever de casa de matemática.
+quaderno|Scrivo sul quaderno.|Escrevo no caderno.
+
+# laboratorio
+chimica|Studio la chimica.|Eu estudo química.
+biologia|La biologia è la mia materia preferita.|A biologia é a minha matéria preferida.
+alga|Quest'alga è rossa.|Esta alga é vermelha.
+pianta|Questa pianta ha bisogno d'acqua.|Esta planta precisa de água.
+cellula|La cellula è molto piccola.|A célula é muito pequena.
+molecola|Questa molecola è grande.|Esta molécula é grande.
+risultato|Il risultato è buono.|O resultado é bom.
+soluzione|La soluzione è trasparente.|A solução é transparente.
+miscela|La miscela è gialla.|A mistura é amarela.
+acido|Il limone contiene acido.|O limão contém ácido.
+esperimento|L'esperimento dura due ore.|O experimento dura duas horas.
+microscopio|Guardo la cellula al microscopio.|Olho a célula no microscópio.
+atomo|L'atomo è molto piccolo.|O átomo é muito pequeno.
+energia|Il sole dà energia alle piante.|O sol dá energia às plantas.
+ossigeno|Respiriamo ossigeno.|Nós respiramos oxigênio.
+laboratorio|Lei lavora in laboratorio.|Ela trabalha no laboratório.
+campione|Analizzo un campione d'acqua.|Analiso uma amostra de água.
+formula|La formula dell'acqua è H2O.|A fórmula da água é H2O.
+analisi|L'analisi dura due ore.|A análise leva duas horas.
+
+# cidade
+strada|La mia strada è tranquilla.|Minha rua é tranquila.
+aereo|L'aereo parte alle nove.|O avião parte às nove.
+treno|Prendo il treno per Roma.|Pego o trem para Roma.
+macchina|La mia macchina è rossa.|Meu carro é vermelho.
+albergo|L'albergo è vicino alla stazione.|O hotel fica perto da estação.
+città|Abito in una grande città.|Moro em uma cidade grande.
+ponte|Il ponte è molto vecchio.|A ponte é muito velha.
+mercato|Il mercato apre il sabato.|O mercado abre aos sábados.
+aeroporto|L'aeroporto è lontano.|O aeroporto é longe.
+biglietto|Compro un biglietto del treno.|Compro uma passagem de trem.
+valigia|La mia valigia è pesante.|Minha mala é pesada.
+passaporto|Il mio passaporto è nella borsa.|Meu passaporte está na bolsa.
+metro|Prendo la metro la mattina.|Pego o metrô de manhã.
+taxi|Prendo un taxi.|Pego um táxi.
+chiesa|La chiesa è in piazza.|A igreja fica na praça.
+banca|La banca chiude alle cinque.|O banco fecha às cinco.
+parco|I bambini giocano nel parco.|As crianças brincam no parque.
+museo|Il museo è gratis la domenica.|O museu é grátis aos domingos.
+autobus|L'autobus passa alle otto.|O ônibus passa às oito.
+bicicletta|Vado al lavoro in bicicletta.|Vou ao trabalho de bicicleta.
+mappa|Guardo la mappa della città.|Olho o mapa da cidade.
+centro|L'albergo è in centro.|O hotel fica no centro.
+piazza|C'è un mercato in piazza.|Há uma feira na praça.
+
+# roupas
+camicia|Lui porta una camicia bianca.|Ele usa uma camisa branca.
+pantaloni|Lui porta dei pantaloni neri.|Ele usa uma calça preta.
+vestito|Lei porta un vestito blu.|Ela usa um vestido azul.
+gonna|Lei porta una gonna nera.|Ela usa uma saia preta.
+cappotto|Fa freddo, metto il cappotto.|Está frio, vou vestir o casaco.
+cappello|Lui porta un cappello.|Ele usa um chapéu.
+scarpa|Questa scarpa è troppo piccola.|Este sapato é pequeno demais.
+calzino|Ho un calzino rosso.|Tenho uma meia vermelha.
+giacca|Metto la giacca.|Visto a jaqueta.
+borsa|La mia borsa è pesante.|Minha bolsa é pesada.
+maglione|Ho freddo, metto un maglione.|Estou com frio, visto um suéter.
+pantaloncini|In estate porto i pantaloncini.|No verão uso short.
+cravatta|Lui porta una cravatta rossa.|Ele usa uma gravata vermelha.
+guanto|Ho perso un guanto.|Perdi uma luva.
+berretto|Il bambino porta un berretto.|A criança usa um gorro.
+cintura|Lui porta una cintura nera.|Ele usa um cinto preto.
+stivale|Questo stivale è troppo grande.|Esta bota é grande demais.
+costume|Metto il costume per nuotare.|Visto o traje de banho para nadar.
+
+# saudacoes
+buongiorno|Buongiorno, signora.|Bom dia, senhora.
+buonasera|Buonasera, come sta?|Boa noite, como vai?
+buonanotte|Buonanotte, a domani!|Boa noite, até amanhã!
+ciao|Ciao, come stai?|Oi, tudo bem?
+salve|Salve, vorrei un caffè.|Olá, gostaria de um café.
+prego|Grazie mille! — Prego.|Muito obrigado! — De nada.
+scusi|Scusi, dov'è la stazione?|Com licença, onde fica a estação?
+benvenuto|Benvenuto a Roma!|Bem-vindo a Roma!
+certo|Certo, vengo domani.|Claro, eu venho amanhã.
+arrivederci|Arrivederci, a presto!|Até logo, até breve!
+bravo|Bravo, è perfetto!|Muito bem, está perfeito!
+auguri|Auguri di buon compleanno!|Parabéns pelo aniversário!
+complimenti|Complimenti, bel lavoro!|Parabéns, belo trabalho!
+volentieri|Vengo volentieri.|Venho com prazer.
+esatto|Sì, esatto!|Sim, exato!
+ottimo|Questo caffè è ottimo.|Este café é ótimo.
+tranquillo|Stai tranquillo, va tutto bene.|Fique tranquilo, está tudo bem.
+
+# cores
+rosso|Il pomodoro è rosso.|O tomate é vermelho.
+blu|Il cielo è blu.|O céu é azul.
+verde|L'erba è verde.|A grama é verde.
+giallo|Il limone è giallo.|O limão é amarelo.
+nero|Il gatto è nero.|O gato é preto.
+bianco|Il latte è bianco.|O leite é branco.
+grigio|Il cielo è grigio oggi.|O céu está cinza hoje.
+rosa|Questo fiore è rosa.|Esta flor é rosa.
+arancione|La mia borsa è arancione.|Minha bolsa é laranja.
+viola|Il cappello è viola.|O chapéu é roxo.
+marrone|Il mio cappotto è marrone.|Meu casaco é marrom.
+dorato|Il regalo ha un nastro dorato.|O presente tem uma fita dourada.
+chiaro|Il blu chiaro è bello.|O azul claro é bonito.
+scuro|Lui porta un cappotto blu scuro.|Ele usa um casaco azul-escuro.
+colore|Qual è il tuo colore preferito?|Qual é a sua cor preferida?
+beige|Il divano è beige.|O sofá é bege.
+turchese|Il mare è turchese.|O mar é turquesa.
+argentato|Lui ha un orologio argentato.|Ele tem um relógio prateado.
+bordeaux|Lei porta un vestito bordeaux.|Ela usa um vestido vinho.
+celeste|Il cielo è celeste.|O céu é azul-claro.
+
+# animais
+gatto|Il gatto dorme sul divano.|O gato dorme no sofá.
+cane|Il cane corre in giardino.|O cachorro corre no jardim.
+cavallo|Il cavallo mangia l'erba.|O cavalo come grama.
+uccello|L'uccello canta la mattina.|O pássaro canta de manhã.
+mucca|La mucca mangia l'erba.|A vaca come grama.
+coniglio|Il coniglio mangia una carota.|O coelho come uma cenoura.
+topo|Il topo ha paura del gatto.|O rato tem medo do gato.
+leone|Il leone è un grande animale.|O leão é um animal grande.
+orso|L'orso dorme in inverno.|O urso dorme no inverno.
+lupo|Il lupo vive nella foresta.|O lobo vive na floresta.
+anatra|L'anatra nuota nel lago.|O pato nada no lago.
+pecora|La pecora mangia l'erba.|A ovelha come grama.
+capra|La capra è nel campo.|A cabra está no campo.
+asino|L'asino porta una borsa.|O burro carrega uma bolsa.
+volpe|La volpe corre nella foresta.|A raposa corre na floresta.
+tigre|La tigre è un grande animale.|O tigre é um animal grande.
+scimmia|La scimmia mangia una banana.|O macaco come uma banana.
+serpente|Il serpente è nell'erba.|A serpente está na grama.
+ape|L'ape vola sul fiore.|A abelha voa sobre a flor.
+
+# clima
+sole|Oggi c'è il sole.|Hoje tem sol.
+vento|Oggi c'è molto vento.|Hoje tem muito vento.
+neve|La neve cade in inverno.|A neve cai no inverno.
+nuvola|C'è una nuvola nel cielo.|Há uma nuvem no céu.
+temporale|Stasera arriva un temporale.|Esta noite chega uma tempestade.
+caldo|Fa caldo in estate.|Faz calor no verão.
+freddo|Fa freddo in inverno.|Faz frio no inverno.
+cielo|Non ci sono nuvole nel cielo.|Não há nuvens no céu.
+luna|La luna è tonda stasera.|A lua está redonda esta noite.
+nebbia|C'è nebbia stamattina.|Há neblina esta manhã.
+tuono|Sento il tuono.|Eu ouço o trovão.
+fulmine|Un fulmine attraversa il cielo.|Um raio atravessa o céu.
+temperatura|La temperatura è bassa oggi.|A temperatura está baixa hoje.
+estate|In estate andiamo al mare.|No verão, vamos à praia.
+inverno|In inverno fa freddo.|No inverno faz frio.
+primavera|In primavera i fiori sbocciano.|Na primavera as flores desabrocham.
+autunno|In autunno cadono le foglie.|No outono as folhas caem.
+ghiaccio|Il ghiaccio è freddo.|O gelo é frio.
+
+# casa
+porta|Chiudi la porta, per favore.|Feche a porta, por favor.
+finestra|Apro la finestra.|Eu abro a janela.
+tavolo|Il libro è sul tavolo.|O livro está sobre a mesa.
+sedia|C'è una sedia in cucina.|Há uma cadeira na cozinha.
+letto|Il letto è comodo.|A cama é confortável.
+cucina|La cucina è piccola.|A cozinha é pequena.
+salotto|Il salotto è grande.|A sala de estar é grande.
+giardino|Il cane gioca in giardino.|O cachorro brinca no jardim.
+parete|C'è un quadro sulla parete.|Há um quadro na parede.
+scala|La scala è stretta.|A escada é estreita.
+camera|La mia camera è piccola.|Meu quarto é pequeno.
+divano|Guardiamo la tv sul divano.|Assistimos à TV no sofá.
+armadio|I miei vestiti sono nell'armadio.|Minhas roupas estão no armário.
+specchio|Lei si guarda nello specchio.|Ela se olha no espelho.
+chiave|Cerco la chiave.|Estou procurando a chave.
+lampada|La lampada è sul tavolo.|A luminária está sobre a mesa.
+tappeto|Il tappeto è rosso.|O tapete é vermelho.
+tenda|La tenda è blu.|A cortina é azul.
+soffitto|Il soffitto è bianco.|O teto é branco.

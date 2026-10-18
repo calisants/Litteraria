@@ -5,7 +5,9 @@ const $=(s,r)=>(r||document).querySelector(s);
 const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const plural=(n,a,b)=>n+" "+(n===1?a:b);
-function setStatus(id,msg,kind){const n=$(id);n.textContent=msg;n.className="status"+(kind?" "+kind:"");}
+/* destaque de palavra: o que vem entre « » vira negrito de verdade, sem os sinais em volta (esc() antes, então é seguro) */
+const hl=s=>esc(s).replace(/«([^»]*)»/g,"<b>$1</b>");
+function setStatus(id,msg,kind){const n=$(id);n.innerHTML=hl(msg);n.className="status"+(kind?" "+kind:"");}
 
 const LNAME={fr:"Francês",it:"Italiano",en:"Inglês"};
 const SPEECH={fr:"fr-FR",it:"it-IT",en:"en-GB"};
@@ -211,6 +213,9 @@ document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest
 const sheetOpen=()=>!$("#sheet").hidden;
 function openSheet(title,html,foot){
   $("#sheet-title").textContent=title;$("#sheet-in").innerHTML=html;$("#sheet-foot").hidden=!foot;
+  /* «Próximo» só aparece quando a página já foi concluída e ainda há lição na trilha; aí ele é o botão principal */
+  const nx=!!foot&&typeof canGoNext==="function"&&canGoNext();
+  $("#sheet-next").hidden=!nx;$("#sheet-again").classList.toggle("primary",!nx);
   $("#sheet").hidden=false;$("#sheet-close").focus();
 }
 function closeSheet(){$("#sheet").hidden=true;}
@@ -233,14 +238,15 @@ function followActive(){
   st.scrollLeft+=ar.left+ar.width/2-(sr.left+sr.width/2);
   st.scrollTop+=ar.top+ar.height/2-(sr.top+sr.height/2);
 }
-function applyZoom(){
+/* nome próprio: p10.js tem outra applyZoom (zoom de pinça do Ajustes) e, no mesmo <script>, a última sobrescrevia esta */
+function applyGridZoom(){
   const on=ZOOM&&P&&(P.type==="cross"||P.type==="search"),st=$("#stage");
   st.classList.toggle("zoom",!!on);
   $("#zoom-toggle").textContent=ZOOM?"Reduzir":"Ampliar";
   if(fitFn)fitFn();
   if(!on){st.scrollLeft=0;st.scrollTop=0;}else followActive();
 }
-$("#zoom-toggle").addEventListener("click",()=>{ZOOM=!ZOOM;applyZoom();});
+$("#zoom-toggle").addEventListener("click",()=>{ZOOM=!ZOOM;applyGridZoom();});
 function fitGrid(cols,rows,gap,minC,maxC){
   const st=$("#stage"),f=$("#fit"),w=st.clientWidth,h=st.clientHeight;
   if(!w||!h)return;
@@ -392,7 +398,7 @@ function renderStats(){
   const all=Object.keys(S.plays).reduce((n,l)=>n+Object.values(S.plays[l]).reduce((a,b)=>a+b,0),0);
   $("#st-line").textContent=doneN+" páginas · "+mastered+" palavras dominadas";
   const main=["cross","search","connect"].map(t=>"<div><b>"+(pl[t]||0)+"</b><small>"+GAMENAME[t]+"</small></div>").join("");
-  const more=["odd","sentence","resposta","tema","ditado","sons","frases","conheca","reco","completar","embaralhar","escreva"].concat(VOLUME4.types.map(t=>t[0])).filter(t=>pl[t]).map(t=>GAMENAME[t]+" "+pl[t]).join(" · ");
+  const more=["odd","sentence","resposta","tema","ditado","sons","frases","conheca","contexto","reco","completar","embaralhar","escreva"].concat(VOLUME4.types.map(t=>t[0])).filter(t=>pl[t]).map(t=>GAMENAME[t]+" "+pl[t]).join(" · ");
   const worst=Object.keys(sk).filter(k=>sk[k][1]>sk[k][0]).sort((a,b)=>(sk[b][1]-sk[b][0])-(sk[a][1]-sk[a][0])).slice(0,6);
   const pct=n=>Math.round(100*n/Math.max(1,pages));
   $("#st-body").innerHTML=
@@ -490,7 +496,7 @@ function startPage(id){
   $("#zoom-toggle").hidden=!(P.type==="cross"||P.type==="search");
   applyKb();
   newGame();
-  applyZoom();
+  applyGridZoom();
 }
 const GAMEFN={cross:startCross,search:startSearch,connect:startConnect,sentence:startSentence,frases:startSentence,odd:startOdd,alfabeto:startListen,sons:startListen,fala:startListen,tema:startListen,ditado:startListen,resposta:startResp};
 GRAMTYPES.forEach(t=>{GAMEFN[t]=startGram;});

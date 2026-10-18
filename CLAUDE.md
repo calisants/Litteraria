@@ -11,7 +11,7 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 
 ## Regras técnicas
 - Ao publicar, troque o número do cache em `sw.js` (mots-parole-vNN) e a linha de `src/VERSION` (versão e data mostradas no app). **Não mude `APP_VERSION` em `src/p3.js`** (v6), senão o progresso dela some.
-- Rodar antes de publicar: `python3 -I tests/gt.py`, `t10.py`, `t11.py`, `t13.py`, `t14.py`, `t15.py`, `t16.py`, `t17.py` e `t18.py` (dentro de `src/`). O único erro esperado no t11 é o de fontes não encontradas (ele abre o arquivo fora do site).
+- Rodar antes de publicar: `python3 -I tests/gt.py`, `t10.py`, `t11.py`, `t13.py`, `t14.py`, `t15.py`, `t16.py`, `t17.py`, `t18.py` e `t19.py` (dentro de `src/`). O único erro esperado no t11 é o de fontes não encontradas (ele abre o arquivo fora do site).
 - Conteúdo de gramática: `src/tools/` (geradores) e `src/content5.js` (gerado por `tools/mk_content5.py`). As correções de rótulo e de texto dos cartões ficam em `tools/gram_rules3.py` (dicionário `OV`).
 - Commits terminam com os trailers de atribuição pedidos pela sessão.
 
@@ -31,3 +31,9 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Sem fonte conferida: «a university» e instrumentos com «the» (inglês), «in Brazil» / «in the kitchen» (inglês), a divisão em «três grupos» e o «-issant» (francês).
 - Fora de escopo por decisão dela: amigos, perfil compartilhado e servidor.
 - Reconhecimento de fala para pronúncia: não começado; só funciona em Chrome/Android e precisa da confirmação dela.
+
+## Lição em 3 passos e destaque (18/10/2026)
+- Cada tema de Vocabulário: «Conheça as palavras» → «Use a palavra na frase» (tipo `contexto`, 2 partes por tema) → jogos. Frases: Wikcionário (`EX`, `exemplos.js`) quando há; senão `src/frases_ctx.js` (`CTXC`), gerado por `tools/mk_ctx.py` a partir de `tools/ctx_fr|it|en.txt` (escritas por Claude, **sem fonte conferida**, rotuladas assim na tela; o script confere que a palavra aparece inteira, uma vez). Temas de livros não têm frase de contexto.
+- Botão «Próximo» (`#sheet-next`, `p13.js`: `nextAfter`, `canGoNext`) no fim de cada página: vai direto à próxima lição da trilha.
+- Destaque: `hl()` (`p3.js`) troca «texto» por negrito real; nada de « » ou parênteses de destaque na tela.
+- «Ampliar» do jogo é `applyGridZoom` (havia outra `applyZoom` em `p10.js` que a sobrescrevia: todo o JS compartilha um escopo, cuidado com nomes repetidos).
