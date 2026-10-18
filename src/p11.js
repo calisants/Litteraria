@@ -8,7 +8,7 @@ function vocCard(){
   const ws=vocWords();
   return '<details class="rule"'+(gm.open?" open":"")+"><summary>Palavras desta página · "+esc(ws.length)+"</summary><div class=\"in\">"+
     "<p>Estas são as palavras que aparecem nas perguntas. Leia, ouça (se puder) e só então responda.</p>"+
-    '<ul class="rex">'+ws.map(e=>"<li><b>"+esc(full(e))+"</b> <span>"+esc(e.pt)+"</span> "+speakBtn(full(e))+"</li>").join("")+"</ul></div></details>";
+    '<ul class="rex">'+ws.map(e=>"<li>"+(DRAW[S.lang]&&DRAW[S.lang][e.w.toLowerCase()]?'<span class="wdraw-sm">'+drawSvg(S.lang,e.w,e.pt)+"</span>":"")+"<b>"+esc(full(e))+"</b> <span>"+esc(e.pt)+"</span> "+speakBtn(full(e))+"</li>").join("")+"</ul></div></details>";
 }
 function vocWords(){
   const arr=(VOCAB[S.lang]&&VOCAB[S.lang][P.cat])||[],K=P.K||2,n=arr.length;
@@ -32,6 +32,7 @@ function itemsKnow(e){
   const f=full(e),a=vocBase(e,wordIntro(e)+"\n\n1 de 3 · Copie: «"+f+"»");
   const b=vocBase(e,"2 de 3 · Escreva de novo: «"+f+"»\nSignifica: «"+e.pt+"»");
   const c=vocBase(e,"3 de 3 · Agora sem olhar. Escreva «"+e.pt+"» em "+LNAME[S.lang]+":");
+  a.draw=b.draw=drawSvg(S.lang,e.w,e.pt);c.drawAfter=a.draw;
   a._noRec=b._noRec=true;
   return [a,b,c];
 }
@@ -64,7 +65,7 @@ function itemContexto(e){
   const re=new RegExp("(^|[^\\p{L}\\p{N}])"+e.w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?![\\p{L}\\p{N}])","giu");
   const gap=c.s.replace(re,(m,p)=>p+"_____");
   it.q="Complete a frase em "+LNAME[S.lang]+":\n«"+gap+"»\nSignifica: "+c.pt+"\nPalavra que falta: «"+e.pt+"»"+(e.a?"\nPode escrever só a palavra, sem o artigo.":"");
-  it.s=c.s;it.lab="Fonte:";it.w=c.src;it.ok=[...new Set([e.w])];
+  it.drawAfter=drawSvg(S.lang,e.w,e.pt);it.s=c.s;it.lab="Fonte:";it.w=c.src;it.ok=[...new Set([e.w])];
   return it;
 }
 function startVoc(){

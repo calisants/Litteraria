@@ -58,6 +58,8 @@ function renderGram(){
   const it=gm.items[gm.i],lines=it.q.split("\n"),typed=typedOn(it),canType=canTypeIt(it)&&!it._force;
   let h='<p class="ocount">'+(gm.drill?"Treino · ":gm.review?"Revisão · ":"")+"Pergunta "+(gm.i+1)+" de "+gm.items.length+"</p>"+ruleCard();
   if(canType&&!gm.solved)h+='<button type="button" class="btn tgl" id="typed-toggle" aria-pressed="'+S.typed+'">Digitar a resposta: '+(S.typed?"sim":"não")+"</button>";
+  const dr=it.draw||(gm.solved&&it.drawAfter)||"";
+  if(dr)h+='<div class="wdraw">'+dr+"</div>";
   h+='<p class="prompt gq">'+lines.map(hl).join("<br>")+"</p>";
   if(typed&&!gm.solved)h+='<input class="tin" id="gm-typed" type="text" inputmode="text" enterkeyhint="done" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Sua resposta" placeholder="Digite a resposta" value="'+esc(gm.txt)+'">';
   else if(typed&&gm.solved)h+='<p class="prompt gq"><b>'+esc(accepts(it)[0])+"</b></p>";

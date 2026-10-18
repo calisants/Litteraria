@@ -36,6 +36,20 @@ try:
     assert pg.is_visible('#zoom-toggle')
     a=pg.evaluate("()=>ZOOM");pg.click('#zoom-toggle');pg.wait_for_timeout(100)
     assert pg.evaluate("()=>ZOOM")!=a
+    # 6) desenhos das palavras concretas (Alice): aparecem no «Conheça» e na revelação; palavras sem desenho não mostram nada
+    pid=pg.evaluate("()=>{S.lang='en';for(const p of VOLUME5.pages){if(p.type!=='conheca'||!p.cat.startsWith('alice'))continue;S.lang='en';P=p;if(vocWords().some(e=>e.w==='house'))return p.id}return null}")
+    print('página com house:',pid);assert pid
+    pg.evaluate("(id)=>{S.lang='en';S.vol=5;save();syncPrefs();go('vol');startPage(id)}",pid);pg.wait_for_timeout(250)
+    assert pg.evaluate("()=>!!document.querySelector('#gstage .wdraw svg')") or pg.evaluate("()=>gm.items[0].draw===''")
+    k=pg.evaluate("()=>gm.items.findIndex(i=>i.draw)");print('item com desenho:',k);assert k>=0
+    pg.evaluate("(k)=>{gm.i=k;loadGram()}",k);pg.wait_for_timeout(100)
+    assert pg.evaluate("()=>!!document.querySelector('#gstage .wdraw svg')")
+    # passo 3 («sem olhar») esconde o desenho até acertar
+    k3=pg.evaluate("()=>gm.items.findIndex(i=>i.drawAfter&&!i.draw)");assert k3>=0
+    pg.evaluate("(k)=>{gm.i=k;loadGram()}",k3);pg.wait_for_timeout(100)
+    assert not pg.evaluate("()=>!!document.querySelector('#gstage .wdraw svg')")
+    pg.fill('#gm-typed',pg.evaluate("()=>gm.items[gm.i].ok[0]"));pg.click('#gm-submit');pg.wait_for_timeout(80)
+    assert pg.evaluate("()=>!!document.querySelector('#gstage .wdraw svg')")
     print('erros:',errs);assert not errs
     b.close()
 finally:
