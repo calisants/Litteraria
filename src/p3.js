@@ -57,7 +57,10 @@ const STYLES={
   peter:{name:"Horta do Peter",desc:"Inspirado em Peter Rabbit: horta, cenouras e cerca de madeira",schemes:[
     ["Horta ao amanhecer",0,"#eef6e8","#ffffff","#dcebd2","#bcd6ad","#5d8a4a","#1f2f1a","#475c40","#a8480d","#1f7a45","#b3261e"],
     ["Horta ao luar",1,"#13221a","#1b3024","#26422f","#385a43","#8fcf8a","#eef7ea","#bcd3b8","#f2a65a","#7fdca8","#ff9a8f"]]},
-  min:{name:"Minimalista",desc:"Muito branco, alto contraste",schemes:[
+  wind:{name:"Beira do Rio",desc:"Inspirado em O Vento nos Salgueiros: rio, juncos e folhas de salgueiro",schemes:[["Rio de manhã",0,"#e9f4f1","#ffffff","#d3e8e2","#a9cfc6","#2f7f94","#16302b","#41594f","#8a4b0a","#1f7a45","#b3261e"],["Rio ao entardecer",1,"#10232a","#183039","#223f4a","#34596a","#7fc3d6","#e8f4f2","#b4cfcb","#f0b865","#7fdca8","#ff9a8f"]]},
+sherlock:{name:"Rua de Baker Street",desc:"Inspirado em Sherlock Holmes: névoa, lupa e paralelepípedos",schemes:[["Neblina de Londres",0,"#f1ede4","#ffffff","#e4ddcc","#c8bda3","#4d5a73","#26221a","#565044","#7a4a00","#1f7a45","#b3261e"],["Lampião à noite",1,"#1a1c24","#232632","#2e3242","#444a60","#b9c4d6","#f0ece0","#c0bcae","#e6c36a","#7fdca8","#ff9a8f"]]},
+frank:{name:"Noite de Tempestade",desc:"Inspirado em Frankenstein: relâmpago, lua e torres góticas",schemes:[["Céu cinzento",0,"#eceef3","#ffffff","#dde1ea","#b9c0d0","#3e5278","#1d2230","#4a5163","#7a4f00","#1f7a45","#b3261e"],["Tempestade",1,"#12141d","#1b1f2c","#262b3b","#3a4259","#8fa6c9","#e9ecf5","#b7bdd0","#f4e07a","#7fdca8","#ff9a8f"]]},
+min:{name:"Minimalista",desc:"Muito branco, alto contraste",schemes:[
     ["Branco e preto",0,"#ffffff","#ffffff","#f1f1f1","#d9d9d9","#595959","#111111","#454545","#111111","#16683c","#b3261e"],
     ["Papel e azul",0,"#fafaf7","#ffffff","#efeee8","#dcdbd2","#5c5c55","#16160f","#47473f","#0b3d91","#16683c","#b3261e"],
     ["Preto e branco",1,"#000000","#0a0a0a","#1a1a1a","#2e2e2e","#9a9a9a","#ffffff","#c4c4c4","#ffffff","#6fcf9f","#ff8f85"]]}

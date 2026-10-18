@@ -1,0 +1,373 @@
+boat|barco|s
+road|estrada|s
+paw|pata|s
+motor|motor|s
+remark|comentário, observar|s
+bit|pedaço, pouquinho|s
+engine|motor, máquina|s
+barge|barcaça|s
+driver|motorista, condutor|s
+quiet|quieto, calmo|adj
+cart|carroça|s
+land|terra, pousar|s
+murmur|murmúrio, murmurar|s
+warm|quente, morno|adj
+fresh|fresco|adj
+pull|puxar|v
+breakfast|café da manhã|s
+country|campo, país|s
+spirit|espírito, ânimo|s
+drive|dirigir, conduzir|v
+seat|assento|s
+luncheon|almoço|s
+step|passo, degrau|s
+joy|alegria|s
+pleasant|agradável|adj
+lot|quantidade, muito|s
+row|remar, fileira|v
+smell|cheiro, cheirar|s
+stream|riacho, correnteza|s
+early|cedo, antecipado|adj
+weary|exausto, cansado|adj
+jolly|alegre, animado|adj
+surface|superfície|s
+clever|esperto, inteligente|adj
+pleasure|prazer|s
+fling|arremessar, atirar|v
+somehow|de algum jeito|adv
+ahead|à frente|adv
+path|trilha, caminho|s
+surely|certamente|adv
+glance|olhar rápido|s
+familiar|familiar, conhecido|adj
+pistol|pistola|s
+hedge|cerca viva|s
+thick|grosso, espesso|adj
+scull|remo curto, remar|s
+town|cidade pequena|s
+kindly|gentilmente|adv
+prison|prisão|s
+observe|observar|v
+effort|esforço|s
+swing|balançar, balanço|v
+forth|adiante|adv
+narrow|estreito|adj
+comfort|conforto, confortar|s
+lantern|lanterna|s
+around|ao redor|adv
+tunnel|túnel|s
+strike|golpear, bater|v
+interval|intervalo|s
+arrange|organizar, arrumar|v
+pace|passo, ritmo|s
+clearly|claramente|adv
+struggle|lutar, luta|v
+parlour|sala de visitas|s
+faint|fraco, tênue|adj
+approach|aproximar-se|v
+nod|acenar com a cabeça|v
+thin|magro, fino|adj
+steer|guiar, conduzir|v
+bother|incomodar|v
+roll|rolar|v
+meadow|prado|s
+everywhere|em toda parte|adv
+thrust|empurrar com força|v
+gradually|gradualmente|adv
+forward|para frente|adv
+chap|sujeito, camarada|s
+length|comprimento|s
+somewhat|um tanto|adv
+wet|molhado|adj
+meal|refeição|s
+ship|navio|s
+dusty|empoeirado|adj
+speed|velocidade|s
+inquire|perguntar, indagar|v
+toast|torrada, brinde|s
+canal|canal|s
+body|corpo|s
+haul|puxar, arrastar|v
+lightly|levemente|adv
+view|vista, visão|s
+evidently|evidentemente|adv
+plain|simples, claro|adj
+comfortable|confortável|adj
+touch|tocar, toque|v
+conceited|convencido, presunçoso|adj
+sensible|sensato|adj
+village|vila, aldeia|s
+morrow|amanhã (antigo)|s
+eagerly|ansiosamente|adv
+trip|viagem curta, passeio|s
+march|marchar|v
+fight|lutar, briga|v
+anxious|ansioso|adj
+dust|poeira|s
+living|vivo, sustento|s
+thoroughly|completamente|adv
+enter|entrar|v
+naturally|naturalmente|adv
+possible|possível|adj
+cheerfully|alegremente|adv
+distant|distante|adj
+able|capaz|adj
+horizon|horizonte|s
+alarm|alarme, susto|s
+despair|desespero|s
+leap|saltar, salto|v
+handsome|bonito, elegante|adj
+straw|palha|s
+excellent|excelente|adj
+whistle|assobiar, apito|v
+wear|vestir, usar|v
+terror|terror|s
+ground|chão, terreno|s
+heap|monte, pilha|s
+summon|convocar|v
+sir|senhor|s
+content|contente|adj
+brush|escova, escovar|s
+mutter|resmungar|v
+complete|completo, completar|adj
+contentment|contentamento|s
+ring|anel, tocar (sino)|s
+seriously|seriamente|adv
+steadily|constantemente|adv
+wheel|roda|s
+proud|orgulhoso|adj
+proceed|prosseguir|v
+hail|saudar, chamar|v
+second|segundo|s
+sink|afundar, pia|v
+misery|miséria, sofrimento|s
+board|tábua, tabuleiro|s
+stable|estábulo|s
+common|comum|adj
+ride|andar (de cavalo, bicicleta)|v
+darkness|escuridão|s
+ditch|vala|s
+possess|possuir|v
+track|trilha, rastro|s
+firmly|firmemente|adv
+luck|sorte|s
+invitation|convite|s
+creep|rastejar, andar de mansinho|v
+entirely|inteiramente|adv
+shabby|surrado, maltrapilho|adj
+pat|dar tapinhas|v
+quarter|quarto, quarteirão|s
+hollow|oco, buraco|adj
+heartily|de bom grado, cordialmente|adv
+solid|sólido|adj
+cheek|bochecha|s
+drag|arrastar|v
+beginning|começo|s
+ray|raio de luz|s
+need|precisar, necessidade|v
+hedgehog|ouriço|s
+merely|meramente|adv
+post|poste, correio|s
+unhappy|infeliz|adj
+policeman|policial|s
+harbour|porto|s
+whose|cujo|pron
+scrape|raspar|v
+busily|ocupadamente|adv
+instant|instante|s
+flood|enchente|s
+level|nível|s
+situation|situação|s
+glow|brilho suave, brilhar|s
+arrive|chegar|v
+excite|empolgar|v
+disappear|desaparecer|v
+stout|robusto, corpulento|adj
+temper|temperamento, gênio|s
+poetry|poesia|s
+attention|atenção|s
+pride|orgulho|s
+cheerful|animado, alegre|adj
+force|força, forçar|s
+stroll|passear|v
+yard|quintal, pátio|s
+accordingly|portanto, de acordo|adv
+shine|brilhar|v
+argue|discutir|v
+flat|plano, chato|adj
+resume|retomar|v
+horrid|horrível|adj
+police|polícia|s
+news|notícias|s
+anyhow|de qualquer jeito|adv
+stump|toco|s
+slight|leve, pequeno|adj
+coal|carvão|s
+grasp|agarrar|v
+patiently|pacientemente|adv
+laughter|riso|s
+space|espaço|s
+mat|esteira, capacho|s
+attack|atacar, ataque|v
+bell|sino, campainha|s
+weather|tempo (clima)|s
+terrible|terrível|adj
+quickly|rapidamente|adv
+scramble|escalar apressado|v
+gain|ganhar|v
+cleverness|esperteza|s
+sentry|sentinela|s
+lift|levantar|v
+bonnet|touca|s
+sword|espada|s
+sunshine|luz do sol|s
+chatter|tagarelar|v
+entrance|entrada|s
+spell|feitiço|s
+gaze|contemplar, olhar fixo|v
+stern|severo|adj
+anywhere|em qualquer lugar|adv
+stage|palco, etapa|s
+smoking|fumar|s
+backwater|remanso|s
+restless|inquieto|adj
+broad|largo|adj
+spend|gastar, passar (tempo)|v
+greatly|muito, grandemente|adv
+plunge|mergulhar|v
+recover|recuperar|v
+conduct|conduzir, conduta|v
+respond|responder|v
+gown|vestido longo, toga|s
+cool|fresco, legal|adj
+admit|admitir|v
+expression|expressão|s
+splendid|esplêndido|adj
+innocent|inocente|adj
+canary|canário|s
+travel|viajar|v
+necessary|necessário|adj
+provide|fornecer|v
+smash|esmagar, quebrar|v
+shock|choque|s
+form|forma, formar|s
+overhead|acima da cabeça|adv
+push|empurrar|v
+crouch|agachar-se|v
+stride|passada, caminhar a passos largos|s
+hunting|caça|s
+cease|cessar|v
+cover|cobrir, capa|v
+awful|terrível, horrível|adj
+perfect|perfeito|adj
+properly|adequadamente|adv
+stamp|carimbar, bater o pé|v
+pile|pilha|s
+severely|severamente|adv
+plead|implorar, suplicar|v
+experience|experiência|s
+pipe|cachimbo, cano|s
+swagger|andar com pose, arrogância|s
+character|personagem, caráter|s
+chain|corrente|s
+ancient|antigo|adj
+reed|junco|s
+shilling|xelim (moeda antiga)|s
+partly|em parte|adv
+heat|calor|s
+brow|testa, sobrancelha|s
+grip|aperto, agarrar|s
+shiver|tremer de frio|v
+gleam|brilhar, brilho|v
+bubble|bolha|s
+wink|piscar|v
+cautiously|cautelosamente|adv
+mess|bagunça|s
+heel|calcanhar|s
+absorb|absorver|v
+mud|lama|s
+careless|descuidado|adj
+weir|represa, açude|s
+pitch|lançar, piche|v
+streak|listra, faixa|s
+affair|assunto, caso|s
+hate|odiar|v
+especially|especialmente|adv
+visible|visível|adj
+frightfully|assustadoramente|adv
+haven|refúgio|s
+thrill|emoção, arrepio|s
+upstairs|no andar de cima|adv
+chin|queixo|s
+paddle|remo curto, remar|s
+lawn|gramado|s
+painful|doloroso|adj
+sardine|sardinha|s
+companion|companheiro|s
+capture|capturar|v
+satisfy|satisfazer|v
+silently|silenciosamente|adv
+suspect|suspeitar, suspeito|v
+means|meios|s
+warning|aviso|s
+passionate|apaixonado|adj
+offer|oferecer|v
+careful|cuidadoso|adj
+anxiously|ansiosamente|adv
+retire|aposentar-se, recolher-se|v
+doze|cochilar|v
+secret|segredo|s
+rapidly|rapidamente|adv
+delicate|delicado|adj
+panic|pânico|s
+cudgel|cacete, bastão|s
+beside|ao lado de|prep
+greet|cumprimentar|v
+refuse|recusar|v
+occur|ocorrer|v
+handkerchief|lenço|s
+iron|ferro|s
+chimney|chaminé|s
+feast|banquete|s
+merry|alegre|adj
+ruin|ruína, arruinar|s
+underground|subterrâneo|adj
+store|armazenar, loja|v
+sheet|lençol, folha|s
+charge|cobrar, carga|v
+memory|memória|s
+dismay|consternação|s
+shell|concha|s
+reflect|refletir|v
+roar|rugir|v
+wipe|limpar, enxugar|v
+giggle|risadinha|v
+respect|respeito|s
+apparently|aparentemente|adv
+duty|dever|s
+suggestion|sugestão|s
+popular|popular|adj
+grim|sombrio, severo|adj
+warder|carcereiro, guarda|s
+linger|demorar-se|v
+ford|vau (travessia rasa)|s
+softly|suavemente|adv
+haunt|assombrar|v
+particularly|particularmente|adv
+desperate|desesperado|adj
+enemy|inimigo|s
+fate|destino|s
+ferret|furão|s
+gun|arma, espingarda|s
+pantry|despensa|s
+steep|íngreme|adj
+carriage|carruagem|s
+breeze|brisa|s
+caress|acariciar|v
+hurriedly|apressadamente|adv
+ramble|passear sem rumo|v
+idle|ocioso|adj
+chase|perseguir|v
+chuckle|rir baixinho|v
+sparkle|cintilar|v
+exciting|empolgante|adj

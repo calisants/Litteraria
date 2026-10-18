@@ -1,0 +1,354 @@
+however|no entanto|adv
+note|bilhete, anotar|s
+save|exceto, salvar|prep
+goose|ganso|s
+part|parte|s
+clock|relógio de parede|s
+crime|crime|s
+client|cliente|s
+marry|casar|v
+singular|singular, peculiar|adj
+death|morte|s
+lip|lábio|s
+heavy|pesado|adj
+visitor|visitante|s
+coronet|coroa pequena, diadema|s
+imagine|imaginar|v
+obvious|óbvio|adj
+inspector|inspetor|s
+problem|problema|s
+ago|atrás (tempo)|adv
+cab|carro de aluguel, cabine|s
+marriage|casamento|s
+absolutely|absolutamente|adv
+mystery|mistério|s
+nature|natureza|s
+die|morrer|v
+photograph|fotografia|s
+detail|detalhe|s
+maid|empregada|s
+trace|vestígio, rastrear|s
+anyone|qualquer pessoa|pron
+position|posição|s
+state|estado, declarar|s
+danger|perigo|s
+fashion|moda, estilo|s
+wedding|casamento (cerimônia)|s
+receive|receber|v
+remarkable|notável|adj
+advertisement|anúncio|s
+considerable|considerável|adj
+stepfather|padrasto|s
+public|público|adj
+bar|barra, bar|s
+peculiar|peculiar, estranho|adj
+confess|confessar|v
+determine|determinar|v
+event|evento|s
+opinion|opinião|s
+power|poder|s
+extraordinary|extraordinário|adj
+finally|finalmente|adv
+chamber|câmara, aposento|s
+someone|alguém|pron
+single|único, solteiro|adj
+impression|impressão|s
+inquiry|investigação, pergunta|s
+feature|traço, característica|s
+advice|conselho|s
+band|banda, faixa|s
+thumb|polegar|s
+deduce|deduzir|v
+trust|confiar, confiança|v
+suggest|sugerir|v
+visit|visitar|v
+serious|sério|adj
+afterwards|depois|adv
+engage|contratar, comprometer-se|v
+noble|nobre|adj
+habit|hábito|s
+cigar|charuto|s
+dreadful|terrível|adj
+wooden|de madeira|adj
+sum|soma, quantia|s
+machine|máquina|s
+action|ação|s
+keen|afiado, aguçado, entusiasmado|adj
+clue|pista|s
+armchair|poltrona|s
+importance|importância|s
+theory|teoria|s
+endeavour|esforço, tentar|s
+secure|seguro, garantir|adj
+appearance|aparência|s
+excuse|desculpa, desculpar|s
+neither|nenhum dos dois|pron
+shutter|veneziana, persiana|s
+date|data|s
+conclusion|conclusão|s
+assistant|assistente|s
+third|terceiro|adj
+solve|resolver|v
+dressing|curativo, molho|s
+scandal|escândalo|s
+twist|torcer|v
+society|sociedade|s
+scene|cena|s
+therefore|portanto|adv
+absolute|absoluto|adj
+purpose|propósito|s
+record|registro, gravar|s
+investigation|investigação|s
+object|objeto|s
+probably|provavelmente|adv
+shot|tiro|s
+arrest|prender, prisão|v
+cellar|porão|s
+claim|reivindicar, afirmar|v
+truth|verdade|s
+gem|gema, joia|s
+ventilator|ventilador (de ar)|s
+beech|faia|s
+study|estudo, estudar|s
+murder|assassinato, assassinar|s
+incident|incidente|s
+swiftly|rapidamente|adv
+servant|criado|s
+fail|falhar|v
+consult|consultar|v
+discover|descobrir|v
+private|particular, privado|adj
+method|método|s
+assure|assegurar|v
+narrative|narrativa|s
+fortune|fortuna, sorte|s
+building|prédio|s
+amid|em meio a|prep
+presence|presença|s
+convince|convencer|v
+professional|profissional|adj
+bent|curvado|adj
+envelope|envelope|s
+den|covil, toca|s
+official|oficial, funcionário|adj
+tall|alto|adj
+example|exemplo|s
+tint|matiz, tom|s
+writing|escrita|s
+banker|banqueiro|s
+heavily|pesadamente|adv
+couple|casal, par|s
+statement|declaração|s
+mere|mero, simples|adj
+trap|armadilha|s
+horror|horror|s
+act|ato, agir|s
+horrible|horrível|adj
+following|seguinte|adj
+practice|prática|s
+honour|honra|s
+wrist|pulso|s
+concern|preocupação, dizer respeito|s
+sell|vender|v
+ill|doente|adj
+dash|correr, precipitar-se|v
+law|lei|s
+value|valor|s
+precious|precioso|adj
+stain|mancha|s
+presume|presumir|v
+human|humano|adj
+criminal|criminoso|s
+lens|lente|s
+firm|firme, empresa|adj
+describe|descrever|v
+opium|ópio|s
+madam|senhora|s
+engineer|engenheiro|s
+drawing|desenho|s
+soul|alma|s
+journey|jornada, viagem|s
+seize|agarrar, apreender|v
+remove|remover|v
+tap|bater de leve, torneira|v
+influence|influência|s
+acquaintance|conhecido|s
+shadow|sombra|s
+intention|intenção|s
+success|sucesso|s
+dozen|dúzia|s
+contrary|contrário|adj
+rattle|chacoalhar|v
+prevent|impedir|v
+jewel|joia|s
+suspicion|suspeita|s
+evil|mal, maligno|s
+empty|vazio|adj
+column|coluna|s
+sake|bem, interesse|s
+huge|enorme|adj
+exceedingly|extremamente|adv
+favour|favor|s
+lad|rapaz|s
+corridor|corredor|s
+unless|a menos que|conj
+prisoner|prisioneiro|s
+connection|conexão|s
+serve|servir|v
+circle|círculo|s
+keeper|guardião|s
+violence|violência|s
+examination|exame|s
+deadly|mortal|adj
+strength|força|s
+match|fósforo, combinar|s
+fasten|prender, fixar|v
+veil|véu|s
+immense|imenso|adj
+vague|vago|adj
+patient|paciente|s
+desire|desejo|s
+spare|poupar, sobressalente|v
+trifle|ninharia|s
+deduction|dedução|s
+profession|profissão|s
+frequently|frequentemente|adv
+data|dados|s
+sleeve|manga (de roupa)|s
+upper|superior|adj
+occasionally|ocasionalmente|adv
+aware|ciente|adj
+furnish|mobiliar, fornecer|v
+herself|ela mesma|pron
+threaten|ameaçar|v
+emerge|emergir|v
+latter|último, este (de dois)|adj
+depend|depender|v
+earn|ganhar (dinheiro)|v
+flush|corar, rubor|v
+shriek|gritar, guincho|v
+probable|provável|adj
+pavement|calçada|s
+refer|referir-se|v
+commonplace|banal|adj
+metal|metal|s
+folk|povo, gente|s
+loss|perda|s
+recognise|reconhecer|v
+crop|colheita|s
+wild|selvagem|adj
+correct|correto|adj
+disappearance|desaparecimento|s
+robbery|roubo|s
+assistance|ajuda|s
+astonishment|espanto|s
+estate|propriedade, terras|s
+retain|reter|v
+spite|rancor, despeito|s
+beneath|embaixo de|prep
+although|embora|conj
+proof|prova|s
+sinister|sinistro|adj
+rope|corda|s
+hydraulic|hidráulico|adj
+passion|paixão|s
+disturb|perturbar|v
+lodging|hospedagem|s
+blind|cego|adj
+medical|médico (adj.)|adj
+beauty|beleza|s
+limb|membro (braço ou perna)|s
+extreme|extremo|adj
+shrug|dar de ombros|v
+weight|peso|s
+circumstance|circunstância|s
+shortly|em breve|adv
+devil|diabo|s
+bride|noiva|s
+curiosity|curiosidade|s
+injure|ferir|v
+curl|cacho, enrolar|s
+nerve|nervo, coragem|s
+future|futuro|s
+startle|assustar|v
+furniture|móveis|s
+drawer|gaveta|s
+reward|recompensa|s
+wit|inteligência, humor|s
+newspaper|jornal|s
+vacancy|vaga|s
+apply|aplicar, candidatar-se|v
+shade|sombra, tom|s
+ink|tinta|s
+tide|maré|s
+goodness|bondade|s
+sweep|varrer|v
+appointment|compromisso, consulta marcada|s
+trivial|trivial|adj
+anger|raiva|s
+finding|descoberta, conclusão|s
+page|página|s
+bureau|escrivaninha, escritório|s
+salesman|vendedor|s
+advance|avançar, avanço|v
+wing|asa|s
+lover|amante|s
+crack|rachadura, estalo|s
+clearing|clareira|s
+associate|associado, associar|s
+employ|empregar|v
+indicate|indicar|v
+pound|libra (peso ou moeda)|s
+service|serviço|s
+prefer|preferir|v
+cloak|capa, manto|s
+agent|agente|s
+plainly|claramente, simplesmente|adv
+lounge|sala de estar, ficar à toa|s
+advise|aconselhar|v
+conceal|esconder, ocultar|v
+information|informação|s
+commit|cometer|v
+fortunate|afortunado|adj
+expense|despesa|s
+unusual|incomum|adj
+tobacco|tabaco|s
+glimpse|vislumbre|s
+trouser|calça|s
+description|descrição|s
+weapon|arma|s
+brave|corajoso|adj
+stagger|cambalear|v
+flight|voo, fuga|s
+preserve|preservar|v
+frock|vestido, casaco longo|s
+household|família, casa|s
+recall|lembrar|v
+penny|moeda de um pêni|s
+joke|piada|s
+lid|tampa|s
+realise|perceber, dar-se conta|v
+gas|gás|s
+harm|dano, prejudicar|s
+gloom|escuridão, melancolia|s
+protrude|sobressair|v
+print|imprimir, impressão|v
+swear|jurar, xingar|v
+definite|definido, certo|adj
+direct|direto, dirigir|adj
+rat|rato grande|s
+fair|justo, claro|adj
+aid|ajuda|s
+conjecture|conjectura, suposição|s
+injury|ferimento|s
+county|condado|s
+possession|posse|s
+club|clube, porrete|s
+undoubtedly|sem dúvida|adv
+villain|vilão|s
+article|artigo|s
+speckle|pinta, mancha pequena|s
+motive|motivo|s
+lately|ultimamente|adv
+vile|vil|adj
+remains|restos|s

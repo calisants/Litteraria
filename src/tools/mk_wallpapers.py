@@ -63,9 +63,44 @@ def peter(dark):
     o.append(f'<path d="M0 752H400M0 784H400" stroke="{w}" stroke-width="2" opacity=".7"/>')
     for x,y in ((330,690),(70,660)):o.append(f'<g transform="translate({x} {y})" opacity=".8"><path d="M0 0C-14 4-14 22 0 26C14 22 14 4 0 0Z" fill="{car}" fill-opacity=".35" stroke="{car}" stroke-width="1.6"/></g>')
     return W("".join(o))
-ST={"pp":pp,"alice":alice,"pino":pino,"verne":verne,"peter":peter}
-ID={"pp":"pp","alice":"alice","pino":"pinocchio","verne":"verne","peter":"peter"}
-fonts={"pp":"Newsreader","alice":"Newsreader","pino":"Newsreader","verne":"Newsreader","peter":"Newsreader"}
+def wind(dark):
+    random.seed(33);wa="#7fc3d6" if dark else "#2f7f94";rd="#9bd48a" if dark else "#4b8a3a";bt="#e0c58a" if dark else "#8a6a2c";o=[]
+    for y in (430,480,530,580,630,680):
+        o.append(f'<path d="M0 {y}Q50 {y-12} 100 {y}T200 {y}T300 {y}T400 {y}" fill="none" stroke="{wa}" stroke-width="1.6" opacity=".6"/>')
+    for i in range(13):
+        x=random.randint(10,390);h=random.randint(70,150);b=random.randint(-10,10)
+        o.append(f'<path d="M{x} 800C{x+b} {800-h*.5} {x+b*2} {800-h*.8} {x+b*3} {800-h}" fill="none" stroke="{rd}" stroke-width="2.2" opacity=".6" stroke-linecap="round"/><ellipse cx="{x+b*3}" cy="{800-h-8}" rx="3" ry="9" fill="{rd}" opacity=".6"/>')
+    for i in range(12):
+        x,y=random.randint(20,380),random.randint(20,380);r=random.randint(0,180)
+        o.append(f'<path transform="translate({x} {y}) rotate({r}) scale(1.6)" d="M0-9C4-4 4 4 0 9C-4 4-4-4 0-9Z" fill="{rd}" opacity=".45"/>')
+    o.append(f'<g transform="translate(270 520)" opacity=".85" fill="none" stroke="{bt}" stroke-width="2.2" stroke-linecap="round"><path d="M-46-6H46L32 14H-32Z"/><path d="M-4-6V-50L26-14H-4"/></g>')
+    return W("".join(o))
+def sherlock(dark):
+    random.seed(44);c="#e6c36a" if dark else "#7a5c1e";fg="#b9c4d6" if dark else "#4d5a73";o=[]
+    for y in (120,230,350,470):
+        o.append(f'<path d="M0 {y}Q70 {y-26} 150 {y}T300 {y}T400 {y}" fill="none" stroke="{fg}" stroke-width="10" opacity=".14" stroke-linecap="round"/>')
+    for r in range(5):
+        for k in range(6):
+            x=k*70+(35 if r%2 else 0);y=640+r*32
+            o.append(f'<ellipse cx="{x}" cy="{y}" rx="30" ry="14" fill="none" stroke="{fg}" stroke-width="1.4" opacity=".55"/>')
+    o.append(f'<g transform="translate(290 250) rotate(-35)" fill="none" stroke="{c}" stroke-width="3" opacity=".85" stroke-linecap="round"><circle r="46"/><circle r="38" stroke-width="1"/><path d="M0 46V118" stroke-width="7"/></g>')
+    o.append(f'<g transform="translate(90 520)" fill="none" stroke="{c}" stroke-width="2.4" opacity=".8" stroke-linecap="round"><circle cy="-10" r="12"/><path d="M-5 0L-9 30H9L5 0"/></g>')
+    for x,y,s in ((60,70,6),(340,80,5)):o.append(star4(x,y,s,c))
+    return W("".join(o))
+def frank(dark):
+    random.seed(55);bolt="#f4e07a" if dark else "#9a6b00";mo="#d8e0f0" if dark else "#4a5568";st="#8fa6c9" if dark else "#3e5278";o=[]
+    for i in range(24):
+        x,y=random.randint(10,390),random.randint(10,300);o.append(f'<circle cx="{x}" cy="{y}" r="{random.choice([1,1.3,1.8])}" fill="{mo}" opacity=".8"/>')
+    o.append(f'<circle cx="300" cy="120" r="46" fill="{mo}" opacity=".25"/><circle cx="300" cy="120" r="46" fill="none" stroke="{mo}" stroke-width="1.6"/><circle cx="286" cy="108" r="7" fill="none" stroke="{mo}" opacity=".6"/><circle cx="312" cy="134" r="5" fill="none" stroke="{mo}" opacity=".6"/>')
+    o.append(f'<path d="M120 0L96 170L132 170L100 330L170 130L134 130L160 0Z" fill="{bolt}" opacity=".7"/>')
+    for k in range(5):
+        x=k*80;o.append(f'<path d="M{x} 800V700Q{x+20} 640 {x+40} 700V800" fill="none" stroke="{st}" stroke-width="2" opacity=".7"/>')
+    o.append(f'<path d="M0 560L60 540L120 560L180 530L240 555L300 525L360 550L400 540V800H0Z" fill="{st}" opacity=".18"/>')
+    o.append(f'<path d="M30 580V470M30 470L10 440M30 470L50 440M30 500L8 480M30 500L52 480" stroke="{st}" stroke-width="2" fill="none" opacity=".6"/>')
+    return W("".join(o))
+ST={"pp":pp,"alice":alice,"pino":pino,"verne":verne,"peter":peter,"wind":wind,"sherlock":sherlock,"frank":frank}
+ID={"pp":"pp","alice":"alice","pino":"pinocchio","verne":"verne","peter":"peter","wind":"wind","sherlock":"sherlock","frank":"frank"}
+fonts={"pp":"Newsreader","alice":"Newsreader","pino":"Newsreader","verne":"Newsreader","peter":"Newsreader","wind":"Newsreader","sherlock":"Newsreader","frank":"Newsreader"}
 css=["/* BEGIN wallpapers */"]
 for k,f in ST.items():
     i=ID[k]

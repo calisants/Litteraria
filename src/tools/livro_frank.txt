@@ -1,0 +1,364 @@
+thus|assim|adv
+miserable|miserável, infeliz|adj
+cottage|chalé, casinha|s
+happiness|felicidade|s
+affection|afeto|s
+countenance|semblante, expressão do rosto|s
+behold|contemplar, ver|v
+destroy|destruir|v
+seek|buscar|v
+sensation|sensação|s
+endure|suportar|v
+quit|deixar, abandonar|v
+perceive|perceber|v
+resolve|resolver, decidir|v
+suffer|sofrer|v
+degree|grau|s
+gentle|gentil, suave|adj
+pursue|perseguir, buscar|v
+express|expressar|v
+fiend|demônio, monstro|s
+render|tornar, prestar|v
+misfortune|infortúnio|s
+monster|monstro|s
+labour|trabalho árduo|s
+peace|paz|s
+weep|chorar|v
+existence|existência|s
+bestow|conceder|v
+agony|agonia|s
+reflection|reflexão, reflexo|s
+science|ciência|s
+grief|luto, dor profunda|s
+native|nativo|adj
+calm|calmo|adj
+kindness|bondade|s
+occupy|ocupar|v
+food|comida|s
+murderer|assassino|s
+imagination|imaginação|s
+various|vários|adj
+beloved|amado|adj
+enjoy|aproveitar, gostar de|v
+rage|raiva, fúria|s
+discovery|descoberta|s
+restore|restaurar|v
+sweet|doce|adj
+wretch|infeliz, desgraçado|s
+surround|cercar|v
+depart|partir|v
+language|língua, idioma|s
+wretched|miserável|adj
+relate|relatar, relacionar|v
+create|criar|v
+anguish|angústia|s
+revenge|vingança|s
+overcome|superar|v
+sympathy|compaixão, simpatia|s
+conceive|conceber|v
+sorrow|tristeza profunda|s
+destruction|destruição|s
+utter|proferir, completo|v
+torture|tortura|s
+unable|incapaz|adj
+commence|começar, iniciar|v
+creation|criação|s
+creator|criador|s
+vengeance|vingança|s
+spot|lugar, mancha|s
+increase|aumentar|v
+persuade|persuadir|v
+sufficient|suficiente|adj
+acquaint|familiarizar, informar|v
+vessel|navio, recipiente|s
+pursuit|perseguição, busca|s
+exclaim|exclamar|v
+virtue|virtude|s
+victim|vítima|s
+awake|acordado|adj
+curse|maldição, amaldiçoar|s
+task|tarefa|s
+voyage|viagem por mar|s
+devote|dedicar|v
+collect|coletar, juntar|v
+progress|progresso|s
+afford|dar-se ao luxo, poder pagar|v
+melancholy|melancolia|s
+occupation|ocupação|s
+bitter|amargo|adj
+regard|considerar, consideração|v
+consolation|consolo|s
+support|apoiar, apoio|v
+continually|continuamente|adv
+procure|obter, conseguir|v
+departure|partida|s
+produce|produzir|v
+innocence|inocência|s
+obtain|obter|v
+thirst|sede|s
+period|período|s
+wonderful|maravilhoso|adj
+consent|consentimento, consentir|s
+hasten|apressar-se|v
+inhabit|habitar|v
+abhor|detestar, abominar|v
+solitude|solidão|s
+toil|labuta, trabalho duro|s
+fatigue|fadiga|s
+distinguish|distinguir|v
+arise|surgir|v
+descend|descer|v
+instrument|instrumento|s
+accompany|acompanhar|v
+prospect|perspectiva|s
+demand|exigir, exigência|v
+perform|realizar, apresentar|v
+philosophy|filosofia|s
+extinguish|extinguir|v
+remorse|remorso|s
+hovel|casebre|s
+agitation|agitação|s
+favourite|favorito|adj
+admiration|admiração|s
+sledge|trenó|s
+former|anterior, antigo|adj
+occasion|ocasião|s
+suffering|sofrimento|s
+torment|tormento, atormentar|s
+amiable|amável|adj
+divine|divino|adj
+benevolent|benevolente|adj
+tranquillity|tranquilidade|s
+capable|capaz|adj
+protector|protetor|s
+hatred|ódio|s
+condemn|condenar|v
+mighty|poderoso|adj
+undertaking|empreendimento|s
+vain|vaidoso, em vão|adj
+ocean|oceano|s
+disposition|temperamento, disposição|s
+delay|atrasar, atraso|v
+scarcely|mal, quase não|adv
+witness|testemunha, testemunhar|s
+guide|guiar, guia|v
+convey|transmitir, transportar|v
+frightful|assustador|adj
+exertion|esforço|s
+parent|pai ou mãe|s
+contemplate|contemplar|v
+oblige|obrigar|v
+blast|rajada, explosão|s
+professor|professor universitário|s
+summit|cume, topo|s
+dread|pavor, temer|s
+soothe|acalmar|v
+rock|rocha|s
+magistrate|magistrado, juiz|s
+sail|navegar, vela|v
+hitherto|até agora|adv
+require|exigir, requerer|v
+bless|abençoar|v
+deprive|privar|v
+repose|repouso|s
+flee|fugir|v
+renew|renovar|v
+destiny|destino|s
+justice|justiça|s
+recollection|lembrança|s
+relieve|aliviar|v
+urge|instar, impulso|v
+shudder|estremecer|v
+cast|lançar, elenco|v
+hunger|fome|s
+modern|moderno|adj
+eternal|eterno|adj
+induce|induzir|v
+mankind|humanidade|s
+enthusiasm|entusiasmo|s
+elevate|elevar|v
+sustain|sustentar|v
+reality|realidade|s
+astonish|espantar|v
+permit|permitir|v
+warmth|calor, afeto|s
+vast|vasto|adj
+compassion|compaixão|s
+utterly|completamente|adv
+emotion|emoção|s
+decline|recusar, declínio|v
+retreat|recuar, retiro|v
+enjoyment|prazer, deleite|s
+peasant|camponês|s
+species|espécie|s
+confine|confinar|v
+exhibit|exibir|v
+cling|agarrar-se|v
+guilty|culpado|adj
+hideous|hediondo|adj
+superior|superior|adj
+trial|julgamento, prova|s
+desolate|desolado|adj
+threat|ameaça|s
+enterprise|empreendimento|s
+region|região|s
+ardent|ardente, fervoroso|adj
+sailor|marinheiro|s
+resolution|resolução, determinação|s
+motion|movimento|s
+accustom|acostumar|v
+bitterly|amargamente|adv
+bosom|peito, seio|s
+assist|ajudar|v
+gentleness|gentileza|s
+ignorant|ignorante|adj
+safety|segurança|s
+communicate|comunicar|v
+ardently|ardentemente|adv
+accent|sotaque, acento|s
+animate|animar, dar vida|v
+burning|ardente, queimando|adj
+alter|alterar|v
+console|consolar|v
+poverty|pobreza|s
+dwelling|moradia|s
+gloomy|sombrio, melancólico|adj
+author|autor|s
+sicken|adoecer, enojar|v
+solitary|solitário|adj
+apartment|apartamento, aposento|s
+residence|residência|s
+impress|impressionar|v
+remembrance|lembrança|s
+vice|vício|s
+corpse|cadáver|s
+hell|inferno|s
+confirm|confirmar|v
+accuse|acusar|v
+exist|existir|v
+guilt|culpa|s
+prey|presa|s
+obscure|obscuro|adj
+rouse|despertar, agitar|v
+image|imagem|s
+precede|preceder|v
+neglect|negligenciar|v
+useless|inútil|adj
+fearful|temeroso|adj
+traverse|atravessar|v
+groan|gemer|v
+condition|condição|s
+cabin|cabine|s
+madness|loucura|s
+equal|igual|adj
+art|arte|s
+flow|fluir|v
+illness|doença|s
+converse|conversar|v
+burst|explodir, irromper|v
+relation|relação|s
+meantime|entretempo|s
+angel|anjo|s
+bloom|florescer, flor|v
+avoid|evitar|v
+penetrate|penetrar|v
+whilst|enquanto|conj
+comply|obedecer, cumprir|v
+lecture|palestra, aula expositiva|s
+term|termo, prazo|s
+ascend|subir|v
+lifeless|sem vida|adj
+agitate|agitar|v
+excess|excesso|s
+precipice|precipício|s
+banish|banir|v
+attract|atrair|v
+benefit|benefício|s
+regret|arrependimento, lamentar|s
+vision|visão|s
+disappointment|decepção|s
+hire|contratar|v
+glory|glória|s
+deck|convés|s
+exercise|exercício|s
+ambition|ambição|s
+gratitude|gratidão|s
+absence|ausência|s
+execution|execução|s
+magnificent|magnífico|adj
+merchant|comerciante|s
+owe|dever (dinheiro, favor)|v
+design|projeto, desenhar|s
+mist|névoa|s
+encounter|encontro, encontrar|s
+triumph|triunfo|s
+swell|inchar|v
+pour|derramar, despejar|v
+occurrence|ocorrência|s
+perish|perecer|v
+woe|desgraça, aflição|s
+oppress|oprimir|v
+doubtless|sem dúvida|adv
+improve|melhorar|v
+strongly|fortemente|adv
+quality|qualidade|s
+determination|determinação|s
+fulfill|cumprir, realizar|v
+birth|nascimento|s
+kneel|ajoelhar-se|v
+inspire|inspirar|v
+yield|ceder, render|v
+league|légua, liga|s
+violent|violento|adj
+amidst|em meio a|prep
+dawn|amanhecer|s
+fatal|fatal|adj
+impulse|impulso|s
+philosopher|filósofo|s
+anxiety|ansiedade|s
+bitterness|amargura|s
+deliver|entregar|v
+improvement|melhoria|s
+pronounce|pronunciar|v
+request|pedido, pedir|s
+material|material|s
+loathe|detestar|v
+refuge|refúgio|s
+mortal|mortal|adj
+weigh|pesar|v
+sincerely|sinceramente|adv
+arrival|chegada|s
+sentiment|sentimento|s
+consume|consumir|v
+dissipate|dissipar|v
+lively|animado, vivaz|adj
+daily|diário|adj
+deformity|deformidade|s
+glacier|geleira|s
+enable|possibilitar|v
+wondrous|maravilhoso|adj
+bore|entediar, furar|v
+hardship|dificuldade, privação|s
+deserve|merecer|v
+wealth|riqueza|s
+affectionate|carinhoso|adj
+intense|intenso|adj
+inform|informar|v
+command|ordem, comandar|s
+execute|executar|v
+speedily|rapidamente|adv
+stature|estatura|s
+traveller|viajante|s
+loose|solto|adj
+animation|animação, vivacidade|s
+quantity|quantidade|s
+benevolence|benevolência|s
+aspect|aspecto|s
+decay|decadência, apodrecer|s
+wreck|naufrágio, destroços|s
+sacrifice|sacrifício|s
+tranquil|tranquilo|adj
+friendship|amizade|s
+expressive|expressivo|adj
+overwhelm|sobrecarregar, dominar|v
+tone|tom|s
