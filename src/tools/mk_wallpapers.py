@@ -48,9 +48,24 @@ def verne(dark):
     o.append(f'<g transform="translate(70 700)" fill="none" stroke="{c}" stroke-width="2.4" opacity=".8"><circle r="26"/><path d="M0 0V-16M0 0L11 6" stroke-linecap="round"/></g>')
     for x,y,s in ((60,90,7),(330,60,6),(120,250,5)):o.append(star4(x,y,s,c))
     return W("".join(o))
-ST={"pp":pp,"alice":alice,"pino":pino,"verne":verne}
-ID={"pp":"pp","alice":"alice","pino":"pinocchio","verne":"verne"}
-fonts={"pp":"Newsreader","alice":"Newsreader","pino":"Newsreader","verne":"Newsreader"}
+def peter(dark):
+    random.seed(21);car="#f2a65a" if dark else "#c4631a";g="#8fcf8a" if dark else "#3f7d3a";w="#e8dfc8" if dark else "#8a7a55";o=[]
+    for i in range(11):
+        x,y=random.randint(30,370),random.randint(30,600);sc=random.choice([1.0,1.3,1.7]);r=random.randint(-30,30)
+        o.append(f'<g transform="translate({x} {y}) rotate({r}) scale({sc})" opacity=".7"><path d="M-5 0H5L0 26Z" fill="{car}"/><path d="M0 0C-8-10-10-14-9-18M0 0C0-10 0-16 0-22M0 0C8-10 10-14 9-18" stroke="{g}" stroke-width="2.2" fill="none" stroke-linecap="round"/></g>')
+    for i in range(7):
+        x,y=random.randint(30,370),random.randint(30,600);sc=random.choice([1.2,1.6])
+        o.append(f'<g transform="translate({x} {y}) scale({sc})" fill="none" stroke="{g}" stroke-width="1.6" opacity=".65"><circle r="9"/><path d="M-6-2C-2-8 4-8 6-2M-5 3C-1-3 3-3 5 3"/></g>')
+    for i in range(14):
+        x,y=random.randint(20,380),random.randint(20,640);r=random.randint(0,180);o.append(f'<path transform="translate({x} {y}) rotate({r}) scale(1.5)" d="M0-6C5-3 5 3 0 6C-5 3-5-3 0-6Z" fill="{g}" opacity=".5"/>')
+    for k in range(14):
+        x=k*30+8;o.append(f'<path d="M{x} 800V736L{x+7} 726L{x+14} 736V800" fill="none" stroke="{w}" stroke-width="2" opacity=".7"/>')
+    o.append(f'<path d="M0 752H400M0 784H400" stroke="{w}" stroke-width="2" opacity=".7"/>')
+    for x,y in ((330,690),(70,660)):o.append(f'<g transform="translate({x} {y})" opacity=".8"><path d="M0 0C-14 4-14 22 0 26C14 22 14 4 0 0Z" fill="{car}" fill-opacity=".35" stroke="{car}" stroke-width="1.6"/></g>')
+    return W("".join(o))
+ST={"pp":pp,"alice":alice,"pino":pino,"verne":verne,"peter":peter}
+ID={"pp":"pp","alice":"alice","pino":"pinocchio","verne":"verne","peter":"peter"}
+fonts={"pp":"Newsreader","alice":"Newsreader","pino":"Newsreader","verne":"Newsreader","peter":"Newsreader"}
 css=["/* BEGIN wallpapers */"]
 for k,f in ST.items():
     i=ID[k]

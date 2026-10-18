@@ -29,7 +29,7 @@ def sy(lang,w):
         assert ''.join(p)==t,(w,p)
         out.append('·'.join(p))
     return ''.join(out)
-BOOKS=[("pp","fr","francês","O Pequeno Príncipe","pp_words.txt"),("verne","fr","francês","A Volta ao Mundo em 80 Dias","livro_verne.txt"),("pinocchio","it","italiano","As Aventuras de Pinóquio","livro_pinocchio.txt"),("alice","en","inglês","Alice no País das Maravilhas","livro_alice.txt")]
+BOOKS=[("pp","fr","francês","O Pequeno Príncipe","pp_words.txt"),("verne","fr","francês","A Volta ao Mundo em 80 Dias","livro_verne.txt"),("pinocchio","it","italiano","As Aventuras de Pinóquio","livro_pinocchio.txt"),("alice","en","inglês","Alice no País das Maravilhas","livro_alice.txt"),("peter","en","inglês","Peter Rabbit","livro_peter.txt")]
 miss=[]
 out=[]
 for bid,lang,ln,name,fn in BOOKS:

@@ -1,0 +1,82 @@
+gate|portão|s
+shed|barracão de ferramentas|s
+cotton|algodão|s
+lane|travessa, caminho estreito|s
+bunny|coelhinho|s
+blackberry|amora-preta|s
+squeeze|espremer, passar apertado|v
+bean|feijão|s
+cabbage|repolho|s
+button|botão|s
+hide|esconder(-se)|v
+pea|ervilha|s
+hoe|enxada|s
+scratch|arranhar, coçar|v
+bush|arbusto|s
+wheelbarrow|carrinho de mão|s
+mischief|travessura|s
+umbrella|guarda-chuva|s
+baker|padeiro|s
+loaf|pão de forma, filão|s
+bun|pãozinho|s
+gather|juntar, colher|v
+naughty|travesso, malcriado|adj
+lettuce|alface|s
+radish|rabanete|s
+parsley|salsinha|s
+cucumber|pepino|s
+frame|moldura, armação|s
+rake|ancinho|s
+thief|ladrão|s
+potato|batata|s
+gooseberry|groselha-espinhosa|s
+net|rede|s
+brass|latão|s
+sob|soluçar|v
+sparrow|pardal|s
+excitement|empolgação|s
+sieve|peneira|s
+pop|aparecer de repente, estourar|v
+pot|pote, vaso|s
+fright|susto|s
+damp|úmido|adj
+fat|gordo|adj
+doorstep|degrau da porta|s
+pond|lagoa|s
+stare|encarar|v
+twitch|tremer, mexer nervosamente|v
+climb|escalar, subir|v
+peep|espiar|v
+onion|cebola|s
+scare|assustar|v
+blackbird|melro|s
+soft|macio, suave|adj
+busy|ocupado|adj
+clothes|roupas|s
+supper|ceia, jantar leve|s
+camomile|camomila|s
+dose|dose|s
+spoonful|colherada|s
+straight|reto, direto|adj
+presently|logo em seguida|adv
+towards|em direção a|prep
+underneath|embaixo de|prep
+himself|ele mesmo|pron
+upon|sobre|prep
+fir|abeto|s
+alive|vivo|adj
+safe|seguro|adj
+gold|ouro|s
+wriggle|contorcer-se|v
+implore|implorar|v
+intend|pretender|v
+overhear|ouvir sem querer|v
+friendly|amigável|adj
+accident|acidente|s
+dreadfully|terrivelmente|adv
+unfortunately|infelizmente|adv
+beyond|além de|prep
+among|entre|prep
+during|durante|prep
+through|através de|prep
+feeling|sensação, sentimento|s

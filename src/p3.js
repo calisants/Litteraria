@@ -54,6 +54,9 @@ const STYLES={
   verne:{name:"Volta ao Mundo",desc:"Inspirado em Verne: mapa, bússola e rota de viagem",schemes:[
     ["Mapa antigo",0,"#f4e9cf","#fffaf0","#e9d9b2","#d4be8a","#7a5c1e","#1d2b36","#4a4a3c","#0b5a7a","#2d6a4a","#a8362b"],
     ["Travessia noturna",1,"#0b1d2c","#12293c","#1b3a53","#2d5170","#d9b04a","#f3ecd8","#b9c4cc","#e8bf55","#7fdca8","#ff9a8f"]]},
+  peter:{name:"Horta do Peter",desc:"Inspirado em Peter Rabbit: horta, cenouras e cerca de madeira",schemes:[
+    ["Horta ao amanhecer",0,"#eef6e8","#ffffff","#dcebd2","#bcd6ad","#5d8a4a","#1f2f1a","#475c40","#a8480d","#1f7a45","#b3261e"],
+    ["Horta ao luar",1,"#13221a","#1b3024","#26422f","#385a43","#8fcf8a","#eef7ea","#bcd3b8","#f2a65a","#7fdca8","#ff9a8f"]]},
   min:{name:"Minimalista",desc:"Muito branco, alto contraste",schemes:[
     ["Branco e preto",0,"#ffffff","#ffffff","#f1f1f1","#d9d9d9","#595959","#111111","#454545","#111111","#16683c","#b3261e"],
     ["Papel e azul",0,"#fafaf7","#ffffff","#efeee8","#dcdbd2","#5c5c55","#16160f","#47473f","#0b3d91","#16683c","#b3261e"],

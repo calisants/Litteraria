@@ -18,7 +18,7 @@ try:
     bad=pg.evaluate(CONTR);print('contraste abaixo do mínimo:',bad);assert not bad
     assert pg.evaluate("()=>S.style")=='padrao' and pg.evaluate("()=>document.documentElement.dataset.style")=='padrao'
     pg.click('#go-settings');pg.wait_for_timeout(200)
-    assert pg.locator('#style-grid .stcard').count()==8
+    assert pg.locator('#style-grid .stcard').count()==1+pg.evaluate('()=>Object.keys(STYLES).length')
     ids=['fofo','soft','min','pp','alice','pinocchio','verne']
     assert [pg.locator('#style-grid [data-style=%s]'%i).count() for i in ('tech','game','cultural','exec')]==[0,0,0,0]
     assert [pg.locator('#scheme-row .sch').count() for _ in [pg.click('#style-grid [data-style=fofo]')]]==[3]
