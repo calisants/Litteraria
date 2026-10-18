@@ -63,6 +63,14 @@ try:
     a,b2=pg.evaluate("()=>{const c=memState().cards;const i=0;const j=c.findIndex((x,k)=>k>0&&x.w!==c[0].w);return [i,j]}")
     pg.click('.mcard[data-i="%d"]'%a);pg.click('.mcard[data-i="%d"]'%b2);pg.wait_for_timeout(1300)
     assert pg.evaluate("()=>memState().open.length===0&&memState().done.size===0")
+    # 5) memória em francês e italiano (palavras com desenho de todos os temas)
+    for l in ('fr','it'):
+        pg.evaluate("(l)=>{closeSheet();S.lang=l;S.done={};S.vol=1;save();syncPrefs();go('vol');startPage('memoria-'+l+'-1')}",l);pg.wait_for_timeout(250)
+        assert pg.evaluate("()=>memState().cards.length")>=8
+        for w in pg.evaluate("()=>[...new Set(memState().cards.map(c=>c.w))]"):
+            for i in pg.evaluate("(w)=>memState().cards.map((c,i)=>c.w===w?i:-1).filter(i=>i>=0)",w):pg.click('.mcard[data-i="%d"]'%i);pg.wait_for_timeout(30)
+        pg.wait_for_timeout(650);assert pg.evaluate("()=>isDone(P)");print('memória',l,'ok')
+    n=pg.evaluate("()=>({fr:Object.keys(DRAW.fr).length,it:Object.keys(DRAW.it).length,en:Object.keys(DRAW.en).length})");print('desenhos',n);assert n['fr']>150 and n['it']>120 and n['en']>200
     print('erros:',errs);assert not errs
     b.close()
 finally:

@@ -74,7 +74,7 @@ const DRAW=(function(){
     cucumber:S('path',MI,{d:'M8 44C4 36 12 30 20 26L50 10C58 6 60 14 56 22C52 30 40 38 26 48C18 54 10 50 8 44Z'})+'<circle cx="26" cy="36" r="1.2" fill="var(--ink)"/><circle cx="36" cy="28" r="1.2" fill="var(--ink)"/><circle cx="46" cy="20" r="1.2" fill="var(--ink)"/><circle cx="20" cy="44" r="1.2" fill="var(--ink)"/>'+spark(52,48)+dot(10,12),
     rabbit:S('path',RS,{d:'M24 4C19 6 19 18 22 26L27 27C29 20 29 9 24 4Z'})+S('path',RS,{d:'M40 4C45 6 45 18 42 26L37 27C35 20 35 9 40 4Z'})+S('ellipse',GR,{cx:32,cy:51,rx:15,ry:11})+S('ellipse',GR,{cx:32,cy:36,rx:13,ry:11})+eyes(27.5,36.5,35,1.3)+L('M30.6 39.2H33.4L32 40.6Z')+L('M32 40.6V42M32 42Q30.8 43 29.8 42.4M32 42Q33.2 43 34.2 42.4')+blush(23.5,40.5,40)+L('M24 38L16 37M24 40L15 41M40 38L48 37M40 40L49 41','stroke-width="1"')+spark(54,10)+dot(8,14)
   };
-  return {en:en};
+  return {en:en,_h:{S:S,L:L,dot:dot,spark:spark,eyes:eyes,blush:blush}};
 })();
 /* Monta o <svg>; o texto alternativo é a tradução em português */
 function drawSvg(lang,w,alt){
