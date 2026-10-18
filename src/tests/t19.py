@@ -50,6 +50,19 @@ try:
     assert not pg.evaluate("()=>!!document.querySelector('#gstage .wdraw svg')")
     pg.fill('#gm-typed',pg.evaluate("()=>gm.items[gm.i].ok[0]"));pg.click('#gm-submit');pg.wait_for_timeout(80)
     assert pg.evaluate("()=>!!document.querySelector('#gstage .wdraw svg')")
+    # 4) jogo da memória: achar todos os pares conclui a página
+    pg.evaluate("()=>{S.lang='en';S.done={};S.sk={};S.vol=1;save();syncPrefs();go('vol');startPage('memoria-en-1')}");pg.wait_for_timeout(300)
+    n=pg.evaluate("()=>memState().cards.length");print('cartas:',n);assert n>=8
+    for w in pg.evaluate("()=>[...new Set(memState().cards.map(c=>c.w))]"):
+        ix=pg.evaluate("(w)=>memState().cards.map((c,i)=>c.w===w?i:-1).filter(i=>i>=0)",w)
+        for i in ix:pg.click('.mcard[data-i="%d"]'%i);pg.wait_for_timeout(40)
+    pg.wait_for_timeout(700)
+    assert pg.evaluate("()=>isDone(P)");print('memória concluída')
+    # par errado desvira
+    pg.evaluate("()=>{closeSheet();startPage('memoria-en-2')}");pg.wait_for_timeout(200)
+    a,b2=pg.evaluate("()=>{const c=memState().cards;const i=0;const j=c.findIndex((x,k)=>k>0&&x.w!==c[0].w);return [i,j]}")
+    pg.click('.mcard[data-i="%d"]'%a);pg.click('.mcard[data-i="%d"]'%b2);pg.wait_for_timeout(1300)
+    assert pg.evaluate("()=>memState().open.length===0&&memState().done.size===0")
     print('erros:',errs);assert not errs
     b.close()
 finally:
