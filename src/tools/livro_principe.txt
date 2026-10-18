@@ -1,0 +1,201 @@
+popolo|povo|s|m
+principato|principado|s|m
+esercito|exército|s|m
+conquistare|conquistar|v
+arma|arma|s|f
+difficoltà|dificuldade|s|f
+nemico|inimigo|s|m
+suddito|súdito|s|m
+soldato|soldado|s|m
+regno|reino|s|m
+forza|força|s|f
+virtù|virtude|s|f
+impresa|empreendimento, façanha|s|f
+temere|temer|v
+considerare|considerar|v
+cittadino|cidadão|s|m
+azione|ação|s|f
+guerra|guerra|s|f
+esempio|exemplo|s|m
+mercenario|mercenário|s|m
+creare|criar|v
+qualità|qualidade|s|f
+governare|governar|v
+nascere|nascer|v
+evitare|evitar|v
+milizia|milícia|s|f
+rovina|ruína|s|f
+occasione|oportunidade, ocasião|s|f
+seguire|seguir|v
+pericolo|perigo|s|m
+imperatore|imperador|s|m
+animo|ânimo, espírito|s|m
+crudeltà|crueldade|s|f
+esaminare|examinar|v
+conquista|conquista|s|f
+possedere|possuir|v
+causa|causa|s|f
+odiare|odiar|v
+subire|sofrer, suportar|v
+togliere|tirar|v
+conservare|conservar|v
+vincere|vencer|v
+decisione|decisão|s|f
+trattare|tratar|v
+saggio|sábio|s|m
+male|mal|s|m
+combattere|combater|v
+simile|semelhante|adj
+legge|lei|s|f
+odio|ódio|s|m
+ereditario|hereditário|adj
+necessità|necessidade|s|f
+fedele|fiel|adj
+truppa|tropa|s|f
+autorità|autoridade|s|f
+eliminare|eliminar|v
+acquistare|adquirir, comprar|v
+rispetto|respeito|s|m
+regola|regra|s|f
+servire|servir|v
+ministro|ministro|s|m
+ordinamento|ordenamento, organização|s|m
+fondamento|fundamento|s|m
+giudicare|julgar|v
+fortezza|fortaleza|s|f
+favore|favor|s|m
+agire|agir|v
+straniero|estrangeiro|s|m
+regione|região|s|f
+aiuto|ajuda|s|m
+potenza|poder, potência|s|f
+distruggere|destruir|v
+ricevere|receber|v
+opinione|opinião|s|f
+fama|fama|s|f
+ingannare|enganar|v
+istituzione|instituição|s|f
+luogo|lugar|s|m
+utile|útil|adj
+fazione|facção|s|f
+arte|arte|s|f
+danneggiare|prejudicar, danificar|v
+bisogno|necessidade|s|m
+inizio|início|s|m
+contrario|contrário|s|m
+difesa|defesa|s|f
+cardinale|cardeal|s|m
+grandezza|grandeza|s|f
+imitare|imitar|v
+natura|natureza|s|f
+governo|governo|s|m
+armare|armar|v
+provincia|província|s|f
+sicurezza|segurança|s|f
+importante|importante|adj
+beneficio|benefício|s|m
+prestigio|prestígio|s|m
+facilità|facilidade|s|f
+esporre|expor|v
+comportamento|comportamento|s|m
+compiere|realizar, cumprir|v
+eleggere|eleger|v
+semplice|simples|adj
+eccellente|excelente|adj
+assediare|sitiar, cercar|v
+condottiero|comandante militar|s|m
+congiura|conspiração|s|f
+rimedio|remédio|s|m
+ambizione|ambição|s|f
+osservare|observar|v
+grado|grau|s|m
+crudele|cruel|adj
+resistere|resistir|v
+motivo|motivo|s|m
+condizione|condição|s|f
+assaltare|assaltar, atacar|v
+uccidere|matar|v
+fatica|esforço, cansaço|s|f
+amicizia|amizade|s|f
+errore|erro|s|m
+lealtà|lealdade|s|f
+barone|barão|s|m
+sconfiggere|derrotar|v
+superare|superar|v
+pericoloso|perigoso|adj
+ammazzare|matar|v
+timore|temor|s|m
+uso|uso|s|m
+nobile|nobre|adj
+disprezzare|desprezar|v
+colpire|atingir, golpear|v
+sospetto|suspeita|s|m
+conseguenza|consequência|s|f
+situazione|situação|s|f
+concludere|concluir|v
+favorire|favorecer|v
+cacciare|caçar, expulsar|v
+ottenere|obter|v
+desiderare|desejar|v
+battaglia|batalha|s|f
+vittoria|vitória|s|f
+derivare|derivar|v
+gloria|glória|s|f
+avversità|adversidade|s|f
+comandare|comandar|v
+operare|operar, agir|v
+dote|dote, qualidade|s|f
+territorio|território|s|m
+reggere|sustentar, governar|v
+assalto|assalto|s|m
+naturale|natural|adj
+soddisfare|satisfazer|v
+ribellione|rebelião|s|f
+generale|general|s|m
+unire|unir|v
+provvedimento|medida, providência|s|m
+presentare|apresentar|v
+accrescere|aumentar|v
+prudenza|prudência|s|f
+scarso|escasso|adj
+vincitore|vencedor|s|m
+esercizio|exercício|s|m
+capacità|capacidade|s|f
+libertà|liberdade|s|f
+fondare|fundar|v
+degno|digno|adj
+dimostrare|demonstrar|v
+prudente|prudente|adj
+inganno|engano, trapaça|s|m
+consigliere|conselheiro|s|m
+freno|freio|s|m
+mente|mente|s|f
+appoggiare|apoiar|v
+procurare|procurar, conseguir|v
+stimare|estimar, avaliar|v
+assoldare|contratar (soldados)|v
+vicenda|vicissitude, acontecimento|s|f
+fanteria|infantaria|s|f
+disarmare|desarmar|v
+maggioranza|maioria|s|f
+occupare|ocupar|v
+metodo|método|s|m
+memoria|memória|s|f
+cambiamento|mudança|s|m
+mutare|mudar|v
+obbligare|obrigar|v
+punire|punir|v
+possesso|posse|s|m
+colonia|colônia|s|f
+nuocere|prejudicar|v
+indebolire|enfraquecer|v
+malcontento|descontentamento|s|m
+affidare|confiar, entregar|v
+biasimare|censurar|v
+offrire|oferecer|v
+politica|política|s|f
+sbagliare|errar|v
+materia|matéria|s|f
+riguardare|dizer respeito a|v
+impossibile|impossível|adj
+patria|pátria|s|f

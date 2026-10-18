@@ -1,0 +1,213 @@
+mousquetaire|mosqueteiro|s|le
+reine|rainha|s|la
+lettre|carta|s|la
+épée|espada|s|l'
+doute|dúvida|s|le
+duc|duque|s|le
+gentilhomme|fidalgo, nobre|s|le
+vol|voo, roubo|s|le
+amour|amor|s|l'
+hôte|anfitrião, hóspede|s|l'
+honneur|honra|s|l'
+tuer|matar|v
+envoyer|enviar|v
+ailleurs|em outro lugar|adv
+somme|soma, quantia|s|la
+pistolet|pistola|s|le
+force|força|s|la
+ennemi|inimigo|s|l'
+laquais|lacaio|s|le
+signe|sinal|s|le
+bout|ponta, extremidade|s|le
+diable|diabo|s|le
+regard|olhar|s|le
+officier|oficial|s|l'
+maîtresse|amante, patroa|s|la
+procureur|procurador|s|le
+partie|parte, partida|s|la
+inconnu|desconhecido|s|l'
+blessé|ferido|s|le
+valet|criado|s|le
+diamant|diamante|s|le
+poche|bolso|s|la
+acte|ato|s|l'
+prisonnier|prisioneiro|s|le
+comte|conde|s|le
+âme|alma|s|l'
+vengeance|vingança|s|la
+cour|pátio, corte|s|la
+arme|arma|s|l'
+guerre|guerra|s|la
+malheur|infelicidade, desgraça|s|le
+voyage|viagem|s|le
+jurer|jurar|v
+profond|profundo|adj
+crime|crime|s|le
+mouchoir|lenço|s|le
+compagnie|companhia|s|la
+cause|causa|s|la
+couvent|convento|s|le
+tendre|terno, macio|adj
+apporter|trazer|v
+appartement|apartamento|s|l'
+veille|véspera|s|la
+baron|barão|s|le
+plaire|agradar|v
+cavalier|cavaleiro|s|le
+conseil|conselho|s|le
+pensée|pensamento|s|la
+pardonner|perdoar|v
+bastion|bastião|s|le
+venger|vingar|v
+bague|anel|s|la
+mémoire|memória|s|la
+terreur|terror|s|la
+siège|assento|s|le
+droit|direito|s|le
+cabinet|gabinete|s|le
+camarade|camarada|s|le
+amoureux|apaixonado|s|l'
+nouvelle|notícia|s|la
+événement|acontecimento|s|l'
+souffrir|sofrer|v
+bourreau|carrasco|s|le
+antichambre|antecâmara|s|l'
+secours|socorro, ajuda|s|le
+coupable|culpado|s|le
+rêve|sonho|s|le
+famille|família|s|la
+attention|atenção|s|l'
+misérable|miserável|s|le
+prier|rezar, pedir|v
+fauteuil|poltrona|s|le
+poitrine|peito|s|la
+auberge|estalagem, albergue|s|l'
+reculer|recuar|v
+prouver|provar|v
+chevalier|cavaleiro|s|le
+sombre|sombrio|adj
+intrigue|intriga|s|l'
+amant|amante|s|l'
+galop|galope|s|le
+trahir|trair|v
+corridor|corredor|s|le
+abbesse|abadessa|s|l'
+plume|pena, pluma|s|la
+fou|louco|s|le
+menace|ameaça|s|la
+haine|ódio|s|la
+royaume|reino|s|le
+merveille|maravilha|s|la
+déclarer|declarar|v
+ombre|sombra|s|l'
+désir|desejo|s|le
+espérance|esperança|s|l'
+faveur|favor|s|la
+créature|criatura|s|la
+duchesse|duquesa|s|la
+pendre|pendurar, enforcar|v
+briller|brilhar|v
+carrosse|carruagem|s|le
+taire|calar|v
+départ|partida|s|le
+affreux|horrível|adj
+baiser|beijo|s|le
+lueur|clarão, luz fraca|s|la
+démon|demônio|s|le
+soupçonner|suspeitar|v
+entourer|cercar|v
+pâlir|empalidecer|v
+juge|juiz|s|le
+chasse|caça|s|la
+tableau|quadro|s|le
+bourgeois|burguês|s|le
+compliment|elogio|s|le
+soupçon|suspeita|s|le
+remercier|agradecer|v
+cave|porão, adega|s|la
+pavillon|pavilhão|s|le
+cabaret|taverna|s|le
+duel|duelo|s|le
+moustache|bigode|s|la
+étonnement|espanto|s|l'
+querelle|briga, desavença|s|la
+avenir|futuro|s|l'
+surprise|surpresa|s|la
+liberté|liberdade|s|la
+château|castelo|s|le
+seuil|soleira, limiar|s|le
+mousquet|mosquete|s|le
+armée|exército|s|l'
+fourreau|bainha|s|le
+uniforme|uniforme|s|l'
+gracieux|gracioso|adj
+désespoir|desespero|s|le
+rencontre|encontro|s|la
+écurie|estábulo|s|l'
+assassiner|assassinar|v
+muraille|muralha|s|la
+selle|sela|s|la
+obscurité|escuridão|s|l'
+chancelier|chanceler|s|le
+harnais|arreio|s|le
+bataille|batalha|s|la
+amitié|amizade|s|l'
+puissance|poder|s|la
+attirer|atrair|v
+incliner|inclinar|v
+comtesse|condessa|s|la
+prudence|prudência|s|la
+furieux|furioso|adj
+lâche|covarde|s|le
+retraite|aposentadoria, retiro|s|la
+reconnaissant|agradecido|adj
+messager|mensageiro|s|le
+sentinelle|sentinela|s|la
+gouverneur|governador|s|le
+palais|palácio|s|le
+ange|anjo|s|l'
+permission|permissão|s|la
+joue|bochecha|s|la
+proposer|propor|v
+sourcil|sobrancelha|s|le
+seller|selar|v
+défier|desafiar|v
+soixante|sessenta|adj
+espion|espião|s|l'
+prétexte|pretexto|s|le
+prêter|emprestar|v
+sueur|suor|s|la
+résolution|resolução|s|la
+repas|refeição|s|le
+secouer|sacudir|v
+tressaillir|estremecer|v
+fusil|fuzil|s|le
+baudrier|talabarte|s|le
+soubrette|criada|s|la
+espoir|esperança|s|l'
+objet|objeto|s|l'
+physionomie|fisionomia, semblante|s|la
+influence|influência|s|l'
+combat|combate|s|le
+revenu|renda|s|le
+réclamer|reclamar, exigir|v
+respect|respeito|s|le
+vaincre|vencer|v
+ivre|bêbado|adj
+sortie|saída|s|la
+logis|moradia|s|le
+amie|amiga|s|l'
+joindre|juntar|v
+lieutenant|tenente|s|le
+haie|cerca viva|s|la
+titre|título|s|le
+volet|postigo|s|le
+reproche|censura, reprovação|s|le
+échelle|escada de mão|s|l'
+répandre|espalhar, derramar|v
+abbé|abade|s|l'
+commis|empregado|s|le
+témoin|testemunha|s|le
+hâte|pressa|s|la
+mener|conduzir|v
+fête|festa|s|la

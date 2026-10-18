@@ -1,0 +1,107 @@
+divino|divino|adj
+mondo|mundo|s|m
+anima|alma|s|f
+luce|luz|s|f
+udire|ouvir|v
+ombra|sombra|s|f
+duca|duque, guia|s|m
+vista|vista, visão|s|f
+passo|passo|s|m
+verso|verso|s|m
+monte|monte|s|m
+porto|porto|s|m
+stella|estrela|s|f
+faccia|rosto|s|f
+raggio|raio|s|m
+segno|sinal|s|m
+desiderio|desejo|s|m
+tacere|calar|v
+fiamma|chama|s|f
+mortale|mortal|adj
+salire|subir|v
+lieto|alegre|adj
+colpa|culpa|s|f
+beato|bem-aventurado, feliz|adj
+pensiero|pensamento|s|m
+fede|fé|s|f
+pena|pena, sofrimento|s|f
+cura|cuidado|s|f
+cammino|caminho|s|m
+costa|costa, encosta|s|f
+ira|ira|s|f
+fondo|fundo|s|m
+giusto|justo|adj
+suono|som|s|m
+discendere|descer|v
+frate|frade|s|m
+giustizia|justiça|s|f
+grave|grave, pesado|adj
+voltare|virar|v
+arco|arco|s|m
+giungere|chegar|v
+fronte|testa|s|f
+fine|fim|s|f
+accendere|acender|v
+giro|volta, giro|s|m
+angelo|anjo|s|m
+poeta|poeta|s|m
+ascoltare|escutar|v
+giacere|jazer, estar deitado|v
+valore|valor|s|m
+ciglio|cílio, borda|s|m
+principio|princípio|s|m
+guidare|guiar|v
+oro|ouro|s|m
+fronda|ramo com folhas|s|f
+forma|forma|s|f
+dritto|direito, reto|adj
+fiera|fera|s|f
+seme|semente|s|m
+rompere|romper|v
+immagine|imagem|s|f
+porgere|estender, entregar|v
+corte|corte, pátio|s|f
+vendetta|vingança|s|f
+creatura|criatura|s|f
+cima|cume, topo|s|f
+tardo|lento, tardio|adj
+sonno|sono|s|m
+bastare|bastar|v
+soffrire|sofrer|v
+ardere|arder|v
+procedere|avançar, prosseguir|v
+sete|sede|s|f
+dannare|condenar|v
+attendere|esperar|v
+splendore|esplendor|s|m
+sazio|saciado|adj
+pastore|pastor|s|m
+risposta|resposta|s|f
+vapore|vapor|s|m
+schiera|fileira, tropa|s|f
+piantare|plantar|v
+chinare|inclinar|v
+ruota|roda|s|f
+figura|figura|s|f
+celare|esconder|v
+corso|curso|s|m
+selva|selva|s|f
+pietà|piedade|s|f
+speranza|esperança|s|f
+ingegno|engenho, inteligência|s|m
+intelletto|intelecto|s|m
+croce|cruz|s|f
+vergogna|vergonha|s|f
+argomento|argumento, assunto|s|m
+fame|fome|s|f
+cieco|cego|s|m
+ardore|ardor|s|m
+sasso|pedra|s|m
+dipingere|pintar|v
+umano|humano|adj
+presso|perto de|prep
+mossa|movimento|s|f
+convenire|convir|v
+trarre|tirar, puxar|v
+ormai|agora, a essa altura|adv
+assai|muito|adv

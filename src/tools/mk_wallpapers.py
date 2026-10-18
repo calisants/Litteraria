@@ -98,9 +98,41 @@ def frank(dark):
     o.append(f'<path d="M0 560L60 540L120 560L180 530L240 555L300 525L360 550L400 540V800H0Z" fill="{st}" opacity=".18"/>')
     o.append(f'<path d="M30 580V470M30 470L10 440M30 470L50 440M30 500L8 480M30 500L52 480" stroke="{st}" stroke-width="2" fill="none" opacity=".6"/>')
     return W("".join(o))
-ST={"pp":pp,"alice":alice,"pino":pino,"verne":verne,"peter":peter,"wind":wind,"sherlock":sherlock,"frank":frank}
-ID={"pp":"pp","alice":"alice","pino":"pinocchio","verne":"verne","peter":"peter","wind":"wind","sherlock":"sherlock","frank":"frank"}
-fonts={"pp":"Newsreader","alice":"Newsreader","pino":"Newsreader","verne":"Newsreader","peter":"Newsreader","wind":"Newsreader","sherlock":"Newsreader","frank":"Newsreader"}
+def musq(dark):
+    random.seed(66);c="#e3c26a" if dark else "#7a5c1e";b="#9db8e8" if dark else "#2d4a8a";o=[]
+    for x,y,sc in ((100,150,1.3),(310,300,1.0),(120,520,1.1)):
+        o.append(f'<g transform="translate({x} {y}) scale({sc})" fill="none" stroke="{c}" stroke-width="2.2" opacity=".8" stroke-linecap="round"><path d="M-42-42L42 42M42-42L-42 42"/><path d="M-50-30L-30-50M30 50L50 30M-50 30L-30 50M30-50L50-30"/><circle cx="-42" cy="-42" r="3.5"/><circle cx="42" cy="-42" r="3.5"/></g>')
+    for x,y in ((300,110),(70,350),(330,560),(190,700)):
+        o.append(f'<g transform="translate({x} {y})" fill="{b}" opacity=".6"><path d="M0-22C6-12 6-4 0 2C-6-4-6-12 0-22Z"/><path d="M-4 2C-18 0-22-10-16-18C-12-8-8-4-2 0Z"/><path d="M4 2C18 0 22-10 16-18C12-8 8-4 2 0Z"/><rect x="-10" y="4" width="20" height="4" rx="1"/></g>')
+    o.append(f'<g transform="translate(250 690) rotate(-30)" fill="none" stroke="{c}" stroke-width="2" opacity=".8" stroke-linecap="round"><path d="M0 0C10-30 30-60 40-100C20-80 10-50 0 0Z"/><path d="M0 0L-8 24"/></g>')
+    for x,y,s in ((50,60,6),(350,60,5),(200,420,5)):o.append(star4(x,y,s,c))
+    return W("".join(o))
+def principe(dark):
+    random.seed(77);c="#e0b95a" if dark else "#7a5c1e";r="#d98a8a" if dark else "#8a2a2a";o=[]
+    for x,y,sc in ((80,140,1.2),(300,260,1.0),(150,480,1.1)):
+        o.append(f'<g transform="translate({x} {y}) scale({sc})" fill="none" stroke="{c}" stroke-width="2.2" opacity=".8" stroke-linejoin="round"><path d="M-40 40V-10H-30V-20H-20V-10H-8V-20H4V-10H16V-20H28V-10H40V40Z"/><path d="M-10 40V18Q0 6 10 18V40"/></g>')
+    o.append(f'<g transform="translate(300 600)" fill="none" stroke="{c}" stroke-width="2.4" opacity=".85" stroke-linejoin="round"><path d="M-40 20L-46-20L-22 0L0-30L22 0L46-20L40 20Z"/><path d="M-40 28H40"/><circle cx="0" cy="-34" r="3" fill="{c}"/></g>')
+    for i in range(10):
+        x=30+i*36;y=700+(i%2)*14;o.append(f'<path transform="translate({x} {y}) rotate({-20+i*4})" d="M0 0C6-8 6-18 0-26C-6-18-6-8 0 0Z" fill="{r}" opacity=".45"/>')
+    for x,y,s in ((60,60,6),(340,70,5),(200,330,5)):o.append(star4(x,y,s,c))
+    return W("".join(o))
+def dante(dark):
+    random.seed(88);c="#f0d58a" if dark else "#7a4a00";fl="#f08a5a" if dark else "#b3411a";g="#a9b8e8" if dark else "#3a4a8a";o=[]
+    for rx in (30,60,95,135,180):
+        o.append(f'<circle cx="200" cy="180" r="{rx}" fill="none" stroke="{g}" stroke-width="1.4" opacity=".45"/>')
+    for k in range(12):
+        import math
+        a=k*math.pi/6;o.append(f'<path d="M{200+math.cos(a)*30:.1f} {180+math.sin(a)*30:.1f}L{200+math.cos(a)*180:.1f} {180+math.sin(a)*180:.1f}" stroke="{c}" stroke-width="1" opacity=".3"/>')
+    for i in range(30):
+        x,y=random.randint(8,392),random.randint(8,420);o.append(f'<circle cx="{x}" cy="{y}" r="{random.choice([1,1.3,1.8])}" fill="{c}"/>')
+    for x,y,s in ((200,180,10),(60,330,6),(340,350,7)):o.append(star4(x,y,s,c))
+    for k in range(8):
+        x=20+k*50;h=40+(k*37)%50
+        o.append(f'<path d="M{x} 800C{x-14} {800-h*.5} {x+6} {800-h*.7} {x} {800-h}C{x+16} {800-h*.6} {x+12} {800-h*.3} {x+8} 800Z" fill="{fl}" opacity=".5"/>')
+    return W("".join(o))
+ST={"pp":pp,"alice":alice,"pino":pino,"verne":verne,"peter":peter,"wind":wind,"sherlock":sherlock,"frank":frank,"musq":musq,"principe":principe,"dante":dante}
+ID={"pp":"pp","alice":"alice","pino":"pinocchio","verne":"verne","peter":"peter","wind":"wind","sherlock":"sherlock","frank":"frank","musq":"musq","principe":"principe","dante":"dante"}
+fonts={"pp":"Newsreader","alice":"Newsreader","pino":"Newsreader","verne":"Newsreader","peter":"Newsreader","wind":"Newsreader","sherlock":"Newsreader","frank":"Newsreader","musq":"Newsreader","principe":"Newsreader","dante":"Newsreader"}
 css=["/* BEGIN wallpapers */"]
 for k,f in ST.items():
     i=ID[k]
