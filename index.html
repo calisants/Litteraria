@@ -913,7 +913,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.32.0",d:"2026-10-19"};
+const APP_REL={v:"1.32.1",d:"2026-10-19"};
 
 
 const RAW={
@@ -3342,7 +3342,7 @@ function renderOdd(){
   let h='<p class="ocount">Rodada '+(od.i+1)+" de "+od.rounds.length+"</p>";
   h+='<div class="ogrid">'+r.tiles.map((t,k)=>{
     const cls="otile"+(od.solved&&t.odd?" right":"");
-    return '<button type="button" class="'+cls+'" data-k="'+k+'" aria-pressed="'+(od.sel===k)+'"'+(od.solved?" disabled":"")+"><span>"+esc(full(t.it))+"</span><small>"+esc(t.it.pt)+"</small></button>";
+    return '<button type="button" class="'+cls+'" data-k="'+k+'" aria-pressed="'+(od.sel===k)+'"'+(od.solved?" disabled":"")+"><span>"+esc(full(t.it))+"</span><small>"+(od.solved?esc(t.it.pt):"&nbsp;")+"</small></button>";
   }).join("")+"</div>";
   if(od.solved)h+='<p class="note">As outras três são de <b>'+esc(CATLABEL[r.a])+"</b>. <b>"+esc(full(r.tiles.find(t=>t.odd).it))+"</b> é de "+esc(CATLABEL[r.b])+".</p>";
   $("#ostage").innerHTML=h;

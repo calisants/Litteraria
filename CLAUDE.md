@@ -105,3 +105,6 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Vocabulário ampliado (arquivos `_2.txt`, viram partes novas; palavras conferidas com `chk_words.py` no Kaikki e no texto, 0 problemas): `livro_perrault_2` (54), `livro_racconti_2` (107), `livro_musq_2` (154), `livro_dante_2` (85). Candidatas: `book_cands.py` com `/tmp/bk/have_<lang>.json` (lista do que o app já tem: refaça lendo `data.js`, `content*.js` e `livros_data.js`). Requer `pip install simplemma pyphen cmudict`.
 - `sw.js`: cache v58.
 - Pendentes: vocabulário ampliado de Principe/Verne/Pinóquio (fr/it), Vento nos Salgueiros, Sherlock, Mosqueteiros e Divina Comédia em texto completo; Verne e Pinóquio dependem dos ePubs dela.
+
+## Intruso sem tradução (19/10/2026, v1.32.1)
+- Pedido dela: em «O Intruso» a tradução não aparece mais nos quadros (facilitava demais); só aparece depois de acertar. Regra geral: jogo que faz pensar não mostra tradução antes da resposta. Cache v59.
