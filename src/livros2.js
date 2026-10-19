@@ -230,12 +230,15 @@
     return lessonPath().filter(r=>(r.page.cat&&cs.indexOf(r.page.cat)>=0)||r.page.book===b.id||r.page.rd===b.id);
   };
   const isDoneId=p=>!!S.done[S.lang+":"+p.id];
+  const CONTOS={perrault:1,grimm:1,racconti:1};
+  const BOOK_GROUPS=[["Romances e clássicos",b=>!CONTOS[b.id]],["Contos de fadas",b=>!!CONTOS[b.id]]];
+  const readCaps=id=>(TI[id]?TI[id].chs:[]).filter(c=>S.cap[capKey(id,c.n)]).length;
   function renderBooks(){
     const bs=BOOKS.filter(b=>b.lang===S.lang),sk=S.sk[S.lang]||{};
     $("#books-lang").textContent=LNAME[S.lang];
     const fav=S.fav.filter(id=>phById[id]).length;
     $("#books-album").textContent="★ Álbum de citações"+(fav?" ("+fav+")":"");
-    $("#books-list").innerHTML=bs.map(b=>{
+    const card=b=>{
       let tot=0,known=0;
       b.chunks.forEach(c=>c.words.forEach(w=>{tot++;const a=sk[w.w.toLowerCase()];if(a&&a[0]>0)known++;}));
       const pages=bookPages(b),doneN=pages.filter(r=>isDoneId(r.page)).length;
@@ -246,10 +249,16 @@
       return '<article class="bkc"><h3>'+esc(b.name)+"</h3>"+
         '<p class="bkc-l">Palavras que você já acertou: <b>'+known+" de "+tot+"</b></p>"+'<div class="bar2" role="img" aria-label="'+pw+'% das palavras"><i style="width:'+pw+'%"></i></div>'+
         '<p class="bkc-l">Lições concluídas: <b>'+doneN+" de "+pages.length+"</b> ("+pct+"%)</p>"+'<div class="bar2" role="img" aria-label="'+pct+'% das lições"><i style="width:'+pct+'%"></i></div>'+
-        '<p class="bkc-s">Vocabulário '+cnt(kinds.words)+(kinds.fr.length?" · Frases "+cnt(kinds.fr):"")+(kinds.rd.length?" · Leitura "+cnt(kinds.rd):"")+"</p>"+
+        '<p class="bkc-s">'+(TI[b.id]?"Texto do livro: <b>"+readCaps(b.id)+" de "+TI[b.id].chs.length+"</b> "+(TI[b.id].chs.length===1?"capítulo lido":"capítulos lidos")+" · ":"")+'Vocabulário '+cnt(kinds.words)+(kinds.fr.length?" · Frases "+cnt(kinds.fr):"")+(kinds.rd.length?" · Leitura "+cnt(kinds.rd):"")+"</p>"+
         (nx?'<button type="button" class="btn primary" data-bk-go="'+esc(nx.page.id)+'" data-bk-vol="'+nx.vol+'">'+(doneN?"Continuar este livro":"Começar este livro")+"</button>":'<p class="bkc-ok">Livro concluído ✓</p>')+
         '<div class="row bkc-r">'+(TI[b.id]?'<button type="button" class="btn" data-bk-read="'+b.id+'">Ler o livro</button>':"")+(kinds.fr.length?'<button type="button" class="btn" data-bk-go="'+esc(kinds.fr[0].page.id)+'" data-bk-vol="3">Frases</button>':"")+(kinds.rd.length?'<button type="button" class="btn" data-bk-go="'+esc(kinds.rd[0].page.id)+'" data-bk-vol="3">Leitura</button>':"")+"</div></article>";
-    }).join("");
+    };
+    const out=[];
+    BOOK_GROUPS.forEach(g=>{
+      const l=bs.filter(b=>g[1](b));
+      if(l.length)out.push('<h2 class="grp bkgrp">'+g[0]+" <small>("+l.length+(l.length===1?" livro":" livros")+")</small></h2>"+l.map(card).join(""));
+    });
+    $("#books-list").innerHTML=out.join("");
   }
   window.renderBooks=renderBooks;
   $("#books-list").addEventListener("click",e=>{

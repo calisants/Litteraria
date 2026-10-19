@@ -63,6 +63,9 @@ frank:{name:"Noite de Tempestade",desc:"Inspirado em Frankenstein: relâmpago, l
 musq:{name:"Capa e Espada",desc:"Inspirado em Os Três Mosqueteiros: espadas cruzadas, flor-de-lis e pluma",schemes:[["Guarda real",0,"#eef0f7","#ffffff","#dde2f0","#b4bedb","#2d4a8a","#1c2036","#444b66","#7a4f00","#1f7a45","#b3261e"],["Noite em Paris",1,"#10162b","#182040","#222c56","#35437a","#9db8e8","#eef1fa","#bcc4dd","#e3c26a","#7fdca8","#ff9a8f"]]},
 principe:{name:"Torres de Florença",desc:"Inspirado em O Príncipe: torres, coroa e louro",schemes:[["Pedra e louro",0,"#f3ede0","#ffffff","#e7dcc4","#cdbd98","#8a2a2a","#2a2118","#574c3c","#7a4f00","#1f7a45","#a31f1f"],["Corte à luz de vela",1,"#201714","#2c211c","#3a2c25","#55433a","#d98a8a","#f6ece0","#cdbcae","#e0b95a","#7fdca8","#ff9a8f"]]},
 dante:{name:"Círculos do Paraíso",desc:"Inspirado em A Divina Comédia: círculos, estrelas e chamas",schemes:[["Céu claro",0,"#f1eefa","#ffffff","#e2ddf3","#bdb4e0","#3a4a8a","#201c33","#4a4660","#8a3b12","#1f7a45","#b3261e"],["Noite estrelada",1,"#0f1226","#171b38","#212649","#343b6e","#a9b8e8","#eef0fb","#bfc4de","#f0d58a","#7fdca8","#ff9a8f"]]},
+perrault:{name:"Salão das Fadas",desc:"Inspirado nos Contos de Perrault: castelo, carruagem de abóbora, sapatinho e estrelas",schemes:[["Salão ao amanhecer",0,"#fbeef3","#ffffff","#f5dde8","#e0b3c8","#8a2f5c","#2a1a26","#5c4455","#7a4f00","#1f7a45","#b3261e"],["Baile à meia-noite",1,"#1a1026","#261836","#33204a","#4c3270","#e9a3c1","#f6eef8","#cdb9d6","#f2d27a","#7fdca8","#ff9a8f"]]},
+grimm:{name:"Floresta Encantada",desc:"Inspirado nos Contos dos Irmãos Grimm: floresta, trilha de migalhas, cogumelos e coruja",schemes:[["Clareira",0,"#eef5e8","#ffffff","#dbe9d2","#b5cfa8","#3f6a2f","#1c2a18","#44563e","#8a4b0a","#1f7a45","#b3261e"],["Floresta à noite",1,"#0d1b14","#14271d","#1e3a2b","#2f5642","#9fd68a","#eaf5e6","#b6cdb0","#f2c06a","#7fdca8","#ff9a8f"]]},
+racconti:{name:"Contos à Luz de Vela",desc:"Inspirado em I racconti delle fate: colinas toscanas, torre, livro aberto e vela",schemes:[["Colinas ao pôr do sol",0,"#fbefe0","#ffffff","#f3dcc0","#dcb98e","#9a4a1e","#2b1c10","#5a4430","#7a4f00","#1f7a45","#b3261e"],["Luz de vela",1,"#1e120a","#2a1a0f","#3a2515","#573820","#f0b060","#f8eee0","#d5c0a6","#f2c864","#7fdca8","#ff9a8f"]]},
 };
 const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{}};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
@@ -323,7 +326,7 @@ function pageShown(p){
 }
 function buildThemeSelect(){
   const sel=$("#f-theme");
-  sel.innerHTML='<option value="all">Todos os temas</option>'+GROUPS.filter(g=>CATS.some(c=>c[2]===g[0])).map(g=>'<optgroup label="'+esc(g[1])+'">'+CATS.filter(c=>c[2]===g[0]).map(c=>'<option value="'+c[0]+'">'+esc(c[1])+"</option>").join("")+"</optgroup>").join("")+'<optgroup label="Livros">'+BOOKTHEMES.map(c=>'<option value="'+c[0]+'">'+esc(c[1])+"</option>").join("")+"</optgroup>";
+  sel.innerHTML='<option value="all">Todos os temas</option>'+GROUPS.filter(g=>CATS.some(c=>c[2]===g[0])).map(g=>'<optgroup label="'+esc(g[1])+'">'+CATS.filter(c=>c[2]===g[0]).map(c=>'<option value="'+c[0]+'">'+esc(c[1])+"</option>").join("")+"</optgroup>").join("")+[["Livros — romances e clássicos",c=>!/^livro-(perrault|grimm|racconti)$/.test(c[0])],["Livros — contos de fadas",c=>/^livro-(perrault|grimm|racconti)$/.test(c[0])]].map(g=>{const l=BOOKTHEMES.filter(g[1]);return l.length?'<optgroup label="'+g[0]+'">'+l.map(c=>'<option value="'+c[0]+'">'+esc(c[1])+"</option>").join("")+"</optgroup>":"";}).join("");
 }
 function renderIndex(){
   const V=curVol();
@@ -429,9 +432,13 @@ function stylePrev(id,i){
   const bg=sc?sc[2]:"#f4f5f7",su=sc?sc[3]:"#ffffff",ac=sc?sc[9]:"#1f3d7a",ln=sc?sc[6]:"#6f798b";
   return '<span class="stpv" data-pv="'+id+'" style="background:'+bg+';border-color:'+ln+'"><i style="background:'+su+'"></i><i style="background:'+ac+'"></i><i style="background:'+su+'"></i></span>';
 }
+const STYLE_GROUPS=[["Básicos",["padrao","fofo","soft"]],["Livros em francês",["pp","verne","musq","perrault"]],["Livros em italiano",["pinocchio","principe","dante","racconti"]],["Livros em inglês",["alice","peter","wind","sherlock","frank","grimm"]]];
 function buildStylePicker(){
-  const ids=["padrao"].concat(Object.keys(STYLES));
-  $("#style-grid").innerHTML=ids.map(id=>'<button type="button" class="stcard" data-style="'+id+'">'+stylePrev(id,0)+"<b>"+(id==="padrao"?"Padrão":STYLES[id].name)+"</b><small>"+(id==="padrao"?"Como era antes":STYLES[id].desc)+"</small></button>").join("");
+  const card=id=>'<button type="button" class="stcard" data-style="'+id+'">'+stylePrev(id,0)+"<b>"+(id==="padrao"?"Padrão":STYLES[id].name)+"</b><small>"+(id==="padrao"?"Como era antes":STYLES[id].desc)+"</small></button>";
+  const seen={},groups=STYLE_GROUPS.map(g=>[g[0],g[1].filter(id=>{const ok=(id==="padrao"||STYLES[id])&&!seen[id];if(ok)seen[id]=1;return ok;})]);
+  const extra=Object.keys(STYLES).filter(id=>!seen[id]);
+  if(extra.length)groups.push(["Outros",extra]);
+  $("#style-grid").innerHTML=groups.filter(g=>g[1].length).map(g=>'<h3 class="stgh">'+esc(g[0])+"</h3>"+g[1].map(card).join("")).join("");
 }
 function syncStyle(){
   $$("#style-grid .stcard").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.style===S.style)));
