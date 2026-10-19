@@ -118,7 +118,7 @@ function startConnect(){
   cn.groups=cats.map(cat=>({cat:cat,label:CATLABEL[cat],items:shuffle(VOCAB[S.lang][cat]).slice(0,4)}));
   let id=0;
   cn.tiles=shuffle(cn.groups.flatMap((g,gi)=>g.items.map(it=>({id:id++,it:it,gi:gi}))));
-  cn.sel=new Set();cn.solved=[];cn.mistakes=0;cn.done=false;
+  cn.sel=new Set();cn.solved=[];cn.mistakes=0;cn.hinted=false;cn.tr=false;cn.done=false;
   fitFn=null;
   renderConnect();cnSay("Escolha 4 palavras do mesmo tema.");
 }
@@ -128,7 +128,7 @@ function renderConnect(){
     const g=cn.groups[gi];
     return '<div class="band g'+(n%5+1)+'" style="margin-bottom:8px"><h3>'+esc(g.label)+"</h3><ul>"+g.items.map(it=>"<li><b>"+esc(full(it))+"</b><small> "+esc(it.pt)+"</small>"+speakBtn(full(it))+"</li>").join("")+"</ul></div>";
   }).join("");
-  $("#cn-grid").innerHTML=cn.tiles.filter(t=>cn.solved.indexOf(t.gi)<0).map(t=>'<button type="button" class="tile" data-id="'+t.id+'" aria-pressed="'+cn.sel.has(t.id)+'"><span>'+esc(t.it.w)+"</span>"+(cn.cfg.showTr?"<small>"+esc(t.it.pt)+"</small>":"")+"</button>").join("");
+  $("#cn-grid").innerHTML=cn.tiles.filter(t=>cn.solved.indexOf(t.gi)<0).map(t=>'<button type="button" class="tile" data-id="'+t.id+'" aria-pressed="'+cn.sel.has(t.id)+'"><span>'+esc(t.it.w)+"</span>"+((cn.cfg.showTr||cn.tr)?"<small>"+esc(t.it.pt)+"</small>":"")+"</button>").join("");
   $("#cn-submit").disabled=cn.sel.size!==4||cn.done;
 }
 $("#cn-grid").addEventListener("click",e=>{
@@ -160,6 +160,8 @@ $("#cn-shuffle").addEventListener("click",()=>{cn.tiles=shuffle(cn.tiles);render
 $("#cn-clear").addEventListener("click",()=>{cn.sel=new Set();renderConnect();});
 $("#cn-hint").addEventListener("click",()=>{
   const left=cn.groups.map((g,i)=>i).filter(i=>cn.solved.indexOf(i)<0);
-  if(left.length)cnSay("Um dos temas é: "+cn.groups[left[rnd(left.length)]].label+".");
+  if(!left.length)return;
+  if(!cn.hinted){cn.hinted=true;cnSay("Um dos temas é: "+cn.groups[left[rnd(left.length)]].label+". Toque em Dica de novo para ver as traduções.");}
+  else{cn.tr=true;renderConnect();cnSay("Traduções mostradas.");}
 });
 

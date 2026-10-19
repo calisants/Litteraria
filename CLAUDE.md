@@ -11,7 +11,7 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 
 ## Regras técnicas
 - Ao publicar, troque o número do cache em `sw.js` (mots-parole-vNN) e a linha de `src/VERSION` (versão e data mostradas no app). **Não mude `APP_VERSION` em `src/p3.js`** (v6), senão o progresso dela some.
-- Rodar antes de publicar: `python3 -I tests/gt.py`, `t10.py`, `t11.py`, `t13.py`, `t14.py`, `t15.py`, `t16.py`, `t17.py`, `t18.py` e `t19.py` (dentro de `src/`). O único erro esperado no t11 é o de fontes não encontradas (ele abre o arquivo fora do site).
+- Rodar antes de publicar (incl. `t20`, `t21`, `t22`): `python3 -I tests/gt.py`, `t10.py`, `t11.py`, `t13.py`, `t14.py`, `t15.py`, `t16.py`, `t17.py`, `t18.py` e `t19.py` (dentro de `src/`). O único erro esperado no t11 é o de fontes não encontradas (ele abre o arquivo fora do site).
 - Conteúdo de gramática: `src/tools/` (geradores) e `src/content5.js` (gerado por `tools/mk_content5.py`). As correções de rótulo e de texto dos cartões ficam em `tools/gram_rules3.py` (dicionário `OV`).
 - Commits terminam com os trailers de atribuição pedidos pela sessão.
 
@@ -108,3 +108,11 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 
 ## Intruso sem tradução (19/10/2026, v1.32.1)
 - Pedido dela: em «O Intruso» a tradução não aparece mais nos quadros (facilitava demais); só aparece depois de acertar. Regra geral: jogo que faz pensar não mostra tradução antes da resposta. Cache v59.
+
+## Tradução literal, dicas e revisão de citações (19/10/2026, v1.33.0)
+- Pedido dela: a tradução natural reordenava as frases; ela pediu o modo **literal** (segue a ordem das palavras do original) e um botão para alternar. Feito para **Perrault, Grimm, Collodi, O Príncipe e Alice** (os livros que ela listou que têm texto completo). **O Pequeno Príncipe não tem texto no app e nunca terá (não é domínio público); Os Três Mosqueteiros, a Divina Comédia, Verne e Pinóquio ainda não têm texto completo**, então não há o que alternar neles. Peter Rabbit, Frankenstein e (futuros) Vento/Sherlock ficam só com a natural, até ela pedir.
+- Formato: `livros_txt/<id>/lit_<n>.txt` (igual ao `pt_<n>.txt`); `tools/mk_texto.py` empacota como 3º item de cada parágrafo (`[original, natural, literal]`) e avisa «sem literal: …». Capítulos longos do Collodi (11-13) foram traduzidos em pedaços em `livros_txt/racconti/parts/lit_<n>_<a>-<b>.txt` e juntados por `tools/merge_parts.py racconti`. Regras dadas a quem traduz: seguir ordem/pontuação do original, não suavizar, só adaptar o obrigatório da gramática, nota entre colchetes quando a versão literal fica ininteligível. Rótulo: «Tradução (literal e natural): escrita por Claude, sem fonte conferida».
+- Tela do capítulo (`renderChapter`, `livros2.js`): botão «Tradução: Literal / Natural» (`#rdr-mode`), `S.trad` ("lit" padrão, "nat"), validado no `load`. Capítulo sem literal usa a natural e não mostra o botão.
+- Jogos sem tradução antes da resposta (princípio dela: o jogo tem que fazer pensar): **Intruso** só mostra a tradução depois de acertar; **Conecte** não mostra mais traduções nos quadros (o botão Dica mostra o tema e, na 2ª vez, as traduções); **Citação** e **De qual livro?** só mostram a tradução se ela tocar em «Dica: ver a tradução» (resposta certa com dica não conta ponto). Caça-palavras e cruzadas continuam com a tradução como pista (é a regra do jogo).
+- Revisão espaçada de frases: `S.qrv` {"livro:idx": [data, passo]} (máx. 200, validado no `load`). Errar (ou usar dica) numa citação/«De qual livro?» agenda a frase para o dia seguinte; ela volta (até 2 por página) nas próximas páginas desses jogos, com os intervalos de `RV_STEPS`. As **palavras** dos livros já entram na revisão geral (`S.rvv`) porque ficam em `VOCAB`.
+- `tests/t22.py` cobre tudo isso (leitor literal/natural, Intruso, dica, revisão).

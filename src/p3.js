@@ -17,7 +17,7 @@ const ALL8=[[0,1],[1,0],[1,1],[0,-1],[-1,0],[-1,-1],[1,-1],[-1,1]];
 const CFG={
   cross:{easy:{n:6,span:7,max:7,given:.35,article:true,tries:600},classic:{n:9,span:9,max:8,given:0,article:true,tries:800},adv:{n:12,span:11,max:10,given:0,article:false,tries:800}},
   search:{easy:{size:9,n:7,dirs:[[0,1],[1,0]],showTr:true,maxLen:9},classic:{size:11,n:11,dirs:[[0,1],[1,0],[1,1],[-1,1]],showTr:true,maxLen:9},adv:{size:13,n:15,dirs:ALL8,showTr:false,maxLen:11}},
-  connect:{easy:{groups:3,showTr:true},classic:{groups:4,showTr:true},adv:{groups:5,showTr:false}}
+  connect:{easy:{groups:3,showTr:false},classic:{groups:4,showTr:false},adv:{groups:5,showTr:false}}
 };
 const PALS={
   auto:{name:"Automática: azul no francês, verde no italiano, vinho no inglês",bg:"linear-gradient(135deg,#1f3d7a 33%,#1b5e43 33% 66%,#8a2a45 66%)"},
@@ -67,7 +67,7 @@ perrault:{name:"Salão das Fadas",desc:"Inspirado nos Contos de Perrault: castel
 grimm:{name:"Floresta Encantada",desc:"Inspirado nos Contos dos Irmãos Grimm: floresta, trilha de migalhas, cogumelos e coruja",schemes:[["Clareira",0,"#eef5e8","#ffffff","#dbe9d2","#b5cfa8","#3f6a2f","#1c2a18","#44563e","#8a4b0a","#1f7a45","#b3261e"],["Floresta à noite",1,"#0d1b14","#14271d","#1e3a2b","#2f5642","#9fd68a","#eaf5e6","#b6cdb0","#f2c06a","#7fdca8","#ff9a8f"]]},
 racconti:{name:"Contos à Luz de Vela",desc:"Inspirado em I racconti delle fate: colinas toscanas, torre, livro aberto e vela",schemes:[["Colinas ao pôr do sol",0,"#fbefe0","#ffffff","#f3dcc0","#dcb98e","#9a4a1e","#2b1c10","#5a4430","#7a4f00","#1f7a45","#b3261e"],["Luz de vela",1,"#1e120a","#2a1a0f","#3a2515","#573820","#f0b060","#f8eee0","#d5c0a6","#f2c864","#7fdca8","#ff9a8f"]]},
 };
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{}};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{}};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -104,6 +104,8 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(sv.fTheme==="all"||CATS.some(c=>c[0]===sv.fTheme)||BOOKTHEMES.some(c=>c[0]===sv.fTheme))S.fTheme=sv.fTheme;
   if(sv.fLevel==="all"||LVN[sv.fLevel])S.fLevel=sv.fLevel;
   if(typeof sv.fGame==="string"&&/^[a-z]+$/.test(sv.fGame))S.fGame=sv.fGame;
+  if(sv.trad==="nat"||sv.trad==="lit")S.trad=sv.trad;
+  if(sv.qrv&&typeof sv.qrv==="object")Object.keys(sv.qrv).slice(0,200).forEach(k=>{const a=sv.qrv[k];if(/^[a-z]+:\d{1,2}$/.test(k)&&Array.isArray(a)&&+a[0]>0)S.qrv[k]=[+a[0],Math.min(4,Math.max(0,+a[1]||0))];});
   if(sv.cap&&typeof sv.cap==="object")Object.keys(sv.cap).forEach(k=>{if(/^[a-z]+-\d{1,3}$/.test(k))S.cap[k]=1;});
   /* as marcas de concluído das versões antigas não são trazidas: os ids das páginas mudaram */
   if(!old&&sv.done&&typeof sv.done==="object")Object.keys(sv.done).forEach(k=>{if(/^(fr|it|en):[a-z0-9-]+$/.test(k))S.done[k]=1;});

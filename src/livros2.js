@@ -102,27 +102,37 @@
     return{p:p,shown:shown,ans:cap(ans.toLowerCase(),ans),opts:all};
   }
   let qz=null;window.quizState=()=>qz;
+  /* revisão espaçada das frases erradas (ou vistas com dica): voltam nas próximas páginas de citação */
+  function qrvDue(){const t=Date.now();return Object.keys(S.qrv).filter(id=>phById[id]&&phById[id].lang===S.lang&&S.qrv[id][0]<=t).slice(0,2);}
+  function qrvGrade(id,ok){
+    const cur=S.qrv[id];
+    if(ok){if(!cur)return;const st=cur[1]+1;if(st>=RV_STEPS.length)delete S.qrv[id];else S.qrv[id]=[rvDue(rvIvl(st,0)),st];}
+    else if(Object.keys(S.qrv).length<200||cur)S.qrv[id]=[rvDue(1),cur?Math.max(0,cur[1]-1):0];
+    save();
+  }
+  function withRev(ids){const ex=qrvDue().filter(id=>ids.indexOf(id)<0);return ids.concat(ex);}
   function startCit(){
     fitFn=null;
-    const qs=P.qs.map(id=>cloze(phById[id])).filter(Boolean);
+    const qs=withRev(P.qs).map(id=>cloze(phById[id])).filter(Boolean);
     qz={kind:"cit",qs:qs,i:0,score:0,sel:null};renderQ();
   }
   function startQual(){
     fitFn=null;
     const opts=BOOKS.filter(b=>b.lang===S.lang);
-    const qs=P.qs.map(id=>{const p=phById[id];return{p:p,opts:shufS(opts.map(b=>b.id),"ql|"+p.id)};});
+    const qs=withRev(P.qs).map(id=>{const p=phById[id];return{p:p,opts:shufS(opts.map(b=>b.id),"ql|"+p.id)};});
     qz={kind:"qual",qs:qs,i:0,score:0,sel:null};renderQ();
   }
   function renderQ(){
     const q=qz.qs[qz.i],p=q.p,ans=qz.sel!==null;
     let h='<p class="ocount">'+(qz.kind==="cit"?"Citação ":"Frase ")+(qz.i+1)+" de "+qz.qs.length+" · acertos: "+qz.score+"</p>";
     if(qz.kind==="cit"){
-      h+='<p class="prompt"><small>Tradução</small>'+esc(p.pt)+'</p><p class="qz-s">'+esc(q.shown)+'</p><p class="help" style="text-align:center">Qual palavra completa a frase do livro «'+esc(BK[p.book].name)+"»?</p>";
+      h+=(q.hint||ans?'<p class="prompt"><small>Tradução (dica)</small>'+esc(p.pt)+'</p>':'')+'<p class="qz-s">'+esc(q.shown)+'</p><p class="help" style="text-align:center">Qual palavra completa a frase do livro «'+esc(BK[p.book].name)+"»?</p>";
       h+='<div class="opts">'+q.opts.map((w,i)=>'<button type="button" class="opt'+(ans?(w===q.ans?" right":(qz.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(w)+"</button>").join("")+"</div>";
     }else{
-      h+='<p class="prompt"><small>De qual livro é esta frase?</small>'+esc(p.s)+(ans?" "+speakBtn(p.s):"")+'</p><p class="help" style="text-align:center">Tradução: '+esc(p.pt)+"</p>";
+      h+='<p class="prompt"><small>De qual livro é esta frase?</small>'+esc(p.s)+(ans?" "+speakBtn(p.s):"")+'</p>'+(q.hint||ans?'<p class="help" style="text-align:center">Tradução (dica): '+esc(p.pt)+"</p>":"");
       h+='<div class="opts">'+q.opts.map((id,i)=>'<button type="button" class="opt'+(ans?(id===p.book?" right":(qz.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(BK[id].name)+"</button>").join("")+"</div>";
     }
+    if(!ans&&!q.hint)h+='<div class="row"><button type="button" class="btn" id="qz-hint">Dica: ver a tradução</button></div>';
     if(ans){
       const ok=qz.kind==="cit"?q.opts[qz.sel]===q.ans:q.opts[qz.sel]===p.book;
       h+='<p class="note"><b>'+(ok?"Certo!":(qz.kind==="cit"?"Era «"+esc(q.ans)+"».":"Era «"+esc(BK[p.book].name)+"».")).replace(/«([^»]*)»/g,"<b>$1</b>")+"</b></p>";
@@ -133,11 +143,12 @@
   }
   $("#gstage").addEventListener("click",e=>{
     if(!P||(P.type!=="citacao"&&P.type!=="qualivro")||!qz)return;
+    if(e.target.closest("#qz-hint")&&qz.sel===null){qz.qs[qz.i].hint=true;renderQ();return;}
     const o=e.target.closest(".opt");
     if(o&&qz.sel===null){
       qz.sel=+o.dataset.o;const q=qz.qs[qz.i];
       const ok=qz.kind==="cit"?q.opts[qz.sel]===q.ans:q.opts[qz.sel]===q.p.book;
-      if(ok)qz.score++;sfx(ok?"ok":"bad");renderQ();return;
+      if(ok&&!q.hint)qz.score++;qrvGrade(q.p.id,ok&&!q.hint);sfx(ok?"ok":"bad");renderQ();return;
     }
     if(e.target.closest("#qz-next")){
       if(qz.i<qz.qs.length-1){qz.i++;qz.sel=null;renderQ();return;}
@@ -312,20 +323,23 @@
       $("#rdr-body").innerHTML='<p class="note">Não consegui abrir este capítulo agora. Se você estiver sem internet, abra o livro uma vez com internet para ele ficar guardado no aparelho.</p><div class="row"><button type="button" class="btn" id="rdr-list">Voltar à lista</button></div>';
     });
   }
+  function hasLit(){return !!(RK.data&&RK.data.p.some(x=>x.length>2));}
+  function trTxt(pr){return (S.trad==="lit"&&pr[2])?pr[2]:pr[1];}
   function parHtml(i){
     const pr=RK.data.p[i],m=vmap(RK.id),sh=RK.shown[i];
     if(!/\p{L}/u.test(pr[0]))return '<div class="rd-line rd-sep" data-i="'+i+'" aria-hidden="true">'+esc(pr[0])+'</div>';
-    return '<div class="rd-line" data-i="'+i+'"><p class="rd-s">'+wordsHtml(pr[0],m,S.lang,RK.found)+'</p><div class="rd-act">'+speakBtn(pr[0])+'<button type="button" class="btn rd-tr" data-i="'+i+'" aria-pressed="'+!!sh+'">'+(sh?"Esconder tradução":"Ver tradução")+"</button></div>"+(sh?'<p class="rd-pt">'+esc(pr[1])+"</p>":"")+"</div>";
+    return '<div class="rd-line" data-i="'+i+'"><p class="rd-s">'+wordsHtml(pr[0],m,S.lang,RK.found)+'</p><div class="rd-act">'+speakBtn(pr[0])+'<button type="button" class="btn rd-tr" data-i="'+i+'" aria-pressed="'+!!sh+'">'+(sh?"Esconder tradução":"Ver tradução")+"</button></div>"+(sh?'<p class="rd-pt">'+esc(trTxt(pr))+"</p>":"")+"</div>";
   }
   function renderChapter(){
     const b=BK[RK.id],info=TI[RK.id],c=RK.data,pos=info.chs.findIndex(x=>x.n===c.n);
     rdrSet(b.name,"Capítulo "+(pos+1)+" de "+info.chs.length);
     RK.found={};
     let h='<h3 class="rdc-t">'+esc(c.t)+"</h3>"+(c.tp?'<p class="rdc-tp">'+esc(c.tp)+"</p>":"");
+    if(hasLit())h+='<div class="row trmode"><span class="help">Tradução:</span><button type="button" class="btn" id="rdr-mode" aria-pressed="'+(S.trad==="lit")+'">'+(S.trad==="lit"?"Literal (segue a ordem do original)":"Natural (soa melhor em português)")+'</button></div>';
     if(RK.id==="racconti"&&c.n>=10)h+='<p class="note"><small>Este conto não é um dos contos de Perrault: faz parte da mesma coletânea do livro.</small></p>';
     h+='<div class="rd" id="rdr-pars">'+c.p.map((_,i)=>parHtml(i)).join("")+"</div>";
     h+='<div class="rd-def" id="rdr-def" aria-live="polite">'+(Object.keys(RK.found).length?"Toque numa palavra sublinhada para ver o significado. As que você já acertou nos exercícios aparecem em negrito e com cor.":"Neste capítulo não aparece nenhuma palavra do vocabulário deste livro no app.")+"</div>";
-    h+='<p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução: escrita por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p>';
+    h+='<p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução ('+(hasLit()?"literal e natural":"natural")+'): escrita por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p>';
     h+='<div class="row"><button type="button" class="btn" id="rdr-all">Ver toda a tradução</button><button type="button" class="btn primary" id="rdr-done">Concluí o capítulo</button></div>';
     h+='<div class="row">'+(pos>0?'<button type="button" class="btn" data-go-ch="'+info.chs[pos-1].n+'">← Capítulo anterior</button>':"")+(pos<info.chs.length-1?'<button type="button" class="btn" data-go-ch="'+info.chs[pos+1].n+'">Próximo capítulo →</button>':"")+'<button type="button" class="btn" id="rdr-list">Lista de capítulos</button></div>';
     $("#rdr-body").innerHTML=h;$("#rdr-body").scrollTop=0;
@@ -342,6 +356,12 @@
       return;
     }
     if(t){const i=+t.dataset.i;RK.shown[i]=!RK.shown[i];const el=t.closest(".rd-line");el.outerHTML=parHtml(i);return;}
+    if(e.target.closest("#rdr-mode")){
+      S.trad=S.trad==="lit"?"nat":"lit";save();
+      const bt=$("#rdr-mode");bt.setAttribute("aria-pressed",S.trad==="lit");bt.textContent=S.trad==="lit"?"Literal (segue a ordem do original)":"Natural (soa melhor em português)";
+      $$("#rdr-pars .rd-line").forEach(el=>{el.outerHTML=parHtml(+el.dataset.i);});
+      return;
+    }
     if(e.target.closest("#rdr-all")){
       const all=RK.data.p.every((x,i)=>RK.shown[i]||!/\p{L}/u.test(x[0]));
       RK.data.p.forEach((_,i)=>{RK.shown[i]=!all;});
