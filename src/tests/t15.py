@@ -19,7 +19,7 @@ try:
     pg.fill('#dict-q','baobab');t=pg.inner_text('#dict-list');assert 'baobá' in t and 'ba·o·bab' in t and 'O Pequeno Príncipe' in t and 'do livro' not in t
     pg.fill('#dict-q','planète');assert 'la planète' in pg.inner_text('#dict-list') and 'planeta' in pg.inner_text('#dict-list')
     r=pg.evaluate("()=>{const out={};for(const b of BOOKS){const app=new Set();for(const [c,a] of Object.entries(VOCAB[b.lang]))if(!BOOKCAT[c])a.forEach(e=>app.add(e.w.toLowerCase()));const ws=b.chunks.flatMap(c=>c.words);out[b.id]=[ws.length,ws.filter(x=>app.has(x.w.toLowerCase())).length,ws.filter(x=>x.sy.replace(/·/g,'')!==x.w).length,ws.filter(x=>x.c==='substantivo'&&b.lang!=='en'&&!x.a).length,new Set(ws.map(x=>x.w)).size===ws.length]}return out}");print('livros:',r)
-    for k,v in r.items(): assert v[0]>=(80 if k in ('peter','musq','principe','dante','perrault') else 300) and v[1]==0 and v[2]==0 and v[3]==0 and v[4],(k,v)
+    for k,v in r.items(): assert v[0]>=(80 if k in ('peter','musq','principe','dante','perrault') else 120 if k=='grimm' else 300) and v[1]==0 and v[2]==0 and v[3]==0 and v[4],(k,v)
     assert 'O Pequeno Príncipe' in pg.inner_text('#dict-src')
     pg.fill('#dict-q','zzzz');assert 'Nenhuma palavra' in pg.inner_text('#dict-list')
     pg.fill('#dict-q','')

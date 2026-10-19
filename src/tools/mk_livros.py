@@ -29,10 +29,10 @@ def sy(lang,w):
         assert ''.join(p)==t,(w,p)
         out.append('·'.join(p))
     return ''.join(out)
-BOOKS=[("pp","fr","francês","O Pequeno Príncipe","pp_words.txt"),("verne","fr","francês","A Volta ao Mundo em 80 Dias","livro_verne.txt"),("pinocchio","it","italiano","As Aventuras de Pinóquio","livro_pinocchio.txt"),("alice","en","inglês","Alice no País das Maravilhas","livro_alice.txt"),("peter","en","inglês","Peter Rabbit","livro_peter.txt"),("wind","en","inglês","O Vento nos Salgueiros","livro_wind.txt"),("sherlock","en","inglês","As Aventuras de Sherlock Holmes","livro_sherlock.txt"),("frank","en","inglês","Frankenstein","livro_frank.txt"),("musq","fr","francês","Os Três Mosqueteiros","livro_musq.txt"),("principe","it","italiano","O Príncipe","livro_principe.txt"),("dante","it","italiano","A Divina Comédia","livro_dante.txt"),("perrault","fr","francês","Contos de Perrault","livro_perrault.txt")]
+BOOKS=[("pp","fr","francês","O Pequeno Príncipe","pp_words.txt"),("verne","fr","francês","A Volta ao Mundo em 80 Dias","livro_verne.txt"),("pinocchio","it","italiano","As Aventuras de Pinóquio","livro_pinocchio.txt"),("alice","en","inglês","Alice no País das Maravilhas","livro_alice.txt"),("peter","en","inglês","Peter Rabbit","livro_peter.txt"),("wind","en","inglês","O Vento nos Salgueiros","livro_wind.txt"),("sherlock","en","inglês","As Aventuras de Sherlock Holmes","livro_sherlock.txt"),("frank","en","inglês","Frankenstein","livro_frank.txt"),("musq","fr","francês","Os Três Mosqueteiros","livro_musq.txt"),("principe","it","italiano","O Príncipe","livro_principe.txt"),("dante","it","italiano","A Divina Comédia","livro_dante.txt"),("perrault","fr","francês","Contos de Perrault","livro_perrault.txt"),("grimm","en","inglês","Contos dos Irmãos Grimm","livro_grimm.txt")]
 miss=[]
 out=[]
-for bid,lang,ln,name,fn in BOOKS:
+def load(fn,lang):
     ws=[]
     for l in open(fn,encoding='utf8'):
         p=l.rstrip('\n').split('|')
@@ -41,12 +41,20 @@ for bid,lang,ln,name,fn in BOOKS:
         d={'w':p[0],'pt':p[1],'c':CL[p[2]],'sy':sy(lang,p[0])}
         if len(p)>3 and p[3]:d['a']=it_art(p[0],p[3]) if lang=='it' else p[3]
         ws.append(d)
-    n=len(ws);k=max(1,round(n/CHUNK))
-    chunks=[]
-    for i in range(k):
-        part=ws[round(i*n/k):round((i+1)*n/k)]
-        chunks.append({'cat':bid+str(i+1),'name':name+" · parte "+str(i+1),'words':part})
+    return ws
+for bid,lang,ln,name,fn in BOOKS:
+    chunks=[];base=0
+    files=[fn]
+    f2=fn.replace('.txt','_2.txt')   # palavras acrescentadas depois: viram partes NOVAS, as antigas não mudam
+    if os.path.exists(f2):files.append(f2)
+    tot=0
+    for f in files:
+        ws=load(f,lang);n=len(ws);tot+=n;k=max(1,round(n/CHUNK))
+        for i in range(k):
+            part=ws[round(i*n/k):round((i+1)*n/k)]
+            j=len(chunks)+1
+            chunks.append({'cat':bid+str(j),'name':name+" · parte "+str(j),'words':part})
     out.append({'id':bid,'lang':lang,'ln':ln,'name':name,'chunks':chunks})
-    print(bid,n,len(chunks),[len(c['words']) for c in chunks])
+    print(bid,tot,len(chunks),[len(c['words']) for c in chunks])
 print('en sem CMU:',miss)
 open('../livros_data.js','w',encoding='utf8').write('/* gerado por tools/mk_livros.py */\nconst BOOKS='+json.dumps(out,ensure_ascii=False,separators=(',',':'))+';\n')

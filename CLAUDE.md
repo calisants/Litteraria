@@ -80,3 +80,9 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Estilos novos (`perrault` «Salão das Fadas», `grimm` «Floresta Encantada», `racconti` «Contos à Luz de Vela»): fundos em `mk_wallpapers.py` (castelo/carruagem/sapatinho; floresta/trilha de migalhas/cogumelos/coruja; colinas/torre/livro aberto/vela), só objetos genéricos. **Reorganização**: Ajustes → Estilo visual agrupado («Básicos», «Livros em francês/italiano/inglês», `STYLE_GROUPS` em `p3.js`); tela «Livros» em dois grupos («Romances e clássicos», «Contos de fadas»; `CONTOS` em `livros2.js`) e mostra capítulos lidos; seletor de temas da Lição com dois grupos de livros. `t15` e `t17` conhecem `perrault`/`grimm`/`racconti`.
 - `tools/chk_words.py <fr|it> lista.txt kaikki.jsonl texto.txt` confere classe, gênero e presença no texto. Kaikki fr/it estão em `/mnt/user-data/uploads/kaikki_org-dictionary-*.zip` (descompactar em /tmp/kk). `simplemma` instala via pip (PyPI abre).
 
+
+## Vocabulário ampliado e Grimm (19/10/2026, v1.28.0)
+- `tools/mk_livros.py` lê também `livro_<id>_2.txt`: as palavras viram partes NOVAS depois das antigas (as lições antigas `alice1..` não mudam). Feitos: alice (+120), wind (+89), sherlock (+85), frank (+105), todas escolhidas à mão, conferidas no CMU e fora da lista de palavras já existentes. Traduções: Claude, sem fonte conferida. Peter (só 29 candidatas) não foi ampliado; fr/it ainda não.
+- Novo livro de vocabulário `grimm` (en, «Contos dos Irmãos Grimm», `livro_grimm.txt`, 135 palavras, 3 partes; estilo «Floresta Encantada»). **Ainda sem texto do livro**: falta preparar os contos (ePub em /tmp/gr/en, pode ter sumido; ela envia de novo se precisar), traduzir e rodar `mk_texto.py grimm`.
+- Pendentes: Collodi (it, id `racconti`, estilo já existe, sem livro nem vocabulário), Vento nos Salgueiros, Sherlock, Mosqueteiros e Divina Comédia em texto completo.
+- `tests/t15.py`: mínimo de 120 palavras para `grimm`.
