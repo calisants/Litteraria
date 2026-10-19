@@ -35,7 +35,7 @@ try:
     # volumes
     v=pg.evaluate("()=>VOLUMES.map(v=>v.title+' :: '+v.types.map(t=>t[0]).join(','))");print(*v,sep='\n')
     assert [x.split(' ·')[0] for x in v]==['Volume 1','Volume 2','Volume 3','Volume 4','Volume 5']
-    assert v[2].endswith('odd,connect,search,cross,memoria')
+    assert v[2].endswith('odd,connect,search,cross,memoria,citacao,qualivro')
     # seeds de páginas movidas continuam com o volume de origem
     s=pg.evaluate("()=>{S.lang='fr';S.vol=5;const r=[];for(const id of ['tema-comida','ditado-comida']){P=VOLUME5.pages.find(p=>p.id===id);r.push([P.vid,P.id])}return r}");print(s);assert all(x[0]==2 for x in s)
     # exercícios de escrita, todos os idiomas e temas, sem áudio obrigatório

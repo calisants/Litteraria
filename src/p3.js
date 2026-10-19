@@ -64,7 +64,7 @@ musq:{name:"Capa e Espada",desc:"Inspirado em Os Três Mosqueteiros: espadas cru
 principe:{name:"Torres de Florença",desc:"Inspirado em O Príncipe: torres, coroa e louro",schemes:[["Pedra e louro",0,"#f3ede0","#ffffff","#e7dcc4","#cdbd98","#8a2a2a","#2a2118","#574c3c","#7a4f00","#1f7a45","#a31f1f"],["Corte à luz de vela",1,"#201714","#2c211c","#3a2c25","#55433a","#d98a8a","#f6ece0","#cdbcae","#e0b95a","#7fdca8","#ff9a8f"]]},
 dante:{name:"Círculos do Paraíso",desc:"Inspirado em A Divina Comédia: círculos, estrelas e chamas",schemes:[["Céu claro",0,"#f1eefa","#ffffff","#e2ddf3","#bdb4e0","#3a4a8a","#201c33","#4a4660","#8a3b12","#1f7a45","#b3261e"],["Noite estrelada",1,"#0f1226","#171b38","#212649","#343b6e","#a9b8e8","#eef0fb","#bfc4de","#f0d58a","#7fdca8","#ff9a8f"]]},
 };
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[]};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -90,6 +90,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(sv.day&&typeof sv.day==="object"&&/^\d{4}-\d\d-\d\d$/.test(sv.day.d)&&+sv.day.n>=0)S.day={d:sv.day.d,n:Math.min(+sv.day.n,100000)};
   if(typeof sv.typed==="boolean")S.typed=sv.typed;
   if(typeof sv.zoom==="boolean")S.zoom=sv.zoom;
+  if(Array.isArray(sv.fav))S.fav=sv.fav.filter((k,i,a)=>typeof k==="string"&&/^[a-z]+:\d{1,2}$/.test(k)&&a.indexOf(k)===i).slice(0,300);
   ["bk","bks","since"].forEach(k=>{const n=+sv[k];if(n>0&&n<4e12)S[k]=n;});
   if(sv.sound==="on"||sv.sound==="off")S.sound=sv.sound;
   if(sv.snd==="low"||sv.snd==="mid"||sv.snd==="high")S.snd=sv.snd;
@@ -288,14 +289,16 @@ function skRec(w,label,ok){
 function seedNow(){seedWith(S.lang+"|"+(P.vid||curVol().id)+"|"+P.id);}
 
 let clearStatsArmed=false;
-const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback","dict"];
+const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback","dict","books","album"];
 let clearArmed=false;
 function go(name){
   SCREENS.forEach(s=>{$("#s-"+s).hidden=s!==name;});
   $$(".scroll").forEach(n=>{n.scrollTop=0;});
   if(name!=="game")fitFn=null;
   if(name==="index")renderIndex();
-  if(name==="home")renderMe();
+  if(name==="home"){renderMe();if(typeof renderQod==="function")renderQod();}
+  if(name==="books"&&typeof renderBooks==="function")renderBooks();
+  if(name==="album"&&typeof renderAlbum==="function")renderAlbum();
   if(name==="vol")$("#vol-lang").textContent=LNAME[S.lang];
   if(name==="stats"){syncPrefs();renderStats();}
   if(name==="settings"){bkReset();clearArmed=false;$("#clear-note").textContent="";syncPrefs();}

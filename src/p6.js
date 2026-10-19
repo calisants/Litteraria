@@ -18,11 +18,11 @@ function renderSentence(){
   const l=sn.lines[sn.i],spk=sn.i%2===0?"A":"B";
   const prev=sn.i>0&&!sn.fr?'<p class="said"><small>Fala anterior</small>'+esc(sn.lines[sn.i-1].s)+"</p>":"";
   let h=prev+'<p class="prompt"><small>'+(sn.fr?"Frase ":"Fala ")+(sn.i+1)+" de "+sn.lines.length+(sn.fr?" · monte em ":" · pessoa "+spk+" diz, em ")+LNAME[S.lang]+":</small>"+esc(l.pt)+"</p>";
-  if(P.book)h+='<p class="note"><small>Frase copiada do livro «'+esc(P.sub)+'» ('+esc((typeof BOOKFSRC!=="undefined"&&BOOKFSRC[P.book])||'Projeto Gutenberg, domínio público')+'). Tradução e nota: escritas por Claude, sem fonte conferida.</small></p>';
+  if(P.book)h+='<p class="note"><small>Frase do livro «'+esc(P.sub)+'». Tradução e nota: escritas por Claude, sem fonte conferida.</small></p>';
   h+='<div class="slot" id="sn-slot" aria-label="Sua frase">'+sn.slot.map(b=>'<button type="button" class="blk" data-un="'+b.id+'">'+esc(b.w)+"</button>").join("")+"</div>";
   const used=new Set(sn.slot.map(b=>b.id));
   h+='<div class="bank" id="sn-bank">'+sn.bank.map(b=>'<button type="button" class="blk'+(used.has(b.id)?" used":"")+'" data-w="'+b.id+'"'+(used.has(b.id)?" tabindex=-1 aria-hidden=true":"")+">"+esc(b.w)+"</button>").join("")+"</div>";
-  if(sn.solved)h+='<div class="heard">'+speakBtn(l.s)+'<span>'+esc(l.s)+'</span></div><p class="note"><b>Nota:</b> '+hl(l.note)+"</p>";
+  if(sn.solved)h+='<div class="heard">'+speakBtn(l.s)+'<span>'+esc(l.s)+'</span></div><p class="note"><b>Nota:</b> '+hl(l.note)+"</p>"+(P.book&&typeof phFavBtn==="function"?phFavBtn(P.book,(+P.id.split("-").pop()-1)*5+sn.i):"");
   $("#sstage").innerHTML=h;
   $("#sn-submit").disabled=sn.solved||sn.slot.length!==sn.words.length;
   $("#sn-clear").disabled=sn.solved||!sn.slot.length;

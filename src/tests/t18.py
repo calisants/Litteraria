@@ -68,7 +68,7 @@ try:
             assert pg.evaluate("()=>sn.solved"),(pid,i)
             if i<4:pg.click('#sn-next');pg.wait_for_timeout(80)
     pg.evaluate("()=>{S.lang='it'}");assert not pg.evaluate("()=>pageInLang(VOLUME3.pages.find(p=>p.id==='frases-livro-verne-1'))")
-    last=pg.evaluate("()=>{S.lang='fr';_path=null;const L=lessonPath().filter(r=>pageInLang(r.page));return L[L.length-1].page.id}");print('última da trilha fr:',last);assert last=='frases-livro-musq-2'
+    last=pg.evaluate("()=>{S.lang='fr';_path=null;const L=lessonPath().filter(r=>pageInLang(r.page));return L[L.length-1].page.id}");print('última da trilha fr:',last);assert last=='leitura-musq-2'
     print('erros:',errs);assert not errs
     print('t18 ok')
 finally:

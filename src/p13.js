@@ -34,7 +34,7 @@ function lessonPath(){
     VOLUME5.pages.filter(p=>p.cat===c.cat&&p.type==="conheca").forEach(p=>out.push({vol:5,page:p,voc:true}));
     ["reco","completar","embaralhar","escreva"].forEach(t=>[1,2].forEach(k=>add(5,t+"-"+c.cat+"-"+k,{voc:true})));
   }));
-  BOOKS.forEach(b=>VOLUME3.pages.filter(p=>p.book===b.id).forEach(p=>out.push({vol:3,page:p})));
+  BOOKS.forEach(b=>VOLUME3.pages.filter(p=>p.book===b.id||p.rd===b.id).forEach(p=>out.push({vol:3,page:p})));
   return(_path=out);
 }
 function pageMastered(p){

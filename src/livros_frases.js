@@ -1,5 +1,5 @@
 /* ===== Construção de frases com frases dos livros (só livros de domínio público: Verne, Pinóquio, Alice, Peter Rabbit, O Vento nos Salgueiros, Sherlock Holmes, Frankenstein, Os Três Mosqueteiros, O Príncipe, A Divina Comédia; nunca O Pequeno Príncipe).
-   As frases em francês/italiano/inglês são copiadas do texto do livro (Projeto Gutenberg); a tradução e a nota são de Claude, sem fonte conferida.
+   As frases em francês/italiano/inglês são copiadas do texto do livro; a tradução e a nota são de Claude, sem fonte conferida.
    Páginas novas no fim do Volume 5; as lições antigas não mudam. Conferência: tools/chk_frases.py ===== */
 const BOOKFRASES={
  verne:[
@@ -91,16 +91,16 @@ const BOOKFRASES={
   {s:"Ainsi, au revoir, mon cher Athos.",pt:"Assim, até logo, meu caro Athos.",note:"«Mon cher» é masculino porque Athos é homem; para uma mulher seria «ma chère»."},
   {s:"Mais qu'est-il arrivé après mon départ?",pt:"Mas o que aconteceu depois da minha partida?",note:"«Qu'est-il arrivé» é pergunta com inversão: verbo + pronome. «Est arrivé» é passé composé com «être». «Après» = depois de."}],
  principe:[
-  {s:"Di quante ragioni sieno e principati e in che modo si acquistino",pt:"De quantos tipos são os principados e de que modo se conquistam",note:"Título do capítulo I, em italiano do século XVI. «Sieno» = siano (sejam). «E principati» = i principati: o «e» antigo fazia o papel do artigo «i». «Ragioni» aqui = tipos, espécies."},
-  {s:"De' Principati ereditari",pt:"Dos principados hereditários",note:"Título do capítulo II. «De'» = dei (dos), forma antiga cortada. «Ereditari» (hereditários) concorda com «principati» (plural masculino)."},
-  {s:"De' Principati misti",pt:"Dos principados mistos",note:"Título do capítulo III. «Misti» é o plural masculino de «misto» (misturado). Em italiano, «principato» (reino de um príncipe) é masculino."},
-  {s:"Di quelli che per scelleratezze sono pervenuti al principato",pt:"Daqueles que chegaram ao principado por crimes",note:"Título do capítulo VIII. «Pervenuti» (chegaram) é particípio com «essere»: sono pervenuti. «Quelli che» = aqueles que. «Scelleratezze» = atos malvados, crimes."},
-  {s:"Del Principato civile",pt:"Do principado civil",note:"Título do capítulo IX. «Del» = di + il. Aqui «civile» significa que o poder vem do apoio dos cidadãos."},
-  {s:"In che modo si debbino misurare le forze di tutti i principati",pt:"De que modo se devem medir as forças de todos os principados",note:"Título do capítulo X. «Debbino» é forma antiga de «debbano» (devam). «Si debbino misurare» é o «se» impessoal: se devem medir."},
-  {s:"Di quante ragioni sia la milizia, e de' soldati mercenari",pt:"De quantos tipos é a milícia, e dos soldados mercenários",note:"Título do capítulo XII. «Sia» é «seja» (subjuntivo). «De'» = dei (dos). «Soldati mercenari» = soldados pagos para lutar."},
-  {s:"Quel che s'appartenga a un Principe circa la milizia",pt:"O que cabe a um Príncipe quanto à milícia",note:"Título do capítulo XIV. «S'appartenga» é «si appartenga» (subjuntivo de «appartenere»: caber a). «Circa» = a respeito de."},
-  {s:"Della liberalità e parsimonia",pt:"Da liberalidade e da parcimônia",note:"Título do capítulo XVI. «Della» = di + la. Cuidado: «liberalità» é generosidade, não «liberalismo»."},
-  {s:"s'elli è meglio esser amato che temuto, o più tosto temuto che amato",pt:"se é melhor ser amado do que temido, ou antes temido do que amado",note:"Parte do título do capítulo XVII, a pergunta mais famosa de Machiavelli. «S'elli» = se egli (se é); «esser» = essere sem o «e»; «più tosto» = antes, de preferência."}],
+  {s:"è molto più sicuro essere temuto che amato",pt:"é muito mais seguro ser temido do que amado",note:"Capítulo 17. «Molto più» + adjetivo forma o comparativo (muito mais seguro). «Che» liga os dois termos: temuto che amato. O texto continua: «quando si abbia a mancare dell'uno de' dua» (quando se tiver de ficar sem um dos dois)."},
+  {s:"Nasce da questo una disputa",pt:"Daqui nasce uma disputa",note:"«Nasce» é o presente de «nascere». «Da questo» = daqui, disso. O sujeito («una disputa») vem depois do verbo, comum em italiano."},
+  {s:"andare drieto alla verità effettuale della cosa",pt:"ir atrás da verdade efetiva da coisa",note:"Capítulo 15, onde Machiavelli diz que prefere a realidade à imaginação. «Drieto» é forma antiga de «dietro» (atrás); «effettuale» = efetiva, concreta; «alla» = a + la."},
+  {s:"perché la fortuna è donna",pt:"porque a fortuna é mulher",note:"Capítulo 25. «Perché» = porque. Depois de «è» o predicativo «donna» fica sem artigo: a fortuna é mulher."},
+  {s:"A ognuno puzza questo barbaro dominio.",pt:"Para todos fede este bárbaro domínio.",note:"Frase do último capítulo, sobre os estrangeiros que dominavam a Itália. «A ognuno» (a todos) diz quem sente; o sujeito «questo barbaro dominio» vem depois do verbo."},
+  {s:"quale Italiano li negherebbe l'ossequio?",pt:"que italiano lhe negaria a reverência?",note:"«Li» aqui é «gli» (a ele), forma antiga. «Negherebbe» é o condicional de «negare» (negaria). «Ossequio» = reverência, respeito. A palavra «Italiano» aparece com maiúscula no texto."},
+  {s:"si guarda al fine",pt:"olha-se para o resultado",note:"Capítulo 18. «Si guarda» é o «se» impessoal: olha-se. «Fine» (masculino) é o objetivo, o resultado. O trecho diz que, nas ações dos príncipes, ninguém pode reclamar a um juiz, então se olha o resultado."},
+  {s:"il lione non si defende da' lacci, la golpe non si difende da' lupi",pt:"o leão não se defende das armadilhas, a raposa não se defende dos lobos",note:"«Lione» e «golpe» são formas antigas de «leone» e «volpe». «Da'» = dai (dos). «Lacci» = armadilhas. «Si defende» e «si difende» (se defende) estão escritos de dois jeitos no mesmo texto."},
+  {s:"Bisogna, adunque, essere golpe a conoscere e' lacci, e lione a sbigottire e' lupi.",pt:"É preciso, portanto, ser raposa para reconhecer as armadilhas e leão para assustar os lobos.",note:"«Bisogna» + infinitivo = é preciso. «Adunque» = dunque (portanto). «E'» é o artigo antigo «i»: e' lacci = i lacci. «Sbigottire» = assustar, aterrorizar."},
+  {s:"coloro che desiderano acquistare grazia appresso uno Principe",pt:"aqueles que desejam conquistar o favor de um Príncipe",note:"Da dedicatória a Lorenzo de' Medici. «Coloro che» = aqueles que. «Appresso» = junto a. «Uno Principe» é a forma antiga; hoje: «un principe»."}],
  dante:[
   {s:"Nel mezzo del cammin di nostra vita",pt:"No meio do caminho da nossa vida",note:"Verso de abertura da Divina Comédia. «Nel» = in + il. «Cammin» é «cammino» cortado (poesia). «Di nostra vita» sem artigo é jeito antigo; hoje: «della nostra vita»."},
   {s:"mi ritrovai per una selva oscura",pt:"me encontrei por uma selva escura",note:"«Mi ritrovai» é o passato remoto de «ritrovarsi» (reflexivo). «Selva» é floresta, palavra poética; hoje se diz mais «foresta» ou «bosco»."},
@@ -112,11 +112,6 @@ const BOOKFRASES={
   {s:"Amor, ch'a nullo amato amar perdona",pt:"Amor, que não deixa nenhum amado deixar de amar",note:"Verso famoso do canto de Francesca. O sentido: quem é amado não consegue deixar de amar também. «Nullo» é forma antiga de «nessuno» (nenhum)."},
   {s:"E quindi uscimmo a riveder le stelle.",pt:"E dali saímos para rever as estrelas.",note:"Último verso do Inferno. «Uscimmo» é o passato remoto de «uscire» (nós saímos). «Riveder» = rivedere sem o «e»; o prefixo «ri-» dá ideia de «de novo»."},
   {s:"non ragioniam di lor, ma guarda e passa",pt:"não falemos deles, mas olha e passa",note:"«Ragioniam» = ragioniamo e «lor» = loro: formas poéticas. «Ragionare di» = falar de, discutir. Os dois imperativos (guarda, passa) são de «tu»."}]
-};
-const BOOKFSRC={
- principe:"título de capítulo do original de Machiavelli (1532, domínio público), copiado de um PDF de Gerardo D'Orrico; só os títulos foram usados, porque o corpo desse PDF é uma versão em italiano moderno",
- musq:"texto de Alexandre Dumas (1844, domínio público) do PDF do grupo «Ebooks libres et gratuits»",
- dante:"verso de Dante (morto em 1321, domínio público) do PDF «Grande biblioteca della letteratura italiana» (LIZ/Zanichelli)"
 };
 (function(){
   BOOKS.forEach(b=>{

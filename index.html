@@ -313,6 +313,28 @@ svg{display:block}
 .mcard .wdraw-sm{display:flex;align-items:center;justify-content:center;width:100%;height:76px}
 .mcard .wdraw-sm svg{width:72px;height:72px;max-width:100%}
 .mcard:disabled{opacity:1}
+.qod{grid-column:1/-1;margin:0;padding:14px;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.qod p{margin:0 0 6px}.qod-k{font-size:.8rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.qod-s{font-family:Georgia,serif;font-size:1.2rem;font-weight:700;line-height:1.35}.qod-pt{color:var(--muted)}.qod-n{font-size:.9rem}.qod-src{font-size:.75rem;color:var(--muted)}
+.qod .row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}.qod .favbtn{margin:0}.qod-d{margin:4px 0}.qod-d summary{cursor:pointer;font-weight:700;font-size:.9rem;min-height:36px;display:flex;align-items:center}
+.bkc-r{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.favbtn{min-height:44px;padding:8px 14px;border:var(--bw) solid var(--grid);border-radius:var(--radius);background:var(--surface);color:var(--ink);font-weight:700;cursor:pointer;margin:8px 0}
+.favbtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.alb{padding:14px;margin:0 0 12px;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.alb p{margin:0 0 6px}.alb-k{font-size:.8rem;font-weight:700;color:var(--muted)}.alb-s{font-family:Georgia,serif;font-size:1.15rem;font-weight:700}.alb-pt{color:var(--muted)}.alb-n{font-size:.9rem}
+.bkc{padding:14px;margin:0 0 12px;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.bkc h3{margin:0 0 8px;font-size:1.05rem}.bkc-l{margin:6px 0 2px;font-size:.9rem}.bkc-s{margin:8px 0;font-size:.85rem;color:var(--muted)}.bkc-ok{font-weight:700;color:var(--ok)}
+.bar2{height:10px;border-radius:6px;background:var(--grid);overflow:hidden}.bar2 i{display:block;height:100%;background:var(--accent)}
+.opts{display:grid;gap:8px;margin:10px 0}
+.opt{min-height:48px;padding:10px 14px;border:var(--bw) solid var(--grid);border-radius:var(--radius);background:var(--surface);color:var(--ink);font-weight:700;font-size:1rem;text-align:left;cursor:pointer}
+.opt.right{border-color:var(--ok);box-shadow:inset 0 0 0 2px var(--ok)}.opt.wrong{border-color:var(--bad);box-shadow:inset 0 0 0 2px var(--bad)}
+.qz-s{margin:10px 0;text-align:center;font-family:Georgia,serif;font-size:1.25rem;font-weight:700;line-height:1.4}
+.rd{display:grid;gap:12px;margin:10px 0}.rd-line{padding:12px;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.rd-s{margin:0 0 8px;font-family:Georgia,serif;font-size:1.15rem;line-height:1.55}
+.rw{padding:0 1px;border:0;border-bottom:2px dotted var(--muted);background:none;color:inherit;font:inherit;cursor:pointer}
+.rw.k{font-weight:700;color:var(--accent);border-bottom-style:solid}
+.rd-act{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.rd-pt{margin:8px 0 0;color:var(--muted)}
+.rd-def{margin:10px 0;padding:10px 14px;border:var(--bw) dashed var(--line);border-radius:var(--radius);min-height:44px}
 .ocount{margin:0;color:var(--muted);font-size:.9rem;text-align:center}
 .prow{display:flex;align-items:center;gap:10px;padding:8px 10px;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
 .prow .big{flex:none;min-width:4.4em;font-family:var(--font-title);font-size:1.3rem;font-weight:600;color:var(--accent)}
@@ -466,12 +488,14 @@ svg{display:block}
       </div>
       <div class="tiles">
         <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small><span class="gbar" aria-hidden="true"><i id="goal-fill"></i></span><small id="goal-txt"></small></button>
+        <section class="qod" id="qod" hidden aria-label="Frase do dia"></section>
         <button type="button" class="tile" id="go-games"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><b>Lições</b><small>Pronúncia, vocabulário, jogos, gramática e conversa</small></button>
         <button type="button" class="tile" id="go-train"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><b>Treino</b><small id="train-sub">Digitar verbos e palavras</small></button>
-        <button type="button" class="tile" id="go-profile"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><b>Perfil</b><small>Nome, frase e logo</small></button>
+        <button type="button" class="tile" id="go-books"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg><b>Livros</b><small>Progresso, frases, leitura e álbum</small></button>
+        <button type="button" class="tile" id="go-dict"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/></svg><b>Dicionário</b><small>Palavras, sílabas, tradução e áudio</small></button>
         <button type="button" class="tile" id="go-stats"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg><b>Estatísticas</b><small>Seu progresso e o que treinar</small></button>
-        <button type="button" class="tile wide" id="go-dict"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/></svg><b>Dicionário</b><small>Palavras, sílabas, tradução e áudio</small></button>
-        <button type="button" class="tile" id="go-settings"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><b>Ajustes</b><small>Layout, cor, claro/escuro, sons</small></button>
+        <button type="button" class="tile" id="go-profile"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><b>Perfil</b><small>Nome, frase e logo</small></button>
+        <button type="button" class="tile wide" id="go-settings"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><b>Ajustes</b><small>Layout, cor, claro/escuro, sons</small></button>
       </div>
     </div>
     <footer class="foot"><p class="credit" id="credit">Desenvolvido por <a href="https://github.com/calisants" target="_blank" rel="noopener">@calisants</a></p></footer>
@@ -523,9 +547,9 @@ svg{display:block}
       <div class="tiles one">
         <button type="button" class="tile plain" data-pick-vol="2"><b>Volume 1 · Pronúncia</b><small>Comece aqui: alfabeto, sons e sons difíceis</small></button>
         <button type="button" class="tile plain" data-pick-vol="5"><b>Volume 2 · Vocabulário</b><small>Palavras por tema e dos livros: conhecer, reconhecer, completar e escrever</small></button>
-        <button type="button" class="tile plain" data-pick-vol="1"><b>Volume 3 · Jogos de palavras</b><small>Intruso, conecte, caça-palavras e cruzadas, do mais fácil ao mais difícil</small></button>
+        <button type="button" class="tile plain" data-pick-vol="1"><b>Volume 3 · Jogos de palavras</b><small>Intruso, conecte, caça-palavras, cruzadas, memória e citações dos livros</small></button>
         <button type="button" class="tile plain" data-pick-vol="4"><b>Volume 4 · Gramática</b><small>Regras e exercícios: artigos, verbos e tempos, pronomes, conjunções e mais</small></button>
-        <button type="button" class="tile plain" data-pick-vol="3"><b>Volume 5 · Conversação</b><small>Frases, diálogos e respostas</small></button>
+        <button type="button" class="tile plain" data-pick-vol="3"><b>Volume 5 · Conversação</b><small>Frases, diálogos, respostas e leitura de trechos dos livros</small></button>
       </div>
     </div>
   </section>
@@ -717,6 +741,29 @@ svg{display:block}
       <p class="help" id="fb-note" aria-live="polite"></p>
     </div>
   </section>
+  <section class="screen" id="s-books" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Meus livros</h2><p class="vol" id="books-lang"></p></div>
+    </header>
+    <div class="scroll">
+      <p class="help">O que você já fez em cada livro do idioma escolhido. Para trocar de idioma, use o seletor em Lições.</p>
+      <div class="row" style="margin:10px 0"><button type="button" class="btn" id="books-album">★ Álbum de citações</button></div>
+      <div id="books-list"></div>
+    </div>
+  </section>
+
+  <section class="screen" id="s-album" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Álbum de citações</h2><p class="vol" id="album-count"></p></div>
+    </header>
+    <div class="scroll">
+      <div id="album-list"></div>
+      <p class="help">Frases copiadas de livros de domínio público. Tradução e nota: Claude, sem fonte conferida.</p>
+    </div>
+  </section>
+
   <section class="screen" id="s-game" hidden>
     <header class="bar">
       <button type="button" class="btn icon" data-back="index" aria-label="Voltar ao índice"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -832,7 +879,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.21.2",d:"2026-10-18"};
+const APP_REL={v:"1.22.0",d:"2026-10-19"};
 
 
 const RAW={
@@ -2034,7 +2081,7 @@ const bookNote=l=>BOOKS.filter(b=>b.lang===l).map(b=>"Temas «"+b.name+"»: pala
 })();
 
 /* ===== Construção de frases com frases dos livros (só livros de domínio público: Verne, Pinóquio, Alice, Peter Rabbit, O Vento nos Salgueiros, Sherlock Holmes, Frankenstein, Os Três Mosqueteiros, O Príncipe, A Divina Comédia; nunca O Pequeno Príncipe).
-   As frases em francês/italiano/inglês são copiadas do texto do livro (Projeto Gutenberg); a tradução e a nota são de Claude, sem fonte conferida.
+   As frases em francês/italiano/inglês são copiadas do texto do livro; a tradução e a nota são de Claude, sem fonte conferida.
    Páginas novas no fim do Volume 5; as lições antigas não mudam. Conferência: tools/chk_frases.py ===== */
 const BOOKFRASES={
  verne:[
@@ -2126,16 +2173,16 @@ const BOOKFRASES={
   {s:"Ainsi, au revoir, mon cher Athos.",pt:"Assim, até logo, meu caro Athos.",note:"«Mon cher» é masculino porque Athos é homem; para uma mulher seria «ma chère»."},
   {s:"Mais qu'est-il arrivé après mon départ?",pt:"Mas o que aconteceu depois da minha partida?",note:"«Qu'est-il arrivé» é pergunta com inversão: verbo + pronome. «Est arrivé» é passé composé com «être». «Après» = depois de."}],
  principe:[
-  {s:"Di quante ragioni sieno e principati e in che modo si acquistino",pt:"De quantos tipos são os principados e de que modo se conquistam",note:"Título do capítulo I, em italiano do século XVI. «Sieno» = siano (sejam). «E principati» = i principati: o «e» antigo fazia o papel do artigo «i». «Ragioni» aqui = tipos, espécies."},
-  {s:"De' Principati ereditari",pt:"Dos principados hereditários",note:"Título do capítulo II. «De'» = dei (dos), forma antiga cortada. «Ereditari» (hereditários) concorda com «principati» (plural masculino)."},
-  {s:"De' Principati misti",pt:"Dos principados mistos",note:"Título do capítulo III. «Misti» é o plural masculino de «misto» (misturado). Em italiano, «principato» (reino de um príncipe) é masculino."},
-  {s:"Di quelli che per scelleratezze sono pervenuti al principato",pt:"Daqueles que chegaram ao principado por crimes",note:"Título do capítulo VIII. «Pervenuti» (chegaram) é particípio com «essere»: sono pervenuti. «Quelli che» = aqueles que. «Scelleratezze» = atos malvados, crimes."},
-  {s:"Del Principato civile",pt:"Do principado civil",note:"Título do capítulo IX. «Del» = di + il. Aqui «civile» significa que o poder vem do apoio dos cidadãos."},
-  {s:"In che modo si debbino misurare le forze di tutti i principati",pt:"De que modo se devem medir as forças de todos os principados",note:"Título do capítulo X. «Debbino» é forma antiga de «debbano» (devam). «Si debbino misurare» é o «se» impessoal: se devem medir."},
-  {s:"Di quante ragioni sia la milizia, e de' soldati mercenari",pt:"De quantos tipos é a milícia, e dos soldados mercenários",note:"Título do capítulo XII. «Sia» é «seja» (subjuntivo). «De'» = dei (dos). «Soldati mercenari» = soldados pagos para lutar."},
-  {s:"Quel che s'appartenga a un Principe circa la milizia",pt:"O que cabe a um Príncipe quanto à milícia",note:"Título do capítulo XIV. «S'appartenga» é «si appartenga» (subjuntivo de «appartenere»: caber a). «Circa» = a respeito de."},
-  {s:"Della liberalità e parsimonia",pt:"Da liberalidade e da parcimônia",note:"Título do capítulo XVI. «Della» = di + la. Cuidado: «liberalità» é generosidade, não «liberalismo»."},
-  {s:"s'elli è meglio esser amato che temuto, o più tosto temuto che amato",pt:"se é melhor ser amado do que temido, ou antes temido do que amado",note:"Parte do título do capítulo XVII, a pergunta mais famosa de Machiavelli. «S'elli» = se egli (se é); «esser» = essere sem o «e»; «più tosto» = antes, de preferência."}],
+  {s:"è molto più sicuro essere temuto che amato",pt:"é muito mais seguro ser temido do que amado",note:"Capítulo 17. «Molto più» + adjetivo forma o comparativo (muito mais seguro). «Che» liga os dois termos: temuto che amato. O texto continua: «quando si abbia a mancare dell'uno de' dua» (quando se tiver de ficar sem um dos dois)."},
+  {s:"Nasce da questo una disputa",pt:"Daqui nasce uma disputa",note:"«Nasce» é o presente de «nascere». «Da questo» = daqui, disso. O sujeito («una disputa») vem depois do verbo, comum em italiano."},
+  {s:"andare drieto alla verità effettuale della cosa",pt:"ir atrás da verdade efetiva da coisa",note:"Capítulo 15, onde Machiavelli diz que prefere a realidade à imaginação. «Drieto» é forma antiga de «dietro» (atrás); «effettuale» = efetiva, concreta; «alla» = a + la."},
+  {s:"perché la fortuna è donna",pt:"porque a fortuna é mulher",note:"Capítulo 25. «Perché» = porque. Depois de «è» o predicativo «donna» fica sem artigo: a fortuna é mulher."},
+  {s:"A ognuno puzza questo barbaro dominio.",pt:"Para todos fede este bárbaro domínio.",note:"Frase do último capítulo, sobre os estrangeiros que dominavam a Itália. «A ognuno» (a todos) diz quem sente; o sujeito «questo barbaro dominio» vem depois do verbo."},
+  {s:"quale Italiano li negherebbe l'ossequio?",pt:"que italiano lhe negaria a reverência?",note:"«Li» aqui é «gli» (a ele), forma antiga. «Negherebbe» é o condicional de «negare» (negaria). «Ossequio» = reverência, respeito. A palavra «Italiano» aparece com maiúscula no texto."},
+  {s:"si guarda al fine",pt:"olha-se para o resultado",note:"Capítulo 18. «Si guarda» é o «se» impessoal: olha-se. «Fine» (masculino) é o objetivo, o resultado. O trecho diz que, nas ações dos príncipes, ninguém pode reclamar a um juiz, então se olha o resultado."},
+  {s:"il lione non si defende da' lacci, la golpe non si difende da' lupi",pt:"o leão não se defende das armadilhas, a raposa não se defende dos lobos",note:"«Lione» e «golpe» são formas antigas de «leone» e «volpe». «Da'» = dai (dos). «Lacci» = armadilhas. «Si defende» e «si difende» (se defende) estão escritos de dois jeitos no mesmo texto."},
+  {s:"Bisogna, adunque, essere golpe a conoscere e' lacci, e lione a sbigottire e' lupi.",pt:"É preciso, portanto, ser raposa para reconhecer as armadilhas e leão para assustar os lobos.",note:"«Bisogna» + infinitivo = é preciso. «Adunque» = dunque (portanto). «E'» é o artigo antigo «i»: e' lacci = i lacci. «Sbigottire» = assustar, aterrorizar."},
+  {s:"coloro che desiderano acquistare grazia appresso uno Principe",pt:"aqueles que desejam conquistar o favor de um Príncipe",note:"Da dedicatória a Lorenzo de' Medici. «Coloro che» = aqueles que. «Appresso» = junto a. «Uno Principe» é a forma antiga; hoje: «un principe»."}],
  dante:[
   {s:"Nel mezzo del cammin di nostra vita",pt:"No meio do caminho da nossa vida",note:"Verso de abertura da Divina Comédia. «Nel» = in + il. «Cammin» é «cammino» cortado (poesia). «Di nostra vita» sem artigo é jeito antigo; hoje: «della nostra vita»."},
   {s:"mi ritrovai per una selva oscura",pt:"me encontrei por uma selva escura",note:"«Mi ritrovai» é o passato remoto de «ritrovarsi» (reflexivo). «Selva» é floresta, palavra poética; hoje se diz mais «foresta» ou «bosco»."},
@@ -2147,11 +2194,6 @@ const BOOKFRASES={
   {s:"Amor, ch'a nullo amato amar perdona",pt:"Amor, que não deixa nenhum amado deixar de amar",note:"Verso famoso do canto de Francesca. O sentido: quem é amado não consegue deixar de amar também. «Nullo» é forma antiga de «nessuno» (nenhum)."},
   {s:"E quindi uscimmo a riveder le stelle.",pt:"E dali saímos para rever as estrelas.",note:"Último verso do Inferno. «Uscimmo» é o passato remoto de «uscire» (nós saímos). «Riveder» = rivedere sem o «e»; o prefixo «ri-» dá ideia de «de novo»."},
   {s:"non ragioniam di lor, ma guarda e passa",pt:"não falemos deles, mas olha e passa",note:"«Ragioniam» = ragioniamo e «lor» = loro: formas poéticas. «Ragionare di» = falar de, discutir. Os dois imperativos (guarda, passa) são de «tu»."}]
-};
-const BOOKFSRC={
- principe:"título de capítulo do original de Machiavelli (1532, domínio público), copiado de um PDF de Gerardo D'Orrico; só os títulos foram usados, porque o corpo desse PDF é uma versão em italiano moderno",
- musq:"texto de Alexandre Dumas (1844, domínio público) do PDF do grupo «Ebooks libres et gratuits»",
- dante:"verso de Dante (morto em 1321, domínio público) do PDF «Grande biblioteca della letteratura italiana» (LIZ/Zanichelli)"
 };
 (function(){
   BOOKS.forEach(b=>{
@@ -2347,7 +2389,7 @@ musq:{name:"Capa e Espada",desc:"Inspirado em Os Três Mosqueteiros: espadas cru
 principe:{name:"Torres de Florença",desc:"Inspirado em O Príncipe: torres, coroa e louro",schemes:[["Pedra e louro",0,"#f3ede0","#ffffff","#e7dcc4","#cdbd98","#8a2a2a","#2a2118","#574c3c","#7a4f00","#1f7a45","#a31f1f"],["Corte à luz de vela",1,"#201714","#2c211c","#3a2c25","#55433a","#d98a8a","#f6ece0","#cdbcae","#e0b95a","#7fdca8","#ff9a8f"]]},
 dante:{name:"Círculos do Paraíso",desc:"Inspirado em A Divina Comédia: círculos, estrelas e chamas",schemes:[["Céu claro",0,"#f1eefa","#ffffff","#e2ddf3","#bdb4e0","#3a4a8a","#201c33","#4a4660","#8a3b12","#1f7a45","#b3261e"],["Noite estrelada",1,"#0f1226","#171b38","#212649","#343b6e","#a9b8e8","#eef0fb","#bfc4de","#f0d58a","#7fdca8","#ff9a8f"]]},
 };
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[]};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -2373,6 +2415,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(sv.day&&typeof sv.day==="object"&&/^\d{4}-\d\d-\d\d$/.test(sv.day.d)&&+sv.day.n>=0)S.day={d:sv.day.d,n:Math.min(+sv.day.n,100000)};
   if(typeof sv.typed==="boolean")S.typed=sv.typed;
   if(typeof sv.zoom==="boolean")S.zoom=sv.zoom;
+  if(Array.isArray(sv.fav))S.fav=sv.fav.filter((k,i,a)=>typeof k==="string"&&/^[a-z]+:\d{1,2}$/.test(k)&&a.indexOf(k)===i).slice(0,300);
   ["bk","bks","since"].forEach(k=>{const n=+sv[k];if(n>0&&n<4e12)S[k]=n;});
   if(sv.sound==="on"||sv.sound==="off")S.sound=sv.sound;
   if(sv.snd==="low"||sv.snd==="mid"||sv.snd==="high")S.snd=sv.snd;
@@ -2571,14 +2614,16 @@ function skRec(w,label,ok){
 function seedNow(){seedWith(S.lang+"|"+(P.vid||curVol().id)+"|"+P.id);}
 
 let clearStatsArmed=false;
-const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback","dict"];
+const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback","dict","books","album"];
 let clearArmed=false;
 function go(name){
   SCREENS.forEach(s=>{$("#s-"+s).hidden=s!==name;});
   $$(".scroll").forEach(n=>{n.scrollTop=0;});
   if(name!=="game")fitFn=null;
   if(name==="index")renderIndex();
-  if(name==="home")renderMe();
+  if(name==="home"){renderMe();if(typeof renderQod==="function")renderQod();}
+  if(name==="books"&&typeof renderBooks==="function")renderBooks();
+  if(name==="album"&&typeof renderAlbum==="function")renderAlbum();
   if(name==="vol")$("#vol-lang").textContent=LNAME[S.lang];
   if(name==="stats"){syncPrefs();renderStats();}
   if(name==="settings"){bkReset();clearArmed=false;$("#clear-note").textContent="";syncPrefs();}
@@ -3172,11 +3217,11 @@ function renderSentence(){
   const l=sn.lines[sn.i],spk=sn.i%2===0?"A":"B";
   const prev=sn.i>0&&!sn.fr?'<p class="said"><small>Fala anterior</small>'+esc(sn.lines[sn.i-1].s)+"</p>":"";
   let h=prev+'<p class="prompt"><small>'+(sn.fr?"Frase ":"Fala ")+(sn.i+1)+" de "+sn.lines.length+(sn.fr?" · monte em ":" · pessoa "+spk+" diz, em ")+LNAME[S.lang]+":</small>"+esc(l.pt)+"</p>";
-  if(P.book)h+='<p class="note"><small>Frase copiada do livro «'+esc(P.sub)+'» ('+esc((typeof BOOKFSRC!=="undefined"&&BOOKFSRC[P.book])||'Projeto Gutenberg, domínio público')+'). Tradução e nota: escritas por Claude, sem fonte conferida.</small></p>';
+  if(P.book)h+='<p class="note"><small>Frase do livro «'+esc(P.sub)+'». Tradução e nota: escritas por Claude, sem fonte conferida.</small></p>';
   h+='<div class="slot" id="sn-slot" aria-label="Sua frase">'+sn.slot.map(b=>'<button type="button" class="blk" data-un="'+b.id+'">'+esc(b.w)+"</button>").join("")+"</div>";
   const used=new Set(sn.slot.map(b=>b.id));
   h+='<div class="bank" id="sn-bank">'+sn.bank.map(b=>'<button type="button" class="blk'+(used.has(b.id)?" used":"")+'" data-w="'+b.id+'"'+(used.has(b.id)?" tabindex=-1 aria-hidden=true":"")+">"+esc(b.w)+"</button>").join("")+"</div>";
-  if(sn.solved)h+='<div class="heard">'+speakBtn(l.s)+'<span>'+esc(l.s)+'</span></div><p class="note"><b>Nota:</b> '+hl(l.note)+"</p>";
+  if(sn.solved)h+='<div class="heard">'+speakBtn(l.s)+'<span>'+esc(l.s)+'</span></div><p class="note"><b>Nota:</b> '+hl(l.note)+"</p>"+(P.book&&typeof phFavBtn==="function"?phFavBtn(P.book,(+P.id.split("-").pop()-1)*5+sn.i):"");
   $("#sstage").innerHTML=h;
   $("#sn-submit").disabled=sn.solved||sn.slot.length!==sn.words.length;
   $("#sn-clear").disabled=sn.solved||!sn.slot.length;
@@ -3982,7 +4027,7 @@ function lessonPath(){
     VOLUME5.pages.filter(p=>p.cat===c.cat&&p.type==="conheca").forEach(p=>out.push({vol:5,page:p,voc:true}));
     ["reco","completar","embaralhar","escreva"].forEach(t=>[1,2].forEach(k=>add(5,t+"-"+c.cat+"-"+k,{voc:true})));
   }));
-  BOOKS.forEach(b=>VOLUME3.pages.filter(p=>p.book===b.id).forEach(p=>out.push({vol:3,page:p})));
+  BOOKS.forEach(b=>VOLUME3.pages.filter(p=>p.book===b.id||p.rd===b.id).forEach(p=>out.push({vol:3,page:p})));
   return(_path=out);
 }
 function pageMastered(p){
@@ -4092,6 +4137,353 @@ function startLesson(r){S.vol=r.vol;S.fGame="all";S.fTheme="all";save();startPag
       setTimeout(()=>{mm.open=[];mm.lock=false;renderMemoria();},1000);
     }
   });
+})();
+
+/* ===== Mini-leitura: trechos reais dos livros de domínio público (cópia literal do texto); tradução, contexto e nota: Claude, sem fonte conferida.
+   Conferência palavra por palavra: tools/chk_frases.py. Verne e Pinóquio ficam sem leitura até haver o texto do livro para conferir. ===== */
+const BOOKREAD={
+ peter:[
+  {ctx:"Abertura do conto: a mãe avisa os filhotes.",gn:"«Don't go» (não vá) é a ordem negativa: don't + verbo. E «he was put in a pie» é voz passiva: was + particípio.",segs:[
+   {s:"Once upon a time there were four little Rabbits, and their names were— Flopsy, Mopsy, Cotton-tail, and Peter.",pt:"Era uma vez quatro coelhinhos, e os nomes deles eram Flopsy, Mopsy, Cotton-tail e Peter."},
+   {s:"They lived with their Mother in a sand-bank, underneath the root of a very big fir-tree.",pt:"Eles moravam com a mãe num banco de areia, debaixo da raiz de um abeto bem grande."},
+   {s:"'Now my dears,' said old Mrs. Rabbit one morning, 'you may go into the fields or down the lane, but don't go into Mr. McGregor's garden: your Father had an accident there; he was put in a pie by Mrs. McGregor.'",pt:"«Agora, meus queridos», disse a velha Sra. Coelha numa manhã, «vocês podem ir aos campos ou descer a trilha, mas não entrem no jardim do Sr. McGregor: o pai de vocês teve um acidente lá; foi posto numa torta pela Sra. McGregor.»"}]},
+  {ctx:"Peter foge pelo jardim.",gn:"«Had forgotten» (tinha esquecido) é o passado perfeito: algo que aconteceu antes do resto da cena. «Might have got away» = poderia ter escapado.",segs:[
+   {s:"Peter was most dreadfully frightened; he rushed all over the garden, for he had forgotten the way back to the gate.",pt:"Peter ficou terrivelmente assustado; correu pelo jardim inteiro, pois tinha esquecido o caminho de volta ao portão."},
+   {s:"He lost one of his shoes among the cabbages, and the other shoe amongst the potatoes.",pt:"Perdeu um dos sapatos no meio dos repolhos e o outro sapato no meio das batatas."},
+   {s:"After losing them, he ran on four legs and went faster, so that I think he might have got away altogether if he had not unfortunately run into a gooseberry net, and got caught by the large buttons on his jacket.",pt:"Depois de perdê-los, passou a correr com as quatro patas e foi mais depressa, tanto que acho que poderia ter escapado de vez se, por azar, não tivesse dado numa rede de proteção das groselhas e ficado preso pelos botões grandes do casaco."}]}],
+ alice:[
+  {ctx:"Abertura do livro (capítulo 1).",gn:"«Was beginning to get» = estava começando a ficar. «Had peeped» (passado perfeito) conta o que tinha acontecido antes. Em «what is the use of a book», «use» é substantivo: a utilidade.",segs:[
+   {s:"Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do:",pt:"Alice estava começando a ficar muito cansada de ficar sentada ao lado da irmã na margem do rio, sem nada para fazer:"},
+   {s:"once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it,",pt:"uma ou duas vezes ela tinha espiado o livro que a irmã estava lendo, mas ele não tinha figuras nem conversas,"},
+   {s:"'and what is the use of a book,' thought Alice 'without pictures or conversation?'",pt:"«e para que serve um livro», pensou Alice, «sem figuras nem conversas?»"}]},
+  {ctx:"Alice cai pela toca do coelho.",gn:"«Would the fall never come to an end!» começa com «would» antes do sujeito, como numa pergunta, mas aqui é uma exclamação de impaciência.",segs:[
+   {s:"Down, down, down.",pt:"Para baixo, para baixo, para baixo."},
+   {s:"Would the fall NEVER come to an end!",pt:"Será que a queda NUNCA ia chegar ao fim!"},
+   {s:"'I wonder how many miles I've fallen by this time?' she said aloud.",pt:"«Quantas milhas será que já caí até agora?», disse ela em voz alta."}]}],
+ wind:[
+  {ctx:"Abertura do livro (capítulo 1).",gn:"«Had been working» = vinha trabalhando (passado perfeito contínuo). «Till he had…» = até ficar com…, e depois o texto lista o que a faxina deixou nele.",segs:[
+   {s:"The Mole had been working very hard all the morning, spring-cleaning his little home.",pt:"A Toupeira tinha trabalhado muito duro a manhã inteira, fazendo a faxina de primavera na sua casinha."},
+   {s:"First with brooms, then with dusters; then on ladders and steps and chairs, with a brush and a pail of whitewash;",pt:"Primeiro com vassouras, depois com espanadores; depois em escadas, degraus e cadeiras, com uma brocha e um balde de cal;"},
+   {s:"till he had dust in his throat and eyes, and splashes of whitewash all over his black fur, and an aching back and weary arms.",pt:"até ficar com poeira na garganta e nos olhos, respingos de cal por todo o pelo preto, as costas doendo e os braços cansados."}]},
+  {ctx:"A Toupeira abandona a faxina de primavera.",gn:"«Flung» (jogou) é o passado irregular de «fling». Os verbos «flung down», «said» e «bolted out» formam uma sequência de ações no passado.",segs:[
+   {s:"It was small wonder, then, that he suddenly flung down his brush on the floor,",pt:"Não era de admirar, então, que de repente ele largasse a brocha no chão,"},
+   {s:"said \"Bother!\" and \"O blow!\" and also \"Hang spring-cleaning!\"",pt:"dissesse «Que aborrecimento!» e «Ora bolas!» e também «Dane-se a faxina de primavera!»"},
+   {s:"and bolted out of the house without even waiting to put on his coat.",pt:"e saísse correndo de casa sem nem esperar para vestir o casaco."}]}],
+ sherlock:[
+  {ctx:"Abertura de «A Scandal in Bohemia».",gn:"«I have seldom heard»: present perfect com «seldom» (raramente) no meio. «Under any other name»: «any» = qualquer.",segs:[
+   {s:"To Sherlock Holmes she is always the woman.",pt:"Para Sherlock Holmes, ela é sempre a mulher."},
+   {s:"I have seldom heard him mention her under any other name.",pt:"Raramente o ouvi mencioná-la por qualquer outro nome."},
+   {s:"In his eyes she eclipses and predominates the whole of her sex.",pt:"Aos olhos dele, ela eclipsa e domina todo o seu sexo."},
+   {s:"It was not that he felt any emotion akin to love for Irene Adler.",pt:"Não era que ele sentisse alguma emoção parecida com amor por Irene Adler."}]},
+  {ctx:"Holmes explica a diferença entre ver e observar.",gn:"«You have frequently seen»: present perfect, com o advérbio entre «have» e o particípio. «Which lead up» = que sobem.",segs:[
+   {s:"You see, but you do not observe.",pt:"Você vê, mas não observa."},
+   {s:"The distinction is clear.",pt:"A diferença é clara."},
+   {s:"For example, you have frequently seen the steps which lead up from the hall to this room.",pt:"Por exemplo, você já viu muitas vezes os degraus que sobem do vestíbulo até esta sala."}]}],
+ frank:[
+  {ctx:"Capítulo 5: a noite em que a criatura desperta.",gn:"«It was on … that» destaca a informação (foi numa noite sombria que…). «That I might infuse» = para que eu pudesse infundir; «might» expressa o propósito, num estilo literário.",segs:[
+   {s:"It was on a dreary night of November that I beheld the accomplishment of my toils.",pt:"Foi numa noite sombria de novembro que contemplei a realização dos meus trabalhos."},
+   {s:"With an anxiety that almost amounted to agony, I collected the instruments of life around me, that I might infuse a spark of being into the lifeless thing that lay at my feet.",pt:"Com uma ansiedade que quase chegava à agonia, reuni à minha volta os instrumentos da vida, para poder infundir uma centelha de existência na coisa sem vida que jazia a meus pés."},
+   {s:"It was already one in the morning; the rain pattered dismally against the panes, and my candle was nearly burnt out,",pt:"Já era uma hora da manhã; a chuva batia tristemente nas vidraças, e minha vela estava quase no fim,"}]},
+  {ctx:"Primeira carta do livro, escrita por um explorador (Walton) à irmã.",gn:"«Which you have regarded with such evil forebodings»: «which» liga a oração a «enterprise». «Such evil forebodings» = tão maus pressentimentos.",segs:[
+   {s:"You will rejoice to hear that no disaster has accompanied the commencement of an enterprise which you have regarded with such evil forebodings.",pt:"Você vai se alegrar ao saber que nenhum desastre acompanhou o início de um empreendimento que você via com tão maus presságios."},
+   {s:"I arrived here yesterday, and my first task is to assure my dear sister of my welfare and increasing confidence in the success of my undertaking.",pt:"Cheguei aqui ontem, e minha primeira tarefa é garantir à minha querida irmã que estou bem e cada vez mais confiante no sucesso da minha empreitada."},
+   {s:"I am already far north of London, and as I walk in the streets of Petersburgh, I feel a cold northern breeze play upon my cheeks, which braces my nerves and fills me with delight.",pt:"Já estou bem ao norte de Londres e, enquanto caminho pelas ruas de Petersburgo, sinto uma brisa fria do norte tocar meu rosto, que fortalece meus nervos e me enche de alegria."}]}],
+ musq:[
+  {ctx:"Abertura do romance (capítulo 1).",gn:"«Si les huguenots en fussent venus» usa o mais-que-perfeito do subjuntivo, uma construção literária; hoje se diria «si les huguenots étaient venus». «En ce temps-là» = naquela época.",segs:[
+   {s:"Le premier lundi du mois d'avril 1625, le bourg de Meung, où naquit l'auteur du Roman de la Rose, semblait être dans une révolution aussi entière que si les huguenots en fussent venus faire une seconde Rochelle.",pt:"Na primeira segunda-feira de abril de 1625, a vila de Meung, onde nasceu o autor do «Roman de la Rose», parecia estar numa agitação tão completa como se os huguenotes tivessem vindo fazer ali uma segunda La Rochelle."},
+   {s:"Plusieurs bourgeois, voyant s'enfuir les femmes du côté de la Grande-Rue, entendant les enfants crier sur le seuil des portes, se hâtaient d'endosser la cuirasse",pt:"Vários burgueses, vendo as mulheres fugirem em direção à Grande-Rue e ouvindo as crianças gritarem nas soleiras das portas, apressavam-se em vestir a couraça"},
+   {s:"En ce temps-là les paniques étaient fréquentes, et peu de jours se passaient sans qu'une ville ou l'autre enregistrât sur ses archives quelque événement de ce genre.",pt:"Naquela época os pânicos eram frequentes, e poucos dias se passavam sem que uma cidade ou outra registrasse em seus arquivos algum acontecimento desse tipo."}]},
+  {ctx:"Os quatro amigos juram o lema.",gn:"«Tous pour un, un pour tous, c'est notre devise»: um lema sem verbo. «N'est-ce pas?» é a pergunta fixa que significa «não é?».",segs:[
+   {s:"Et maintenant, messieurs, dit d'Artagnan sans se donner la peine d'expliquer sa conduite à Porthos, tous pour un, un pour tous, c'est notre devise, n'est-ce pas?",pt:"«E agora, senhores», disse d'Artagnan, sem se dar ao trabalho de explicar sua conduta a Porthos, «todos por um, um por todos, é o nosso lema, não é?»"},
+   {s:"Vaincu par l'exemple, maugréant tout bas, Porthos étendit la main, et les quatre amis répétèrent d'une seule voix la formule dictée par d'Artagnan:",pt:"Vencido pelo exemplo, resmungando baixinho, Porthos estendeu a mão, e os quatro amigos repetiram a uma só voz a fórmula ditada por d'Artagnan:"},
+   {s:"Tous pour un, un pour tous.",pt:"«Todos por um, um por todos.»"}]}],
+ dante:[
+  {ctx:"Inferno, Canto I: os primeiros versos.",gn:"A Divina Comédia é escrita em tercetos (grupos de três versos). Repare em «cammin» (cammino cortado) e em «ché» (porque), formas poéticas.",segs:[
+   {s:"Nel mezzo del cammin di nostra vita",pt:"No meio do caminho da nossa vida"},
+   {s:"mi ritrovai per una selva oscura",pt:"encontrei-me por uma selva escura,"},
+   {s:"ché la diritta via era smarrita.",pt:"pois o caminho certo estava perdido."},
+   {s:"Ahi quanto a dir qual era è cosa dura",pt:"Ai, como é duro dizer como era"},
+   {s:"esta selva selvaggia e aspra e forte",pt:"esta selva selvagem, áspera e forte,"},
+   {s:"che nel pensier rinova la paura!",pt:"que no pensamento renova o medo!"}]},
+  {ctx:"Inferno, Canto III: a inscrição na porta do Inferno.",gn:"«Per me si va» se repete três vezes, de propósito, para dar força ao aviso. «Ogne» e «etterno» são formas antigas de «ogni» e «eterno».",segs:[
+   {s:"Per me si va ne la città dolente,",pt:"Por mim se vai à cidade dolente,"},
+   {s:"per me si va ne l'etterno dolore,",pt:"por mim se vai à eterna dor,"},
+   {s:"per me si va tra la perduta gente.",pt:"por mim se vai entre a gente perdida."},
+   {s:"Giustizia mosse il mio alto fattore:",pt:"A justiça moveu o meu alto criador:"},
+   {s:"fecemi la divina podestate,",pt:"fez-me o divino poder,"},
+   {s:"la somma sapïenza e 'l primo amore.",pt:"a suprema sabedoria e o primeiro amor."},
+   {s:"Dinanzi a me non fuor cose create",pt:"Antes de mim não houve coisas criadas"},
+   {s:"se non etterne, e io etterno duro.",pt:"senão eternas, e eu eterno duro."},
+   {s:"Lasciate ogne speranza, voi ch'intrate",pt:"Deixai toda esperança, vós que entrais"}]}],
+ principe:[
+  {ctx:"Capítulo 17: é melhor ser amado ou temido?",gn:"«Rispondesi» = «si risponde» (o «si» colado ao verbo, forma antiga). «E converso» é latim: ou o contrário. «Sieno» = siano (subjuntivo). «De' dua» = dei due.",segs:[
+   {s:"Nasce da questo una disputa: s'elli è meglio essere amato che temuto, o e converso.",pt:"Daqui nasce uma questão: se é melhor ser amado do que temido, ou o contrário."},
+   {s:"Rispondesi che si vorrebbe essere l'uno e l'altro; ma perché elli è difficile accozzarli insieme, è molto più sicuro essere temuto che amato, quando si abbia a mancare dell'uno de' dua.",pt:"Responde-se que o ideal seria ser um e outro; mas, como é difícil juntá-los, é muito mais seguro ser temido do que amado, quando se tiver de ficar sem um dos dois."},
+   {s:"Perché delli uomini si può dire questo generalmente: che sieno ingrati, volubili, simulatori e dissimulatori, fuggitori de' pericoli, cupidi di guadagno;",pt:"Porque dos homens se pode dizer isto em geral: que são ingratos, volúveis, simuladores e dissimuladores, fogem dos perigos, cobiçosos de ganho;"}]},
+  {ctx:"Capítulo 18: o príncipe deve ser raposa e leão.",gn:"«Sendo» é o gerúndio de «essere» (hoje: «essendo»). «Necessitato» = obrigado; «debbe» = deve; «pigliare» = escolher, tomar. «Golpe» e «lione» são formas antigas de «volpe» e «leone».",segs:[
+   {s:"Sendo adunque, uno principe necessitato sapere bene usare la bestia, debbe di quelle pigliare la golpe e il lione;",pt:"Sendo, portanto, um príncipe obrigado a saber usar bem a besta, deve escolher entre elas a raposa e o leão;"},
+   {s:"perché il lione non si defende da' lacci, la golpe non si difende da' lupi.",pt:"pois o leão não se defende das armadilhas, e a raposa não se defende dos lobos."},
+   {s:"Bisogna, adunque, essere golpe a conoscere e' lacci, e lione a sbigottire e' lupi.",pt:"É preciso, portanto, ser raposa para reconhecer as armadilhas e leão para assustar os lobos."}]}]
+};
+
+/* ===== Livros: álbum de citações, frase do dia, jogos de citação, mini-leitura e «Meus livros» =====
+   Tudo parte das frases conferidas de livros_frases.js e dos trechos conferidos de livros_leitura.js (só livros de domínio público).
+   Nenhum jogo precisa de áudio; o botão de ouvir é um extra. Tradução, contexto e notas: Claude, sem fonte conferida (dito na tela). */
+(function(){
+  const BK={};BOOKS.forEach(b=>{BK[b.id]=b;});
+  /* ---- lista plana de frases: id "livro:índice" ---- */
+  const PH=[],phById={};
+  Object.keys(BOOKFRASES).forEach(id=>{
+    const b=BK[id];if(!b)return;
+    BOOKFRASES[id].forEach((f,i)=>{const o={id:id+":"+i,book:id,lang:b.lang,s:f.s,pt:f.pt,note:f.note};PH.push(o);phById[o.id]=o;});
+  });
+  const phLang=l=>PH.filter(p=>p.lang===l);
+  /* mistura os livros (um de cada vez) para cada página ter frases de livros diferentes */
+  function interleave(lang){
+    const by={};phLang(lang).forEach(p=>{(by[p.book]||(by[p.book]=[])).push(p);});
+    const ks=Object.keys(by),out=[];
+    for(let i=0;i<10;i++)ks.forEach(k=>{if(by[k][i])out.push(by[k][i]);});
+    return out;
+  }
+  function rng(seed){let a=0;for(let i=0;i<seed.length;i++)a=(a*31+seed.charCodeAt(i))|0;return()=>{a=(a+0x6D2B79F5)|0;let t=Math.imul(a^(a>>>15),1|a);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296;};}
+  const shufS=(arr,seed)=>{const r=rng(seed),a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+
+  /* ---- álbum de citações (S.fav) ---- */
+  const isFav=id=>S.fav.indexOf(id)>=0;
+  const favBtn=id=>'<button type="button" class="favbtn" data-fav="'+id+'" aria-pressed="'+isFav(id)+'">'+(isFav(id)?"★ No álbum":"☆ Guardar no álbum")+"</button>";
+  window.phFavBtn=(book,i)=>favBtn(book+":"+i);
+  document.addEventListener("click",e=>{
+    const b=e.target.closest&&e.target.closest(".favbtn");if(!b)return;
+    const id=b.dataset.fav,i=S.fav.indexOf(id);
+    if(i>=0)S.fav.splice(i,1);else S.fav.push(id);
+    save();
+    b.setAttribute("aria-pressed",String(isFav(id)));b.textContent=isFav(id)?"★ No álbum":"☆ Guardar no álbum";
+    if(!$("#s-album").hidden)renderAlbum();
+  });
+  function renderAlbum(){
+    const ids=S.fav.filter(id=>phById[id]).slice().reverse();
+    $("#album-count").textContent=ids.length?ids.length+(ids.length===1?" frase guardada":" frases guardadas"):"";
+    $("#album-list").innerHTML=ids.length?ids.map(id=>{
+      const p=phById[id],b=BK[p.book];
+      return '<article class="alb"><p class="alb-k">'+esc(b.name)+" · "+esc(LNAME[p.lang])+'</p><p class="alb-s">'+esc(p.s)+(p.lang===S.lang?" "+speakBtn(p.s):"")+'</p><p class="alb-pt">'+esc(p.pt)+'</p><p class="alb-n">'+hl(p.note)+"</p>"+favBtn(id)+"</article>";
+    }).join(""):'<p class="help">Seu álbum está vazio. Toque em «Guardar no álbum» nas frases dos livros, na Frase do dia ou nos jogos de citação.</p>';
+  }
+
+  /* ---- frase do dia ---- */
+  let qodExtra=0;
+  const hash=s=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return Math.abs(h);};
+  function renderQod(){
+    const el=$("#qod");if(!el)return;
+    const L=phLang(S.lang);
+    if(!L.length){el.hidden=true;return;}
+    const d=new Date(),day=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+    const p=L[(hash(day+S.lang)+qodExtra)%L.length];
+    el.hidden=false;
+    el.innerHTML='<p class="qod-k">Frase do dia · «'+esc(BK[p.book].name)+"»</p>"+
+      '<p class="qod-s">'+esc(p.s)+" "+speakBtn(p.s)+'</p><p class="qod-pt">'+esc(p.pt)+"</p>"+
+      '<details class="qod-d"><summary>Ver nota de gramática</summary><p class="qod-n">'+hl(p.note)+'</p><p class="qod-src">Frase copiada do livro. Tradução e nota: Claude, sem fonte conferida.</p></details>'+
+      '<div class="row">'+favBtn(p.id)+'<button type="button" class="btn" id="qod-more">Outra frase</button></div>';
+  }
+  document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#qod-more")){qodExtra++;renderQod();}});
+  window.renderQod=renderQod;window.renderAlbum=renderAlbum;
+
+  /* ---- páginas novas ---- */
+  VOLUME.types=VOLUME.types.concat([["citacao","Complete a citação","Citação"],["qualivro","De qual livro é?","De qual livro?"]]);
+  VOLUME3.types=VOLUME3.types.concat([["leitura","Leitura de um trecho","Leitura"]]);
+  const PER=6;
+  ["fr","it","en"].forEach(lang=>{
+    const L=interleave(lang);if(!L.length)return;
+    const n=Math.max(1,Math.ceil(L.length/PER));
+    ["citacao","qualivro"].forEach(type=>{
+      for(let i=0;i<n;i++){
+        const part=L.slice(Math.round(i*L.length/n),Math.round((i+1)*L.length/n));
+        VOLUME.pages.push({id:type+"-"+lang+"-"+(i+1),type:type,n:i+1,langs:[lang],themes:[],sub:"Frases dos livros",meta:"Frases dos livros · parte "+(i+1)+" de "+n,qs:part.map(p=>p.id)});
+      }
+    });
+  });
+  BOOKS.forEach(b=>{
+    const R=BOOKREAD[b.id];if(!R)return;
+    R.forEach((r,k)=>VOLUME3.pages.push({id:"leitura-"+b.id+"-"+(k+1),type:"leitura",n:200+VOLUME3.pages.length,rd:b.id,k:k+1,themes:["livro-"+b.id],langs:[b.lang],sub:b.name,meta:"Trecho de «"+b.name+"» · "+(k+1)+" de "+R.length}));
+  });
+  GAMENAME.citacao="Citação";GAMENAME.qualivro="De qual livro?";GAMENAME.leitura="Leitura";
+  ["citacao","qualivro","leitura"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
+  GAMEFN.citacao=startCit;GAMEFN.qualivro=startQual;GAMEFN.leitura=startLeitura;
+
+  /* ---- Complete a citação ---- */
+  const STOP={
+    en:"the and but for nor not you your that this with from have has had was were are been will would could shall into onto over what when where which who whom they them their there then than very just only also".split(" "),
+    fr:"les des une est sont que qui dans pour avec par sur sous plus mais très son ses leur leurs nous vous ils elles elle lui moi toi cette ces aux ont été avait avaient était étaient fut sans chez".split(" "),
+    it:"gli del della delle dello dei che per con una uno non più sono era erano come questo questa questi queste suo sua suoi sue loro egli ella essi tra fra nel nella nelle negli dal dalla dai alle agli".split(" ")};
+  const core=t=>{const m=t.match(/^[^\p{L}]*([\s\S]*?)[^\p{L}]*$/u);return m?m[1]:t;};
+  const cap=(w,like)=>like&&like[0]!==like[0].toLowerCase()?w[0].toUpperCase()+w.slice(1):w;
+  function cloze(p){
+    const toks=p.s.split(" ");let best=-1,bl=0;
+    toks.forEach((t,i)=>{const w=core(t);if(w.length<4||STOP[p.lang].indexOf(w.toLowerCase())>=0)return;if(i>0&&w[0]!==w[0].toLowerCase())return;if(w.length>bl){bl=w.length;best=i;}});
+    if(best<0)return null;
+    const ans=core(toks[best]),pool=[];
+    phLang(p.lang).forEach(o=>{if(o.id===p.id)return;o.s.split(" ").forEach(t=>{const w=core(t);if(w.length>=3&&Math.abs(w.length-ans.length)<=2&&w.toLowerCase()!==ans.toLowerCase()&&(w[0]===w[0].toLowerCase())&&!/[0-9]/.test(w))pool.push(w.toLowerCase());});});
+    const opts=[],seen={};seen[ans.toLowerCase()]=1;
+    shufS(pool,"cit|"+p.id).forEach(w=>{if(opts.length<3&&!seen[w]){seen[w]=1;opts.push(w);}});
+    if(opts.length<3)return null;
+    const all=shufS([ans.toLowerCase()].concat(opts),"opt|"+p.id).map(w=>cap(w,ans));
+    const shown=toks.map((t,i)=>i===best?t.replace(ans,"_____"):t).join(" ");
+    return{p:p,shown:shown,ans:cap(ans.toLowerCase(),ans),opts:all};
+  }
+  let qz=null;window.quizState=()=>qz;
+  function startCit(){
+    fitFn=null;
+    const qs=P.qs.map(id=>cloze(phById[id])).filter(Boolean);
+    qz={kind:"cit",qs:qs,i:0,score:0,sel:null};renderQ();
+  }
+  function startQual(){
+    fitFn=null;
+    const opts=BOOKS.filter(b=>b.lang===S.lang);
+    const qs=P.qs.map(id=>{const p=phById[id];return{p:p,opts:shufS(opts.map(b=>b.id),"ql|"+p.id)};});
+    qz={kind:"qual",qs:qs,i:0,score:0,sel:null};renderQ();
+  }
+  function renderQ(){
+    const q=qz.qs[qz.i],p=q.p,ans=qz.sel!==null;
+    let h='<p class="ocount">'+(qz.kind==="cit"?"Citação ":"Frase ")+(qz.i+1)+" de "+qz.qs.length+" · acertos: "+qz.score+"</p>";
+    if(qz.kind==="cit"){
+      h+='<p class="prompt"><small>Tradução</small>'+esc(p.pt)+'</p><p class="qz-s">'+esc(q.shown)+'</p><p class="help" style="text-align:center">Qual palavra completa a frase do livro «'+esc(BK[p.book].name)+"»?</p>";
+      h+='<div class="opts">'+q.opts.map((w,i)=>'<button type="button" class="opt'+(ans?(w===q.ans?" right":(qz.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(w)+"</button>").join("")+"</div>";
+    }else{
+      h+='<p class="prompt"><small>De qual livro é esta frase?</small>'+esc(p.s)+(ans?" "+speakBtn(p.s):"")+'</p><p class="help" style="text-align:center">Tradução: '+esc(p.pt)+"</p>";
+      h+='<div class="opts">'+q.opts.map((id,i)=>'<button type="button" class="opt'+(ans?(id===p.book?" right":(qz.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(BK[id].name)+"</button>").join("")+"</div>";
+    }
+    if(ans){
+      const ok=qz.kind==="cit"?q.opts[qz.sel]===q.ans:q.opts[qz.sel]===p.book;
+      h+='<p class="note"><b>'+(ok?"Certo!":(qz.kind==="cit"?"Era «"+esc(q.ans)+"».":"Era «"+esc(BK[p.book].name)+"».")).replace(/«([^»]*)»/g,"<b>$1</b>")+"</b></p>";
+      h+='<div class="heard">'+speakBtn(p.s)+"<span>"+esc(p.s)+'</span></div><p class="note"><b>Nota:</b> '+hl(p.note)+'</p><p class="note"><small>Frase copiada do livro «'+esc(BK[p.book].name)+"». Tradução e nota: escritas por Claude, sem fonte conferida.</small></p>"+favBtn(p.id)+
+        '<div class="row"><button type="button" class="btn primary" id="qz-next">'+(qz.i===qz.qs.length-1?"Ver resultado":"Próxima")+"</button></div>";
+    }
+    $("#gstage").innerHTML=h;
+  }
+  $("#gstage").addEventListener("click",e=>{
+    if(!P||(P.type!=="citacao"&&P.type!=="qualivro")||!qz)return;
+    const o=e.target.closest(".opt");
+    if(o&&qz.sel===null){
+      qz.sel=+o.dataset.o;const q=qz.qs[qz.i];
+      const ok=qz.kind==="cit"?q.opts[qz.sel]===q.ans:q.opts[qz.sel]===q.p.book;
+      if(ok)qz.score++;sfx(ok?"ok":"bad");renderQ();return;
+    }
+    if(e.target.closest("#qz-next")){
+      if(qz.i<qz.qs.length-1){qz.i++;qz.sel=null;renderQ();return;}
+      markDone();sfx("done");
+      doneSheet("Página concluída: "+qz.score+" de "+qz.qs.length+" certas",qz.qs.map(q=>({w:q.p.s,pt:q.p.pt})));
+    }
+  });
+
+  /* ---- Mini-leitura ---- */
+  const VM={};
+  function vmap(id){
+    if(VM[id])return VM[id];
+    const m=VM[id]={};
+    BK[id].chunks.forEach(c=>c.words.forEach(w=>{const k=w.w.toLowerCase();if(!m[k])m[k]=w;}));
+    return m;
+  }
+  /* acha a palavra do vocabulário também em formas flexionadas simples (mentioned → mention, doors → door) */
+  function keyOf(tok,m,lang){
+    const k=tok.toLowerCase().replace(/’/g,"'");
+    const c=[k];
+    if(k.indexOf("'")>=0)c.push(lang==="en"?k.replace(/'s$/,""):k.slice(k.lastIndexOf("'")+1));
+    c.slice().forEach(x=>{
+      if(lang==="en"){
+        if(/ies$/.test(x))c.push(x.slice(0,-3)+"y");
+        if(/(es|ed)$/.test(x))c.push(x.slice(0,-2),x.slice(0,-1));
+        if(/(s|d)$/.test(x))c.push(x.slice(0,-1));
+        if(/ing$/.test(x))c.push(x.slice(0,-3),x.slice(0,-3)+"e");
+        if(/ly$/.test(x))c.push(x.slice(0,-2));
+      }else if(lang==="fr"){
+        if(/[sx]$/.test(x))c.push(x.slice(0,-1));
+      }
+    });
+    for(const x of c){if(m[x]&&(x===k||x.length>=4))return x;}
+    return null;
+  }
+  let rd=null;window.readState=()=>rd;
+  function startLeitura(){
+    fitFn=null;
+    rd={D:BOOKREAD[P.rd][P.k-1],shown:{},sel:null,found:{}};
+    renderLeitura();
+  }
+  function lineHtml(seg,i,m,lang){
+    const sk=S.sk[lang]||{};
+    let before="";
+    const parts=seg.s.split(/(\p{L}[\p{L}'’]*)/u).map(t=>{
+      const start=!/[\p{L}]/u.test(before)||/[.!?:;]["'«»\s]*$/.test(before);
+      before+=t;
+      if(!/^\p{L}/u.test(t))return esc(t);
+      if(!start&&t[0]!==t[0].toLowerCase())return esc(t);   /* nomes próprios no meio da frase não contam */
+      const k=keyOf(t,m,lang);
+      if(!k)return esc(t);
+      rd.found[k]=m[k];
+      const a=sk[k],learned=a&&a[0]>0;
+      return '<button type="button" class="rw '+(learned?"k":"u")+'" data-k="'+esc(k)+'">'+esc(t)+"</button>";
+    }).join("");
+    return '<div class="rd-line"><p class="rd-s">'+parts+'</p><div class="rd-act">'+(lang===S.lang?speakBtn(seg.s):"")+'<button type="button" class="btn rd-tr" data-i="'+i+'" aria-pressed="'+!!rd.shown[i]+'">'+(rd.shown[i]?"Esconder tradução":"Ver tradução")+"</button></div>"+(rd.shown[i]?'<p class="rd-pt">'+esc(seg.pt)+"</p>":"")+"</div>";
+  }
+  function renderLeitura(){
+    const b=BK[P.rd],m=vmap(P.rd);rd.found={};
+    let h='<p class="ocount">'+esc(P.meta)+"</p>"+'<p class="note"><b>Contexto:</b> '+esc(rd.D.ctx)+"</p>";
+    h+='<div class="rd">'+rd.D.segs.map((s,i)=>lineHtml(s,i,m,S.lang)).join("")+"</div>";
+    const e=rd.sel&&m[rd.sel];
+    h+='<div class="rd-def" aria-live="polite">'+(e?"<b>"+esc(full(e))+"</b> = "+esc(e.pt)+" <small>("+esc(e.c)+")</small>":(Object.keys(rd.found).length?"Toque numa palavra sublinhada para ver o significado. As que você já acertou nos exercícios aparecem em negrito e com cor.":"Neste trecho não aparece nenhuma palavra do vocabulário deste livro no app. Use a tradução frase a frase e a nota abaixo."))+"</div>";
+    h+='<p class="note"><b>Para reparar:</b> '+hl(rd.D.gn)+"</p>";
+    h+='<p class="note"><small>Trecho do livro «'+esc(b.name)+"». Tradução, contexto e nota: escritas por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p>";
+    h+='<div class="row"><button type="button" class="btn" id="rd-all">Ver toda a tradução</button><button type="button" class="btn primary" id="rd-done">Concluí a leitura</button></div>';
+    $("#gstage").innerHTML=h;
+  }
+  $("#gstage").addEventListener("click",e=>{
+    if(!P||P.type!=="leitura"||!rd)return;
+    const w=e.target.closest(".rw"),t=e.target.closest(".rd-tr");
+    if(w){rd.sel=w.dataset.k;renderLeitura();return;}
+    if(t){const i=+t.dataset.i;rd.shown[i]=!rd.shown[i];renderLeitura();return;}
+    if(e.target.closest("#rd-all")){const all=rd.D.segs.every((_,i)=>rd.shown[i]);rd.D.segs.forEach((_,i)=>{rd.shown[i]=!all;});renderLeitura();return;}
+    if(e.target.closest("#rd-done")){
+      const items=Object.keys(rd.found).slice(0,15).map(k=>rd.found[k]);
+      markDone();sfx("done");
+      if(items.length)doneSheet("Leitura concluída · palavras do trecho",items);
+      else openSheet("Leitura concluída","<p class=\"help\">Esse trecho não tem palavras do vocabulário do livro neste app, mas ler no original já conta.</p>",true);
+    }
+  });
+
+  /* ---- Meus livros ---- */
+  const cats=b=>b.chunks.map(c=>c.cat);
+  const bookPages=b=>{
+    const cs=cats(b);
+    return lessonPath().filter(r=>(r.page.cat&&cs.indexOf(r.page.cat)>=0)||r.page.book===b.id||r.page.rd===b.id);
+  };
+  const isDoneId=p=>!!S.done[S.lang+":"+p.id];
+  function renderBooks(){
+    const bs=BOOKS.filter(b=>b.lang===S.lang),sk=S.sk[S.lang]||{};
+    $("#books-lang").textContent=LNAME[S.lang];
+    const fav=S.fav.filter(id=>phById[id]).length;
+    $("#books-album").textContent="★ Álbum de citações"+(fav?" ("+fav+")":"");
+    $("#books-list").innerHTML=bs.map(b=>{
+      let tot=0,known=0;
+      b.chunks.forEach(c=>c.words.forEach(w=>{tot++;const a=sk[w.w.toLowerCase()];if(a&&a[0]>0)known++;}));
+      const pages=bookPages(b),doneN=pages.filter(r=>isDoneId(r.page)).length;
+      const nx=pages.find(r=>!isDoneId(r.page));
+      const kinds={words:pages.filter(r=>r.page.cat),fr:pages.filter(r=>r.page.book),rd:pages.filter(r=>r.page.rd)};
+      const cnt=a=>a.filter(r=>isDoneId(r.page)).length+" de "+a.length;
+      const pct=pages.length?Math.round(100*doneN/pages.length):0,pw=tot?Math.round(100*known/tot):0;
+      return '<article class="bkc"><h3>'+esc(b.name)+"</h3>"+
+        '<p class="bkc-l">Palavras que você já acertou: <b>'+known+" de "+tot+"</b></p>"+'<div class="bar2" role="img" aria-label="'+pw+'% das palavras"><i style="width:'+pw+'%"></i></div>'+
+        '<p class="bkc-l">Lições concluídas: <b>'+doneN+" de "+pages.length+"</b> ("+pct+"%)</p>"+'<div class="bar2" role="img" aria-label="'+pct+'% das lições"><i style="width:'+pct+'%"></i></div>'+
+        '<p class="bkc-s">Vocabulário '+cnt(kinds.words)+(kinds.fr.length?" · Frases "+cnt(kinds.fr):"")+(kinds.rd.length?" · Leitura "+cnt(kinds.rd):"")+"</p>"+
+        (nx?'<button type="button" class="btn primary" data-bk-go="'+esc(nx.page.id)+'" data-bk-vol="'+nx.vol+'">'+(doneN?"Continuar este livro":"Começar este livro")+"</button>":'<p class="bkc-ok">Livro concluído ✓</p>')+
+        '<div class="row bkc-r">'+(kinds.fr.length?'<button type="button" class="btn" data-bk-go="'+esc(kinds.fr[0].page.id)+'" data-bk-vol="3">Frases</button>':"")+(kinds.rd.length?'<button type="button" class="btn" data-bk-go="'+esc(kinds.rd[0].page.id)+'" data-bk-vol="3">Leitura</button>':"")+"</div></article>";
+    }).join("");
+  }
+  window.renderBooks=renderBooks;
+  $("#books-list").addEventListener("click",e=>{
+    const b=e.target.closest("[data-bk-go]");if(!b)return;
+    S.vol=+b.dataset.bkVol;S.fGame="all";S.fTheme="all";save();startPage(b.dataset.bkGo);
+  });
+  $("#books-album").addEventListener("click",()=>go("album"));
+  $("#go-books").addEventListener("click",()=>go("books"));
+  renderQod();
 })();
 
 /* ===== Início ===== */
