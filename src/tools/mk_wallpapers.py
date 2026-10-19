@@ -12,54 +12,28 @@ def star4(x,y,s,c):return f'<path d="M{x} {y-s}L{x+s*.28} {y-s*.28}L{x+s} {y}L{x
 
 
 def pp(dark):
-    r=random.Random(7)
-    sk1,sk2=("#070b24","#2b2f6e") if dark else ("#cfd6f5","#f6e9d6")
-    gold="#f6dc8e" if dark else "#b8860b";pl1,pl2=("#3a3f8c","#2a2f6a") if dark else ("#8a95d6","#6f7bc4");rs="#e8788e" if dark else "#c9506a";gr="#7fcf9a" if dark else "#3f9a62";dn="#e8c27a" if dark else "#d9a85a"
-    o=[defs(lg("s",sk1,sk2),rg("g",gold,.8),lg("p",pl1,pl2))]
-    o.append('<rect width="400" height="800" fill="url(#s)"/>')
-    for i in range(70):
-        x,y=r.randint(6,394),r.randint(6,560);o.append(f'<circle cx="{x}" cy="{y}" r="{r.choice([.8,1,1.3,1.8])}" fill="{gold}" opacity="{r.choice([.5,.8,1])}"/>')
-    for x,y,sz in ((25,205,9),(360,180,11),(190,200,7),(120,380,8),(300,420,9),(40,520,6)):o.append(star4(x,y,sz,gold))
-    # small planet with volcano, baobab-like tree sprouts and rose bell jar (generic objects)
-    o.append(f'<circle cx="300" cy="300" r="150" fill="url(#g)" opacity=".35"/>')
-    o.append(f'<circle cx="300" cy="300" r="78" fill="url(#p)"/>')
-    for k in range(7):
-        a=-1.2+k*.35;o.append(f'<path d="M{300+math.cos(a)*62:.0f} {300+math.sin(a)*62:.0f}l{math.cos(a)*10:.0f} {math.sin(a)*10:.0f}" stroke="{gr}" stroke-width="2.4" stroke-linecap="round"/>')
-    o.append(f'<path d="M262 238L276 210L290 238Z" fill="{dn}"/><path d="M300 224q4 -10 0 -18" stroke="{gold}" stroke-width="2"/>')
-    o.append(f'<ellipse cx="300" cy="300" rx="120" ry="14" fill="none" stroke="{gold}" stroke-width="1.4" opacity=".6" transform="rotate(-16 300 300)"/>')
-    # bell jar with rose
-    o.append(f'<g transform="translate(110 610)"><path d="M-34 70V10Q-34 -50 0 -50Q34 -50 34 10V70Z" fill="{gold}" fill-opacity=".14" stroke="{gold}" stroke-width="2"/><ellipse cx="0" cy="70" rx="42" ry="9" fill="{pl2}"/><path d="M0 70V10" stroke="{gr}" stroke-width="3"/><path d="M0 40q-18 -6 -22 -18q16 2 22 18Z" fill="{gr}"/><circle cx="0" cy="2" r="13" fill="{rs}"/><path d="M-8 2q8 -10 16 0M-5 8q5 -6 10 0" stroke="#fff" stroke-width="1.4" fill="none" opacity=".7"/></g>')
-    # desert dunes and well at bottom
-    o.append(ridge(690,18,4,dn,.55,6));o.append(ridge(730,14,8,dn,.8,6))
-    o.append(f'<g transform="translate(300 700)" stroke="{pl2}" fill="none" stroke-width="3"><path d="M-22 40V10M22 40V10M-26 10H26M-22 10L0 -12L22 10"/><path d="M0 -12V24"/></g>')
-    for x,y in ((40,710),(360,760)):o.append(f'<path d="M{x} {y}l8 -16l8 16Z" fill="{gr}" opacity=".6"/>')
+    random.seed(7);star="#f6e7a6" if dark else "#c9a227";g="#e7b94a" if dark else "#d9b44a";o=[]
+    for i in range(46):o.append(f'<circle cx="{random.randint(8,392)}" cy="{random.randint(8,560)}" r="{random.choice([1,1,1.4,1.8])}" fill="{star}"/>')
+    for x,y,s in ((70,90,7),(318,150,9),(210,250,6),(110,420,8)):o.append(star4(x,y,s,star))
+    o.append(f'<circle cx="300" cy="700" r="120" fill="{g}" opacity=".55"/><path d="M300 580V556" stroke="{g}" stroke-width="3" fill="none"/><circle cx="300" cy="550" r="7" fill="{star}"/>')
+    for k in range(9):x=40+k*18;o.append(f'<path d="M{x} 800Q{x-4} 770 {x+3} 748" stroke="{g}" stroke-width="2.2" fill="none" opacity=".6"/>')
     return W("".join(o))
 def alice(dark):
-    r=random.Random(15)
-    sk1,sk2=("#1a0f33","#4a2a7a") if dark else ("#d6e8fb","#fbe3ef")
-    c1,c2=("#f08ab0","#8fd6e0") if dark else ("#e86a96","#5ab8cc");gd="#f2d27a" if dark else "#c79a1c";tx="#ffffff" if dark else "#ffffff";mu="#e04b5a" if dark else "#d23c4a";ink="#2a1740" if dark else "#3a2a5a";gr="#7fd6a0" if dark else "#3fa066"
-    o=[defs(lg("s",sk1,sk2),rg("g",gd,.7))]
-    o.append('<rect width="400" height="800" fill="url(#s)"/>')
-    # checkered floor in perspective
-    for row in range(10):
-        y0=470+row*row*2.2+row*18;y1=470+(row+1)*(row+1)*2.2+(row+1)*18
-        for k in range(-8,9):
-            xa=200+(k)*(26+row*9);xb=200+(k+1)*(26+row*9);xc=200+(k+1)*(26+(row+1)*9);xd=200+(k)*(26+(row+1)*9)
-            if (k+row)%2==0:o.append(f'<path d="M{xa:.0f} {y0:.0f}L{xb:.0f} {y0:.0f}L{xc:.0f} {y1:.0f}L{xd:.0f} {y1:.0f}Z" fill="{c1}" opacity=".5"/>')
-            else:o.append(f'<path d="M{xa:.0f} {y0:.0f}L{xb:.0f} {y0:.0f}L{xc:.0f} {y1:.0f}L{xd:.0f} {y1:.0f}Z" fill="{tx}" opacity=".35"/>')
-    # cards flying
-    for i,(x,y,rot,suit) in enumerate(((60,215,-18,'♥'),(335,235,14,'♠'),(215,270,-8,'♦'),(110,300,22,'♣'),(340,340,-20,'♥'))):
-        col=mu if suit in '♥♦' else ink
-        o.append(f'<g transform="translate({x} {y}) rotate({rot})"><rect x="-26" y="-38" width="52" height="76" rx="6" fill="#fff" stroke="{ink}" stroke-width="2"/><text x="-18" y="-20" font-size="16" fill="{col}" font-family="serif">{suit}</text><text x="0" y="12" font-size="34" fill="{col}" text-anchor="middle" font-family="serif">{suit}</text></g>')
-    # mushrooms
-    for x,y,s,c in ((70,590,1.2,mu),(330,610,1.5,c2),(190,640,.8,c1)):
-        o.append(f'<g transform="translate({x} {y}) scale({s})"><path d="M-8 40V0H8V40Z" fill="#fff" stroke="{ink}" stroke-width="2"/><path d="M-34 4Q-34 -34 0 -34Q34 -34 34 4Z" fill="{c}" stroke="{ink}" stroke-width="2"/><circle cx="-14" cy="-12" r="4" fill="#fff"/><circle cx="8" cy="-20" r="5" fill="#fff"/><circle cx="18" cy="-6" r="3" fill="#fff"/></g>')
-    # teacups and teapot floating
-    o.append(f'<g transform="translate(200 430)"><path d="M-40 -6H40Q38 30 0 32Q-38 30 -40 -6Z" fill="#fff" stroke="{ink}" stroke-width="2.2"/><path d="M40 0Q60 0 58 14Q56 26 38 24" fill="none" stroke="{ink}" stroke-width="2.2"/><ellipse cx="0" cy="-6" rx="40" ry="7" fill="{gd}" stroke="{ink}" stroke-width="2"/><path d="M-12 -28q-6 -10 0 -20M6 -28q-6 -10 0 -20" stroke="{ink}" stroke-width="2" fill="none"/></g>')
-    # keyhole door + clock + key
-    o.append(f'<g transform="translate(60 400)"><rect x="-30" y="-60" width="60" height="110" rx="30" fill="{c2}" fill-opacity=".5" stroke="{ink}" stroke-width="2.4"/><circle cx="0" cy="-8" r="9" fill="{ink}"/><path d="M-5 -2L5 -2L8 22H-8Z" fill="{ink}"/></g>')
-    o.append(f'<g transform="translate(335 470)"><circle r="34" fill="#fff" stroke="{ink}" stroke-width="2.4"/><path d="M0 0V-22M0 0L16 8" stroke="{ink}" stroke-width="3" stroke-linecap="round"/><circle r="3" fill="{ink}"/>'+"".join(f'<path d="M{math.cos(k*math.pi/6)*28:.1f} {math.sin(k*math.pi/6)*28:.1f}l{math.cos(k*math.pi/6)*4:.1f} {math.sin(k*math.pi/6)*4:.1f}" stroke="{ink}" stroke-width="2"/>' for k in range(12))+'</g>')
-    for x,y,s in ((150,200,8),(370,170,6),(20,330,7)):o.append(star4(x,y,s,gd))
+    random.seed(11);c1="#ff7fa3" if dark else "#b4204f";c2="#9fd6dc" if dark else "#2f7480";o=[]
+    P={"h":"M0 3C-7-2-4-7 0-3C4-7 7-2 0 3Z","d":"M0-5L4 0L0 5L-4 0Z","s":"M0-5C-6 0-5 3-1 2L-1 5L1 5L1 2C5 3 6 0 0-5Z"}
+    for i in range(16):
+        x,y=random.randint(20,380),random.randint(20,640);k=random.choice("hds");sc=random.choice([1.6,2,2.6]);r=random.randint(-25,25)
+        col=c1 if k in "hd" else c2
+        o.append(f'<path transform="translate({x} {y}) rotate({r}) scale({sc})" d="{P[k]}" fill="{col}" opacity=".7"/>')
+    for i in range(6):
+        x,y=random.randint(30,370),random.randint(30,620);sc=random.choice([1.6,2.2])
+        o.append(f'<g transform="translate({x} {y}) scale({sc})" fill="{c2}" opacity=".7"><circle cx="0" cy="-3" r="2.2"/><circle cx="-3" cy="0" r="2.2"/><circle cx="3" cy="0" r="2.2"/><rect x="-.8" y="0" width="1.6" height="5"/></g>')
+    # relógio de bolso genérico
+    o.append(f'<g transform="translate(300 640)" fill="none" stroke="{c1}" stroke-width="3" opacity=".75"><circle r="46"/><circle r="40" stroke-width="1.2"/><path d="M0 0V-26M0 0L18 8" stroke-linecap="round"/><circle cy="-56" r="6"/></g>')
+    # tabuleiro no rodapé
+    for r in range(2):
+        for k in range(14):
+            if (r+k)%2==0:o.append(f'<rect x="{k*30}" y="{740+r*30}" width="30" height="30" fill="{c2}" opacity=".45"/>')
     return W("".join(o))
 def pino(dark):
     r=random.Random(32)
@@ -92,28 +66,14 @@ def pino(dark):
     for x,y,s in ((40,200,7),(210,210,6)):o.append(star4(x,y,s,fl))
     return W("".join(o))
 def verne(dark):
-    r=random.Random(41)
-    sk1,sk2=("#06182e","#1c4a6e") if dark else ("#bfe0f2","#fbf0d4")
-    gd="#f0cf7a" if dark else "#a8751c";sea=("#0f3a58","#0a2640") if dark else ("#7fbfd8","#5aa2c2");ink="#e9f3fa" if dark else "#1f3a52";rd="#e8705a" if dark else "#c9402a";cl="#cfe3f0" if dark else "#ffffff";pp="#f2e2b8" if dark else "#fffaf0"
-    o=[defs(lg("s",sk1,sk2),lg("w",sea[0],sea[1]),rg("sun",gd,.8))]
-    o.append('<rect width="400" height="800" fill="url(#s)"/>')
-    o.append('<circle cx="80" cy="150" r="90" fill="url(#sun)"/>')
-    for x,y,s in ((60,215,.8),(210,185,1.0),(340,230,.9)):
-        o.append(f'<g transform="translate({x} {y}) scale({s})" fill="{cl}" opacity=".8"><ellipse cx="0" cy="0" rx="40" ry="12"/><ellipse cx="-20" cy="-8" rx="22" ry="12"/><ellipse cx="16" cy="-10" rx="26" ry="14"/></g>')
-    # hot air balloon
-    o.append(f'<g transform="translate(285 250)"><path d="M0 -92C-60 -92 -64 -10 -22 42H22C64 -10 60 -92 0 -92Z" fill="{rd}" stroke="{ink}" stroke-width="2.6"/><path d="M-30 -80Q-14 -20 -10 42M30 -80Q14 -20 10 42M0 -92V42" stroke="{ink}" stroke-width="1.6" fill="none"/><path d="M-50 -40H50" stroke="{gd}" stroke-width="6" opacity=".9"/><path d="M-22 42L-12 72M22 42L12 72M-12 72H12" stroke="{ink}" stroke-width="2" fill="none"/><rect x="-14" y="72" width="28" height="20" rx="3" fill="{pp}" stroke="{ink}" stroke-width="2.4"/></g>')
-    # map route dotted across with markers
-    o.append(f'<path d="M20 420C100 360 160 460 220 400S330 330 380 300" stroke="{gd}" stroke-width="3" fill="none" stroke-dasharray="2 9" stroke-linecap="round"/>')
-    for x,y in ((20,420),(220,400),(380,300)):o.append(f'<circle cx="{x}" cy="{y}" r="7" fill="{rd}" stroke="{pp}" stroke-width="2"/>')
-    # compass rose
-    o.append(f'<g transform="translate(90 330)" opacity=".92"><circle r="58" fill="none" stroke="{gd}" stroke-width="2.4"/><circle r="48" fill="none" stroke="{gd}" stroke-width="1"/><path d="M0 -54L9 -9L54 0L9 9L0 54L-9 9L-54 0L-9 -9Z" fill="{gd}" opacity=".7"/><path d="M0 -54L5 -5L-5 -5Z" fill="{rd}"/><text x="0" y="-62" font-size="14" fill="{ink}" text-anchor="middle" font-family="serif">N</text></g>')
-    # sea and steamship
-    o.append('<rect y="500" width="400" height="300" fill="url(#w)"/>')
-    for y in range(512,800,20):o.append(f'<path d="M0 {y}q25 -8 50 0t50 0t50 0t50 0t50 0t50 0t50 0t50 0" stroke="{cl}" stroke-width="1.4" fill="none" opacity=".4"/>')
-    o.append(f'<g transform="translate(150 586)"><path d="M-110 0H110L88 34H-88Z" fill="{ink}" opacity=".9"/><rect x="-80" y="-26" width="150" height="26" fill="{pp}" stroke="{ink}" stroke-width="2.4"/>'+"".join(f'<circle cx="{-62+i*24}" cy="-13" r="5" fill="{sea[1]}"/>' for i in range(6))+f'<rect x="-30" y="-64" width="22" height="38" fill="{rd}" stroke="{ink}" stroke-width="2.4"/><rect x="14" y="-58" width="22" height="32" fill="{rd}" stroke="{ink}" stroke-width="2.4"/><path d="M-34 -64h30M10 -58h30" stroke="{ink}" stroke-width="3"/><path d="M-24 -76q-12 -14 4 -26q14 -10 0 -24M26 -70q-12 -12 4 -22" stroke="{cl}" stroke-width="5" fill="none" opacity=".85" stroke-linecap="round"/></g>')
-    # train tracks on bottom
-    o.append(f'<path d="M0 760H400" stroke="{ink}" stroke-width="3"/><path d="M0 776H400" stroke="{ink}" stroke-width="3"/>'+"".join(f'<path d="M{x} 756V780" stroke="{ink}" stroke-width="3" opacity=".7"/>' for x in range(6,400,22)))
-    for x,y,s in ((150,260,7),(30,300,6),(370,190,6)):o.append(star4(x,y,s,gd))
+    c="#d9b04a" if dark else "#7a5c1e";b="#7fb7d6" if dark else "#0b5a7a";o=[]
+    for rx in (40,100,160,215):o.append(f'<ellipse cx="200" cy="330" rx="{rx}" ry="215" fill="none" stroke="{b}" stroke-width="1.2" opacity=".35"/>')
+    for ry in (60,130,200):o.append(f'<ellipse cx="200" cy="330" rx="215" ry="{ry}" fill="none" stroke="{b}" stroke-width="1.2" opacity=".35"/>')
+    o.append(f'<path d="M20 600C90 480 140 560 200 430S320 300 380 150" stroke="{c}" stroke-width="2.4" stroke-dasharray="3 7" fill="none" opacity=".85" stroke-linecap="round"/>')
+    for x,y in ((20,600),(200,430),(380,150)):o.append(f'<circle cx="{x}" cy="{y}" r="5" fill="{c}"/>')
+    o.append(f'<g transform="translate(300 690)" opacity=".85"><circle r="52" fill="none" stroke="{c}" stroke-width="2"/><circle r="44" fill="none" stroke="{c}" stroke-width="1"/><path d="M0-48L8-8L48 0L8 8L0 48L-8 8L-48 0L-8-8Z" fill="{c}" opacity=".6"/><path d="M0-48L4-4L-4-4Z" fill="{b}"/></g>')
+    o.append(f'<g transform="translate(70 700)" fill="none" stroke="{c}" stroke-width="2.4" opacity=".8"><circle r="26"/><path d="M0 0V-16M0 0L11 6" stroke-linecap="round"/></g>')
+    for x,y,s in ((60,90,7),(330,60,6),(120,250,5)):o.append(star4(x,y,s,c))
     return W("".join(o))
 def peter(dark):
     r=random.Random(21)
