@@ -86,3 +86,9 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Novo livro de vocabulário `grimm` (en, «Contos dos Irmãos Grimm», `livro_grimm.txt`, 135 palavras, 3 partes; estilo «Floresta Encantada»). **Ainda sem texto do livro**: falta preparar os contos (ePub em /tmp/gr/en, pode ter sumido; ela envia de novo se precisar), traduzir e rodar `mk_texto.py grimm`.
 - Pendentes: Collodi (it, id `racconti`, estilo já existe, sem livro nem vocabulário), Vento nos Salgueiros, Sherlock, Mosqueteiros e Divina Comédia em texto completo.
 - `tests/t15.py`: mínimo de 120 palavras para `grimm`.
+
+## Texto completo do Grimm (19/10/2026, v1.29.0)
+- Livro `grimm` (en) agora tem texto: 17 contos (Branca de Neve=Snowdrop, Cinderela=Ashputtel, Rapunzel, João e Maria, Chapeuzinho, Bela Adormecida=Briar Rose, Príncipe Sapo, Rumpelstiltskin, Músicos de Bremen, 12 Princesas, Ganso de Ouro, Abelha-Rainha, 7 Corvos, Pescador e sua Mulher, Dona Holle, Lobo e 7 Cabritinhos, Elfos e Sapateiro; ~25 mil palavras, 446 parágrafos). Fonte: Gutenberg nº 2591 (ePub que ela enviou; tradução inglesa antiga, domínio público). `tools/prep_grimm.py <grimm.txt>` → `livros_txt/grimm/orig.json` (texto sem alteração; só junta linhas e corta parágrafos longos entre frases, ~60 palavras); conferido: 0 trechos fora do original. Tradução (`pt_1..17.txt`): Claude, sem fonte conferida. As notas entre colchetes nos títulos (ex.: «Snowdrop [Snow White]») são do próprio texto inglês.
+- Os outros 45 contos do ePub ficam de fora por ora; para acrescentar, ponha o título em `PICK` de `prep_grimm.py`, traduza e rode `mk_texto.py grimm`.
+- `sw.js`: cache v55 e `./books/grimm.js` em ASSETS.
+- Pendentes: Collodi (it), vocabulário fr/it ampliado, Vento nos Salgueiros, Sherlock, Mosqueteiros e Divina Comédia em texto completo.
