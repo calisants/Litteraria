@@ -36,34 +36,13 @@ def alice(dark):
             if (r+k)%2==0:o.append(f'<rect x="{k*30}" y="{740+r*30}" width="30" height="30" fill="{c2}" opacity=".45"/>')
     return W("".join(o))
 def pino(dark):
-    r=random.Random(32)
-    sk1,sk2=("#1c1208","#5a3a1c") if dark else ("#f1dcc0","#fbefd9")
-    wd=("#7a4a22","#8e5a2c","#6a3e1a") if dark else ("#c9965a","#d9a86a","#b8844a");ink="#fbe9c8" if dark else "#4a2e14";fl="#ffd27a" if dark else "#f2b032";bl="#8fb4e0" if dark else "#3e6aa8";rd="#e0604a" if dark else "#c9402a"
-    o=[defs(lg("s",sk1,sk2),rg("c",fl,.85))]
-    o.append('<rect width="400" height="800" fill="url(#s)"/>')
-    # wood plank wall
-    for i in range(0,400,50):
-        o.append(f'<rect x="{i}" y="0" width="50" height="800" fill="{wd[(i//50)%3]}" opacity=".30"/><path d="M{i} 0V800" stroke="{ink}" stroke-width="1.4" opacity=".4"/>')
-        for k in range(5):
-            y=r.randint(30,760);o.append(f'<ellipse cx="{i+r.randint(10,40)}" cy="{y}" rx="7" ry="3.4" fill="none" stroke="{ink}" stroke-width="1.2" opacity=".35"/>')
-    # shelf with tools
-    o.append(f'<rect x="0" y="250" width="400" height="14" fill="{wd[2]}"/><path d="M0 264H400" stroke="{ink}" stroke-width="2" opacity=".6"/>')
-    o.append(f'<g transform="translate(60 250)" stroke="{ink}" stroke-width="2.4" fill="none" stroke-linecap="round"><path d="M0 0V-46M-14 -46H14"/><rect x="-14" y="-62" width="28" height="16" fill="{bl}" opacity=".7"/></g>')
-    o.append(f'<g transform="translate(150 250)"><path d="M-30 -4H30L26 -40H-26Z" fill="{wd[0]}" stroke="{ink}" stroke-width="2.2"/><path d="M-26 -40Q0 -56 26 -40" fill="none" stroke="{ink}" stroke-width="2.2"/><path d="M-12 -4V-40M12 -4V-40" stroke="{ink}" stroke-width="1.6"/></g>')
-    o.append(f'<g transform="translate(260 250)"><path d="M-40 0V-26H40V0" fill="none" stroke="{ink}" stroke-width="2.4"/>'+"".join(f'<path d="M{-36+i*8} -26l4 -10l4 10" fill="{ink}" opacity=".8"/>' for i in range(10))+f'<rect x="-52" y="-14" width="14" height="16" rx="3" fill="{wd[1]}" stroke="{ink}" stroke-width="2"/></g>')
-    o.append(f'<g transform="translate(345 250)" stroke="{ink}" stroke-width="2.4" fill="none"><rect x="-10" y="-50" width="20" height="50" rx="3" fill="{rd}" fill-opacity=".7"/><path d="M-10 -34H10M-10 -18H10"/></g>')
-    # hanging lamp + candle glow
-    o.append(f'<g transform="translate(130 150)"><circle cx="200" cy="120" r="120" fill="url(#c)"/><path d="M200 0V70" stroke="{ink}" stroke-width="2.4"/><path d="M178 70H222L214 104H186Z" fill="{fl}" stroke="{ink}" stroke-width="2.4"/><path d="M200 80q8 8 0 18q-8 -10 0 -18Z" fill="#fff" opacity=".8"/></g>')
-    # workbench
-    o.append(f'<rect x="0" y="600" width="400" height="26" fill="{wd[1]}"/><path d="M0 626H400" stroke="{ink}" stroke-width="2.4"/><rect x="20" y="626" width="26" height="174" fill="{wd[2]}"/><rect x="354" y="626" width="26" height="174" fill="{wd[2]}"/><rect x="0" y="700" width="400" height="14" fill="{wd[0]}" opacity=".7"/>')
-    # log with shavings, hammer, plane, nails
-    o.append(f'<g transform="translate(110 590)"><ellipse cx="0" cy="0" rx="46" ry="14" fill="{wd[0]}" stroke="{ink}" stroke-width="2.2"/><path d="M-46 0V-8M46 0V-8" stroke="{ink}" stroke-width="2"/><ellipse cx="0" cy="-8" rx="46" ry="14" fill="{wd[1]}" stroke="{ink}" stroke-width="2.2"/><ellipse cx="0" cy="-8" rx="30" ry="9" fill="none" stroke="{ink}" stroke-width="1.4"/><ellipse cx="0" cy="-8" rx="14" ry="4" fill="none" stroke="{ink}" stroke-width="1.4"/></g>')
-    o.append(f'<g transform="translate(270 590) rotate(-12)" stroke="{ink}" stroke-width="2.4" fill="{wd[2]}"><rect x="-6" y="-6" width="12" height="44" rx="3"/><rect x="-26" y="-24" width="52" height="20" rx="4" fill="#9aa4b2"/></g>')
-    for k in range(14):
-        x,y=r.randint(160,260),r.randint(560,598);o.append(f'<path d="M{x} {y}q10 -14 20 -4q-6 12 -14 8q-8 -4 -6 -4Z" fill="none" stroke="{ink}" stroke-width="1.4" opacity=".7"/>')
-    for k in range(6):
-        x=330+k*10;o.append(f'<path d="M{x} 584V600" stroke="{ink}" stroke-width="2.4"/><circle cx="{x}" cy="583" r="2.4" fill="{ink}"/>')
-    for x,y,s in ((40,200,7),(210,210,6)):o.append(star4(x,y,s,fl))
+    random.seed(5);w="#d6a35c" if dark else "#8a5a2b";r="#f2b24c" if dark else "#a8321e";o=[]
+    for i in range(22):
+        y=20+i*36+random.randint(-6,6);a=random.randint(8,26);o.append(f'<path d="M-10 {y}C100 {y-a} 200 {y+a} 410 {y-a/2}" stroke="{w}" stroke-width="1.6" fill="none" opacity=".4"/>')
+    for x,y in ((90,140),(310,330),(140,560)):o.append(f'<ellipse cx="{x}" cy="{y}" rx="16" ry="9" fill="none" stroke="{w}" stroke-width="2" opacity=".55"/><ellipse cx="{x}" cy="{y}" rx="8" ry="4.5" fill="none" stroke="{w}" stroke-width="1.5" opacity=".55"/>')
+    for x,y,s in ((330,90,8),(60,330,7),(220,470,9),(350,600,7)):o.append(star4(x,y,s,r))
+    o.append(f'<g transform="translate(95 690)" stroke="{r}" fill="none" stroke-width="2.4" opacity=".8"><path d="M0 0C10-30 30-40 40-70M40 0C38-30 52-45 58-70"/><circle cx="0" cy="6" r="10" fill="{r}" fill-opacity=".5"/><circle cx="40" cy="6" r="10" fill="{r}" fill-opacity=".5"/></g>')
+    o.append(f'<path d="M280 740C300 700 340 720 320 750C300 775 270 750 290 735C305 725 322 738 312 748" stroke="{w}" stroke-width="3" fill="none" opacity=".6"/>')
     return W("".join(o))
 def verne(dark):
     c="#d9b04a" if dark else "#7a5c1e";b="#7fb7d6" if dark else "#0b5a7a";o=[]
@@ -76,37 +55,26 @@ def verne(dark):
     for x,y,s in ((60,90,7),(330,60,6),(120,250,5)):o.append(star4(x,y,s,c))
     return W("".join(o))
 def peter(dark):
-    r=random.Random(21)
-    sk1,sk2=("#0e1f18","#23503a") if dark else ("#d8eef0","#f7f1d6")
-    g1,g2=("#2f6a45","#245238") if dark else ("#8fcf8a","#6bb872");car="#f2a65a" if dark else "#e8832a";ink="#eaf5e4" if dark else "#2b4a2a";wd="#b89868" if dark else "#a67c44";rd="#e0604a" if dark else "#d63c3c";pk="#f6b6c8" if dark else "#e58aa6";gl="#ffe28a" if dark else "#fff3b0"
-    o=[defs(lg("s",sk1,sk2),rg("g",gl,.9))]
-    o.append('<rect width="400" height="800" fill="url(#s)"/>')
-    o.append('<circle cx="320" cy="130" r="100" fill="url(#g)"/><circle cx="320" cy="130" r="28" fill="%s"/>'%gl)
-    o.append(ridge(380,22,3,g2,.8));o.append(ridge(430,18,6,g1,.95))
-    # fence
-    for k in range(0,420,34):
-        o.append(f'<path d="M{k} 470V380L{k+12} 366L{k+24} 380V470Z" fill="{wd}" stroke="{ink}" stroke-width="2"/>')
-    o.append(f'<path d="M0 400H400M0 440H400" stroke="{ink}" stroke-width="3"/>')
-    # garden rows with cabbages, lettuces and carrot tops
-    for row in range(6):
-        y=520+row*46;o.append(f'<path d="M0 {y}Q200 {y-14} 400 {y}" stroke="{ink}" stroke-width="1.6" fill="none" opacity=".35"/>')
-        for k in range(7):
-            x=20+k*58+(row%2)*26+r.randint(-6,6)
-            t=(row+k)%3
-            if t==0:
-                o.append(f'<g transform="translate({x} {y+6}) scale({1+row*.08})"><circle r="16" fill="{g1}" stroke="{ink}" stroke-width="2"/><path d="M-12 -4Q0 -14 12 -4M-14 6Q0 18 14 6M0 -16Q-8 0 0 16" stroke="{ink}" stroke-width="1.4" fill="none" opacity=".8"/></g>')
-            elif t==1:
-                o.append(f'<g transform="translate({x} {y+6}) scale({1+row*.08})"><path d="M0 0C-8 -10 -10 -18 -8 -26M0 0C0 -12 0 -22 0 -30M0 0C8 -10 10 -18 8 -26" stroke="{g1}" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M-6 0H6L0 10Z" fill="{car}" stroke="{ink}" stroke-width="1.6"/></g>')
-            else:
-                o.append(f'<g transform="translate({x} {y+4}) scale({1+row*.08})"><path d="M-13 4Q-13 -14 0 -14Q13 -14 13 4Z" fill="{g2}" stroke="{ink}" stroke-width="2"/><path d="M-8 2Q0 -8 8 2" stroke="{ink}" stroke-width="1.2" fill="none"/></g>')
-    # watering can, wheelbarrow, boots
-    o.append(f'<g transform="translate(70 760)" stroke="{ink}" stroke-width="2.4"><path d="M-22 -26H22L18 8H-18Z" fill="{pk}"/><path d="M22 -16L48 -34M48 -34H56M48 -34l2 -8" fill="none"/><path d="M-22 -22Q-40 -22 -38 -6" fill="none"/><path d="M-12 -26Q0 -44 12 -26" fill="none"/></g>')
-    o.append(f'<g transform="translate(300 760)" stroke="{ink}" stroke-width="2.4"><path d="M-36 -30H20L10 0H-26Z" fill="{rd}" fill-opacity=".85"/><circle cx="26" cy="2" r="12" fill="{wd}"/><circle cx="26" cy="2" r="3" fill="{ink}"/><path d="M-36 -30L-52 -42M-26 0L-30 18M10 0L8 18" fill="none"/></g>')
-    # butterflies & birds
-    for x,y,rot in ((120,230,-20),(220,300,14),(60,330,8)):
-        o.append(f'<g transform="translate({x} {y}) rotate({rot})"><path d="M0 0Q-18 -16 -16 2Q-14 10 0 2Z" fill="{pk}" stroke="{ink}" stroke-width="1.4"/><path d="M0 0Q18 -16 16 2Q14 10 0 2Z" fill="{pk}" stroke="{ink}" stroke-width="1.4"/><path d="M0 -4V8" stroke="{ink}" stroke-width="2"/></g>')
-    for x,y in ((30,190),(110,170),(200,205)):o.append(f'<path d="M{x} {y}q8 -8 16 0q8 -8 16 0" stroke="{ink}" stroke-width="1.8" fill="none" opacity=".6"/>')
+    random.seed(21);car="#f2a65a" if dark else "#c4631a";g="#8fcf8a" if dark else "#3f7d3a";w="#e8dfc8" if dark else "#8a7a55";o=[]
+    for i in range(11):
+        x,y=random.randint(30,370),random.randint(30,600);sc=random.choice([1.0,1.3,1.7]);r=random.randint(-30,30)
+        o.append(f'<g transform="translate({x} {y}) rotate({r}) scale({sc})" opacity=".7"><path d="M-5 0H5L0 26Z" fill="{car}"/><path d="M0 0C-8-10-10-14-9-18M0 0C0-10 0-16 0-22M0 0C8-10 10-14 9-18" stroke="{g}" stroke-width="2.2" fill="none" stroke-linecap="round"/></g>')
+    for i in range(7):
+        x,y=random.randint(30,370),random.randint(30,600);sc=random.choice([1.2,1.6])
+        o.append(f'<g transform="translate({x} {y}) scale({sc})" fill="none" stroke="{g}" stroke-width="1.6" opacity=".65"><circle r="9"/><path d="M-6-2C-2-8 4-8 6-2M-5 3C-1-3 3-3 5 3"/></g>')
+    for i in range(14):
+        x,y=random.randint(20,380),random.randint(20,640);r=random.randint(0,180);o.append(f'<path transform="translate({x} {y}) rotate({r}) scale(1.5)" d="M0-6C5-3 5 3 0 6C-5 3-5-3 0-6Z" fill="{g}" opacity=".5"/>')
+    for k in range(14):
+        x=k*30+8;o.append(f'<path d="M{x} 800V736L{x+7} 726L{x+14} 736V800" fill="none" stroke="{w}" stroke-width="2" opacity=".7"/>')
+    o.append(f'<path d="M0 752H400M0 784H400" stroke="{w}" stroke-width="2" opacity=".7"/>')
+    for x,y in ((330,690),(70,660)):o.append(f'<g transform="translate({x} {y})" opacity=".8"><path d="M0 0C-14 4-14 22 0 26C14 22 14 4 0 0Z" fill="{car}" fill-opacity=".35" stroke="{car}" stroke-width="1.6"/></g>')
     return W("".join(o))
+
+
+
+
+
+
 
 import math
 def defs(*g):return "<defs>"+"".join(g)+"</defs>"
