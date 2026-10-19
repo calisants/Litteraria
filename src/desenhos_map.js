@@ -16,7 +16,7 @@
   const SKIP={cores:1,verbos:1,descricoes:1,saudacoes:1,perguntas:1,numeros:1,dias:1,direcoes:1,pessoas:1,familia:1};
   const BAD={"compras|caixa":1};
   /* palavras de sentido diferente do desenho (bolsa de valores, raio de luz, «present» verbo etc.) */
-  const NO={fr:{bourse:1},it:{raggio:1,figura:1,rimedio:1},en:{present:1,figure:1,dressing:1}};
+  const NO={fr:{bourse:1,banc:1,langue:1},it:{raggio:1,figura:1,rimedio:1},en:{present:1,figure:1,dressing:1,examination:1,account:1,country:1}};
   ["fr","it","en"].forEach(l=>{
     const d=DRAW[l]||(DRAW[l]={});
     Object.keys(VOCAB[l]||{}).forEach(cat=>{

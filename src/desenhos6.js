@@ -1,0 +1,44 @@
+/* ===== Desenhos (lote 6): corpo, lugares, natureza, saúde e outros que faltavam ===== */
+(function(){
+  const K=window.__K,H=K.H,S=H.S,L=H.L,dot=H.dot,spark=H.spark,eyes=H.eyes,blush=H.blush,P=K.P,C=K.C,E=K.E,R=K.R,ik=K.ik,add=K.add;
+  const {PK,PE,MI,SK,LI,BU,RS,WD,GR,GM,RD,OR,BR,WH,DG}=K.col;
+  const more=(id,pts)=>{window.__PT[id]=window.__PT[id].concat(pts);};
+  add("fog",["névoa","neblina"],P(GR,'M6 20Q6 12 16 14Q22 6 32 10Q44 8 46 18Q58 16 58 26Q58 32 50 32H12Q4 32 6 20Z')+L('M6 42H44M14 50H58M8 58H36')+spark(54,8)+dot(8,10));
+  add("storm",["tempestade"],P(DG,'M14 30Q4 30 6 20Q8 12 18 14Q20 4 32 6Q44 6 44 16Q56 16 54 26Q54 30 48 30Z')+P(BU,'M32 28L20 46H29L24 60L42 38H32L38 28Z')+L('M46 36L43 44M52 40L49 48')+spark(10,50)+dot(54,56));
+  add("wind",["vento"],L('M6 24H38Q48 24 48 16Q48 8 40 10')+L('M6 36H48Q58 36 58 44Q58 52 50 50')+L('M6 48H28Q34 48 34 54')+spark(54,10)+dot(8,12));
+  add("sky",["céu"],R('#d8ecfb',4,4,56,56,6)+P(WH,'M10 40Q10 32 18 34Q22 26 30 30Q40 28 42 36Q50 36 50 42Q50 46 44 46H14Q8 46 10 40Z')+C(BU,46,18,7)+spark(14,14)+dot(24,54));
+  add("desert",["deserto"],P(BU,'M0 50Q16 34 32 46Q48 36 64 48V60H0Z')+L('M0 50Q16 34 32 46')+P(GM,'M44 40V22Q44 18 48 18Q52 18 52 22V40Z')+P(GM,'M44 32Q38 32 38 26M52 28Q58 28 58 22')+C(BU,14,16,7)+spark(30,14)+dot(56,56));
+  add("sand",["areia"],P(BU,'M0 48Q16 36 32 46Q48 38 64 46V60H0Z')+L('M6 54L10 52M20 56L24 54M36 54L40 52M50 56L54 54')+P(SK,'M8 24Q14 14 22 22L18 30Z')+spark(46,14)+dot(10,12));
+  add("hill",["colina"],P(GM,'M0 56Q10 24 32 24Q54 24 64 56Z')+P(MI,'M30 30Q44 30 56 52H24Z')+L('M18 44Q22 40 26 44M38 40Q42 36 46 40')+C(BU,50,12,6)+spark(12,14)+dot(30,12));
+  add("field",["campo"],P(BU,'M0 36H64V60H0Z')+L('M0 44H64M0 52H64M10 36L2 60M24 36L20 60M40 36L42 60M54 36L62 60')+P(SK,'M0 12H64V36H0Z')+P(WH,'M10 26Q10 20 18 22Q22 16 28 20Q36 18 36 26Z')+C(BU,50,20,5)+spark(10,10)+dot(54,52));
+  add("grass",["grama","capim"],L('M8 58Q10 40 6 28M16 58Q18 34 16 18M26 58Q26 40 32 30M36 58Q36 32 40 16M46 58Q44 44 52 32M56 58Q58 46 58 38')+L('M2 58H62')+spark(30,10)+dot(54,12));
+  add("garden",["jardim"],P(GM,'M0 44H64V60H0Z')+L('M4 44V30M12 44V30M20 44V30M28 44V30M36 44V30M44 44V30M52 44V30M60 44V30M2 34H62M2 40H62')+C(PK,16,24,5)+C(BU,16,24,1.6)+C(RS,34,22,5)+C(BU,34,22,1.6)+C(LI,50,24,5)+C(BU,50,24,1.6)+L('M16 29V34M34 27V34M50 29V34')+spark(56,10)+dot(6,12));
+  add("wall",["parede","muro"],R(PE,4,10,56,44,1)+L('M4 24H60M4 38H60M18 10V24M42 10V24M10 24V38M30 24V38M52 24V38M18 38V54M42 38V54')+spark(56,6)+dot(6,60));
+  add("street",["rua"],P(DG,'M22 4H42L60 60H4Z')+L('M32 8V16M32 24V32M32 40V50','stroke-dasharray="5 5" stroke-width="2"')+R(PE,0,16,12,24,1)+R(PK,52,20,12,20,1)+spark(8,8)+dot(56,8));
+  add("market",["mercado","feira"],P(RD,'M6 22L12 8H52L58 22Z')+P(WH,'M6 22H58V28H6Z')+L('M16 22V28M28 22V28M40 22V28M52 22V28')+R(WD,8,36,48,10,2)+C(RD,18,32,5)+C(OR,32,32,5)+C(MI,46,32,5)+L('M10 46V58M54 46V58')+spark(54,56)+dot(6,60));
+  add("hotel",["hotel"],R(SK,12,6,40,52,2)+R(WH,18,12,8,8,1)+R(WH,30,12,8,8,1)+R(WH,42,12,6,8,1)+R(WH,18,26,8,8,1)+R(WH,30,26,8,8,1)+R(WH,42,26,6,8,1)+R(PK,26,44,12,14,1)+L('M12 58H52')+spark(56,10)+dot(6,12));
+  add("bank",["banco"],P(PE,'M4 24L32 8L60 24Z')+R(PE,8,24,48,5,0)+R(WH,12,30,6,20,1)+R(WH,24,30,6,20,1)+R(WH,34,30,6,20,1)+R(WH,46,30,6,20,1)+R(PE,6,50,52,6,0)+C(BU,32,18,3)+spark(56,8)+dot(6,10));
+  add("museum",["museu"],P(LI,'M4 26L32 8L60 26Z')+R(LI,6,26,52,5,0)+R(WH,10,32,6,20,1)+R(WH,22,32,6,20,1)+R(WH,36,32,6,20,1)+R(WH,48,32,6,20,1)+R(LI,4,52,56,6,0)+C(BU,32,20,4)+spark(56,8)+dot(6,10));
+  add("park",["parque"],P(GM,'M0 48H64V60H0Z')+C(GM,18,24,13)+R(BR,16,34,4,14,1)+C(GM,44,28,10)+R(BR,42,36,4,12,1)+R(WD,26,40,18,4,1)+L('M28 44V50M42 44V50')+spark(54,8)+dot(6,10));
+  add("airport",["aeroporto"],R(SK,4,28,56,22,2)+P(WH,'M2 28L10 16H54L62 28Z')+R(WH,12,34,10,8,1)+R(WH,27,34,10,8,1)+R(WH,42,34,10,8,1)+R(DG,24,6,16,10,1)+L('M32 6V2M4 54H60','stroke-dasharray="4 3"')+spark(56,8)+dot(6,60));
+  add("station",["estação"],R(PE,4,22,56,30,1)+P(PK,'M0 24L32 8L64 24Z')+C(WH,32,28,6)+L('M32 28V24M32 28L35 30')+R(SK,10,34,10,18,1)+R(SK,44,34,10,18,1)+R(SK,27,38,10,14,1)+L('M2 58H62')+spark(56,8)+dot(6,10));
+  add("subway",["metrô"],R(LI,8,10,48,38,6)+R(WH,14,16,16,12,2)+R(WH,34,16,16,12,2)+R(WH,14,32,36,6,1)+C(BU,18,43,2.4)+C(BU,46,43,2.4)+L('M4 54H60M14 48L10 58M50 48L54 58')+C(RD,32,5,3)+spark(56,8)+dot(6,10));
+  add("shop",["loja"],R(PE,6,24,52,32,2)+P(RD,'M4 24L8 10H56L60 24Z')+L('M4 24Q10 30 16 24Q22 30 28 24Q34 30 40 24Q46 30 52 24Q56 28 60 24')+R(SK,26,36,14,20,1)+R(WH,10,32,12,12,1)+R(WH,44,32,10,12,1)+spark(56,6)+dot(6,6));
+  add("euro",["euro"],C(BU,32,32,24)+L('M44 20Q36 14 28 20Q22 26 22 32Q22 38 28 44Q36 50 44 44M16 28H36M16 36H36')+spark(56,8)+dot(8,56));
+  add("receipt",["recibo","fatura","conta"],P(WH,'M14 4H50V58L44 54L38 58L32 54L26 58L20 54L14 58Z')+L('M20 14H44M20 22H44M20 30H36M20 38H40M32 46H44')+spark(56,10)+dot(8,52));
+  add("office",["escritório"],R(WD,6,34,52,6,2)+L('M10 40V58M54 40V58')+R(SK,20,14,24,16,2)+L('M32 30V34M26 34H38')+R(WH,46,28,8,6,0)+R(RD,10,28,8,6,1)+spark(54,8)+dot(8,12));
+  add("email",["e-mail"],R(WH,6,14,52,36,3)+L('M6 18L32 38L58 18')+C(RD,52,16,6)+L('M52 13V19M49 16H55','stroke="#fff"')+spark(8,8)+dot(56,56));
+  /* corpo e saúde */
+  add("finger",["dedo"],P(PE,'M26 58V26Q26 10 32 10Q38 10 38 26V58Z')+L('M26 36H38M26 46H38')+P(RS,'M28 14Q32 10 36 14Q36 18 32 18Q28 18 28 14Z')+spark(52,12)+dot(10,40));
+  add("hair",["cabelo"],P(BR,'M10 40Q4 14 24 8Q34 4 44 10Q60 18 54 42Q52 54 46 58Q44 44 46 30Q38 32 30 24Q20 32 18 58Q12 52 10 40Z')+L('M26 14Q32 20 40 16')+spark(54,10)+dot(8,56));
+  add("face",["rosto"],C(PE,32,32,24)+ik(24,28)+ik(40,28)+L('M24 40Q32 48 40 40')+blush(17,47,36)+P(BR,'M8 28Q8 8 32 8Q56 8 56 28Q44 18 32 20Q20 18 8 28Z')+spark(56,54)+dot(6,56));
+  add("arm",["braço"],P(PE,'M10 50Q6 34 18 24L32 10Q38 6 44 12Q48 18 42 24L34 32L48 38Q58 42 58 50Z')+L('M18 24Q26 22 30 28')+spark(54,10)+dot(8,12));
+  add("leg",["perna"],P(PE,'M26 6H40V34Q40 44 46 50Q50 54 44 58H20Q14 58 18 52Q26 44 26 34Z')+L('M26 24H40')+spark(54,10)+dot(10,40));
+  add("knee",["joelho"],P(PE,'M24 6H40V26Q46 30 44 38Q40 44 36 46V58H28V46Q24 44 20 38Q18 30 24 26Z')+C(PK,32,34,5)+spark(54,10)+dot(10,40));
+  add("thermometer",["febre","temperatura"],R(WH,26,6,12,40,6)+C(RD,32,50,9)+R(RD,30,20,4,28,2)+L('M38 14H44M38 22H44M38 30H44')+spark(52,48)+dot(10,12));
+  add("pharmacy",["farmácia"],R(WH,8,16,48,40,2)+R(MI,8,10,48,10,2)+R(MI,26,26,12,28,1)+R(MI,18,34,28,12,1)+spark(56,8)+dot(6,10));
+  add("blood",["sangue"],P(RD,'M32 6C44 24 52 32 52 42Q52 56 32 58Q12 56 12 42C12 32 20 24 32 6Z')+L('M22 40Q22 48 28 50')+spark(54,10)+dot(8,12));
+  add("cell",["célula"],E(MI,32,32,26,22)+C(LI,32,32,10)+C('#fff',32,32,3)+C(PK,16,28,3)+C(PK,48,36,3)+C(BU,22,46,2.6)+C(BU,44,20,2.6)+spark(56,8)+dot(8,10));
+  add("molecule",["molécula"],L('M16 44L32 30L48 40M32 30V12')+C(SK,16,44,8)+C(PK,32,30,10)+C(MI,48,40,7)+C(BU,32,12,6)+spark(54,10)+dot(8,10));
+  window.__D4=Object.keys(window.__D).length;
+})();
