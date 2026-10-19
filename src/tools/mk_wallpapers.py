@@ -63,73 +63,221 @@ def peter(dark):
     o.append(f'<path d="M0 752H400M0 784H400" stroke="{w}" stroke-width="2" opacity=".7"/>')
     for x,y in ((330,690),(70,660)):o.append(f'<g transform="translate({x} {y})" opacity=".8"><path d="M0 0C-14 4-14 22 0 26C14 22 14 4 0 0Z" fill="{car}" fill-opacity=".35" stroke="{car}" stroke-width="1.6"/></g>')
     return W("".join(o))
+
+
+
+
+
+
+
+import math
+def defs(*g):return "<defs>"+"".join(g)+"</defs>"
+def lg(i,c1,c2,x2=0,y2=1):return f'<linearGradient id="{i}" x1="0" y1="0" x2="{x2}" y2="{y2}"><stop offset="0" stop-color="{c1}"/><stop offset="1" stop-color="{c2}"/></linearGradient>'
+def rg(i,c,op0=.9):return f'<radialGradient id="{i}"><stop offset="0" stop-color="{c}" stop-opacity="{op0}"/><stop offset="1" stop-color="{c}" stop-opacity="0"/></radialGradient>'
+def ridge(y,amp,seed,col,op=1,n=7):
+    r=random.Random(seed);pts=[(i*400/n,y+r.uniform(-amp,amp)) for i in range(n+1)]
+    d=f"M0 800V{pts[0][1]:.1f}"
+    for i in range(1,len(pts)):
+        x0,y0=pts[i-1];x1,y1=pts[i];d+=f"C{x0+(x1-x0)/2:.1f} {y0:.1f} {x0+(x1-x0)/2:.1f} {y1:.1f} {x1:.1f} {y1:.1f}"
+    return f'<path d="{d}V800Z" fill="{col}" opacity="{op}"/>'
 def wind(dark):
-    random.seed(33);wa="#7fc3d6" if dark else "#2f7f94";rd="#9bd48a" if dark else "#4b8a3a";bt="#e0c58a" if dark else "#8a6a2c";o=[]
-    for y in (430,480,530,580,630,680):
-        o.append(f'<path d="M0 {y}Q50 {y-12} 100 {y}T200 {y}T300 {y}T400 {y}" fill="none" stroke="{wa}" stroke-width="1.6" opacity=".6"/>')
-    for i in range(13):
-        x=random.randint(10,390);h=random.randint(70,150);b=random.randint(-10,10)
-        o.append(f'<path d="M{x} 800C{x+b} {800-h*.5} {x+b*2} {800-h*.8} {x+b*3} {800-h}" fill="none" stroke="{rd}" stroke-width="2.2" opacity=".6" stroke-linecap="round"/><ellipse cx="{x+b*3}" cy="{800-h-8}" rx="3" ry="9" fill="{rd}" opacity=".6"/>')
-    for i in range(12):
-        x,y=random.randint(20,380),random.randint(20,380);r=random.randint(0,180)
-        o.append(f'<path transform="translate({x} {y}) rotate({r}) scale(1.6)" d="M0-9C4-4 4 4 0 9C-4 4-4-4 0-9Z" fill="{rd}" opacity=".45"/>')
-    o.append(f'<g transform="translate(270 520)" opacity=".85" fill="none" stroke="{bt}" stroke-width="2.2" stroke-linecap="round"><path d="M-46-6H46L32 14H-32Z"/><path d="M-4-6V-50L26-14H-4"/></g>')
+    r=random.Random(11)
+    sk1,sk2=("#0b1f2b","#1f4a57") if dark else ("#bfe3ea","#f6f3d8")
+    gl="#ffd27a" if dark else "#fff3b0";hill1,hill2=("#16384a","#1d4d56") if dark else ("#a6d0c0","#8fc4a8")
+    wat1,wat2=("#143a4a","#0c2430") if dark else ("#9fd3df","#6fb5c8");gr="#8fd08a" if dark else "#3f8a45";gr2="#5fae6a" if dark else "#2c6e38"
+    ln="#c9efe9" if dark else "#ffffff";tr="#3a2a1c" if dark else "#5a4630";bt="#e0c58a" if dark else "#7a5a2a"
+    o=[defs(lg("s",sk1,sk2),lg("w",wat1,wat2),rg("g",gl))]
+    o.append('<rect width="400" height="800" fill="url(#s)"/>')
+    o.append('<circle cx="300" cy="190" r="120" fill="url(#g)"/><circle cx="300" cy="190" r="26" fill="%s" opacity=".9"/>'%gl)
+    for i in range(14):
+        x,y=r.randint(10,380),r.randint(40,230);o.append(f'<path d="M{x} {y}q8 -6 16 0q8 -6 16 0" stroke="{ln}" stroke-width="1.4" fill="none" opacity=".55"/>')
+    o.append(ridge(400,26,3,hill1,.8));o.append(ridge(430,22,5,hill2,.9))
+    # willow
+    o.append(f'<path d="M62 560C70 480 54 420 74 330C84 290 96 270 104 250C94 280 100 300 92 340C80 420 98 480 96 560Z" fill="{tr}" stroke="{tr}" stroke-width="3"/>')
+    for i in range(34):
+        x0=r.uniform(40,170);y0=r.uniform(225,290);L=r.uniform(170,300);dx=r.uniform(-30,16)
+        o.append(f'<path d="M{x0:.0f} {y0:.0f}C{x0+dx:.0f} {y0+L*.4:.0f} {x0+dx*1.6:.0f} {y0+L*.75:.0f} {x0+dx*1.4:.0f} {y0+L:.0f}" stroke="{gr if i%2 else gr2}" stroke-width="{r.choice([1.2,1.6,2])}" fill="none" stroke-linecap="round" opacity=".85"/>')
+        for k in range(1,8):
+            t=k/8;px=x0+dx*1.4*t;py=y0+L*t;o.append(f'<path d="M{px:.0f} {py:.0f}q5 -9 11 -4q-4 8 -11 4Z" fill="{gr}" opacity=".7"/>')
+    o.append('<rect y="500" width="400" height="300" fill="url(#w)"/>')
+    for y in range(512,800,22):
+        o.append(f'<path d="M0 {y}q50 -9 100 0t100 0t100 0t100 0" stroke="{ln}" stroke-width="1.3" fill="none" opacity=".4"/>')
+    for k in range(9):
+        o.append(f'<path d="M300 {520+k*22}h{36-k*3}" stroke="{gl}" stroke-width="2.4" opacity=".7" stroke-linecap="round"/>')
+    # boat
+    o.append(f'<g transform="translate(230 600)"><path d="M0 0h96q-12 24 -40 24h-20q-28 0 -36 -24Z" fill="{bt}"/><path d="M0 0h96" stroke="{tr}" stroke-width="3"/><path d="M26 -2L70 -34" stroke="{tr}" stroke-width="3" stroke-linecap="round"/></g>')
+    # lilies
+    for x,y in ((60,690),(120,720),(330,700),(350,760)):
+        o.append(f'<ellipse cx="{x}" cy="{y}" rx="26" ry="8" fill="{gr}" opacity=".8"/><circle cx="{x+6}" cy="{y-4}" r="5" fill="#f9c6d8"/>')
+    # reeds
+    for i in range(16):
+        x=r.choice([r.randint(0,110),r.randint(300,400)]);h=r.randint(140,260)
+        o.append(f'<path d="M{x} 800C{x+8} {800-h*.5:.0f} {x-6} {800-h*.8:.0f} {x+4} {800-h}" stroke="{gr2}" stroke-width="2.4" fill="none" stroke-linecap="round"/>')
+        if i%3==0:o.append(f'<rect x="{x+2}" y="{800-h-40}" width="7" height="34" rx="3.5" fill="{tr}" transform="rotate(4 {x+4} {800-h})"/>')
+    for x,y in ((190,420),(150,360),(330,330)):
+        o.append(f'<g transform="translate({x} {y})" stroke="{ln}" fill="none" stroke-width="1.2" opacity=".8"><path d="M0 0h18M9 0v-3"/><ellipse cx="-6" cy="-4" rx="8" ry="3" opacity=".7"/><ellipse cx="22" cy="-4" rx="8" ry="3" opacity=".7"/></g>')
     return W("".join(o))
 def sherlock(dark):
-    random.seed(44);c="#e6c36a" if dark else "#7a5c1e";fg="#b9c4d6" if dark else "#4d5a73";o=[]
-    for y in (120,230,350,470):
-        o.append(f'<path d="M0 {y}Q70 {y-26} 150 {y}T300 {y}T400 {y}" fill="none" stroke="{fg}" stroke-width="10" opacity=".14" stroke-linecap="round"/>')
-    for r in range(5):
-        for k in range(6):
-            x=k*70+(35 if r%2 else 0);y=640+r*32
-            o.append(f'<ellipse cx="{x}" cy="{y}" rx="30" ry="14" fill="none" stroke="{fg}" stroke-width="1.4" opacity=".55"/>')
-    o.append(f'<g transform="translate(290 250) rotate(-35)" fill="none" stroke="{c}" stroke-width="3" opacity=".85" stroke-linecap="round"><circle r="46"/><circle r="38" stroke-width="1"/><path d="M0 46V118" stroke-width="7"/></g>')
-    o.append(f'<g transform="translate(90 520)" fill="none" stroke="{c}" stroke-width="2.4" opacity=".8" stroke-linecap="round"><circle cy="-10" r="12"/><path d="M-5 0L-9 30H9L5 0"/></g>')
-    for x,y,s in ((60,70,6),(340,80,5)):o.append(star4(x,y,s,c))
+    r=random.Random(22)
+    sk1,sk2=("#0e1018","#30344a") if dark else ("#d8d5cf","#f3efe6")
+    hs=("#1a1c28","#232736","#2b3044") if dark else ("#8e8a84","#a8a39b","#bdb8ae")
+    win="#ffd877" if dark else "#f6c453";fg="#aeb8cc" if dark else "#ffffff";lamp="#ffdf8a" if dark else "#e9a93a";st="#3a3f55" if dark else "#7a766e"
+    o=[defs(lg("s",sk1,sk2),rg("lg",lamp,.85),rg("mo","#f2efe0" if dark else "#fff8dc",.9))]
+    o.append('<rect width="400" height="800" fill="url(#s)"/>')
+    o.append('<circle cx="320" cy="110" r="90" fill="url(#mo)"/><circle cx="320" cy="110" r="30" fill="%s" opacity=".95"/>'%("#f6f1dc" if dark else "#fff3c4"))
+    # rows of townhouses
+    x=-10
+    for lvl,(base,hh,col,wop) in enumerate(((470,230,hs[0],.5),(520,260,hs[1],.8),(580,290,hs[2],1))):
+        x=-20+lvl*14
+        while x<420:
+            w=r.randint(60,92);h=hh+r.randint(-30,40);y=base-h+(800-base)*0+ (base-hh)*0
+            top=base+ (800-base)*0 - h
+            o.append(f'<rect x="{x}" y="{top}" width="{w}" height="{800-top}" fill="{col}"/>')
+            o.append(f'<path d="M{x-4} {top}L{x+w/2} {top-26}L{x+w+4} {top}Z" fill="{col}"/>')
+            for cx in (x+w*.2,x+w*.62):
+                o.append(f'<rect x="{cx:.0f}" y="{top-48}" width="8" height="26" fill="{col}"/><rect x="{cx-2:.0f}" y="{top-52}" width="12" height="5" fill="{col}"/>')
+            for ry in range(int(top)+24,int(base)+60,40):
+                for cx in (x+w*.2,x+w*.6):
+                    lit=r.random()<.45*wop
+                    o.append(f'<rect x="{cx:.0f}" y="{ry}" width="14" height="22" rx="1.5" fill="{win if lit else st}" opacity="{.95 if lit else .35}"/>')
+            x+=w+r.randint(2,8)
+    o.append(f'<rect y="640" width="400" height="160" fill="{hs[2]}" opacity=".0"/>')
+    # fog bands
+    for y,op in ((330,.28),(450,.34),(560,.4),(660,.45)):
+        o.append(f'<path d="M-20 {y}q60 -26 120 0t120 0t120 0t120 0V{y+70}H-20Z" fill="{fg}" opacity="{op}"/>')
+    # cobbles
+    for row in range(8):
+        y=690+row*14
+        for k in range(-1,9):
+            xx=k*52+(26 if row%2 else 0);o.append(f'<ellipse cx="{xx}" cy="{y}" rx="24" ry="6" fill="none" stroke="{st}" stroke-width="1.4" opacity=".7"/>')
+    # gas lamp
+    o.append(f'<circle cx="86" cy="430" r="130" fill="url(#lg)"/>')
+    o.append(f'<g stroke="{st if not dark else "#10121a"}" fill="none" stroke-width="5" stroke-linecap="round"><path d="M86 700V470"/><path d="M70 700H102M76 690H96"/></g>')
+    o.append(f'<path d="M70 470L66 430H106L102 470Z" fill="{lamp}" stroke="#10121a" stroke-width="3"/><path d="M62 430L86 408L110 430Z" fill="#10121a"/><circle cx="86" cy="402" r="4" fill="#10121a"/>')
+    # smoke curls
+    for i in range(3):
+        o.append(f'<path d="M{150+i*90} {250-i*30}q-18 -22 0 -44q18 -22 0 -44" stroke="{fg}" stroke-width="3" fill="none" opacity=".45" stroke-linecap="round"/>')
     return W("".join(o))
 def frank(dark):
-    random.seed(55);bolt="#f4e07a" if dark else "#9a6b00";mo="#d8e0f0" if dark else "#4a5568";st="#8fa6c9" if dark else "#3e5278";o=[]
-    for i in range(24):
-        x,y=random.randint(10,390),random.randint(10,300);o.append(f'<circle cx="{x}" cy="{y}" r="{random.choice([1,1.3,1.8])}" fill="{mo}" opacity=".8"/>')
-    o.append(f'<circle cx="300" cy="120" r="46" fill="{mo}" opacity=".25"/><circle cx="300" cy="120" r="46" fill="none" stroke="{mo}" stroke-width="1.6"/><circle cx="286" cy="108" r="7" fill="none" stroke="{mo}" opacity=".6"/><circle cx="312" cy="134" r="5" fill="none" stroke="{mo}" opacity=".6"/>')
-    o.append(f'<path d="M120 0L96 170L132 170L100 330L170 130L134 130L160 0Z" fill="{bolt}" opacity=".7"/>')
-    for k in range(5):
-        x=k*80;o.append(f'<path d="M{x} 800V700Q{x+20} 640 {x+40} 700V800" fill="none" stroke="{st}" stroke-width="2" opacity=".7"/>')
-    o.append(f'<path d="M0 560L60 540L120 560L180 530L240 555L300 525L360 550L400 540V800H0Z" fill="{st}" opacity=".18"/>')
-    o.append(f'<path d="M30 580V470M30 470L10 440M30 470L50 440M30 500L8 480M30 500L52 480" stroke="{st}" stroke-width="2" fill="none" opacity=".6"/>')
+    r=random.Random(33)
+    sk1,sk2=("#06070e","#262c44") if dark else ("#aeb4c6","#dfe2ea")
+    cl=("#1c2136","#2b3250","#39425f") if dark else ("#8c93a8","#a3a9bb","#c2c6d2")
+    bolt="#fff6b0" if dark else "#e7a70e";mo="#e9edf8" if dark else "#fffbe4";sil="#080a12" if dark else "#3a3f55";wl="#ffd877" if dark else "#f2b84b"
+    o=[defs(lg("s",sk1,sk2),rg("mo",mo,.8),rg("bg",bolt,.7))]
+    o.append('<rect width="400" height="800" fill="url(#s)"/>')
+    o.append('<circle cx="290" cy="170" r="110" fill="url(#mo)"/><circle cx="290" cy="170" r="42" fill="%s"/>'%mo)
+    o.append(f'<circle cx="276" cy="158" r="8" fill="none" stroke="{cl[1]}" opacity=".5"/><circle cx="304" cy="186" r="6" fill="none" stroke="{cl[1]}" opacity=".5"/>')
+    for i,(y,c) in enumerate(((150,cl[0]),(250,cl[1]),(340,cl[2]))):
+        d=f"M-20 {y}"
+        for k in range(6):d+=f"q40 -{r.randint(30,60)} 80 -{r.randint(0,10)}q20 -{r.randint(10,30)} 40 0"
+        o.append(f'<path d="M-20 {y+30}c40 -60 90 -30 120 -50c30 -30 80 -30 110 -4c40 -30 90 -10 110 30c30 -10 60 10 60 40V{y+120}H-20Z" fill="{c}" opacity=".85"/>')
+    # lightning
+    def bolt_path(x,y,ln):
+        pts=[(x,y)];
+        for k in range(ln):
+            x+=r.randint(-26,22);y+=r.randint(26,46);pts.append((x,y))
+        return pts
+    for bx in (110,230):
+        pts=bolt_path(bx,170,9);d="M"+"L".join(f"{a} {b}" for a,b in pts)
+        o.append(f'<circle cx="{pts[-1][0]}" cy="{pts[-1][1]}" r="50" fill="url(#bg)"/><path d="{d}" stroke="{bolt}" stroke-width="5" fill="none" stroke-linejoin="round"/><path d="{d}" stroke="#ffffff" stroke-width="1.6" fill="none"/>')
+        a=pts[4];o.append(f'<path d="M{a[0]} {a[1]}l22 24l-6 30" stroke="{bolt}" stroke-width="3" fill="none"/>')
+    # cliff + castle
+    o.append(f'<path d="M0 800V600Q60 560 110 580Q170 520 260 560Q330 520 400 560V800Z" fill="{sil}"/>')
+    o.append(f'<g fill="{sil}"><rect x="210" y="430" width="120" height="140"/><rect x="198" y="360" width="34" height="210"/><rect x="304" y="380" width="30" height="190"/><path d="M194 360L215 318L236 360Z"/><path d="M300 380L319 344L338 380Z"/><rect x="250" y="400" width="40" height="40"/><path d="M246 400L270 372L294 400Z"/><rect x="214" y="420" width="108" height="8"/></g>')
+    for x,y,w,h in ((210,380,8,16),(316,404,7,14),(262,408,10,18),(236,470,9,16),(290,470,9,16)):
+        o.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="3" fill="{wl}"/>')
+    # dead trees
+    def tree(x,y,s):
+        return f'<g stroke="{sil}" stroke-width="{3*s}" stroke-linecap="round" fill="none"><path d="M{x} {y}V{y-90*s}"/><path d="M{x} {y-40*s}l-26 -30s"/><path d="M{x} {y-60*s}l30 -34s"/><path d="M{x} {y-80*s}l-14 -24s"/><path d="M{x-26*s} {y-70*s}l-10 -14s"/></g>'
+    o.append(tree(60,620,1.3)+tree(140,640,1)+tree(360,640,.9))
+    # waves
+    o.append(f'<rect y="680" width="400" height="120" fill="{sil}"/>')
+    for y in range(690,800,14):o.append(f'<path d="M0 {y}q25 -8 50 0t50 0t50 0t50 0t50 0t50 0t50 0t50 0" stroke="{mo}" stroke-width="1.2" fill="none" opacity=".35"/>')
+    for i in range(22):
+        x,y=r.randint(0,400),r.randint(2,70);o.append(f'<path d="M{x} {y}v22" stroke="{mo}" stroke-width=".8" opacity=".35"/>')
     return W("".join(o))
+def fleur(x,y,s,c,op=1):
+    return f'<g transform="translate({x} {y}) scale({s})" fill="{c}" opacity="{op}"><path d="M0-22C8-12 8-2 0 6C-8-2-8-12 0-22Z"/><path d="M-3 4C-18 4-24-10-16-20C-14-10-8-6-3-6Z"/><path d="M3 4C18 4 24-10 16-20C14-10 8-6 3-6Z"/><rect x="-11" y="8" width="22" height="4" rx="1.5"/><path d="M-4 12L-6 22M4 12L6 22M0 12V20" stroke="{c}" stroke-width="2.4" fill="none"/></g>'
 def musq(dark):
-    random.seed(66);c="#e3c26a" if dark else "#7a5c1e";b="#9db8e8" if dark else "#2d4a8a";o=[]
-    for x,y,sc in ((100,150,1.3),(310,300,1.0),(120,520,1.1)):
-        o.append(f'<g transform="translate({x} {y}) scale({sc})" fill="none" stroke="{c}" stroke-width="2.2" opacity=".8" stroke-linecap="round"><path d="M-42-42L42 42M42-42L-42 42"/><path d="M-50-30L-30-50M30 50L50 30M-50 30L-30 50M30-50L50-30"/><circle cx="-42" cy="-42" r="3.5"/><circle cx="42" cy="-42" r="3.5"/></g>')
-    for x,y in ((300,110),(70,350),(330,560),(190,700)):
-        o.append(f'<g transform="translate({x} {y})" fill="{b}" opacity=".6"><path d="M0-22C6-12 6-4 0 2C-6-4-6-12 0-22Z"/><path d="M-4 2C-18 0-22-10-16-18C-12-8-8-4-2 0Z"/><path d="M4 2C18 0 22-10 16-18C12-8 8-4 2 0Z"/><rect x="-10" y="4" width="20" height="4" rx="1"/></g>')
-    o.append(f'<g transform="translate(250 690) rotate(-30)" fill="none" stroke="{c}" stroke-width="2" opacity=".8" stroke-linecap="round"><path d="M0 0C10-30 30-60 40-100C20-80 10-50 0 0Z"/><path d="M0 0L-8 24"/></g>')
-    for x,y,s in ((50,60,6),(350,60,5),(200,420,5)):o.append(star4(x,y,s,c))
+    r=random.Random(44)
+    sk1,sk2=("#0d1230","#3a2a58") if dark else ("#c9d4f2","#f7e6d4")
+    gold="#e8c46a" if dark else "#a47a1c";cur=("#5a1730","#7a2040") if dark else ("#c46d85","#d98fa4");bl="#9db8e8" if dark else "#2d4a8a";sil="#0a0c1c" if dark else "#7480a8";wl="#ffd877" if dark else "#f4b840"
+    o=[defs(lg("s",sk1,sk2),lg("c",cur[0],cur[1],1,0),rg("mo","#fff2c4" if dark else "#fff7dc",.8))]
+    o.append('<rect width="400" height="800" fill="url(#s)"/>')
+    o.append('<circle cx="270" cy="170" r="90" fill="url(#mo)"/><circle cx="270" cy="170" r="30" fill="%s"/>'%("#fff1c0" if dark else "#fff7dc"))
+    # paris rooftops with tower
+    o.append(ridge(520,12,2,sil,.55,9))
+    o.append(f'<g fill="{sil}" opacity=".85"><rect x="150" y="400" width="52" height="170"/><path d="M144 400L176 340L208 400Z"/><rect x="170" y="300" width="12" height="44"/><path d="M168 300L176 270L184 300Z"/><rect x="40" y="450" width="70" height="120"/><path d="M34 450L75 410L116 450Z"/><rect x="300" y="440" width="80" height="130"/><path d="M294 440L340 400L386 440Z"/></g>')
+    for x,y in ((160,420),(184,420),(165,470),(55,470),(88,470),(318,470),(350,470)):
+        o.append(f'<rect x="{x}" y="{y}" width="10" height="16" rx="2" fill="{wl}" opacity=".9"/>')
+    # crossed swords
+    o.append(f'<g transform="translate(200 640)" opacity=".92"><g stroke="{gold}" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M-120-100L96 80" stroke-width="5"/><path d="M120-100L-96 80" stroke-width="5"/><path d="M-130-110l22 8l-8 22" stroke-width="3"/></g><g fill="{gold}"><rect x="-70" y="38" width="46" height="7" rx="3" transform="rotate(40 -47 41)"/><rect x="24" y="38" width="46" height="7" rx="3" transform="rotate(-40 47 41)"/><circle cx="-104" cy="-82" r="7"/><circle cx="104" cy="-82" r="7"/></g></g>')
+    # plume
+    o.append(f'<g transform="translate(70 640) rotate(-18)"><path d="M0 0C-30 -40 -10 -110 40 -150C30 -100 50 -60 10 -10Z" fill="{cur[1]}" opacity=".9"/><path d="M0 0C20 -50 30 -90 40 -150" stroke="{gold}" stroke-width="2" fill="none"/><path d="M6-30l-16-6M12-56l-18-4M20-84l-16-2M28-110l-14 0" stroke="{gold}" stroke-width="1.6"/></g>')
+    # curtains
+    o.append(f'<path d="M0 0H92Q70 120 84 240Q94 340 60 440Q40 500 70 560Q20 600 0 640Z" fill="url(#c)"/><path d="M400 0H308Q330 120 316 240Q306 340 340 440Q360 500 330 560Q380 600 400 640Z" fill="url(#c)"/>')
+    for i in range(6):
+        o.append(f'<path d="M{10+i*12} 0Q{30+i*8} 200 {16+i*8} 420" stroke="{cur[0]}" stroke-width="2" fill="none" opacity=".55"/><path d="M{390-i*12} 0Q{370-i*8} 200 {384-i*8} 420" stroke="{cur[0]}" stroke-width="2" fill="none" opacity=".55"/>')
+    o.append(f'<path d="M0 12H400" stroke="{gold}" stroke-width="3"/>')
+    for x in range(20,400,40):o.append(f'<circle cx="{x}" cy="12" r="4" fill="{gold}"/>')
+    # fleur-de-lis band
+    for i,x in enumerate(range(40,400,64)):o.append(fleur(x,300,1.1,gold,.55))
+    for i,x in enumerate(range(72,400,64)):o.append(fleur(x,740,.9,bl,.7))
+    for i in range(8):o.append(f'<path d="M{20+i*52} 770h30" stroke="{gold}" stroke-width="2" opacity=".6"/>')
     return W("".join(o))
 def principe(dark):
-    random.seed(77);c="#e0b95a" if dark else "#7a5c1e";r="#d98a8a" if dark else "#8a2a2a";o=[]
-    for x,y,sc in ((80,140,1.2),(300,260,1.0),(150,480,1.1)):
-        o.append(f'<g transform="translate({x} {y}) scale({sc})" fill="none" stroke="{c}" stroke-width="2.2" opacity=".8" stroke-linejoin="round"><path d="M-40 40V-10H-30V-20H-20V-10H-8V-20H4V-10H16V-20H28V-10H40V40Z"/><path d="M-10 40V18Q0 6 10 18V40"/></g>')
-    o.append(f'<g transform="translate(300 600)" fill="none" stroke="{c}" stroke-width="2.4" opacity=".85" stroke-linejoin="round"><path d="M-40 20L-46-20L-22 0L0-30L22 0L46-20L40 20Z"/><path d="M-40 28H40"/><circle cx="0" cy="-34" r="3" fill="{c}"/></g>')
-    for i in range(10):
-        x=30+i*36;y=700+(i%2)*14;o.append(f'<path transform="translate({x} {y}) rotate({-20+i*4})" d="M0 0C6-8 6-18 0-26C-6-18-6-8 0 0Z" fill="{r}" opacity=".45"/>')
-    for x,y,s in ((60,60,6),(340,70,5),(200,330,5)):o.append(star4(x,y,s,c))
+    r=random.Random(55)
+    sk1,sk2=("#1c1030","#7a3a4a") if dark else ("#f3c9b0","#fbe9cf")
+    sn="#ffcf7a" if dark else "#fff0b8";ter=("#2a1f22","#3b2a2a","#4a3430") if dark else ("#c9a07e","#b98c68","#a67a58");dome="#d9806a" if dark else "#b85a3e";stn="#e6cfa8" if dark else "#d9bd90";cyp="#16301f" if dark else "#3f6b44";gold="#e8c46a" if dark else "#a47a1c";pal="#b34a4a" if dark else "#8a2a2a"
+    o=[defs(lg("s",sk1,sk2),rg("sn",sn,.9))]
+    o.append('<rect width="400" height="800" fill="url(#s)"/>')
+    o.append('<circle cx="90" cy="230" r="130" fill="url(#sn)"/><circle cx="90" cy="230" r="34" fill="%s"/>'%sn)
+    for i,(y,c) in enumerate(((420,ter[0]),(470,ter[1]),(530,ter[2]))):o.append(ridge(y,16,10+i,c,1,6))
+    # cathedral dome
+    o.append(f'<g transform="translate(250 360)"><rect x="-70" y="60" width="140" height="110" fill="{stn}"/><path d="M-56 60Q-56 0 0 -20Q56 0 56 60Z" fill="{dome}"/><path d="M0 -20V60M-28 -8V60M28 -8V60M-46 22Q0 4 46 22" stroke="{stn}" stroke-width="2.4" fill="none"/><rect x="-6" y="-48" width="12" height="30" fill="{stn}"/><path d="M-8 -48L0 -66L8 -48Z" fill="{dome}"/><path d="M0 -66V-80M-6 -74H6" stroke="{gold}" stroke-width="2.4"/><rect x="-90" y="90" width="30" height="80" fill="{stn}"/><rect x="60" y="90" width="30" height="80" fill="{stn}"/></g>')
+    for k in range(4):
+        for j in range(3):o.append(f'<rect x="{196+k*34}" y="{458+j*22}" width="9" height="14" rx="4.5" fill="{pal}" opacity=".65"/>')
+    # tower
+    o.append(f'<g transform="translate(90 330)"><rect x="-26" y="40" width="52" height="220" fill="{stn}"/><rect x="-36" y="10" width="72" height="34" fill="{stn}"/><path d="M-36 10H36" stroke="{ter[0]}" stroke-width="2"/>'+"".join(f'<rect x="{x}" y="0" width="10" height="14" fill="{stn}"/>' for x in (-36,-18,0,18,26))+f'<rect x="-14" y="-40" width="28" height="42" fill="{stn}"/><path d="M-18 -40L0 -64L18 -40Z" fill="{pal}"/><circle cx="0" cy="130" r="14" fill="none" stroke="{ter[0]}" stroke-width="2.4"/><path d="M0 130V120M0 130l6 4" stroke="{ter[0]}" stroke-width="2"/></g>')
+    # cypress
+    for x,y,s in ((30,560,1.1),(350,560,1.2),(318,580,.8),(60,590,.8)):
+        o.append(f'<path d="M{x} {y}C{x-22*s} {y-60*s} {x-14*s} {y-140*s} {x} {y-170*s}C{x+14*s} {y-140*s} {x+22*s} {y-60*s} {x} {y}Z" fill="{cyp}"/><rect x="{x-2}" y="{y}" width="4" height="22" fill="{ter[2]}"/>')
+    # banners
+    for x,c in ((150,pal),(210,gold),(270,pal)):
+        o.append(f'<path d="M{x} 120V260" stroke="{gold}" stroke-width="3"/><path d="M{x} 126H{x+44}L{x+34} 144L{x+44} 162H{x} Z" fill="{c}" opacity=".9"/>')
+    # laurel crown + crown
+    o.append(f'<g transform="translate(200 680)" opacity=".95"><path d="M-70 40Q-96 -10 -48 -50" stroke="{cyp}" stroke-width="3" fill="none"/><path d="M70 40Q96 -10 48 -50" stroke="{cyp}" stroke-width="3" fill="none"/>'+"".join(f'<path transform="translate({-74+ (-1)*0 + i*0} 0)" d=""/>' for i in range(0))+"".join(f'<ellipse cx="{-82+i*4}" cy="{30-i*13}" rx="11" ry="5" fill="{cyp}" transform="rotate({-35-i*8} {-82+i*4} {30-i*13})"/><ellipse cx="{82-i*4}" cy="{30-i*13}" rx="11" ry="5" fill="{cyp}" transform="rotate({35+i*8} {82-i*4} {30-i*13})"/>' for i in range(5))+f'<path d="M-36 26L-44-20L-18 0L0-30L18 0L44-20L36 26Z" fill="{gold}" stroke="{pal}" stroke-width="2.2"/><rect x="-36" y="26" width="72" height="10" rx="2" fill="{gold}" stroke="{pal}" stroke-width="2.2"/><circle cx="0" cy="-34" r="4" fill="{pal}"/><circle cx="-44" cy="-22" r="3.4" fill="{pal}"/><circle cx="44" cy="-22" r="3.4" fill="{pal}"/></g>')
     return W("".join(o))
 def dante(dark):
-    random.seed(88);c="#f0d58a" if dark else "#7a4a00";fl="#f08a5a" if dark else "#b3411a";g="#a9b8e8" if dark else "#3a4a8a";o=[]
-    for rx in (30,60,95,135,180):
-        o.append(f'<circle cx="200" cy="180" r="{rx}" fill="none" stroke="{g}" stroke-width="1.4" opacity=".45"/>')
-    for k in range(12):
-        import math
-        a=k*math.pi/6;o.append(f'<path d="M{200+math.cos(a)*30:.1f} {180+math.sin(a)*30:.1f}L{200+math.cos(a)*180:.1f} {180+math.sin(a)*180:.1f}" stroke="{c}" stroke-width="1" opacity=".3"/>')
-    for i in range(30):
-        x,y=random.randint(8,392),random.randint(8,420);o.append(f'<circle cx="{x}" cy="{y}" r="{random.choice([1,1.3,1.8])}" fill="{c}"/>')
-    for x,y,s in ((200,180,10),(60,330,6),(340,350,7)):o.append(star4(x,y,s,c))
-    for k in range(8):
-        x=20+k*50;h=40+(k*37)%50
-        o.append(f'<path d="M{x} 800C{x-14} {800-h*.5} {x+6} {800-h*.7} {x} {800-h}C{x+16} {800-h*.6} {x+12} {800-h*.3} {x+8} 800Z" fill="{fl}" opacity=".5"/>')
+    r=random.Random(66)
+    sk1,sk2=("#080a1e","#2a2d6a") if dark else ("#d9d2f0","#fbe6d2")
+    gold="#f6dc8e" if dark else "#a8741c";ring="#b9c4f2" if dark else "#4a5a9a";fl=("#ff7a3d","#ffbf4d") if dark else ("#e4572a","#f1a12c");mt="#1a1330" if dark else "#8a7aa6";rs="#ffe9a8" if dark else "#fff2c0"
+    o=[defs(lg("s",sk1,sk2),rg("c",rs,.95),lg("f",fl[0],fl[1],0,-1))]
+    o.append('<rect width="400" height="800" fill="url(#s)"/>')
+    # rays
+    for k in range(24):
+        a=k*math.pi/12;o.append(f'<path d="M200 220L{200+math.cos(a)*420:.0f} {220+math.sin(a)*420:.0f}" stroke="{gold}" stroke-width="{1.6 if k%2 else 3}" opacity=".16"/>')
+    o.append('<circle cx="200" cy="220" r="150" fill="url(#c)" opacity=".55"/>')
+    for i,rad in enumerate((26,52,82,116,152,190)):
+        o.append(f'<circle cx="200" cy="220" r="{rad}" fill="none" stroke="{ring}" stroke-width="{1.8 if i%2 else 1.2}" opacity=".6" stroke-dasharray="{"2 7" if i%2 else "0"}"/>')
+        for j in range(5+i*2):
+            a=r.uniform(0,6.283);o.append(f'<circle cx="{200+math.cos(a)*rad:.1f}" cy="{220+math.sin(a)*rad:.1f}" r="{r.choice([2,2.6,3.4])}" fill="{gold}"/>')
+    o.append(f'<circle cx="200" cy="220" r="13" fill="{gold}"/><circle cx="200" cy="220" r="5" fill="#ffffff"/>')
+    for i in range(36):
+        x,y=r.randint(6,394),r.randint(6,520);o.append(f'<circle cx="{x}" cy="{y}" r="{r.choice([.8,1.1,1.5])}" fill="{rs}" opacity=".85"/>')
+    for x,y,s in ((46,90,8),(350,70,7),(370,360,6),(34,330,6)):o.append(star4(x,y,s,gold))
+    # mountain of terraces
+    o.append(f'<path d="M-10 800V640L90 560L150 520L190 440L210 440L250 520L310 560L410 640V800Z" fill="{mt}"/>')
+    for k,y in enumerate((470,510,552,596,640)):
+        w=22+k*46
+        o.append(f'<path d="M{200-w} {y}Q200 {y-12} {200+w} {y}" stroke="{gold}" stroke-width="2" fill="none" opacity=".7"/>')
+    o.append(f'<path d="M190 440Q200 410 210 440" fill="{rs}" opacity=".8"/>')
+    # flames
+    for x in range(-10,420,34):
+        h=r.randint(70,150);w=r.randint(22,34)
+        o.append(f'<path d="M{x} 800C{x-w} {800-h*.4:.0f} {x+w*.3:.0f} {800-h*.6:.0f} {x} {800-h}C{x+w*1.2:.0f} {800-h*.6:.0f} {x+w*.8:.0f} {800-h*.3:.0f} {x+w} 800Z" fill="url(#f)" opacity=".75"/>')
     return W("".join(o))
+
 ST={"pp":pp,"alice":alice,"pino":pino,"verne":verne,"peter":peter,"wind":wind,"sherlock":sherlock,"frank":frank,"musq":musq,"principe":principe,"dante":dante}
 ID={"pp":"pp","alice":"alice","pino":"pinocchio","verne":"verne","peter":"peter","wind":"wind","sherlock":"sherlock","frank":"frank","musq":"musq","principe":"principe","dante":"dante"}
 fonts={"pp":"Newsreader","alice":"Newsreader","pino":"Newsreader","verne":"Newsreader","peter":"Newsreader","wind":"Newsreader","sherlock":"Newsreader","frank":"Newsreader","musq":"Newsreader","principe":"Newsreader","dante":"Newsreader"}

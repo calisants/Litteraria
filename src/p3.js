@@ -63,10 +63,6 @@ frank:{name:"Noite de Tempestade",desc:"Inspirado em Frankenstein: relâmpago, l
 musq:{name:"Capa e Espada",desc:"Inspirado em Os Três Mosqueteiros: espadas cruzadas, flor-de-lis e pluma",schemes:[["Guarda real",0,"#eef0f7","#ffffff","#dde2f0","#b4bedb","#2d4a8a","#1c2036","#444b66","#7a4f00","#1f7a45","#b3261e"],["Noite em Paris",1,"#10162b","#182040","#222c56","#35437a","#9db8e8","#eef1fa","#bcc4dd","#e3c26a","#7fdca8","#ff9a8f"]]},
 principe:{name:"Torres de Florença",desc:"Inspirado em O Príncipe: torres, coroa e louro",schemes:[["Pedra e louro",0,"#f3ede0","#ffffff","#e7dcc4","#cdbd98","#8a2a2a","#2a2118","#574c3c","#7a4f00","#1f7a45","#a31f1f"],["Corte à luz de vela",1,"#201714","#2c211c","#3a2c25","#55433a","#d98a8a","#f6ece0","#cdbcae","#e0b95a","#7fdca8","#ff9a8f"]]},
 dante:{name:"Círculos do Paraíso",desc:"Inspirado em A Divina Comédia: círculos, estrelas e chamas",schemes:[["Céu claro",0,"#f1eefa","#ffffff","#e2ddf3","#bdb4e0","#3a4a8a","#201c33","#4a4660","#8a3b12","#1f7a45","#b3261e"],["Noite estrelada",1,"#0f1226","#171b38","#212649","#343b6e","#a9b8e8","#eef0fb","#bfc4de","#f0d58a","#7fdca8","#ff9a8f"]]},
-min:{name:"Minimalista",desc:"Muito branco, alto contraste",schemes:[
-    ["Branco e preto",0,"#ffffff","#ffffff","#f1f1f1","#d9d9d9","#595959","#111111","#454545","#111111","#16683c","#b3261e"],
-    ["Papel e azul",0,"#fafaf7","#ffffff","#efeee8","#dcdbd2","#5c5c55","#16160f","#47473f","#0b3d91","#16683c","#b3261e"],
-    ["Preto e branco",1,"#000000","#0a0a0a","#1a1a1a","#2e2e2e","#9a9a9a","#ffffff","#c4c4c4","#ffffff","#6fcf9f","#ff8f85"]]}
 };
 const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
