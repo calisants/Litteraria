@@ -1,0 +1,154 @@
+dévouement|dedicação, devotamento|s|m
+circonstance|circunstância|s|f
+espèce|espécie, tipo|s|f
+congé|licença, folga|s|m
+caractère|caráter|s|m
+curé|pároco|s|m
+équipement|equipamento|s|m
+recommandation|recomendação|s|f
+trahison|traição|s|f
+jalousie|ciúme|s|f
+faiblesse|fraqueza|s|f
+enthousiasme|entusiasmo|s|m
+écuyer|escudeiro|s|m
+piège|armadilha|s|m
+fossoyeur|coveiro|s|m
+feutre|feltro, chapéu de feltro|s|m
+cachot|calabouço|s|m
+châtiment|castigo|s|m
+serment|juramento|s|m
+victoire|vitória|s|f
+lutte|luta|s|f
+fuite|fuga|s|f
+cervelle|miolos, cérebro|s|f
+coffre|baú, arca|s|m
+coffret|cofrinho|s|m
+angoisse|angústia|s|f
+politesse|polidez|s|f
+paix|paz|s|f
+foule|multidão|s|f
+plainte|queixa|s|f
+mendiant|mendigo|s|m
+chirurgien|cirurgião|s|m
+prêtre|padre|s|m
+tranchée|trincheira|s|f
+saphir|safira|s|m
+escorte|escolta|s|f
+canon|canhão|s|m
+casaque|casaca|s|f
+bride|rédea, brida|s|f
+velours|veludo|s|m
+mulet|mulo|s|m
+verrou|ferrolho|s|m
+hôtellerie|estalagem|s|f
+hôtelier|estalajadeiro|s|m
+monture|montaria (cavalo)|s|f
+rayon|raio (de luz)|s|m
+jugement|julgamento|s|m
+souricière|ratoeira|s|f
+barque|barca|s|f
+corde|corda|s|f
+lis|lírio|s|m
+prière|oração, súplica|s|f
+traître|traidor|s|m
+ruelle|viela|s|f
+meuble|móvel|s|m
+misère|miséria|s|f
+conscience|consciência|s|f
+mépris|desprezo|s|m
+difficulté|dificuldade|s|f
+renseignement|informação|s|m
+volonté|vontade|s|f
+sûreté|segurança|s|f
+expédition|expedição|s|f
+héler|chamar (em voz alta)|v
+rapprocher|aproximar|v
+contenter|contentar|v
+ramener|trazer de volta|v
+accorder|conceder|v
+introduire|introduzir, fazer entrar|v
+emmener|levar (alguém)|v
+conserver|conservar|v
+entraîner|arrastar, treinar|v
+lier|ligar, amarrar|v
+allier|aliar|v
+inviter|convidar|v
+tâcher|tentar, procurar|v
+enfoncer|enfiar, afundar|v
+compromettre|comprometer|v
+torturer|torturar|v
+séduire|seduzir|v
+remplir|encher|v
+résulter|resultar|v
+plaisanter|brincar, gracejar|v
+débarrasser|livrar, desembaraçar|v
+supposer|supor|v
+menacer|ameaçar|v
+vider|esvaziar|v
+renvoyer|mandar de volta|v
+apprêter|preparar, aprontar|v
+résister|resistir|v
+maudire|amaldiçoar|v
+exposer|expor|v
+regagner|voltar a, recuperar|v
+écarter|afastar|v
+retomber|cair de novo|v
+précéder|preceder|v
+froncer|franzir|v
+miser|apostar|v
+verser|verter, derramar|v
+croiser|cruzar|v
+fouiller|revistar, vasculhar|v
+céder|ceder|v
+frissonner|estremecer|v
+mériter|merecer|v
+ôter|tirar, remover|v
+pourvoir|prover|v
+dénoncer|denunciar|v
+satisfaire|satisfazer|v
+fendre|fender, rachar|v
+punir|punir|v
+empoisonner|envenenar|v
+hausser|levantar, erguer|v
+rouvrir|reabrir|v
+échouer|falhar, encalhar|v
+tarder|demorar, tardar|v
+suspendre|suspender, pendurar|v
+dissimuler|dissimular|v
+détester|detestar|v
+infâme|infame|adj
+grave|grave, sério|adj
+excellent|excelente|adj
+inquiet|inquieto, preocupado|adj
+illustre|ilustre|adj
+précieux|precioso|adj
+fatal|fatal|adj
+probable|provável|adj
+menaçant|ameaçador|adj
+désespéré|desesperado|adj
+ardent|ardente|adj
+insensé|insensato|adj
+caché|escondido|adj
+adroit|hábil|adj
+agréable|agradável|adj
+évident|evidente|adj
+glorieux|glorioso|adj
+jaloux|ciumento|adj
+obscur|obscuro, escuro|adj
+cruel|cruel|adj
+défendu|proibido|adj
+accompli|realizado, perfeito|adj
+serré|apertado|adj
+facilement|facilmente|adv
+désormais|de agora em diante|adv
+toutefois|no entanto|adv
+légèrement|levemente|adv
+véritablement|verdadeiramente|adv
+réellement|realmente|adv
+complètement|completamente|adv
+naturellement|naturalmente|adv
+tendrement|ternamente|adv
+cruellement|cruelmente|adv
+respectueusement|respeitosamente|adv
+tôt|cedo|adv
+ordinairement|normalmente|adv

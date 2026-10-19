@@ -1,0 +1,85 @@
+letizia|alegria, júbilo|s|f
+affetto|afeto|s|m
+sembiante|aparência, semblante|s|m
+guisa|modo, maneira|s|f
+diletto|amado, querido|s|m
+guida|guia|s|f
+vena|veia|s|f
+savio|sábio|s|m
+sospiro|suspiro|s|m
+cenno|aceno, sinal|s|m
+turba|multidão|s|f
+senno|juízo, sabedoria|s|m
+peccatore|pecador|s|m
+radice|raiz|s|f
+favilla|faísca|s|f
+roccia|rocha|s|f
+doglia|dor, aflição|s|f
+nube|nuvem|s|f
+nido|ninho|s|m
+saetta|flecha, raio|s|f
+sguardo|olhar|s|m
+guancia|bochecha|s|f
+soglia|soleira, limiar|s|f
+dimora|morada|s|f
+peccato|pecado|s|m
+piaga|chaga, ferida|s|f
+brama|anseio, desejo|s|f
+avarizia|avareza|s|f
+sentenza|sentença|s|f
+vela|vela (de barco)|s|f
+fossa|fossa, cova|s|f
+cera|cera|s|f
+altezza|altura|s|f
+gelo|gelo, frio intenso|s|m
+coro|coro|s|m
+malizia|malícia|s|f
+nave|nave, navio|s|f
+tronco|tronco|s|m
+digiuno|jejum|s|m
+mestiere|ofício|s|m
+ardire|ousadia|s|m
+conforto|conforto, consolo|s|m
+errare|vagar, errar|v
+godere|desfrutar, gozar|v
+smarrire|perder, extraviar|v
+benedire|abençoar|v
+peccare|pecar|v
+negare|negar|v
+lodare|louvar|v
+confortare|confortar, consolar|v
+piovere|chover|v
+cingere|cingir, rodear|v
+scaldare|aquecer|v
+gustare|saborear|v
+infiammare|inflamar|v
+spegnere|apagar|v
+rimembrare|recordar|v
+ragionare|raciocinar, conversar|v
+favellare|falar|v
+apprendere|aprender|v
+segnare|marcar|v
+sostenere|sustentar, apoiar|v
+trapassare|transpassar, atravessar|v
+sciogliere|soltar, derreter|v
+concedere|conceder|v
+distinguere|distinguir|v
+comprendere|compreender|v
+piegare|dobrar|v
+accostare|aproximar|v
+sommo|supremo|adj
+attento|atento|adj
+angelico|angélico|adj
+doloroso|doloroso|adj
+crudo|cru, cruel|adj
+ardente|ardente|adj
+soave|suave|adj
+benigno|benigno|adj
+mirabile|admirável|adj
+leggero|leve|adj
+empio|ímpio|adj
+sano|são, saudável|adj
+verace|verdadeiro|adj
+lieve|leve, suave|adj
+altrimenti|de outro modo|adv
+lungi|longe|adv
