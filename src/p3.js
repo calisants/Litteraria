@@ -64,7 +64,7 @@ musq:{name:"Capa e Espada",desc:"Inspirado em Os Três Mosqueteiros: espadas cru
 principe:{name:"Torres de Florença",desc:"Inspirado em O Príncipe: torres, coroa e louro",schemes:[["Pedra e louro",0,"#f3ede0","#ffffff","#e7dcc4","#cdbd98","#8a2a2a","#2a2118","#574c3c","#7a4f00","#1f7a45","#a31f1f"],["Corte à luz de vela",1,"#201714","#2c211c","#3a2c25","#55433a","#d98a8a","#f6ece0","#cdbcae","#e0b95a","#7fdca8","#ff9a8f"]]},
 dante:{name:"Círculos do Paraíso",desc:"Inspirado em A Divina Comédia: círculos, estrelas e chamas",schemes:[["Céu claro",0,"#f1eefa","#ffffff","#e2ddf3","#bdb4e0","#3a4a8a","#201c33","#4a4660","#8a3b12","#1f7a45","#b3261e"],["Noite estrelada",1,"#0f1226","#171b38","#212649","#343b6e","#a9b8e8","#eef0fb","#bfc4de","#f0d58a","#7fdca8","#ff9a8f"]]},
 };
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[]};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{}};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -101,6 +101,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(sv.fTheme==="all"||CATS.some(c=>c[0]===sv.fTheme)||BOOKTHEMES.some(c=>c[0]===sv.fTheme))S.fTheme=sv.fTheme;
   if(sv.fLevel==="all"||LVN[sv.fLevel])S.fLevel=sv.fLevel;
   if(typeof sv.fGame==="string"&&/^[a-z]+$/.test(sv.fGame))S.fGame=sv.fGame;
+  if(sv.cap&&typeof sv.cap==="object")Object.keys(sv.cap).forEach(k=>{if(/^[a-z]+-\d{1,3}$/.test(k))S.cap[k]=1;});
   /* as marcas de concluído das versões antigas não são trazidas: os ids das páginas mudaram */
   if(!old&&sv.done&&typeof sv.done==="object")Object.keys(sv.done).forEach(k=>{if(/^(fr|it|en):[a-z0-9-]+$/.test(k))S.done[k]=1;});
 })();
@@ -289,7 +290,7 @@ function skRec(w,label,ok){
 function seedNow(){seedWith(S.lang+"|"+(P.vid||curVol().id)+"|"+P.id);}
 
 let clearStatsArmed=false;
-const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback","dict","books","album"];
+const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback","dict","books","album","reader"];
 let clearArmed=false;
 function go(name){
   SCREENS.forEach(s=>{$("#s-"+s).hidden=s!==name;});
@@ -483,7 +484,7 @@ $("#clear-stats").addEventListener("click",()=>{
 });
 $("#clear-done").addEventListener("click",()=>{
   if(!clearArmed){clearArmed=true;$("#clear-note").textContent="Toque de novo para apagar todas as marcas de concluído.";return;}
-  S.done={};save();clearArmed=false;$("#clear-note").textContent="Marcas apagadas.";
+  S.done={};S.cap={};save();clearArmed=false;$("#clear-note").textContent="Marcas apagadas.";
 });
 
 const STAGES={cross:"#stage",search:"#stage",connect:"#cstage",sentence:"#sstage",frases:"#sstage",odd:"#ostage",alfabeto:"#lstage",sons:"#lstage",fala:"#lstage",tema:"#lstage",ditado:"#lstage",resposta:"#rstage"};

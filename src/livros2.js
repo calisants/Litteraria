@@ -179,21 +179,23 @@
     rd={D:BOOKREAD[P.rd][P.k-1],shown:{},sel:null,found:{}};
     renderLeitura();
   }
-  function lineHtml(seg,i,m,lang){
+  function wordsHtml(text,m,lang,found){
     const sk=S.sk[lang]||{};
     let before="";
-    const parts=seg.s.split(/(\p{L}[\p{L}'’]*)/u).map(t=>{
+    return text.split(/(\p{L}[\p{L}'’]*)/u).map(t=>{
       const start=!/[\p{L}]/u.test(before)||/[.!?:;]["'«»\s]*$/.test(before);
       before+=t;
       if(!/^\p{L}/u.test(t))return esc(t);
       if(!start&&t[0]!==t[0].toLowerCase())return esc(t);   /* nomes próprios no meio da frase não contam */
       const k=keyOf(t,m,lang);
       if(!k)return esc(t);
-      rd.found[k]=m[k];
+      found[k]=m[k];
       const a=sk[k],learned=a&&a[0]>0;
       return '<button type="button" class="rw '+(learned?"k":"u")+'" data-k="'+esc(k)+'">'+esc(t)+"</button>";
     }).join("");
-    return '<div class="rd-line"><p class="rd-s">'+parts+'</p><div class="rd-act">'+(lang===S.lang?speakBtn(seg.s):"")+'<button type="button" class="btn rd-tr" data-i="'+i+'" aria-pressed="'+!!rd.shown[i]+'">'+(rd.shown[i]?"Esconder tradução":"Ver tradução")+"</button></div>"+(rd.shown[i]?'<p class="rd-pt">'+esc(seg.pt)+"</p>":"")+"</div>";
+  }
+  function lineHtml(seg,i,m,lang){
+    return '<div class="rd-line"><p class="rd-s">'+wordsHtml(seg.s,m,lang,rd.found)+'</p><div class="rd-act">'+(lang===S.lang?speakBtn(seg.s):"")+'<button type="button" class="btn rd-tr" data-i="'+i+'" aria-pressed="'+!!rd.shown[i]+'">'+(rd.shown[i]?"Esconder tradução":"Ver tradução")+"</button></div>"+(rd.shown[i]?'<p class="rd-pt">'+esc(seg.pt)+"</p>":"")+"</div>";
   }
   function renderLeitura(){
     const b=BK[P.rd],m=vmap(P.rd);rd.found={};
@@ -220,6 +222,7 @@
     }
   });
 
+  const TI=window.BOOKTXT_INFO||{};
   /* ---- Meus livros ---- */
   const cats=b=>b.chunks.map(c=>c.cat);
   const bookPages=b=>{
@@ -245,15 +248,105 @@
         '<p class="bkc-l">Lições concluídas: <b>'+doneN+" de "+pages.length+"</b> ("+pct+"%)</p>"+'<div class="bar2" role="img" aria-label="'+pct+'% das lições"><i style="width:'+pct+'%"></i></div>'+
         '<p class="bkc-s">Vocabulário '+cnt(kinds.words)+(kinds.fr.length?" · Frases "+cnt(kinds.fr):"")+(kinds.rd.length?" · Leitura "+cnt(kinds.rd):"")+"</p>"+
         (nx?'<button type="button" class="btn primary" data-bk-go="'+esc(nx.page.id)+'" data-bk-vol="'+nx.vol+'">'+(doneN?"Continuar este livro":"Começar este livro")+"</button>":'<p class="bkc-ok">Livro concluído ✓</p>')+
-        '<div class="row bkc-r">'+(kinds.fr.length?'<button type="button" class="btn" data-bk-go="'+esc(kinds.fr[0].page.id)+'" data-bk-vol="3">Frases</button>':"")+(kinds.rd.length?'<button type="button" class="btn" data-bk-go="'+esc(kinds.rd[0].page.id)+'" data-bk-vol="3">Leitura</button>':"")+"</div></article>";
+        '<div class="row bkc-r">'+(TI[b.id]?'<button type="button" class="btn" data-bk-read="'+b.id+'">Ler o livro</button>':"")+(kinds.fr.length?'<button type="button" class="btn" data-bk-go="'+esc(kinds.fr[0].page.id)+'" data-bk-vol="3">Frases</button>':"")+(kinds.rd.length?'<button type="button" class="btn" data-bk-go="'+esc(kinds.rd[0].page.id)+'" data-bk-vol="3">Leitura</button>':"")+"</div></article>";
     }).join("");
   }
   window.renderBooks=renderBooks;
   $("#books-list").addEventListener("click",e=>{
+    const rb=e.target.closest("[data-bk-read]");if(rb){openReader(rb.dataset.bkRead);return;}
     const b=e.target.closest("[data-bk-go]");if(!b)return;
     S.vol=+b.dataset.bkVol;S.fGame="all";S.fTheme="all";save();startPage(b.dataset.bkGo);
   });
   $("#books-album").addEventListener("click",()=>go("album"));
   $("#go-books").addEventListener("click",()=>go("books"));
+
+  /* ---- Livro completo: capítulos com o original e a tradução, parágrafo a parágrafo ---- */
+  const RK={id:null,ch:null,data:null,shown:{},found:{},sel:null};window.readerState=()=>RK;
+  const capKey=(id,n)=>id+"-"+n;
+  function loadTxt(id){
+    return new Promise((ok,no)=>{
+      if(window.BOOKTXT&&BOOKTXT[id])return ok(BOOKTXT[id]);
+      const sc=document.createElement("script");
+      sc.src="books/"+id+".js?v="+APP_REL.v;
+      sc.onload=()=>(window.BOOKTXT&&BOOKTXT[id])?ok(BOOKTXT[id]):no();
+      sc.onerror=no;document.head.appendChild(sc);
+    });
+  }
+  function rdrSet(title,sub){$("#rdr-title").textContent=title;$("#rdr-sub").textContent=sub||"";}
+  function openReader(id,ch){
+    const b=BK[id],info=TI[id];if(!b||!info)return;
+    RK.id=id;RK.ch=null;RK.data=null;go("reader");
+    if(ch){openChapter(ch);return;}
+    renderChapterList();
+  }
+  function renderChapterList(){
+    const b=BK[RK.id],info=TI[RK.id];RK.ch=null;
+    rdrSet(b.name,"Texto completo · "+(info.chs.length===info.total?info.total+" capítulo"+(info.total>1?"s":""):info.chs.length+" de "+info.total+" capítulos prontos"));
+    const read=info.chs.filter(c=>S.cap[capKey(RK.id,c.n)]).length;
+    let h='<p class="ocount">Capítulos lidos: '+read+" de "+info.chs.length+"</p>";
+    h+='<div class="chl">'+info.chs.map(c=>{
+      const ok=S.cap[capKey(RK.id,c.n)];
+      return '<button type="button" class="chb'+(ok?" ok":"")+'" data-ch="'+c.n+'"><span class="chn">'+(ok?"✓":c.n)+'</span><span class="cht"><b>'+esc(c.t)+"</b>"+(c.tp?"<small>"+esc(c.tp)+"</small>":"")+"<small>"+c.w+" palavras</small></span></button>";
+    }).join("")+"</div>";
+    if(info.chs.length<info.total)h+='<p class="note"><small>Os outros capítulos ainda estão sendo preparados.</small></p>';
+    h+='<p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução: escrita por Claude, sem fonte conferida; pode ter erros ou escolhas diferentes de uma tradução publicada.</small></p>';
+    $("#rdr-body").innerHTML=h;$("#rdr-body").scrollTop=0;
+  }
+  function openChapter(n){
+    const b=BK[RK.id];
+    $("#rdr-body").innerHTML='<p class="help">Abrindo o capítulo…</p>';
+    loadTxt(RK.id).then(D=>{
+      const c=D.find(x=>x.n===n);if(!c)throw 0;
+      RK.ch=n;RK.data=c;RK.shown={};RK.found={};RK.sel=null;
+      renderChapter();
+    }).catch(()=>{
+      $("#rdr-body").innerHTML='<p class="note">Não consegui abrir este capítulo agora. Se você estiver sem internet, abra o livro uma vez com internet para ele ficar guardado no aparelho.</p><div class="row"><button type="button" class="btn" id="rdr-list">Voltar à lista</button></div>';
+    });
+  }
+  function parHtml(i){
+    const pr=RK.data.p[i],m=vmap(RK.id),sh=RK.shown[i];
+    if(!/\p{L}/u.test(pr[0]))return '<div class="rd-line rd-sep" data-i="'+i+'" aria-hidden="true">'+esc(pr[0])+'</div>';
+    return '<div class="rd-line" data-i="'+i+'"><p class="rd-s">'+wordsHtml(pr[0],m,S.lang,RK.found)+'</p><div class="rd-act">'+speakBtn(pr[0])+'<button type="button" class="btn rd-tr" data-i="'+i+'" aria-pressed="'+!!sh+'">'+(sh?"Esconder tradução":"Ver tradução")+"</button></div>"+(sh?'<p class="rd-pt">'+esc(pr[1])+"</p>":"")+"</div>";
+  }
+  function renderChapter(){
+    const b=BK[RK.id],info=TI[RK.id],c=RK.data,pos=info.chs.findIndex(x=>x.n===c.n);
+    rdrSet(b.name,"Capítulo "+(pos+1)+" de "+info.chs.length);
+    RK.found={};
+    let h='<h3 class="rdc-t">'+esc(c.t)+"</h3>"+(c.tp?'<p class="rdc-tp">'+esc(c.tp)+"</p>":"");
+    h+='<div class="rd" id="rdr-pars">'+c.p.map((_,i)=>parHtml(i)).join("")+"</div>";
+    h+='<div class="rd-def" id="rdr-def" aria-live="polite">'+(Object.keys(RK.found).length?"Toque numa palavra sublinhada para ver o significado. As que você já acertou nos exercícios aparecem em negrito e com cor.":"Neste capítulo não aparece nenhuma palavra do vocabulário deste livro no app.")+"</div>";
+    h+='<p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução: escrita por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p>';
+    h+='<div class="row"><button type="button" class="btn" id="rdr-all">Ver toda a tradução</button><button type="button" class="btn primary" id="rdr-done">Concluí o capítulo</button></div>';
+    h+='<div class="row">'+(pos>0?'<button type="button" class="btn" data-go-ch="'+info.chs[pos-1].n+'">← Capítulo anterior</button>':"")+(pos<info.chs.length-1?'<button type="button" class="btn" data-go-ch="'+info.chs[pos+1].n+'">Próximo capítulo →</button>':"")+'<button type="button" class="btn" id="rdr-list">Lista de capítulos</button></div>';
+    $("#rdr-body").innerHTML=h;$("#rdr-body").scrollTop=0;
+  }
+  $("#rdr-body").addEventListener("click",e=>{
+    const ch=e.target.closest("[data-ch]");if(ch){openChapter(+ch.dataset.ch);return;}
+    const g=e.target.closest("[data-go-ch]");if(g){openChapter(+g.dataset.goCh);return;}
+    if(e.target.closest("#rdr-list")){renderChapterList();return;}
+    if(!RK.data)return;
+    const w=e.target.closest(".rw"),t=e.target.closest(".rd-tr");
+    if(w){
+      RK.sel=w.dataset.k;const en=vmap(RK.id)[RK.sel];
+      $("#rdr-def").innerHTML=en?"<b>"+esc(full(en))+"</b> = "+esc(en.pt)+" <small>("+esc(en.c)+")</small>":"";
+      return;
+    }
+    if(t){const i=+t.dataset.i;RK.shown[i]=!RK.shown[i];const el=t.closest(".rd-line");el.outerHTML=parHtml(i);return;}
+    if(e.target.closest("#rdr-all")){
+      const all=RK.data.p.every((x,i)=>RK.shown[i]||!/\p{L}/u.test(x[0]));
+      RK.data.p.forEach((_,i)=>{RK.shown[i]=!all;});
+      $$("#rdr-pars .rd-line").forEach(el=>{el.outerHTML=parHtml(+el.dataset.i);});
+      $("#rdr-all").textContent=all?"Ver toda a tradução":"Esconder toda a tradução";
+      return;
+    }
+    if(e.target.closest("#rdr-done")){
+      const items=Object.keys(RK.found).slice(0,15).map(k=>RK.found[k]);
+      S.cap[capKey(RK.id,RK.data.n)]=1;save();sfx("done");
+      if(items.length)doneSheet("Capítulo concluído · palavras do capítulo",items);
+      else openSheet("Capítulo concluído","<p class=\"help\">Esse capítulo não tem palavras do vocabulário do livro neste app, mas ler no original já conta.</p>",true);
+    }
+  });
+  $("#rdr-back").addEventListener("click",()=>{if(RK.ch!==null)renderChapterList();else go("books");});
+  window.openReader=openReader;
   renderQod();
 })();

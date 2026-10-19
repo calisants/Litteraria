@@ -335,6 +335,12 @@ svg{display:block}
 .rw.k{font-weight:700;color:var(--accent);border-bottom-style:solid}
 .rd-act{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.rd-pt{margin:8px 0 0;color:var(--muted)}
 .rd-def{margin:10px 0;padding:10px 14px;border:var(--bw) dashed var(--line);border-radius:var(--radius);min-height:44px}
+.chl{display:grid;gap:8px;margin:10px 0}.chb{display:flex;gap:12px;align-items:center;text-align:left;width:100%;padding:12px;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface);color:var(--ink);font:inherit;cursor:pointer;min-height:56px}
+.chb.ok{border-color:var(--accent)}.chn{flex:0 0 auto;display:grid;place-items:center;min-width:34px;height:34px;border-radius:50%;background:var(--bg);border:var(--bw) solid var(--line);font-weight:700}
+.chb.ok .chn{background:var(--accent);color:var(--on-accent,#fff);border-color:var(--accent)}.cht{display:grid;gap:2px}.cht small{opacity:.8}
+.rdc-t{margin:8px 0 2px;font-size:1.15rem}.rdc-tp{margin:0 0 8px;opacity:.85}
+#rdr-body .rd-sep{text-align:center;letter-spacing:.3em;opacity:.6;border-style:dashed;padding:6px}
+#rdr-body .rd-def{position:sticky;bottom:8px;background:var(--surface);z-index:2}
 .ocount{margin:0;color:var(--muted);font-size:.9rem;text-align:center}
 .prow{display:flex;align-items:center;gap:10px;padding:8px 10px;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
 .prow .big{flex:none;min-width:4.4em;font-family:var(--font-title);font-size:1.3rem;font-weight:600;color:var(--accent)}
@@ -764,6 +770,14 @@ svg{display:block}
     </div>
   </section>
 
+  <section class="screen" id="s-reader" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" id="rdr-back" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2 id="rdr-title"></h2><p class="vol" id="rdr-sub"></p></div>
+    </header>
+    <div class="scroll" id="rdr-body"></div>
+  </section>
+
   <section class="screen" id="s-game" hidden>
     <header class="bar">
       <button type="button" class="btn icon" data-back="index" aria-label="Voltar ao índice"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -879,7 +893,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.22.0",d:"2026-10-19"};
+const APP_REL={v:"1.24.0",d:"2026-10-19"};
 
 
 const RAW={
@@ -2389,7 +2403,7 @@ musq:{name:"Capa e Espada",desc:"Inspirado em Os Três Mosqueteiros: espadas cru
 principe:{name:"Torres de Florença",desc:"Inspirado em O Príncipe: torres, coroa e louro",schemes:[["Pedra e louro",0,"#f3ede0","#ffffff","#e7dcc4","#cdbd98","#8a2a2a","#2a2118","#574c3c","#7a4f00","#1f7a45","#a31f1f"],["Corte à luz de vela",1,"#201714","#2c211c","#3a2c25","#55433a","#d98a8a","#f6ece0","#cdbcae","#e0b95a","#7fdca8","#ff9a8f"]]},
 dante:{name:"Círculos do Paraíso",desc:"Inspirado em A Divina Comédia: círculos, estrelas e chamas",schemes:[["Céu claro",0,"#f1eefa","#ffffff","#e2ddf3","#bdb4e0","#3a4a8a","#201c33","#4a4660","#8a3b12","#1f7a45","#b3261e"],["Noite estrelada",1,"#0f1226","#171b38","#212649","#343b6e","#a9b8e8","#eef0fb","#bfc4de","#f0d58a","#7fdca8","#ff9a8f"]]},
 };
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[]};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{}};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -2426,6 +2440,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(sv.fTheme==="all"||CATS.some(c=>c[0]===sv.fTheme)||BOOKTHEMES.some(c=>c[0]===sv.fTheme))S.fTheme=sv.fTheme;
   if(sv.fLevel==="all"||LVN[sv.fLevel])S.fLevel=sv.fLevel;
   if(typeof sv.fGame==="string"&&/^[a-z]+$/.test(sv.fGame))S.fGame=sv.fGame;
+  if(sv.cap&&typeof sv.cap==="object")Object.keys(sv.cap).forEach(k=>{if(/^[a-z]+-\d{1,3}$/.test(k))S.cap[k]=1;});
   /* as marcas de concluído das versões antigas não são trazidas: os ids das páginas mudaram */
   if(!old&&sv.done&&typeof sv.done==="object")Object.keys(sv.done).forEach(k=>{if(/^(fr|it|en):[a-z0-9-]+$/.test(k))S.done[k]=1;});
 })();
@@ -2614,7 +2629,7 @@ function skRec(w,label,ok){
 function seedNow(){seedWith(S.lang+"|"+(P.vid||curVol().id)+"|"+P.id);}
 
 let clearStatsArmed=false;
-const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback","dict","books","album"];
+const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback","dict","books","album","reader"];
 let clearArmed=false;
 function go(name){
   SCREENS.forEach(s=>{$("#s-"+s).hidden=s!==name;});
@@ -2808,7 +2823,7 @@ $("#clear-stats").addEventListener("click",()=>{
 });
 $("#clear-done").addEventListener("click",()=>{
   if(!clearArmed){clearArmed=true;$("#clear-note").textContent="Toque de novo para apagar todas as marcas de concluído.";return;}
-  S.done={};save();clearArmed=false;$("#clear-note").textContent="Marcas apagadas.";
+  S.done={};S.cap={};save();clearArmed=false;$("#clear-note").textContent="Marcas apagadas.";
 });
 
 const STAGES={cross:"#stage",search:"#stage",connect:"#cstage",sentence:"#sstage",frases:"#sstage",odd:"#ostage",alfabeto:"#lstage",sons:"#lstage",fala:"#lstage",tema:"#lstage",ditado:"#lstage",resposta:"#rstage"};
@@ -4226,6 +4241,8 @@ const BOOKREAD={
    {s:"Bisogna, adunque, essere golpe a conoscere e' lacci, e lione a sbigottire e' lupi.",pt:"É preciso, portanto, ser raposa para reconhecer as armadilhas e leão para assustar os lobos."}]}]
 };
 
+window.BOOKTXT_INFO={"peter":{"total":1,"chs":[{"n":1,"t":"The Tale of Peter Rabbit","tp":"O Conto de Peter Rabbit","w":948}]},"alice":{"total":12,"chs":[{"n":1,"t":"CHAPTER I. Down the Rabbit-Hole","tp":"Capítulo I. Pela Toca do Coelho","w":2180},{"n":2,"t":"CHAPTER II. The Pool of Tears","tp":"Capítulo II. O Lago de Lágrimas","w":2093},{"n":3,"t":"CHAPTER III. A Caucus-Race and a Long Tale","tp":"Capítulo III. Uma Corrida Eleitoral e uma Longa História","w":1694},{"n":4,"t":"CHAPTER IV. The Rabbit Sends in a Little Bill","tp":"Capítulo IV. O Coelho Manda Chamar o Pequeno Bill","w":2606},{"n":5,"t":"CHAPTER V. Advice from a Caterpillar","tp":"Capítulo V. Conselhos de uma Lagarta","w":2180},{"n":6,"t":"CHAPTER VI. Pig and Pepper","tp":"Capítulo VI. Porco e Pimenta","w":2588},{"n":7,"t":"CHAPTER VII. A Mad Tea-Party","tp":"Capítulo VII. Um Chá de Loucos","w":2282},{"n":8,"t":"CHAPTER VIII. The Queen's Croquet-Ground","tp":"Capítulo VIII. O Campo de Croquet da Rainha","w":2482},{"n":9,"t":"CHAPTER IX. The Mock Turtle's Story","tp":"Capítulo IX. A História da Falsa Tartaruga","w":2266},{"n":10,"t":"CHAPTER X. The Lobster Quadrille","tp":"Capítulo X. A Quadrilha da Lagosta","w":2024},{"n":11,"t":"CHAPTER XI. Who Stole the Tarts?","tp":"Capítulo XI. Quem Roubou as Tortas?","w":1872},{"n":12,"t":"CHAPTER XII. Alice's Evidence","tp":"Capítulo XII. O Depoimento de Alice","w":2098}]}};
+
 /* ===== Livros: álbum de citações, frase do dia, jogos de citação, mini-leitura e «Meus livros» =====
    Tudo parte das frases conferidas de livros_frases.js e dos trechos conferidos de livros_leitura.js (só livros de domínio público).
    Nenhum jogo precisa de áudio; o botão de ouvir é um extra. Tradução, contexto e notas: Claude, sem fonte conferida (dito na tela). */
@@ -4407,21 +4424,23 @@ const BOOKREAD={
     rd={D:BOOKREAD[P.rd][P.k-1],shown:{},sel:null,found:{}};
     renderLeitura();
   }
-  function lineHtml(seg,i,m,lang){
+  function wordsHtml(text,m,lang,found){
     const sk=S.sk[lang]||{};
     let before="";
-    const parts=seg.s.split(/(\p{L}[\p{L}'’]*)/u).map(t=>{
+    return text.split(/(\p{L}[\p{L}'’]*)/u).map(t=>{
       const start=!/[\p{L}]/u.test(before)||/[.!?:;]["'«»\s]*$/.test(before);
       before+=t;
       if(!/^\p{L}/u.test(t))return esc(t);
       if(!start&&t[0]!==t[0].toLowerCase())return esc(t);   /* nomes próprios no meio da frase não contam */
       const k=keyOf(t,m,lang);
       if(!k)return esc(t);
-      rd.found[k]=m[k];
+      found[k]=m[k];
       const a=sk[k],learned=a&&a[0]>0;
       return '<button type="button" class="rw '+(learned?"k":"u")+'" data-k="'+esc(k)+'">'+esc(t)+"</button>";
     }).join("");
-    return '<div class="rd-line"><p class="rd-s">'+parts+'</p><div class="rd-act">'+(lang===S.lang?speakBtn(seg.s):"")+'<button type="button" class="btn rd-tr" data-i="'+i+'" aria-pressed="'+!!rd.shown[i]+'">'+(rd.shown[i]?"Esconder tradução":"Ver tradução")+"</button></div>"+(rd.shown[i]?'<p class="rd-pt">'+esc(seg.pt)+"</p>":"")+"</div>";
+  }
+  function lineHtml(seg,i,m,lang){
+    return '<div class="rd-line"><p class="rd-s">'+wordsHtml(seg.s,m,lang,rd.found)+'</p><div class="rd-act">'+(lang===S.lang?speakBtn(seg.s):"")+'<button type="button" class="btn rd-tr" data-i="'+i+'" aria-pressed="'+!!rd.shown[i]+'">'+(rd.shown[i]?"Esconder tradução":"Ver tradução")+"</button></div>"+(rd.shown[i]?'<p class="rd-pt">'+esc(seg.pt)+"</p>":"")+"</div>";
   }
   function renderLeitura(){
     const b=BK[P.rd],m=vmap(P.rd);rd.found={};
@@ -4448,6 +4467,7 @@ const BOOKREAD={
     }
   });
 
+  const TI=window.BOOKTXT_INFO||{};
   /* ---- Meus livros ---- */
   const cats=b=>b.chunks.map(c=>c.cat);
   const bookPages=b=>{
@@ -4473,16 +4493,106 @@ const BOOKREAD={
         '<p class="bkc-l">Lições concluídas: <b>'+doneN+" de "+pages.length+"</b> ("+pct+"%)</p>"+'<div class="bar2" role="img" aria-label="'+pct+'% das lições"><i style="width:'+pct+'%"></i></div>'+
         '<p class="bkc-s">Vocabulário '+cnt(kinds.words)+(kinds.fr.length?" · Frases "+cnt(kinds.fr):"")+(kinds.rd.length?" · Leitura "+cnt(kinds.rd):"")+"</p>"+
         (nx?'<button type="button" class="btn primary" data-bk-go="'+esc(nx.page.id)+'" data-bk-vol="'+nx.vol+'">'+(doneN?"Continuar este livro":"Começar este livro")+"</button>":'<p class="bkc-ok">Livro concluído ✓</p>')+
-        '<div class="row bkc-r">'+(kinds.fr.length?'<button type="button" class="btn" data-bk-go="'+esc(kinds.fr[0].page.id)+'" data-bk-vol="3">Frases</button>':"")+(kinds.rd.length?'<button type="button" class="btn" data-bk-go="'+esc(kinds.rd[0].page.id)+'" data-bk-vol="3">Leitura</button>':"")+"</div></article>";
+        '<div class="row bkc-r">'+(TI[b.id]?'<button type="button" class="btn" data-bk-read="'+b.id+'">Ler o livro</button>':"")+(kinds.fr.length?'<button type="button" class="btn" data-bk-go="'+esc(kinds.fr[0].page.id)+'" data-bk-vol="3">Frases</button>':"")+(kinds.rd.length?'<button type="button" class="btn" data-bk-go="'+esc(kinds.rd[0].page.id)+'" data-bk-vol="3">Leitura</button>':"")+"</div></article>";
     }).join("");
   }
   window.renderBooks=renderBooks;
   $("#books-list").addEventListener("click",e=>{
+    const rb=e.target.closest("[data-bk-read]");if(rb){openReader(rb.dataset.bkRead);return;}
     const b=e.target.closest("[data-bk-go]");if(!b)return;
     S.vol=+b.dataset.bkVol;S.fGame="all";S.fTheme="all";save();startPage(b.dataset.bkGo);
   });
   $("#books-album").addEventListener("click",()=>go("album"));
   $("#go-books").addEventListener("click",()=>go("books"));
+
+  /* ---- Livro completo: capítulos com o original e a tradução, parágrafo a parágrafo ---- */
+  const RK={id:null,ch:null,data:null,shown:{},found:{},sel:null};window.readerState=()=>RK;
+  const capKey=(id,n)=>id+"-"+n;
+  function loadTxt(id){
+    return new Promise((ok,no)=>{
+      if(window.BOOKTXT&&BOOKTXT[id])return ok(BOOKTXT[id]);
+      const sc=document.createElement("script");
+      sc.src="books/"+id+".js?v="+APP_REL.v;
+      sc.onload=()=>(window.BOOKTXT&&BOOKTXT[id])?ok(BOOKTXT[id]):no();
+      sc.onerror=no;document.head.appendChild(sc);
+    });
+  }
+  function rdrSet(title,sub){$("#rdr-title").textContent=title;$("#rdr-sub").textContent=sub||"";}
+  function openReader(id,ch){
+    const b=BK[id],info=TI[id];if(!b||!info)return;
+    RK.id=id;RK.ch=null;RK.data=null;go("reader");
+    if(ch){openChapter(ch);return;}
+    renderChapterList();
+  }
+  function renderChapterList(){
+    const b=BK[RK.id],info=TI[RK.id];RK.ch=null;
+    rdrSet(b.name,"Texto completo · "+(info.chs.length===info.total?info.total+" capítulo"+(info.total>1?"s":""):info.chs.length+" de "+info.total+" capítulos prontos"));
+    const read=info.chs.filter(c=>S.cap[capKey(RK.id,c.n)]).length;
+    let h='<p class="ocount">Capítulos lidos: '+read+" de "+info.chs.length+"</p>";
+    h+='<div class="chl">'+info.chs.map(c=>{
+      const ok=S.cap[capKey(RK.id,c.n)];
+      return '<button type="button" class="chb'+(ok?" ok":"")+'" data-ch="'+c.n+'"><span class="chn">'+(ok?"✓":c.n)+'</span><span class="cht"><b>'+esc(c.t)+"</b>"+(c.tp?"<small>"+esc(c.tp)+"</small>":"")+"<small>"+c.w+" palavras</small></span></button>";
+    }).join("")+"</div>";
+    if(info.chs.length<info.total)h+='<p class="note"><small>Os outros capítulos ainda estão sendo preparados.</small></p>';
+    h+='<p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução: escrita por Claude, sem fonte conferida; pode ter erros ou escolhas diferentes de uma tradução publicada.</small></p>';
+    $("#rdr-body").innerHTML=h;$("#rdr-body").scrollTop=0;
+  }
+  function openChapter(n){
+    const b=BK[RK.id];
+    $("#rdr-body").innerHTML='<p class="help">Abrindo o capítulo…</p>';
+    loadTxt(RK.id).then(D=>{
+      const c=D.find(x=>x.n===n);if(!c)throw 0;
+      RK.ch=n;RK.data=c;RK.shown={};RK.found={};RK.sel=null;
+      renderChapter();
+    }).catch(()=>{
+      $("#rdr-body").innerHTML='<p class="note">Não consegui abrir este capítulo agora. Se você estiver sem internet, abra o livro uma vez com internet para ele ficar guardado no aparelho.</p><div class="row"><button type="button" class="btn" id="rdr-list">Voltar à lista</button></div>';
+    });
+  }
+  function parHtml(i){
+    const pr=RK.data.p[i],m=vmap(RK.id),sh=RK.shown[i];
+    if(!/\p{L}/u.test(pr[0]))return '<div class="rd-line rd-sep" data-i="'+i+'" aria-hidden="true">'+esc(pr[0])+'</div>';
+    return '<div class="rd-line" data-i="'+i+'"><p class="rd-s">'+wordsHtml(pr[0],m,S.lang,RK.found)+'</p><div class="rd-act">'+speakBtn(pr[0])+'<button type="button" class="btn rd-tr" data-i="'+i+'" aria-pressed="'+!!sh+'">'+(sh?"Esconder tradução":"Ver tradução")+"</button></div>"+(sh?'<p class="rd-pt">'+esc(pr[1])+"</p>":"")+"</div>";
+  }
+  function renderChapter(){
+    const b=BK[RK.id],info=TI[RK.id],c=RK.data,pos=info.chs.findIndex(x=>x.n===c.n);
+    rdrSet(b.name,"Capítulo "+(pos+1)+" de "+info.chs.length);
+    RK.found={};
+    let h='<h3 class="rdc-t">'+esc(c.t)+"</h3>"+(c.tp?'<p class="rdc-tp">'+esc(c.tp)+"</p>":"");
+    h+='<div class="rd" id="rdr-pars">'+c.p.map((_,i)=>parHtml(i)).join("")+"</div>";
+    h+='<div class="rd-def" id="rdr-def" aria-live="polite">'+(Object.keys(RK.found).length?"Toque numa palavra sublinhada para ver o significado. As que você já acertou nos exercícios aparecem em negrito e com cor.":"Neste capítulo não aparece nenhuma palavra do vocabulário deste livro no app.")+"</div>";
+    h+='<p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução: escrita por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p>';
+    h+='<div class="row"><button type="button" class="btn" id="rdr-all">Ver toda a tradução</button><button type="button" class="btn primary" id="rdr-done">Concluí o capítulo</button></div>';
+    h+='<div class="row">'+(pos>0?'<button type="button" class="btn" data-go-ch="'+info.chs[pos-1].n+'">← Capítulo anterior</button>':"")+(pos<info.chs.length-1?'<button type="button" class="btn" data-go-ch="'+info.chs[pos+1].n+'">Próximo capítulo →</button>':"")+'<button type="button" class="btn" id="rdr-list">Lista de capítulos</button></div>';
+    $("#rdr-body").innerHTML=h;$("#rdr-body").scrollTop=0;
+  }
+  $("#rdr-body").addEventListener("click",e=>{
+    const ch=e.target.closest("[data-ch]");if(ch){openChapter(+ch.dataset.ch);return;}
+    const g=e.target.closest("[data-go-ch]");if(g){openChapter(+g.dataset.goCh);return;}
+    if(e.target.closest("#rdr-list")){renderChapterList();return;}
+    if(!RK.data)return;
+    const w=e.target.closest(".rw"),t=e.target.closest(".rd-tr");
+    if(w){
+      RK.sel=w.dataset.k;const en=vmap(RK.id)[RK.sel];
+      $("#rdr-def").innerHTML=en?"<b>"+esc(full(en))+"</b> = "+esc(en.pt)+" <small>("+esc(en.c)+")</small>":"";
+      return;
+    }
+    if(t){const i=+t.dataset.i;RK.shown[i]=!RK.shown[i];const el=t.closest(".rd-line");el.outerHTML=parHtml(i);return;}
+    if(e.target.closest("#rdr-all")){
+      const all=RK.data.p.every((x,i)=>RK.shown[i]||!/\p{L}/u.test(x[0]));
+      RK.data.p.forEach((_,i)=>{RK.shown[i]=!all;});
+      $$("#rdr-pars .rd-line").forEach(el=>{el.outerHTML=parHtml(+el.dataset.i);});
+      $("#rdr-all").textContent=all?"Ver toda a tradução":"Esconder toda a tradução";
+      return;
+    }
+    if(e.target.closest("#rdr-done")){
+      const items=Object.keys(RK.found).slice(0,15).map(k=>RK.found[k]);
+      S.cap[capKey(RK.id,RK.data.n)]=1;save();sfx("done");
+      if(items.length)doneSheet("Capítulo concluído · palavras do capítulo",items);
+      else openSheet("Capítulo concluído","<p class=\"help\">Esse capítulo não tem palavras do vocabulário do livro neste app, mas ler no original já conta.</p>",true);
+    }
+  });
+  $("#rdr-back").addEventListener("click",()=>{if(RK.ch!==null)renderChapterList();else go("books");});
+  window.openReader=openReader;
   renderQod();
 })();
 
