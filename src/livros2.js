@@ -322,6 +322,7 @@
     rdrSet(b.name,"Capítulo "+(pos+1)+" de "+info.chs.length);
     RK.found={};
     let h='<h3 class="rdc-t">'+esc(c.t)+"</h3>"+(c.tp?'<p class="rdc-tp">'+esc(c.tp)+"</p>":"");
+    if(RK.id==="racconti"&&c.n>=10)h+='<p class="note"><small>Este conto não é um dos contos de Perrault: faz parte da mesma coletânea do livro.</small></p>';
     h+='<div class="rd" id="rdr-pars">'+c.p.map((_,i)=>parHtml(i)).join("")+"</div>";
     h+='<div class="rd-def" id="rdr-def" aria-live="polite">'+(Object.keys(RK.found).length?"Toque numa palavra sublinhada para ver o significado. As que você já acertou nos exercícios aparecem em negrito e com cor.":"Neste capítulo não aparece nenhuma palavra do vocabulário deste livro no app.")+"</div>";
     h+='<p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução: escrita por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p>';

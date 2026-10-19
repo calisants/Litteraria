@@ -1,0 +1,111 @@
+fata|fada|s|f
+regina|rainha|s|f
+re|rei|s|m
+principe|príncipe|s|m
+principessa|princesa|s|f
+castello|castelo|s|m
+orco|ogro|s|m
+mugnaio|moleiro|s|m
+mulino|moinho|s|m
+anello|anel|s|m
+smeraldo|esmeralda|s|m
+carrozza|carruagem|s|f
+corona|coroa|s|f
+fontana|fonte, chafariz|s|f
+brocca|jarra, jarro|s|f
+vecchia|velha|s|f
+nonna|avó|s|f
+ladro|ladrão|s|m
+fattoria|granja, fazenda|s|f
+tacchino|peru|s|m
+cuoca|cozinheira|s|f
+giuramento|juramento|s|m
+sposo|noivo, marido|s|m
+sposa|noiva, esposa|s|f
+bacchetta|varinha|s|f
+fuoco|fogo|s|m
+camino|lareira, chaminé|s|m
+madrina|madrinha|s|f
+festa|festa|s|f
+ballo|baile, dança|s|m
+musica|música|s|f
+dono|dom, presente|s|m
+bellezza|beleza|s|f
+spirito|espírito, inteligência|s|m
+paura|medo|s|f
+fame|fome|s|f
+sacco|saco|s|m
+pernice|perdiz|s|f
+grano|trigo|s|m
+prato|prado|s|m
+villaggio|aldeia|s|m
+palazzo|palácio|s|m
+piangere|chorar|v
+ridere|rir|v
+nascondere|esconder|v
+divorare|devorar|v
+uccidere|matar|v
+ringraziare|agradecer|v
+raccontare|contar, narrar|v
+svenire|desmaiar|v
+fuggire|fugir|v
+bagnare|molhar, banhar|v
+guarire|curar, sarar|v
+sposare|casar com|v
+chiamare|chamar|v
+svegliare|acordar, despertar|v
+perdere|perder|v
+promettere|prometer|v
+rispondere|responder|v
+domandare|perguntar|v
+gridare|gritar|v
+tremare|tremer|v
+bussare|bater (à porta)|v
+chiudere|fechar|v
+stupido|estúpido, tolo|adj
+sudicio|sujo|adj
+superbo|orgulhoso, soberbo|adj
+furbo|esperto, astuto|adj
+ambasciatore|embaixador|s|m
+druido|druida|s|m
+carpa|carpa (peixe)|s|f
+corvo|corvo|s|m
+aquila|águia|s|f
+gufo|coruja|s|m
+drago|dragão|s|m
+gigante|gigante|s|m
+grotta|gruta|s|f
+spada|espada|s|f
+freccia|flecha|s|f
+arco|arco|s|m
+rete|rede|s|f
+cacciatore|caçador|s|m
+boccetta|frasquinho|s|f
+ruscello|riacho|s|m
+salice|salgueiro|s|m
+torre|torre|s|f
+prigione|prisão|s|f
+catena|corrente|s|f
+manto|manto|s|m
+trono|trono|s|m
+ghirlanda|grinalda|s|f
+ventaglio|leque|s|m
+ricamo|bordado|s|m
+pasticcio|torta, pastelão|s|m
+fuliggine|fuligem|s|f
+cenere|cinza|s|f
+zucca|abóbora|s|f
+voce|voz|s|f
+spaventare|assustar|v
+abbracciare|abraçar|v
+afferrare|agarrar|v
+mordere|morder|v
+sospirare|suspirar|v
+ingannare|enganar|v
+punire|punir|v
+astuto|astuto|adj
+crudele|cruel|adj
+gentile|gentil|adj
+misero|miserável|adj
+fedele|fiel|adj
+magnifico|magnífico|adj

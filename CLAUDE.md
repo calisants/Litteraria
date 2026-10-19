@@ -92,3 +92,10 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Os outros 45 contos do ePub ficam de fora por ora; para acrescentar, ponha o título em `PICK` de `prep_grimm.py`, traduza e rode `mk_texto.py grimm`.
 - `sw.js`: cache v55 e `./books/grimm.js` em ASSETS.
 - Pendentes: Collodi (it), vocabulário fr/it ampliado, Vento nos Salgueiros, Sherlock, Mosqueteiros e Divina Comédia em texto completo.
+
+## Contos de Collodi, em italiano (19/10/2026, v1.30.0)
+- Livro `racconti` (it, «I racconti delle fate (Collodi)», PDF do Liber Liber que ela enviou, 1875, domínio público). `tools/prep_collodi.py <txt>` → `livros_txt/racconti/orig.json` (15 contos; títulos achados pela indentação; «MORALE»/«ALTRA MORALE» viram «Morale. »/«Altra morale. » no início do parágrafo seguinte; parágrafos longos cortados entre frases, ~60 palavras). Tradução (`pt_<n>.txt`): Claude, sem fonte conferida.
+- Prontos em v1.30.0: os 9 que são de Perrault (Barba Azul, Bela Adormecida, Cinderela, Pequeno Polegar=Puccettino, Pele de Burro, As Fadas, Chapeuzinho, Gato de Botas, Riquet do Topete) e «A Bela dos Cabelos de Ouro» (cap. 10). **Faltam os caps. 11-15**: L'uccello turchino (~14 mil palavras), La Gatta Bianca (~15 mil), La Cervia nel bosco (~14 mil), Il Principe Amato (~4,6 mil) e La Bella e la Bestia (~5,4 mil). O montador aceita capítulos faltando; ao traduzir cada um, rode `tools/mk_texto.py racconti`, rebuild e republique (cache do `sw.js`).
+- A tela do capítulo (cap. ≥ 10) diz «Este conto não é um dos contos de Perrault: faz parte da mesma coletânea do livro» (`renderChapter`, `livros2.js`). Os caps. 1-9 repetem histórias do Perrault em francês, mas em adaptação italiana: tradução própria.
+- Vocabulário `tools/livro_racconti.txt` (111 palavras, 3 partes; gênero no 4º campo; conferido com `chk_words.py it` no Kaikki e no texto; sem palavras que já existam no vocabulário geral, senão o `t15` falha). `t15`: mínimo de 80 palavras para `racconti`.
+- `sw.js`: cache v56 e `./books/racconti.js`.
