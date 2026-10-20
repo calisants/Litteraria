@@ -1,5 +1,9 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.36.0",d:"2026-10-20",t:[
+"Novo: contexto histórico e cultural nos 7 livros com texto completo (Peter Rabbit, Alice, Frankenstein, O Príncipe, Perrault, Grimm e Collodi)",
+"Cada livro tem «Sobre o livro e a época»; cada capítulo tem suas notas, todas com a fonte e o link",
+"Fatos conferidos em páginas abertas durante a pesquisa; o resumo é escrito por Claude"]},
 {v:"1.35.0",d:"2026-10-20",t:[
 "Leitor: toque em qualquer palavra do capítulo para ver o significado e ouvir (inglês, francês e italiano)",
 "Novo glossário com as 1.650 palavras mais frequentes dos livros (traduções escritas por Claude, sem fonte conferida)",

@@ -38,9 +38,20 @@ try:
     assert pg.evaluate("()=>S.cad[0]?S.cad[0].s:-1")==1
     # salvamento inválido é descartado
     pg.evaluate("()=>{const sv=JSON.parse(localStorage.getItem(Object.keys(localStorage).find(k=>/mots/i.test(k))));}")
+    # contexto histórico e cultural
+    pg.evaluate("()=>{closeSheet();S.lang='en';save();go('books')}")
+    pg.click('[data-bk-read="alice"]');pg.wait_for_selector('.chb')
+    assert pg.is_visible('.ctxh summary') and 'Sobre o livro e a época' in pg.inner_text('.ctxh summary')
+    pg.click('.chb[data-ch="7"]');pg.wait_for_selector('#rdr-pars .rd-line')
+    assert 'Contexto histórico e cultural' in pg.inner_text('.ctxh summary')
+    pg.click('.ctxh summary');lk=pg.query_selector('.ctxh a');assert lk and lk.get_attribute('href').startswith('https://')
+    assert 'Fonte:' in pg.inner_text('.ctxh')
+    # todo livro com texto tem introdução e todas as notas têm fonte https
+    r=pg.evaluate("()=>Object.entries(CTXH).map(([k,v])=>[k,v.intro.length,Object.values(v.ch).flat().every(n=>n.u.startsWith('https://')&&n.s&&n.t)])")
+    print('contexto:',r);assert len(r)==7 and all(x[1]>=4 and x[2] for x in r)
     # novidades
     pg.evaluate("()=>{closeSheet();go('settings')}");pg.click('#open-news');pg.wait_for_timeout(100)
-    t=pg.inner_text('#news-list');assert 'Versão 1.34.0' in t
+    t=pg.inner_text('#news-list');assert 'Versão 1.36.0' in t
     print('erros:',errs);assert not errs
     print('OK t23')
 finally: srv.terminate()

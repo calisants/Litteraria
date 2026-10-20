@@ -339,11 +339,18 @@
     if(ch){openChapter(ch);return;}
     renderChapterList();
   }
+  /* ---- contexto histórico e cultural (notas com fonte) ---- */
+  function ctxHtml(notes,title,open){
+    if(!notes||!notes.length)return "";
+    return '<details class="ctxh"'+(open?" open":"")+"><summary>"+esc(title)+" ("+notes.length+")</summary><ul>"+notes.map(n=>"<li>"+esc(n.t)+'<br><small>Fonte: <a href="'+esc(n.u)+'" target="_blank" rel="noopener noreferrer">'+esc(n.s)+"</a></small></li>").join("")+"</ul>"+
+      '<p class="note"><small>Resumo escrito por Claude, com suas próprias palavras, a partir da fonte indicada em cada nota (página aberta e conferida em 20/10/2026). Os links abrem fora do app e precisam de internet.</small></p></details>';
+  }
+  const CX=id=>(window.CTXH&&CTXH[id])||{};
   function renderChapterList(){
     const b=BK[RK.id],info=TI[RK.id];RK.ch=null;
     rdrSet(b.name,"Texto completo · "+(info.chs.length===info.total?info.total+" capítulo"+(info.total>1?"s":""):info.chs.length+" de "+info.total+" capítulos prontos"));
     const read=info.chs.filter(c=>S.cap[capKey(RK.id,c.n)]).length;
-    let h='<p class="ocount">Capítulos lidos: '+read+" de "+info.chs.length+"</p>";
+    let h=ctxHtml(CX(RK.id).intro,"Sobre o livro e a época",false)+'<p class="ocount">Capítulos lidos: '+read+" de "+info.chs.length+"</p>";
     h+='<div class="chl">'+info.chs.map(c=>{
       const ok=S.cap[capKey(RK.id,c.n)];
       return '<button type="button" class="chb'+(ok?" ok":"")+'" data-ch="'+c.n+'"><span class="chn">'+(ok?"✓":c.n)+'</span><span class="cht"><b>'+esc(c.t)+"</b>"+(c.tp?"<small>"+esc(c.tp)+"</small>":"")+"<small>"+c.w+" palavras</small></span></button>";
@@ -376,6 +383,7 @@
     RK.found={};
     let h='<h3 class="rdc-t">'+esc(c.t)+"</h3>"+(c.tp?'<p class="rdc-tp">'+esc(c.tp)+"</p>":"");
     if(hasLit())h+='<div class="row trmode"><span class="help">Tradução:</span><button type="button" class="btn" id="rdr-mode" aria-pressed="'+(S.trad==="lit")+'">'+(S.trad==="lit"?"Literal (segue a ordem do original)":"Natural (soa melhor em português)")+'</button></div>';
+    h+=ctxHtml((CX(RK.id).ch||{})[c.n],"Contexto histórico e cultural",false);
     if(RK.id==="racconti"&&c.n>=10)h+='<p class="note"><small>Este conto não é um dos contos de Perrault: faz parte da mesma coletânea do livro.</small></p>';
     h+='<div class="rd" id="rdr-pars">'+c.p.map((_,i)=>parHtml(i)).join("")+"</div>";
     h+='<div class="rd-def" id="rdr-def" aria-live="polite">'+(Object.keys(RK.found).length?"Toque numa palavra sublinhada para ver o significado. As que você já acertou nos exercícios aparecem em negrito e com cor.":"Neste capítulo não aparece nenhuma palavra do vocabulário deste livro no app.")+"</div>";
