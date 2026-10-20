@@ -1,0 +1,600 @@
+the|o, a / os, as
+and|e
+of|de
+to|para / a
+my|meu, minha
+in|em
+was|era / foi
+that|que / aquele
+it|ele, ela / isso
+she|ela
+you|você / tu
+he|ele
+had|tinha / teve
+but|mas
+her|dela / a, lhe
+with|com
+me|me / mim
+as|como / enquanto
+said|disse
+for|para / por
+his|dele / seu
+not|não
+on|sobre / em
+at|em / a
+which|que / o qual
+be|ser / estar
+this|este / isto
+by|por
+they|eles, elas
+when|quando
+all|todos / tudo
+so|assim / tão
+have|ter / tenho
+is|é / está
+were|eram / foram
+from|de / desde
+one|um / uma
+him|ele / lhe
+your|seu / teu
+what|o que
+little|pequeno / pouco
+will|vai / vontade
+if|se
+could|podia / poderia
+no|não / nenhum
+who|quem
+into|em / para dentro
+them|eles / os, as
+would|iria / poderia
+their|deles, delas
+an|um / uma
+out|fora / para fora
+very|muito
+are|são / estão
+we|nós
+or|ou
+now|agora
+been|sido / estado
+up|para cima / acima
+do|fazer / faço
+there|lá / ali
+more|mais
+before|antes / diante de
+some|algum / alguns
+went|foi / ia
+again|de novo
+time|tempo / vez
+down|para baixo / abaixo
+should|deveria
+came|veio / vinha
+did|fez
+upon|sobre / em cima de
+only|apenas / único
+about|sobre / cerca de
+thought|pensou / pensamento
+its|seu, sua (dele)
+man|homem
+first|primeiro
+yet|ainda / porém
+am|sou / estou
+like|como / gostar
+day|dia
+these|estes, estas
+saw|viu / serra
+after|depois / após
+than|do que
+shall|deverá / irá
+might|poderia / força
+know|saber / conhecer
+well|bem / poço
+our|nosso, nossa
+see|ver
+can|poder / posso
+soon|logo / em breve
+eyes|olhos
+myself|eu mesmo / me
+other|outro
+go|ir
+father|pai
+found|encontrou / achou
+such|tal / tão
+every|cada / todo
+away|embora / longe
+made|fez / feito
+over|sobre / acabado
+any|algum / qualquer
+never|nunca
+great|grande / ótimo
+may|pode / talvez
+must|deve / precisa
+life|vida
+where|onde
+own|próprio
+off|fora / longe
+old|velho
+herself|ela mesma / se
+door|porta
+dear|querido / caro
+come|vir / venha
+began|começou
+night|noite
+long|longo / muito tempo
+good|bom
+heard|ouviu
+still|ainda / quieto
+much|muito
+even|até / mesmo
+being|ser / sendo
+two|dois / duas
+took|pegou / levou
+ever|sempre / alguma vez
+way|caminho / maneira
+once|uma vez
+looked|olhou
+felt|sentiu
+here|aqui
+most|a maioria / mais
+mind|mente / cuidar
+while|enquanto
+voice|voz
+those|aqueles, aquelas
+house|casa
+last|último / durar
+towards|em direção a
+back|de volta / costas
+head|cabeça
+same|mesmo / igual
+us|nos / nós
+many|muitos
+heart|coração
+nothing|nada
+think|pensar
+poor|pobre
+has|tem
+just|apenas / justo
+say|dizer
+home|casa / lar
+make|fazer
+quite|bastante
+get|obter / conseguir
+too|também / demais
+whom|quem / a quem
+through|através de
+mother|mãe
+death|morte
+put|pôr
+however|porém
+take|pegar / levar
+another|outro
+round|em volta / redondo
+passed|passou
+words|palavras
+friend|amigo
+also|também
+cried|chorou / gritou
+feelings|sentimentos
+place|lugar
+sat|sentou
+beautiful|bonito
+indeed|de fato
+thing|coisa
+left|deixou / esquerda
+himself|ele mesmo
+thus|assim
+morning|manhã
+wife|esposa
+got|conseguiu / ficou
+among|entre
+became|tornou-se
+gave|deu
+moment|momento
+few|poucos
+love|amor
+until|até
+look|olhar
+next|próximo
+hand|mão
+called|chamou / chamado
+each|cada
+during|durante
+seemed|parecia
+don't|não (faça/façam)
+miserable|miserável
+without|sem
+world|mundo
+find|encontrar
+work|trabalho
+appeared|apareceu
+wood|bosque / madeira
+three|três
+child|criança
+replied|respondeu
+cannot|não pode
+cottage|chalé
+feel|sentir
+tell|contar / dizer
+far|longe
+room|quarto / sala
+woman|mulher
+near|perto
+children|crianças
+often|frequentemente
+under|sob / debaixo de
+girl|menina
+sun|sol
+fell|caiu
+country|país / campo
+sea|mar
+human|humano
+knew|sabia
+hands|mãos
+looking|olhando
+asked|perguntou
+going|indo
+several|vários
+friends|amigos
+whole|todo / inteiro
+sister|irmã
+till|até
+rest|descanso / resto
+bed|cama
+years|anos
+although|embora
+misery|miséria / sofrimento
+right|direita / certo
+rather|antes / um tanto
+alone|sozinho
+brought|trouxe
+days|dias
+live|viver
+whose|cujo
+lay|deitou
+happy|feliz
+return|voltar / retorno
+ran|correu
+hope|esperança
+wish|desejo / desejar
+turned|virou
+light|luz / leve
+nature|natureza
+large|grande
+water|água
+tree|árvore
+always|sempre
+despair|desespero
+spoke|falou
+half|metade
+give|dar
+happiness|felicidade
+fear|medo
+idea|ideia
+new|novo
+behind|atrás
+kind|gentil / tipo
+something|algo
+creature|criatura
+end|fim
+eat|comer
+tears|lágrimas
+set|pôr / conjunto
+fire|fogo
+young|jovem
+joy|alegria
+things|coisas
+lost|perdido
+garden|jardim
+face|rosto
+done|feito
+yourself|você mesmo
+air|ar
+open|abrir / aberto
+high|alto
+almost|quase
+stood|ficou de pé
+men|homens
+horror|horror
+wonder|admiração / perguntar-se
+side|lado
+course|curso / rumo
+continued|continuou
+son|filho
+ground|chão / terra
+told|disse / contou
+already|já
+scene|cena
+hear|ouvir
+opened|abriu
+leave|deixar / partir
+change|mudança / mudar
+tone|tom
+believe|acreditar
+taken|tomado / levado
+lived|viveu
+part|parte
+ice|gelo
+suddenly|de repente
+seen|visto
+tried|tentou
+strange|estranho
+daughter|filha
+window|janela
+become|tornar-se
+dead|morto
+sleep|dormir / sono
+fish|peixe
+therefore|portanto
+power|poder
+feet|pés
+perhaps|talvez
+sight|visão / vista
+longer|mais longo / mais tempo
+read|ler / leu
+hardly|mal / dificilmente
+care|cuidado
+nearly|quase
+land|terra
+thoughts|pensamentos
+entered|entrou
+mountains|montanhas
+nor|nem
+earth|terra
+enough|suficiente / bastante
+mine|meu / minha
+better|melhor
+full|cheio
+journey|viagem
+around|ao redor / em volta
+affection|afeição
+forest|floresta
+pleasure|prazer
+true|verdadeiro
+others|outros
+hours|horas
+countenance|semblante
+having|tendo
+remained|permaneceu
+cause|causa
+cold|frio
+gone|ido / partido
+evening|noite / entardecer
+months|meses
+soul|alma
+itself|si mesmo
+walked|caminhou
+because|porque
+against|contra
+close|perto / fechar
+dark|escuro
+knowledge|conhecimento
+remember|lembrar
+cut|cortar / cortou
+feeling|sentimento
+followed|seguiu
+tale|conto
+fellow|companheiro / sujeito
+king's|do rei
+possessed|possuía / possuído
+gentle|gentil / suave
+wind|vento
+glass|vidro / copo
+small|pequeno
+delight|deleite
+sure|certo
+creatures|criaturas
+since|desde / já que
+length|comprimento
+manner|maneira
+court|corte
+discovered|descobriu
+loved|amou
+anything|qualquer coisa / nada
+name|nome
+led|conduziu / levou
+speak|falar
+family|família
+trees|árvores
+within|dentro de
+fine|belo / fino
+returned|voltou
+spirit|espírito
+peace|paz
+lake|lago
+thousand|mil
+answer|resposta / responder
+table|mesa
+best|melhor
+seven|sete
+does|faz
+together|juntos
+drew|puxou / desenhou
+present|presente
+asleep|adormecido
+themselves|si mesmos
+died|morreu
+quickly|rapidamente
+die|morrer
+spirits|espíritos
+monster|monstro
+fiend|demônio / diabo
+deep|profundo
+want|querer / desejo
+existence|existência
+placed|colocou
+given|dado
+moon|lua
+grief|pesar / dor
+black|preto
+resolved|resolveu
+sensations|sensações
+beheld|contemplou
+princess|princesa
+wolf|lobo
+use|usar / uso
+word|palavra
+happened|aconteceu
+everything|tudo
+hair|cabelo
+try|tentar
+means|meios / significa
+added|acrescentou
+answered|respondeu
+bread|pão
+appearance|aparência
+beauty|beleza
+blood|sangue
+food|comida
+rage|raiva / fúria
+afterwards|depois
+ought|dever (deveria)
+filled|encheu / cheio
+lovely|encantador
+hour|hora
+piece|pedaço
+turn|vez / virar
+rose|rosa / levantou-se
+arrived|chegou
+gold|ouro
+father's|do pai
+companion|companheiro
+conversation|conversa
+people|pessoas / povo
+shut|fechou
+can't|não pode
+both|ambos
+free|livre
+sweet|doce
+form|forma
+greatest|maior
+desire|desejo
+seek|procurar
+thy|teu (forma antiga)
+natural|natural
+ask|perguntar / pedir
+golden|dourado
+minute|minuto
+help|ajuda
+different|diferente
+silence|silêncio
+none|nenhum
+fast|rápido / firme
+lady|dama
+native|nativo
+science|ciência
+kindness|bondade
+endeavoured|esforçou-se
+awoke|acordou
+sitting|sentado
+whether|se
+across|através de
+sound|som
+dream|sonho
+along|ao longo de
+certainly|certamente
+various|vários
+youth|juventude
+letter|carta
+between|entre
+agony|agonia
+body|corpo
+beloved|amado
+brother|irmão
+wretch|miserável
+fall|cair / queda
+really|realmente
+eye|olho
+hard|duro / difícil
+history|história
+lips|lábios
+keep|manter / guardar
+wretched|miserável
+cousin|primo
+task|tarefa
+town|cidade
+greater|maior
+perceived|percebeu
+expressed|expressou
+murderer|assassino
+thou|tu (forma antiga)
+please|por favor / agradar
+saying|dizendo
+question|pergunta
+deeply|profundamente
+ready|pronto
+shore|margem / costa
+fixed|fixo
+melancholy|melancolia
+short|curto
+least|menos
+state|estado
+threw|atirou
+exclaimed|exclamou
+dance|dança
+evil|mal
+early|cedo
+path|caminho
+spent|gastou / passou
+desired|desejou
+covered|coberto
+enemy|inimigo
+revenge|vingança
+fisherman|pescador
+getting|obtendo / ficando
+won't|não quer
+understand|entender
+wanted|quis
+dare|ousar
+broken|quebrado
+appear|aparecer
+unable|incapaz
+snow|neve
+occupied|ocupado
+degree|grau
+wished|desejou
+concerning|a respeito de
+mountain|montanha
+anguish|angústia
+prince|príncipe
+beginning|começo
+distance|distância
+drink|beber / bebida
+hold|segurar
+shoes|sapatos
+foot|pé
+frightened|assustado
+suppose|supor
+subject|assunto / súdito
+running|correndo
+jury|júri
+arm|braço
+names|nomes
+ill|doente
+promise|promessa / prometer
+account|relato / conta
+spot|lugar / mancha
+clothes|roupas
+imagination|imaginação
+endured|suportou
+hopes|esperanças
+spring|primavera / fonte
+attention|atenção
+destroyed|destruído
+sought|procurou
+beings|seres
+dared|ousou
+cottagers|aldeões
+grandmother|avó
+second|segundo
+begin|começar
+waited|esperou
+person|pessoa
+hastily|apressadamente
+call|chamar
+story|história
+unhappy|infeliz
+reason|razão
+sky|céu
+silent|silencioso
+courage|coragem
+murder|assassinato
+wine|vinho

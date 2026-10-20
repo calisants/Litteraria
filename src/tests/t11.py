@@ -1,8 +1,10 @@
 from playwright.sync_api import sync_playwright
-import os,json
+import os,json,subprocess,time
+root=os.path.abspath(os.path.join(os.path.dirname(__file__),'..','..'))
+srv=subprocess.Popen(['python3','-m','http.server','8780','-d',root],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL);time.sleep(1)
 with sync_playwright() as p:
     b=p.chromium.launch();ctx=b.new_context(viewport={'width':390,'height':844});pg=ctx.new_page();errs=[];pg.on('pageerror',lambda e:errs.append(str(e)));pg.on('console',lambda m:errs.append(m.text) if m.type=='error' else None)
-    pg.goto('file://'+os.path.abspath('mots-parole-v4.html'));pg.wait_for_timeout(500)
+    pg.goto('http://localhost:8780/index.html');pg.wait_for_timeout(500)
     print('goal:',pg.inner_text('#goal-txt'),'|',pg.inner_text('#today-sub'))
     # dica de alternativa errada
     pg.click('#go-games');pg.click('#s-vol [data-k=lang][data-v=fr]');pg.click('[data-pick-vol="4"]');pg.click('.toc-row[data-id="presente-1"]')
@@ -45,4 +47,5 @@ with sync_playwright() as p:
     print('meta:',pg.evaluate("()=>goalText()"))
     pg.evaluate("()=>go('settings')");pg.click('[data-goal="10"]');print('goal',pg.evaluate("()=>S.goal"))
     pg.evaluate("()=>go('home')");pg.screenshot(path='t11-home.png')
-    print('errs',errs);b.close()
+    print('errs',errs);b.close();srv.terminate()
+    assert not errs,errs

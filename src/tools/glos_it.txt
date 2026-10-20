@@ -1,0 +1,600 @@
+che|que
+di|de
+la|a / ela
+non|não
+il|o
+per|para / por
+si|se
+in|em
+le|as / elas
+un|um
+una|uma
+da|de / por
+più|mais
+con|com
+ma|mas
+del|do
+sua|sua
+se|se
+perché|porque / por quê
+era|era / estava
+della|da
+gli|os / lhes
+li|os / ali
+lo|o
+come|como
+suo|seu
+loro|eles / deles
+al|ao
+alla|à
+aveva|tinha
+mi|me
+disse|disse
+così|assim
+questo|este / isto
+io|eu
+uno|um
+tutti|todos
+quando|quando
+vi|vos / aí
+nel|no
+quale|qual
+sono|sou / são
+tanto|tanto
+ne|disso / dele
+egli|ele
+delle|das
+cosa|coisa
+questa|esta
+quella|aquela
+quello|aquele
+fu|foi
+tutto|tudo
+tutte|todas
+gran|grande
+essere|ser
+stato|estado / sido
+mai|nunca
+el|o (forma antiga)
+lui|ele
+et|e (forma antiga)
+né|nem
+ci|nos / aqui
+dalla|da / pela
+senza|sem
+sempre|sempre
+dove|onde
+bene|bem
+mia|minha
+dei|dos
+quelli|aqueles
+fatto|feito / fato
+voi|vós / vocês
+nella|na
+fare|fazer
+modo|modo
+subito|logo / imediatamente
+dal|do / pelo
+suoi|seus
+e'|é (forma antiga)
+fece|fez
+de'|dos (forma antiga)
+erano|eram
+due|dois
+cose|coisas
+quali|quais
+tempo|tempo
+ha|tem
+me|mim / me
+quel|aquele
+fosse|fosse
+altro|outro
+giorno|dia
+altri|outros
+molto|muito
+quanto|quanto
+chi|quem
+ogni|cada
+vedere|ver
+mio|meu
+parte|parte
+dopo|depois
+tutta|toda
+sue|suas
+sarebbe|seria
+essa|ela
+col|com o
+qualche|algum
+fra|entre
+alle|às
+padre|pai
+ad|a
+dire|dizer
+quelle|aquelas
+hanno|têm
+prima|antes
+ti|te
+anche|também
+fata|fada
+può|pode
+queste|estas
+poi|depois
+avere|ter
+occhi|olhos
+qui|aqui
+ai|aos
+sé|si
+tu|tu
+poco|pouco
+far|fazer
+cuore|coração
+rispose|respondeu
+questi|estes
+volta|vez
+buona|boa
+ancora|ainda
+sia|seja
+sul|sobre o
+fate|fadas
+sopra|sobre
+andò|foi
+uomini|homens
+casa|casa
+paura|medo
+ho|tenho
+lei|ela
+grandi|grandes
+grande|grande
+virtù|virtude
+sotto|sob / embaixo
+mondo|mundo
+dentro|dentro
+lì|ali / lá
+ed|e
+nulla|nada
+voleva|queria
+vita|vida
+palazzo|palácio
+faceva|fazia
+c'era|havia
+avesse|tivesse
+cui|cujo / o qual
+avrebbe|teria
+male|mal / dor
+po'|pouco
+vostra|vossa
+poteva|podia
+aver|ter
+d'oro|de ouro
+fortuna|fortuna / sorte
+alcuno|algum
+sapeva|sabia
+tanta|tanta
+voglio|quero
+nelle|nas
+stesso|mesmo
+avete|tendes / têm
+ora|agora / hora
+mentre|enquanto
+figlia|filha
+debbe|deve (forma antiga)
+allora|então
+andare|ir
+ebbe|teve
+mano|mão
+vide|viu
+piedi|pés
+avevano|tinham
+furono|foram
+caso|caso
+stava|estava
+volte|vezes
+su|sobre / em cima
+fuori|fora
+capo|chefe / cabeça
+punto|ponto
+principi|príncipes
+via|caminho / via
+mille|mil
+mezzo|meio
+regno|reino
+contro|contra
+tre|três
+c'è|há
+uomo|homem
+detto|dito
+venne|veio
+colla|com a (forma antiga)
+signora|senhora
+altre|outras
+stati|estados / sido
+insieme|juntos
+meno|menos
+prese|pegou / tomou
+avendo|tendo
+a'|aos (forma antiga)
+sapere|saber
+degli|dos
+già|já
+mani|mãos
+buon|bom
+proprio|próprio
+ne'|nos (forma antiga)
+dette|ditas
+sulla|sobre a
+camera|quarto / câmara
+spirito|espírito
+avuto|tido
+solo|só / sozinho
+dunque|portanto
+madre|mãe
+parola|palavra
+verso|em direção a / verso
+meglio|melhor
+sanza|sem (forma antiga)
+fine|fim
+siete|sois / são
+figlio|filho
+letto|cama / lido
+signore|senhor
+fa|faz
+rimase|ficou
+fino|até
+terra|terra
+moglie|esposa
+anni|anos
+bisogna|é preciso
+tempi|tempos
+trovò|encontrou
+morire|morrer
+diceva|dizia
+notte|noite
+sentì|sentiu / ouviu
+dai|dos / dá
+nuovo|novo
+persona|pessoa
+sudditi|súditos
+castello|castelo
+giorni|dias
+capelli|cabelos
+bel|belo
+parole|palavras
+da'|dos (forma antiga)
+sendo|sendo (forma antiga)
+dato|dado
+voce|voz
+vostro|vosso
+città|cidade
+poté|pôde
+porta|porta
+sebbene|embora
+arme|armas (forma antiga)
+fussi|fosse (forma antiga)
+tenere|manter / segurar
+cagione|causa (forma antiga)
+dello|do
+preso|preso / tomado
+nessuno|ninguém / nenhum
+povera|pobre
+dietro|atrás
+vero|verdadeiro
+necessario|necessário
+stata|sido
+forse|talvez
+grazia|graça
+adunque|portanto (forma antiga)
+cominciò|começou
+potere|poder
+difficultà|dificuldade (forma antiga)
+dalle|das
+primo|primeiro
+morte|morte
+viso|rosto
+possa|possa
+noi|nós
+populo|povo (forma antiga)
+tante|tantas
+voglia|vontade
+strada|estrada / rua
+sangue|sangue
+stare|estar / ficar
+trovare|encontrar
+soldati|soldados
+dare|dar
+sola|sozinha / só
+miei|meus
+bellezza|beleza
+dua|dois (forma antiga)
+sarà|será
+prendere|pegar / tomar
+doveva|devia
+nome|nome
+messe|colheita / colocadas
+quasi|quase
+tua|tua
+morto|morto
+troppo|demais
+colle|colina
+momento|momento
+torre|torre
+testa|cabeça
+potesse|pudesse
+dolore|dor
+molti|muitos
+l'altro|o outro
+ciascuno|cada um
+bocca|boca
+fatta|feita
+veduto|visto (forma antiga)
+son|sou / são (forma reduzida)
+stessa|mesma
+piacere|prazer
+sorelle|irmãs
+delli|dos (forma antiga)
+populi|povos (forma antiga)
+amici|amigos
+alcuni|alguns
+te|te / ti
+ragione|razão
+donna|mulher
+fratelli|irmãos
+fossero|fossem
+lungo|longo
+duca|duque
+ciò|isso
+pochi|poucos
+s'era|se havia
+bello|belo
+davvero|de verdade
+gatto|gato
+finestra|janela
+cara|cara / querida
+principato|principado
+nostri|nossos
+cavallo|cavalo
+esso|ele / isso
+fecero|fizeram
+invece|em vez disso
+vestiti|vestidos / roupas
+esser|ser (forma antiga)
+però|porém
+venire|vir
+avanti|adiante
+secondo|segundo
+esse|elas
+buone|boas
+sei|és / seis
+dir|dizer (forma reduzida)
+ritratto|retrato
+messo|posto / mensageiro
+ben|bem
+ordini|ordens
+possono|podem
+guerra|guerra
+sole|sol
+agli|aos
+sera|noite
+sorella|irmã
+fin|até
+vede|vê
+l'altra|a outra
+amore|amor
+mangiare|comer
+padrone|patrão / dono
+domandò|perguntou
+sentiva|sentia
+belle|belas
+turchino|azul (forma antiga)
+qualità|qualidade
+gente|gente
+pensiero|pensamento
+figliuoli|filhos (forma antiga)
+soltanto|somente
+sposare|casar com
+carrozza|carruagem
+sala|sala
+l'uccello|o pássaro
+qualunque|qualquer
+voluto|querido / desejado
+l'uno|um
+sicuro|seguro
+addosso|sobre si
+piccola|pequena
+quindi|portanto
+tornare|voltar
+bosco|bosque
+foresta|floresta
+vestito|vestido / roupa
+ciocche|mechas
+assai|muito
+maggiore|maior
+conoscere|conhecer
+papa|papa
+bisogno|necessidade
+reputazione|reputação
+modi|modos
+parlare|falar
+vedeva|via
+quattro|quatro
+buono|bom
+so|sei
+donne|mulheres
+là|lá
+coi|com os
+d'un|de um
+esclamò|exclamou
+gioia|alegria
+allo|ao
+nello|no
+corse|correu
+segno|sinal
+figura|figura
+nemmeno|nem sequer
+entrò|entrou
+finalmente|finalmente
+abbia|tenha
+azioni|ações
+piccolo|pequeno
+altra|outra
+sieno|sejam (forma antiga)
+presto|logo / cedo
+buoni|bons
+elli|ele (forma antiga)
+mettere|pôr / colocar
+volle|quis
+facevano|faziam
+povero|pobre
+giovane|jovem
+passione|paixão
+nuovi|novos
+eserciti|exércitos
+caccia|caça
+venuta|vinda / chegada
+pareva|parecia
+cento|cem
+credere|acreditar
+vecchia|velha
+dava|dava
+mostro|monstro
+sta|está
+mettersi|pôr-se / começar a
+vista|vista
+diamanti|diamantes
+finché|até que / enquanto
+l'aveva|o/a tinha
+brutta|feia
+fontana|fonte / chafariz
+coloro|aqueles que
+molte|muitas
+animo|ânimo / coragem
+imperio|império (forma antiga)
+dico|digo
+tale|tal
+manco|nem / menos (forma antiga)
+essendo|sendo
+visto|visto
+colui|aquele (forma literária)
+anzi|aliás / pelo contrário
+temere|temer
+diventare|tornar-se
+lasciò|deixou
+passò|passou
+luogo|lugar
+potuto|podido
+disgrazia|desgraça
+entrare|entrar
+solito|costumeiro / de costume
+piuttosto|antes / em vez disso
+tanti|tantos
+solamente|somente
+vivere|viver
+forza|força
+minore|menor
+fanno|fazem
+un'altra|outra
+possibile|possível
+farsi|tornar-se / fazer-se
+avessi|tivesse / tivesse eu
+fede|fé
+impossibile|impossível
+tornò|voltou
+tenuto|mantido / tido
+marito|marido
+dicevano|diziam
+ce|nos / aí
+piangere|chorar
+mie|minhas
+fiori|flores
+corona|coroa
+cielo|céu
+trono|trono
+grandezza|grandeza
+trovato|encontrado
+natura|natureza
+perdere|perder
+potersi|poder-se
+fatica|esforço / cansaço
+pensare|pensar
+vedendo|vendo
+fuggire|fugir
+partito|partido / partiu
+diventò|tornou-se
+faccia|rosto / cara
+saputo|sabido
+pure|também / ainda assim
+felice|feliz
+posso|posso
+nozze|núpcias / casamento
+motivo|motivo
+sette|sete
+festa|festa
+tavola|mesa
+quei|aqueles
+andava|ia
+volete|querem
+dispiacere|desgosto / desagradar
+canino|canino
+incontro|encontro
+intendere|entender
+favore|favor
+presa|tomada / presa
+parti|partes
+sí|sim (forma antiga)
+aiuto|ajuda
+lasciare|deixar
+tuo|teu
+qual|qual
+cittadini|cidadãos
+bisognava|era preciso
+pace|paz
+fatti|fatos / feitos
+blu|azul
+sì|sim
+arrivare|chegar
+regalo|presente
+persone|pessoas
+siccome|já que / como
+giardino|jardim
+parve|pareceu
+dito|dedo
+color|cor
+dono|dom / presente
+cosí|assim (forma antiga)
+pigliare|pegar (forma antiga)
+forze|forças
+occasione|ocasião
+alcuna|alguma
+pare|parece
+crudele|cruel
+pensò|pensou
+tratto|trecho / tratado
+ordine|ordem
+passare|passar
+brutto|feio
+chiese|pediu / perguntou
+contenta|contente
+gettò|jogou
+dar|dar
+giovine|jovem (forma antiga)
+figli|filhos
+braccia|braços
+raccontò|contou
+vostri|vossos
+apposta|de propósito
+caro|caro / querido
+riprese|retomou
+l'anello|o anel
+fanciulla|menina / donzela
+simili|semelhantes
+mantenere|manter
+volentieri|de bom grado
+ragioni|razões
+l'una|a uma
+amico|amigo
+esempli|exemplos (forma antiga)
+simile|semelhante
+forte|forte
+sulle|sobre as
+stavano|estavam
+pericolo|perigo
+sentire|sentir / ouvir

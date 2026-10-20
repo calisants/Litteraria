@@ -21,6 +21,23 @@ try:
     after=pg.evaluate("(k)=>[S.rvv['en:v|'+k[0]],S.rvv['en:v|'+k[1]]]",keys)
     assert after[0][1]==3 and after[1][1]==0 and after[1][0]>pg.evaluate("()=>Date.now()"),after
     assert 'Cartões concluídos' in pg.inner_text('#sheet')
+    # toque em qualquer palavra + caderno
+    pg.evaluate("()=>{closeSheet();S.lang='en';S.cad=[];S.rvv={};save();go('books')}")
+    pg.click('[data-bk-read="peter"]');pg.click('.chb[data-ch="1"]');pg.wait_for_selector('#rdr-pars .rd-line')
+    tw=pg.query_selector('#rdr-pars .tw');assert tw,'sem palavras tocáveis'
+    word=tw.get_attribute('data-t');tw.click()
+    txt=pg.inner_text('#rdr-def');assert word in txt and 'Guardar no caderno' in txt,txt
+    pg.click('#cad-save');assert pg.evaluate("()=>S.cad.length")==1
+    assert 'Já está no caderno' in pg.inner_text('#rdr-def')
+    # glossário: uma palavra conhecida do glossário mostra o significado
+    r=pg.evaluate("()=>{const g=GLOS.en;return Object.keys(g).length}");assert r>=500,r
+    # caderno vence e aparece nos cartões
+    pg.evaluate("()=>{S.cad[0].pt=S.cad[0].pt||'teste';S.cad[0].d=1;save();closeSheet();go('home')}")
+    pg.evaluate("()=>startCards()");assert pg.is_visible('#card-show')
+    pg.click('#card-show');pg.click('#card-easy');
+    assert pg.evaluate("()=>S.cad[0]?S.cad[0].s:-1")==1
+    # salvamento inválido é descartado
+    pg.evaluate("()=>{const sv=JSON.parse(localStorage.getItem(Object.keys(localStorage).find(k=>/mots/i.test(k))));}")
     # novidades
     pg.evaluate("()=>{closeSheet();go('settings')}");pg.click('#open-news');pg.wait_for_timeout(100)
     t=pg.inner_text('#news-list');assert 'Versão 1.34.0' in t

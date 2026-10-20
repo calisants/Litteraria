@@ -41,6 +41,40 @@
     }).join(""):'<p class="help">Seu álbum está vazio. Toque em «Guardar no álbum» nas frases dos livros, na Frase do dia ou nos jogos de citação.</p>';
   }
 
+  /* ---- toque em qualquer palavra do capítulo + caderno de vocabulário ---- */
+  let anyW=null;
+  function lookupAny(tok){
+    const L=S.lang,vi=vIdx()[L],gl=(window.GLOS&&GLOS[L])||{};
+    for(const x of candsOf(tok,L)){
+      if(vi[x]&&(x===tok.toLowerCase()||x.length>=4))return {w:full(vi[x]),pt:vi[x].pt,src:"app"};
+      if(gl[x]&&(x===tok.toLowerCase()||x.length>=4))return {w:x,pt:gl[x],src:"glos"};
+    }
+    return null;
+  }
+  function showAnyWord(tok){
+    const r=lookupAny(tok),L=S.lang;
+    anyW={w:r?r.w:tok.toLowerCase(),pt:r?r.pt:"",tok:tok};
+    const saved=S.cad.some(c=>c.l===L&&c.w===anyW.w);
+    $("#rdr-def").innerHTML="<b>"+esc(tok)+"</b> "+speakBtn(tok)+(r?" = "+esc(r.pt)+(r.w.toLowerCase()!==tok.toLowerCase()?" <small>(forma: "+esc(r.w)+")</small>":"")+"<br><small>"+(r.src==="app"?"Significado do vocabulário do app.":"Glossário do app: escrito por Claude, sem fonte conferida.")+"</small>":'<br><small>Esta palavra ainda não está no glossário do app, então não tenho o significado para mostrar. Você pode guardá-la mesmo assim e conferir no dicionário depois.</small>')+
+      ' <button type="button" class="btn" id="cad-save"'+(saved?" disabled":"")+">"+(saved?"Já está no caderno":"Guardar no caderno")+"</button>";
+  }
+  function cadSave(){
+    if(!anyW||S.cad.length>=300)return;
+    if(S.cad.some(c=>c.l===S.lang&&c.w===anyW.w))return;
+    S.cad.push({l:S.lang,w:anyW.w,pt:anyW.pt,b:RK.id||"",d:rvDue(1),s:0});save();
+    showAnyWord(anyW.tok);
+  }
+  function openCad(){
+    const L=S.lang,rows=S.cad.map((c,i)=>[c,i]).filter(x=>x[0].l===L);
+    openSheet("Meu caderno · "+LNAME[L],
+      (rows.length?rows.map(([c,i])=>'<div class="cad-row"><span><b>'+esc(c.w)+"</b> "+speakBtn(c.w)+" "+(c.pt?esc(c.pt):"<i>sem tradução salva</i>")+(c.b&&BK[c.b]?" <small>· «"+esc(BK[c.b].name)+"»</small>":"")+'</span><button type="button" class="btn" data-cad-del="'+i+'" aria-label="Tirar '+esc(c.w)+' do caderno">Tirar</button></div>').join(""):'<p class="help">Seu caderno de '+esc(LNAME[L])+' está vazio. No leitor, toque numa palavra e use «Guardar no caderno».</p>')+
+      '<p class="help">As palavras guardadas voltam nos «Cartões de revisão» do Treino (só as que têm tradução salva).</p>',false);
+  }
+  window.openCad=openCad;
+  document.addEventListener("click",e=>{
+    const d=e.target.closest&&e.target.closest("[data-cad-del]");
+    if(d){S.cad.splice(+d.dataset.cadDel,1);save();openCad();}
+  });
   /* ---- frase do dia ---- */
   let qodExtra=0;
   const hash=s=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return Math.abs(h);};
@@ -166,7 +200,7 @@
     return m;
   }
   /* acha a palavra do vocabulário também em formas flexionadas simples (mentioned → mention, doors → door) */
-  function keyOf(tok,m,lang){
+  function candsOf(tok,lang){
     const k=tok.toLowerCase().replace(/’/g,"'");
     const c=[k];
     if(k.indexOf("'")>=0)c.push(lang==="en"?k.replace(/'s$/,""):k.slice(k.lastIndexOf("'")+1));
@@ -181,6 +215,11 @@
         if(/[sx]$/.test(x))c.push(x.slice(0,-1));
       }
     });
+    return c;
+  }
+  window.candsOf=candsOf;
+  function keyOf(tok,m,lang){
+    const c=candsOf(tok,lang),k=c[0];
     for(const x of c){if(m[x]&&(x===k||x.length>=4))return x;}
     return null;
   }
@@ -190,7 +229,7 @@
     rd={D:BOOKREAD[P.rd][P.k-1],shown:{},sel:null,found:{}};
     renderLeitura();
   }
-  function wordsHtml(text,m,lang,found){
+  function wordsHtml(text,m,lang,found,all){
     const sk=S.sk[lang]||{};
     let before="";
     return text.split(/(\p{L}[\p{L}'’]*)/u).map(t=>{
@@ -199,7 +238,7 @@
       if(!/^\p{L}/u.test(t))return esc(t);
       if(!start&&t[0]!==t[0].toLowerCase())return esc(t);   /* nomes próprios no meio da frase não contam */
       const k=keyOf(t,m,lang);
-      if(!k)return esc(t);
+      if(!k)return all?'<span class="tw" data-t="'+esc(t)+'">'+esc(t)+"</span>":esc(t);
       found[k]=m[k];
       const a=sk[k],learned=a&&a[0]>0;
       return '<button type="button" class="rw '+(learned?"k":"u")+'" data-k="'+esc(k)+'">'+esc(t)+"</button>";
@@ -278,6 +317,7 @@
     S.vol=+b.dataset.bkVol;S.fGame="all";S.fTheme="all";save();startPage(b.dataset.bkGo);
   });
   $("#books-album").addEventListener("click",()=>go("album"));
+  $("#books-cad").addEventListener("click",()=>openCad());
   $("#go-books").addEventListener("click",()=>go("books"));
 
   /* ---- Livro completo: capítulos com o original e a tradução, parágrafo a parágrafo ---- */
@@ -328,7 +368,7 @@
   function parHtml(i){
     const pr=RK.data.p[i],m=vmap(RK.id),sh=RK.shown[i];
     if(!/\p{L}/u.test(pr[0]))return '<div class="rd-line rd-sep" data-i="'+i+'" aria-hidden="true">'+esc(pr[0])+'</div>';
-    return '<div class="rd-line" data-i="'+i+'"><p class="rd-s">'+wordsHtml(pr[0],m,S.lang,RK.found)+'</p><div class="rd-act">'+speakBtn(pr[0])+'<button type="button" class="btn rd-tr" data-i="'+i+'" aria-pressed="'+!!sh+'">'+(sh?"Esconder tradução":"Ver tradução")+"</button></div>"+(sh?'<p class="rd-pt">'+esc(trTxt(pr))+"</p>":"")+"</div>";
+    return '<div class="rd-line" data-i="'+i+'"><p class="rd-s">'+wordsHtml(pr[0],m,S.lang,RK.found,true)+'</p><div class="rd-act">'+speakBtn(pr[0])+'<button type="button" class="btn rd-tr" data-i="'+i+'" aria-pressed="'+!!sh+'">'+(sh?"Esconder tradução":"Ver tradução")+"</button></div>"+(sh?'<p class="rd-pt">'+esc(trTxt(pr))+"</p>":"")+"</div>";
   }
   function renderChapter(){
     const b=BK[RK.id],info=TI[RK.id],c=RK.data,pos=info.chs.findIndex(x=>x.n===c.n);
@@ -349,7 +389,9 @@
     const g=e.target.closest("[data-go-ch]");if(g){openChapter(+g.dataset.goCh);return;}
     if(e.target.closest("#rdr-list")){renderChapterList();return;}
     if(!RK.data)return;
-    const w=e.target.closest(".rw"),t=e.target.closest(".rd-tr");
+    const w=e.target.closest(".rw"),t=e.target.closest(".rd-tr"),tw=e.target.closest(".tw");
+    if(tw){showAnyWord(tw.dataset.t);return;}
+    if(e.target.closest("#cad-save")){cadSave();return;}
     if(w){
       RK.sel=w.dataset.k;const en=vmap(RK.id)[RK.sel];
       $("#rdr-def").innerHTML=en?"<b>"+esc(full(en))+"</b> = "+esc(en.pt)+" <small>("+esc(en.c)+")</small>":"";

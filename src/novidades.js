@@ -1,5 +1,9 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.35.0",d:"2026-10-20",t:[
+"Leitor: toque em qualquer palavra do capítulo para ver o significado e ouvir (inglês, francês e italiano)",
+"Novo glossário com as 1.650 palavras mais frequentes dos livros (traduções escritas por Claude, sem fonte conferida)",
+"Novo: «Meu caderno de palavras» (em Livros) e «Guardar no caderno» no leitor; as palavras do caderno voltam nos cartões de revisão"]},
 {v:"1.34.0",d:"2026-10-20",t:[
 "Meta de hoje e Frase do dia agora ficam em Lições (a tela inicial ficou mais limpa)",
 "Novo: notas de atualização (Ajustes → Sobre e ajuda → Novidades)",
