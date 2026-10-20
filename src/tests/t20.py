@@ -13,8 +13,8 @@ try:
     pg.goto('http://localhost:8776/index.html');pg.wait_for_timeout(700)
     # frase do dia: existe nos 3 idiomas e é a mesma ao longo do dia
     for l in ('fr','it','en'):
-        pg.evaluate("(l)=>{S.lang=l;go('home')}",l)
-        t1=pg.inner_text('#qod');pg.evaluate("()=>go('home')");assert t1==pg.inner_text('#qod') and 'frase do dia' in t1.lower(),l
+        pg.evaluate("(l)=>{S.lang=l;go('vol')}",l)
+        t1=pg.inner_text('#qod');pg.evaluate("()=>go('vol')");assert t1==pg.inner_text('#qod') and 'frase do dia' in t1.lower(),l
     pg.click('#qod-more');assert pg.is_visible('#qod .favbtn')
     # álbum: guardar, listar, tirar, e a leitura do salvamento descarta ids inválidos
     pg.click('#qod .favbtn');assert pg.evaluate("()=>S.fav.length")==1
