@@ -67,7 +67,7 @@ perrault:{name:"Salão das Fadas",desc:"Inspirado nos Contos de Perrault: castel
 grimm:{name:"Floresta Encantada",desc:"Inspirado nos Contos dos Irmãos Grimm: floresta, trilha de migalhas, cogumelos e coruja",schemes:[["Clareira",0,"#eef5e8","#ffffff","#dbe9d2","#b5cfa8","#3f6a2f","#1c2a18","#44563e","#8a4b0a","#1f7a45","#b3261e"],["Floresta à noite",1,"#0d1b14","#14271d","#1e3a2b","#2f5642","#9fd68a","#eaf5e6","#b6cdb0","#f2c06a","#7fdca8","#ff9a8f"]]},
 racconti:{name:"Contos à Luz de Vela",desc:"Inspirado em I racconti delle fate: colinas toscanas, torre, livro aberto e vela",schemes:[["Colinas ao pôr do sol",0,"#fbefe0","#ffffff","#f3dcc0","#dcb98e","#9a4a1e","#2b1c10","#5a4430","#7a4f00","#1f7a45","#b3261e"],["Luz de vela",1,"#1e120a","#2a1a0f","#3a2515","#573820","#f0b060","#f8eee0","#d5c0a6","#f2c864","#7fdca8","#ff9a8f"]]},
 };
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[]};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0}};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -105,6 +105,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(sv.fLevel==="all"||LVN[sv.fLevel])S.fLevel=sv.fLevel;
   if(typeof sv.fGame==="string"&&/^[a-z]+$/.test(sv.fGame))S.fGame=sv.fGame;
   if(sv.trad==="nat"||sv.trad==="lit")S.trad=sv.trad;
+  if(sv.rd&&typeof sv.rd==="object"){S.rd={fs:[0,1,2,3].indexOf(+sv.rd.fs)>=0?+sv.rd.fs:0,bg:["pad","sepia","escuro"].indexOf(sv.rd.bg)>=0?sv.rd.bg:"pad",lh:+sv.rd.lh===1?1:0};}
   if(Array.isArray(sv.cad))sv.cad.slice(0,300).forEach(c=>{if(c&&/^(fr|it|en)$/.test(c.l)&&typeof c.w==="string"&&c.w.length>0&&c.w.length<40&&typeof c.pt==="string"&&c.pt.length<120&&!S.cad.some(x=>x.l===c.l&&x.w===c.w))S.cad.push({l:c.l,w:c.w,pt:c.pt,b:typeof c.b==="string"?c.b.slice(0,20):"",d:+c.d>0?+c.d:Date.now(),s:Math.min(4,Math.max(0,+c.s||0))});});
   if(sv.qrv&&typeof sv.qrv==="object")Object.keys(sv.qrv).slice(0,200).forEach(k=>{const a=sv.qrv[k];if(/^[a-z]+:\d{1,2}$/.test(k)&&Array.isArray(a)&&+a[0]>0)S.qrv[k]=[+a[0],Math.min(4,Math.max(0,+a[1]||0))];});
   if(sv.cap&&typeof sv.cap==="object")Object.keys(sv.cap).forEach(k=>{if(/^[a-z]+-\d{1,3}$/.test(k))S.cap[k]=1;});

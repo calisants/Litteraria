@@ -366,6 +366,14 @@ svg{display:block}
 .tgl{margin:0 0 10px;min-height:40px;padding:4px 12px;font-size:.9rem}
 .gbar{display:block;width:100%;height:8px;margin-top:6px;border-radius:99px;background:color-mix(in srgb,currentColor 25%,transparent);overflow:hidden}
 .gbar i{display:block;height:100%;width:0;background:currentColor;border-radius:99px}
+#s-reader{--rfs:1;--rlh:1.55}
+#s-reader[data-rfs="1"]{--rfs:1.15}#s-reader[data-rfs="2"]{--rfs:1.3}#s-reader[data-rfs="3"]{--rfs:1.5}
+#s-reader[data-rlh="1"]{--rlh:1.9}
+#s-reader .rd-s{font-size:calc(1.15rem*var(--rfs));line-height:var(--rlh)}
+#s-reader .rdc-t{font-size:calc(1.3rem*var(--rfs))}
+#s-reader[data-rbg="sepia"]{--bg:#f4ecd8;--surface:#fbf5e6;--surface-2:#efe4c8;--line:#d6c8a6;--ink:#3b2f1e;--muted:#66543a;--accent:#8a4b1d;--on-accent:#ffffff;background:var(--bg);color:var(--ink)}
+#s-reader[data-rbg="escuro"]{--bg:#18181c;--surface:#23232a;--surface-2:#2d2d35;--line:#42424d;--ink:#ebe8e2;--muted:#b9b4a9;--accent:#e3b866;--on-accent:#18181c;background:var(--bg);color:var(--ink)}
+#s-reader[data-rbg] .bar{background:var(--bg);color:var(--ink)}
 .ctxh{margin:0 0 12px;border:var(--bw) solid var(--line);border-radius:var(--radius);padding:8px 12px;background:var(--surface)}.ctxh summary{cursor:pointer;font-weight:700;min-height:36px;display:flex;align-items:center}.ctxh ul{margin:6px 0;padding-left:18px}.ctxh li{margin:8px 0}.ctxh a{color:var(--accent-ink,var(--accent));text-decoration:underline}.tw{cursor:pointer;border-radius:3px}.tw:active,.tw:hover{background:color-mix(in srgb,var(--accent) 18%,transparent)}.cad-row{display:flex;gap:8px;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:var(--bw) solid var(--line)}.news{margin:0 0 16px}.news h3{font-size:1rem;margin:0 0 6px}.news ul{margin:0;padding-left:20px}.news li{margin:3px 0}.goalbox{margin:0 0 12px}.goalbox b{display:block;font-size:.85rem;color:var(--muted)}.goalbox .gbar{background:var(--line)}.goalbox .gbar i{background:var(--accent)}.goalbox small{display:block;margin-top:4px;color:var(--muted)}.s-vol-qod,#s-vol .qod{margin:0 0 12px}
 #go-settings{grid-column:1/-1;min-height:64px;flex-direction:row;align-items:center;gap:12px}
 #go-settings svg{margin:0}
@@ -804,6 +812,7 @@ svg{display:block}
     <header class="bar">
       <button type="button" class="btn icon" id="rdr-back" aria-label="Voltar"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="ttl"><h2 id="rdr-title"></h2><p class="vol" id="rdr-sub"></p></div>
+      <button type="button" class="btn" id="rdr-aa" aria-label="Ajustar a leitura: letra, espaço e fundo">Aa</button>
     </header>
     <div class="scroll" id="rdr-body"></div>
   </section>
@@ -923,7 +932,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.36.0",d:"2026-10-20"};
+const APP_REL={v:"1.37.0",d:"2026-10-20"};
 
 
 const RAW={
@@ -2436,7 +2445,7 @@ perrault:{name:"Salão das Fadas",desc:"Inspirado nos Contos de Perrault: castel
 grimm:{name:"Floresta Encantada",desc:"Inspirado nos Contos dos Irmãos Grimm: floresta, trilha de migalhas, cogumelos e coruja",schemes:[["Clareira",0,"#eef5e8","#ffffff","#dbe9d2","#b5cfa8","#3f6a2f","#1c2a18","#44563e","#8a4b0a","#1f7a45","#b3261e"],["Floresta à noite",1,"#0d1b14","#14271d","#1e3a2b","#2f5642","#9fd68a","#eaf5e6","#b6cdb0","#f2c06a","#7fdca8","#ff9a8f"]]},
 racconti:{name:"Contos à Luz de Vela",desc:"Inspirado em I racconti delle fate: colinas toscanas, torre, livro aberto e vela",schemes:[["Colinas ao pôr do sol",0,"#fbefe0","#ffffff","#f3dcc0","#dcb98e","#9a4a1e","#2b1c10","#5a4430","#7a4f00","#1f7a45","#b3261e"],["Luz de vela",1,"#1e120a","#2a1a0f","#3a2515","#573820","#f0b060","#f8eee0","#d5c0a6","#f2c864","#7fdca8","#ff9a8f"]]},
 };
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[]};
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0}};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -2474,6 +2483,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(sv.fLevel==="all"||LVN[sv.fLevel])S.fLevel=sv.fLevel;
   if(typeof sv.fGame==="string"&&/^[a-z]+$/.test(sv.fGame))S.fGame=sv.fGame;
   if(sv.trad==="nat"||sv.trad==="lit")S.trad=sv.trad;
+  if(sv.rd&&typeof sv.rd==="object"){S.rd={fs:[0,1,2,3].indexOf(+sv.rd.fs)>=0?+sv.rd.fs:0,bg:["pad","sepia","escuro"].indexOf(sv.rd.bg)>=0?sv.rd.bg:"pad",lh:+sv.rd.lh===1?1:0};}
   if(Array.isArray(sv.cad))sv.cad.slice(0,300).forEach(c=>{if(c&&/^(fr|it|en)$/.test(c.l)&&typeof c.w==="string"&&c.w.length>0&&c.w.length<40&&typeof c.pt==="string"&&c.pt.length<120&&!S.cad.some(x=>x.l===c.l&&x.w===c.w))S.cad.push({l:c.l,w:c.w,pt:c.pt,b:typeof c.b==="string"?c.b.slice(0,20):"",d:+c.d>0?+c.d:Date.now(),s:Math.min(4,Math.max(0,+c.s||0))});});
   if(sv.qrv&&typeof sv.qrv==="object")Object.keys(sv.qrv).slice(0,200).forEach(k=>{const a=sv.qrv[k];if(/^[a-z]+:\d{1,2}$/.test(k)&&Array.isArray(a)&&+a[0]>0)S.qrv[k]=[+a[0],Math.min(4,Math.max(0,+a[1]||0))];});
   if(sv.cap&&typeof sv.cap==="object")Object.keys(sv.cap).forEach(k=>{if(/^[a-z]+-\d{1,3}$/.test(k))S.cap[k]=1;});
@@ -4774,8 +4784,36 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   });
 })();
 
+/* ===== Leitura confortável: tamanho da letra, espaço entre linhas e fundo (só no leitor de livros) ===== */
+(function(){
+  const FS=["Normal","Grande","Maior","Muito grande"],BG=[["pad","Padrão do app"],["sepia","Sépia"],["escuro","Escuro"]];
+  function apply(){
+    const el=$("#s-reader");if(!el)return;
+    el.dataset.rfs=S.rd.fs;el.dataset.rlh=S.rd.lh;
+    if(S.rd.bg==="pad")delete el.dataset.rbg;else el.dataset.rbg=S.rd.bg;
+  }
+  function panel(){
+    const r=S.rd;
+    openSheet("Leitura confortável",
+      '<p class="help">Vale só para o leitor de livros.</p>'+
+      '<h3 class="lab">Tamanho da letra</h3><div class="seg" role="group" aria-label="Tamanho da letra">'+FS.map((n,i)=>'<button type="button" data-rd="fs" data-v="'+i+'" aria-pressed="'+(r.fs===i)+'">'+n+"</button>").join("")+"</div>"+
+      '<h3 class="lab">Espaço entre as linhas</h3><div class="seg" role="group" aria-label="Espaço entre as linhas"><button type="button" data-rd="lh" data-v="0" aria-pressed="'+(r.lh===0)+'">Normal</button><button type="button" data-rd="lh" data-v="1" aria-pressed="'+(r.lh===1)+'">Amplo</button></div>'+
+      '<h3 class="lab">Fundo</h3><div class="seg" role="group" aria-label="Fundo do leitor">'+BG.map(b=>'<button type="button" data-rd="bg" data-v="'+b[0]+'" aria-pressed="'+(r.bg===b[0])+'">'+b[1]+"</button>").join("")+"</div>",false);
+  }
+  document.addEventListener("click",e=>{
+    const t=e.target;if(!t.closest)return;
+    if(t.closest("#rdr-aa")){panel();return;}
+    const b=t.closest("[data-rd]");
+    if(b){const k=b.dataset.rd;S.rd[k]=k==="bg"?b.dataset.v:+b.dataset.v;save();apply();panel();}
+  });
+  apply();
+})();
+
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.37.0",d:"2026-10-20",t:[
+"Leitor de livros: botão «Aa» para ajustar o tamanho da letra (4 tamanhos), o espaço entre linhas e o fundo (padrão, sépia ou escuro)",
+"A escolha fica salva e vale só no leitor"]},
 {v:"1.36.0",d:"2026-10-20",t:[
 "Novo: contexto histórico e cultural nos 7 livros com texto completo (Peter Rabbit, Alice, Frankenstein, O Príncipe, Perrault, Grimm e Collodi)",
 "Cada livro tem «Sobre o livro e a época»; cada capítulo tem suas notas, todas com a fonte e o link",

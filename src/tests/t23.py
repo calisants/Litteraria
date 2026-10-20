@@ -49,9 +49,23 @@ try:
     # todo livro com texto tem introdução e todas as notas têm fonte https
     r=pg.evaluate("()=>Object.entries(CTXH).map(([k,v])=>[k,v.intro.length,Object.values(v.ch).flat().every(n=>n.u.startsWith('https://')&&n.s&&n.t)])")
     print('contexto:',r);assert len(r)==7 and all(x[1]>=4 and x[2] for x in r)
+    # leitura confortável
+    pg.evaluate("()=>closeSheet()")
+    f0=pg.evaluate("()=>parseFloat(getComputedStyle(document.querySelector('#rdr-pars .rd-s')).fontSize)")
+    pg.click('#rdr-aa');pg.click('[data-rd="fs"][data-v="2"]');pg.click('[data-rd="bg"][data-v="escuro"]');pg.click('[data-rd="lh"][data-v="1"]')
+    pg.evaluate("()=>closeSheet()")
+    f1=pg.evaluate("()=>parseFloat(getComputedStyle(document.querySelector('#rdr-pars .rd-s')).fontSize)");assert f1>f0*1.25,(f0,f1)
+    assert pg.evaluate("()=>document.querySelector('#s-reader').dataset.rbg")=='escuro'
+    bgc=pg.evaluate("()=>getComputedStyle(document.querySelector('#s-reader')).backgroundColor");assert bgc=='rgb(24, 24, 28)',bgc
+    assert pg.evaluate("()=>JSON.stringify(S.rd)")=='{"fs":2,"bg":"escuro","lh":1}'
+    pg.reload();pg.wait_for_timeout(600)
+    assert pg.evaluate("()=>document.querySelector('#s-reader').dataset.rfs")=='2'
+    pg.evaluate("()=>{const k=Object.keys(localStorage).find(k=>/mots/i.test(k));const o=JSON.parse(localStorage.getItem(k));o.rd={fs:9,bg:'x',lh:5};localStorage.setItem(k,JSON.stringify(o))}")
+    pg.reload();pg.wait_for_timeout(600)
+    assert pg.evaluate("()=>JSON.stringify(S.rd)")=='{"fs":0,"bg":"pad","lh":0}'
     # novidades
     pg.evaluate("()=>{closeSheet();go('settings')}");pg.click('#open-news');pg.wait_for_timeout(100)
-    t=pg.inner_text('#news-list');assert 'Versão 1.36.0' in t
+    t=pg.inner_text('#news-list');assert 'Versão 1.37.0' in t
     print('erros:',errs);assert not errs
     print('OK t23')
 finally: srv.terminate()
