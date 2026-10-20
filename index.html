@@ -932,7 +932,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.37.0",d:"2026-10-20"};
+const APP_REL={v:"1.38.0",d:"2026-10-20"};
 
 
 const RAW={
@@ -4327,6 +4327,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
 
   /* ---- álbum de citações (S.fav) ---- */
   const isFav=id=>S.fav.indexOf(id)>=0;
+  const imgBtn=id=>'<button type="button" class="btn" data-img="'+id+'">Salvar como imagem</button>';
   const favBtn=id=>'<button type="button" class="favbtn" data-fav="'+id+'" aria-pressed="'+isFav(id)+'">'+(isFav(id)?"★ No álbum":"☆ Guardar no álbum")+"</button>";
   window.phFavBtn=(book,i)=>favBtn(book+":"+i);
   document.addEventListener("click",e=>{
@@ -4337,12 +4338,59 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     b.setAttribute("aria-pressed",String(isFav(id)));b.textContent=isFav(id)?"★ No álbum":"☆ Guardar no álbum";
     if(!$("#s-album").hidden)renderAlbum();
   });
+  /* ---- cartão de citação em imagem (PNG), só frases de livros de domínio público ---- */
+  function wrapLines(ctx,text,maxW){
+    const words=text.split(/\s+/),lines=[];let cur="";
+    words.forEach(w=>{const t=cur?cur+" "+w:w;if(ctx.measureText(t).width>maxW&&cur){lines.push(cur);cur=w;}else cur=t;});
+    if(cur)lines.push(cur);return lines;
+  }
+  function cardCanvas(p){
+    const W=1080,H=1350,pad=96,cs=getComputedStyle(document.documentElement);
+    const col=(n,d)=>(cs.getPropertyValue(n)||"").trim()||d;
+    const bg=col("--surface",col("--bg","#ffffff")),ink=col("--ink","#141a24"),muted=col("--muted","#4d5869"),acc=col("--accent","#1f3d7a");
+    const c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
+    x.fillStyle=col("--bg","#f4f5f7");x.fillRect(0,0,W,H);
+    x.fillStyle=bg;x.fillRect(48,48,W-96,H-96);
+    x.strokeStyle=acc;x.lineWidth=4;x.strokeRect(48,48,W-96,H-96);
+    const maxW=W-2*pad;let y=150;
+    x.textBaseline="top";x.fillStyle=muted;x.font="600 30px Georgia,serif";
+    wrapLines(x,("Frase do livro «"+BK[p.book].name+"» · "+LNAME[p.lang]).toUpperCase(),maxW).forEach(l=>{x.fillText(l,pad,y);y+=42;});
+    let fs=72,lines;
+    for(;fs>=36;fs-=4){x.font="700 "+fs+"px Georgia,serif";lines=wrapLines(x,p.s,maxW);if(lines.length*fs*1.35<=620)break;}
+    x.font="italic 400 40px Georgia,serif";const tl=wrapLines(x,p.pt,maxW);
+    const bodyH=lines.length*fs*1.35+34+6+44+tl.length*56,top=y+20,bottom=H-200;
+    y=top+Math.max(0,(bottom-top-bodyH)/2);
+    x.fillStyle=ink;x.font="700 "+fs+"px Georgia,serif";
+    lines.forEach(l=>{x.fillText(l,pad,y);y+=fs*1.35;});
+    y+=34;x.fillStyle=acc;x.fillRect(pad,y,160,6);y+=44;
+    x.fillStyle=muted;x.font="italic 400 40px Georgia,serif";
+    tl.forEach(l=>{x.fillText(l,pad,y);y+=56;});
+    x.fillStyle=muted;x.font="400 26px Georgia,serif";
+    x.fillText("Tradução: escrita por Claude, sem fonte conferida",pad,H-170);
+    x.fillStyle=acc;x.font="700 34px Georgia,serif";x.fillText("Mots & Parole",pad,H-120);
+    return c;
+  }
+  async function saveCard(id){
+    const p=phById[id];if(!p)return;
+    const c=cardCanvas(p),name="citacao-"+p.book+"-"+id.split(":")[1]+".png";
+    const blob=await new Promise(r=>c.toBlob(r,"image/png"));
+    if(!blob){say("Não consegui gerar a imagem neste navegador.");return;}
+    const f=new File([blob],name,{type:"image/png"});
+    try{
+      if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Frase do livro «"+BK[p.book].name+"»"});return;}
+    }catch(e){if(e&&e.name==="AbortError")return;}
+    const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+    say("Imagem salva: "+name);
+  }
+  window.cardCanvas=cardCanvas;window.phGet=id=>phById[id];
+  document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-img]");if(b)saveCard(b.dataset.img);});
   function renderAlbum(){
     const ids=S.fav.filter(id=>phById[id]).slice().reverse();
     $("#album-count").textContent=ids.length?ids.length+(ids.length===1?" frase guardada":" frases guardadas"):"";
     $("#album-list").innerHTML=ids.length?ids.map(id=>{
       const p=phById[id],b=BK[p.book];
-      return '<article class="alb"><p class="alb-k">'+esc(b.name)+" · "+esc(LNAME[p.lang])+'</p><p class="alb-s">'+esc(p.s)+(p.lang===S.lang?" "+speakBtn(p.s):"")+'</p><p class="alb-pt">'+esc(p.pt)+'</p><p class="alb-n">'+hl(p.note)+"</p>"+favBtn(id)+"</article>";
+      return '<article class="alb"><p class="alb-k">'+esc(b.name)+" · "+esc(LNAME[p.lang])+'</p><p class="alb-s">'+esc(p.s)+(p.lang===S.lang?" "+speakBtn(p.s):"")+'</p><p class="alb-pt">'+esc(p.pt)+'</p><p class="alb-n">'+hl(p.note)+"</p>"+favBtn(id)+imgBtn(id)+"</article>";
     }).join(""):'<p class="help">Seu álbum está vazio. Toque em «Guardar no álbum» nas frases dos livros, na Frase do dia ou nos jogos de citação.</p>';
   }
 
@@ -4393,7 +4441,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     el.innerHTML='<p class="qod-k">Frase do dia · «'+esc(BK[p.book].name)+"»</p>"+
       '<p class="qod-s">'+esc(p.s)+" "+speakBtn(p.s)+'</p><p class="qod-pt">'+esc(p.pt)+"</p>"+
       '<details class="qod-d"><summary>Ver nota de gramática</summary><p class="qod-n">'+hl(p.note)+'</p><p class="qod-src">Frase copiada do livro. Tradução e nota: Claude, sem fonte conferida.</p></details>'+
-      '<div class="row">'+favBtn(p.id)+'<button type="button" class="btn" id="qod-more">Outra frase</button></div>';
+      '<div class="row">'+favBtn(p.id)+imgBtn(p.id)+'<button type="button" class="btn" id="qod-more">Outra frase</button></div>';
   }
   document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#qod-more")){qodExtra++;renderQod();}});
   window.renderQod=renderQod;window.renderAlbum=renderAlbum;
@@ -4811,6 +4859,9 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.38.0",d:"2026-10-20",t:[
+"Novo: «Salvar como imagem» na Frase do dia e no Álbum de citações, com a frase, a tradução e o nome do livro",
+"A imagem é gerada no próprio aparelho; no celular abre o menu de compartilhar, no computador baixa o arquivo"]},
 {v:"1.37.0",d:"2026-10-20",t:[
 "Leitor de livros: botão «Aa» para ajustar o tamanho da letra (4 tamanhos), o espaço entre linhas e o fundo (padrão, sépia ou escuro)",
 "A escolha fica salva e vale só no leitor"]},

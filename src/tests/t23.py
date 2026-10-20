@@ -63,9 +63,20 @@ try:
     pg.evaluate("()=>{const k=Object.keys(localStorage).find(k=>/mots/i.test(k));const o=JSON.parse(localStorage.getItem(k));o.rd={fs:9,bg:'x',lh:5};localStorage.setItem(k,JSON.stringify(o))}")
     pg.reload();pg.wait_for_timeout(600)
     assert pg.evaluate("()=>JSON.stringify(S.rd)")=='{"fs":0,"bg":"pad","lh":0}'
+    # cartão de citação em imagem
+    pg.evaluate("()=>{closeSheet();S.lang='it';save();go('vol')}")
+    assert pg.is_visible('#qod [data-img]')
+    with pg.expect_download() as dl:
+        pg.click('#qod [data-img]')
+    d=dl.value;assert d.suggested_filename.startswith('citacao-') and d.suggested_filename.endswith('.png'),d.suggested_filename
+    import os as _os
+    pth=d.path();assert _os.path.getsize(pth)>20000
+    assert open(pth,'rb').read(8)==b'\x89PNG\r\n\x1a\n'
+    pg.evaluate("()=>{S.fav=[document.querySelector('#qod .favbtn').dataset.fav];save();go('album')}")
+    assert pg.is_visible('#album-list [data-img]')
     # novidades
     pg.evaluate("()=>{closeSheet();go('settings')}");pg.click('#open-news');pg.wait_for_timeout(100)
-    t=pg.inner_text('#news-list');assert 'Versão 1.37.0' in t
+    t=pg.inner_text('#news-list');assert 'Versão 1.38.0' in t
     print('erros:',errs);assert not errs
     print('OK t23')
 finally: srv.terminate()

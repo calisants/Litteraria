@@ -136,3 +136,7 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 ## Leitura confortável (20/10/2026, v1.37.0)
 - Botão «Aa» no cabeçalho do leitor (`#rdr-aa`, `src/confort.js`): tamanho da letra (4), espaço entre linhas (2) e fundo (padrão / sépia / escuro). `S.rd={fs,bg,lh}` validado no `load` de `p3.js`; aplica `data-rfs/rlh/rbg` em `#s-reader` (CSS `#s-reader[data-rbg=...]` em `p1.html` redefine --bg, --surface, --ink, --muted, --accent só dentro do leitor). Vale só para o leitor de livros. Teste: `t23.py`.
 - Falta do plano combinado: cartão de citação em imagem (só livros de domínio público).
+
+## Cartão de citação em imagem (20/10/2026, v1.38.0)
+- Botão «Salvar como imagem» (`[data-img]`) na Frase do dia e no Álbum (`livros2.js`: `cardCanvas`, `saveCard`): PNG 1080x1350 desenhado em canvas, com as cores do tema atual, a frase do livro, a tradução, «Frase do livro «Título» · Idioma», o rótulo «Tradução: escrita por Claude, sem fonte conferida» e «Mots & Parole». Sem a nota de gramática. Só frases de livros de domínio público (nunca O Pequeno Príncipe: ele nem tem frases no app). No celular usa o menu de compartilhar (Web Share com arquivo); sem isso, baixa o arquivo. Teste: `t23.py`.
+- Plano combinado em 19/10 (autoavaliação, toque em palavra e caderno, contexto histórico, conforto de leitura, cartão de imagem): **todos feitos**. Livros de história ficam para depois, por decisão dela.
