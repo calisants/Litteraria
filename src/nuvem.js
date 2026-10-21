@@ -1,5 +1,5 @@
 /* ===== Conta e nuvem (opcional), v1.41 =====
-   Entrada por código de 6 números enviado ao e-mail (Supabase Auth). O progresso (o objeto S inteiro, menos lembretes e cartão, que são de cada aparelho)
+   Entrada por código numérico (6 a 8 dígitos) enviado ao e-mail (Supabase Auth). O progresso (o objeto S inteiro, menos lembretes e cartão, que são de cada aparelho)
    é guardado na tabela «progress»; cada pessoa só enxerga a própria linha (regras em nuvem/setup.sql). Sem conta, nada sai do aparelho.
    Conflito entre aparelhos: o servidor carimba a hora (updated_at); o app só grava se o carimbo que ele conhece ainda é o atual. */
 (function(){
@@ -166,7 +166,7 @@
     const note=msg?'<p class="help" role="status">'+esc(msg)+"</p>":"";
     if(!ses){
       if(step==="code"){
-        el.innerHTML='<p class="help">Enviamos um código de 6 números para <b>'+esc(pendEmail)+'</b>. Digite abaixo. Olhe também a caixa de spam.</p>'+
+        el.innerHTML='<p class="help">Enviamos um código de números (6 a 8) para <b>'+esc(pendEmail)+'</b>. Digite abaixo. Olhe também a caixa de spam.</p>'+
           '<input class="tin" id="cl-code" inputmode="numeric" autocomplete="one-time-code" maxlength="8" aria-label="Código recebido por e-mail" placeholder="000000">'+
           '<div class="row" style="margin-top:8px"><button type="button" class="btn primary" id="cl-verify">Entrar</button><button type="button" class="btn" id="cl-back">Trocar e-mail</button></div>'+note;
       }else{
@@ -206,7 +206,7 @@
     if(t.id==="cl-back"){step="email";msg="";render();return;}
     if(t.id==="cl-verify"){
       const code=($("#cl-code").value||"").replace(/\D/g,"");
-      if(code.length<6){msg="Digite os 6 números.";render();return;}
+      if(code.length<6){msg="Digite o código completo, só os números.";render();return;}
       t.disabled=true;
       try{await verify(pendEmail,code);step="email";msg="";await afterLogin();}catch(er){msg=er.message;render();}
       return;

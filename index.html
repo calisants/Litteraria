@@ -988,7 +988,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.42.1",d:"2026-10-21"};
+const APP_REL={v:"1.42.2",d:"2026-10-21"};
 
 
 const RAW={
@@ -5633,7 +5633,7 @@ function openPrivacy(){openSheet("Política de Privacidade",privHtml(),false);}
 document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest("#open-priv,[data-open-priv]");if(t){e.preventDefault();openPrivacy();}});
 
 /* ===== Conta e nuvem (opcional), v1.41 =====
-   Entrada por código de 6 números enviado ao e-mail (Supabase Auth). O progresso (o objeto S inteiro, menos lembretes e cartão, que são de cada aparelho)
+   Entrada por código numérico (6 a 8 dígitos) enviado ao e-mail (Supabase Auth). O progresso (o objeto S inteiro, menos lembretes e cartão, que são de cada aparelho)
    é guardado na tabela «progress»; cada pessoa só enxerga a própria linha (regras em nuvem/setup.sql). Sem conta, nada sai do aparelho.
    Conflito entre aparelhos: o servidor carimba a hora (updated_at); o app só grava se o carimbo que ele conhece ainda é o atual. */
 (function(){
@@ -5800,7 +5800,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     const note=msg?'<p class="help" role="status">'+esc(msg)+"</p>":"";
     if(!ses){
       if(step==="code"){
-        el.innerHTML='<p class="help">Enviamos um código de 6 números para <b>'+esc(pendEmail)+'</b>. Digite abaixo. Olhe também a caixa de spam.</p>'+
+        el.innerHTML='<p class="help">Enviamos um código de números (6 a 8) para <b>'+esc(pendEmail)+'</b>. Digite abaixo. Olhe também a caixa de spam.</p>'+
           '<input class="tin" id="cl-code" inputmode="numeric" autocomplete="one-time-code" maxlength="8" aria-label="Código recebido por e-mail" placeholder="000000">'+
           '<div class="row" style="margin-top:8px"><button type="button" class="btn primary" id="cl-verify">Entrar</button><button type="button" class="btn" id="cl-back">Trocar e-mail</button></div>'+note;
       }else{
@@ -5840,7 +5840,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     if(t.id==="cl-back"){step="email";msg="";render();return;}
     if(t.id==="cl-verify"){
       const code=($("#cl-code").value||"").replace(/\D/g,"");
-      if(code.length<6){msg="Digite os 6 números.";render();return;}
+      if(code.length<6){msg="Digite o código completo, só os números.";render();return;}
       t.disabled=true;
       try{await verify(pendEmail,code);step="email";msg="";await afterLogin();}catch(er){msg=er.message;render();}
       return;
@@ -5890,6 +5890,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.42.2",d:"2026-10-21",t:["Conta na nuvem: o código recebido por e-mail pode ter 6 a 8 números; o texto agora diz isso"]},
 {v:"1.42.1",d:"2026-10-21",t:["Conta na nuvem: as mensagens de erro agora dizem o motivo, para facilitar achar o problema"]},
 {v:"1.42.0",d:"2026-10-21",t:[
 "Novo: conta opcional com backup na nuvem. Ajustes → Conta e nuvem. Você digita o e-mail, recebe um código de 6 números e entra. O progresso fica guardado e vale em mais de um aparelho",

@@ -1,6 +1,6 @@
 # Conta e nuvem (Supabase)
 
-O app guarda tudo no aparelho. Com a conta (opcional), uma cópia do progresso fica no Supabase e vale em qualquer aparelho. Entrada por **código de 6 números enviado ao e-mail** (funciona dentro do app instalado no iPhone, ao contrário do link por e-mail).
+O app guarda tudo no aparelho. Com a conta (opcional), uma cópia do progresso fica no Supabase e vale em qualquer aparelho. Entrada por **código numérico (6 a 8 dígitos; o Supabase manda 8 por padrão) enviado ao e-mail** (funciona dentro do app instalado no iPhone, ao contrário do link por e-mail).
 
 ## Montar (uma vez)
 1. supabase.com → New project (plano Free). Escolha a região mais perto do Brasil que aparecer; guarde a senha do banco.

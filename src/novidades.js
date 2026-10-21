@@ -1,5 +1,6 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.42.2",d:"2026-10-21",t:["Conta na nuvem: o código recebido por e-mail pode ter 6 a 8 números; o texto agora diz isso"]},
 {v:"1.42.1",d:"2026-10-21",t:["Conta na nuvem: as mensagens de erro agora dizem o motivo, para facilitar achar o problema"]},
 {v:"1.42.0",d:"2026-10-21",t:[
 "Novo: conta opcional com backup na nuvem. Ajustes → Conta e nuvem. Você digita o e-mail, recebe um código de 6 números e entra. O progresso fica guardado e vale em mais de um aparelho",
