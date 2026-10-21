@@ -782,7 +782,7 @@ svg{display:block}
               <button type="button" data-zoom="on">Ligado</button>
               <button type="button" data-zoom="off">Desligado</button>
             </div>
-          </section></div></details><details class="sgrp"><summary>Lembretes e cartão</summary><div class="sin"><section id="sec-rm"><h2 class="lab">Lembretes</h2><p class="help">Um aviso para fazer a lição do dia. Sem servidor, o horário exato não é garantido: veja a nota abaixo.</p><div class="seg" role="group" aria-label="Lembretes" id="rm-seg"><button type="button" data-rm="on">Ligados</button><button type="button" data-rm="off">Desligados</button></div><label class="flt" style="margin-top:10px">A partir de <select class="field" id="rm-hour" aria-label="Horário do lembrete"></select></label><h2 class="lab" style="margin-top:10px">Estilo do aviso</h2><div class="seg" role="group" aria-label="Estilo do aviso" id="rm-st"><button type="button" data-rmst="anim">Animado</button><button type="button" data-rmst="calma">Calmo</button><button type="button" data-rmst="cartao">Cartão do dia</button></div><div class="row" style="margin-top:10px"><button type="button" class="btn" id="rm-perm">Permitir notificações</button><button type="button" class="btn" id="rm-test">Testar agora</button></div><p class="help" id="rm-note" aria-live="polite"></p></section><section id="sec-wd"><h2 class="lab">Cartão do dia</h2><p class="help">O «widget» do app: um cartão na tela inicial. Um app instalado pelo Chrome não consegue criar widget na tela inicial do celular; para ver o cartão sem abrir o app, escolha «Cartão do dia» no estilo do lembrete, ou segure o ícone do app e toque em «Cartão do dia».</p><div id="wd-box"></div></section></div></details><details class="sgrp"><summary>Dados</summary><div class="sin"><section>
+          </section></div></details><details class="sgrp"><summary>Lembretes e cartão</summary><div class="sin"><section id="sec-rm"><h2 class="lab">Lembretes</h2><p class="help">Um aviso para fazer a lição do dia. Sem servidor, o horário exato não é garantido: veja a nota abaixo.</p><div class="seg" role="group" aria-label="Lembretes" id="rm-seg"><button type="button" data-rm="on">Ligados</button><button type="button" data-rm="off">Desligados</button></div><label class="flt" style="margin-top:10px">A partir de <select class="field" id="rm-hour" aria-label="Horário do lembrete"></select></label><h2 class="lab" style="margin-top:10px">Estilo do aviso</h2><div class="seg" role="group" aria-label="Estilo do aviso" id="rm-st"><button type="button" data-rmst="anim">Animado</button><button type="button" data-rmst="calma">Calmo</button><button type="button" data-rmst="cartao">Cartão do dia</button></div><div class="row" style="margin-top:10px"><button type="button" class="btn" id="rm-perm">Permitir notificações</button><button type="button" class="btn" id="rm-test">Testar agora</button></div><p class="help" id="rm-note" aria-live="polite"></p><div id="rm-push"></div></section><section id="sec-wd"><h2 class="lab">Cartão do dia</h2><p class="help">O «widget» do app: um cartão na tela inicial. Um app instalado pelo Chrome não consegue criar widget na tela inicial do celular; para ver o cartão sem abrir o app, escolha «Cartão do dia» no estilo do lembrete, ou segure o ícone do app e toque em «Cartão do dia».</p><div id="wd-box"></div></section></div></details><details class="sgrp"><summary>Dados</summary><div class="sin"><section>
             <h2 class="lab">Backup do progresso</h2>
             <p class="help">Seu progresso fica só neste aparelho. Baixe um arquivo de vez em quando; se trocar de celular ou limpar os dados do navegador, restaure por ele.</p>
             <button type="button" class="btn wide" id="bk-save">Baixar backup</button>
@@ -986,7 +986,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.39.1",d:"2026-10-21"};
+const APP_REL={v:"1.40.0",d:"2026-10-21"};
 
 
 const RAW={
@@ -5429,7 +5429,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
       const cards={},d0=new Date();
       for(let i=0;i<8;i++){const d=new Date(d0);d.setDate(d0.getDate()+i);const k=dstr(d);cards[k]=cardFor(k,S.lang);}
       const s=window.gamStreak?gamStreak():{n:0};
-      const st={v:1,on:S.rm.on,h:S.rm.h,st:S.rm.st,last:last,streak:s.n,gam:S.gam.on,name:(S.player||"").split(" ")[0],ln:LNAME[S.lang],cards:cards,ic:S.ic,notified:prev.notified||""};
+      const st={v:1,on:S.rm.on,h:S.rm.h,st:S.rm.st,last:last,streak:s.n,gam:S.gam.on,name:(S.player||"").split(" ")[0],ln:LNAME[S.lang],cards:cards,ic:S.ic,push:window.__pushOn?1:0,notified:prev.notified||""};
       await c.put("state.json",new Response(JSON.stringify(st),{headers:{"content-type":"application/json"}}));
     }catch(_){}
   }
@@ -5455,7 +5455,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   }
   let rmT=null;
   function schedInApp(){
-    clearTimeout(rmT);if(!S.rm.on)return;
+    clearTimeout(rmT);if(!S.rm.on||window.__pushOn)return;
     const n=new Date(),t=new Date(n);t.setHours(S.rm.h,0,0,0);const ms=t-n;
     if(ms<=0||ms>20*3600e3)return;
     rmT=setTimeout(()=>{if(!studiedToday()){showNow();renderNudge();}},ms+500);
@@ -5475,6 +5475,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     if(!can())m="Este navegador não permite notificações. Mesmo assim, o aviso aparece dentro do app quando você o abre depois do horário.";
     else if(Notification.permission==="denied")m="As notificações estão bloqueadas nas configurações do aparelho ou do navegador para este app. Libere lá e volte aqui.";
     else if(Notification.permission==="default")m="Toque em «Permitir notificações» para o aparelho deixar o app avisar.";
+    else if(window.PUSHCFG&&PUSHCFG.sink)m="Notificações permitidas. Veja abaixo se o envio com o app fechado está ativo.";
     else{
       const r=await regPeriodic();
       m="Notificações permitidas. "+(r==="ok"?"Lembrete diário em segundo plano: ativo, mas quem escolhe o minuto exato é o Android/Chrome (ele pode atrasar, ou pular o dia se você quase não usa o app).":
@@ -5527,7 +5528,80 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   const _rm3=renderMe;renderMe=function(){_rm3();renderWcard();renderNudge();};
   const _go3=go;go=function(n){_go3.apply(this,arguments);if(n==="settings"){syncRm();renderWdBox();}if(n==="home"){renderWcard();renderNudge();}};
   syncRm();renderWdBox();renderWcard();renderNudge();schedInApp();pushState();
-  setTimeout(()=>{if(S.rm.on)regPeriodic();},3000);
+  setTimeout(()=>{if(S.rm.on&&!(window.PUSHCFG&&PUSHCFG.sink))regPeriodic();},3000);
+})();
+
+/* Configuração do envio de notificações com o app fechado (Web Push). Veja push/LEIA-ME.md.
+   pub = chave pública VAPID (pode ser pública). sink = endereço do Apps Script que guarda as inscrições (vazio = recurso desligado). */
+window.PUSHCFG={pub:"BABpqQWwmnBfJ65d2PuppVGG3PrlL1BB_zXg4jaccd2z8ELoB1KOsypXKz3bdq0SHYSVjk61qL77peIqPA0e47o",sink:""};
+
+/* ===== Notificações com o app fechado (Web Push), v1.40 =====
+   O celular se inscreve no serviço de push do próprio sistema (Apple/Google/Mozilla). O endereço da inscrição vai para uma caixa
+   (Apps Script em PUSHCFG.sink) e uma rotina do GitHub Actions (push/send.py) manda o lembrete na hora escolhida.
+   Só funciona com PUSHCFG.sink preenchido. No iPhone exige iOS 16.4+ e o app instalado na Tela de Início. */
+(function(){
+  const C=window.PUSHCFG||{};
+  const ready=()=>!!(C.sink&&C.pub);
+  const can=()=>ready()&&"serviceWorker" in navigator&&"PushManager" in window&&"Notification" in window;
+  const b64u=s=>{const p="=".repeat((4-s.length%4)%4),b=atob((s+p).replace(/-/g,"+").replace(/_/g,"/"));return Uint8Array.from(b,c=>c.charCodeAt(0));};
+  async function subId(sub){
+    const d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(sub.endpoint));
+    return btoa(String.fromCharCode.apply(null,new Uint8Array(d))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"").slice(0,32);
+  }
+  const post=o=>fetch(C.sink,{method:"POST",mode:"no-cors",headers:{"content-type":"text/plain"},body:JSON.stringify(o)});
+  async function getReg(){try{return await Promise.race([navigator.serviceWorker.ready,new Promise((_,r)=>setTimeout(r,4000))]);}catch(_){return null;}}
+  let busy=false,lastSig="",state="";
+  window.__pushOn=0;
+
+  async function sync(force){
+    if(!can()||busy)return;
+    busy=true;
+    try{
+      const reg=await getReg();if(!reg)return;
+      let sub=await reg.pushManager.getSubscription();
+      if(!S.rm.on||Notification.permission!=="granted"){
+        if(sub){try{await post({a:"del",id:await subId(sub)});}catch(_){}await sub.unsubscribe();}
+        window.__pushOn=0;state="";lastSig="";return;
+      }
+      if(!sub)sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64u(C.pub)});
+      const id=await subId(sub),done=studiedToday()?ymd():"",tz=new Date().getTimezoneOffset();
+      const sig=[id,S.rm.h,S.rm.st,S.lang,done,tz].join("|");
+      if(sig===lastSig&&!force){window.__pushOn=1;state="ok";return;}
+      await post({a:"sub",id:id,sub:sub.toJSON(),h:S.rm.h,tz:tz,st:S.rm.st,ln:LNAME[S.lang],done:done});
+      lastSig=sig;window.__pushOn=1;state="ok";
+    }catch(e){window.__pushOn=0;state=(e&&e.name==="NotAllowedError")?"gesto":"erro";}
+    finally{busy=false;renderPush();if(window.pushState)pushState();}
+  }
+  window.pushSync=sync;
+
+  function renderPush(){
+    const el=$("#rm-push");if(!el)return;
+    if(!ready()){el.innerHTML="";return;}
+    let m,btn=false;
+    if(!can())m="Para receber o lembrete com o app fechado: no iPhone, abra o site no Safari, toque em Compartilhar → «Adicionar à Tela de Início» e abra o app por esse ícone (precisa do iOS 16.4 ou mais novo). Nesta aba do navegador esse tipo de aviso não está disponível.";
+    else if(!S.rm.on)m="Ligue os lembretes acima para receber o aviso com o app fechado.";
+    else if(Notification.permission==="denied")m="As notificações estão bloqueadas para este app nas configurações do aparelho. Libere lá e volte aqui.";
+    else if(state==="ok")m="Envio com o app fechado: ativo. O aviso chega a partir das "+String(S.rm.h).padStart(2,"0")+":00 e pode atrasar até cerca de 2 horas. Se você já tiver estudado no dia, ele não vem. O texto é o mesmo de sempre: o servidor não conhece o seu progresso.";
+    else if(state==="erro"){m="Não consegui ativar agora (sem internet ou o aparelho recusou). Tente de novo.";btn=true;}
+    else{m=state==="gesto"?"O aparelho pediu um toque seu para ativar.":"Falta um passo para o aviso chegar com o app fechado.";btn=true;}
+    el.innerHTML='<p class="help">'+esc(m)+"</p>"+(btn?'<div class="row"><button type="button" class="btn primary" id="rm-push-on">Ativar envio com o app fechado</button></div>':"")+
+      '<p class="help">O que vai para o servidor: só o endereço de envio do aparelho, o horário, o estilo, o idioma e se você já estudou hoje. Sem nome, e-mail ou progresso.</p>';
+  }
+  window.renderPush=renderPush;
+  document.addEventListener("click",async e=>{
+    if(!e.target.closest||!e.target.closest("#rm-push-on"))return;
+    if(!("Notification" in window))return;
+    if(Notification.permission==="default"){try{await Notification.requestPermission();}catch(_){}}
+    if(!S.rm.on){S.rm.on=true;save();if(window.syncRm)syncRm();}
+    await sync(true);
+  });
+
+  let t=null;
+  const _sv=save;save=function(){_sv.apply(this,arguments);clearTimeout(t);t=setTimeout(()=>sync(false),2500);};
+  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")sync(false);});
+  const _go4=go;go=function(n){_go4.apply(this,arguments);if(n==="settings")renderPush();};
+  renderPush();
+  setTimeout(()=>sync(false),2500);
 })();
 
 /* ===== Ícone do app (v1.39): Padrão + um por tema (Alice, Pequeno Príncipe, Frankenstein, Soft elegante, A Divina Comédia) =====
@@ -5558,6 +5632,10 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.40.0",d:"2026-10-21",t:[
+"Novo: lembretes que chegam como notificação do celular mesmo com o app fechado (iPhone e Android). Ajustes → Lembretes e cartão. No iPhone, instale o app pela Tela de Início (iOS 16.4 ou mais novo)",
+"O aviso não vem se você já tiver estudado naquele dia. A mensagem é sempre genérica: o servidor não sabe o seu progresso",
+"Só vai para o servidor o endereço de envio do aparelho, o horário, o estilo, o idioma e se você já estudou hoje"]},
 {v:"1.39.1",d:"2026-10-21",t:[
 "Corrigido: o «Hoje» aparecia duas vezes na tela inicial. O Cartão do dia agora vem desligado; para usar, ative em Ajustes → Lembretes e cartão"]},
 {v:"1.39.0",d:"2026-10-21",t:[

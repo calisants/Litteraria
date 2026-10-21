@@ -1,0 +1,20 @@
+name: Lembretes (notificações)
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  enviar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pywebpush
+      - run: python3 push/send.py
+        env:
+          SINK_KEY: ${{ secrets.SINK_KEY }}
+          VAPID_PRIVATE: ${{ secrets.VAPID_PRIVATE }}

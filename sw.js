@@ -1,6 +1,6 @@
 // Service worker do Mots & Parole: guarda o app no aparelho para funcionar sem internet.
 // Ao publicar uma versão nova do index.html, troque o número em CACHE (v6 -> v7, e APP_VERSION no index.html).
-const CACHE = "mots-parole-v67"; // só o cache muda; a chave do LocalStorage (APP_VERSION) segue v6 para não apagar o progresso
+const CACHE = "mots-parole-v68"; // só o cache muda; a chave do LocalStorage (APP_VERSION) segue v6 para não apagar o progresso
 const ASSETS = [
   "./",
   "./index.html",
@@ -135,7 +135,7 @@ function hoje() {
 // O navegador acorda o service worker (sincronização periódica, só Chrome/Edge com o app instalado; o horário exato é dele).
 async function lembrete() {
   const st = await lerEstado();
-  if (!st || !st.on) return;
+  if (!st || !st.on || st.push) return;
   if (!self.Notification || self.Notification.permission !== "granted") return;
   const now = new Date(), dia = hoje();
   if (now.getHours() < st.h || st.last === dia || st.notified === dia) return;
@@ -160,15 +160,27 @@ async function lembrete() {
 self.addEventListener("periodicsync", (event) => {
   if (event.tag === "mp-lembrete") event.waitUntil(lembrete());
 });
+// Notificação enviada pelo servidor (Web Push). No iPhone toda mensagem precisa mostrar uma notificação.
+self.addEventListener("push", (event) => {
+  let d = {};
+  try { d = event.data ? event.data.json() : {}; } catch (_) {}
+  const go = d.go === "cartao" ? "cartao" : "hoje";
+  event.waitUntil(self.registration.showNotification(String(d.t || "Mots & Parole").slice(0, 80), {
+    body: String(d.b || "Uma lição curta de hoje?").slice(0, 200), icon: "icon-192.png", badge: "icon-192.png",
+    vibrate: [120, 60, 120, 60, 220], tag: "mp-lembrete", renotify: true, data: { go },
+    actions: [{ action: "hoje", title: "Fazer agora" }, { action: "depois", title: "Depois" }]
+  }));
+});
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
   if (event.action === "depois") return;
+  const alvo = (event.notification.data && event.notification.data.go) === "cartao" ? "cartao" : "hoje";
   event.waitUntil(
     self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((cs) => {
       for (const c of cs) {
-        if ("focus" in c) { c.postMessage({ t: "go", go: "hoje" }); return c.focus(); }
+        if ("focus" in c) { c.postMessage({ t: "go", go: alvo }); return c.focus(); }
       }
-      return self.clients.openWindow("./?go=hoje");
+      return self.clients.openWindow("./?go=" + alvo);
     })
   );
 });

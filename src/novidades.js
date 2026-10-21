@@ -1,5 +1,9 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.40.0",d:"2026-10-21",t:[
+"Novo: lembretes que chegam como notificação do celular mesmo com o app fechado (iPhone e Android). Ajustes → Lembretes e cartão. No iPhone, instale o app pela Tela de Início (iOS 16.4 ou mais novo)",
+"O aviso não vem se você já tiver estudado naquele dia. A mensagem é sempre genérica: o servidor não sabe o seu progresso",
+"Só vai para o servidor o endereço de envio do aparelho, o horário, o estilo, o idioma e se você já estudou hoje"]},
 {v:"1.39.1",d:"2026-10-21",t:[
 "Corrigido: o «Hoje» aparecia duas vezes na tela inicial. O Cartão do dia agora vem desligado; para usar, ative em Ajustes → Lembretes e cartão"]},
 {v:"1.39.0",d:"2026-10-21",t:[

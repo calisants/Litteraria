@@ -93,7 +93,7 @@
       const cards={},d0=new Date();
       for(let i=0;i<8;i++){const d=new Date(d0);d.setDate(d0.getDate()+i);const k=dstr(d);cards[k]=cardFor(k,S.lang);}
       const s=window.gamStreak?gamStreak():{n:0};
-      const st={v:1,on:S.rm.on,h:S.rm.h,st:S.rm.st,last:last,streak:s.n,gam:S.gam.on,name:(S.player||"").split(" ")[0],ln:LNAME[S.lang],cards:cards,ic:S.ic,notified:prev.notified||""};
+      const st={v:1,on:S.rm.on,h:S.rm.h,st:S.rm.st,last:last,streak:s.n,gam:S.gam.on,name:(S.player||"").split(" ")[0],ln:LNAME[S.lang],cards:cards,ic:S.ic,push:window.__pushOn?1:0,notified:prev.notified||""};
       await c.put("state.json",new Response(JSON.stringify(st),{headers:{"content-type":"application/json"}}));
     }catch(_){}
   }
@@ -119,7 +119,7 @@
   }
   let rmT=null;
   function schedInApp(){
-    clearTimeout(rmT);if(!S.rm.on)return;
+    clearTimeout(rmT);if(!S.rm.on||window.__pushOn)return;
     const n=new Date(),t=new Date(n);t.setHours(S.rm.h,0,0,0);const ms=t-n;
     if(ms<=0||ms>20*3600e3)return;
     rmT=setTimeout(()=>{if(!studiedToday()){showNow();renderNudge();}},ms+500);
@@ -139,6 +139,7 @@
     if(!can())m="Este navegador não permite notificações. Mesmo assim, o aviso aparece dentro do app quando você o abre depois do horário.";
     else if(Notification.permission==="denied")m="As notificações estão bloqueadas nas configurações do aparelho ou do navegador para este app. Libere lá e volte aqui.";
     else if(Notification.permission==="default")m="Toque em «Permitir notificações» para o aparelho deixar o app avisar.";
+    else if(window.PUSHCFG&&PUSHCFG.sink)m="Notificações permitidas. Veja abaixo se o envio com o app fechado está ativo.";
     else{
       const r=await regPeriodic();
       m="Notificações permitidas. "+(r==="ok"?"Lembrete diário em segundo plano: ativo, mas quem escolhe o minuto exato é o Android/Chrome (ele pode atrasar, ou pular o dia se você quase não usa o app).":
@@ -191,5 +192,5 @@
   const _rm3=renderMe;renderMe=function(){_rm3();renderWcard();renderNudge();};
   const _go3=go;go=function(n){_go3.apply(this,arguments);if(n==="settings"){syncRm();renderWdBox();}if(n==="home"){renderWcard();renderNudge();}};
   syncRm();renderWdBox();renderWcard();renderNudge();schedInApp();pushState();
-  setTimeout(()=>{if(S.rm.on)regPeriodic();},3000);
+  setTimeout(()=>{if(S.rm.on&&!(window.PUSHCFG&&PUSHCFG.sink))regPeriodic();},3000);
 })();
