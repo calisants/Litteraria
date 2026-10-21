@@ -57,7 +57,7 @@
     return a.length?a.join(" · "):"não compartilha números";
   }
   function view(){
-    if(!ses())return '<p class="help">Para usar Amigos, primeiro entre na conta: Ajustes → Conta e nuvem.</p>';
+    if(!ses())return '<p class="help">Para usar Amigos, primeiro entre na conta: Ajustes → Conta e nuvem.</p><button type="button" class="btn primary wide" id="fr-login">Ir para Conta e nuvem</button>';
     const note=msg?'<p class="help" role="status"><b>'+h(msg)+"</b></p>":"";
     if(!me){
       return '<p class="help">Amigos é opcional e começa desligado. Quando você ativar:</p><ul class="help"><li>Seus amigos veem o seu <b>apelido</b> e só os números que você deixar marcados.</li><li>Ninguém te encontra por busca: só entra quem tiver o seu <b>código</b>.</li><li>Não há chat, foto nem mensagens.</li><li>Você pode bloquear, denunciar e desativar quando quiser; desativar apaga seus convites e amizades.</li></ul>'+
@@ -99,7 +99,8 @@
     paint();
   }
   document.addEventListener("click",e=>{
-    const t=e.target.closest&&e.target.closest("#fr-on,#fr-copy,#fr-req,#fr-off,#fr-refresh,[data-fr]");if(!t||!$("#fr-box")||!$("#fr-box").contains(t))return;
+    const t=e.target.closest&&e.target.closest("#fr-login,#fr-on,#fr-copy,#fr-req,#fr-off,#fr-refresh,[data-fr]");if(!t||!$("#fr-box")||!$("#fr-box").contains(t))return;
+    if(t.id==="fr-login"){closeSheet();go("settings");const d=$("#sec-cloud");if(d){d.open=true;setTimeout(()=>d.scrollIntoView({block:"start"}),50);}return;}
     if(t.id==="fr-on")return act(async()=>{
       const nick=($("#fr-nick").value||"").trim(),s1=$("#fr-s1").checked,s2=$("#fr-s2").checked;
       await rpc("friends_enable",{p_nick:nick});await rpc("friends_share",{p_streak:s1,p_words:s2});
@@ -140,4 +141,11 @@
   let tm=null;
   const _sv=save;save=function(){const r=_sv.apply(this,arguments);if(on()&&ses()){clearTimeout(tm);tm=setTimeout(pushStats,60000);}return r;};
   document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")pushStats();});
+})();
+
+/* atalho na tela inicial: só aparece quando a conta na nuvem está configurada */
+(function(){
+  const b=$("#go-friends");if(!b)return;
+  if(window.CLOUDCFG&&CLOUDCFG.url&&CLOUDCFG.key)b.hidden=false;
+  b.addEventListener("click",()=>openFriends());
 })();

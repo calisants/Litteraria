@@ -53,6 +53,9 @@ try:
     pg.on('dialog',lambda d:d.accept('conteúdo ofensivo') if d.type=='prompt' else d.accept())
     pg.route('http://cloud.test/**',handler);pg.route('**/index.html',page_html)
     pg.goto('http://localhost:8788/index.html');pg.wait_for_timeout(700)
+    assert pg.is_visible('#go-friends'),'atalho na tela inicial'
+    pg.click('#go-friends');assert pg.is_visible('#fr-login');pg.click('#fr-login');assert pg.is_visible('#s-settings') and pg.evaluate("()=>document.querySelector('#sec-cloud').open")
+    pg.evaluate("()=>go('home')")
     # sem conta: orienta a entrar
     pg.evaluate("()=>openFriends()");assert 'entre na conta' in pg.inner_text('#fr-box').lower();pg.evaluate("()=>closeSheet()")
     # entra na conta
