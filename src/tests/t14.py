@@ -11,7 +11,7 @@ try:
     pg.goto('http://localhost:8766/index.html');pg.wait_for_timeout(800)
     # versão
     assert not pg.query_selector('#ver-line') and not pg.is_visible('[data-feedback]')
-    pg.evaluate("()=>go('settings')");v=pg.inner_text('#ver-set');print('versao:',v);assert 'Versão' in v and '/' in v
+    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");v=pg.inner_text('#ver-set');print('versao:',v);assert 'Versão' in v and '/' in v
     pg.evaluate("()=>go('home')")
     # Treino: idioma explícito e troca
     pg.click('#go-train');t=pg.inner_text('#sheet-title');print('treino:',t);assert t.startswith('Treino de ')
@@ -20,7 +20,7 @@ try:
     pg.click('[data-train=w]');pg.wait_for_timeout(200);assert 'Italiano' in pg.inner_text('#g-sub');print('sub:',pg.inner_text('#g-sub'))
     pg.evaluate("()=>go('home')");assert 'Italiano' in pg.inner_text('#train-sub')
     # sugestões: tela própria, sem GitHub; envio por formulário quando configurado
-    pg.evaluate("()=>go('settings')");pg.click('#s-settings [data-feedback]');assert pg.is_visible('#s-feedback') and pg.is_visible('#fb-text')
+    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");pg.click('#s-settings [data-feedback]');assert pg.is_visible('#s-feedback') and pg.is_visible('#fb-text')
     pg.evaluate("()=>{window.__real=FB_FORM.action;FB_FORM.action='';openFeedback()}");assert pg.is_disabled('#fb-send') and 'ainda não foi ativado' in pg.inner_text('#fb-note')
     assert pg.evaluate("()=>window.__real").startswith('https://docs.google.com/forms/d/e/') and pg.evaluate("()=>window.__real").endswith('/formResponse')
     assert 'github.com/calisants/motsparole/issues' not in pg.content()
@@ -35,7 +35,7 @@ try:
     # volumes
     v=pg.evaluate("()=>VOLUMES.map(v=>v.title+' :: '+v.types.map(t=>t[0]).join(','))");print(*v,sep='\n')
     assert [x.split(' ·')[0] for x in v]==['Volume 1','Volume 2','Volume 3','Volume 4','Volume 5']
-    assert v[2].endswith('odd,connect,search,cross,memoria,citacao,qualivro')
+    assert v[2].endswith('odd,connect,search,cross,memoria,citacao,qualivro,autor,trecho,capitulos,regra')
     # seeds de páginas movidas continuam com o volume de origem
     s=pg.evaluate("()=>{S.lang='fr';S.vol=5;const r=[];for(const id of ['tema-comida','ditado-comida']){P=VOLUME5.pages.find(p=>p.id===id);r.push([P.vid,P.id])}return r}");print(s);assert all(x[0]==2 for x in s)
     # exercícios de escrita, todos os idiomas e temas, sem áudio obrigatório
@@ -77,10 +77,10 @@ try:
     pg.evaluate("()=>{S.hap='off';window.__v=[];sfx('bad')}");assert pg.evaluate("()=>window.__v.length")==0
     pg.evaluate("()=>{S.sound='off';sfx('bad')}")
     assert pg.evaluate("()=>[...document.querySelectorAll('#s-game .tremble')].length")>=1,'tremor na tela'
-    pg.evaluate("()=>go('settings')");pg.click('#s-settings [data-k=snd][data-v=high]');assert pg.evaluate("()=>S.snd")=='high'
+    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");pg.click('#s-settings [data-k=snd][data-v=high]');assert pg.evaluate("()=>S.snd")=='high'
     pg.click('#s-settings [data-k=trem][data-v=off]');assert pg.evaluate("()=>S.trem")=='off'
     pg.evaluate("()=>{go('game');document.querySelector('#gstage').hidden=false;document.querySelectorAll('.tremble').forEach(e=>e.classList.remove('tremble'));sfx('bad')}");assert pg.evaluate("()=>document.querySelectorAll('.tremble').length")==0
-    pg.evaluate("()=>go('settings')")
+    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}")
     pg.click('#s-settings [data-k=hap][data-v=off]');assert pg.evaluate("()=>S.hap")=='off'
     pg.reload();pg.wait_for_timeout(500);assert pg.evaluate("()=>[S.snd,S.hap]")==['high','off']
     print('erros:',errs);assert not errs

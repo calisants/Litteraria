@@ -14,7 +14,7 @@ try:
     assert 'googleapis' not in pg.content()
     vp=lambda:pg.evaluate("()=>document.querySelector('meta[name=viewport]').content")
     print('zoom padrao:',vp()); assert 'user-scalable=no' in vp()
-    pg.evaluate("()=>go('settings')");pg.click('#zoom-seg [data-zoom=on]');print('zoom ligado:',vp()); assert 'user-scalable' not in vp() and pg.evaluate("()=>S.zoom")
+    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");pg.click('#zoom-seg [data-zoom=on]');print('zoom ligado:',vp()); assert 'user-scalable' not in vp() and pg.evaluate("()=>S.zoom")
     pg.click('#zoom-seg [data-zoom=off]');assert 'user-scalable=no' in vp()
     # embaralhar: 40 aberturas da mesma pagina; a resposta certa tem de ser sempre o mesmo texto
     pos=[0]*4;txt=set()

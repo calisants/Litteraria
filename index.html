@@ -378,7 +378,6 @@ svg{display:block}
 #go-settings{grid-column:1/-1;min-height:64px;flex-direction:row;align-items:center;gap:12px}
 #go-settings svg{margin:0}
 #go-settings small{display:none}
-.tiles .tile:not(.today):not(#go-settings){min-height:112px}
 .bkwarn{margin:12px 0 0;padding:12px 14px;border:var(--bw) solid var(--accent);border-radius:var(--radius);background:var(--soft)}
 .bkwarn p{margin:0 0 10px;font-size:.95rem}
 .bkwarn .row{display:flex;gap:8px;flex-wrap:wrap}
@@ -501,7 +500,80 @@ svg{display:block}
 :root[data-style="soft"] .tile b,:root[data-style="soft"] .hero .brand{font-weight:500;letter-spacing:.01em}
 :root[data-style="soft"] .lab,:root[data-style="soft"] .stats h3{letter-spacing:.16em;font-weight:400}
 :root[data-style="soft"] .btn,:root[data-style="soft"] .lopt{font-weight:600;border-color:var(--line)}
-/* Minimalista */
+/* ===== v1.39: telas mais limpas, caixas menores e novos recursos ===== */
+:root{--box:color-mix(in srgb,var(--grid) 50%,var(--line))}
+/* início */
+.hero{padding:12px 0 0}.hero .brand{font-size:clamp(1.7rem,8vw,2.2rem)}
+.me{padding:6px 0 0;gap:10px}.me .avatar{--av:40px!important}.me .who b{font-size:1.08rem}.me .who small{font-size:.85rem}
+.gchip{display:flex;flex:none;gap:10px;border:0;border-radius:99px;padding:6px 12px;background:var(--soft);color:var(--ink);font-weight:700;font-size:.82rem;cursor:pointer}
+.gchip[hidden]{display:none}.gchip span{display:inline-flex;align-items:center;gap:4px}.gchip svg{color:var(--accent)}.gchip.idle span:first-child svg{opacity:.4}
+#go-today{display:flex;flex-direction:row;align-items:center;gap:14px;width:100%;min-height:68px;margin:10px 0 0;padding:12px 16px}
+#go-today svg{margin:0}#go-today .tt{display:flex;flex-direction:column;align-items:flex-start;text-align:left;min-width:0}#go-today b{font-size:1.2rem}#go-today small{font-size:.85rem;opacity:.92}
+.wcard{margin:10px 0 0;padding:12px 14px;border-radius:var(--radius);background:var(--soft)}.wcard[hidden]{display:none}
+.wk{display:block;font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.wt{margin:4px 0 0;font-family:var(--font-title);font-size:1.12rem;line-height:1.35}.ws{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+.wrow{display:flex;gap:8px;margin-top:8px}.wbtn{min-height:38px;padding:4px 14px;font-size:.88rem;border-color:var(--box)}.wbtn.quiet{background:transparent;border-color:transparent;color:var(--muted)}
+.wbig{padding:6px 0 12px}.wbig .wt{font-size:1.4rem}
+.menu{display:grid;gap:6px;margin:10px 0 0}
+.mrow{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:6px 12px;border:var(--bw) solid var(--box);border-radius:var(--radius);background:var(--surface);text-align:left;cursor:pointer}
+.mrow svg{flex:none;color:var(--accent)}.mrow .tt{display:flex;flex-direction:column;min-width:0}.mrow b{font-family:var(--font-title);font-size:1.05rem;font-weight:600}
+.mrow small{color:var(--muted);font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0 4px}
+.mb,#go-settings.mb{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;grid-column:auto;min-height:50px;padding:6px 4px;border:0;border-radius:var(--radius);background:transparent;color:var(--muted);font-size:.8rem;font-weight:700;cursor:pointer}
+.mb:hover{background:var(--soft)}.mb svg{color:var(--accent);margin:0}
+.nudge{display:flex;align-items:center;gap:10px;margin:10px 0 0;padding:10px 12px;border-radius:var(--radius);background:var(--accent);color:var(--on-accent)}.nudge[hidden]{display:none}
+.nudge p{margin:0;flex:1;font-size:.92rem;font-weight:700;line-height:1.3}.nudge .nb{flex:none;transform-origin:50% 0;animation:nring 2.6s ease-in-out infinite}
+.nudge .btn{min-height:38px;padding:4px 12px;background:var(--on-accent);color:var(--accent);border-color:var(--on-accent);font-size:.88rem}
+.nudge .btn.icon{min-width:34px;background:transparent;color:inherit;border-color:transparent;font-size:1.3rem}
+@keyframes nring{0%,70%,100%{transform:rotate(0)}74%{transform:rotate(14deg)}78%{transform:rotate(-12deg)}82%{transform:rotate(9deg)}86%{transform:rotate(-6deg)}90%{transform:rotate(0)}}
+@media (prefers-reduced-motion:reduce){.nudge .nb{animation:none}}
+/* lições, índice, ajustes */
+.goalbox{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;margin:0 0 8px;padding:8px 12px;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.goalbox b{font-size:.85rem}.goalbox .gbar{margin:0}.goalbox small{color:var(--muted);font-size:.8rem;white-space:nowrap}
+.qod{padding:10px 12px}.qod-s{font-size:1.1rem}.qod-k{font-size:.74rem}
+#s-vol .tiles.one{gap:6px;margin-top:8px}#s-vol .tile.plain{min-height:0;padding:10px 14px;gap:0;justify-content:center;border-color:var(--box)}
+#s-vol .tile b,#s-lang .tile b{font-size:1.05rem}#s-vol .tile small{font-size:.82rem}
+#s-lang .tile.plain{min-height:0;padding:12px 14px;border-color:var(--box)}
+.fltw{margin:0 0 6px}.fltw>summary,.sgrp>summary{list-style:none;cursor:pointer}.fltw>summary::-webkit-details-marker,.sgrp>summary::-webkit-details-marker{display:none}
+.fltw>summary{min-height:40px;display:flex;align-items:center;gap:6px;color:var(--muted);font-weight:700;font-size:.88rem}.fltw>summary::after{content:"▾";margin-left:auto}.fltw[open]>summary::after{content:"▴"}
+.toc-row{min-height:48px;padding:6px 2px}.toc-row b{font-size:1.08rem}
+.sgrps{display:grid;gap:8px}.sgrp{border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.sgrp>summary{min-height:52px;padding:10px 14px;display:flex;align-items:center;font-family:var(--font-title);font-size:1.1rem;font-weight:600}
+.sgrp>summary::after{content:"▾";margin-left:auto;color:var(--muted)}.sgrp[open]>summary::after{content:"▴"}
+.sgrp .sin{display:grid;gap:18px;padding:12px 14px 16px;border-top:var(--bw) solid var(--line)}
+.sgrp .sin .lab{margin-bottom:6px}
+/* caixas menores e mais leves: palavras e opções */
+.lopts{gap:6px}.lopt{min-height:46px;padding:6px 12px;font-size:1rem;border-color:var(--box)}
+.opts{gap:6px;margin:8px 0}.opt{min-height:42px;padding:6px 12px;font-size:.98rem;border-color:var(--box)}
+.slot{min-height:50px;padding:6px;gap:6px}.bank{gap:6px}.blk{min-height:38px;padding:4px 11px;font-size:1rem;border-color:var(--box)}
+.ogrid{gap:6px}.otile{min-height:clamp(56px,11vh,84px);padding:6px;font-size:1.05rem;border-color:var(--box)}
+.mgrid{gap:6px;margin:8px 0}.mcard{min-height:76px;border-color:var(--box)}
+#cn-grid.tiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:4px}
+#cn-grid .tile{min-height:50px;padding:6px 8px;align-items:center;justify-content:center;text-align:center;border-color:var(--box);font-size:.98rem}
+#cn-grid .tile b,#cn-grid .tile span{font-family:var(--font-body);font-size:.98rem;font-weight:700}
+.band{padding:8px 12px}.srow{padding:6px 10px;border-color:var(--box)}.wlist li{padding:3px 8px}
+.btn{min-height:44px}.dock{padding:4px 14px 10px;gap:6px}
+.prompt{padding:8px 12px;font-size:1.08rem}.note{padding:8px 12px}
+/* pontos, sequências e conquistas */
+#gpop{position:fixed;left:50%;top:76px;transform:translate(-50%,0);padding:4px 14px;border-radius:99px;background:var(--accent);color:var(--on-accent);font-weight:700;pointer-events:none;opacity:0;z-index:40}
+#gpop.go{animation:gpop 900ms ease-out}
+@keyframes gpop{0%{opacity:0;transform:translate(-50%,8px)}18%{opacity:1}100%{opacity:0;transform:translate(-50%,-16px)}}
+@media (prefers-reduced-motion:reduce){#gpop.go{animation:gpopr 900ms}@keyframes gpopr{0%,80%{opacity:1}100%{opacity:0}}}
+.gam-r{margin:0 0 10px;padding:8px 12px;border-radius:var(--radius);background:var(--soft);font-size:.95rem}.gam-b{font-weight:700;color:var(--ok)}
+.gam-top{display:flex;align-items:baseline;gap:8px}.gam-n{font-family:var(--font-title);font-size:2.6rem;line-height:1;color:var(--accent)}
+.gdots{display:flex;gap:8px;margin:10px 0}.gd{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.7rem;color:var(--muted)}
+.gd i{width:26px;height:26px;border-radius:50%;border:2px solid var(--box);background:transparent}.gd.on i{background:var(--accent);border-color:var(--accent)}.gd.now i{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--box)}
+.gam-lv{margin:8px 0 0}.gbadges{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.gb{padding:6px 10px;border:var(--bw) solid var(--line);border-radius:var(--radius);opacity:.55}.gb.got{opacity:1;border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--surface))}
+.gb b{display:block;font-size:.88rem}.gb small{color:var(--muted);font-size:.74rem;line-height:1.25}
+/* cartão do dia, ícone do app, jogos de ordenar */
+.wdl{display:grid;gap:6px}.wdo{display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:8px 12px;border:var(--bw) solid var(--box);border-radius:var(--radius);background:var(--surface);text-align:left;cursor:pointer}
+.wdo small{color:var(--muted);font-size:.8rem}.wdo[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}.wdo[aria-pressed="true"] small{color:inherit}
+.icgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.icb{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border:var(--bw) solid var(--box);border-radius:var(--radius);background:var(--surface);cursor:pointer;font-size:.78rem;font-weight:700}
+.icb img{width:56px;height:56px;border-radius:22%}.icb[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+.ord-put{margin:0 0 8px;padding:0;list-style:none;display:grid;gap:6px;counter-reset:o}.ord-put li{counter-increment:o;display:flex;gap:8px;align-items:flex-start}.ord-put li::before{content:counter(o);flex:none;min-width:1.4em;padding-top:8px;text-align:right;font-weight:700;color:var(--accent)}
+.ord-bank{display:grid;gap:6px}.blk.seg{display:block;width:100%;text-align:left;font-weight:400;font-size:.98rem;line-height:1.35;min-height:0;padding:8px 12px}.blk.seg small{display:block;margin-top:2px;color:var(--muted);font-size:.84rem}
+.ord-put .blk.seg{flex:1;border-color:var(--accent);background:var(--soft)}.ord-put .blk.seg.okp{border-color:var(--ok)}
 </style>
 
 <div id="app" data-lang="fr">
@@ -510,25 +582,29 @@ svg{display:block}
     <div class="scroll">
       <div class="hero">
         <h1 class="brand"><span class="fr">Mots</span> <i>&amp;</i> <span class="it">Parole</span></h1>
-        <p class="help">Seu caderno de francês, italiano e inglês.</p>
       </div>
       <div class="me">
         <span class="avatar" id="me-av" aria-hidden="true"></span>
         <div class="who"><b id="me-name"></b><small id="me-motto"></small></div>
+        <button type="button" class="gchip" id="gam-chip" hidden></button>
       </div>
       <div class="bkwarn" id="bk-warn" hidden>
         <p id="bk-warn-txt"></p>
         <div class="row"><button type="button" class="btn primary" id="bk-warn-go">Fazer backup agora</button><button type="button" class="btn" id="bk-warn-later">Lembrar em 7 dias</button></div>
       </div>
-      <div class="tiles">
-        <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small></button>
-        <button type="button" class="tile" id="go-games"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><b>Lições</b><small>Pronúncia, vocabulário, jogos, gramática e conversa</small></button>
-        <button type="button" class="tile" id="go-train"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><b>Treino</b><small id="train-sub">Digitar verbos e palavras</small></button>
-        <button type="button" class="tile" id="go-books"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg><b>Livros</b><small>Progresso, frases, leitura e álbum</small></button>
-        <button type="button" class="tile" id="go-dict"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/></svg><b>Dicionário</b><small>Palavras, sílabas, tradução e áudio</small></button>
-        <button type="button" class="tile" id="go-stats"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg><b>Estatísticas</b><small>Seu progresso e o que treinar</small></button>
-        <button type="button" class="tile" id="go-profile"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><b>Perfil</b><small>Nome, frase e logo</small></button>
-        <button type="button" class="tile wide" id="go-settings"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><b>Ajustes</b><small>Layout, cor, claro/escuro, sons</small></button>
+      <div class="nudge" id="nudge" hidden></div>
+      <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><span class="tt"><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small></span></button>
+      <section class="wcard" id="wcard" hidden aria-label="Cartão do dia"></section>
+      <div class="menu">
+        <button type="button" class="mrow" id="go-games"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><span class="tt"><b>Lições</b><small>Pronúncia, palavras, jogos, gramática</small></span></button>
+        <button type="button" class="mrow" id="go-train"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><span class="tt"><b>Treino</b><small id="train-sub">Digitar verbos e palavras</small></span></button>
+        <button type="button" class="mrow" id="go-books"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg><span class="tt"><b>Livros</b><small>Leitura, frases e álbum</small></span></button>
+        <button type="button" class="mrow" id="go-dict"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/></svg><span class="tt"><b>Dicionário</b><small>Palavras e áudio</small></span></button>
+      </div>
+      <div class="mini">
+        <button type="button" class="mb" id="go-stats"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg><span>Estatísticas</span></button>
+        <button type="button" class="mb" id="go-profile"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><span>Perfil</span></button>
+        <button type="button" class="mb" id="go-settings"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><span>Ajustes</span></button>
       </div>
     </div>
     <footer class="foot"><p class="credit" id="credit">Desenvolvido por <a href="https://github.com/calisants" target="_blank" rel="noopener">@calisants</a></p></footer>
@@ -598,11 +674,11 @@ svg{display:block}
       </div>
     </header>
     <div class="scroll">
-      <div class="filters" id="filters">
+      <details class="fltw" id="fltw"><summary id="flt-sum">Filtrar a lista</summary><div class="filters" id="filters">
         <label class="flt" id="f-theme-w">Tema <select class="field" id="f-theme" aria-label="Filtrar por tema"></select></label>
         <label class="flt" id="f-level-w">Nível <select class="field" id="f-level" aria-label="Filtrar por nível"><option value="all">Todos</option><option value="easy">Fácil</option><option value="classic">Clássico</option><option value="adv">Avançado</option></select></label>
         <label class="flt game" id="f-game-w">Jogo <select class="field" id="f-game" aria-label="Filtrar por jogo"></select></label>
-      </div>
+      </div></details>
       <p class="help" id="toc-help">Cada página é fixa, como num livro impresso. Toque em uma para jogar.</p>
       <div id="toc"></div>
     </div>
@@ -640,40 +716,32 @@ svg{display:block}
       <div class="ttl"><h2>Ajustes</h2></div>
     </header>
     <div class="scroll">
-      <div class="cols">
-        <div class="stack">
-          <h2 class="grp">Aparência</h2>
-          <section id="sec-estilo">
+      <div class="sgrps"><details class="sgrp"><summary>Aparência</summary><div class="sin"><section id="sec-estilo">
             <h2 class="lab">Estilo visual</h2>
             <p class="help">Muda o visual de todas as telas: botões, cartões, lições e estatísticas. O Padrão é o visual de sempre.</p>
             <div class="stgrid" id="style-grid" role="group" aria-label="Estilo visual"></div>
             <div id="scheme-row" hidden><h2 class="lab" style="margin-top:12px">Variação de cores</h2><div class="schs" role="group" aria-label="Variação de cores"></div></div>
             <p class="help" id="style-note" hidden></p>
-          </section>
-          <section id="sec-layout">
+          </section><section id="sec-layout">
             <h2 class="lab">Layout</h2>
             <div class="seg" role="group" aria-label="Layout">
               <button type="button" data-k="layout" data-v="classic">Clássico</button>
               <button type="button" data-k="layout" data-v="soft">Suave</button>
               <button type="button" data-k="layout" data-v="sharp">Nítido</button>
             </div>
-          </section>
-          <section id="sec-modo">
+          </section><section id="sec-modo">
             <h2 class="lab">Claro ou escuro</h2>
             <div class="seg" role="group" aria-label="Claro ou escuro">
               <button type="button" data-k="mode" data-v="auto">Automático</button>
               <button type="button" data-k="mode" data-v="light">Claro</button>
               <button type="button" data-k="mode" data-v="dark">Escuro</button>
             </div>
-          </section>
-          <section id="sec-cor">
+          </section><section id="sec-cor">
             <h2 class="lab">Cor</h2>
             <div class="swatches" id="swatches" role="group" aria-label="Cor do app"></div>
             <p class="swlabel" id="swlabel"></p>
             <label class="custom" id="custom-row" for="custom-color" hidden>Sua cor <input type="color" id="custom-color" value="#7a3b8f"></label>
-          </section>
-          <h2 class="grp">Som e vibração</h2>
-          <section>
+          </section><section id="sec-ic"><h2 class="lab">Ícone do app</h2><p class="help">Escolha o ícone do app entre os temas.</p><div class="icgrid" id="ic-grid" role="group" aria-label="Ícone do app"></div><p class="help" id="ic-note"></p></section></div></details><details class="sgrp"><summary>Som e vibração</summary><div class="sin"><section>
             <h2 class="lab">Sons suaves</h2>
             <div class="seg" role="group" aria-label="Sons">
               <button type="button" data-k="sound" data-v="on">Ligados</button>
@@ -685,66 +753,52 @@ svg{display:block}
               <button type="button" data-k="snd" data-v="mid">Médio</button>
               <button type="button" data-k="snd" data-v="high">Alto</button>
             </div>
-          </section>
-          <section>
+          </section><section>
             <h2 class="lab">Vibração ao errar</h2>
             <div class="seg" role="group" aria-label="Vibração ao errar">
               <button type="button" data-k="hap" data-v="on">Ligada</button>
               <button type="button" data-k="hap" data-v="off">Desligada</button>
             </div>
             <p class="help">Vibração leve no celular (não funciona em iPhone).</p>
-          </section>
-          <section>
+          </section><section>
             <h2 class="lab">Tremor da tela ao errar</h2>
             <div class="seg" role="group" aria-label="Tremor da tela ao errar">
               <button type="button" data-k="trem" data-v="on">Ligado</button>
               <button type="button" data-k="trem" data-v="off">Desligado</button>
             </div>
             <p class="help">Se o aparelho estiver com "reduzir movimento", o tremor fica desligado de qualquer jeito.</p>
-          </section>
-        </div>
-        <div class="stack">
-          <h2 class="grp">Estudo</h2>
-          <section>
+          </section></div></details><details class="sgrp"><summary>Estudo</summary><div class="sin"><section>
             <h2 class="lab">Meta diária</h2>
-            <p class="help">Quantas respostas por dia contam como meta cumprida. Sem sequência nem punição: se um dia passar em branco, nada se perde.</p>
+            <p class="help">Quantas respostas por dia contam como meta cumprida.</p>
             <div class="seg" role="group" aria-label="Meta diária" id="goal-seg">
               <button type="button" data-goal="10">10</button>
               <button type="button" data-goal="20">20</button>
               <button type="button" data-goal="40">40</button>
             </div>
-          </section>
-          <section>
+          </section><section id="sec-gam"><h2 class="lab">Pontos e sequências</h2><p class="help">Opcional. Liga pontos, sequência de dias, nível e conquistas, com um resumo na tela inicial. Sem punição: se um dia passar em branco, a sequência recomeça e o recorde fica guardado. Desligado, nada disso aparece.</p><div class="seg" role="group" aria-label="Pontos e sequências" id="gam-seg"><button type="button" data-gam="on">Ligados</button><button type="button" data-gam="off">Desligados</button></div></section><section>
             <h2 class="lab">Zoom com dois dedos</h2>
             <p class="help">Ligado: você pode ampliar a tela com o gesto de pinça. O toque duplo nunca amplia, esteja ligado ou não. Desligado é o padrão.</p>
             <div class="seg" role="group" aria-label="Zoom com dois dedos" id="zoom-seg">
               <button type="button" data-zoom="on">Ligado</button>
               <button type="button" data-zoom="off">Desligado</button>
             </div>
-          </section>
-          <h2 class="grp">Dados</h2>
-          <section>
+          </section></div></details><details class="sgrp"><summary>Lembretes e cartão</summary><div class="sin"><section id="sec-rm"><h2 class="lab">Lembretes</h2><p class="help">Um aviso para fazer a lição do dia. Sem servidor, o horário exato não é garantido: veja a nota abaixo.</p><div class="seg" role="group" aria-label="Lembretes" id="rm-seg"><button type="button" data-rm="on">Ligados</button><button type="button" data-rm="off">Desligados</button></div><label class="flt" style="margin-top:10px">A partir de <select class="field" id="rm-hour" aria-label="Horário do lembrete"></select></label><h2 class="lab" style="margin-top:10px">Estilo do aviso</h2><div class="seg" role="group" aria-label="Estilo do aviso" id="rm-st"><button type="button" data-rmst="anim">Animado</button><button type="button" data-rmst="calma">Calmo</button><button type="button" data-rmst="cartao">Cartão do dia</button></div><div class="row" style="margin-top:10px"><button type="button" class="btn" id="rm-perm">Permitir notificações</button><button type="button" class="btn" id="rm-test">Testar agora</button></div><p class="help" id="rm-note" aria-live="polite"></p></section><section id="sec-wd"><h2 class="lab">Cartão do dia</h2><p class="help">O «widget» do app: um cartão na tela inicial. Um app instalado pelo Chrome não consegue criar widget na tela inicial do celular; para ver o cartão sem abrir o app, escolha «Cartão do dia» no estilo do lembrete, ou segure o ícone do app e toque em «Cartão do dia».</p><div id="wd-box"></div></section></div></details><details class="sgrp"><summary>Dados</summary><div class="sin"><section>
             <h2 class="lab">Backup do progresso</h2>
             <p class="help">Seu progresso fica só neste aparelho. Baixe um arquivo de vez em quando; se trocar de celular ou limpar os dados do navegador, restaure por ele.</p>
             <button type="button" class="btn wide" id="bk-save">Baixar backup</button>
             <label class="btn wide" id="bk-pick-l" style="margin-top:8px;display:grid;place-items:center">Escolher arquivo de backup<input type="file" id="bk-file" accept=".json,application/json" hidden></label>
             <button type="button" class="btn wide primary" id="bk-go" style="margin-top:8px" hidden>Restaurar (substitui o progresso atual)</button>
             <p class="help" id="bk-note" aria-live="polite"></p>
-          </section>
-          <section>
+          </section><section>
             <h2 class="lab">Marcas de concluído</h2>
             <button type="button" class="btn wide" id="clear-done">Apagar marcas de concluído</button>
             <p class="help" id="clear-note" aria-live="polite"></p>
-          </section>
-          <h2 class="grp">Sobre e ajuda</h2>
-          <section>
+          </section></div></details><details class="sgrp"><summary>Sobre e ajuda</summary><div class="sin"><section>
             <h2 class="lab">Sobre e ajuda</h2>
             <p class="help" id="ver-set"></p>
             <button type="button" class="btn wide" id="open-news">Novidades desta versão</button>
             <button type="button" class="btn wide" data-feedback>Enviar sugestão ou avisar de erro</button>
-          </section>
-        </div>
-      </div>
+          </section></div></details></div>
     </div>
   </section>
 
@@ -932,7 +986,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.38.0",d:"2026-10-20"};
+const APP_REL={v:"1.39.0",d:"2026-10-21"};
 
 
 const RAW={
@@ -1218,7 +1272,7 @@ function pickWords(lang,cat,n,minL,maxL){
   const everything=()=>Object.values(VOCAB[lang]).flat();
   if(cat==="all"){add(everything());return out;}
   add(VOCAB[lang][cat]);
-  if(out.length<n){const g=CATS.find(c=>c[0]===cat)[2];add(CATS.filter(c=>c[2]===g&&c[0]!==cat).flatMap(c=>VOCAB[lang][c[0]]));}
+  const cc0=CATS.find(c=>c[0]===cat);if(out.length<n&&cc0){const g=cc0[2];add(CATS.filter(c=>c[2]===g&&c[0]!==cat).flatMap(c=>VOCAB[lang][c[0]]));}
   if(out.length<n)add(everything());
   return out;
 }
@@ -2445,7 +2499,12 @@ perrault:{name:"Salão das Fadas",desc:"Inspirado nos Contos de Perrault: castel
 grimm:{name:"Floresta Encantada",desc:"Inspirado nos Contos dos Irmãos Grimm: floresta, trilha de migalhas, cogumelos e coruja",schemes:[["Clareira",0,"#eef5e8","#ffffff","#dbe9d2","#b5cfa8","#3f6a2f","#1c2a18","#44563e","#8a4b0a","#1f7a45","#b3261e"],["Floresta à noite",1,"#0d1b14","#14271d","#1e3a2b","#2f5642","#9fd68a","#eaf5e6","#b6cdb0","#f2c06a","#7fdca8","#ff9a8f"]]},
 racconti:{name:"Contos à Luz de Vela",desc:"Inspirado em I racconti delle fate: colinas toscanas, torre, livro aberto e vela",schemes:[["Colinas ao pôr do sol",0,"#fbefe0","#ffffff","#f3dcc0","#dcb98e","#9a4a1e","#2b1c10","#5a4430","#7a4f00","#1f7a45","#b3261e"],["Luz de vela",1,"#1e120a","#2a1a0f","#3a2515","#573820","#f0b060","#f8eee0","#d5c0a6","#f2c864","#7fdca8","#ff9a8f"]]},
 };
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0}};
+/* v1.39: ícones do app (um por estilo), cartão da tela inicial, lembretes e gamificação opcional */
+const ICON_IDS=["padrao","alice","pp","frank","soft","dante"];
+const WD_SRC=["hoje","msg","frase","livro","palavra","off"];
+const DAYRE=/^\d{4}-\d\d-\d\d$/;
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0},
+  sq:0,lgt:"",gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"hoje",bk:"all"},ic:"padrao"};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -2487,6 +2546,18 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(Array.isArray(sv.cad))sv.cad.slice(0,300).forEach(c=>{if(c&&/^(fr|it|en)$/.test(c.l)&&typeof c.w==="string"&&c.w.length>0&&c.w.length<40&&typeof c.pt==="string"&&c.pt.length<120&&!S.cad.some(x=>x.l===c.l&&x.w===c.w))S.cad.push({l:c.l,w:c.w,pt:c.pt,b:typeof c.b==="string"?c.b.slice(0,20):"",d:+c.d>0?+c.d:Date.now(),s:Math.min(4,Math.max(0,+c.s||0))});});
   if(sv.qrv&&typeof sv.qrv==="object")Object.keys(sv.qrv).slice(0,200).forEach(k=>{const a=sv.qrv[k];if(/^[a-z]+:\d{1,2}$/.test(k)&&Array.isArray(a)&&+a[0]>0)S.qrv[k]=[+a[0],Math.min(4,Math.max(0,+a[1]||0))];});
   if(sv.cap&&typeof sv.cap==="object")Object.keys(sv.cap).forEach(k=>{if(/^[a-z]+-\d{1,3}$/.test(k))S.cap[k]=1;});
+  const ci=(v,a,b)=>Math.min(b,Math.max(a,Math.floor(+v)||0));
+  if(Number.isInteger(sv.sq)&&sv.sq>=0&&sv.sq<100)S.sq=sv.sq;
+  if(typeof sv.lgt==="string"&&/^[a-z]{0,20}$/.test(sv.lgt))S.lgt=sv.lgt;
+  if(sv.gam&&typeof sv.gam==="object"){
+    const g=sv.gam;
+    S.gam={on:g.on===true,pts:ci(g.pts,0,1e9),last:DAYRE.test(g.last)?g.last:"",streak:ci(g.streak,0,9999),best:ci(g.best,0,9999),les:ci(g.les,0,1e6),bc:ci(g.bc,0,1e5),
+      days:Array.isArray(g.days)?g.days.filter(d=>typeof d==="string"&&DAYRE.test(d)).slice(-400):[],
+      seen:Array.isArray(g.seen)?g.seen.filter(k=>typeof k==="string"&&/^[a-z0-9]{1,12}$/.test(k)).slice(0,40):[]};
+  }
+  if(sv.rm&&typeof sv.rm==="object"){S.rm={on:sv.rm.on===true,h:ci(sv.rm.h,0,23)||(+sv.rm.h===0?0:19),st:["anim","calma","cartao"].indexOf(sv.rm.st)>=0?sv.rm.st:"anim"};}
+  if(sv.wd&&typeof sv.wd==="object"){S.wd={src:WD_SRC.indexOf(sv.wd.src)>=0?sv.wd.src:"hoje",bk:typeof sv.wd.bk==="string"&&/^[a-z]{1,12}$/.test(sv.wd.bk)?sv.wd.bk:"all"};}
+  if(ICON_IDS.indexOf(sv.ic)>=0)S.ic=sv.ic;
   /* as marcas de concluído das versões antigas não são trazidas: os ids das páginas mudaram */
   if(!old&&sv.done&&typeof sv.done==="object")Object.keys(sv.done).forEach(k=>{if(/^(fr|it|en):[a-z0-9-]+$/.test(k))S.done[k]=1;});
 })();
@@ -2495,6 +2566,9 @@ function save(){
   try{localStorage.setItem(KEY,JSON.stringify(S));return true;}
   catch(_){if(typeof saveFail==="function")saveFail();return false;}
 }
+
+/* ----- retomar a lição de onde parou (v1.39): cada motor de jogo registra get()/set(estado); a lógica fica em retomar.js ----- */
+const RESUME={ad:{},quiet:false,reg(types,a){[].concat(types).forEach(t=>{RESUME.ad[t]=a;});}};
 
 /* ----- tema e cores ----- */
 const mq=window.matchMedia?matchMedia("(prefers-color-scheme: dark)"):null;
@@ -2697,7 +2771,7 @@ $("#s-vol").addEventListener("click",e=>{const b=e.target.closest("[data-pick-vo
 $("#go-profile").addEventListener("click",()=>go("profile"));
 $("#go-stats").addEventListener("click",()=>go("stats"));
 $("#go-settings").addEventListener("click",()=>go("settings"));
-$("#go-style").addEventListener("click",()=>{go("settings");const g=$("#sec-estilo");if(g&&g.scrollIntoView)g.scrollIntoView();});
+$("#go-style").addEventListener("click",()=>{go("settings");const g=$("#sec-estilo");if(g){const d=g.closest("details");if(d)d.open=true;if(g.scrollIntoView)g.scrollIntoView();}});
 
 function pageShown(p){
   if(!pageInLang(p))return false;
@@ -2718,6 +2792,7 @@ function renderIndex(){
   $("#f-game").value=S.fGame;
   const num={};V.pages.forEach((p,i)=>{num[p.id]=i+1;});
   $("#f-theme").value=S.fTheme;$("#f-level").value=S.fLevel;
+  {const act=S.fTheme!=="all"||S.fGame!=="all"||(S.vol===1&&S.fLevel!=="all");$("#flt-sum").textContent="Filtrar a lista"+(act?" · filtros ativos":"");}
   $("#f-level-w").hidden=S.vol!==1;
   $("#f-theme-w").hidden=S.vol===4;
   $("#filters").classList.toggle("one",S.vol!==1);
@@ -3761,7 +3836,7 @@ function renderToday(){
   el.textContent=LNAME[S.lang]+" · "+planText();
   const n=dayN();
   $("#goal-fill").style.width=Math.min(100,Math.round(100*n/S.goal))+"%";
-  $("#goal-txt").textContent=n>=S.goal?"Meta cumprida hoje ("+n+")":"Meta de hoje: "+n+" de "+S.goal;
+  $("#goal-txt").textContent=n>=S.goal?"cumprida ("+n+")":n+" de "+S.goal;
 }
 const _rm=renderMe;renderMe=function(){_rm();renderToday();};
 function showGame(title,sub){
@@ -4097,8 +4172,39 @@ function lessonPath(){
     ["reco","completar","embaralhar","escreva"].forEach(t=>[1,2].forEach(k=>add(5,t+"-"+c.cat+"-"+k,{voc:true})));
   }));
   BOOKS.forEach(b=>VOLUME3.pages.filter(p=>p.book===b.id||p.rd===b.id).forEach(p=>out.push({vol:3,page:p})));
+  /* jogos de livros e de memória: entram no fim da trilha e, antes disso, como intervalo entre lições (ver pickGame) */
+  BOOKS.forEach(b=>b.chunks.forEach(c=>{add(1,"search-"+c.cat+"-easy");add(1,"cross-"+c.cat+"-easy");}));
+  const byT=["memoria","citacao","qualivro","regra","trecho","autor","capitulos"].map(t=>VOLUME.pages.filter(p=>p.type===t));
+  for(let i=0;byT.some(a=>i<a.length);i++)byT.forEach(a=>{if(a[i])out.push({vol:1,page:a[i]});});
   return(_path=out);
 }
+/* Jogos entre lições: depois de 2 lições seguidas, o «Hoje» e o «Próximo» oferecem um jogo (de tipo diferente do último).
+   Prioridade: jogo do mesmo tema da próxima lição; jogo de tema anterior ainda não feito; jogo solto (memória, livros). */
+const GAME_T=["odd","connect","search","cross","memoria","citacao","qualivro","autor","trecho","capitulos","regra"];
+const isGameRef=r=>GAME_T.indexOf(r.page.type)>=0;
+const refCat=r=>r.page.cat||r.page.main||null;
+function pickGame(up){
+  const L=lessonPath(),upI=up?L.findIndex(r=>r.page.id===up.page.id):L.length,cat=up?refCat(up):null;
+  const el=[];L.forEach((r,i)=>{if(isGameRef(r)&&eligible(r))el.push([r,i]);});
+  if(!el.length)return null;
+  const alt=a=>{const x=a.filter(y=>y[0].page.type!==S.lgt);return x.length?x:a;};
+  const lv=[
+    cat?el.filter(x=>refCat(x[0])===cat):[],
+    el.filter(x=>x[1]<upI&&!SOLTOS.has(x[0].page.type)),
+    el.filter(x=>SOLTOS.has(x[0].page.type))
+  ];
+  for(const a of lv)if(a.length)return alt(a)[0][0];
+  return null;
+}
+const SOLTOS=new Set(["memoria","citacao","qualivro","autor","trecho","capitulos","regra"]);
+const _mdone=markDone;
+markDone=function(){
+  const t=P&&P.type;
+  if(t&&t!=="revisao"&&t!=="treino"){
+    if(GAME_T.indexOf(t)>=0){S.sq=0;S.lgt=t;}else S.sq=Math.min(99,S.sq+1);
+  }
+  _mdone();
+};
 function pageMastered(p){
   const sk=S.sk[S.lang]||{},ws=wordsOf(p);
   if(!ws.length)return false;
@@ -4108,13 +4214,17 @@ function pageMastered(p){
 const canHear=()=>"speechSynthesis" in window;
 const eligible=r=>pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&!(r.audio&&!canHear())&&!(r.voc&&pageMastered(r.page));
 function nextNewPage(){
-  return lessonPath().find(eligible)||null;
+  const up=lessonPath().find(eligible)||null;
+  if(S.sq>=2){const g=pickGame(up);if(g)return g;}
+  return up;
 }
 /* «Próximo» (folha de página concluída): segue a trilha a partir da página que acabou de terminar, sem voltar ao início.
    Se não há mais nada à frente, cai na primeira lição ainda não feita; sem nenhuma, o botão nem aparece. */
 function nextAfter(p){
   const L=lessonPath(),i=L.findIndex(r=>r.page.id===p.id);
-  return (i>=0&&L.slice(i+1).find(eligible))||nextNewPage();
+  const up=(i>=0&&L.slice(i+1).find(eligible))||L.find(eligible)||null;
+  if(S.sq>=2){const g=pickGame(up);if(g)return g;}
+  return up;
 }
 const canGoNext=()=>!!P&&P.type!=="revisao"&&P.type!=="treino"&&isDone(P)&&!!nextAfter(P);
 $("#sheet-next").addEventListener("click",()=>{
@@ -4171,6 +4281,14 @@ function startLesson(r){S.vol=r.vol;S.fGame="all";S.fTheme="all";save();startPag
     mm={cards:cards,open:[],done:new Set(),moves:0,lock:false};
     renderMemoria();
   }
+  RESUME.reg("memoria",{
+    get(){return mm&&mm.cards.length&&mm.done.size<mm.cards.length/2?{cards:mm.cards,done:[...mm.done],moves:mm.moves}:null;},
+    set(st){
+      const ok=st.cards&&st.cards.length===mm.cards.length&&st.cards.every(c=>c&&ent(c.w));
+      if(!ok)return;
+      mm.cards=st.cards;mm.done=new Set((st.done||[]).filter(w=>ent(w)));mm.moves=Math.max(0,+st.moves||0);mm.open=[];mm.lock=false;renderMemoria();
+    }
+  });
   function renderMemoria(){
     const n=mm.cards.length/2;
     let h='<p class="ocount">Jogo da memória · '+mm.done.size+" de "+n+" pares · "+mm.moves+" tentativas</p>";
@@ -4439,12 +4557,13 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     const p=L[(hash(day+S.lang)+qodExtra)%L.length];
     el.hidden=false;
     el.innerHTML='<p class="qod-k">Frase do dia · «'+esc(BK[p.book].name)+"»</p>"+
-      '<p class="qod-s">'+esc(p.s)+" "+speakBtn(p.s)+'</p><p class="qod-pt">'+esc(p.pt)+"</p>"+
-      '<details class="qod-d"><summary>Ver nota de gramática</summary><p class="qod-n">'+hl(p.note)+'</p><p class="qod-src">Frase copiada do livro. Tradução e nota: Claude, sem fonte conferida.</p></details>'+
-      '<div class="row">'+favBtn(p.id)+imgBtn(p.id)+'<button type="button" class="btn" id="qod-more">Outra frase</button></div>';
+      '<p class="qod-s">'+esc(p.s)+" "+speakBtn(p.s)+'</p>'+
+      '<details class="qod-d"><summary>Tradução e nota</summary><p class="qod-pt">'+esc(p.pt)+'</p><p class="qod-n">'+hl(p.note)+'</p><p class="qod-src">Frase copiada do livro. Tradução e nota: Claude, sem fonte conferida.</p></details>'+
+      '<div class="row">'+favBtn(p.id)+'<button type="button" class="btn" id="qod-more">Outra frase</button></div>';
   }
   document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#qod-more")){qodExtra++;renderQod();}});
   window.renderQod=renderQod;window.renderAlbum=renderAlbum;
+  window.phLangList=phLang;window.phBookMap=BK;window.phHash=hash;
 
   /* ---- páginas novas ---- */
   VOLUME.types=VOLUME.types.concat([["citacao","Complete a citação","Citação"],["qualivro","De qual livro é?","De qual livro?"]]);
@@ -4489,6 +4608,14 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     return{p:p,shown:shown,ans:cap(ans.toLowerCase(),ans),opts:all};
   }
   let qz=null;window.quizState=()=>qz;
+  RESUME.reg(["citacao","qualivro"],{
+    get(){return qz&&qz.qs&&qz.i<qz.qs.length?{kind:qz.kind,qs:qz.qs,i:qz.i,score:qz.score,sel:qz.sel}:null;},
+    set(st){
+      if(!st.qs||st.kind!==qz.kind||!st.qs.length)return;
+      qz.qs=st.qs;qz.i=Math.max(0,Math.min(+st.i||0,st.qs.length-1));qz.score=Math.max(0,+st.score||0);
+      qz.sel=Number.isInteger(st.sel)?st.sel:null;renderQ();
+    }
+  });
   /* revisão espaçada das frases erradas (ou vistas com dica): voltam nas próximas páginas de citação */
   function qrvDue(){const t=Date.now();return Object.keys(S.qrv).filter(id=>phById[id]&&phById[id].lang===S.lang&&S.qrv[id][0]<=t).slice(0,2);}
   function qrvGrade(id,ok){
@@ -4784,6 +4911,188 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   renderQod();
 })();
 
+/* ===== Jogos de literatura (v1.39) =====
+   Quem escreveu? · Ordene o trecho · Ordem dos capítulos · Qual regra explica a frase? + caça-palavras e cruzadas com as palavras de cada livro.
+   Nenhum mostra tradução antes da resposta (só com «Dica»). Sem áudio. Páginas no Volume 3 · Jogos, no idioma do livro.
+   Autores: conferidos em buscas na web em 21/10/2026 (páginas do Projeto Gutenberg, de editoras e de enciclopédias); só o nome, sem texto copiado. */
+(function(){
+  const AUT={pp:"Antoine de Saint-Exupéry",verne:"Jules Verne",pinocchio:"Carlo Collodi",alice:"Lewis Carroll",peter:"Beatrix Potter",wind:"Kenneth Grahame",sherlock:"Arthur Conan Doyle",frank:"Mary Shelley",musq:"Alexandre Dumas",principe:"Nicolau Maquiavel",dante:"Dante Alighieri",perrault:"Charles Perrault",grimm:"Irmãos Grimm",racconti:"Carlo Collodi"};
+  window.LITAUT=AUT;
+  const cnt=t=>VOLUME.pages.filter(p=>p.type===t).length;
+  VOLUME.types=VOLUME.types.concat([
+    ["autor","Quem escreveu o livro?","Quem escreveu?"],
+    ["trecho","Ordene o trecho do livro","Ordene o trecho"],
+    ["capitulos","Ordem dos capítulos","Capítulos"],
+    ["regra","Qual regra explica a frase?","Qual regra?"]]);
+  GAMENAME.autor="Quem escreveu?";GAMENAME.trecho="Ordene o trecho";GAMENAME.capitulos="Capítulos";GAMENAME.regra="Qual regra?";
+  ["autor","trecho","capitulos","regra"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
+  GAMEFN.autor=startQuiz2;GAMEFN.regra=startQuiz2;GAMEFN.trecho=startOrd;GAMEFN.capitulos=startOrd;
+
+  /* ---- páginas ---- */
+  ["fr","it","en"].forEach(lang=>{
+    const bs=BOOKS.filter(b=>b.lang===lang);
+    if(bs.length<3)return;
+    [["b2a","Livro → autor"],["a2b","Autor → livro"]].forEach(([kind,lab])=>VOLUME.pages.push({id:"autor-"+lang+"-"+kind,type:"autor",n:cnt("autor")+1,kind:kind,langs:[lang],themes:[],sub:"Autores dos livros",meta:lab}));
+    const L=window.phLangList(lang),PER=6,n=Math.max(1,Math.ceil(L.length/PER));
+    for(let i=0;i<n&&L.length>=4;i++){
+      const part=L.slice(Math.round(i*L.length/n),Math.round((i+1)*L.length/n));
+      VOLUME.pages.push({id:"regra-"+lang+"-"+(i+1),type:"regra",n:cnt("regra")+1,langs:[lang],themes:[],sub:"Frases dos livros",meta:"Frases dos livros · parte "+(i+1)+" de "+n,qs:part.map(p=>p.id)});
+    }
+  });
+  BOOKS.forEach(b=>{
+    const R=BOOKREAD[b.id]||[];
+    R.forEach((r,k)=>{if(r.segs.length>=2)VOLUME.pages.push({id:"trecho-"+b.id+"-"+(k+1),type:"trecho",n:cnt("trecho")+1,bk:b.id,k:k,langs:[b.lang],themes:["livro-"+b.id],sub:b.name,meta:"Trecho de «"+b.name+"» · "+(k+1)+" de "+R.length});});
+    if(b.id==="alice"||b.id==="principe")[1,2].forEach(j=>VOLUME.pages.push({id:"capitulos-"+b.id+"-"+j,type:"capitulos",n:cnt("capitulos")+1,bk:b.id,j:j,langs:[b.lang],themes:["livro-"+b.id],sub:b.name,meta:"«"+b.name+"» · sequência "+j+" de 2"}));
+    b.chunks.forEach(c=>["search","cross"].forEach(t=>VOLUME.pages.push({id:t+"-"+c.cat+"-easy",type:t,level:"easy",cat:c.cat,n:cnt(t)+1,langs:[b.lang],themes:["livro-"+b.id,c.cat],sub:c.name,meta:c.name+" · Fácil"})));
+  });
+
+  const litRec=ok=>{bump();if(typeof gamAns==="function")gamAns(ok);};
+  const phMap={};["fr","it","en"].forEach(l=>window.phLangList(l).forEach(p=>{phMap[p.id]=p;}));
+  const mask=t=>t.replace(/«[^»]*»/g,"«…»");
+
+  /* ---- Quem escreveu? / Qual regra explica a frase? ---- */
+  let st=null;
+  function startQuiz2(){
+    seedNow();fitFn=null;
+    let qs=[];
+    if(P.type==="autor"){
+      const bs=BOOKS.filter(b=>b.lang===S.lang),allA=[...new Set(BOOKS.map(b=>AUT[b.id]))],seen=new Set();
+      shuffle(bs).forEach(b=>{
+        if(P.kind==="a2b"){
+          if(seen.has(AUT[b.id]))return;seen.add(AUT[b.id]);
+          const wrong=shuffle(BOOKS.filter(x=>AUT[x.id]!==AUT[b.id])).slice(0,3).map(x=>x.name);
+          qs.push({q:"Qual destes livros foi escrito por "+AUT[b.id]+"?",ans:b.name,opts:shuffle([b.name].concat(wrong)),bk:b.id});
+        }else{
+          const wrong=shuffle(allA.filter(a=>a!==AUT[b.id])).slice(0,3);
+          qs.push({q:"Quem escreveu «"+b.name+"»?",ans:AUT[b.id],opts:shuffle([AUT[b.id]].concat(wrong)),bk:b.id});
+        }
+      });
+    }else{
+      const all=window.phLangList(S.lang);
+      shuffle(P.qs.map(id=>phMap[id]).filter(Boolean)).forEach(p=>{
+        const pool=all.filter(o=>o.id!==p.id&&o.note.slice(0,28)!==p.note.slice(0,28));
+        const wrong=[],seen=new Set([p.note.slice(0,28)]);
+        shuffle(pool).forEach(o=>{const k=o.note.slice(0,28);if(wrong.length<3&&!seen.has(k)){seen.add(k);wrong.push(o);}});
+        if(wrong.length<3)return;
+        const opts=shuffle([p].concat(wrong)).map(o=>({id:o.id,t:mask(o.note)}));
+        qs.push({p:p,opts:opts,ans:p.id});
+      });
+    }
+    st={kind:P.type,qs:qs,i:0,score:0,sel:null};
+    renderQuiz2();
+  }
+  function renderQuiz2(){
+    const q=st.qs[st.i],ans=st.sel!==null,reg=st.kind==="regra";
+    let h='<p class="ocount">'+(st.i+1)+" de "+st.qs.length+" · acertos: "+st.score+"</p>";
+    if(reg){
+      h+='<p class="qz-s">'+esc(q.p.s)+"</p>"+'<p class="help" style="text-align:center">Frase do livro «'+esc(BOOKS.find(b=>b.id===q.p.book).name)+"». Qual explicação combina com a frase? As palavras citadas foram escondidas.</p>";
+      h+='<div class="lopts">'+q.opts.map((o,i)=>'<button type="button" class="lopt long'+(ans?(o.id===q.ans?" right":(st.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+hl(o.t)+"</button>").join("")+"</div>";
+      if(ans){
+        const ok=q.opts[st.sel].id===q.ans;
+        h+='<p class="note"><b>'+(ok?"Certo!":"A explicação certa era:")+"</b> "+hl(q.p.note)+'</p><div class="heard">'+speakBtn(q.p.s)+"<span>"+esc(q.p.pt)+"</span></div>";
+      }
+    }else{
+      h+='<p class="prompt">'+esc(q.q)+"</p>";
+      h+='<div class="lopts">'+q.opts.map((o,i)=>'<button type="button" class="lopt'+(ans?(o===q.ans?" right":(st.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(o)+"</button>").join("")+"</div>";
+      if(ans){
+        const b=BOOKS.find(x=>x.id===q.bk),ok=q.opts[st.sel]===q.ans;
+        h+='<p class="note"><b>'+(ok?"Certo!":"Não foi essa.")+"</b> «"+esc(b.name)+"» é de "+esc(AUT[b.id])+".</p>";
+      }
+    }
+    if(ans)h+='<div class="row"><button type="button" class="btn primary" id="lit-next">'+(st.i===st.qs.length-1?"Ver resultado":"Próxima")+"</button></div>";
+    $("#gstage").innerHTML=h;
+  }
+  $("#gstage").addEventListener("click",ev=>{
+    if(!P||!st||(P.type!=="autor"&&P.type!=="regra"))return;
+    const o=ev.target.closest(".lopt");
+    if(o&&st.sel===null){
+      st.sel=+o.dataset.o;const q=st.qs[st.i];
+      const ok=st.kind==="regra"?q.opts[st.sel].id===q.ans:q.opts[st.sel]===q.ans;
+      if(ok)st.score++;litRec(ok);sfx(ok?"ok":"bad");renderQuiz2();return;
+    }
+    if(ev.target.closest("#lit-next")){
+      if(st.i<st.qs.length-1){st.i++;st.sel=null;renderQuiz2();return;}
+      markDone();sfx("done");
+      const rows=st.kind==="autor"?st.qs.map(q=>{const b=BOOKS.find(x=>x.id===q.bk);return '<div class="srow"><span class="w">'+esc(b.name)+'</span><span class="pt">'+esc(AUT[b.id])+"</span></div>";}).join("")+'<p class="help">Autores conferidos em buscas na web em 21/10/2026 (Projeto Gutenberg, editoras e enciclopédias).</p>'
+        :st.qs.map(q=>'<div class="srow"><span class="pt"><b>'+esc(q.p.s)+"</b><br><small>"+esc(q.p.pt)+"</small></span>"+speakBtn(q.p.s)+"</div>").join("");
+      openSheet("Página concluída: "+st.score+" de "+st.qs.length+" certas",rows,true);
+    }
+  });
+  RESUME.reg(["autor","regra"],{
+    get(){return st&&st.kind===P.type&&st.i<st.qs.length?{qs:st.qs,i:st.i,score:st.score,sel:st.sel}:null;},
+    set(s){
+      if(!s.qs||!s.qs.length)return;
+      st.qs=s.qs;st.i=Math.max(0,Math.min(+s.i||0,s.qs.length-1));st.score=Math.max(0,+s.score||0);
+      st.sel=Number.isInteger(s.sel)?s.sel:null;renderQuiz2();
+    }
+  });
+
+  /* ---- Ordene o trecho / Ordem dos capítulos (mesmo motor) ---- */
+  let od2=null;
+  const cleanT=t=>t.replace(/^(CHAPTER|Chapter|Capítulo|Cap\.)\s+[IVXLC\d]+\.?\s*[·.\-–—]?\s*/,"").trim();
+  function startOrd(){
+    seedNow();fitFn=null;
+    let items=[],intro="",title="",foot=null;
+    if(P.type==="trecho"){
+      const r=BOOKREAD[P.bk][P.k];
+      items=r.segs.map((g,i)=>({id:i,t:g.s,pt:g.pt}));
+      intro="Estas frases estão fora de ordem. Toque nelas na ordem em que aparecem no livro."+(r.ctx?" Contexto: "+r.ctx:"");
+      title="Trecho na ordem certa";
+    }else{
+      const info=BOOKTXT_INFO[P.bk].chs.filter(c=>cleanT(c.t)!==c.t);
+      const L=info.length,N=5,pick=[];
+      for(let i=0;i<N;i++){const ix=P.j===1?Math.round(i*(L-1)/(N-1)):Math.floor((i+.5)*L/N);if(pick.indexOf(ix)<0)pick.push(ix);}
+      items=pick.map(ix=>({id:info[ix].n,t:cleanT(info[ix].t),pt:cleanT(info[ix].tp)}));
+      intro="Estes são capítulos de «"+BOOKS.find(b=>b.id===P.bk).name+"». Toque neles na ordem em que aparecem no livro. Os números foram escondidos.";
+      title="Capítulos na ordem certa";
+    }
+    const ord=items.slice().sort((a,b)=>a.id-b.id).map(x=>x.id);
+    let bank=shuffle(items.map(x=>x.id));
+    if(bank.length>1&&bank.every((v,k)=>v===ord[k]))bank.reverse();
+    od2={items:items,ord:ord,bank:bank,put:[],hint:false,tries:0,done:false,intro:intro,title:title,msg:""};
+    renderOrd();
+  }
+  function renderOrd(){
+    const o=od2,by={};o.items.forEach(x=>{by[x.id]=x;});
+    const item=(id,cls,attr)=>'<button type="button" class="blk seg'+cls+'" '+attr+'="'+id+'">'+esc(by[id].t)+(o.hint?"<small>"+esc(by[id].pt)+"</small>":"")+"</button>";
+    const right=o.put.map((id,k)=>o.ord[k]===id);
+    let h='<p class="ocount">'+o.put.length+" de "+o.items.length+" no lugar</p><p class=\"help\">"+esc(o.intro)+"</p>";
+    h+='<ol class="ord-put">'+o.put.map((id,k)=>"<li>"+item(id,o.msg&&right[k]?" okp":"","data-un")+"</li>").join("")+"</ol>";
+    h+='<div class="ord-bank">'+o.bank.filter(id=>o.put.indexOf(id)<0).map(id=>item(id,"","data-w")).join("")+"</div>";
+    h+='<p class="status'+(o.msg.indexOf("Certo")===0?" ok":o.msg?" bad":"")+'" aria-live="polite">'+esc(o.msg)+"</p>";
+    h+='<div class="row"><button type="button" class="btn primary" id="ord-ok"'+(o.done||o.put.length!==o.items.length?" disabled":"")+'>Conferir</button><button type="button" class="btn" id="ord-clear"'+(o.done||!o.put.length?" disabled":"")+'>Limpar</button><button type="button" class="btn" id="ord-hint"'+(o.hint?" disabled":"")+">Dica: ver a tradução</button></div>";
+    $("#gstage").innerHTML=h;
+  }
+  $("#gstage").addEventListener("click",ev=>{
+    if(!P||!od2||(P.type!=="trecho"&&P.type!=="capitulos")||od2.done)return;
+    const o=od2,w=ev.target.closest("[data-w]"),u=ev.target.closest("[data-un]");
+    if(w){o.put.push(+w.dataset.w);o.msg="";renderOrd();return;}
+    if(u){const id=+u.dataset.un;o.put=o.put.filter(x=>x!==id);o.msg="";renderOrd();return;}
+    if(ev.target.closest("#ord-clear")){o.put=[];o.msg="";renderOrd();return;}
+    if(ev.target.closest("#ord-hint")){o.hint=true;renderOrd();return;}
+    if(ev.target.closest("#ord-ok")){
+      const n=o.put.filter((id,k)=>o.ord[k]===id).length;
+      if(n===o.items.length){
+        if(!o.tries&&!o.hint)litRec(true);
+        o.done=true;o.msg="Certo! Tudo na ordem.";markDone();sfx("done");renderOrd();
+        const by={};o.items.forEach(x=>{by[x.id]=x;});
+        openSheet(o.title,o.ord.map((id,k)=>'<div class="srow"><span class="pt"><b>'+(k+1)+". "+esc(by[id].t)+"</b><br><small>"+esc(by[id].pt)+"</small></span></div>").join(""),true);
+      }else{
+        if(!o.tries)litRec(false);
+        o.tries++;o.msg=n+" de "+o.items.length+" no lugar certo (marcados). Troque as outras.";sfx("bad");renderOrd();
+      }
+    }
+  });
+  RESUME.reg(["trecho","capitulos"],{
+    get(){return od2&&!od2.done?{bank:od2.bank,put:od2.put,hint:od2.hint,tries:od2.tries}:null;},
+    set(s){
+      const ids=od2.items.map(x=>x.id).sort((a,b)=>a-b).join();
+      if(!s.bank||s.bank.slice().sort((a,b)=>a-b).join()!==ids)return;
+      od2.bank=s.bank;od2.put=(s.put||[]).filter(id=>s.bank.indexOf(id)>=0);od2.hint=!!s.hint;od2.tries=+s.tries||0;renderOrd();
+    }
+  });
+})();
+
 /* ===== Cartões de revisão com autoavaliação: «Fácil» / «Preciso rever». Sem tempo, sem pontos. ===== */
 (function(){
   let deck=[],ci=0,shown=false,easy=0,hard=0;
@@ -4857,8 +5166,408 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   apply();
 })();
 
+/* ===== Pontos, sequências e conquistas (opcional, v1.39) =====
+   Desligado por padrão: Ajustes → Estudo → «Pontos e sequências». Os dias estudados são anotados sempre (para a sequência já existir quando ela ligar),
+   mas pontos, nível e conquistas só contam e aparecem com a opção ligada.
+   Um dia «conta» quando a pessoa conclui uma lição ou cumpre a meta diária. Sem punição: se um dia passa em branco a sequência recomeça e o recorde fica guardado. */
+(function(){
+  const pad=n=>String(n).padStart(2,"0");
+  const dstr=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+  const lvStart=n=>50*n*(n-1);               /* nível 2 = 100, 3 = 300, 4 = 600, 5 = 1000 ... */
+  const levelOf=p=>{let n=1;while(p>=lvStart(n+1))n++;return n;};
+  let combo=0,pend=null;
+  const on=()=>S.gam.on;
+
+  function streak(){
+    const set=new Set(S.gam.days),d=new Date();d.setHours(12,0,0,0);
+    const today=set.has(dstr(d));
+    if(!today)d.setDate(d.getDate()-1);
+    let n=0;while(set.has(dstr(d))){n++;d.setDate(d.getDate()-1);}
+    return {n:n,today:today};
+  }
+  window.studiedToday=()=>S.gam.days.indexOf(ymd())>=0||dayN()>0;
+  window.gamStreak=streak;
+  function markDay(){
+    const t=ymd(),d=S.gam.days;
+    if(d.indexOf(t)>=0)return false;
+    d.push(t);d.sort();if(d.length>400)d.splice(0,d.length-400);
+    S.gam.last=t;
+    const s=streak().n;if(s>S.gam.best)S.gam.best=s;S.gam.streak=s;
+    return true;
+  }
+
+  const BADGES=[
+    ["primeira","Primeira lição","Concluir 1 lição",()=>S.gam.les>=1],
+    ["dez","10 lições","Concluir 10 lições",()=>S.gam.les>=10],
+    ["cinquenta","50 lições","Concluir 50 lições",()=>S.gam.les>=50],
+    ["cem","100 lições","Concluir 100 lições",()=>S.gam.les>=100],
+    ["d3","3 dias seguidos","Estudar 3 dias em sequência",()=>S.gam.best>=3],
+    ["d7","Semana completa","Estudar 7 dias em sequência",()=>S.gam.best>=7],
+    ["d30","30 dias seguidos","Estudar 30 dias em sequência",()=>S.gam.best>=30],
+    ["c10","10 seguidas","Acertar 10 de primeira, em sequência",()=>S.gam.bc>=10],
+    ["c25","25 seguidas","Acertar 25 de primeira, em sequência",()=>S.gam.bc>=25],
+    ["p500","500 pontos","Chegar a 500 pontos",()=>S.gam.pts>=500],
+    ["p2000","2.000 pontos","Chegar a 2.000 pontos",()=>S.gam.pts>=2000],
+    ["meta","Meta do dia","Cumprir a meta diária",()=>dayN()>=S.goal],
+    ["tri","Três idiomas","Concluir lições em francês, italiano e inglês",()=>["fr","it","en"].every(l=>Object.keys(S.done).some(k=>k.indexOf(l+":")===0))],
+    ["leitor","Leitor","Concluir 3 capítulos de livros",()=>Object.keys(S.cap).length>=3],
+    ["album","Colecionador de frases","Guardar 5 frases no álbum",()=>S.fav.length>=5]
+  ];
+  function checkBadges(){
+    if(!on())return [];
+    const s=streak().n;if(s>S.gam.best)S.gam.best=s;
+    const fresh=[];
+    BADGES.forEach(b=>{if(S.gam.seen.indexOf(b[0])<0&&b[3]()&&S.gam.seen.length<40){S.gam.seen.push(b[0]);fresh.push(b);}});
+    if(fresh.length&&pend)pend.badges=pend.badges.concat(fresh.map(b=>b[1]));
+    if(fresh.length&&!pend)say("Conquista: "+fresh.map(b=>b[1]).join(", "));
+    return fresh;
+  }
+  function add(n){S.gam.pts+=n;if(pend)pend.pts+=n;}
+  function pop(txt){
+    if(!on())return;
+    let el=$("#gpop");
+    if(!el){el=document.createElement("div");el.id="gpop";el.setAttribute("aria-hidden","true");document.body.appendChild(el);}
+    el.textContent=txt;el.classList.remove("go");void el.offsetWidth;el.classList.add("go");
+  }
+
+  /* cada resposta de primeira (certa ou errada): vem de skRec e dos jogos de literatura */
+  window.gamAns=function(ok){
+    if(!on())return;
+    if(ok){
+      combo++;add(10);pop("+10");
+      if(combo>S.gam.bc)S.gam.bc=combo;
+      if(combo%5===0){add(5);pop(combo+" seguidas! +5");}
+    }else combo=0;
+    checkBadges();save();
+  };
+  const _sr=skRec;skRec=function(w,l,ok){_sr.apply(this,arguments);window.gamAns(ok);};
+  const _bp=bump;bump=function(){
+    _bp.apply(this,arguments);
+    if(dayN()>=S.goal&&markDay()){onNewDay();checkBadges();save();}
+  };
+  function onNewDay(){
+    if(!on())return;
+    const s=streak().n;
+    if(s>=2){const b=5*Math.min(s,10);add(b);}
+  }
+  const _md=markDone;
+  markDone=function(){
+    const first=!!P&&!isDone(P);
+    _md.apply(this,arguments);
+    S.gam.les++;
+    const newDay=markDay();
+    if(on()){
+      if(!pend)pend={pts:0,badges:[],streak:0};
+      add(first?50:10);
+      if(newDay)onNewDay();
+      pend.streak=streak().n;
+      checkBadges();
+    }
+    save();
+    renderGam();
+  };
+  const _sp=startPage;startPage=function(){pend=null;combo=0;return _sp.apply(this,arguments);};
+
+  /* recompensa no começo da folha «Página concluída» */
+  function rewardHtml(){
+    if(!pend)return "";
+    const l=levelOf(S.gam.pts);
+    let h='<div class="gam-r"><b>+'+pend.pts+" pontos</b>"+(pend.streak>=2?" · sequência de "+pend.streak+" dias":"")+" · nível "+l;
+    if(pend.badges.length)h+='<br><span class="gam-b">Conquista: '+pend.badges.map(esc).join(", ")+"</span>";
+    return h+"</div>";
+  }
+  const _os=openSheet;
+  openSheet=function(title,html,foot){
+    if(on()&&foot&&pend&&pend.pts>0){html=rewardHtml()+html;pend=null;}
+    return _os.call(this,title,html,foot);
+  };
+
+  /* chips na tela inicial */
+  const FLAME='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1 3.5 5 5.2 5 10a5 5 0 0 1-10 0c0-2 1-3.4 2-4.4.3 1.4 1 2 1.8 2.2C11 8.2 11 5.5 12 3z"/></svg>';
+  const STAR='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l2.4 5 5.4.7-4 3.8 1 5.4L12 16.3 7.2 18.9l1-5.4-4-3.8 5.4-.7z"/></svg>';
+  function renderGam(){
+    const el=$("#gam-chip");if(!el)return;
+    if(!on()){el.hidden=true;return;}
+    const s=streak(),l=levelOf(S.gam.pts);
+    el.hidden=false;
+    el.classList.toggle("idle",!s.today);
+    el.innerHTML='<span>'+FLAME+" "+s.n+"</span><span>"+STAR+" Nív. "+l+"</span>";
+    el.setAttribute("aria-label","Sequência de "+s.n+" dias, nível "+l+". Toque para ver detalhes.");
+  }
+  window.renderGam=renderGam;
+  const _rm2=renderMe;renderMe=function(){_rm2();renderGam();};
+
+  function openGam(){
+    const s=streak(),l=levelOf(S.gam.pts),a=lvStart(l),b=lvStart(l+1),pc=Math.round(100*(S.gam.pts-a)/(b-a));
+    const set=new Set(S.gam.days),now=new Date();now.setHours(12,0,0,0);
+    let dots="";
+    for(let i=6;i>=0;i--){
+      const d=new Date(now);d.setDate(d.getDate()-i);
+      dots+='<span class="gd'+(set.has(dstr(d))?" on":"")+(i===0?" now":"")+'"><i></i><small>'+"DSTQQSS".charAt(d.getDay())+"</small></span>";
+    }
+    const earned=BADGES.filter(x=>S.gam.seen.indexOf(x[0])>=0).length;
+    let h='<div class="gam-top"><b class="gam-n">'+s.n+"</b><span>"+(s.n===1?"dia":"dias")+" seguidos"+(s.today?"":" · hoje ainda não contou")+"</span></div>"+
+      '<div class="gdots" role="img" aria-label="Últimos 7 dias">'+dots+"</div>"+
+      '<p class="help">Recorde: '+S.gam.best+" dias · lições concluídas: "+S.gam.les+" · maior série de acertos: "+S.gam.bc+"</p>"+
+      '<p class="gam-lv"><b>Nível '+l+"</b> · "+S.gam.pts+" pontos</p><span class=\"gbar\" aria-hidden=\"true\"><i style=\"width:"+pc+"%\"></i></span>"+
+      '<p class="help">Faltam '+(b-S.gam.pts)+" pontos para o nível "+(l+1)+'.</p>'+
+      '<h3 class="sub">Conquistas · '+earned+" de "+BADGES.length+"</h3><div class=\"gbadges\">"+
+      BADGES.map(x=>{const got=S.gam.seen.indexOf(x[0])>=0;return '<div class="gb'+(got?" got":"")+'"><b>'+esc(x[1])+"</b><small>"+esc(x[2])+"</small></div>";}).join("")+"</div>"+
+      '<h3 class="sub">Como os pontos funcionam</h3><p class="help">+10 por resposta certa de primeira; +5 a cada 5 acertos seguidos; +50 ao concluir uma página nova (+10 ao repetir); bônus ao começar um novo dia de sequência. Se um dia passar em branco, a sequência recomeça e o recorde fica guardado. Nada é tirado de você.</p>'+
+      '<div class="row"><button type="button" class="btn" id="gam-off">Desligar pontos e sequências</button></div>';
+    openSheet("Pontos e sequência",h,false);
+  }
+  window.openGam=openGam;
+  document.addEventListener("click",e=>{
+    if(e.target.closest&&e.target.closest("#gam-chip")){openGam();return;}
+    if(e.target.closest&&e.target.closest("#gam-off")){S.gam.on=false;save();closeSheet();renderGam();syncGamSeg();}
+  });
+  function syncGamSeg(){$$("#gam-seg [data-gam]").forEach(b=>b.setAttribute("aria-pressed",String((b.dataset.gam==="on")===on())));}
+  window.syncGamSeg=syncGamSeg;
+  $("#gam-seg").addEventListener("click",e=>{
+    const b=e.target.closest("[data-gam]");if(!b)return;
+    S.gam.on=b.dataset.gam==="on";
+    if(S.gam.on){const s=streak().n;if(s>S.gam.best)S.gam.best=s;checkBadges();}
+    save();syncGamSeg();renderGam();
+  });
+  const _go2=go;go=function(n){_go2.apply(this,arguments);if(n==="settings")syncGamSeg();};
+  syncGamSeg();renderGam();
+})();
+
+/* ===== Cartão do dia («widget» dentro do app), lembretes e atalhos (v1.39) =====
+   Limites reais (ditos na tela, em Ajustes):
+   · Um PWA instalado pelo Chrome no Android NÃO consegue criar um widget na tela inicial do celular. Por isso o «widget» é um cartão na tela inicial do app,
+     que também pode virar a notificação do lembrete, e o ícone do app ganha atalhos (segurar o ícone: Hoje, Cartão do dia, Treino).
+   · Notificações em horário exato exigiriam um servidor de envio (fora de escopo, decisão dela). Sem servidor, o app usa: (1) Sincronização periódica em segundo plano,
+     que só existe no Chrome/Edge com o app instalado, e cujo horário quem decide é o navegador; (2) aviso dentro do app quando ele está aberto; (3) botão «Testar». */
+(function(){
+  const pad=n=>String(n).padStart(2,"0");
+  const dstr=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+  const MSGS=["Cinco minutinhos de {L} hoje já contam.","Uma lição curta agora vale mais do que uma longa que nunca começa.","Quem treina pouco, mas sempre, chega longe. Vamos de {L}?","Que tal uma palavra nova de {L} antes de dormir?","Seu caderno de {L} está aberto. Uma página só?","Uma pausa boa: uma lição de {L} e pronto.","Errar faz parte. Venha treinar {L} um pouquinho.","Hoje é um bom dia para um jogo de {L}.","Uma frase de livro, uma lição, e o dia já rendeu.","Revisar um pouco hoje evita esquecer amanhã."];
+  const SRC=[["hoje","O que aparece em «Hoje»","A próxima lição sugerida"],["msg","Mensagem para fazer as lições","Uma frase curta de incentivo"],["frase","Frase do dia","Uma frase de livro"],["livro","Citação de um livro","Você escolhe o livro"],["palavra","Palavra do dia","Palavra, tradução e áudio"],["off","Não mostrar","Esconde o cartão da tela inicial"]];
+
+  /* ---- conteúdo do cartão: depende só do dia e do idioma ---- */
+  function cardFor(day,lang){
+    const h=window.phHash,L=LNAME[lang],src=S.wd.src;
+    if(src==="msg"){
+      const s=window.gamStreak?gamStreak():{n:0,today:false};
+      return {k:"Lembrete",t:MSGS[h(day+lang)%MSGS.length].replace("{L}",L),s:S.gam.on&&s.n>0?"Sequência: "+s.n+(s.n===1?" dia":" dias"):"",act:"lesson"};
+    }
+    if(src==="frase"||src==="livro"){
+      let list=window.phLangList(lang);
+      if(src==="livro"&&S.wd.bk!=="all"){const f=list.filter(p=>p.book===S.wd.bk);if(f.length)list=f;}
+      if(!list.length)return {k:"Cartão do dia",t:"Sem frases de livros em "+L+".",s:"",act:"lesson"};
+      const p=list[h(day+lang+(src==="livro"?S.wd.bk:""))%list.length],bn=window.phBookMap[p.book].name;
+      return {k:(src==="frase"?"Frase do dia":"Citação")+" · «"+bn+"»",t:p.s,s:"",say:p.s,act:"say"};
+    }
+    if(src==="palavra"){
+      const pool=CATS.flatMap(c=>VOCAB[lang][c[0]]||[]);
+      const e=pool[h(day+lang+"w")%pool.length];
+      return {k:"Palavra do dia · "+L,t:full(e),s:e.pt,say:full(e),act:"say"};
+    }
+    return {k:"Hoje",t:LNAME[lang]+" · "+planText(),s:"",act:"lesson"};
+  }
+  window.cardFor=cardFor;
+
+  /* ---- cartão na tela inicial ---- */
+  function renderWcard(){
+    const el=$("#wcard");if(!el)return;
+    if(S.wd.src==="off"){el.hidden=true;return;}
+    const c=cardFor(ymd(),S.lang);
+    el.hidden=false;
+    el.innerHTML='<small class="wk">'+esc(c.k)+"</small><p class=\"wt\">"+esc(c.t)+"</p>"+(c.s?'<p class="ws">'+esc(c.s)+"</p>":"")+
+      '<div class="wrow">'+(c.act==="say"?'<button type="button" class="btn wbtn" data-wc="say">Ouvir</button>':'<button type="button" class="btn wbtn" data-wc="go">Começar</button>')+
+      '<button type="button" class="btn wbtn quiet" data-wc="cfg">Trocar</button></div>';
+  }
+  window.renderWcard=renderWcard;
+  function openCard(){
+    const c=cardFor(ymd(),S.lang);
+    openSheet("Cartão do dia",'<div class="wbig"><small class="wk">'+esc(c.k)+"</small><p class=\"wt\">"+esc(c.t)+"</p>"+(c.s?'<p class="ws">'+esc(c.s)+"</p>":"")+"</div>"+
+      '<div class="row">'+(c.say?'<button type="button" class="btn" id="wc-say2">Ouvir</button>':"")+'<button type="button" class="btn primary" id="wc-go2">Começar uma lição</button></div>',false);
+  }
+  window.openCard=openCard;
+  function wdPicker(){
+    const books=BOOKS.filter(b=>b.lang===S.lang);
+    return '<div class="wdl" role="group" aria-label="O que o cartão mostra">'+SRC.map(x=>'<button type="button" class="wdo" data-wd="'+x[0]+'" aria-pressed="'+(S.wd.src===x[0])+'"><b>'+x[1]+"</b><small>"+x[2]+"</small></button>").join("")+"</div>"+
+      (S.wd.src==="livro"?'<label class="flt">Livro <select class="field" id="wd-book" aria-label="Livro das citações"><option value="all">Todos os livros de '+esc(LNAME[S.lang])+"</option>"+books.map(b=>'<option value="'+b.id+'"'+(S.wd.bk===b.id?" selected":"")+">"+esc(b.name)+"</option>").join("")+"</select></label>":"");
+  }
+  function renderWdBox(){const b=$("#wd-box");if(b)b.innerHTML=wdPicker();}
+  window.renderWdBox=renderWdBox;
+  function afterWd(){save();renderWcard();renderWdBox();pushState();if(!$("#sheet").hidden&&$("#wd-sheet"))$("#wd-sheet").innerHTML=wdPicker();}
+  document.addEventListener("click",e=>{
+    const t=e.target.closest&&e.target.closest("[data-wd],[data-wc],#wc-go2,#wc-say2,#nudge-go,#nudge-x");
+    if(!t)return;
+    if(t.dataset.wd){S.wd.src=t.dataset.wd;afterWd();return;}
+    const w=t.dataset.wc;
+    if(w==="go"||t.id==="wc-go2"||t.id==="nudge-go"){closeSheet();startToday();return;}
+    if(w==="say"||t.id==="wc-say2"){const c=cardFor(ymd(),S.lang);if(c.say)speak(c.say);return;}
+    if(w==="cfg"){openSheet("O que o cartão mostra",'<p class="help">Escolha o que aparece no cartão da tela inicial. Ele também vira o texto do lembrete, se você escolher «Cartão do dia» nos lembretes.</p><div id="wd-sheet">'+wdPicker()+"</div>",false);return;}
+    if(t.id==="nudge-x"){nudgeOff=true;renderNudge();}
+  });
+  document.addEventListener("change",e=>{if(e.target.id==="wd-book"){S.wd.bk=e.target.value;afterWd();}});
+
+  /* ---- aviso dentro do app ---- */
+  let nudgeOff=false;
+  function renderNudge(){
+    const el=$("#nudge");if(!el)return;
+    const now=new Date(),hr=now.getHours(),s=window.gamStreak?gamStreak():{n:0,today:false};
+    const want=!nudgeOff&&!studiedToday()&&((S.rm.on&&hr>=S.rm.h)||(S.gam.on&&s.n>0&&hr>=18));
+    el.hidden=!want;
+    if(!want)return;
+    const txt=S.gam.on&&s.n>0?"Sua sequência de "+s.n+(s.n===1?" dia":" dias")+" continua se você fizer uma lição hoje.":"Hoje ainda não teve lição. Uma de 5 minutos já vale.";
+    el.innerHTML='<span class="nb" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17h12l-1.5-2.5V10a4.5 4.5 0 0 0-9 0v4.5zM10 20a2 2 0 0 0 4 0"/></svg></span><p>'+esc(txt)+'</p><button type="button" class="btn primary" id="nudge-go">Fazer agora</button><button type="button" class="btn icon" id="nudge-x" aria-label="Dispensar o aviso">×</button>';
+  }
+  window.renderNudge=renderNudge;
+
+  /* ---- estado para o service worker (ele lê isto quando o navegador o acorda) ---- */
+  let pushT=null;
+  async function pushState(){
+    if(!window.caches)return;
+    try{
+      const c=await caches.open("mp-state"),old=await c.match("state.json"),prev=old?await old.json():{};
+      const days=S.gam.days;let last=days.length?days[days.length-1]:"";if(dayN()>0)last=ymd();
+      const cards={},d0=new Date();
+      for(let i=0;i<8;i++){const d=new Date(d0);d.setDate(d0.getDate()+i);const k=dstr(d);cards[k]=cardFor(k,S.lang);}
+      const s=window.gamStreak?gamStreak():{n:0};
+      const st={v:1,on:S.rm.on,h:S.rm.h,st:S.rm.st,last:last,streak:s.n,gam:S.gam.on,name:(S.player||"").split(" ")[0],ln:LNAME[S.lang],cards:cards,ic:S.ic,notified:prev.notified||""};
+      await c.put("state.json",new Response(JSON.stringify(st),{headers:{"content-type":"application/json"}}));
+    }catch(_){}
+  }
+  window.pushState=pushState;
+  const _sv=save;save=function(){_sv.apply(this,arguments);clearTimeout(pushT);pushT=setTimeout(pushState,1500);};
+  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden")pushState();else{renderNudge();renderWcard();schedInApp();}});
+
+  /* ---- lembretes ---- */
+  const can=()=>"Notification" in window;
+  async function swReg(){try{return await Promise.race([navigator.serviceWorker.ready,new Promise((_,r)=>setTimeout(r,2500))]);}catch(_){return null;}}
+  function textFor(style){
+    const s=window.gamStreak?gamStreak():{n:0,today:false},nm=(S.player||"").split(" ")[0];
+    if(style==="calma")return {title:"Mots & Parole",body:"Quando puder, uma lição curta de "+LNAME[S.lang]+"."};
+    if(style==="cartao"){const c=cardFor(ymd(),S.lang);return {title:c.k,body:c.t+(c.s?"\n"+c.s:"")};}
+    const body=S.gam.on&&s.n>0&&!s.today?"Sua sequência de "+s.n+(s.n===1?" dia":" dias")+" está esperando. 5 minutos salvam o dia!":"Que tal 5 minutos de "+LNAME[S.lang]+"? Uma lição curta já vale.";
+    return {title:"📚 "+(nm?nm+", ":"")+"hora de brincar com as palavras!",body:body};
+  }
+  async function showNow(style){
+    if(!can()||Notification.permission!=="granted")return false;
+    const reg=await swReg(),t=textFor(style||S.rm.st);
+    const o={body:t.body,icon:"icon-192.png",badge:"icon-192.png",vibrate:[120,60,120,60,220],tag:"mp-lembrete",renotify:true,data:{go:"hoje"},actions:[{action:"hoje",title:"Fazer agora"},{action:"depois",title:"Depois"}]};
+    try{if(reg)await reg.showNotification(t.title,o);else new Notification(t.title,o);return true;}catch(_){try{new Notification(t.title,{body:t.body});return true;}catch(__){return false;}}
+  }
+  let rmT=null;
+  function schedInApp(){
+    clearTimeout(rmT);if(!S.rm.on)return;
+    const n=new Date(),t=new Date(n);t.setHours(S.rm.h,0,0,0);const ms=t-n;
+    if(ms<=0||ms>20*3600e3)return;
+    rmT=setTimeout(()=>{if(!studiedToday()){showNow();renderNudge();}},ms+500);
+  }
+  async function regPeriodic(){
+    const reg=await swReg();
+    if(!reg||!("periodicSync" in reg))return "nao";
+    try{const p=await navigator.permissions.query({name:"periodic-background-sync"});if(p.state!=="granted")return "negado";}catch(_){}
+    try{
+      if(S.rm.on)await reg.periodicSync.register("mp-lembrete",{minInterval:6*3600*1000});else await reg.periodicSync.unregister("mp-lembrete");
+      return "ok";
+    }catch(_){return "erro";}
+  }
+  async function rmNote(){
+    const el=$("#rm-note");if(!el)return;
+    let m;
+    if(!can())m="Este navegador não permite notificações. Mesmo assim, o aviso aparece dentro do app quando você o abre depois do horário.";
+    else if(Notification.permission==="denied")m="As notificações estão bloqueadas nas configurações do aparelho ou do navegador para este app. Libere lá e volte aqui.";
+    else if(Notification.permission==="default")m="Toque em «Permitir notificações» para o aparelho deixar o app avisar.";
+    else{
+      const r=await regPeriodic();
+      m="Notificações permitidas. "+(r==="ok"?"Lembrete diário em segundo plano: ativo, mas quem escolhe o minuto exato é o Android/Chrome (ele pode atrasar, ou pular o dia se você quase não usa o app).":
+        r==="negado"?"O lembrete em segundo plano está sem permissão neste aparelho; ele só aparece com o app aberto. Instale o app na tela inicial e use-o alguns dias.":
+        "Neste aparelho o navegador não deixa agendar lembretes em segundo plano (é o caso do iPhone). O aviso aparece quando você abre o app depois do horário.");
+    }
+    el.textContent=m;
+  }
+  function syncRm(){
+    $$("#rm-seg [data-rm]").forEach(b=>b.setAttribute("aria-pressed",String((b.dataset.rm==="on")===S.rm.on)));
+    $$("#rm-st [data-rmst]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.rmst===S.rm.st)));
+    const h=$("#rm-hour");if(h){if(!h.options.length)h.innerHTML=Array.from({length:24},(_,i)=>'<option value="'+i+'">'+pad(i)+":00</option>").join("");h.value=String(S.rm.h);}
+    rmNote();
+  }
+  window.syncRm=syncRm;
+  function rmChanged(){save();syncRm();pushState();schedInApp();renderNudge();}
+  $("#rm-seg").addEventListener("click",async e=>{
+    const b=e.target.closest("[data-rm]");if(!b)return;
+    S.rm.on=b.dataset.rm==="on";
+    if(S.rm.on&&can()&&Notification.permission==="default"){try{await Notification.requestPermission();}catch(_){}}
+    rmChanged();
+  });
+  $("#rm-st").addEventListener("click",e=>{const b=e.target.closest("[data-rmst]");if(!b)return;S.rm.st=b.dataset.rmst;rmChanged();});
+  $("#rm-hour").addEventListener("change",e=>{S.rm.h=+e.target.value;rmChanged();});
+  $("#rm-perm").addEventListener("click",async()=>{
+    if(!can()){rmNote();return;}
+    try{await Notification.requestPermission();}catch(_){}
+    rmChanged();
+  });
+  $("#rm-test").addEventListener("click",async()=>{
+    const el=$("#rm-note");
+    if(!can()||Notification.permission!=="granted"){
+      if(can()&&Notification.permission==="default"){try{await Notification.requestPermission();}catch(_){}}
+      if(!can()||Notification.permission!=="granted"){say("Sem permissão para notificações. Toque em «Permitir notificações».");rmNote();return;}
+    }
+    const ok=await showNow();
+    say(ok?"Lembrete de teste enviado. Olhe a barra de notificações.":"Não consegui mostrar a notificação neste aparelho.");
+    if(el&&!ok)rmNote();
+  });
+
+  /* ---- atalhos (?go=…) e toque na notificação ---- */
+  function handleGo(g){
+    if(g==="hoje")startToday();
+    else if(g==="cartao")openCard();
+    else if(g==="treino")openTrainMenu();
+  }
+  window.handleGo=handleGo;
+  if(navigator.serviceWorker)navigator.serviceWorker.addEventListener("message",e=>{if(e.data&&e.data.t==="go")handleGo(e.data.go);});
+
+  const _rm3=renderMe;renderMe=function(){_rm3();renderWcard();renderNudge();};
+  const _go3=go;go=function(n){_go3.apply(this,arguments);if(n==="settings"){syncRm();renderWdBox();}if(n==="home"){renderWcard();renderNudge();}};
+  syncRm();renderWdBox();renderWcard();renderNudge();schedInApp();pushState();
+  setTimeout(()=>{if(S.rm.on)regPeriodic();},3000);
+})();
+
+/* ===== Ícone do app (v1.39): Padrão + um por tema (Alice, Pequeno Príncipe, Frankenstein, Soft elegante, A Divina Comédia) =====
+   Arte original (tools/mk_icons.py): relógio de bolso, planeta com flor, raio, monograma, anéis e estrela; nenhum personagem de livro.
+   Como funciona: o ícone da aba muda na hora; o ícone do app instalado é lido do manifesto, e o service worker (sw.js) devolve o manifesto com o ícone escolhido
+   (a escolha vai para um cache chamado mp-state). Quando o ícone da tela inicial muda depende do sistema: ver o texto de #ic-note. */
+(function(){
+  const NAMES={padrao:"Padrão",alice:"Alice",pp:"Pequeno Príncipe",frank:"Frankenstein",soft:"Soft elegante",dante:"A Divina Comédia"};
+  const url=(id,z)=>id==="padrao"?(z==="m"?"icon-maskable-512.png":"icon-"+z+".png"):"icons/"+id+"-"+(z==="m"?"maskable-512":z)+".png";
+  function applyIcon(){
+    ["icon","apple-touch-icon"].forEach(rel=>{const l=document.querySelector('link[rel="'+rel+'"]');if(l)l.href=url(S.ic,192);});
+  }
+  function build(){
+    const g=$("#ic-grid");if(!g)return;
+    g.innerHTML=ICON_IDS.map(id=>'<button type="button" class="icb" data-ic="'+id+'" aria-pressed="'+(S.ic===id)+'" aria-label="Ícone '+esc(NAMES[id])+'"><img src="'+url(id,192)+'" alt="" width="56" height="56" loading="lazy"><small>'+esc(NAMES[id])+"</small></button>").join("");
+    $("#ic-note").textContent="Ícone atual: "+NAMES[S.ic]+". A aba do navegador muda na hora. Na tela inicial: no Android (Chrome) o ícone muda sozinho depois que o Chrome atualiza o app (ele só faz isso com o app fechado, o aparelho carregando e no Wi-Fi; pode levar de alguns minutos a alguns dias). No iPhone, o ícone fica o de quando o app foi adicionado: remova-o da tela inicial e adicione de novo. No computador, o Chrome ainda não atualiza o ícone de app instalado.";
+  }
+  document.addEventListener("click",e=>{
+    const b=e.target.closest&&e.target.closest("[data-ic]");if(!b)return;
+    if(ICON_IDS.indexOf(b.dataset.ic)<0)return;
+    S.ic=b.dataset.ic;save();applyIcon();build();
+    if(typeof pushState==="function")pushState();
+    if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(r=>{if(r&&r.update)r.update();}).catch(()=>{});
+  });
+  const _go4=go;go=function(n){_go4.apply(this,arguments);if(n==="settings")build();};
+  applyIcon();build();
+})();
+
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.39.0",d:"2026-10-21",t:[
+"Corrigido: ao sair do app no meio de uma lição (para usar outro app) e voltar, a lição continua de onde parou. Só se perde se você fechar o app de vez ou ficar mais de 3 horas fora",
+"Em «Hoje», os jogos entram entre as lições: depois de 2 lições seguidas vem um jogo (de tipo diferente do último)",
+"Novos jogos de literatura: Quem escreveu?, Ordene o trecho, Ordem dos capítulos (Alice e O Príncipe), Qual regra explica a frase? e caça-palavras e cruzadas com as palavras de cada livro",
+"Novo (opcional): pontos, sequência de dias, nível e conquistas. Ajustes → Estudo → Pontos e sequências",
+"Novo: lembretes para fazer a lição (3 estilos, inclusive o Cartão do dia) e aviso na tela inicial. Ajustes → Lembretes e cartão. Leia lá o que o celular permite ou não",
+"Novo: Cartão do dia na tela inicial, com o que você escolher: mensagem, o que aparece em «Hoje», frase do dia, citação de um livro ou palavra do dia. Segurando o ícone do app aparecem atalhos (Hoje, Cartão do dia, Treino)",
+"Novo: 6 ícones do app (Padrão, Alice, Pequeno Príncipe, Frankenstein, Soft elegante e A Divina Comédia). Ajustes → Aparência",
+"Telas mais limpas: início com um botão grande «Hoje» e lista curta, Ajustes em grupos que abrem e fecham, filtros recolhidos, caixas de palavras e opções menores e mais leves",
+"A Frase do dia não tem mais «Salvar como imagem» (o Álbum de citações continua com ele)"]},
 {v:"1.38.0",d:"2026-10-20",t:[
 "Novo: «Salvar como imagem» na Frase do dia e no Álbum de citações, com a frase, a tradução e o nome do livro",
 "A imagem é gerada no próprio aparelho; no celular abre o menu de compartilhar, no computador baixa o arquivo"]},
@@ -4897,8 +5606,224 @@ function renderNews(){
 window.renderNews=renderNews;
 document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#open-news")){go("news");renderNews();}});
 
+/* ===== Retomar a lição de onde parou (v1.39) =====
+   No Android, quando a pessoa sai do app para usar outro, o sistema pode descartar a página; ao voltar, tudo recomeçava.
+   Agora o estado da lição em andamento é guardado no aparelho (chave própria, fora do progresso e do backup) e devolvido ao reabrir.
+   Passa de 3 horas parado, ou a pessoa saiu da lição de propósito (voltou ao índice, terminou a página): o estado é descartado.
+   Cada motor registra get()/set() em RESUME (p3.js). Os motores de p4–p9 e p11 são tratados aqui; memória, citação e jogos de
+   literatura registram os seus no próprio arquivo. */
+(function(){
+  const RKEY=KEY+"-rs",MAXAGE=3*3600e3;
+  let lastJs="",fin=false;
+  RESUME.quiet=true; /* durante a abertura do app (go('home') do p8.js) nada pode apagar o estado guardado; boot2.js liga de novo */
+  const gramLike=()=>!!P&&(GRAMTYPES.indexOf(P.type)>=0||VOCGAMES.indexOf(P.type)>=0||P.type==="revisao"||P.type==="treino");
+  const adFor=()=>{
+    if(!P)return null;
+    if(gramLike())return RESUME.ad.gm;
+    return RESUME.ad[P.type]||RESUME.ad.any;
+  };
+  function clear(){lastJs="";try{localStorage.removeItem(RKEY);}catch(_){}}
+  function write(force){
+    const g=$("#s-game");
+    if(!g||g.hidden||!P||fin)return;
+    const ad=adFor();if(!ad)return;
+    let st=null;try{st=ad.get();}catch(_){return;}
+    if(!st){clear();return;}
+    const body=JSON.stringify(st);
+    if(!force&&body===lastJs)return;
+    lastJs=body;
+    try{localStorage.setItem(RKEY,JSON.stringify({v:1,t:Date.now(),lang:S.lang,vol:S.vol,id:P.id,type:P.type,title:$("#g-title").textContent,sub:$("#g-sub").textContent,st:st}));}catch(_){}
+  }
+  /* o que muda a situação da lição */
+  const _md=markDone;markDone=function(){_md.apply(this,arguments);fin=true;clear();};
+  const fresh=()=>{fin=false;lastJs="";if(!RESUME.quiet)clear();};
+  const _sp=startPage;startPage=function(){fresh();return _sp.apply(this,arguments);};
+  const _sg=showGame;showGame=function(){fresh();return _sg.apply(this,arguments);};
+  const _go=go;go=function(n){_go.apply(this,arguments);if(n!=="game"&&!RESUME.quiet){fin=false;clear();}};
+  $("#g-new").addEventListener("click",()=>{fin=false;lastJs="";});
+  $("#sheet-again").addEventListener("click",()=>{fin=false;lastJs="";});
+  const _speak=speak;speak=function(){if(RESUME.quiet)return;return _speak.apply(this,arguments);};
+  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden")write(true);});
+  window.addEventListener("pagehide",()=>write(true));
+  document.addEventListener("freeze",()=>write(true));
+  setInterval(()=>write(false),1500);
+
+  /* ---- motor das páginas de gramática, vocabulário, revisão e treino ---- */
+  RESUME.reg("gm",{
+    get(){
+      if(!gm.items||!gm.items.length)return null;
+      return {i:gm.i,miss:gm.miss,solved:!!gm.solved,review:!!gm.review,drill:!!gm.drill,items:gm.items,ids:gm.ids,types:gm.types};
+    },
+    set(st){
+      if(!st.items||!st.items.length)return;
+      gm.items=st.items;gm.ids=st.ids;gm.types=st.types||null;gm.review=!!st.review;gm.drill=!!st.drill;
+      const n=gm.items.length;
+      let i=Math.max(0,Math.min(+st.i||0,n-1));
+      if(st.solved&&i<n-1)i++;
+      gm.i=i;gm.miss=Math.max(0,+st.miss||0);gm.open=i===0;
+      loadGram();
+    }
+  });
+  /* ---- palavras cruzadas ---- */
+  RESUME.reg("cross",{
+    get(){
+      if(cw.finished||!cw.order.length)return null;
+      const ix=set=>[...set].map(e=>cw.order.indexOf(e)).filter(i=>i>=0);
+      return {sig:cw.order.map(e=>e.it.w).join("|"),vals:cw.vals,wrong:cw.wrong,rev:cw.rev,cur:cw.cur,ei:cw.ei,dir:cw.dir,cred:ix(cw.cred),missed:ix(cw.missed)};
+    },
+    set(st){
+      if(st.sig!==cw.order.map(e=>e.it.w).join("|"))return;
+      Object.keys(st.vals||{}).forEach(k=>{if(cw.cells[k])cw.vals[k]=st.vals[k];});
+      cw.wrong=st.wrong||{};cw.rev=st.rev||{};
+      cw.cred=new Set((st.cred||[]).map(i=>cw.order[i]).filter(Boolean));
+      cw.missed=new Set((st.missed||[]).map(i=>cw.order[i]).filter(Boolean));
+      if(st.ei>=0&&st.ei<cw.order.length)cw.ei=st.ei;
+      cw.dir=curEntry().d;
+      cw.cur=cw.cells[st.cur]?st.cur:entryKeys(curEntry())[0];
+      paintCross();
+    }
+  });
+  /* ---- caça-palavras ---- */
+  RESUME.reg("search",{
+    get(){
+      if(!ws.p)return null;
+      if(ws.found.size===ws.p.placed.length)return null;
+      return {sig:ws.p.placed.map(p=>p.it.w).join("|"),found:[...ws.found.entries()],missed:ws.p.placed.map((p,i)=>(p.missed?i:-1)).filter(i=>i>=0)};
+    },
+    set(st){
+      if(st.sig!==ws.p.placed.map(p=>p.it.w).join("|"))return;
+      (st.found||[]).forEach(([i,col])=>{
+        const w=ws.p.placed[i];if(!w)return;
+        ws.found.set(i,col);
+        w.cells.forEach(c=>{const el=ws.cells[c[0]][c[1]];el.classList.remove("f1","f2","f3","f4","f5","rev");el.classList.add("f"+col);});
+      });
+      (st.missed||[]).forEach(i=>{const w=ws.p.placed[i];if(!w)return;w.missed=true;if(!ws.found.has(i))w.cells.forEach(c=>ws.cells[c[0]][c[1]].classList.add("rev"));});
+      renderWsList();
+    }
+  });
+  /* ---- conecte ---- */
+  RESUME.reg("connect",{
+    get(){
+      if(cn.done||!cn.groups.length)return null;
+      return {sig:cn.groups.map(g=>g.items.map(i=>i.w).join(",")).join("|"),solved:cn.solved,mistakes:cn.mistakes,hinted:!!cn.hinted,tr:!!cn.tr,order:cn.tiles.map(t=>t.id)};
+    },
+    set(st){
+      if(st.sig!==cn.groups.map(g=>g.items.map(i=>i.w).join(",")).join("|"))return;
+      const by={};cn.tiles.forEach(t=>{by[t.id]=t;});
+      if(st.order&&st.order.length===cn.tiles.length&&st.order.every(id=>by[id]))cn.tiles=st.order.map(id=>by[id]);
+      cn.solved=(st.solved||[]).filter(g=>g>=0&&g<cn.groups.length);cn.mistakes=+st.mistakes||0;cn.hinted=!!st.hinted;cn.tr=!!st.tr;cn.sel=new Set();
+      renderConnect();cnSay("Escolha 4 palavras do mesmo tema.");
+    }
+  });
+  /* ---- intruso ---- */
+  RESUME.reg("odd",{
+    get(){return od.rounds.length?{sig:od.all.map(it=>it.w).join("|"),i:od.i,solved:!!od.solved,bad:od.rounds.map(r=>!!r.bad)}:null;},
+    set(st){
+      if(st.sig!==od.all.map(it=>it.w).join("|"))return;
+      od.rounds.forEach((r,k)=>{if(st.bad&&st.bad[k])r.bad=true;});
+      let i=Math.max(0,Math.min(+st.i||0,od.rounds.length-1));
+      if(st.solved&&i<od.rounds.length-1)i++;
+      od.i=i;od.sel=null;od.solved=false;renderOdd();
+      setStatus("#od-status","Três palavras são do mesmo grupo. Qual é o intruso?");
+    }
+  });
+  /* ---- construção de frases e falas ---- */
+  RESUME.reg(["sentence","frases"],{
+    get(){return sn.lines.length?{i:sn.i,d:sn.doneLines,solved:!!sn.solved,slot:sn.slot.map(b=>b.id),bank:sn.bank.map(b=>b.id)}:null;},
+    set(st){
+      let i=Math.max(0,Math.min(+st.i||0,sn.lines.length-1));
+      const adv=st.solved&&i<sn.lines.length-1;
+      if(adv)i++;
+      sn.i=i;sn.doneLines=Math.max(0,+st.d||0);loadLine();
+      if(!adv&&!st.solved&&st.bank&&st.bank.length===sn.words.length){
+        const by={};sn.bank.forEach(b=>{by[b.id]=b;});
+        if(st.bank.every(id=>by[id])){
+          sn.bank=st.bank.map(id=>by[id]);
+          sn.slot=(st.slot||[]).filter(id=>by[id]).map(id=>by[id]);
+          renderSentence();
+        }
+      }
+    }
+  });
+  /* ---- qual resposta faz sentido ---- */
+  RESUME.reg("resposta",{
+    get(){return rs.lines.length?{i:rs.i,solved:!!rs.solved}:null;},
+    set(st){
+      let i=Math.max(0,Math.min(+st.i||0,rs.lines.length-1));
+      if(st.solved&&i<rs.lines.length-1)i++;
+      rs.i=i;rs.said=rs.lines.slice(0,i);loadResp();
+    }
+  });
+  /* ---- alfabeto, sons, sons difíceis, tema e ditado ---- */
+  RESUME.reg(["alfabeto","sons","fala","tema","ditado"],{
+    get(){return ls.items.length?{phase:ls.phase,i:ls.i,solved:!!ls.solved}:null;},
+    set(st){
+      if(st.phase==="quiz"){
+        startQuiz();
+        let i=Math.max(0,Math.min(+st.i||0,ls.rounds.length-1));
+        if(st.solved&&i<ls.rounds.length-1)i++;
+        ls.i=i;ls.sel=null;ls.solved=false;renderRound(false);
+      }
+    }
+  });
+
+  /* ---- qualquer outra página (leitura etc.): reabre a mesma página ---- */
+  RESUME.reg("any",{get(){return {};},set(){}});
+  /* ---- ao abrir o app ---- */
+  function restore(){
+    let sv=null,raw="";
+    try{raw=localStorage.getItem(RKEY)||"";sv=JSON.parse(raw||"null");}catch(_){}
+    if(!sv||sv.v!==1||!(Date.now()-sv.t<MAXAGE)||!LNAME[sv.lang]){clear();return false;}
+    const rev=sv.type==="revisao"||sv.type==="treino";
+    let V=null,pg=null;
+    if(!rev){V=VOLUMES.find(v=>v.id===sv.vol);pg=V&&V.pages.find(p=>p.id===sv.id);if(!pg){clear();return false;}}
+    S.lang=sv.lang;
+    RESUME.quiet=true;
+    try{
+      if(rev){
+        P={id:sv.type,type:sv.type,n:0};
+        showGame(sv.title||"Revisão",sv.sub||"");
+        RESUME.ad.gm.set(sv.st);
+      }else{
+        S.vol=sv.vol;
+        startPage(sv.id);
+        const ad=adFor();
+        if(!ad){go("home");RESUME.quiet=false;return false;}
+        ad.set(sv.st);
+      }
+      syncPrefs();
+    }catch(e){
+      RESUME.quiet=false;clear();go("home");return false;
+    }
+    RESUME.quiet=false;
+    fin=false;lastJs="";
+    try{localStorage.setItem(RKEY,raw);}catch(_){}
+    say("Voltamos de onde você parou.");
+    return true;
+  }
+  window.resumeLesson=restore;
+})();
+
 /* ===== Início ===== */
 buildSettings();applyTheme();buildKb();go("home");
+
+/* ===== Depois de tudo carregado (v1.39): retomar a lição em andamento e atalhos ?go= ===== */
+(function(){
+  let did=false;
+  try{if(typeof resumeLesson==="function")did=resumeLesson();}catch(e){}
+  RESUME.quiet=false;
+  window.__resumed=did;
+})();
+(function(){
+  /* atalhos do ícone do app e toque na notificação: ?go=hoje | cartao | treino */
+  try{
+    const u=new URL(location.href),g=u.searchParams.get("go");
+    if(g){
+      u.searchParams.delete("go");history.replaceState(null,"",u.pathname+(u.search||"")+u.hash);
+      if(typeof handleGo==="function")setTimeout(()=>handleGo(g),150);
+    }
+  }catch(_){}
+})();
 
 </script>
 

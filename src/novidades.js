@@ -1,5 +1,15 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.39.0",d:"2026-10-21",t:[
+"Corrigido: ao sair do app no meio de uma lição (para usar outro app) e voltar, a lição continua de onde parou. Só se perde se você fechar o app de vez ou ficar mais de 3 horas fora",
+"Em «Hoje», os jogos entram entre as lições: depois de 2 lições seguidas vem um jogo (de tipo diferente do último)",
+"Novos jogos de literatura: Quem escreveu?, Ordene o trecho, Ordem dos capítulos (Alice e O Príncipe), Qual regra explica a frase? e caça-palavras e cruzadas com as palavras de cada livro",
+"Novo (opcional): pontos, sequência de dias, nível e conquistas. Ajustes → Estudo → Pontos e sequências",
+"Novo: lembretes para fazer a lição (3 estilos, inclusive o Cartão do dia) e aviso na tela inicial. Ajustes → Lembretes e cartão. Leia lá o que o celular permite ou não",
+"Novo: Cartão do dia na tela inicial, com o que você escolher: mensagem, o que aparece em «Hoje», frase do dia, citação de um livro ou palavra do dia. Segurando o ícone do app aparecem atalhos (Hoje, Cartão do dia, Treino)",
+"Novo: 6 ícones do app (Padrão, Alice, Pequeno Príncipe, Frankenstein, Soft elegante e A Divina Comédia). Ajustes → Aparência",
+"Telas mais limpas: início com um botão grande «Hoje» e lista curta, Ajustes em grupos que abrem e fecham, filtros recolhidos, caixas de palavras e opções menores e mais leves",
+"A Frase do dia não tem mais «Salvar como imagem» (o Álbum de citações continua com ele)"]},
 {v:"1.38.0",d:"2026-10-20",t:[
 "Novo: «Salvar como imagem» na Frase do dia e no Álbum de citações, com a frase, a tradução e o nome do livro",
 "A imagem é gerada no próprio aparelho; no celular abre o menu de compartilhar, no computador baixa o arquivo"]},

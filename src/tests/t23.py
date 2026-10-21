@@ -65,18 +65,18 @@ try:
     assert pg.evaluate("()=>JSON.stringify(S.rd)")=='{"fs":0,"bg":"pad","lh":0}'
     # cartão de citação em imagem
     pg.evaluate("()=>{closeSheet();S.lang='it';save();go('vol')}")
-    assert pg.is_visible('#qod [data-img]')
+    assert pg.is_visible('#qod') and pg.locator('#qod [data-img]').count()==0,'Frase do dia não tem mais «Salvar como imagem»'
+    pg.evaluate("()=>{S.fav=[document.querySelector('#qod .favbtn').dataset.fav];save();go('album')}")
+    assert pg.is_visible('#album-list [data-img]'),'o Álbum mantém «Salvar como imagem»'
     with pg.expect_download() as dl:
-        pg.click('#qod [data-img]')
+        pg.click('#album-list [data-img]')
     d=dl.value;assert d.suggested_filename.startswith('citacao-') and d.suggested_filename.endswith('.png'),d.suggested_filename
     import os as _os
     pth=d.path();assert _os.path.getsize(pth)>20000
     assert open(pth,'rb').read(8)==b'\x89PNG\r\n\x1a\n'
-    pg.evaluate("()=>{S.fav=[document.querySelector('#qod .favbtn').dataset.fav];save();go('album')}")
-    assert pg.is_visible('#album-list [data-img]')
     # novidades
-    pg.evaluate("()=>{closeSheet();go('settings')}");pg.click('#open-news');pg.wait_for_timeout(100)
-    t=pg.inner_text('#news-list');assert 'Versão 1.38.0' in t
+    pg.evaluate("()=>{closeSheet();go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");pg.click('#open-news');pg.wait_for_timeout(100)
+    t=pg.inner_text('#news-list');assert 'Versão 1.39.0' in t
     print('erros:',errs);assert not errs
     print('OK t23')
 finally: srv.terminate()

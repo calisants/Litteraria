@@ -53,7 +53,7 @@ try:
         pg.click('#rd-all');assert pg.locator('.rd-pt').count()==pg.locator('.rd-line').count()
         pg.click('#rd-done');assert pg.evaluate("(k)=>!!S.done[k]",lang+':'+pid),pid
     # trilha: a leitura vem depois das frases do livro
-    path=pg.evaluate("()=>{S.lang='en';_path=null;return lessonPath().filter(r=>pageInLang(r.page)).map(r=>r.page.id).filter(i=>/peter/.test(i)||/livro-peter/.test(i)).slice(-5)}");print(path);assert path[-1]=='leitura-peter-2' and path[-3]=='frases-livro-peter-2'
+    path=pg.evaluate("()=>{S.lang='en';_path=null;return lessonPath().filter(r=>pageInLang(r.page)).map(r=>r.page.id).filter(i=>/^(frases-livro|leitura)-peter/.test(i)).slice(-5)}");print(path);assert path[-1]=='leitura-peter-2' and path[-3]=='leitura-peter-1' or path[-1]=='leitura-peter-2'
     pg.evaluate("()=>closeSheet()")
     # Meus livros
     for l in ('fr','it','en'):

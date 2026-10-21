@@ -59,7 +59,7 @@ function renderToday(){
   el.textContent=LNAME[S.lang]+" · "+planText();
   const n=dayN();
   $("#goal-fill").style.width=Math.min(100,Math.round(100*n/S.goal))+"%";
-  $("#goal-txt").textContent=n>=S.goal?"Meta cumprida hoje ("+n+")":"Meta de hoje: "+n+" de "+S.goal;
+  $("#goal-txt").textContent=n>=S.goal?"cumprida ("+n+")":n+" de "+S.goal;
 }
 const _rm=renderMe;renderMe=function(){_rm();renderToday();};
 function showGame(title,sub){

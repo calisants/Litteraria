@@ -35,8 +35,39 @@ function lessonPath(){
     ["reco","completar","embaralhar","escreva"].forEach(t=>[1,2].forEach(k=>add(5,t+"-"+c.cat+"-"+k,{voc:true})));
   }));
   BOOKS.forEach(b=>VOLUME3.pages.filter(p=>p.book===b.id||p.rd===b.id).forEach(p=>out.push({vol:3,page:p})));
+  /* jogos de livros e de memória: entram no fim da trilha e, antes disso, como intervalo entre lições (ver pickGame) */
+  BOOKS.forEach(b=>b.chunks.forEach(c=>{add(1,"search-"+c.cat+"-easy");add(1,"cross-"+c.cat+"-easy");}));
+  const byT=["memoria","citacao","qualivro","regra","trecho","autor","capitulos"].map(t=>VOLUME.pages.filter(p=>p.type===t));
+  for(let i=0;byT.some(a=>i<a.length);i++)byT.forEach(a=>{if(a[i])out.push({vol:1,page:a[i]});});
   return(_path=out);
 }
+/* Jogos entre lições: depois de 2 lições seguidas, o «Hoje» e o «Próximo» oferecem um jogo (de tipo diferente do último).
+   Prioridade: jogo do mesmo tema da próxima lição; jogo de tema anterior ainda não feito; jogo solto (memória, livros). */
+const GAME_T=["odd","connect","search","cross","memoria","citacao","qualivro","autor","trecho","capitulos","regra"];
+const isGameRef=r=>GAME_T.indexOf(r.page.type)>=0;
+const refCat=r=>r.page.cat||r.page.main||null;
+function pickGame(up){
+  const L=lessonPath(),upI=up?L.findIndex(r=>r.page.id===up.page.id):L.length,cat=up?refCat(up):null;
+  const el=[];L.forEach((r,i)=>{if(isGameRef(r)&&eligible(r))el.push([r,i]);});
+  if(!el.length)return null;
+  const alt=a=>{const x=a.filter(y=>y[0].page.type!==S.lgt);return x.length?x:a;};
+  const lv=[
+    cat?el.filter(x=>refCat(x[0])===cat):[],
+    el.filter(x=>x[1]<upI&&!SOLTOS.has(x[0].page.type)),
+    el.filter(x=>SOLTOS.has(x[0].page.type))
+  ];
+  for(const a of lv)if(a.length)return alt(a)[0][0];
+  return null;
+}
+const SOLTOS=new Set(["memoria","citacao","qualivro","autor","trecho","capitulos","regra"]);
+const _mdone=markDone;
+markDone=function(){
+  const t=P&&P.type;
+  if(t&&t!=="revisao"&&t!=="treino"){
+    if(GAME_T.indexOf(t)>=0){S.sq=0;S.lgt=t;}else S.sq=Math.min(99,S.sq+1);
+  }
+  _mdone();
+};
 function pageMastered(p){
   const sk=S.sk[S.lang]||{},ws=wordsOf(p);
   if(!ws.length)return false;
@@ -46,13 +77,17 @@ function pageMastered(p){
 const canHear=()=>"speechSynthesis" in window;
 const eligible=r=>pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&!(r.audio&&!canHear())&&!(r.voc&&pageMastered(r.page));
 function nextNewPage(){
-  return lessonPath().find(eligible)||null;
+  const up=lessonPath().find(eligible)||null;
+  if(S.sq>=2){const g=pickGame(up);if(g)return g;}
+  return up;
 }
 /* «Próximo» (folha de página concluída): segue a trilha a partir da página que acabou de terminar, sem voltar ao início.
    Se não há mais nada à frente, cai na primeira lição ainda não feita; sem nenhuma, o botão nem aparece. */
 function nextAfter(p){
   const L=lessonPath(),i=L.findIndex(r=>r.page.id===p.id);
-  return (i>=0&&L.slice(i+1).find(eligible))||nextNewPage();
+  const up=(i>=0&&L.slice(i+1).find(eligible))||L.find(eligible)||null;
+  if(S.sq>=2){const g=pickGame(up);if(g)return g;}
+  return up;
 }
 const canGoNext=()=>!!P&&P.type!=="revisao"&&P.type!=="treino"&&isDone(P)&&!!nextAfter(P);
 $("#sheet-next").addEventListener("click",()=>{

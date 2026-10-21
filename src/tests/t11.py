@@ -45,7 +45,7 @@ with sync_playwright() as p:
             print(lang,kind,'q0=',q0.replace('\n',' ')[:50],'| fim:',pg.inner_text('#sheet-in')[:40].replace('\n',' '))
             pg.click('#drill-more');pg.wait_for_timeout(60);pg.click('#s-game [data-back]')
     print('meta:',pg.evaluate("()=>goalText()"))
-    pg.evaluate("()=>go('settings')");pg.click('[data-goal="10"]');print('goal',pg.evaluate("()=>S.goal"))
+    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");pg.click('[data-goal="10"]');print('goal',pg.evaluate("()=>S.goal"))
     pg.evaluate("()=>go('home')");pg.screenshot(path='t11-home.png')
     print('errs',errs);b.close();srv.terminate()
     assert not errs,errs

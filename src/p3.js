@@ -67,7 +67,12 @@ perrault:{name:"Salão das Fadas",desc:"Inspirado nos Contos de Perrault: castel
 grimm:{name:"Floresta Encantada",desc:"Inspirado nos Contos dos Irmãos Grimm: floresta, trilha de migalhas, cogumelos e coruja",schemes:[["Clareira",0,"#eef5e8","#ffffff","#dbe9d2","#b5cfa8","#3f6a2f","#1c2a18","#44563e","#8a4b0a","#1f7a45","#b3261e"],["Floresta à noite",1,"#0d1b14","#14271d","#1e3a2b","#2f5642","#9fd68a","#eaf5e6","#b6cdb0","#f2c06a","#7fdca8","#ff9a8f"]]},
 racconti:{name:"Contos à Luz de Vela",desc:"Inspirado em I racconti delle fate: colinas toscanas, torre, livro aberto e vela",schemes:[["Colinas ao pôr do sol",0,"#fbefe0","#ffffff","#f3dcc0","#dcb98e","#9a4a1e","#2b1c10","#5a4430","#7a4f00","#1f7a45","#b3261e"],["Luz de vela",1,"#1e120a","#2a1a0f","#3a2515","#573820","#f0b060","#f8eee0","#d5c0a6","#f2c864","#7fdca8","#ff9a8f"]]},
 };
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0}};
+/* v1.39: ícones do app (um por estilo), cartão da tela inicial, lembretes e gamificação opcional */
+const ICON_IDS=["padrao","alice","pp","frank","soft","dante"];
+const WD_SRC=["hoje","msg","frase","livro","palavra","off"];
+const DAYRE=/^\d{4}-\d\d-\d\d$/;
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0},
+  sq:0,lgt:"",gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"hoje",bk:"all"},ic:"padrao"};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -109,6 +114,18 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(Array.isArray(sv.cad))sv.cad.slice(0,300).forEach(c=>{if(c&&/^(fr|it|en)$/.test(c.l)&&typeof c.w==="string"&&c.w.length>0&&c.w.length<40&&typeof c.pt==="string"&&c.pt.length<120&&!S.cad.some(x=>x.l===c.l&&x.w===c.w))S.cad.push({l:c.l,w:c.w,pt:c.pt,b:typeof c.b==="string"?c.b.slice(0,20):"",d:+c.d>0?+c.d:Date.now(),s:Math.min(4,Math.max(0,+c.s||0))});});
   if(sv.qrv&&typeof sv.qrv==="object")Object.keys(sv.qrv).slice(0,200).forEach(k=>{const a=sv.qrv[k];if(/^[a-z]+:\d{1,2}$/.test(k)&&Array.isArray(a)&&+a[0]>0)S.qrv[k]=[+a[0],Math.min(4,Math.max(0,+a[1]||0))];});
   if(sv.cap&&typeof sv.cap==="object")Object.keys(sv.cap).forEach(k=>{if(/^[a-z]+-\d{1,3}$/.test(k))S.cap[k]=1;});
+  const ci=(v,a,b)=>Math.min(b,Math.max(a,Math.floor(+v)||0));
+  if(Number.isInteger(sv.sq)&&sv.sq>=0&&sv.sq<100)S.sq=sv.sq;
+  if(typeof sv.lgt==="string"&&/^[a-z]{0,20}$/.test(sv.lgt))S.lgt=sv.lgt;
+  if(sv.gam&&typeof sv.gam==="object"){
+    const g=sv.gam;
+    S.gam={on:g.on===true,pts:ci(g.pts,0,1e9),last:DAYRE.test(g.last)?g.last:"",streak:ci(g.streak,0,9999),best:ci(g.best,0,9999),les:ci(g.les,0,1e6),bc:ci(g.bc,0,1e5),
+      days:Array.isArray(g.days)?g.days.filter(d=>typeof d==="string"&&DAYRE.test(d)).slice(-400):[],
+      seen:Array.isArray(g.seen)?g.seen.filter(k=>typeof k==="string"&&/^[a-z0-9]{1,12}$/.test(k)).slice(0,40):[]};
+  }
+  if(sv.rm&&typeof sv.rm==="object"){S.rm={on:sv.rm.on===true,h:ci(sv.rm.h,0,23)||(+sv.rm.h===0?0:19),st:["anim","calma","cartao"].indexOf(sv.rm.st)>=0?sv.rm.st:"anim"};}
+  if(sv.wd&&typeof sv.wd==="object"){S.wd={src:WD_SRC.indexOf(sv.wd.src)>=0?sv.wd.src:"hoje",bk:typeof sv.wd.bk==="string"&&/^[a-z]{1,12}$/.test(sv.wd.bk)?sv.wd.bk:"all"};}
+  if(ICON_IDS.indexOf(sv.ic)>=0)S.ic=sv.ic;
   /* as marcas de concluído das versões antigas não são trazidas: os ids das páginas mudaram */
   if(!old&&sv.done&&typeof sv.done==="object")Object.keys(sv.done).forEach(k=>{if(/^(fr|it|en):[a-z0-9-]+$/.test(k))S.done[k]=1;});
 })();
@@ -117,6 +134,9 @@ function save(){
   try{localStorage.setItem(KEY,JSON.stringify(S));return true;}
   catch(_){if(typeof saveFail==="function")saveFail();return false;}
 }
+
+/* ----- retomar a lição de onde parou (v1.39): cada motor de jogo registra get()/set(estado); a lógica fica em retomar.js ----- */
+const RESUME={ad:{},quiet:false,reg(types,a){[].concat(types).forEach(t=>{RESUME.ad[t]=a;});}};
 
 /* ----- tema e cores ----- */
 const mq=window.matchMedia?matchMedia("(prefers-color-scheme: dark)"):null;
@@ -319,7 +339,7 @@ $("#s-vol").addEventListener("click",e=>{const b=e.target.closest("[data-pick-vo
 $("#go-profile").addEventListener("click",()=>go("profile"));
 $("#go-stats").addEventListener("click",()=>go("stats"));
 $("#go-settings").addEventListener("click",()=>go("settings"));
-$("#go-style").addEventListener("click",()=>{go("settings");const g=$("#sec-estilo");if(g&&g.scrollIntoView)g.scrollIntoView();});
+$("#go-style").addEventListener("click",()=>{go("settings");const g=$("#sec-estilo");if(g){const d=g.closest("details");if(d)d.open=true;if(g.scrollIntoView)g.scrollIntoView();}});
 
 function pageShown(p){
   if(!pageInLang(p))return false;
@@ -340,6 +360,7 @@ function renderIndex(){
   $("#f-game").value=S.fGame;
   const num={};V.pages.forEach((p,i)=>{num[p.id]=i+1;});
   $("#f-theme").value=S.fTheme;$("#f-level").value=S.fLevel;
+  {const act=S.fTheme!=="all"||S.fGame!=="all"||(S.vol===1&&S.fLevel!=="all");$("#flt-sum").textContent="Filtrar a lista"+(act?" · filtros ativos":"");}
   $("#f-level-w").hidden=S.vol!==1;
   $("#f-theme-w").hidden=S.vol===4;
   $("#filters").classList.toggle("one",S.vol!==1);

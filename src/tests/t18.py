@@ -53,7 +53,7 @@ try:
     pg.click('#s-vol [data-back]');assert pg.is_visible('#s-home')
     pg.evaluate("()=>go('stats')");assert pg.is_visible('#clear-stats')
     pg.evaluate("()=>go('profile')");assert not pg.is_visible('#clear-stats')
-    pg.evaluate("()=>go('settings')");g=pg.evaluate("()=>[...document.querySelectorAll('#s-settings .grp')].map(x=>x.textContent)");print(g);assert g==['Aparência','Som e vibração','Estudo','Dados','Sobre e ajuda']
+    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");g=pg.evaluate("()=>[...document.querySelectorAll('#s-settings summary')].map(x=>x.textContent.trim())");print(g);assert g==['Aparência','Som e vibração','Estudo','Lembretes e cartão','Dados','Sobre e ajuda']
     assert pg.is_visible('#sec-layout');pg.evaluate("()=>{S.style='fofo';save();applyTheme();syncPrefs()}");assert not pg.is_visible('#sec-layout') and pg.is_visible('#sec-estilo')
     # frases dos livros: 2 páginas por livro, só no idioma certo, no fim da trilha, jogáveis
     r=pg.evaluate("()=>VOLUME3.pages.filter(p=>p.book).map(p=>p.id+'|'+p.langs[0]+'|'+p.lines.length)");print(r);assert len(r)==20 and all(x.endswith('|5') for x in r)
@@ -68,7 +68,7 @@ try:
             assert pg.evaluate("()=>sn.solved"),(pid,i)
             if i<4:pg.click('#sn-next');pg.wait_for_timeout(80)
     pg.evaluate("()=>{S.lang='it'}");assert not pg.evaluate("()=>pageInLang(VOLUME3.pages.find(p=>p.id==='frases-livro-verne-1'))")
-    last=pg.evaluate("()=>{S.lang='fr';_path=null;const L=lessonPath().filter(r=>pageInLang(r.page));return L[L.length-1].page.id}");print('última da trilha fr:',last);assert last=='leitura-musq-2'
+    last=pg.evaluate("()=>{S.lang='fr';_path=null;const L=lessonPath().filter(r=>pageInLang(r.page)&&!isGameRef(r));return L[L.length-1].page.id}");print('última da trilha fr:',last);assert last=='leitura-musq-2'
     print('erros:',errs);assert not errs
     print('t18 ok')
 finally:

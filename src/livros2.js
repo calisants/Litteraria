@@ -134,12 +134,13 @@
     const p=L[(hash(day+S.lang)+qodExtra)%L.length];
     el.hidden=false;
     el.innerHTML='<p class="qod-k">Frase do dia · «'+esc(BK[p.book].name)+"»</p>"+
-      '<p class="qod-s">'+esc(p.s)+" "+speakBtn(p.s)+'</p><p class="qod-pt">'+esc(p.pt)+"</p>"+
-      '<details class="qod-d"><summary>Ver nota de gramática</summary><p class="qod-n">'+hl(p.note)+'</p><p class="qod-src">Frase copiada do livro. Tradução e nota: Claude, sem fonte conferida.</p></details>'+
-      '<div class="row">'+favBtn(p.id)+imgBtn(p.id)+'<button type="button" class="btn" id="qod-more">Outra frase</button></div>';
+      '<p class="qod-s">'+esc(p.s)+" "+speakBtn(p.s)+'</p>'+
+      '<details class="qod-d"><summary>Tradução e nota</summary><p class="qod-pt">'+esc(p.pt)+'</p><p class="qod-n">'+hl(p.note)+'</p><p class="qod-src">Frase copiada do livro. Tradução e nota: Claude, sem fonte conferida.</p></details>'+
+      '<div class="row">'+favBtn(p.id)+'<button type="button" class="btn" id="qod-more">Outra frase</button></div>';
   }
   document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#qod-more")){qodExtra++;renderQod();}});
   window.renderQod=renderQod;window.renderAlbum=renderAlbum;
+  window.phLangList=phLang;window.phBookMap=BK;window.phHash=hash;
 
   /* ---- páginas novas ---- */
   VOLUME.types=VOLUME.types.concat([["citacao","Complete a citação","Citação"],["qualivro","De qual livro é?","De qual livro?"]]);
@@ -184,6 +185,14 @@
     return{p:p,shown:shown,ans:cap(ans.toLowerCase(),ans),opts:all};
   }
   let qz=null;window.quizState=()=>qz;
+  RESUME.reg(["citacao","qualivro"],{
+    get(){return qz&&qz.qs&&qz.i<qz.qs.length?{kind:qz.kind,qs:qz.qs,i:qz.i,score:qz.score,sel:qz.sel}:null;},
+    set(st){
+      if(!st.qs||st.kind!==qz.kind||!st.qs.length)return;
+      qz.qs=st.qs;qz.i=Math.max(0,Math.min(+st.i||0,st.qs.length-1));qz.score=Math.max(0,+st.score||0);
+      qz.sel=Number.isInteger(st.sel)?st.sel:null;renderQ();
+    }
+  });
   /* revisão espaçada das frases erradas (ou vistas com dica): voltam nas próximas páginas de citação */
   function qrvDue(){const t=Date.now();return Object.keys(S.qrv).filter(id=>phById[id]&&phById[id].lang===S.lang&&S.qrv[id][0]<=t).slice(0,2);}
   function qrvGrade(id,ok){

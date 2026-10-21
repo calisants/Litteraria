@@ -17,7 +17,7 @@ try:
     pg.goto('http://localhost:8774/index.html');pg.wait_for_timeout(700)
     bad=pg.evaluate(CONTR);print('contraste abaixo do mínimo:',bad);assert not bad
     assert pg.evaluate("()=>S.style")=='padrao' and pg.evaluate("()=>document.documentElement.dataset.style")=='padrao'
-    pg.click('#go-settings');pg.wait_for_timeout(200)
+    pg.click('#go-settings');pg.evaluate("()=>document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)");pg.wait_for_timeout(200)
     assert pg.locator('#style-grid .stcard').count()==1+pg.evaluate('()=>Object.keys(STYLES).length')
     ids=['fofo','soft','pp','alice','pinocchio','verne','peter','wind','sherlock','frank','musq','principe','dante','perrault','grimm','racconti']
     assert [pg.locator('#style-grid [data-style=%s]'%i).count() for i in ('tech','game','cultural','exec','min')]==[0,0,0,0,0]

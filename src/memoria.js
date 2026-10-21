@@ -27,6 +27,14 @@
     mm={cards:cards,open:[],done:new Set(),moves:0,lock:false};
     renderMemoria();
   }
+  RESUME.reg("memoria",{
+    get(){return mm&&mm.cards.length&&mm.done.size<mm.cards.length/2?{cards:mm.cards,done:[...mm.done],moves:mm.moves}:null;},
+    set(st){
+      const ok=st.cards&&st.cards.length===mm.cards.length&&st.cards.every(c=>c&&ent(c.w));
+      if(!ok)return;
+      mm.cards=st.cards;mm.done=new Set((st.done||[]).filter(w=>ent(w)));mm.moves=Math.max(0,+st.moves||0);mm.open=[];mm.lock=false;renderMemoria();
+    }
+  });
   function renderMemoria(){
     const n=mm.cards.length/2;
     let h='<p class="ocount">Jogo da memória · '+mm.done.size+" de "+n+" pares · "+mm.moves+" tentativas</p>";

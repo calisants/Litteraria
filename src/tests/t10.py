@@ -33,15 +33,15 @@ with sync_playwright() as p:
     pg.click('#sheet-close') if pg.is_visible('#sheet-close') else None
     # backup
     pg.click('#s-game [data-back]') if pg.is_visible('#s-game [data-back]') else None
-    pg.evaluate("()=>go('settings')");
+    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");
     with pg.expect_download() as d: pg.click('#bk-save')
     path=d.value.path();raw=open(path,encoding='utf8').read();print('backup bytes',len(raw),'done',len(json.loads(raw)['done']))
     pg.evaluate("()=>{localStorage.clear();}");pg.reload();pg.wait_for_timeout(300)
     print('apos limpar done=',pg.evaluate("()=>Object.keys(S.done).length"))
-    pg.evaluate("()=>go('settings')")
+    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}")
     pg.set_input_files('#bk-file',path);pg.wait_for_timeout(200);print(pg.inner_text('#bk-note'))
     pg.click('#bk-go');pg.wait_for_timeout(500)
     print('apos restaurar done=',pg.evaluate("()=>Object.keys(S.done).length"),'rv=',pg.evaluate("()=>Object.keys(S.rv).length"))
-    pg.evaluate("()=>go('settings')");pg.screenshot(path='t-settings.png',full_page=True)
+    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");pg.screenshot(path='t-settings.png',full_page=True)
     bad=pg.set_input_files('#bk-file',files=[{'name':'x.json','mimeType':'application/json','buffer':b'{"a":1}'}]);pg.wait_for_timeout(200);print(pg.inner_text('#bk-note'))
     print('errs',errs);b.close()

@@ -4,25 +4,29 @@
     <div class="scroll">
       <div class="hero">
         <h1 class="brand"><span class="fr">Mots</span> <i>&amp;</i> <span class="it">Parole</span></h1>
-        <p class="help">Seu caderno de francês, italiano e inglês.</p>
       </div>
       <div class="me">
         <span class="avatar" id="me-av" aria-hidden="true"></span>
         <div class="who"><b id="me-name"></b><small id="me-motto"></small></div>
+        <button type="button" class="gchip" id="gam-chip" hidden></button>
       </div>
       <div class="bkwarn" id="bk-warn" hidden>
         <p id="bk-warn-txt"></p>
         <div class="row"><button type="button" class="btn primary" id="bk-warn-go">Fazer backup agora</button><button type="button" class="btn" id="bk-warn-later">Lembrar em 7 dias</button></div>
       </div>
-      <div class="tiles">
-        <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small></button>
-        <button type="button" class="tile" id="go-games"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><b>Lições</b><small>Pronúncia, vocabulário, jogos, gramática e conversa</small></button>
-        <button type="button" class="tile" id="go-train"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><b>Treino</b><small id="train-sub">Digitar verbos e palavras</small></button>
-        <button type="button" class="tile" id="go-books"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg><b>Livros</b><small>Progresso, frases, leitura e álbum</small></button>
-        <button type="button" class="tile" id="go-dict"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/></svg><b>Dicionário</b><small>Palavras, sílabas, tradução e áudio</small></button>
-        <button type="button" class="tile" id="go-stats"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg><b>Estatísticas</b><small>Seu progresso e o que treinar</small></button>
-        <button type="button" class="tile" id="go-profile"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><b>Perfil</b><small>Nome, frase e logo</small></button>
-        <button type="button" class="tile wide" id="go-settings"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><b>Ajustes</b><small>Layout, cor, claro/escuro, sons</small></button>
+      <div class="nudge" id="nudge" hidden></div>
+      <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><span class="tt"><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small></span></button>
+      <section class="wcard" id="wcard" hidden aria-label="Cartão do dia"></section>
+      <div class="menu">
+        <button type="button" class="mrow" id="go-games"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><span class="tt"><b>Lições</b><small>Pronúncia, palavras, jogos, gramática</small></span></button>
+        <button type="button" class="mrow" id="go-train"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><span class="tt"><b>Treino</b><small id="train-sub">Digitar verbos e palavras</small></span></button>
+        <button type="button" class="mrow" id="go-books"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg><span class="tt"><b>Livros</b><small>Leitura, frases e álbum</small></span></button>
+        <button type="button" class="mrow" id="go-dict"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/></svg><span class="tt"><b>Dicionário</b><small>Palavras e áudio</small></span></button>
+      </div>
+      <div class="mini">
+        <button type="button" class="mb" id="go-stats"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg><span>Estatísticas</span></button>
+        <button type="button" class="mb" id="go-profile"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><span>Perfil</span></button>
+        <button type="button" class="mb" id="go-settings"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><span>Ajustes</span></button>
       </div>
     </div>
     <footer class="foot"><p class="credit" id="credit">Desenvolvido por <a href="https://github.com/calisants" target="_blank" rel="noopener">@calisants</a></p></footer>
@@ -92,11 +96,11 @@
       </div>
     </header>
     <div class="scroll">
-      <div class="filters" id="filters">
+      <details class="fltw" id="fltw"><summary id="flt-sum">Filtrar a lista</summary><div class="filters" id="filters">
         <label class="flt" id="f-theme-w">Tema <select class="field" id="f-theme" aria-label="Filtrar por tema"></select></label>
         <label class="flt" id="f-level-w">Nível <select class="field" id="f-level" aria-label="Filtrar por nível"><option value="all">Todos</option><option value="easy">Fácil</option><option value="classic">Clássico</option><option value="adv">Avançado</option></select></label>
         <label class="flt game" id="f-game-w">Jogo <select class="field" id="f-game" aria-label="Filtrar por jogo"></select></label>
-      </div>
+      </div></details>
       <p class="help" id="toc-help">Cada página é fixa, como num livro impresso. Toque em uma para jogar.</p>
       <div id="toc"></div>
     </div>
@@ -134,40 +138,32 @@
       <div class="ttl"><h2>Ajustes</h2></div>
     </header>
     <div class="scroll">
-      <div class="cols">
-        <div class="stack">
-          <h2 class="grp">Aparência</h2>
-          <section id="sec-estilo">
+      <div class="sgrps"><details class="sgrp"><summary>Aparência</summary><div class="sin"><section id="sec-estilo">
             <h2 class="lab">Estilo visual</h2>
             <p class="help">Muda o visual de todas as telas: botões, cartões, lições e estatísticas. O Padrão é o visual de sempre.</p>
             <div class="stgrid" id="style-grid" role="group" aria-label="Estilo visual"></div>
             <div id="scheme-row" hidden><h2 class="lab" style="margin-top:12px">Variação de cores</h2><div class="schs" role="group" aria-label="Variação de cores"></div></div>
             <p class="help" id="style-note" hidden></p>
-          </section>
-          <section id="sec-layout">
+          </section><section id="sec-layout">
             <h2 class="lab">Layout</h2>
             <div class="seg" role="group" aria-label="Layout">
               <button type="button" data-k="layout" data-v="classic">Clássico</button>
               <button type="button" data-k="layout" data-v="soft">Suave</button>
               <button type="button" data-k="layout" data-v="sharp">Nítido</button>
             </div>
-          </section>
-          <section id="sec-modo">
+          </section><section id="sec-modo">
             <h2 class="lab">Claro ou escuro</h2>
             <div class="seg" role="group" aria-label="Claro ou escuro">
               <button type="button" data-k="mode" data-v="auto">Automático</button>
               <button type="button" data-k="mode" data-v="light">Claro</button>
               <button type="button" data-k="mode" data-v="dark">Escuro</button>
             </div>
-          </section>
-          <section id="sec-cor">
+          </section><section id="sec-cor">
             <h2 class="lab">Cor</h2>
             <div class="swatches" id="swatches" role="group" aria-label="Cor do app"></div>
             <p class="swlabel" id="swlabel"></p>
             <label class="custom" id="custom-row" for="custom-color" hidden>Sua cor <input type="color" id="custom-color" value="#7a3b8f"></label>
-          </section>
-          <h2 class="grp">Som e vibração</h2>
-          <section>
+          </section><section id="sec-ic"><h2 class="lab">Ícone do app</h2><p class="help">Escolha o ícone do app entre os temas.</p><div class="icgrid" id="ic-grid" role="group" aria-label="Ícone do app"></div><p class="help" id="ic-note"></p></section></div></details><details class="sgrp"><summary>Som e vibração</summary><div class="sin"><section>
             <h2 class="lab">Sons suaves</h2>
             <div class="seg" role="group" aria-label="Sons">
               <button type="button" data-k="sound" data-v="on">Ligados</button>
@@ -179,66 +175,52 @@
               <button type="button" data-k="snd" data-v="mid">Médio</button>
               <button type="button" data-k="snd" data-v="high">Alto</button>
             </div>
-          </section>
-          <section>
+          </section><section>
             <h2 class="lab">Vibração ao errar</h2>
             <div class="seg" role="group" aria-label="Vibração ao errar">
               <button type="button" data-k="hap" data-v="on">Ligada</button>
               <button type="button" data-k="hap" data-v="off">Desligada</button>
             </div>
             <p class="help">Vibração leve no celular (não funciona em iPhone).</p>
-          </section>
-          <section>
+          </section><section>
             <h2 class="lab">Tremor da tela ao errar</h2>
             <div class="seg" role="group" aria-label="Tremor da tela ao errar">
               <button type="button" data-k="trem" data-v="on">Ligado</button>
               <button type="button" data-k="trem" data-v="off">Desligado</button>
             </div>
             <p class="help">Se o aparelho estiver com "reduzir movimento", o tremor fica desligado de qualquer jeito.</p>
-          </section>
-        </div>
-        <div class="stack">
-          <h2 class="grp">Estudo</h2>
-          <section>
+          </section></div></details><details class="sgrp"><summary>Estudo</summary><div class="sin"><section>
             <h2 class="lab">Meta diária</h2>
-            <p class="help">Quantas respostas por dia contam como meta cumprida. Sem sequência nem punição: se um dia passar em branco, nada se perde.</p>
+            <p class="help">Quantas respostas por dia contam como meta cumprida.</p>
             <div class="seg" role="group" aria-label="Meta diária" id="goal-seg">
               <button type="button" data-goal="10">10</button>
               <button type="button" data-goal="20">20</button>
               <button type="button" data-goal="40">40</button>
             </div>
-          </section>
-          <section>
+          </section><section id="sec-gam"><h2 class="lab">Pontos e sequências</h2><p class="help">Opcional. Liga pontos, sequência de dias, nível e conquistas, com um resumo na tela inicial. Sem punição: se um dia passar em branco, a sequência recomeça e o recorde fica guardado. Desligado, nada disso aparece.</p><div class="seg" role="group" aria-label="Pontos e sequências" id="gam-seg"><button type="button" data-gam="on">Ligados</button><button type="button" data-gam="off">Desligados</button></div></section><section>
             <h2 class="lab">Zoom com dois dedos</h2>
             <p class="help">Ligado: você pode ampliar a tela com o gesto de pinça. O toque duplo nunca amplia, esteja ligado ou não. Desligado é o padrão.</p>
             <div class="seg" role="group" aria-label="Zoom com dois dedos" id="zoom-seg">
               <button type="button" data-zoom="on">Ligado</button>
               <button type="button" data-zoom="off">Desligado</button>
             </div>
-          </section>
-          <h2 class="grp">Dados</h2>
-          <section>
+          </section></div></details><details class="sgrp"><summary>Lembretes e cartão</summary><div class="sin"><section id="sec-rm"><h2 class="lab">Lembretes</h2><p class="help">Um aviso para fazer a lição do dia. Sem servidor, o horário exato não é garantido: veja a nota abaixo.</p><div class="seg" role="group" aria-label="Lembretes" id="rm-seg"><button type="button" data-rm="on">Ligados</button><button type="button" data-rm="off">Desligados</button></div><label class="flt" style="margin-top:10px">A partir de <select class="field" id="rm-hour" aria-label="Horário do lembrete"></select></label><h2 class="lab" style="margin-top:10px">Estilo do aviso</h2><div class="seg" role="group" aria-label="Estilo do aviso" id="rm-st"><button type="button" data-rmst="anim">Animado</button><button type="button" data-rmst="calma">Calmo</button><button type="button" data-rmst="cartao">Cartão do dia</button></div><div class="row" style="margin-top:10px"><button type="button" class="btn" id="rm-perm">Permitir notificações</button><button type="button" class="btn" id="rm-test">Testar agora</button></div><p class="help" id="rm-note" aria-live="polite"></p></section><section id="sec-wd"><h2 class="lab">Cartão do dia</h2><p class="help">O «widget» do app: um cartão na tela inicial. Um app instalado pelo Chrome não consegue criar widget na tela inicial do celular; para ver o cartão sem abrir o app, escolha «Cartão do dia» no estilo do lembrete, ou segure o ícone do app e toque em «Cartão do dia».</p><div id="wd-box"></div></section></div></details><details class="sgrp"><summary>Dados</summary><div class="sin"><section>
             <h2 class="lab">Backup do progresso</h2>
             <p class="help">Seu progresso fica só neste aparelho. Baixe um arquivo de vez em quando; se trocar de celular ou limpar os dados do navegador, restaure por ele.</p>
             <button type="button" class="btn wide" id="bk-save">Baixar backup</button>
             <label class="btn wide" id="bk-pick-l" style="margin-top:8px;display:grid;place-items:center">Escolher arquivo de backup<input type="file" id="bk-file" accept=".json,application/json" hidden></label>
             <button type="button" class="btn wide primary" id="bk-go" style="margin-top:8px" hidden>Restaurar (substitui o progresso atual)</button>
             <p class="help" id="bk-note" aria-live="polite"></p>
-          </section>
-          <section>
+          </section><section>
             <h2 class="lab">Marcas de concluído</h2>
             <button type="button" class="btn wide" id="clear-done">Apagar marcas de concluído</button>
             <p class="help" id="clear-note" aria-live="polite"></p>
-          </section>
-          <h2 class="grp">Sobre e ajuda</h2>
-          <section>
+          </section></div></details><details class="sgrp"><summary>Sobre e ajuda</summary><div class="sin"><section>
             <h2 class="lab">Sobre e ajuda</h2>
             <p class="help" id="ver-set"></p>
             <button type="button" class="btn wide" id="open-news">Novidades desta versão</button>
             <button type="button" class="btn wide" data-feedback>Enviar sugestão ou avisar de erro</button>
-          </section>
-        </div>
-      </div>
+          </section></div></details></div>
     </div>
   </section>
 

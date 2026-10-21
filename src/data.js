@@ -282,7 +282,7 @@ function pickWords(lang,cat,n,minL,maxL){
   const everything=()=>Object.values(VOCAB[lang]).flat();
   if(cat==="all"){add(everything());return out;}
   add(VOCAB[lang][cat]);
-  if(out.length<n){const g=CATS.find(c=>c[0]===cat)[2];add(CATS.filter(c=>c[2]===g&&c[0]!==cat).flatMap(c=>VOCAB[lang][c[0]]));}
+  const cc0=CATS.find(c=>c[0]===cat);if(out.length<n&&cc0){const g=cc0[2];add(CATS.filter(c=>c[2]===g&&c[0]!==cat).flatMap(c=>VOCAB[lang][c[0]]));}
   if(out.length<n)add(everything());
   return out;
 }
