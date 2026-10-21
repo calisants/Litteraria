@@ -574,6 +574,7 @@ svg{display:block}
 .ord-put{margin:0 0 8px;padding:0;list-style:none;display:grid;gap:6px;counter-reset:o}.ord-put li{counter-increment:o;display:flex;gap:8px;align-items:flex-start}.ord-put li::before{content:counter(o);flex:none;min-width:1.4em;padding-top:8px;text-align:right;font-weight:700;color:var(--accent)}
 .ord-bank{display:grid;gap:6px}.blk.seg{display:block;width:100%;text-align:left;font-weight:400;font-size:.98rem;line-height:1.35;min-height:0;padding:8px 12px}.blk.seg small{display:block;margin-top:2px;color:var(--muted);font-size:.84rem}
 .ord-put .blk.seg{flex:1;border-color:var(--accent);background:var(--soft)}.ord-put .blk.seg.okp{border-color:var(--ok)}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:10px 0;font-size:.92rem;line-height:1.35}.chk input{width:20px;height:20px;margin-top:1px;flex:none}
 </style>
 
 <div id="app" data-lang="fr">
@@ -797,6 +798,7 @@ svg{display:block}
             <h2 class="lab">Sobre e ajuda</h2>
             <p class="help" id="ver-set"></p>
             <button type="button" class="btn wide" id="open-news">Novidades desta versão</button>
+            <button type="button" class="btn wide" id="open-priv">Política de Privacidade</button>
             <button type="button" class="btn wide" data-feedback>Enviar sugestão ou avisar de erro</button>
           </section></div></details></div>
     </div>
@@ -986,7 +988,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.40.1",d:"2026-10-21"};
+const APP_REL={v:"1.41.0",d:"2026-10-21"};
 
 
 const RAW={
@@ -5604,6 +5606,261 @@ window.PUSHCFG={pub:"BABpqQWwmnBfJ65d2PuppVGG3PrlL1BB_zXg4jaccd2z8ELoB1KOsypXKz3
   setTimeout(()=>sync(false),2500);
 })();
 
+/* Conta e nuvem (Supabase). Vazio = recurso desligado e escondido. Veja nuvem/LEIA-ME.md.
+   url = «Project URL» do projeto; key = chave pública «anon/publishable» (pode ficar no app: quem protege os dados são as regras do banco). */
+window.CLOUDCFG={url:"",key:""};
+
+/* ===== Política de Privacidade (texto que aparece no app) =====
+   Descreve o que o app realmente faz. As partes sobre conta e lembretes só aparecem quando esses recursos estão ligados (CLOUDCFG / PUSHCFG).
+   Mudou algo no que o app guarda ou envia? Atualize o texto e PRIV_VER. */
+const PRIV_VER="2026-10-21";
+function privSections(){
+  const cloud=!!(window.CLOUDCFG&&CLOUDCFG.url&&CLOUDCFG.key),push=!!(window.PUSHCFG&&PUSHCFG.sink);
+  const s=[];
+  s.push(["Quem cuida dos seus dados","O Mots & Parole é feito por Camila (@calisants), que decide como os dados do app são tratados. Para falar sobre privacidade, use Ajustes → Sobre e ajuda → «Enviar sugestão ou avisar de erro»."]);
+  s.push(["Sem conta, nada sai do seu aparelho","O progresso, os ajustes, o nome que você digitar, o caderno de palavras e as citações favoritas ficam só no armazenamento deste aparelho. O app não tem anúncios e não usa ferramentas de estatística de terceiros."]);
+  if(cloud)s.push(["Conta (opcional)","Se você criar uma conta, guardamos: o seu e-mail; uma cópia do seu progresso (lições feitas, pontuações, revisões, caderno de palavras, favoritos, ajustes e o nome que você digitou); e a data em que você aceitou esta política e confirmou ter 13 anos ou mais. Isso serve só para você recuperar o progresso se trocar de celular e usar o app em mais de um aparelho. Os dados ficam no Supabase, um serviço de terceiros; eles não ficam no GitHub nem em outro lugar do app. Cada conta só consegue ler e alterar os próprios dados. Tecnicamente, quem administra o projeto tem acesso a eles; esse acesso é para manter o serviço e atender pedidos seus."]);
+  if(push)s.push(["Lembretes com o app fechado (opcional)","Se você ativar, enviamos para uma planilha da criadora do app: o endereço de envio do seu aparelho (fornecido pela Apple, Google ou Mozilla), o horário escolhido, o estilo do lembrete, o idioma e se você já estudou naquele dia. Sem nome, sem e-mail, sem progresso. Uma rotina do GitHub lê essa planilha e manda o aviso. Desligar os lembretes remove a sua linha."]);
+  s.push(["Sugestões e avisos de erro","O que você escrever no formulário de sugestões vai para um Google Formulários da criadora. Não escreva dados pessoais ali."]);
+  if(cloud)s.push(["Seus direitos","Você pode, a qualquer momento e sem justificar: baixar tudo o que guardamos sobre você («Baixar meus dados»), apagar a conta e todos os dados da nuvem («Apagar minha conta e dados») e sair do aparelho. Pode também pedir correção ou esclarecimentos pelo formulário de sugestões. Apagar a conta não apaga o progresso que já está no seu aparelho."]);
+  if(cloud)s.push(["Idade","Contas são para quem tem 13 anos ou mais. Se você tem entre 13 e 17 anos, converse com uma pessoa responsável antes de criar a conta. Quem tem menos de 13 não deve criar conta: o app funciona normalmente sem ela."]);
+  s.push(["Quanto tempo guardamos",cloud?"Enquanto a conta existir. Ao apagar a conta, os dados da nuvem são removidos. Cópias de segurança do serviço, se houver, seguem as regras dele.":"No seu aparelho, até você apagar os dados do navegador ou do app."]);
+  s.push(["Mudanças","Se este texto mudar, a data abaixo muda. Versão do texto: "+PRIV_VER+". Este texto explica o que o app faz; não é aconselhamento jurídico."]);
+  return s;
+}
+function privHtml(){return privSections().map(x=>'<h3 class="lab" style="margin-top:14px">'+esc(x[0])+'</h3><p class="help" style="white-space:pre-line">'+esc(x[1])+"</p>").join("");}
+function openPrivacy(){openSheet("Política de Privacidade",privHtml(),false);}
+document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest("#open-priv,[data-open-priv]");if(t){e.preventDefault();openPrivacy();}});
+
+/* ===== Conta e nuvem (opcional), v1.41 =====
+   Entrada por código de 6 números enviado ao e-mail (Supabase Auth). O progresso (o objeto S inteiro, menos lembretes e cartão, que são de cada aparelho)
+   é guardado na tabela «progress»; cada pessoa só enxerga a própria linha (regras em nuvem/setup.sql). Sem conta, nada sai do aparelho.
+   Conflito entre aparelhos: o servidor carimba a hora (updated_at); o app só grava se o carimbo que ele conhece ainda é o atual. */
+(function(){
+  const C=window.CLOUDCFG||{};
+  const ready=()=>!!(C.url&&C.key);
+  if(!ready())return;
+  const SK="mots-parole-cloud";
+  let ses=null,busy=false,step="email",pendEmail="",msg="",conflictShown=false,bootDone=false;
+  try{ses=JSON.parse(localStorage.getItem(SK)||"null");}catch(_){}
+  const putSes=()=>{try{ses?localStorage.setItem(SK,JSON.stringify(ses)):localStorage.removeItem(SK);}catch(_){}};
+  const hs=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return s.length+":"+h;};
+  const now=()=>Math.floor(Date.now()/1000);
+  const mine=()=>{const o=JSON.parse(JSON.stringify(S));return o;};
+  const hasProgress=()=>Object.keys(S.done||{}).length>0||Object.keys(S.sk&&S.sk[S.lang]||{}).length>0||Object.keys(S.rvv||{}).length>0;
+
+  async function raw(path,o){
+    o=o||{};
+    const h={apikey:C.key,"content-type":"application/json"};
+    h.authorization="Bearer "+(o.token||C.key);
+    if(o.prefer)h.prefer=o.prefer;
+    return fetch(C.url+path,{method:o.method||"GET",headers:h,body:o.body===undefined?undefined:JSON.stringify(o.body)});
+  }
+  async function token(){
+    if(!ses)return null;
+    if(ses.exp-60>now())return ses.at;
+    try{
+      const r=await raw("/auth/v1/token?grant_type=refresh_token",{method:"POST",body:{refresh_token:ses.rt}});
+      if(!r.ok){if(r.status>=400&&r.status<500){ses=null;putSes();render();}return null;}
+      const j=await r.json();ses.at=j.access_token;ses.rt=j.refresh_token||ses.rt;ses.exp=j.expires_at||now()+(j.expires_in||3600);putSes();return ses.at;
+    }catch(_){return null;}
+  }
+  async function authed(path,o){const t=await token();if(!t)throw new Error("sem sessão");o=o||{};o.token=t;return raw(path,o);}
+
+  /* ---- entrar ---- */
+  function errText(r,j){
+    const m=String((j&&(j.msg||j.error_description||j.message))||"");
+    if(r&&r.status===429||/rate|seconds/i.test(m))return "Aguarde um minuto antes de pedir outro código.";
+    if(/not authorized/i.test(m))return "Este e-mail ainda não pode receber o código: o envio de e-mails do serviço está em modo de teste.";
+    if(/invalid|expired|token/i.test(m))return "Código incorreto ou vencido. Peça um novo.";
+    return "Não consegui concluir. Confira a internet e o e-mail e tente de novo.";
+  }
+  async function requestCode(email){
+    const r=await raw("/auth/v1/otp",{method:"POST",body:{email:email,create_user:true}});
+    if(!r.ok){let j=null;try{j=await r.json();}catch(_){}throw new Error(errText(r,j));}
+  }
+  async function verify(email,code){
+    const r=await raw("/auth/v1/verify",{method:"POST",body:{type:"email",email:email,token:code}});
+    let j=null;try{j=await r.json();}catch(_){}
+    if(!r.ok||!j||!j.access_token)throw new Error(errText(r,j));
+    ses={at:j.access_token,rt:j.refresh_token,exp:j.expires_at||now()+(j.expires_in||3600),uid:j.user&&j.user.id,email:(j.user&&j.user.email)||email,ts:"",lh:""};
+    putSes();
+  }
+
+  /* ---- progresso ---- */
+  async function remoteGet(){
+    const r=await authed("/rest/v1/progress?select=data,updated_at&user_id=eq."+ses.uid);
+    if(!r.ok)throw new Error("get "+r.status);
+    const a=await r.json();return a[0]||null;
+  }
+  async function remoteStamp(){
+    const r=await authed("/rest/v1/progress?select=updated_at&user_id=eq."+ses.uid);
+    if(!r.ok)throw new Error("stamp "+r.status);
+    const a=await r.json();return a[0]?a[0].updated_at:"";
+  }
+  /* devolve "ok", "conflito" ou lança erro */
+  async function remotePush(){
+    const body=mine(),txt=JSON.stringify(body);
+    if(txt.length>1900000)throw new Error("O progresso ficou grande demais para a nuvem.");
+    let r,j;
+    if(!ses.ts){
+      r=await authed("/rest/v1/progress",{method:"POST",prefer:"return=representation",body:{user_id:ses.uid,data:body,app:APP_VERSION}});
+      if(r.status===409)return "conflito";
+    }else{
+      r=await authed("/rest/v1/progress?user_id=eq."+ses.uid+"&updated_at=eq."+encodeURIComponent(ses.ts),{method:"PATCH",prefer:"return=representation",body:{data:body,app:APP_VERSION}});
+    }
+    if(!r.ok)throw new Error("push "+r.status);
+    j=await r.json();
+    if(!j.length)return "conflito";
+    ses.ts=j[0].updated_at;ses.lh=hs(JSON.stringify(S));ses.at2=Date.now();putSes();
+    return "ok";
+  }
+  function applyCloud(row){
+    const o=Object.assign({},row.data,{rm:S.rm,wd:S.wd});
+    ses.ts=row.updated_at;ses.lh="";putSes();
+    try{localStorage.setItem(KEY,JSON.stringify(o));location.reload();}catch(_){say("O navegador não deixou gravar. Nada foi alterado.");}
+  }
+  const strip=o=>{const c=Object.assign({},o);delete c.rm;delete c.wd;delete c.bk;delete c.since;return JSON.stringify(c);};
+  const same=d=>strip(d)===strip(S);
+  function count(o){return Object.keys((o&&o.done)||{}).length;}
+  function when(t){try{return new Date(t).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});}catch(_){return "";}}
+  function askConflict(row){
+    if(conflictShown)return;conflictShown=true;
+    openSheet("Progresso diferente na nuvem",
+      '<p class="help">Este aparelho e a nuvem têm progressos diferentes. Escolha qual manter; o outro será substituído.</p>'+
+      '<p class="help"><b>Neste aparelho:</b> '+count(S)+' lições concluídas.<br><b>Na nuvem:</b> '+count(row.data)+' lições concluídas (salvo em '+esc(when(row.updated_at))+').</p>'+
+      '<div class="row"><button type="button" class="btn primary" id="cl-cloud">Usar o da nuvem</button><button type="button" class="btn" id="cl-local">Usar o deste aparelho</button></div>'+
+      '<p class="help">Dica: se tiver dúvida, baixe um backup em Ajustes → Dados antes de escolher.</p>',false);
+    window.__cloudRow=row;
+  }
+  document.addEventListener("click",async e=>{
+    const t=e.target.closest&&e.target.closest("#cl-cloud,#cl-local");if(!t)return;
+    const row=window.__cloudRow;if(!row)return;
+    if(t.id==="cl-cloud"){applyCloud(row);return;}
+    ses.ts=row.updated_at;putSes();
+    try{const r=await remotePush();closeSheet();say(r==="ok"?"Progresso deste aparelho guardado na nuvem.":"A nuvem mudou de novo. Tente sincronizar outra vez.");}catch(_){say("Não consegui enviar agora. Tente de novo.");}
+    conflictShown=false;render();
+  });
+
+  async function sync(manual,atBoot){
+    if(!ses||busy)return;
+    busy=true;
+    try{
+      const stamp=await remoteStamp(),changedLocal=hs(JSON.stringify(S))!==ses.lh;
+      if(!stamp){const r=await remotePush();if(manual)say(r==="ok"?"Progresso guardado na nuvem.":"Tente de novo.");}
+      else if(stamp===ses.ts){if(changedLocal){const r=await remotePush();if(r==="conflito"){const row=await remoteGet();if(row)askConflict(row);}else if(manual)say("Sincronizado.");}else if(manual)say("Tudo em dia.");}
+      else{
+        const row=await remoteGet();
+        if(!changedLocal&&(atBoot||manual)&&!(typeof P!=="undefined"&&P&&!manual))applyCloud(row);
+        else if(manual||atBoot||changedLocal)askConflict(row);
+      }
+      msg="";
+    }catch(e){if(manual)say("Sem conexão ou o serviço não respondeu. Seu progresso continua salvo neste aparelho.");}
+    finally{busy=false;render();}
+  }
+  window.cloudSync=sync;
+
+  /* ---- ações da conta ---- */
+  async function recordConsent(){
+    try{await authed("/rest/v1/consents",{method:"POST",prefer:"resolution=merge-duplicates,return=minimal",body:{user_id:ses.uid,policy_version:PRIV_VER,age_ok:true}});}catch(_){}
+  }
+  async function afterLogin(){
+    await recordConsent();
+    let row=null;
+    try{row=await remoteGet();}catch(_){}
+    if(!row){await remotePush().catch(()=>{});say("Conta criada. Seu progresso foi guardado na nuvem.");}
+    else if(!hasProgress())applyCloud(row);
+    else if(same(row.data)){ses.ts=row.updated_at;ses.lh=hs(JSON.stringify(S));ses.at2=Date.now();putSes();say("Conectado. Seu progresso já estava igual ao da nuvem.");}
+    else askConflict(row);
+    render();
+  }
+  async function downloadMine(){
+    try{
+      const row=await remoteGet();
+      const c=await authed("/rest/v1/consents?select=policy_version,age_ok,at&user_id=eq."+ses.uid);
+      const o={email:ses.email,consentimento:c.ok?await c.json():[],progresso:row?row.data:null,salvo_em:row?row.updated_at:null};
+      const blob=new Blob([JSON.stringify(o,null,1)],{type:"application/json"}),a=document.createElement("a");
+      a.href=URL.createObjectURL(blob);a.download="mots-parole-meus-dados-"+ymd()+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),3000);
+      say("Arquivo baixado: procure mots-parole-meus-dados-"+ymd()+".json.");
+    }catch(_){say("Não consegui baixar agora. Tente de novo.");}
+  }
+  async function deleteAccount(){
+    try{
+      const r=await authed("/rest/v1/rpc/delete_me",{method:"POST",body:{}});
+      if(!r.ok)throw new Error(String(r.status));
+      ses=null;putSes();closeSheet();render();say("Conta e dados da nuvem apagados. O progresso deste aparelho foi mantido.");
+    }catch(_){say("Não consegui apagar agora. Tente de novo mais tarde.");}
+  }
+
+  /* ---- tela ---- */
+  function box(){return $("#cloud-box");}
+  function render(){
+    const el=box();if(!el)return;
+    const note=msg?'<p class="help" role="status">'+esc(msg)+"</p>":"";
+    if(!ses){
+      if(step==="code"){
+        el.innerHTML='<p class="help">Enviamos um código de 6 números para <b>'+esc(pendEmail)+'</b>. Digite abaixo. Olhe também a caixa de spam.</p>'+
+          '<input class="tin" id="cl-code" inputmode="numeric" autocomplete="one-time-code" maxlength="8" aria-label="Código recebido por e-mail" placeholder="000000">'+
+          '<div class="row" style="margin-top:8px"><button type="button" class="btn primary" id="cl-verify">Entrar</button><button type="button" class="btn" id="cl-back">Trocar e-mail</button></div>'+note;
+      }else{
+        el.innerHTML='<p class="help">A conta é opcional. Com ela, seu progresso fica guardado na nuvem: você recupera tudo se trocar de celular e pode usar em mais de um aparelho. Sem conta, o app continua igual, só neste aparelho.</p>'+
+          '<input class="tin" id="cl-email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" aria-label="Seu e-mail" placeholder="seu@email.com">'+
+          '<label class="chk"><input type="checkbox" id="cl-age"> Tenho 13 anos ou mais.</label>'+
+          '<label class="chk"><input type="checkbox" id="cl-pol"> Li e concordo com a <a href="#" data-open-priv>Política de Privacidade</a>.</label>'+
+          '<button type="button" class="btn primary wide" id="cl-send" style="margin-top:8px">Receber código por e-mail</button>'+note;
+      }
+      return;
+    }
+    el.innerHTML='<p class="help">Conectado como <b>'+esc(ses.email)+"</b>.<br>"+(ses.at2?"Última sincronização: "+esc(when(ses.at2))+".":"Ainda não sincronizado.")+"</p>"+
+      '<button type="button" class="btn wide primary" id="cl-now">Sincronizar agora</button>'+
+      '<button type="button" class="btn wide" id="cl-dl" style="margin-top:8px">Baixar meus dados</button>'+
+      '<button type="button" class="btn wide" id="cl-out" style="margin-top:8px">Sair neste aparelho</button>'+
+      '<button type="button" class="btn wide" id="cl-del" style="margin-top:8px">Apagar minha conta e dados</button>'+
+      '<p class="help"><a href="#" data-open-priv>Política de Privacidade</a></p>'+note;
+  }
+  function mount(){
+    if($("#sec-cloud"))return;
+    const dados=[...document.querySelectorAll("#s-settings details.sgrp")].find(d=>/Dados/.test(d.querySelector("summary").textContent));
+    if(!dados)return;
+    const d=document.createElement("details");d.className="sgrp";d.id="sec-cloud";
+    d.innerHTML='<summary>Conta e nuvem</summary><div class="sin"><section><h2 class="lab">Conta e backup na nuvem</h2><div id="cloud-box"></div></section></div>';
+    dados.parentNode.insertBefore(d,dados);render();
+  }
+  document.addEventListener("click",async e=>{
+    const t=e.target.closest&&e.target.closest("#cl-send,#cl-verify,#cl-back,#cl-now,#cl-dl,#cl-out,#cl-del,#cl-del2,#cl-cancel");if(!t)return;
+    if(t.id==="cl-send"){
+      const em=($("#cl-email").value||"").trim().toLowerCase();
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){msg="Confira o e-mail.";render();return;}
+      if(!$("#cl-age").checked||!$("#cl-pol").checked){msg="Marque as duas caixas para continuar.";render();return;}
+      t.disabled=true;
+      try{await requestCode(em);pendEmail=em;step="code";msg="";}catch(er){msg=er.message;}
+      render();return;
+    }
+    if(t.id==="cl-back"){step="email";msg="";render();return;}
+    if(t.id==="cl-verify"){
+      const code=($("#cl-code").value||"").replace(/\D/g,"");
+      if(code.length<6){msg="Digite os 6 números.";render();return;}
+      t.disabled=true;
+      try{await verify(pendEmail,code);step="email";msg="";await afterLogin();}catch(er){msg=er.message;render();}
+      return;
+    }
+    if(t.id==="cl-now"){sync(true);return;}
+    if(t.id==="cl-dl"){downloadMine();return;}
+    if(t.id==="cl-out"){ses=null;putSes();step="email";msg="";render();say("Você saiu da conta neste aparelho. O progresso continua aqui.");return;}
+    if(t.id==="cl-del"){openSheet("Apagar conta e dados",'<p class="help">Isso apaga o seu e-mail e todo o progresso guardado na nuvem. Não dá para desfazer. O progresso que está neste aparelho continua aqui.</p><div class="row"><button type="button" class="btn primary" id="cl-del2">Apagar tudo da nuvem</button><button type="button" class="btn" id="cl-cancel">Cancelar</button></div>',false);return;}
+    if(t.id==="cl-del2"){deleteAccount();return;}
+    if(t.id==="cl-cancel"){closeSheet();return;}
+  });
+
+  /* ---- sincronização automática ---- */
+  let tm=null;
+  const _sv=save;save=function(){const r=_sv.apply(this,arguments);if(ses){clearTimeout(tm);tm=setTimeout(()=>{if(ses&&hs(JSON.stringify(S))!==ses.lh)sync(false,false);},20000);}return r;};
+  document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&ses&&bootDone)sync(false,false);});
+  const _go5=go;go=function(n){_go5.apply(this,arguments);if(n==="settings")mount();};
+  mount();
+  setTimeout(()=>{bootDone=true;if(ses)sync(false,true);},2500);
+})();
+
 /* ===== Ícone do app (v1.39): Padrão + um por tema (Alice, Pequeno Príncipe, Frankenstein, Soft elegante, A Divina Comédia) =====
    Arte original (tools/mk_icons.py): relógio de bolso, planeta com flor, raio, monograma, anéis e estrela; nenhum personagem de livro.
    Como funciona: o ícone da aba muda na hora; o ícone do app instalado é lido do manifesto, e o service worker (sw.js) devolve o manifesto com o ícone escolhido
@@ -5632,6 +5889,9 @@ window.PUSHCFG={pub:"BABpqQWwmnBfJ65d2PuppVGG3PrlL1BB_zXg4jaccd2z8ELoB1KOsypXKz3
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.41.0",d:"2026-10-21",t:[
+"Novo: Política de Privacidade, em Ajustes → Sobre e ajuda. Ela diz o que o app guarda e o que sai do aparelho",
+"Pronto para a conta opcional com backup na nuvem (entrada por código no e-mail, sincronização entre aparelhos, baixar meus dados e apagar a conta). Ela aparece em Ajustes quando o serviço estiver ligado"]},
 {v:"1.40.1",d:"2026-10-21",t:[
 "As notificações com o app fechado estão ligadas no app. Para receber: Ajustes → Lembretes e cartão → ligue os lembretes e toque em «Ativar envio com o app fechado». No iPhone, abra o app pelo ícone da Tela de Início"]},
 {v:"1.40.0",d:"2026-10-21",t:[

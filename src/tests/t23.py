@@ -76,7 +76,7 @@ try:
     assert open(pth,'rb').read(8)==b'\x89PNG\r\n\x1a\n'
     # novidades
     pg.evaluate("()=>{closeSheet();go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");pg.click('#open-news');pg.wait_for_timeout(100)
-    t=pg.inner_text('#news-list');assert 'Versão 1.40.0' in t
+    t=pg.inner_text('#news-list');assert 'Versão 1.41.0' in t
     print('erros:',errs);assert not errs
     print('OK t23')
 finally: srv.terminate()

@@ -51,7 +51,26 @@ def due(row, now):
     return (h <= local.hour <= h + WINDOW and row.get("sent") != day and row.get("done") != day), day
 
 
+def keepalive(now):
+    """Uma consulta por dia ao Supabase, para o projeto gratuito não ser pausado por inatividade (se a conta na nuvem estiver ligada)."""
+    try:
+        t = open(os.path.join(ROOT, "src", "nuvemcfg.js"), encoding="utf8").read()
+        u = re.search(r'url:"([^"]*)"', t).group(1); k = re.search(r'key:"([^"]*)"', t).group(1)
+    except Exception:
+        return
+    if not (u and k) or (now.hour != 12 and not FORCE):
+        return
+    try:
+        req = urllib.request.Request(u + "/rest/v1/rpc/ping", data=b"{}", method="POST",
+                                     headers={"apikey": k, "authorization": "Bearer " + k, "content-type": "application/json"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            print("ping Supabase:", r.status)
+    except Exception as e:
+        print("ping Supabase falhou:", str(e)[:100])
+
+
 def main():
+    keepalive(datetime.datetime.utcnow())
     url, key = sink_url(), os.environ.get("SINK_KEY", "")
     if not url:
         print("caixa de inscrições ainda não configurada; nada a fazer"); return 0
