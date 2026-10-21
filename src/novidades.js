@@ -1,5 +1,6 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.43.0",d:"2026-10-21",t:["Novo: na primeira vez que você abre o app depois de uma atualização, aparece um aviso para ler as novidades","Novo: Amigos (opcional, só com conta). Ajustes → Conta e nuvem → Amigos. Você ativa, ganha um código, e só quem tiver o código pode te adicionar. Cada um escolhe se mostra a sequência de dias e as palavras acertadas. Dá para bloquear, denunciar e desativar","Antes de usar Amigos, a criadora precisa instalar a parte nova no servidor; se ainda não estiver instalada, o app avisa"]},
 {v:"1.42.2",d:"2026-10-21",t:["Conta na nuvem: o código recebido por e-mail pode ter 6 a 8 números; o texto agora diz isso"]},
 {v:"1.42.1",d:"2026-10-21",t:["Conta na nuvem: as mensagens de erro agora dizem o motivo, para facilitar achar o problema"]},
 {v:"1.42.0",d:"2026-10-21",t:[
@@ -65,3 +66,31 @@ function renderNews(){
 }
 window.renderNews=renderNews;
 document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#open-news")){go("news");renderNews();}});
+
+/* ===== Aviso na primeira abertura depois de uma atualização (v1.43) =====
+   Guarda a última versão vista em localStorage (fora do progresso). Quem abre o app pela 1ª vez nunca vê o aviso. */
+(function(){
+  const K="mots-parole-lastver";
+  let last=null;
+  try{last=localStorage.getItem(K);if(last===null&&localStorage.getItem(KEY)!==null)last="antes";}catch(_){}
+  const cur=APP_REL.v;
+  const mark=()=>{try{localStorage.setItem(K,cur);}catch(_){}};
+  if(last===null||last===cur){mark();return;}
+  const box=document.createElement("div");
+  box.id="upd-note";box.setAttribute("role","dialog");box.setAttribute("aria-modal","true");box.setAttribute("aria-label","App atualizado");
+  box.style.cssText="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.45)";
+  const n=NOVIDADES.find(x=>x.v===cur);
+  box.innerHTML='<div style="max-width:420px;width:100%;background:var(--surface,#fff);color:var(--ink,#222);border:1px solid var(--line,#ccc);border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.3)">'+
+    '<h3 style="margin:0 0 8px;font-size:1.15rem">O app foi atualizado</h3>'+
+    '<p style="margin:0 0 6px">Agora você está na versão <b>'+esc(cur)+'</b>. Leia as notas de atualização para saber o que há de novo.</p>'+
+    (n?'<p style="margin:0 0 14px;color:var(--muted,#666);font-size:.92rem">Resumo: '+esc(n.t[0])+(n.t.length>1?" (e mais "+(n.t.length-1)+")":"")+'</p>':'')+
+    '<div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn wide" id="upd-read">Ler as novidades</button><button type="button" class="btn wide" id="upd-close">Agora não</button></div></div>';
+  const close=()=>{mark();box.remove();};
+  box.addEventListener("click",e=>{
+    const t=e.target.closest&&e.target.closest("button");if(!t)return;
+    if(t.id==="upd-read"){close();go("news");renderNews();}
+    else if(t.id==="upd-close")close();
+  });
+  const add=()=>document.body.appendChild(box);
+  if(document.body)add();else document.addEventListener("DOMContentLoaded",add);
+})();

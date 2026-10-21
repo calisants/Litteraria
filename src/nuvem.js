@@ -32,6 +32,7 @@
     }catch(_){return null;}
   }
   async function authed(path,o){const t=await token();if(!t)throw new Error("sem sessão");o=o||{};o.token=t;return raw(path,o);}
+  window.CLOUD={authed:authed,session:()=>ses}; /* usado por amigos.js */
 
   /* ---- entrar ---- */
   function errText(r,j){
@@ -180,6 +181,7 @@
     }
     el.innerHTML='<p class="help">Conectado como <b>'+esc(ses.email)+"</b>.<br>"+(ses.at2?"Última sincronização: "+esc(when(ses.at2))+".":"Ainda não sincronizado.")+"</p>"+
       '<button type="button" class="btn wide primary" id="cl-now">Sincronizar agora</button>'+
+      '<button type="button" class="btn wide" id="cl-friends" style="margin-top:8px">Amigos (opcional)</button>'+
       '<button type="button" class="btn wide" id="cl-dl" style="margin-top:8px">Baixar meus dados</button>'+
       '<button type="button" class="btn wide" id="cl-out" style="margin-top:8px">Sair neste aparelho</button>'+
       '<button type="button" class="btn wide" id="cl-del" style="margin-top:8px">Apagar minha conta e dados</button>'+
@@ -194,7 +196,7 @@
     dados.parentNode.insertBefore(d,dados);render();
   }
   document.addEventListener("click",async e=>{
-    const t=e.target.closest&&e.target.closest("#cl-send,#cl-verify,#cl-back,#cl-now,#cl-dl,#cl-out,#cl-del,#cl-del2,#cl-cancel");if(!t)return;
+    const t=e.target.closest&&e.target.closest("#cl-send,#cl-verify,#cl-back,#cl-now,#cl-friends,#cl-dl,#cl-out,#cl-del,#cl-del2,#cl-cancel");if(!t)return;
     if(t.id==="cl-send"){
       const em=($("#cl-email").value||"").trim().toLowerCase();
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){msg="Confira o e-mail.";render();return;}
@@ -212,6 +214,7 @@
       return;
     }
     if(t.id==="cl-now"){sync(true);return;}
+    if(t.id==="cl-friends"){if(window.openFriends)openFriends();return;}
     if(t.id==="cl-dl"){downloadMine();return;}
     if(t.id==="cl-out"){ses=null;putSes();step="email";msg="";render();say("Você saiu da conta neste aparelho. O progresso continua aqui.");return;}
     if(t.id==="cl-del"){openSheet("Apagar conta e dados",'<p class="help">Isso apaga o seu e-mail e todo o progresso guardado na nuvem. Não dá para desfazer. O progresso que está neste aparelho continua aqui.</p><div class="row"><button type="button" class="btn primary" id="cl-del2">Apagar tudo da nuvem</button><button type="button" class="btn" id="cl-cancel">Cancelar</button></div>',false);return;}
