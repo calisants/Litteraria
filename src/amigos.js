@@ -42,7 +42,7 @@
       }else if(lastEp){await rpc("push_drop",{p_endpoint:lastEp});lastEp="";}
     }catch(_){}
   }
-  window.cloudBeforeOut=async function(){try{const sub=await getSub();if(sub&&on())await rpc("push_drop",{p_endpoint:sub.endpoint});}catch(_){}lastEp="";};
+  window.cloudBeforeOut=async function(){if(!on())return;try{const sub=await getSub();if(sub)await rpc("push_drop",{p_endpoint:sub.endpoint});}catch(_){}lastEp="";};
   async function pushStats(){if(!ses()||!on())return;try{await rpc("friends_stats",myStats());}catch(_){}syncSub();}
   async function load(){
     try{me=await rpc("friends_me");if(me){setOn(true);await pushStats();lst=await rpc("friends_list");}else{setOn(false);lst=null;}msg="";}
