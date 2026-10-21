@@ -1,5 +1,6 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.44.0",d:"2026-10-21",t:["Novo: cutucar um amigo. Em Amigos, toque em «Cutucar» ao lado do nome e ele recebe uma notificação para estudar. Limite de 1 por amigo por dia; dá para desligar em «Aceitar cutucadas»","Para receber cutucadas, ligue os lembretes com o app fechado (Ajustes → Lembretes e cartão)","Política de Privacidade atualizada com o que as cutucadas guardam"]},
 {v:"1.43.0",d:"2026-10-21",t:["Novo: na primeira vez que você abre o app depois de uma atualização, aparece um aviso para ler as novidades","Novo: Amigos (opcional, só com conta). Ajustes → Conta e nuvem → Amigos. Você ativa, ganha um código, e só quem tiver o código pode te adicionar. Cada um escolhe se mostra a sequência de dias e as palavras acertadas. Dá para bloquear, denunciar e desativar","Antes de usar Amigos, a criadora precisa instalar a parte nova no servidor; se ainda não estiver instalada, o app avisa"]},
 {v:"1.42.2",d:"2026-10-21",t:["Conta na nuvem: o código recebido por e-mail pode ter 6 a 8 números; o texto agora diz isso"]},
 {v:"1.42.1",d:"2026-10-21",t:["Conta na nuvem: as mensagens de erro agora dizem o motivo, para facilitar achar o problema"]},

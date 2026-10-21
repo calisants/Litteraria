@@ -216,7 +216,7 @@
     if(t.id==="cl-now"){sync(true);return;}
     if(t.id==="cl-friends"){if(window.openFriends)openFriends();return;}
     if(t.id==="cl-dl"){downloadMine();return;}
-    if(t.id==="cl-out"){ses=null;putSes();step="email";msg="";render();say("Você saiu da conta neste aparelho. O progresso continua aqui.");return;}
+    if(t.id==="cl-out"){if(window.cloudBeforeOut)await cloudBeforeOut();ses=null;putSes();step="email";msg="";render();say("Você saiu da conta neste aparelho. O progresso continua aqui.");return;}
     if(t.id==="cl-del"){openSheet("Apagar conta e dados",'<p class="help">Isso apaga o seu e-mail e todo o progresso guardado na nuvem. Não dá para desfazer. O progresso que está neste aparelho continua aqui.</p><div class="row"><button type="button" class="btn primary" id="cl-del2">Apagar tudo da nuvem</button><button type="button" class="btn" id="cl-cancel">Cancelar</button></div>',false);return;}
     if(t.id==="cl-del2"){deleteAccount();return;}
     if(t.id==="cl-cancel"){closeSheet();return;}

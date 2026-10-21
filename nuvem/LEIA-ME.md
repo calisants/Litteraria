@@ -25,3 +25,9 @@ Texto em `src/privacidade.js` (muda conforme os recursos ligados). Atualize `PRI
 
 ## Testes
 `tests/t26.py` simula o Supabase (entrar, conflito, aparelho novo, baixar dados, apagar conta). O serviço de verdade só se confirma com o projeto dela.
+
+## Cutucar (v1.44.0)
+1. SQL Editor: rode `nuvem/cutucar.sql` (depois de `amigos.sql`).
+2. Edge Functions → Deploy a new function → Via Editor → nome `poke` → cole `nuvem/poke/index.ts` → Deploy. Em Settings da função, **desligue «Verify JWT»** (a função confere o login sozinha).
+3. Edge Functions → Secrets: `VAPID_PUBLIC` (a mesma chave pública de `src/pushcfg.js`), `VAPID_PRIVATE` (a mesma do GitHub) e `VAPID_SUBJECT` = `mailto:calisants@users.noreply.github.com`.
+Limites no banco: só amigos aceitos, sem bloqueio, 1 por amigo por dia, 5 recebidas por dia, e a pessoa pode desligar. Sem aparelho inscrito, a cutucada nem é registrada.

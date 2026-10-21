@@ -988,7 +988,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.43.0",d:"2026-10-21"};
+const APP_REL={v:"1.44.0",d:"2026-10-21"};
 
 
 const RAW={
@@ -5613,14 +5613,14 @@ window.CLOUDCFG={url:"https://uunfcvgiomzgwtpckzdx.supabase.co",key:"sb_publisha
 /* ===== Política de Privacidade (texto que aparece no app) =====
    Descreve o que o app realmente faz. As partes sobre conta e lembretes só aparecem quando esses recursos estão ligados (CLOUDCFG / PUSHCFG).
    Mudou algo no que o app guarda ou envia? Atualize o texto e PRIV_VER. */
-const PRIV_VER="2026-10-21b";
+const PRIV_VER="2026-10-21c";
 function privSections(){
   const cloud=!!(window.CLOUDCFG&&CLOUDCFG.url&&CLOUDCFG.key),push=!!(window.PUSHCFG&&PUSHCFG.sink);
   const s=[];
   s.push(["Quem cuida dos seus dados","O Mots & Parole é feito por Camila (@calisants), que decide como os dados do app são tratados. Para falar sobre privacidade, use Ajustes → Sobre e ajuda → «Enviar sugestão ou avisar de erro»."]);
   s.push(["Sem conta, nada sai do seu aparelho","O progresso, os ajustes, o nome que você digitar, o caderno de palavras e as citações favoritas ficam só no armazenamento deste aparelho. O app não tem anúncios e não usa ferramentas de estatística de terceiros."]);
   if(cloud)s.push(["Conta (opcional)","Se você criar uma conta, guardamos: o seu e-mail; uma cópia do seu progresso (lições feitas, pontuações, revisões, caderno de palavras, favoritos, ajustes e o nome que você digitou); e a data em que você aceitou esta política e confirmou ter 13 anos ou mais. Isso serve só para você recuperar o progresso se trocar de celular e usar o app em mais de um aparelho. Os dados ficam no Supabase, um serviço de terceiros; eles não ficam no GitHub nem em outro lugar do app. Cada conta só consegue ler e alterar os próprios dados. Tecnicamente, quem administra o projeto tem acesso a eles; esse acesso é para manter o serviço e atender pedidos seus."]);
-  if(cloud)s.push(["Amigos (opcional, só com conta)","Desligado até você ativar. Ao ativar, guardamos: um apelido que você escolher (2 a 20 letras; não use seu nome completo), um código de amigo gerado pelo app, a lista de amigos e convites, e, só se você marcar, a sua sequência de dias, o total de palavras acertadas e quantos dos últimos 7 dias você estudou. Seus amigos aceitos veem apenas o apelido e esses números marcados. Ninguém te encontra por busca: só entra quem tiver o seu código. Não há chat, foto nem mensagens. Você pode remover amigos, bloquear e denunciar (a denúncia guarda quem denunciou, quem foi denunciado e o texto que você escrever, até 300 letras, para a criadora do app analisar). Ao desativar Amigos, apagamos apelido, código, convites e amizades."]);
+  if(cloud)s.push(["Amigos (opcional, só com conta)","Desligado até você ativar. Ao ativar, guardamos: um apelido que você escolher (2 a 20 letras; não use seu nome completo), um código de amigo gerado pelo app, a lista de amigos e convites, e, só se você marcar, a sua sequência de dias, o total de palavras acertadas e quantos dos últimos 7 dias você estudou. Seus amigos aceitos veem apenas o apelido e esses números marcados. Ninguém te encontra por busca: só entra quem tiver o seu código. Não há chat, foto nem mensagens. Você pode remover amigos, bloquear e denunciar (a denúncia guarda quem denunciou, quem foi denunciado e o texto que você escrever, até 300 letras, para a criadora do app analisar). Cutucadas: um amigo aceito pode te mandar um lembrete para estudar (1 por dia por amigo, no máximo 5 por dia no total); você pode desligar em «Aceitar cutucadas». Para isso guardamos o endereço de envio de notificação do seu aparelho (fornecido pela Apple, Google ou Mozilla) e as chaves dele, e registramos quem cutucou quem por poucos dias, só para aplicar os limites. Ao desativar Amigos ou sair da conta neste aparelho, apagamos esses endereços; ao desativar, apagamos também apelido, código, convites e amizades."]);
   if(push)s.push(["Lembretes com o app fechado (opcional)","Se você ativar, enviamos para uma planilha da criadora do app: o endereço de envio do seu aparelho (fornecido pela Apple, Google ou Mozilla), o horário escolhido, o estilo do lembrete, o idioma e se você já estudou naquele dia. Sem nome, sem e-mail, sem progresso. Uma rotina do GitHub lê essa planilha e manda o aviso. Desligar os lembretes remove a sua linha."]);
   s.push(["Sugestões e avisos de erro","O que você escrever no formulário de sugestões vai para um Google Formulários da criadora. Não escreva dados pessoais ali."]);
   if(cloud)s.push(["Seus direitos","Você pode, a qualquer momento e sem justificar: baixar tudo o que guardamos sobre você («Baixar meus dados»), apagar a conta e todos os dados da nuvem («Apagar minha conta e dados») e sair do aparelho. Pode também pedir correção ou esclarecimentos pelo formulário de sugestões. Apagar a conta não apaga o progresso que já está no seu aparelho."]);
@@ -5851,7 +5851,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     if(t.id==="cl-now"){sync(true);return;}
     if(t.id==="cl-friends"){if(window.openFriends)openFriends();return;}
     if(t.id==="cl-dl"){downloadMine();return;}
-    if(t.id==="cl-out"){ses=null;putSes();step="email";msg="";render();say("Você saiu da conta neste aparelho. O progresso continua aqui.");return;}
+    if(t.id==="cl-out"){if(window.cloudBeforeOut)await cloudBeforeOut();ses=null;putSes();step="email";msg="";render();say("Você saiu da conta neste aparelho. O progresso continua aqui.");return;}
     if(t.id==="cl-del"){openSheet("Apagar conta e dados",'<p class="help">Isso apaga o seu e-mail e todo o progresso guardado na nuvem. Não dá para desfazer. O progresso que está neste aparelho continua aqui.</p><div class="row"><button type="button" class="btn primary" id="cl-del2">Apagar tudo da nuvem</button><button type="button" class="btn" id="cl-cancel">Cancelar</button></div>',false);return;}
     if(t.id==="cl-del2"){deleteAccount();return;}
     if(t.id==="cl-cancel"){closeSheet();return;}
@@ -5893,7 +5893,25 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     let st=0;try{st=window.gamStreak?gamStreak().n:0;}catch(_){}
     return {p_streak:st,p_words:words,p_week:wk};
   }
-  async function pushStats(){if(!ses()||!on())return;try{await rpc("friends_stats",myStats());}catch(_){}}
+  /* endereço de envio deste aparelho (para receber cutucadas); só enquanto Amigos estiver ativo e os lembretes com app fechado ligados */
+  let lastEp="";
+  async function getSub(){
+    try{if(!("serviceWorker" in navigator)||!("PushManager" in window))return null;
+      const reg=await Promise.race([navigator.serviceWorker.ready,new Promise((_,r)=>setTimeout(r,3000))]);
+      return reg?await reg.pushManager.getSubscription():null;}catch(_){return null;}
+  }
+  async function syncSub(){
+    if(!ses()||!on())return;
+    try{
+      const sub=await getSub();
+      if(sub&&S.rm&&S.rm.on&&window.Notification&&Notification.permission==="granted"){
+        const j=sub.toJSON();
+        if(j.endpoint&&j.keys&&j.endpoint!==lastEp){await rpc("push_save",{p_endpoint:j.endpoint,p_p256dh:j.keys.p256dh,p_auth:j.keys.auth});lastEp=j.endpoint;}
+      }else if(lastEp){await rpc("push_drop",{p_endpoint:lastEp});lastEp="";}
+    }catch(_){}
+  }
+  window.cloudBeforeOut=async function(){try{const sub=await getSub();if(sub&&on())await rpc("push_drop",{p_endpoint:sub.endpoint});}catch(_){}lastEp="";};
+  async function pushStats(){if(!ses()||!on())return;try{await rpc("friends_stats",myStats());}catch(_){}syncSub();}
   async function load(){
     try{me=await rpc("friends_me");if(me){setOn(true);await pushStats();lst=await rpc("friends_list");}else{setOn(false);lst=null;}msg="";}
     catch(e){msg=e.message;}
@@ -5922,11 +5940,13 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
       '<h3 class="lab" style="margin-top:14px">O que meus amigos veem</h3>'+
       '<label class="chk"><input type="checkbox" id="fr-s1" '+(me.share_streak?"checked":"")+'> Minha sequência de dias</label>'+
       '<label class="chk"><input type="checkbox" id="fr-s2" '+(me.share_words?"checked":"")+'> Palavras acertadas e dias estudados na semana</label>'+
+      '<label class="chk"><input type="checkbox" id="fr-poke" '+(me.poke_ok!==false?"checked":"")+'> Aceitar cutucadas dos amigos (um lembrete para estudar)</label>'+
+      (window.__pushOn?'<p class="help">Este aparelho está pronto para receber cutucadas.</p>':'<p class="help">Para receber cutucadas, ligue os lembretes com o app fechado em Ajustes → Lembretes e cartão. Sem isso, você ainda pode cutucar os outros.</p>')+
       '<h3 class="lab" style="margin-top:14px">Adicionar um amigo</h3>'+
       '<input class="tin" id="fr-add" maxlength="12" autocapitalize="characters" autocomplete="off" aria-label="Código do amigo" placeholder="Código do amigo">'+
       '<button type="button" class="btn primary wide" id="fr-req" style="margin-top:8px">Enviar convite</button>';
     if(L.incoming.length)o+='<h3 class="lab" style="margin-top:14px">Convites recebidos</h3>'+L.incoming.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b></span><span><button type="button" class="btn primary" data-fr="acc" data-u="'+h(f.uid)+'">Aceitar</button> <button type="button" class="btn" data-fr="rej" data-u="'+h(f.uid)+'">Recusar</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button></span></div>').join("");
-    o+='<h3 class="lab" style="margin-top:14px">Amigos ('+L.friends.length+')</h3>'+(L.friends.length?L.friends.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b><br><small>'+h(statsLine(f))+'</small></span><span><button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Remover</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button> <button type="button" class="btn" data-fr="rep" data-u="'+h(f.uid)+'">Denunciar</button></span></div>').join(""):'<p class="help">Ainda sem amigos. Envie o seu código ou digite o de alguém acima.</p>');
+    o+='<h3 class="lab" style="margin-top:14px">Amigos ('+L.friends.length+')</h3>'+(L.friends.length?L.friends.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b><br><small>'+h(statsLine(f))+'</small></span><span><button type="button" class="btn primary" data-fr="poke" data-u="'+h(f.uid)+'" aria-label="Cutucar '+h(f.nick)+'">👋 Cutucar</button> <button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Remover</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button> <button type="button" class="btn" data-fr="rep" data-u="'+h(f.uid)+'">Denunciar</button></span></div>').join(""):'<p class="help">Ainda sem amigos. Envie o seu código ou digite o de alguém acima.</p>');
     if(L.outgoing.length)o+='<h3 class="lab" style="margin-top:14px">Convites enviados</h3>'+L.outgoing.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b> · aguardando</span><button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Cancelar</button></div>').join("");
     if(L.blocked.length)o+='<h3 class="lab" style="margin-top:14px">Bloqueados</h3>'+L.blocked.map(f=>'<div class="cad-row"><span>'+h(f.nick)+'</span><button type="button" class="btn" data-fr="unb" data-u="'+h(f.uid)+'">Desbloquear</button></div>').join("");
     o+='<div class="row" style="margin-top:16px"><button type="button" class="btn" id="fr-refresh">Atualizar lista</button><button type="button" class="btn" id="fr-off">Desativar Amigos</button></div>'+
@@ -5969,11 +5989,19 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     if(a==="rej")return act(()=>rpc("friends_respond",{p_uid:u,p_accept:false}));
     if(a==="del")return act(()=>rpc("friends_remove",{p_uid:u}));
     if(a==="blk")return act(async()=>{await rpc("friends_block",{p_uid:u});msg="Pessoa bloqueada.";});
+    if(a==="poke")return act(async()=>{
+      const r=await CLOUD.authed("/functions/v1/poke",{method:"POST",body:{uid:u}});
+      let j=null;try{j=await r.json();}catch(_){}
+      if(r.status===404){msg="A parte de cutucadas ainda não foi instalada no servidor.";return;}
+      if(!r.ok||!j){msg="Não consegui cutucar agora. Tente de novo mais tarde.";return;}
+      msg={ok:"Cutucada enviada! 👋",ja_hoje:"Você já cutucou essa pessoa hoje. Amanhã pode de novo.",recusa:"Esta pessoa não está recebendo cutucadas.",sem_aparelho:"Esta pessoa ainda não tem as notificações ligadas neste aparelho, então a cutucada não chegaria.",limite:"Essa pessoa já recebeu muitas cutucadas hoje. Tente amanhã.",nao_amigo:"Vocês não estão mais conectados.",falhou:"A notificação não saiu. Tente de novo mais tarde."}[j.status]||"Não consegui cutucar agora.";
+    });
     if(a==="unb")return act(()=>rpc("friends_unblock",{p_uid:u}));
     if(a==="rep")return act(async()=>{const m=prompt("Conte em poucas palavras o que aconteceu (opcional):","");if(m===null)return;await rpc("friends_report",{p_uid:u,p_reason:m});msg="Denúncia enviada e pessoa bloqueada.";});
   });
   document.addEventListener("change",e=>{
-    const t=e.target;if(!t||(t.id!=="fr-s1"&&t.id!=="fr-s2")||!me)return;
+    const t=e.target;if(t&&t.id==="fr-poke"&&me){act(async()=>{await rpc("friends_pokes_set",{p_on:t.checked});me=await rpc("friends_me");msg="Preferência salva.";});return;}
+    if(!t||(t.id!=="fr-s1"&&t.id!=="fr-s2")||!me)return;
     act(async()=>{await rpc("friends_share",{p_streak:$("#fr-s1").checked,p_words:$("#fr-s2").checked});me=await rpc("friends_me");await pushStats();msg="Preferência salva.";});
   });
   /* mantém os números atualizados enquanto o app é usado (no máximo uma vez por minuto) */
@@ -6010,6 +6038,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.44.0",d:"2026-10-21",t:["Novo: cutucar um amigo. Em Amigos, toque em «Cutucar» ao lado do nome e ele recebe uma notificação para estudar. Limite de 1 por amigo por dia; dá para desligar em «Aceitar cutucadas»","Para receber cutucadas, ligue os lembretes com o app fechado (Ajustes → Lembretes e cartão)","Política de Privacidade atualizada com o que as cutucadas guardam"]},
 {v:"1.43.0",d:"2026-10-21",t:["Novo: na primeira vez que você abre o app depois de uma atualização, aparece um aviso para ler as novidades","Novo: Amigos (opcional, só com conta). Ajustes → Conta e nuvem → Amigos. Você ativa, ganha um código, e só quem tiver o código pode te adicionar. Cada um escolhe se mostra a sequência de dias e as palavras acertadas. Dá para bloquear, denunciar e desativar","Antes de usar Amigos, a criadora precisa instalar a parte nova no servidor; se ainda não estiver instalada, o app avisa"]},
 {v:"1.42.2",d:"2026-10-21",t:["Conta na nuvem: o código recebido por e-mail pode ter 6 a 8 números; o texto agora diz isso"]},
 {v:"1.42.1",d:"2026-10-21",t:["Conta na nuvem: as mensagens de erro agora dizem o motivo, para facilitar achar o problema"]},

@@ -25,7 +25,25 @@
     let st=0;try{st=window.gamStreak?gamStreak().n:0;}catch(_){}
     return {p_streak:st,p_words:words,p_week:wk};
   }
-  async function pushStats(){if(!ses()||!on())return;try{await rpc("friends_stats",myStats());}catch(_){}}
+  /* endereço de envio deste aparelho (para receber cutucadas); só enquanto Amigos estiver ativo e os lembretes com app fechado ligados */
+  let lastEp="";
+  async function getSub(){
+    try{if(!("serviceWorker" in navigator)||!("PushManager" in window))return null;
+      const reg=await Promise.race([navigator.serviceWorker.ready,new Promise((_,r)=>setTimeout(r,3000))]);
+      return reg?await reg.pushManager.getSubscription():null;}catch(_){return null;}
+  }
+  async function syncSub(){
+    if(!ses()||!on())return;
+    try{
+      const sub=await getSub();
+      if(sub&&S.rm&&S.rm.on&&window.Notification&&Notification.permission==="granted"){
+        const j=sub.toJSON();
+        if(j.endpoint&&j.keys&&j.endpoint!==lastEp){await rpc("push_save",{p_endpoint:j.endpoint,p_p256dh:j.keys.p256dh,p_auth:j.keys.auth});lastEp=j.endpoint;}
+      }else if(lastEp){await rpc("push_drop",{p_endpoint:lastEp});lastEp="";}
+    }catch(_){}
+  }
+  window.cloudBeforeOut=async function(){try{const sub=await getSub();if(sub&&on())await rpc("push_drop",{p_endpoint:sub.endpoint});}catch(_){}lastEp="";};
+  async function pushStats(){if(!ses()||!on())return;try{await rpc("friends_stats",myStats());}catch(_){}syncSub();}
   async function load(){
     try{me=await rpc("friends_me");if(me){setOn(true);await pushStats();lst=await rpc("friends_list");}else{setOn(false);lst=null;}msg="";}
     catch(e){msg=e.message;}
@@ -54,11 +72,13 @@
       '<h3 class="lab" style="margin-top:14px">O que meus amigos veem</h3>'+
       '<label class="chk"><input type="checkbox" id="fr-s1" '+(me.share_streak?"checked":"")+'> Minha sequência de dias</label>'+
       '<label class="chk"><input type="checkbox" id="fr-s2" '+(me.share_words?"checked":"")+'> Palavras acertadas e dias estudados na semana</label>'+
+      '<label class="chk"><input type="checkbox" id="fr-poke" '+(me.poke_ok!==false?"checked":"")+'> Aceitar cutucadas dos amigos (um lembrete para estudar)</label>'+
+      (window.__pushOn?'<p class="help">Este aparelho está pronto para receber cutucadas.</p>':'<p class="help">Para receber cutucadas, ligue os lembretes com o app fechado em Ajustes → Lembretes e cartão. Sem isso, você ainda pode cutucar os outros.</p>')+
       '<h3 class="lab" style="margin-top:14px">Adicionar um amigo</h3>'+
       '<input class="tin" id="fr-add" maxlength="12" autocapitalize="characters" autocomplete="off" aria-label="Código do amigo" placeholder="Código do amigo">'+
       '<button type="button" class="btn primary wide" id="fr-req" style="margin-top:8px">Enviar convite</button>';
     if(L.incoming.length)o+='<h3 class="lab" style="margin-top:14px">Convites recebidos</h3>'+L.incoming.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b></span><span><button type="button" class="btn primary" data-fr="acc" data-u="'+h(f.uid)+'">Aceitar</button> <button type="button" class="btn" data-fr="rej" data-u="'+h(f.uid)+'">Recusar</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button></span></div>').join("");
-    o+='<h3 class="lab" style="margin-top:14px">Amigos ('+L.friends.length+')</h3>'+(L.friends.length?L.friends.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b><br><small>'+h(statsLine(f))+'</small></span><span><button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Remover</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button> <button type="button" class="btn" data-fr="rep" data-u="'+h(f.uid)+'">Denunciar</button></span></div>').join(""):'<p class="help">Ainda sem amigos. Envie o seu código ou digite o de alguém acima.</p>');
+    o+='<h3 class="lab" style="margin-top:14px">Amigos ('+L.friends.length+')</h3>'+(L.friends.length?L.friends.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b><br><small>'+h(statsLine(f))+'</small></span><span><button type="button" class="btn primary" data-fr="poke" data-u="'+h(f.uid)+'" aria-label="Cutucar '+h(f.nick)+'">👋 Cutucar</button> <button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Remover</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button> <button type="button" class="btn" data-fr="rep" data-u="'+h(f.uid)+'">Denunciar</button></span></div>').join(""):'<p class="help">Ainda sem amigos. Envie o seu código ou digite o de alguém acima.</p>');
     if(L.outgoing.length)o+='<h3 class="lab" style="margin-top:14px">Convites enviados</h3>'+L.outgoing.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b> · aguardando</span><button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Cancelar</button></div>').join("");
     if(L.blocked.length)o+='<h3 class="lab" style="margin-top:14px">Bloqueados</h3>'+L.blocked.map(f=>'<div class="cad-row"><span>'+h(f.nick)+'</span><button type="button" class="btn" data-fr="unb" data-u="'+h(f.uid)+'">Desbloquear</button></div>').join("");
     o+='<div class="row" style="margin-top:16px"><button type="button" class="btn" id="fr-refresh">Atualizar lista</button><button type="button" class="btn" id="fr-off">Desativar Amigos</button></div>'+
@@ -101,11 +121,19 @@
     if(a==="rej")return act(()=>rpc("friends_respond",{p_uid:u,p_accept:false}));
     if(a==="del")return act(()=>rpc("friends_remove",{p_uid:u}));
     if(a==="blk")return act(async()=>{await rpc("friends_block",{p_uid:u});msg="Pessoa bloqueada.";});
+    if(a==="poke")return act(async()=>{
+      const r=await CLOUD.authed("/functions/v1/poke",{method:"POST",body:{uid:u}});
+      let j=null;try{j=await r.json();}catch(_){}
+      if(r.status===404){msg="A parte de cutucadas ainda não foi instalada no servidor.";return;}
+      if(!r.ok||!j){msg="Não consegui cutucar agora. Tente de novo mais tarde.";return;}
+      msg={ok:"Cutucada enviada! 👋",ja_hoje:"Você já cutucou essa pessoa hoje. Amanhã pode de novo.",recusa:"Esta pessoa não está recebendo cutucadas.",sem_aparelho:"Esta pessoa ainda não tem as notificações ligadas neste aparelho, então a cutucada não chegaria.",limite:"Essa pessoa já recebeu muitas cutucadas hoje. Tente amanhã.",nao_amigo:"Vocês não estão mais conectados.",falhou:"A notificação não saiu. Tente de novo mais tarde."}[j.status]||"Não consegui cutucar agora.";
+    });
     if(a==="unb")return act(()=>rpc("friends_unblock",{p_uid:u}));
     if(a==="rep")return act(async()=>{const m=prompt("Conte em poucas palavras o que aconteceu (opcional):","");if(m===null)return;await rpc("friends_report",{p_uid:u,p_reason:m});msg="Denúncia enviada e pessoa bloqueada.";});
   });
   document.addEventListener("change",e=>{
-    const t=e.target;if(!t||(t.id!=="fr-s1"&&t.id!=="fr-s2")||!me)return;
+    const t=e.target;if(t&&t.id==="fr-poke"&&me){act(async()=>{await rpc("friends_pokes_set",{p_on:t.checked});me=await rpc("friends_me");msg="Preferência salva.";});return;}
+    if(!t||(t.id!=="fr-s1"&&t.id!=="fr-s2")||!me)return;
     act(async()=>{await rpc("friends_share",{p_streak:$("#fr-s1").checked,p_words:$("#fr-s2").checked});me=await rpc("friends_me");await pushStats();msg="Preferência salva.";});
   });
   /* mantém os números atualizados enquanto o app é usado (no máximo uma vez por minuto) */
