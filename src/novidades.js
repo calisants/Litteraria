@@ -1,5 +1,9 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.42.0",d:"2026-10-21",t:[
+"Novo: conta opcional com backup na nuvem. Ajustes → Conta e nuvem. Você digita o e-mail, recebe um código de 6 números e entra. O progresso fica guardado e vale em mais de um aparelho",
+"Você pode baixar os seus dados e apagar a conta e tudo o que está na nuvem, quando quiser. Sem conta, o app continua igual, só neste aparelho",
+"A Política de Privacidade (Ajustes → Sobre e ajuda) agora também explica a conta"]},
 {v:"1.41.1",d:"2026-10-21",t:["Ajuste interno na preparação da conta na nuvem (compatível com as chaves novas do Supabase). Nada muda na tela"]},
 {v:"1.41.0",d:"2026-10-21",t:[
 "Novo: Política de Privacidade, em Ajustes → Sobre e ajuda. Ela diz o que o app guarda e o que sai do aparelho",

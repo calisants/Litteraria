@@ -988,7 +988,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.41.1",d:"2026-10-21"};
+const APP_REL={v:"1.42.0",d:"2026-10-21"};
 
 
 const RAW={
@@ -5607,8 +5607,8 @@ window.PUSHCFG={pub:"BABpqQWwmnBfJ65d2PuppVGG3PrlL1BB_zXg4jaccd2z8ELoB1KOsypXKz3
 })();
 
 /* Conta e nuvem (Supabase). Vazio = recurso desligado e escondido. Veja nuvem/LEIA-ME.md.
-   url = «Project URL» do projeto; key = chave pública «anon/publishable» (pode ficar no app: quem protege os dados são as regras do banco). */
-window.CLOUDCFG={url:"",key:""};
+   url = «Project URL» do projeto; key = chave pública «publishable» (pode ficar no app: quem protege os dados são as regras do banco). NUNCA ponha a chave secret/service_role aqui. */
+window.CLOUDCFG={url:"https://uunfcvgiomzgwtpckzdx.supabase.co",key:"sb_publishable_llpuCn7xAWNWenk13YrUAw_KOyiV1X6"};
 
 /* ===== Política de Privacidade (texto que aparece no app) =====
    Descreve o que o app realmente faz. As partes sobre conta e lembretes só aparecem quando esses recursos estão ligados (CLOUDCFG / PUSHCFG).
@@ -5889,6 +5889,10 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.42.0",d:"2026-10-21",t:[
+"Novo: conta opcional com backup na nuvem. Ajustes → Conta e nuvem. Você digita o e-mail, recebe um código de 6 números e entra. O progresso fica guardado e vale em mais de um aparelho",
+"Você pode baixar os seus dados e apagar a conta e tudo o que está na nuvem, quando quiser. Sem conta, o app continua igual, só neste aparelho",
+"A Política de Privacidade (Ajustes → Sobre e ajuda) agora também explica a conta"]},
 {v:"1.41.1",d:"2026-10-21",t:["Ajuste interno na preparação da conta na nuvem (compatível com as chaves novas do Supabase). Nada muda na tela"]},
 {v:"1.41.0",d:"2026-10-21",t:[
 "Novo: Política de Privacidade, em Ajustes → Sobre e ajuda. Ela diz o que o app guarda e o que sai do aparelho",

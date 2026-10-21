@@ -11,6 +11,7 @@ class Fake:
     def __init__(s): s.prog={};s.cons={};s.n=0;s.codes=[];s.deleted=0
     def stamp(s): s.n+=1; return '2026-10-21T15:00:%02d.%06d+00:00'%(s.n%60,s.n)
 fk=Fake()
+CFG=['{url:"http://cloud.test",key:"anon-test"}']
 def handler(route):
     rq=route.request;u=urlparse(rq.url);path=u.path;q=parse_qs(u.query)
     if rq.method=='OPTIONS': return route.fulfill(status=204,headers=CORS)
@@ -35,7 +36,7 @@ def handler(route):
     if path=='/rest/v1/rpc/delete_me': fk.prog={};fk.cons={};fk.deleted+=1;return J(204,{})
     return J(404,{'msg':'?'})
 def page_html(route):
-    r=route.fetch();t=r.text().replace('window.CLOUDCFG={url:"",key:""}','window.CLOUDCFG={url:"http://cloud.test",key:"anon-test"}')
+    r=route.fetch();cfg=CFG[0];t=re.sub(r'window\.CLOUDCFG=\{[^}]*\}','window.CLOUDCFG='+cfg,r.text())
     route.fulfill(response=r,body=t)
 try:
   with sync_playwright() as p:
@@ -50,11 +51,13 @@ try:
         return pg
     openset=lambda pg:pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}")
     # 1) sem nuvem configurada: sem o grupo; política sem a parte de conta
+    CFG[0]='{url:"",key:""}'
     c0=b.new_context(viewport={'width':390,'height':844},service_workers='block');pg=newpage(c0,cloud=False)
+    pg.route('**/index.html',page_html)
     pg.goto('http://localhost:8787/index.html');pg.wait_for_timeout(800);openset(pg)
     assert pg.locator('#sec-cloud').count()==0
     pg.click('#open-priv');t=pg.inner_text('#sheet').lower();assert 'sem conta, nada sai do seu aparelho' in t and 'conta (opcional)' not in t and 'seus direitos' not in t
-    c0.close()
+    c0.close();CFG[0]='{url:"http://cloud.test",key:"anon-test"}'
     # 2) com nuvem: entrar
     c1=b.new_context(viewport={'width':390,'height':844},service_workers='block');pg=newpage(c1)
     pg.goto('http://localhost:8787/index.html');pg.wait_for_timeout(800);openset(pg)
