@@ -5,6 +5,7 @@ import os, re, sys, json, hashlib, datetime, urllib.request, urllib.parse
 from urllib.parse import urlparse
 
 DRY = "--dry" in sys.argv
+FORCE = os.environ.get("FORCE") == "true" or "--force" in sys.argv  # teste: ignora janela de horário, «já enviado» e «já estudou»
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 HOSTS = [r"^fcm\.googleapis\.com$", r"^updates\.push\.services\.mozilla\.com$", r"(^|\.)push\.apple\.com$", r"(^|\.)notify\.windows\.com$"]
 MSGS = ["Cinco minutinhos de {L} hoje já contam.", "Uma lição curta agora vale mais do que uma longa que nunca começa.",
@@ -42,6 +43,8 @@ def message(row, day):
 
 
 def due(row, now):
+    if FORCE:
+        return True, (now - datetime.timedelta(minutes=int(row["tz"]))).strftime("%Y-%m-%d")
     local = now - datetime.timedelta(minutes=int(row["tz"]))
     day = local.strftime("%Y-%m-%d")
     h = int(row["h"])
@@ -71,7 +74,9 @@ def main():
         try:
             webpush(sub, json.dumps(message(row, day), ensure_ascii=False), vapid_private_key=os.environ["VAPID_PRIVATE"],
                     vapid_claims={"sub": "mailto:calisants@users.noreply.github.com"}, ttl=6 * 3600, headers={"Urgency": "normal"})
-            call(url, key, a="mark", id=row["id"], d=day); sent += 1
+            if not FORCE:
+                call(url, key, a="mark", id=row["id"], d=day)
+            sent += 1
         except WebPushException as e:
             code = getattr(e.response, "status_code", 0)
             if code in (404, 410):
