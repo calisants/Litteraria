@@ -72,7 +72,7 @@ const ICON_IDS=["padrao","alice","pp","frank","soft","dante"];
 const WD_SRC=["hoje","msg","frase","livro","palavra","off"];
 const DAYRE=/^\d{4}-\d\d-\d\d$/;
 const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0},
-  sq:0,lgt:"",gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"hoje",bk:"all"},ic:"padrao"};
+  sq:0,lgt:"",gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"off",bk:"all",u:0},ic:"padrao"};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -124,7 +124,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
       seen:Array.isArray(g.seen)?g.seen.filter(k=>typeof k==="string"&&/^[a-z0-9]{1,12}$/.test(k)).slice(0,40):[]};
   }
   if(sv.rm&&typeof sv.rm==="object"){S.rm={on:sv.rm.on===true,h:ci(sv.rm.h,0,23)||(+sv.rm.h===0?0:19),st:["anim","calma","cartao"].indexOf(sv.rm.st)>=0?sv.rm.st:"anim"};}
-  if(sv.wd&&typeof sv.wd==="object"){S.wd={src:WD_SRC.indexOf(sv.wd.src)>=0?sv.wd.src:"hoje",bk:typeof sv.wd.bk==="string"&&/^[a-z]{1,12}$/.test(sv.wd.bk)?sv.wd.bk:"all"};}
+  if(sv.wd&&typeof sv.wd==="object"){S.wd={u:sv.wd.u?1:0,src:WD_SRC.indexOf(sv.wd.src)>=0&&(sv.wd.u||sv.wd.src!=="hoje")?sv.wd.src:"off",bk:typeof sv.wd.bk==="string"&&/^[a-z]{1,12}$/.test(sv.wd.bk)?sv.wd.bk:"all"};}
   if(ICON_IDS.indexOf(sv.ic)>=0)S.ic=sv.ic;
   /* as marcas de concluído das versões antigas não são trazidas: os ids das páginas mudaram */
   if(!old&&sv.done&&typeof sv.done==="object")Object.keys(sv.done).forEach(k=>{if(/^(fr|it|en):[a-z0-9-]+$/.test(k))S.done[k]=1;});

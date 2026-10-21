@@ -1,5 +1,7 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.39.1",d:"2026-10-21",t:[
+"Corrigido: o «Hoje» aparecia duas vezes na tela inicial. O Cartão do dia agora vem desligado; para usar, ative em Ajustes → Lembretes e cartão"]},
 {v:"1.39.0",d:"2026-10-21",t:[
 "Corrigido: ao sair do app no meio de uma lição (para usar outro app) e voltar, a lição continua de onde parou. Só se perde se você fechar o app de vez ou ficar mais de 3 horas fora",
 "Em «Hoje», os jogos entram entre as lições: depois de 2 lições seguidas vem um jogo (de tipo diferente do último)",

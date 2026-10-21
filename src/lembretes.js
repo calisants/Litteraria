@@ -61,7 +61,7 @@
   document.addEventListener("click",e=>{
     const t=e.target.closest&&e.target.closest("[data-wd],[data-wc],#wc-go2,#wc-say2,#nudge-go,#nudge-x");
     if(!t)return;
-    if(t.dataset.wd){S.wd.src=t.dataset.wd;afterWd();return;}
+    if(t.dataset.wd){S.wd.src=t.dataset.wd;S.wd.u=1;afterWd();return;}
     const w=t.dataset.wc;
     if(w==="go"||t.id==="wc-go2"||t.id==="nudge-go"){closeSheet();startToday();return;}
     if(w==="say"||t.id==="wc-say2"){const c=cardFor(ymd(),S.lang);if(c.say)speak(c.say);return;}
