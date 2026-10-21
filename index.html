@@ -988,7 +988,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.42.0",d:"2026-10-21"};
+const APP_REL={v:"1.42.1",d:"2026-10-21"};
 
 
 const RAW={
@@ -5673,7 +5673,8 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     if(r&&r.status===429||/rate|seconds/i.test(m))return "Aguarde um minuto antes de pedir outro código.";
     if(/not authorized/i.test(m))return "Este e-mail ainda não pode receber o código: o envio de e-mails do serviço está em modo de teste.";
     if(/invalid|expired|token/i.test(m))return "Código incorreto ou vencido. Peça um novo.";
-    return "Não consegui concluir. Confira a internet e o e-mail e tente de novo.";
+    if(/sending|smtp|mail/i.test(m))return "O serviço não conseguiu enviar o e-mail (conferir a conexão do Gmail no Supabase). Detalhe: "+m.slice(0,140);
+    return "Não consegui concluir"+(r?" (erro "+r.status+(m?": "+m.slice(0,140):"")+")":"")+". Confira a internet e o e-mail e tente de novo.";
   }
   async function requestCode(email){
     const r=await raw("/auth/v1/otp",{method:"POST",body:{email:email,create_user:true}});
@@ -5889,6 +5890,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.42.1",d:"2026-10-21",t:["Conta na nuvem: as mensagens de erro agora dizem o motivo, para facilitar achar o problema"]},
 {v:"1.42.0",d:"2026-10-21",t:[
 "Novo: conta opcional com backup na nuvem. Ajustes → Conta e nuvem. Você digita o e-mail, recebe um código de 6 números e entra. O progresso fica guardado e vale em mais de um aparelho",
 "Você pode baixar os seus dados e apagar a conta e tudo o que está na nuvem, quando quiser. Sem conta, o app continua igual, só neste aparelho",

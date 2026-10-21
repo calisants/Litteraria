@@ -39,7 +39,8 @@
     if(r&&r.status===429||/rate|seconds/i.test(m))return "Aguarde um minuto antes de pedir outro código.";
     if(/not authorized/i.test(m))return "Este e-mail ainda não pode receber o código: o envio de e-mails do serviço está em modo de teste.";
     if(/invalid|expired|token/i.test(m))return "Código incorreto ou vencido. Peça um novo.";
-    return "Não consegui concluir. Confira a internet e o e-mail e tente de novo.";
+    if(/sending|smtp|mail/i.test(m))return "O serviço não conseguiu enviar o e-mail (conferir a conexão do Gmail no Supabase). Detalhe: "+m.slice(0,140);
+    return "Não consegui concluir"+(r?" (erro "+r.status+(m?": "+m.slice(0,140):"")+")":"")+". Confira a internet e o e-mail e tente de novo.";
   }
   async function requestCode(email){
     const r=await raw("/auth/v1/otp",{method:"POST",body:{email:email,create_user:true}});
