@@ -505,6 +505,7 @@ svg{display:block}
 /* início */
 .hero{padding:12px 0 0}.hero .brand{font-size:clamp(1.7rem,8vw,2.2rem)}
 .me{padding:6px 0 0;gap:10px}.me .avatar{--av:40px!important}.me .who b{font-size:1.08rem}.me .who small{font-size:.85rem}
+.skr{display:grid;grid-template-columns:minmax(0,1fr) 90px 44px;gap:8px;align-items:center;margin:6px 0}.skr .gbar{margin:0;background:var(--line)}.skr .gbar i{background:var(--accent)}.skr b{text-align:right}.skh{margin:12px 0 2px;font-size:.9rem}
 .gchip{display:flex;flex:none;gap:10px;border:0;border-radius:99px;padding:6px 12px;background:var(--soft);color:var(--ink);font-weight:700;font-size:.82rem;cursor:pointer}
 .gchip[hidden]{display:none}.gchip span{display:inline-flex;align-items:center;gap:4px}.gchip svg{color:var(--accent)}.gchip.idle span:first-child svg{opacity:.4}
 #go-today{display:flex;flex-direction:row;align-items:center;gap:14px;width:100%;min-height:68px;margin:10px 0 0;padding:12px 16px}
@@ -989,7 +990,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.45.0",d:"2026-10-21"};
+const APP_REL={v:"1.46.0",d:"2026-10-21"};
 
 
 const RAW={
@@ -2942,7 +2943,7 @@ $("#custom-color").addEventListener("input",e=>{S.custom=e.target.value;save();a
 $("#player").addEventListener("input",e=>{S.player=e.target.value.slice(0,24);save();renderMe();});
 $("#motto").addEventListener("input",e=>{S.motto=e.target.value.slice(0,60);save();renderMe();});
 $("#avgrid").addEventListener("click",e=>{const b=e.target.closest("[data-av]");if(!b)return;S.avatar=b.dataset.av;save();syncPrefs();});
-$(".me").addEventListener("click",()=>go("profile"));
+$(".me").addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#gam-chip"))return;go("profile");});
 $("#s-stats").addEventListener("click",e=>{onPrefClick(e);renderStats();});
 $("#s-profile").addEventListener("click",onPrefClick);
 $("#s-vol").addEventListener("click",onPrefClick);
@@ -5300,6 +5301,30 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   window.renderGam=renderGam;
   const _rm2=renderMe;renderMe=function(){_rm2();renderGam();};
 
+
+  /* pontos fortes e fracos: só do que ela realmente jogou (S.sk), por tema do vocabulário */
+  function skillsHtml(){
+    const L=S.lang,sk=S.sk[L]||{},names={};
+    CATS.concat(BOOKTHEMES).forEach(c=>{names[c[0]]=c[1];});
+    const rows=[];
+    Object.keys(VOCAB[L]||{}).forEach(t=>{
+      let ok=0,bad=0,seen=0;
+      VOCAB[L][t].forEach(it=>{const a=sk[String(it.w).toLowerCase()];if(a){ok+=a[0];bad+=a[1];seen++;}});
+      if(seen>=3&&ok+bad>=6)rows.push({n:names[t]||t,p:Math.round(100*ok/(ok+bad)),t:ok+bad});
+    });
+    rows.sort((a,b)=>b.p-a.p||b.t-a.t);
+    const bar=r=>'<div class="skr"><span>'+esc(r.n)+'</span><span class="gbar" aria-hidden="true"><i style="width:'+r.p+'%"></i></span><b>'+r.p+'%</b></div>';
+    let h='<h3 class="sub">Pontos fortes e fracos · '+LNAME[L]+'</h3>';
+    if(rows.length<2)return h+'<p class="help">Ainda há pouco dado. Jogue mais alguns jogos de vocabulário e aqui aparecem os temas em que você vai melhor e os que precisam de reforço.</p>';
+    const top=rows.filter(r=>r.p>=70).slice(0,3),low=rows.slice().reverse().filter(r=>r.p<70).slice(0,3);
+    h+='<p class="help">Cada barra é a porcentagem de acertos nas palavras do tema (só entram temas com pelo menos 3 palavras e 6 respostas suas).</p>';
+    h+='<h4 class="skh">Você vai bem em</h4>'+(top.length?top.map(bar).join(""):'<p class="help">Nenhum tema chegou a 70% ainda.</p>');
+    h+='<h4 class="skh">Precisa de reforço</h4>'+(low.length?low.map(bar).join(""):'<p class="help">Nenhum tema abaixo de 70%. Muito bem!</p>');
+    const weak=Object.keys(sk).filter(k=>sk[k][1]>sk[k][0]).sort((a,b)=>(sk[b][1]-sk[b][0])-(sk[a][1]-sk[a][0])).slice(0,5);
+    if(weak.length)h+='<h4 class="skh">Palavras que mais erra</h4><p class="help">'+weak.map(k=>"<b>"+esc(k)+"</b>"+(sk[k][2]?" ("+esc(sk[k][2])+")":"")).join(" · ")+'</p>';
+    return h+'<div class="row"><button type="button" class="btn primary" id="gam-train">Treinar o que preciso reforçar</button></div>';
+  }
+
   function openGam(){
     const s=streak(),l=levelOf(S.gam.pts),a=lvStart(l),b=lvStart(l+1),pc=Math.round(100*(S.gam.pts-a)/(b-a));
     const set=new Set(S.gam.days),now=new Date();now.setHours(12,0,0,0);
@@ -5314,6 +5339,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
       '<p class="help">Recorde: '+S.gam.best+" dias · lições concluídas: "+S.gam.les+" · maior série de acertos: "+S.gam.bc+"</p>"+
       '<p class="gam-lv"><b>Nível '+l+"</b> · "+S.gam.pts+" pontos</p><span class=\"gbar\" aria-hidden=\"true\"><i style=\"width:"+pc+"%\"></i></span>"+
       '<p class="help">Faltam '+(b-S.gam.pts)+" pontos para o nível "+(l+1)+'.</p>'+
+      skillsHtml()+
       '<h3 class="sub">Conquistas · '+earned+" de "+BADGES.length+"</h3><div class=\"gbadges\">"+
       BADGES.map(x=>{const got=S.gam.seen.indexOf(x[0])>=0;return '<div class="gb'+(got?" got":"")+'"><b>'+esc(x[1])+"</b><small>"+esc(x[2])+"</small></div>";}).join("")+"</div>"+
       '<h3 class="sub">Como os pontos funcionam</h3><p class="help">+10 por resposta certa de primeira; +5 a cada 5 acertos seguidos; +50 ao concluir uma página nova (+10 ao repetir); bônus ao começar um novo dia de sequência. Se um dia passar em branco, a sequência recomeça e o recorde fica guardado. Nada é tirado de você.</p>'+
@@ -5323,6 +5349,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   window.openGam=openGam;
   document.addEventListener("click",e=>{
     if(e.target.closest&&e.target.closest("#gam-chip")){openGam();return;}
+    if(e.target.closest&&e.target.closest("#gam-train")){closeSheet();if(typeof openTrainMenu==="function")openTrainMenu();return;}
     if(e.target.closest&&e.target.closest("#gam-off")){S.gam.on=false;save();closeSheet();renderGam();syncGamSeg();}
   });
   function syncGamSeg(){$$("#gam-seg [data-gam]").forEach(b=>b.setAttribute("aria-pressed",String((b.dataset.gam==="on")===on())));}
@@ -6047,6 +6074,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.46.0",d:"2026-10-21",t:["Novo: ao tocar em «sequência / nível» na tela inicial, abre o painel com seus pontos fortes e fracos: os temas de vocabulário em que você mais acerta, os que precisam de reforço e as palavras que mais erra, com o botão «Treinar o que preciso reforçar»","Corrigido: esse toque também abria o Perfil; agora abre só o painel (o Perfil abre ao tocar no resto da faixa)","Sequência de dias continua em «Pontos e sequência»; o painel mostra só o que você realmente jogou"]},
 {v:"1.45.0",d:"2026-10-21",t:["Novo: atalho «Amigos» na tela inicial (aparece quando a conta na nuvem está disponível). Sem estar logado, ele leva direto para Conta e nuvem"]},
 {v:"1.44.0",d:"2026-10-21",t:["Novo: cutucar um amigo. Em Amigos, toque em «Cutucar» ao lado do nome e ele recebe uma notificação para estudar. Limite de 1 por amigo por dia; dá para desligar em «Aceitar cutucadas»","Para receber cutucadas, ligue os lembretes com o app fechado (Ajustes → Lembretes e cartão)","Política de Privacidade atualizada com o que as cutucadas guardam"]},
 {v:"1.43.0",d:"2026-10-21",t:["Novo: na primeira vez que você abre o app depois de uma atualização, aparece um aviso para ler as novidades","Novo: Amigos (opcional, só com conta). Ajustes → Conta e nuvem → Amigos. Você ativa, ganha um código, e só quem tiver o código pode te adicionar. Cada um escolhe se mostra a sequência de dias e as palavras acertadas. Dá para bloquear, denunciar e desativar","Antes de usar Amigos, a criadora precisa instalar a parte nova no servidor; se ainda não estiver instalada, o app avisa"]},

@@ -507,7 +507,7 @@ $("#custom-color").addEventListener("input",e=>{S.custom=e.target.value;save();a
 $("#player").addEventListener("input",e=>{S.player=e.target.value.slice(0,24);save();renderMe();});
 $("#motto").addEventListener("input",e=>{S.motto=e.target.value.slice(0,60);save();renderMe();});
 $("#avgrid").addEventListener("click",e=>{const b=e.target.closest("[data-av]");if(!b)return;S.avatar=b.dataset.av;save();syncPrefs();});
-$(".me").addEventListener("click",()=>go("profile"));
+$(".me").addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#gam-chip"))return;go("profile");});
 $("#s-stats").addEventListener("click",e=>{onPrefClick(e);renderStats();});
 $("#s-profile").addEventListener("click",onPrefClick);
 $("#s-vol").addEventListener("click",onPrefClick);

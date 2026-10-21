@@ -170,3 +170,6 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 ## v1.45.0 (21/10/2026)
 - Atalho «Amigos» na tela inicial (`#go-friends` em `p2.html`, ligado em `amigos.js`; só aparece se `CLOUDCFG` existe; sem login leva a Conta e nuvem). Teste: `t28.py`.
 - Sherlock Holmes em texto completo, aos poucos: caps. 1-2 prontos (tradução natural; `books/sherlock.js` está em ASSETS). Faltam 3-12. Textos enviados por ela (sherlock, vento, mosquet. 1 e 2, dante, volta, pino) ficam em `/tmp/claude-0/bk/` e podem sumir.
+
+## v1.46.0 (21/10/2026)
+- Pedido dela: o chip «sequência/nível» (`#gam-chip`) só levava ao Perfil. Causa: ele fica dentro de `.me`, que tem clique para o Perfil (agora `p3.js` ignora cliques no chip). O painel `openGam` ganhou «Pontos fortes e fracos» (`skillsHtml` em `gamif.js`): % de acertos por tema do vocabulário no idioma atual (temas com ≥3 palavras e ≥6 respostas de `S.sk`), palavras que mais erra e botão «Treinar o que preciso reforçar» (abre o menu do Treino). Só vocabulário; gramática não registra acertos por palavra. Teste: `tests/t29.py`.
