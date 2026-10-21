@@ -986,7 +986,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.40.0",d:"2026-10-21"};
+const APP_REL={v:"1.40.1",d:"2026-10-21"};
 
 
 const RAW={
@@ -5533,7 +5533,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
 
 /* Configuração do envio de notificações com o app fechado (Web Push). Veja push/LEIA-ME.md.
    pub = chave pública VAPID (pode ser pública). sink = endereço do Apps Script que guarda as inscrições (vazio = recurso desligado). */
-window.PUSHCFG={pub:"BABpqQWwmnBfJ65d2PuppVGG3PrlL1BB_zXg4jaccd2z8ELoB1KOsypXKz3bdq0SHYSVjk61qL77peIqPA0e47o",sink:""};
+window.PUSHCFG={pub:"BABpqQWwmnBfJ65d2PuppVGG3PrlL1BB_zXg4jaccd2z8ELoB1KOsypXKz3bdq0SHYSVjk61qL77peIqPA0e47o",sink:"https://script.google.com/macros/s/AKfycbydGg8sDzb7iRiDDobvppZ_R_3nry0dxOth1-3q-vTTHkhHyluFICsfJeEoSm3FVcE7/exec"};
 
 /* ===== Notificações com o app fechado (Web Push), v1.40 =====
    O celular se inscreve no serviço de push do próprio sistema (Apple/Google/Mozilla). O endereço da inscrição vai para uma caixa
@@ -5632,6 +5632,8 @@ window.PUSHCFG={pub:"BABpqQWwmnBfJ65d2PuppVGG3PrlL1BB_zXg4jaccd2z8ELoB1KOsypXKz3
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.40.1",d:"2026-10-21",t:[
+"As notificações com o app fechado estão ligadas no app. Para receber: Ajustes → Lembretes e cartão → ligue os lembretes e toque em «Ativar envio com o app fechado». No iPhone, abra o app pelo ícone da Tela de Início"]},
 {v:"1.40.0",d:"2026-10-21",t:[
 "Novo: lembretes que chegam como notificação do celular mesmo com o app fechado (iPhone e Android). Ajustes → Lembretes e cartão. No iPhone, instale o app pela Tela de Início (iOS 16.4 ou mais novo)",
 "O aviso não vem se você já tiver estudado naquele dia. A mensagem é sempre genérica: o servidor não sabe o seu progresso",

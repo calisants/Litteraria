@@ -17,6 +17,7 @@ try:
         route.fulfill(status=200,body='{"ok":true}',headers={'access-control-allow-origin':'*'})
     pg.route('http://sink.test/**',sink)
     pg.goto('http://localhost:8785/index.html');pg.wait_for_timeout(1200)
+    pg.evaluate("()=>{PUSHCFG.sink=''}")
     open_=lambda:pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}")
     # 1) sem caixa configurada: nada aparece e nada é enviado
     open_();assert pg.inner_text('#rm-push').strip()=='','sem sink deve ficar vazio'

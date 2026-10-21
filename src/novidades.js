@@ -1,5 +1,7 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.40.1",d:"2026-10-21",t:[
+"As notificações com o app fechado estão ligadas no app. Para receber: Ajustes → Lembretes e cartão → ligue os lembretes e toque em «Ativar envio com o app fechado». No iPhone, abra o app pelo ícone da Tela de Início"]},
 {v:"1.40.0",d:"2026-10-21",t:[
 "Novo: lembretes que chegam como notificação do celular mesmo com o app fechado (iPhone e Android). Ajustes → Lembretes e cartão. No iPhone, instale o app pela Tela de Início (iOS 16.4 ou mais novo)",
 "O aviso não vem se você já tiver estudado naquele dia. A mensagem é sempre genérica: o servidor não sabe o seu progresso",
