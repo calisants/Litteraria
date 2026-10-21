@@ -62,7 +62,7 @@ def keepalive(now):
         return
     try:
         req = urllib.request.Request(u + "/rest/v1/rpc/ping", data=b"{}", method="POST",
-                                     headers={"apikey": k, "authorization": "Bearer " + k, "content-type": "application/json"})
+                                     headers=dict({"apikey": k, "content-type": "application/json"}, **({"authorization": "Bearer " + k} if k.startswith("eyJ") else {})))
         with urllib.request.urlopen(req, timeout=30) as r:
             print("ping Supabase:", r.status)
     except Exception as e:

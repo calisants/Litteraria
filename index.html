@@ -988,7 +988,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.41.0",d:"2026-10-21"};
+const APP_REL={v:"1.41.1",d:"2026-10-21"};
 
 
 const RAW={
@@ -5652,7 +5652,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
   async function raw(path,o){
     o=o||{};
     const h={apikey:C.key,"content-type":"application/json"};
-    h.authorization="Bearer "+(o.token||C.key);
+    if(o.token)h.authorization="Bearer "+o.token;else if(/^eyJ/.test(C.key))h.authorization="Bearer "+C.key; /* chaves novas (sb_publishable_…) não são JWT: só vão no cabeçalho apikey */
     if(o.prefer)h.prefer=o.prefer;
     return fetch(C.url+path,{method:o.method||"GET",headers:h,body:o.body===undefined?undefined:JSON.stringify(o.body)});
   }
@@ -5889,6 +5889,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.41.1",d:"2026-10-21",t:["Ajuste interno na preparação da conta na nuvem (compatível com as chaves novas do Supabase). Nada muda na tela"]},
 {v:"1.41.0",d:"2026-10-21",t:[
 "Novo: Política de Privacidade, em Ajustes → Sobre e ajuda. Ela diz o que o app guarda e o que sai do aparelho",
 "Pronto para a conta opcional com backup na nuvem (entrada por código no e-mail, sincronização entre aparelhos, baixar meus dados e apagar a conta). Ela aparece em Ajustes quando o serviço estiver ligado"]},

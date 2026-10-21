@@ -18,7 +18,7 @@
   async function raw(path,o){
     o=o||{};
     const h={apikey:C.key,"content-type":"application/json"};
-    h.authorization="Bearer "+(o.token||C.key);
+    if(o.token)h.authorization="Bearer "+o.token;else if(/^eyJ/.test(C.key))h.authorization="Bearer "+C.key; /* chaves novas (sb_publishable_…) não são JWT: só vão no cabeçalho apikey */
     if(o.prefer)h.prefer=o.prefer;
     return fetch(C.url+path,{method:o.method||"GET",headers:h,body:o.body===undefined?undefined:JSON.stringify(o.body)});
   }
