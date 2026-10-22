@@ -28,7 +28,7 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 ## Estado e pendências (outubro de 2026)
 - Ordem didática das páginas de gramática já aplicada (está no `LEIA-ME.md`).
 - Sem exercício ainda: as preposições soltas do inglês (above, among, during etc.) e «easily confused words», cujos PDFs do Cambridge ela já enviou, ainda não viraram páginas.
-- Sem fonte conferida: «a university» e instrumentos com «the» (inglês), «in Brazil» / «in the kitchen» (inglês), a divisão em «três grupos» e o «-issant» (francês).
+- Sem fonte conferida: «a university» e instrumentos com «the» (inglês), «in Brazil» / «in the kitchen» (inglês) e a divisão completa em «três grupos» do francês (o «-issant» e o «-ir = 2º grupo» foram conferidos no Tex's, vpp1 e vir1, em 22/10/2026). O Cambridge não abre pelo leitor e os PDFs dela sumiram do ambiente: precisa que ela reenvie os do «above/over…» e «easily confused words».
 - Fora de escopo por decisão dela: amigos, perfil compartilhado e servidor.
 - Reconhecimento de fala para pronúncia: não começado; só funciona em Chrome/Android e precisa da confirmação dela.
 
@@ -184,7 +184,7 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Sherlock: caps. 1-3 prontos. Meta semanal com amigo ficou de fora de propósito (exigiria SQL novo e mexe em privacidade): conversar com ela antes.
 
 ## v1.49.0 (22/10/2026)
-- Sherlock Holmes em texto completo: caps. 1-11 prontos (11 na v1.50.3; tradução natural, sem literal). Falta 12. Partes longas ficam em `livros_txt/sherlock/parts/` e são juntadas com `cat` em `pt_<n>.txt`. Cache `mots-parole-v90`.
+- Sherlock Holmes em texto completo: caps. 1-11 prontos (11 na v1.50.3; tradução natural, sem literal). Falta 12. Partes longas ficam em `livros_txt/sherlock/parts/` e são juntadas com `cat` em `pt_<n>.txt`. Cache `mots-parole-v91`.
 - `nuvem/amigos2.sql` já foi colado por ela no Supabase (22/10/2026); falta só conferir no aparelho. Meta semanal com amigo ficou de fora de propósito (exige SQL novo e decisão de privacidade).
 
 ## v1.50.0 (22/10/2026): desafio semanal entre amigos
@@ -196,4 +196,4 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 ## v1.50.4 (22/10/2026): conteúdo básico
 - «Classes de palavras» agora tem 3 páginas (era 2) em fr/it/en; a 3ª treina **pronome, conjunção e interjeição** (6 perguntas, 2 de cada). Gerada por `tools/gram_cls3.py` (idempotente; acrescenta a página a `gram_items.json`). Cartões de regra em `gram_rules3.py` (`OV`): frases e definições novas rotuladas «Escritos por Claude, sem fonte conferida».
 - **`gram_gen.py` e `hints.py` não rodam mais**: dependem do módulo `conj` (verbecc), que não está no repositório. Para não perder as 140 dicas de conjugação (`d`), `mk_content5.py` usa `tools/gram_hints.json` quando `import hints` falha. Rode `cd src/tools && python3 mk_content5.py ../content5.js` (o caminho de saída é obrigatório). Se refizer o `conj`, o ideal é regenerar as dicas.
-- `gt.py` agora termina com `concluidas 36 de 36`. Cache `mots-parole-v90`.
+- `gt.py` agora termina com `concluidas 36 de 36`. Cache `mots-parole-v91`.
