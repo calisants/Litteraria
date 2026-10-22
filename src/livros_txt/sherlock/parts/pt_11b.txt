@@ -1,0 +1,80 @@
+70|«“Sim, ladrão!”, rugi, sacudindo-o pelo ombro.
+71|«“Não falta nenhuma. Não pode faltar nenhuma”, disse ele.
+72|«“Faltam três. E você sabe onde estão. Terei de chamá-lo de mentiroso além de ladrão? Não o vi tentando arrancar outro pedaço?”
+73|«“O senhor já me chamou de nomes bastantes”, disse ele, “não suportarei mais. Não direi outra palavra sobre este negócio, já que o senhor escolheu me insultar. Deixarei a sua casa pela manhã e farei o meu próprio caminho no mundo.”
+74|«“Você a deixará nas mãos da polícia!”, gritei, meio louco de dor e de raiva. “Vou mandar sondar este assunto até o fundo.”
+75|«“Não aprenderá nada comigo”, disse ele com uma paixão que eu não teria pensado haver na sua natureza. “Se o senhor escolhe chamar a polícia, que a polícia ache o que puder.”
+76|«A essa altura a casa inteira estava em alvoroço, pois eu levantara a voz na minha raiva. Mary foi a primeira a correr ao meu quarto e, à vista da coroa e do rosto de Arthur, leu toda a história e, com um grito, caiu desmaiada no chão. Mandei a criada chamar a polícia e pus a investigação nas mãos dela de imediato. Quando o inspetor e um guarda entraram na casa, Arthur, que ficara carrancudo, de braços cruzados, perguntou-me se era minha intenção acusá-lo de furto. Respondi que deixara de ser assunto privado e se tornara público, visto que a coroa arruinada era propriedade nacional. Eu estava decidido a que a lei seguisse o seu curso em tudo.
+77|«“Ao menos”, disse ele, “o senhor não me mandará prender de imediato. Seria vantajoso para o senhor tanto quanto para mim que eu pudesse sair da casa por cinco minutos.”
+78|«“Para que você fuja, ou talvez para que oculte o que roubou”, disse eu. E então, percebendo a terrível posição em que fora posto, implorei-lhe que se lembrasse de que estava em jogo não só a minha honra, mas a de alguém muito maior que eu; e que ele ameaçava levantar um escândalo que convulsionaria a nação. Poderia evitar tudo se apenas me dissesse o que fizera com as três pedras que faltavam.
+79|«“Mais vale enfrentar o caso”, disse eu; “você foi apanhado em flagrante, e nenhuma confissão poderia tornar a sua culpa mais hedionda. Se ao menos fizer a reparação que está ao seu alcance, dizendo-nos onde estão os berilos, tudo será perdoado e esquecido.”
+80|«“Guarde o seu perdão para quem o pede”, respondeu ele, virando-se de mim com um sorriso de desdém. Vi que estava endurecido demais para que quaisquer palavras minhas o influenciassem. Só havia um caminho. Chamei o inspetor e o entreguei à custódia. Fez-se de imediato uma busca não só na sua pessoa, mas no seu quarto e em cada parte da casa onde ele pudesse ter ocultado as gemas; mas não se achou rastro delas, nem o infeliz rapaz abriu a boca apesar de todas as nossas persuasões e ameaças. Esta manhã foi removido para uma cela, e eu, depois de passar por todas as formalidades policiais, apressei-me até o senhor para implorar que use a sua habilidade em desvendar o caso. A polícia confessou abertamente que no momento nada consegue concluir dele. O senhor pode fazer qualquer despesa que julgue necessária. Já ofereci uma recompensa de £ 1.000. Meu Deus, que farei! Perdi numa só noite a minha honra, as minhas gemas e o meu filho. Oh, que farei!»
+81|Pôs uma mão de cada lado da cabeça e balançou-se para a frente e para trás, zumbindo para si mesmo como uma criança cuja dor passou além das palavras.
+82|Sherlock Holmes ficou calado por alguns minutos, de sobrancelhas franzidas e olhos fixos no fogo.
+83|— O senhor recebe muita visita? — perguntou.
+84|— Ninguém, salvo o meu sócio com a família e, de vez em quando, um amigo de Arthur. Sir George Burnwell tem vindo várias vezes ultimamente. Ninguém mais, creio.
+85|— O senhor sai muito em sociedade?
+86|— Arthur sai. Mary e eu ficamos em casa. Nenhum de nós dois gosta disso.
+87|— Isso é incomum numa moça.
+88|— Ela é de natureza quieta. Além disso, não é tão jovem assim. Tem vinte e quatro anos.
+89|— Este caso, pelo que o senhor diz, parece ter sido um choque para ela também.
+90|— Terrível! Está ainda mais afetada do que eu.
+91|— Nenhum dos dois tem dúvida quanto à culpa do seu filho?
+92|— Como poderíamos ter, se eu o vi com os meus próprios olhos com a coroa nas mãos?
+93|— Mal considero isso uma prova conclusiva. O resto da coroa estava danificado de algum modo?
+94|— Sim, estava torcido.
+95|— Não acha, então, que ele podia estar tentando endireitá-lo?
+96|— Deus o abençoe! O senhor faz o que pode por ele e por mim. Mas é tarefa pesada demais. O que fazia ele ali, afinal? Se o seu propósito era inocente, por que não o disse?
+97|— Precisamente. E, se fosse culpado, por que não inventou uma mentira? O silêncio dele me parece cortar nos dois sentidos. Há vários pontos singulares no caso. Que pensou a polícia do ruído que o acordou do sono?
+98|— Consideraram que podia ser causado por Arthur fechando a porta do quarto.
+99|— Bela história! Como se um homem decidido a um crime batesse a porta de modo a acordar uma casa. Que disseram, então, do desaparecimento dessas gemas?
+100|— Ainda estão sondando o assoalho e vasculhando a mobília na esperança de achá-las.
+101|— Pensaram em procurar fora da casa?
+102|— Sim, mostraram extraordinária energia. O jardim todo já foi minuciosamente examinado.
+103|— Ora, meu caro senhor — disse Holmes —, não lhe é óbvio agora que este caso na verdade vai muito mais fundo do que o senhor ou a polícia estavam inicialmente inclinados a pensar? A si lhe pareceu um caso simples; a mim parece extremamente complexo. Considere o que a sua teoria implica. O senhor supõe que o seu filho desceu da cama, foi, com grande risco, ao seu quarto de vestir, abriu a sua escrivaninha, tirou a coroa, quebrou à força uma pequena parte dela, foi a algum outro lugar, ocultou três gemas das trinta e nove com tal habilidade que ninguém as acha, e depois voltou com as outras trinta e seis ao quarto em que se expôs ao maior perigo de ser descoberto. Pergunto-lhe agora: é sustentável tal teoria?
+104|— Mas que outra há? — exclamou o banqueiro com um gesto de desespero. — Se os motivos dele eram inocentes, por que não os explica?
+105|— É tarefa nossa descobri-lo — respondeu Holmes —; assim, agora, se me permite, sr. Holder, partiremos juntos para Streatham e dedicaremos uma hora a examinar um pouco mais de perto os pormenores.
+106|Meu amigo insistiu em que eu os acompanhasse na expedição, o que eu desejava bastante, pois a minha curiosidade e a minha simpatia estavam profundamente agitadas pela história que ouvíramos. Confesso que a culpa do filho do banqueiro me parecia tão óbvia quanto ao infeliz pai, mas ainda assim eu tinha tamanha fé no juízo de Holmes que sentia que devia haver algum motivo de esperança enquanto ele estivesse insatisfeito com a explicação aceita. Mal disse uma palavra durante todo o caminho até o subúrbio do sul, mas ficou sentado com o queixo no peito e o chapéu puxado sobre os olhos, mergulhado no mais profundo pensamento. O nosso cliente parecia ter retomado ânimo com o pequeno vislumbre de esperança que lhe fora apresentado, e chegou até a puxar uma conversa desconexa comigo sobre os seus negócios. Uma curta viagem de trem e uma caminhada mais curta ainda nos trouxeram a Fairbank, a modesta residência do grande financista.
+107|Fairbank era uma casa quadrada de bom tamanho, de pedra branca, um pouco afastada da estrada. Uma dupla alameda para carruagens, com um gramado coberto de neve, estendia-se na frente até dois grandes portões de ferro que fechavam a entrada. Do lado direito havia um pequeno bosque de madeira, que levava a um caminho estreito entre duas sebes bem cuidadas, estendendo-se da estrada à porta da cozinha e formando a entrada dos fornecedores. À esquerda corria uma travessa que levava às cocheiras e que nem sequer ficava dentro do terreno, sendo uma via pública, embora pouco usada. Holmes deixou-nos parados à porta e caminhou devagar ao redor da casa, pela frente, pelo caminho dos fornecedores, e depois pelo jardim dos fundos até a travessa das cocheiras. Demorou tanto que o sr. Holder e eu entramos na sala de jantar e esperamos junto ao fogo até que voltasse. Estávamos ali sentados em silêncio quando a porta se abriu e entrou uma jovem. Era um pouco acima da altura média, esguia, de cabelos e olhos escuros, que pareciam mais escuros contra a palidez absoluta da pele. Não creio que alguma vez tenha visto tal palidez mortal no rosto de uma mulher. Os lábios também eram exangues, mas os olhos estavam vermelhos de chorar. Ao entrar silenciosamente na sala, impressionou-me com um sentimento de dor maior do que o do banqueiro de manhã, e era tanto mais notável nela porquanto era evidentemente uma mulher de caráter forte, com imensa capacidade de autocontrole. Sem reparar na minha presença, foi direto ao tio e passou a mão pela cabeça dele num doce afago de mulher.
+108|— O senhor deu ordens para que Arthur fosse libertado, não deu, papai? — perguntou.
+109|— Não, não, minha menina, o caso tem de ser sondado até o fundo.
+110|— Mas estou tão certa de que ele é inocente. O senhor sabe o que são os instintos de uma mulher. Sei que ele não fez mal algum e que o senhor se arrependerá de ter agido tão duramente.
+111|— Por que ele se cala, então, se é inocente?
+112|— Quem sabe? Talvez porque estivesse tão zangado por o senhor suspeitar dele.
+113|— Como eu poderia deixar de suspeitar dele, quando o vi com a coroa na mão?
+114|— Oh, mas ele só a pegara para olhá-la. Oh, por favor, por favor, creia na minha palavra de que ele é inocente. Deixe o caso cair e não diga mais nada. É tão terrível pensar no nosso querido Arthur na prisão!
+115|— Nunca o deixarei cair até que as gemas sejam achadas — nunca, Mary! A tua afeição por Arthur te cega para as terríveis consequências para mim. Longe de abafar a coisa, trouxe um cavalheiro de Londres para investigá-la mais a fundo.
+116|— Este cavalheiro? — perguntou ela, voltando-se para mim.
+117|— Não, o amigo dele. Ele quis que o deixássemos sozinho. Está agora na travessa das cocheiras.
+118|— A travessa das cocheiras? — Ergueu as sobrancelhas escuras. — O que espera ele achar ali? Ah! este, suponho, é ele. Confio, senhor, em que consiga provar o que sinto ser a verdade, que o meu primo Arthur é inocente deste crime.
+119|— Partilho plenamente a sua opinião e confio, com a senhorita, em que possamos prová-lo — retorquiu Holmes, voltando ao capacho para sacudir a neve dos sapatos. — Creio ter a honra de falar com a senhorita Mary Holder. Poderia fazer-lhe uma ou duas perguntas?
+120|— Faça-o, senhor, se isso puder ajudar a esclarecer este horrível caso.
+121|— A senhorita mesma não ouviu nada na noite passada?
+122|— Nada, até que o meu tio aqui começou a falar alto. Ouvi isso e desci.
+123|— A senhorita fechou as janelas e portas na noite anterior. Prendeu todas as janelas?
+124|— Sim.
+125|— Estavam todas fechadas esta manhã?
+126|— Sim.
+127|— A senhorita tem uma criada que tem um namorado? Creio que comentou com o seu tio, na noite passada, que ela tinha saído para vê-lo?
+128|— Sim, e ela era a moça que servia na sala de visitas e que pode ter ouvido os comentários do tio sobre a coroa.
+129|— Entendo. A senhorita infere que ela pode ter saído para contar ao namorado, e que os dois podem ter planejado o roubo.
+130|— Mas de que adiantam todas essas teorias vagas — exclamou o banqueiro com impaciência —, quando lhe disse que vi Arthur com a coroa nas mãos?
+131|— Espere um pouco, sr. Holder. Teremos de voltar a isso. Sobre essa moça, senhorita Holder. A senhorita a viu voltar pela porta da cozinha, presumo?
+132|— Sim; quando fui ver se a porta estava trancada para a noite, encontrei-a esgueirando-se para dentro. Vi o homem também, na penumbra.
+133|— A senhorita o conhece?
+134|— Oh, sim! É o verdureiro que nos traz os legumes. Chama-se Francis Prosper.
+135|— Ele estava — disse Holmes — à esquerda da porta, isto é, mais adiante no caminho do que é necessário para chegar à porta?
+136|— Sim, estava.
+137|— E é um homem com uma perna de pau?
+138|Algo como medo surgiu nos expressivos olhos negros da moça. — Ora, o senhor é como um mágico — disse ela. — Como sabe isso? — Sorriu, mas não houve sorriso em resposta no rosto magro e ansioso de Holmes.
+139|— Teria muito prazer agora em subir — disse ele. — Provavelmente quererei percorrer de novo o exterior da casa. Talvez seja melhor dar uma olhada nas janelas de baixo antes de subir.
+140|Caminhou rápido de uma a outra, parando só na grande, que dava do vestíbulo para a travessa das cocheiras. Abriu-a e fez um exame muito cuidadoso do peitoril com a sua poderosa lente de aumento. — Agora subiremos — disse por fim.
+141|O quarto de vestir do banqueiro era um aposento pequeno, de mobília simples, com tapete cinza, uma grande escrivaninha e um espelho comprido. Holmes foi primeiro à escrivaninha e olhou com atenção para a fechadura.
+142|— Que chave foi usada para abri-la? — perguntou.
+143|— A que o meu próprio filho indicou: a do armário do quarto de despejo.
+144|— O senhor a tem aqui?
+145|— Está ali, na penteadeira.
+146|Sherlock Holmes pegou-a e abriu a escrivaninha.
+147|— É uma fechadura silenciosa — disse. — Não admira que não o tenha acordado. Este estojo, presumo, contém a coroa. Temos de vê-la. — Abriu o estojo e, tirando o diadema, pousou-o sobre a mesa. Era um magnífico exemplar da arte do joalheiro, e as trinta e seis pedras eram as mais finas que jamais vi. Num dos lados da coroa havia uma borda rachada, onde um canto que continha três gemas fora arrancado.
+148|— Agora, sr. Holder — disse Holmes —, aqui está o canto que corresponde ao que foi tão infelizmente perdido. Poderia pedir-lhe que o quebrasse?
+149|O banqueiro recuou horrorizado. — Nem em sonho tentaria — disse.
