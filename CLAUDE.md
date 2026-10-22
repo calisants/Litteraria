@@ -182,3 +182,7 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 ## v1.48.0 (22/10/2026)
 - Painel de pontos fortes e fracos com **Gramática**: `S.gs[idioma][tipo]=[acertos,erros]` (`gsRec` em `p3.js`, chamado em `p9.js` ao responder; só tipos de `GRAMTYPES`, só de primeira; validado no `load`; zerado em «Apagar estatísticas»). Começa a contar a partir desta versão. `gramRows`/`skillsHtml` em `gamif.js`. Teste: `t29.py`.
 - Sherlock: caps. 1-3 prontos. Meta semanal com amigo ficou de fora de propósito (exigiria SQL novo e mexe em privacidade): conversar com ela antes.
+
+## v1.49.0 (22/10/2026)
+- Sherlock Holmes em texto completo: caps. 1-5 prontos (4 e 5 traduzidos nesta versão; tradução natural, sem literal). Faltam 6-12. Partes longas ficam em `livros_txt/sherlock/parts/` e são juntadas com `cat` em `pt_<n>.txt`. Cache `mots-parole-v81`.
+- Pendente dela: colar `nuvem/amigos2.sql` no Supabase (opções novas de Amigos). Meta semanal com amigo ficou de fora de propósito (exige SQL novo e decisão de privacidade).
