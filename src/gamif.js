@@ -19,6 +19,7 @@
   }
   window.studiedToday=()=>S.gam.days.indexOf(ymd())>=0||dayN()>0;
   window.gamStreak=streak;
+  window.gamLevel=()=>S.gam.on?levelOf(S.gam.pts):null;
   function markDay(){
     const t=ymd(),d=S.gam.days;
     if(d.indexOf(t)>=0)return false;

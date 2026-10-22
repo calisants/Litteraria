@@ -505,6 +505,7 @@ svg{display:block}
 /* início */
 .hero{padding:12px 0 0}.hero .brand{font-size:clamp(1.7rem,8vw,2.2rem)}
 .me{padding:6px 0 0;gap:10px}.me .avatar{--av:40px!important}.me .who b{font-size:1.08rem}.me .who small{font-size:.85rem}
+.frme{display:flex;gap:12px;align-items:center;padding:10px;border-radius:var(--radius);background:var(--soft)}.frcard{border:var(--bw) solid var(--line);border-radius:var(--radius);padding:12px;margin:10px 0;background:var(--surface)}.frtop{display:flex;gap:12px;align-items:center}.frw{min-width:0}.frn{font-size:1.05rem}.frm{font-style:italic;color:var(--muted);font-size:.9rem;margin-top:2px;overflow-wrap:anywhere}.frs{display:block;color:var(--muted);font-size:.8rem}.frchips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}.frc{border-radius:99px;padding:3px 10px;background:var(--soft);font-size:.82rem}.frl{font-size:.88rem;margin:6px 0}.frcard .row{align-items:flex-start;margin-top:10px}.frmore summary{list-style:none;cursor:pointer}.frmore summary::-webkit-details-marker{display:none}.frmore[open]{flex-basis:100%}.frmore .row{margin-top:8px}
 .skr{display:grid;grid-template-columns:minmax(0,1fr) 90px 44px;gap:8px;align-items:center;margin:6px 0}.skr .gbar{margin:0;background:var(--line)}.skr .gbar i{background:var(--accent)}.skr b{text-align:right}.skh{margin:12px 0 2px;font-size:.9rem}
 .gchip{display:flex;flex:none;gap:10px;border:0;border-radius:99px;padding:6px 12px;background:var(--soft);color:var(--ink);font-weight:700;font-size:.82rem;cursor:pointer}
 .gchip[hidden]{display:none}.gchip span{display:inline-flex;align-items:center;gap:4px}.gchip svg{color:var(--accent)}.gchip.idle span:first-child svg{opacity:.4}
@@ -990,7 +991,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.46.0",d:"2026-10-21"};
+const APP_REL={v:"1.47.0",d:"2026-10-22"};
 
 
 const RAW={
@@ -5191,6 +5192,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   }
   window.studiedToday=()=>S.gam.days.indexOf(ymd())>=0||dayN()>0;
   window.gamStreak=streak;
+  window.gamLevel=()=>S.gam.on?levelOf(S.gam.pts):null;
   function markDay(){
     const t=ymd(),d=S.gam.days;
     if(d.indexOf(t)>=0)return false;
@@ -5641,14 +5643,14 @@ window.CLOUDCFG={url:"https://uunfcvgiomzgwtpckzdx.supabase.co",key:"sb_publisha
 /* ===== Política de Privacidade (texto que aparece no app) =====
    Descreve o que o app realmente faz. As partes sobre conta e lembretes só aparecem quando esses recursos estão ligados (CLOUDCFG / PUSHCFG).
    Mudou algo no que o app guarda ou envia? Atualize o texto e PRIV_VER. */
-const PRIV_VER="2026-10-21c";
+const PRIV_VER="2026-10-22a";
 function privSections(){
   const cloud=!!(window.CLOUDCFG&&CLOUDCFG.url&&CLOUDCFG.key),push=!!(window.PUSHCFG&&PUSHCFG.sink);
   const s=[];
   s.push(["Quem cuida dos seus dados","O Mots & Parole é feito por Camila (@calisants), que decide como os dados do app são tratados. Para falar sobre privacidade, use Ajustes → Sobre e ajuda → «Enviar sugestão ou avisar de erro»."]);
   s.push(["Sem conta, nada sai do seu aparelho","O progresso, os ajustes, o nome que você digitar, o caderno de palavras e as citações favoritas ficam só no armazenamento deste aparelho. O app não tem anúncios e não usa ferramentas de estatística de terceiros."]);
   if(cloud)s.push(["Conta (opcional)","Se você criar uma conta, guardamos: o seu e-mail; uma cópia do seu progresso (lições feitas, pontuações, revisões, caderno de palavras, favoritos, ajustes e o nome que você digitou); e a data em que você aceitou esta política e confirmou ter 13 anos ou mais. Isso serve só para você recuperar o progresso se trocar de celular e usar o app em mais de um aparelho. Os dados ficam no Supabase, um serviço de terceiros; eles não ficam no GitHub nem em outro lugar do app. Cada conta só consegue ler e alterar os próprios dados. Tecnicamente, quem administra o projeto tem acesso a eles; esse acesso é para manter o serviço e atender pedidos seus."]);
-  if(cloud)s.push(["Amigos (opcional, só com conta)","Desligado até você ativar. Ao ativar, guardamos: um apelido que você escolher (2 a 20 letras; não use seu nome completo), um código de amigo gerado pelo app, a lista de amigos e convites, e, só se você marcar, a sua sequência de dias, o total de palavras acertadas e quantos dos últimos 7 dias você estudou. Seus amigos aceitos veem apenas o apelido e esses números marcados. Ninguém te encontra por busca: só entra quem tiver o seu código. Não há chat, foto nem mensagens. Você pode remover amigos, bloquear e denunciar (a denúncia guarda quem denunciou, quem foi denunciado e o texto que você escrever, até 300 letras, para a criadora do app analisar). Cutucadas: um amigo aceito pode te mandar um lembrete para estudar (1 por dia por amigo, no máximo 5 por dia no total); você pode desligar em «Aceitar cutucadas». Para isso guardamos o endereço de envio de notificação do seu aparelho (fornecido pela Apple, Google ou Mozilla) e as chaves dele, e registramos quem cutucou quem por poucos dias, só para aplicar os limites. Ao desativar Amigos ou sair da conta neste aparelho, apagamos esses endereços; ao desativar, apagamos também apelido, código, convites e amizades."]);
+  if(cloud)s.push(["Amigos (opcional, só com conta)","Desligado até você ativar. Ao ativar, guardamos: um apelido que você escolher (2 a 20 letras; não use seu nome completo), um código de amigo gerado pelo app, a lista de amigos e convites, e, só se você marcar, a sua sequência de dias, o total de palavras acertadas e quantos dos últimos 7 dias você estudou. Também só se você marcar: o ícone e a frase do seu Perfil, o seu nível, e os idiomas que você estuda com o número de páginas concluídas em cada um. Cada uma dessas opções é separada e começa desligada; ao desligar, o dado é apagado do servidor. Seus amigos aceitos veem apenas o apelido e o que você marcou. Ninguém te encontra por busca: só entra quem tiver o seu código. Não há chat, foto nem mensagens. Você pode remover amigos, bloquear e denunciar (a denúncia guarda quem denunciou, quem foi denunciado e o texto que você escrever, até 300 letras, para a criadora do app analisar). Cutucadas: um amigo aceito pode te mandar um lembrete para estudar (1 por dia por amigo, no máximo 5 por dia no total); você pode desligar em «Aceitar cutucadas». Para isso guardamos o endereço de envio de notificação do seu aparelho (fornecido pela Apple, Google ou Mozilla) e as chaves dele, e registramos quem cutucou quem por poucos dias, só para aplicar os limites. Ao desativar Amigos ou sair da conta neste aparelho, apagamos esses endereços; ao desativar, apagamos também apelido, código, convites e amizades."]);
   if(push)s.push(["Lembretes com o app fechado (opcional)","Se você ativar, enviamos para uma planilha da criadora do app: o endereço de envio do seu aparelho (fornecido pela Apple, Google ou Mozilla), o horário escolhido, o estilo do lembrete, o idioma e se você já estudou naquele dia. Sem nome, sem e-mail, sem progresso. Uma rotina do GitHub lê essa planilha e manda o aviso. Desligar os lembretes remove a sua linha."]);
   s.push(["Sugestões e avisos de erro","O que você escrever no formulário de sugestões vai para um Google Formulários da criadora. Não escreva dados pessoais ali."]);
   if(cloud)s.push(["Seus direitos","Você pode, a qualquer momento e sem justificar: baixar tudo o que guardamos sobre você («Baixar meus dados»), apagar a conta e todos os dados da nuvem («Apagar minha conta e dados») e sair do aparelho. Pode também pedir correção ou esclarecimentos pelo formulário de sugestões. Apagar a conta não apaga o progresso que já está no seu aparelho."]);
@@ -5895,8 +5897,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 })();
 
 /* ===== Amigos (opcional, v1.43) =====
-   Só com conta. Tudo desligado até a pessoa ativar. Mostra só apelido + o que cada um escolher compartilhar (sequência de dias,
-   palavras acertadas, dias estudados nos últimos 7). Sem chat, sem foto, sem busca: entra-se só por código. Bloquear, denunciar e sair.
+   Só com conta. Tudo desligado até a pessoa ativar. Mostra só apelido + o que cada um escolher compartilhar (sequência, palavras, dias na semana, ícone, frase, nível, idiomas). Sem chat, sem foto enviada, sem busca: entra-se só por código. Bloquear, denunciar e sair.
    Servidor: nuvem/amigos.sql (funções friends_*). O cliente só chama essas funções. */
 (function(){
   const FK="mots-parole-friends";
@@ -5909,6 +5910,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     let j=null;try{j=await r.json();}catch(_){}
     if(!r.ok){const m=String((j&&(j.message||j.msg))||"");
       if(/Could not find the function|schema cache/i.test(m))throw new Error("O servidor ainda não tem a parte de Amigos instalada.");
+      if(/friends_share2|friends_profile/i.test(m))throw new Error("O servidor ainda não tem a parte nova de Amigos (amigos2.sql).");
       if(/apelido/i.test(m))throw new Error("O apelido precisa ter de 2 a 20 letras.");
       throw new Error("Não consegui agora (erro "+r.status+"). Tente de novo.");}
     return j;
@@ -5939,12 +5941,50 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     }catch(_){}
   }
   window.cloudBeforeOut=async function(){if(!on())return;try{const sub=await getSub();if(sub)await rpc("push_drop",{p_endpoint:sub.endpoint});}catch(_){}lastEp="";};
-  async function pushStats(){if(!ses()||!on())return;try{await rpc("friends_stats",myStats());}catch(_){}syncSub();}
+  /* ícone, frase, nível e páginas concluídas por idioma (o servidor só guarda o que a pessoa deixou marcado) */
+  function myProfile(){
+    const langs={};Object.keys(S.done||{}).forEach(k=>{const l=k.split(":")[0];if(LNAME[l])langs[l]=(langs[l]||0)+1;});
+    let lv=null;try{lv=window.gamLevel?gamLevel():null;}catch(_){}
+    return {p_avatar:(S.avatar&&AVATARS[S.avatar])?S.avatar:null,p_motto:S.motto||"",p_level:lv,p_langs:langs};
+  }
+  async function pushStats(){if(!ses()||!on())return;try{await rpc("friends_stats",myStats());if(me&&(me.share_profile||me.share_langs))await rpc("friends_profile",myProfile());}catch(_){}syncSub();}
   async function load(){
     try{me=await rpc("friends_me");if(me){setOn(true);await pushStats();lst=await rpc("friends_list");}else{setOn(false);lst=null;}msg="";}
     catch(e){msg=e.message;}
   }
   const h=s=>esc(String(s==null?"":s));
+  const LORD=["fr","it","en"];
+  function avt(f,size){
+    const k=f.avatar,st='style="--av:'+size+'px"';
+    if(k&&typeof AVATARS!=="undefined"&&AVATARS[k]&&/^[a-z]+$/.test(k))return '<span class="avatar" '+st+' aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+AVATARS[k]+"</svg></span>";
+    return '<span class="avatar" '+st+' aria-hidden="true">'+h(String(f.nick||"?").trim().charAt(0).toUpperCase()||"?")+"</span>";
+  }
+  function ago(at){
+    if(!at)return "";const d=Math.floor((Date.now()-new Date(at).getTime())/864e5);
+    return d<=0?"ativo hoje":d===1?"ativo ontem":d<30?"ativo há "+d+" dias":"";
+  }
+  function chips(f){
+    const c=[];
+    if(f.level!=null)c.push('<span class="frc"><b>Nív. '+h(f.level)+"</b></span>");
+    if(f.streak!=null)c.push('<span class="frc"><b>'+h(f.streak)+"</b> "+(f.streak===1?"dia":"dias")+" seguidos</span>");
+    if(f.words!=null)c.push('<span class="frc"><b>'+h(f.words)+"</b> palavras</span>");
+    if(f.week!=null)c.push('<span class="frc"><b>'+h(f.week)+"</b>/7 dias na semana</span>");
+    return c.join("");
+  }
+  function langsLine(f){
+    if(!f.langs||typeof f.langs!=="object")return "";
+    const a=LORD.filter(l=>f.langs[l]>0).map(l=>"<b>"+h(LNAME[l])+"</b> "+h(f.langs[l])+" "+(f.langs[l]===1?"página":"páginas"));
+    return a.length?'<div class="frl">Estuda: '+a.join(" · ")+"</div>":"";
+  }
+  function friendCard(f){
+    const none=!chips(f)&&!f.motto&&!langsLine(f);
+    const u=h(f.uid),nn=h(f.nick);
+    return '<article class="frcard"><div class="frtop">'+avt(f,48)+'<div class="frw"><b class="frn">'+nn+"</b>"+(f.motto?'<div class="frm">“'+h(f.motto)+"”</div>":"")+
+      (ago(f.at)&&(f.streak!=null||f.words!=null)?'<small class="frs">'+h(ago(f.at))+"</small>":"")+"</div></div>"+
+      (chips(f)?'<div class="frchips">'+chips(f)+"</div>":"")+langsLine(f)+(none?'<p class="help">Este amigo não compartilha detalhes.</p>':"")+
+      '<div class="row"><button type="button" class="btn primary" data-fr="poke" data-u="'+u+'" aria-label="Cutucar '+nn+'">👋 Cutucar</button>'+
+      '<details class="frmore"><summary class="btn">Mais</summary><div class="row"><button type="button" class="btn" data-fr="del" data-u="'+u+'">Remover</button><button type="button" class="btn" data-fr="blk" data-u="'+u+'">Bloquear</button><button type="button" class="btn" data-fr="rep" data-u="'+u+'">Denunciar</button></div></details></div></article>';
+  }
   function statsLine(f){
     const a=[];
     if(f.streak!=null)a.push(f.streak+(f.streak===1?" dia":" dias")+" seguidos");
@@ -5960,28 +6000,34 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
         '<input class="tin" id="fr-nick" maxlength="20" autocomplete="off" aria-label="Apelido (2 a 20 letras)" placeholder="Apelido (não use seu nome completo)">'+
         '<label class="chk"><input type="checkbox" id="fr-s1"> Mostrar minha sequência de dias</label>'+
         '<label class="chk"><input type="checkbox" id="fr-s2"> Mostrar palavras acertadas e dias estudados na semana</label>'+
+        '<label class="chk"><input type="checkbox" id="fr-s3"> Mostrar meu ícone, minha frase e meu nível</label>'+
+        '<label class="chk"><input type="checkbox" id="fr-s4"> Mostrar os idiomas que estudo</label>'+
         '<button type="button" class="btn primary wide" id="fr-on" style="margin-top:8px">Ativar Amigos</button>'+note;
     }
     const L=lst||{friends:[],incoming:[],outgoing:[],blocked:[]};
-    let o='<h3 class="lab">Seu código de amigo</h3><p style="font-size:1.6rem;font-weight:800;letter-spacing:.12em;margin:4px 0" id="fr-code">'+h(me.code)+'</p>'+
-      '<p class="help">Passe este código só para quem você quer como amigo. Apelido atual: <b>'+h(me.nick)+'</b>.</p><div class="row"><button type="button" class="btn" id="fr-copy">Copiar código</button></div>'+
-      '<h3 class="lab" style="margin-top:14px">O que meus amigos veem</h3>'+
+    let o='<div class="frme">'+avt({nick:me.nick,avatar:S.avatar&&AVATARS[S.avatar]?S.avatar:null},56)+'<div class="frw"><b class="frn">'+h(me.nick)+"</b>"+(S.motto?'<div class="frm">“'+h(S.motto)+"”</div>":'<small class="frs">Sem frase. Escreva uma no Perfil.</small>')+"</div></div>"+note;
+    if(L.incoming.length)o+='<h3 class="lab" style="margin-top:14px">Convites recebidos</h3>'+L.incoming.map(f=>'<div class="cad-row"><span>'+avt(f,32)+' <b>'+h(f.nick)+'</b></span><span><button type="button" class="btn primary" data-fr="acc" data-u="'+h(f.uid)+'">Aceitar</button> <button type="button" class="btn" data-fr="rej" data-u="'+h(f.uid)+'">Recusar</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button></span></div>').join("");
+    o+='<h3 class="lab" style="margin-top:14px">Amigos ('+L.friends.length+')</h3>'+(L.friends.length?L.friends.map(friendCard).join(""):'<p class="help">Ainda sem amigos. Envie o seu código ou digite o de alguém em «Adicionar um amigo».</p>');
+    if(L.outgoing.length)o+='<h3 class="lab" style="margin-top:14px">Convites enviados</h3>'+L.outgoing.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b> · aguardando</span><button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Cancelar</button></div>').join("");
+    o+='<h3 class="lab" style="margin-top:14px">Adicionar um amigo</h3>'+
+      '<input class="tin" id="fr-add" maxlength="12" autocapitalize="characters" autocomplete="off" aria-label="Código do amigo" placeholder="Código do amigo">'+
+      '<button type="button" class="btn primary wide" id="fr-req" style="margin-top:8px">Enviar convite</button>'+
+      '<h3 class="lab" style="margin-top:14px">Seu código de amigo</h3><p style="font-size:1.6rem;font-weight:800;letter-spacing:.12em;margin:4px 0" id="fr-code">'+h(me.code)+'</p>'+
+      '<p class="help">Passe este código só para quem você quer como amigo.</p><div class="row"><button type="button" class="btn" id="fr-copy">Copiar código</button></div>'+
+      '<details class="frset" style="margin-top:14px"><summary class="lab">O que meus amigos veem e preferências</summary>'+
       '<label class="chk"><input type="checkbox" id="fr-s1" '+(me.share_streak?"checked":"")+'> Minha sequência de dias</label>'+
       '<label class="chk"><input type="checkbox" id="fr-s2" '+(me.share_words?"checked":"")+'> Palavras acertadas e dias estudados na semana</label>'+
+      '<label class="chk"><input type="checkbox" id="fr-s3" '+(me.share_profile?"checked":"")+'> Meu ícone, minha frase e meu nível (o ícone e a frase vêm do Perfil)</label>'+
+      '<label class="chk"><input type="checkbox" id="fr-s4" '+(me.share_langs?"checked":"")+'> Os idiomas que estudo e quantas páginas concluí em cada um</label>'+
       '<label class="chk"><input type="checkbox" id="fr-poke" '+(me.poke_ok!==false?"checked":"")+'> Aceitar cutucadas dos amigos (um lembrete para estudar)</label>'+
       (window.__pushOn?'<p class="help">Este aparelho está pronto para receber cutucadas.</p>':'<p class="help">Para receber cutucadas, ligue os lembretes com o app fechado em Ajustes → Lembretes e cartão. Sem isso, você ainda pode cutucar os outros.</p>')+
-      '<h3 class="lab" style="margin-top:14px">Adicionar um amigo</h3>'+
-      '<input class="tin" id="fr-add" maxlength="12" autocapitalize="characters" autocomplete="off" aria-label="Código do amigo" placeholder="Código do amigo">'+
-      '<button type="button" class="btn primary wide" id="fr-req" style="margin-top:8px">Enviar convite</button>';
-    if(L.incoming.length)o+='<h3 class="lab" style="margin-top:14px">Convites recebidos</h3>'+L.incoming.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b></span><span><button type="button" class="btn primary" data-fr="acc" data-u="'+h(f.uid)+'">Aceitar</button> <button type="button" class="btn" data-fr="rej" data-u="'+h(f.uid)+'">Recusar</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button></span></div>').join("");
-    o+='<h3 class="lab" style="margin-top:14px">Amigos ('+L.friends.length+')</h3>'+(L.friends.length?L.friends.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b><br><small>'+h(statsLine(f))+'</small></span><span><button type="button" class="btn primary" data-fr="poke" data-u="'+h(f.uid)+'" aria-label="Cutucar '+h(f.nick)+'">👋 Cutucar</button> <button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Remover</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button> <button type="button" class="btn" data-fr="rep" data-u="'+h(f.uid)+'">Denunciar</button></span></div>').join(""):'<p class="help">Ainda sem amigos. Envie o seu código ou digite o de alguém acima.</p>');
-    if(L.outgoing.length)o+='<h3 class="lab" style="margin-top:14px">Convites enviados</h3>'+L.outgoing.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b> · aguardando</span><button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Cancelar</button></div>').join("");
+      '<p class="help">Apelido atual: <b>'+h(me.nick)+'</b>.</p></details>';
     if(L.blocked.length)o+='<h3 class="lab" style="margin-top:14px">Bloqueados</h3>'+L.blocked.map(f=>'<div class="cad-row"><span>'+h(f.nick)+'</span><button type="button" class="btn" data-fr="unb" data-u="'+h(f.uid)+'">Desbloquear</button></div>').join("");
     o+='<div class="row" style="margin-top:16px"><button type="button" class="btn" id="fr-refresh">Atualizar lista</button><button type="button" class="btn" id="fr-off">Desativar Amigos</button></div>'+
-      '<p class="help">Denunciar bloqueia a pessoa e registra a denúncia para a criadora do app. Veja a <a href="#" data-open-priv>Política de Privacidade</a>.</p>'+note;
+      '<p class="help">Denunciar bloqueia a pessoa e registra a denúncia para a criadora do app. Veja a <a href="#" data-open-priv>Política de Privacidade</a>.</p>';
     return o;
   }
-  function paint(){const el=$("#fr-box");if(el)el.innerHTML=view();}
+  function paint(){const el=$("#fr-box");if(!el)return;const d=$(".frset"),was=d?d.open:false;el.innerHTML=view();const n=$(".frset");if(n&&was)n.open=true;}
   async function openFriends(){
     openSheet("Amigos",'<div id="fr-box"><p class="help">Carregando…</p></div>',false);
     if(ses())await load();paint();
@@ -6000,6 +6046,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     if(t.id==="fr-on")return act(async()=>{
       const nick=($("#fr-nick").value||"").trim(),s1=$("#fr-s1").checked,s2=$("#fr-s2").checked;
       await rpc("friends_enable",{p_nick:nick});await rpc("friends_share",{p_streak:s1,p_words:s2});
+      if($("#fr-s3").checked||$("#fr-s4").checked)await rpc("friends_share2",{p_profile:$("#fr-s3").checked,p_langs:$("#fr-s4").checked});
       me=await rpc("friends_me");setOn(true);await pushStats();msg="Amigos ativado. Passe o seu código a quem você quiser como amigo.";
     });
     if(t.id==="fr-copy"){try{navigator.clipboard.writeText(me.code);msg="Código copiado.";}catch(_){msg="Não consegui copiar; selecione o código e copie.";}paint();return;}
@@ -6030,8 +6077,11 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
   });
   document.addEventListener("change",e=>{
     const t=e.target;if(t&&t.id==="fr-poke"&&me){act(async()=>{await rpc("friends_pokes_set",{p_on:t.checked});me=await rpc("friends_me");msg="Preferência salva.";});return;}
-    if(!t||(t.id!=="fr-s1"&&t.id!=="fr-s2")||!me)return;
-    act(async()=>{await rpc("friends_share",{p_streak:$("#fr-s1").checked,p_words:$("#fr-s2").checked});me=await rpc("friends_me");await pushStats();msg="Preferência salva.";});
+    if(!t||!/^fr-s[1-4]$/.test(t.id)||!me)return;
+    act(async()=>{
+      if(t.id==="fr-s1"||t.id==="fr-s2")await rpc("friends_share",{p_streak:$("#fr-s1").checked,p_words:$("#fr-s2").checked});
+      else await rpc("friends_share2",{p_profile:$("#fr-s3").checked,p_langs:$("#fr-s4").checked});
+      me=await rpc("friends_me");await pushStats();msg="Preferência salva.";});
   });
   /* mantém os números atualizados enquanto o app é usado (no máximo uma vez por minuto) */
   let tm=null;
@@ -6074,6 +6124,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.47.0",d:"2026-10-22",t:["Amigos redesenhado: cada amigo agora é um cartão com ícone, frase do perfil, nível, sequência, palavras, idiomas que estuda e «ativo hoje / ontem». A lista de amigos vem primeiro; as opções de privacidade ficam recolhidas em «O que meus amigos veem»","Tudo é opcional e escolhido por você: «Meu ícone, minha frase e meu nível» e «Os idiomas que estudo» começam desligados. Se desligar, o dado é apagado do servidor","Os botões Remover, Bloquear e Denunciar ficam em «Mais», para não poluir o cartão"]},
 {v:"1.46.0",d:"2026-10-21",t:["Novo: ao tocar em «sequência / nível» na tela inicial, abre o painel com seus pontos fortes e fracos: os temas de vocabulário em que você mais acerta, os que precisam de reforço e as palavras que mais erra, com o botão «Treinar o que preciso reforçar»","Corrigido: esse toque também abria o Perfil; agora abre só o painel (o Perfil abre ao tocar no resto da faixa)","Sequência de dias continua em «Pontos e sequência»; o painel mostra só o que você realmente jogou"]},
 {v:"1.45.0",d:"2026-10-21",t:["Novo: atalho «Amigos» na tela inicial (aparece quando a conta na nuvem está disponível). Sem estar logado, ele leva direto para Conta e nuvem"]},
 {v:"1.44.0",d:"2026-10-21",t:["Novo: cutucar um amigo. Em Amigos, toque em «Cutucar» ao lado do nome e ele recebe uma notificação para estudar. Limite de 1 por amigo por dia; dá para desligar em «Aceitar cutucadas»","Para receber cutucadas, ligue os lembretes com o app fechado (Ajustes → Lembretes e cartão)","Política de Privacidade atualizada com o que as cutucadas guardam"]},

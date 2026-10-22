@@ -25,16 +25,18 @@ def handler(route):
         if n=='friends_me': return J(200,st['me'])
         if n=='friends_enable':
             if len(body['p_nick'])<2: return J(400,{'message':'apelido deve ter de 2 a 20 letras'})
-            st['me']={'code':'K7M2QX9P','nick':body['p_nick'],'share_streak':False,'share_words':False,'poke_ok':True};return J(200,'K7M2QX9P')
+            st['me']={'code':'K7M2QX9P','nick':body['p_nick'],'share_streak':False,'share_words':False,'poke_ok':True,'share_profile':False,'share_langs':False};return J(200,'K7M2QX9P')
         if n=='friends_share': st['me'].update(share_streak=body['p_streak'],share_words=body['p_words']);return J(204,None)
         if n=='friends_stats': return J(204,None)
+        if n=='friends_share2': st['me'].update(share_profile=body['p_profile'],share_langs=body['p_langs']);return J(204,None)
+        if n=='friends_profile': return J(204,None)
         if n=='friends_pokes_set': st['me']['poke_ok']=body['p_on'];return J(204,None)
         if n=='friends_list': return J(200,{'friends':st['fr'],'incoming':st['inc'],'outgoing':st['out'],'blocked':st['blk']})
         if n=='friends_request':
             if body['p_code'].upper()=='ZZZZZZZZ': return J(200,'nao_encontrado')
             st['out'].append({'uid':'f2','nick':'Bia'});return J(200,'enviado')
         if n=='friends_respond':
-            if body['p_accept']: st['fr'].append({'uid':'f1','nick':'Ana','streak':5,'words':None,'week':None})
+            if body['p_accept']: st['fr'].append({'uid':'f1','nick':'Ana','streak':5,'words':None,'week':None,'avatar':'book','motto':'Um dia de cada vez','level':3,'langs':{'fr':12,'en':4},'at':__import__('datetime').datetime.utcnow().isoformat()+'Z'})
             st['inc']=[];return J(204,None)
         if n=='friends_block':
             st['fr']=[];st['blk'].append({'uid':body['p_uid'],'nick':'Ana'});return J(204,None)
@@ -79,15 +81,21 @@ try:
     pg.fill('#fr-add','ABCD2345');pg.click('#fr-req');pg.wait_for_timeout(300);t=pg.inner_text('#fr-box');assert 'Convite enviado' in t and 'Bia' in t
     # aceita convite recebido; lista mostra só o que o amigo compartilha
     pg.click('[data-fr=acc]');pg.wait_for_timeout(300);t=pg.inner_text('#fr-box').lower();assert 'amigos (1)' in t and '5 dias seguidos' in t and 'palavras acertadas' not in t.split('amigos (1)')[1].split('convites enviados')[0]
+    # cartão do amigo: ícone, frase, nível, idiomas
+    card=pg.inner_text('.frcard');assert 'Um dia de cada vez' in card and 'Nív. 3' in card and 'Francês' in card and '12 páginas' in card and 'ativo hoje' in card,card
+    assert pg.locator('.frcard .avatar svg').count()==1,'ícone do amigo'
     # cutucar: 1ª envia, 2ª no mesmo dia avisa; preferência de receber
     pg.click('[data-fr=poke]');pg.wait_for_timeout(300);assert 'Cutucada enviada' in pg.inner_text('#fr-box')
     assert ('POKE',{'uid':'f1'}) in st['calls']
     pg.click('[data-fr=poke]');pg.wait_for_timeout(300);assert 'já cutucou essa pessoa hoje' in pg.inner_text('#fr-box')
-    assert pg.is_checked('#fr-poke');pg.uncheck('#fr-poke');pg.wait_for_timeout(300);assert ('friends_pokes_set',{'p_on':False}) in st['calls']
+    pg.evaluate("()=>document.querySelector('.frset').open=true");assert pg.is_checked('#fr-poke');pg.uncheck('#fr-poke');pg.wait_for_timeout(300);assert ('friends_pokes_set',{'p_on':False}) in st['calls']
     # mudar compartilhamento
-    pg.check('#fr-s2');pg.wait_for_timeout(300);assert ('friends_share',{'p_streak':True,'p_words':True}) in st['calls']
+    pg.evaluate("()=>document.querySelector('.frset').open=true");pg.check('#fr-s2');pg.wait_for_timeout(300);assert ('friends_share',{'p_streak':True,'p_words':True}) in st['calls']
+    pg.check('#fr-s3');pg.wait_for_timeout(300);assert ('friends_share2',{'p_profile':True,'p_langs':False}) in st['calls']
+    pg.check('#fr-s4');pg.wait_for_timeout(300);assert ('friends_share2',{'p_profile':True,'p_langs':True}) in st['calls']
+    pr=[c for c in st['calls'] if c[0]=='friends_profile'];assert pr and set(pr[-1][1])=={'p_avatar','p_motto','p_level','p_langs'},pr[-1:]
     # denunciar bloqueia; desbloquear
-    pg.click('[data-fr=rep]');pg.wait_for_timeout(300);assert any(c[0]=='friends_report' and 'ofensivo' in c[1]['p_reason'] for c in st['calls']);assert 'bloqueados' in pg.inner_text('#fr-box').lower()
+    pg.click('.frmore summary');pg.click('[data-fr=rep]');pg.wait_for_timeout(300);assert any(c[0]=='friends_report' and 'ofensivo' in c[1]['p_reason'] for c in st['calls']);assert 'bloqueados' in pg.inner_text('#fr-box').lower()
     pg.click('[data-fr=unb]');pg.wait_for_timeout(300);assert 'bloqueados' not in pg.inner_text('#fr-box').lower()
     # desativar
     pg.click('#fr-off');pg.wait_for_selector('#fr-on');assert pg.evaluate("()=>localStorage.getItem('mots-parole-friends')")is None

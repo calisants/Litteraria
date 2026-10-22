@@ -31,3 +31,7 @@ Texto em `src/privacidade.js` (muda conforme os recursos ligados). Atualize `PRI
 2. Edge Functions → Deploy a new function → Via Editor → nome `poke` → cole `nuvem/poke/index.ts` → Deploy. Em Settings da função, **desligue «Verify JWT»** (a função confere o login sozinha).
 3. Edge Functions → Secrets: `VAPID_PUBLIC` (a mesma chave pública de `src/pushcfg.js`), `VAPID_PRIVATE` (a mesma do GitHub) e `VAPID_SUBJECT` = `mailto:calisants@users.noreply.github.com`.
 Limites no banco: só amigos aceitos, sem bloqueio, 1 por amigo por dia, 5 recebidas por dia, e a pessoa pode desligar. Sem aparelho inscrito, a cutucada nem é registrada.
+
+## Amigos, parte 2 (v1.47: ícone, frase, nível e idiomas)
+1. Supabase → SQL Editor → New query → cole TODO o conteúdo de `nuvem/amigos2.sql` → Run. Pode rodar mais de uma vez. (Rode antes `amigos.sql` e `cutucar.sql`, se ainda não rodou.)
+2. Sem esse passo, o app continua funcionando como antes; só as duas opções novas («Meu ícone, minha frase e meu nível» e «Os idiomas que estudo») avisam que o servidor ainda não tem a parte nova.
