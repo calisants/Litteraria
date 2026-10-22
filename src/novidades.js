@@ -1,5 +1,6 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.50.0",d:"2026-10-22",t:["Novo: desafio semanal entre amigos. Em Amigos, toque em «Desafiar» no cartão de um amigo; o desafio só começa se ele aceitar. Vence quem concluir mais lições de segunda a domingo","Os dois veem só o total de lições da semana (e o resultado da semana passada). Nenhum idioma, dia ou lição. Qualquer um pode encerrar a qualquer hora e os totais são apagados do servidor","Antes de usar, a criadora precisa instalar a parte nova no servidor (desafio.sql); se não estiver instalada, o app avisa"]},
 {v:"1.49.4",d:"2026-10-22",t:["Corrigido: em Amigos, ao tocar em «Mais» os botões Remover, Bloquear e Denunciar ficavam por cima de «Cutucar»; agora abrem logo abaixo, sem sobrepor"]},
 {v:"1.49.3",d:"2026-10-22",t:["Sherlock Holmes: capítulo 8 («A Aventura da Faixa Malhada») já disponível para ler"]},
 {v:"1.49.2",d:"2026-10-22",t:["Sherlock Holmes: capítulo 7 («A Aventura do Carbúnculo Azul») já disponível para ler"]},

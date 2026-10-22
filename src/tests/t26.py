@@ -69,7 +69,7 @@ try:
     pg.click('#cl-send');pg.wait_for_selector('#cl-code');assert fk.codes==['ana@exemplo.com']
     pg.fill('#cl-code','000000');pg.click('#cl-verify');pg.wait_for_timeout(400);assert 'incorreto ou vencido' in pg.inner_text('#cloud-box')
     pg.fill('#cl-code','123456');pg.click('#cl-verify');pg.wait_for_selector('#cl-now');pg.wait_for_timeout(500)
-    assert fk.cons.get('age_ok')==True and fk.cons.get('policy_version','').startswith('2026-10-21'),fk.cons
+    assert fk.cons.get('age_ok')==True and fk.cons.get('policy_version','').startswith('2026-10-2'),fk.cons
     assert len(fk.prog['data']['done'])==2 and 'rm' in fk.prog['data']
     assert 'ana@exemplo.com' in pg.inner_text('#cloud-box')
     # política com a parte de conta

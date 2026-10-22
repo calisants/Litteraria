@@ -184,5 +184,11 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Sherlock: caps. 1-3 prontos. Meta semanal com amigo ficou de fora de propósito (exigiria SQL novo e mexe em privacidade): conversar com ela antes.
 
 ## v1.49.0 (22/10/2026)
-- Sherlock Holmes em texto completo: caps. 1-8 prontos (8 na v1.49.3; tradução natural, sem literal). Faltam 9-12. Partes longas ficam em `livros_txt/sherlock/parts/` e são juntadas com `cat` em `pt_<n>.txt`. Cache `mots-parole-v85`.
+- Sherlock Holmes em texto completo: caps. 1-8 prontos (8 na v1.49.3; tradução natural, sem literal). Faltam 9-12. Partes longas ficam em `livros_txt/sherlock/parts/` e são juntadas com `cat` em `pt_<n>.txt`. Cache `mots-parole-v86`.
 - `nuvem/amigos2.sql` já foi colado por ela no Supabase (22/10/2026); falta só conferir no aparelho. Meta semanal com amigo ficou de fora de propósito (exige SQL novo e decisão de privacidade).
+
+## v1.50.0 (22/10/2026): desafio semanal entre amigos
+- Decidido por ela (22/10): **desafio entre os dois** (quem conclui mais lições na semana), o amigo vê **só o total da semana** (nada de idioma/dia). Corrigido também o layout do «Mais» no cartão do amigo (v1.49.4, `.frmore[open]` ocupa a linha inteira).
+- Cliente: `S.wkd` {ymd: lições concluídas no dia} (`markDone` em `p3.js`, máx. 30/dia, últimos 21 dias, validado no `load`; conta toda lição concluída, repetida ou não). `amigos.js`: `weekInfo` (segunda-feira local + total), `pushCh` (só envia se algum amigo tem desafio `on`), `chBlock` (estados sent/recv/on), botões `chp` (Desafiar), `cha` (Aceitar), `che` (Cancelar/Recusar), `chx` (Encerrar, em «Mais»).
+- Servidor: `nuvem/desafio.sql` (**ela precisa colar no Supabase**, depois de amigos2.sql): tabela `friend_challenges`, colunas `ch_*` em `friend_profiles`, funções `challenge_propose/respond/end/stats`, `friends_list` reescrita com `ch` por amigo, gatilho que apaga o desafio quando a amizade acaba. Semana = calendário de Brasília (segunda a domingo). O total só fica guardado com desafio ativo (`ch_tidy` apaga). **Testado de verdade**: Postgres 16 local (instalado no sandbox em `/usr/lib/postgresql/16`, `initdb` como usuário `postgres`) com `auth.uid()` simulado: propor/duplicar/aceitar/placar/virada de semana/encerrar/remover amizade/acesso direto negado; o arquivo rodou duas vezes sem erro. Falta só conferir no aparelho com 2 contas.
+- `PRIV_VER` 2026-10-22b. Teste: `t28.py`.

@@ -43,6 +43,13 @@ def handler(route):
         if n=='friends_unblock': st['blk']=[];return J(204,None)
         if n=='friends_report': st['blk'].append({'uid':body['p_uid'],'nick':'Ana'});st['fr']=[];return J(204,None)
         if n=='friends_disable': st['me']=None;st['fr']=[];return J(204,None)
+        if n=='challenge_propose': st['fr'][0]['ch']={'st':'sent'};return J(200,'enviado')
+        if n=='challenge_respond': st['fr'][0]['ch']={'st':'on','mine':st.get('mine',0),'theirs':5,'mine_prev':7,'theirs_prev':9};return J(204,None)
+        if n=='challenge_stats':
+            st['mine']=body['p_pages']
+            if st['fr'] and st['fr'][0].get('ch',{}).get('st')=='on': st['fr'][0]['ch']['mine']=body['p_pages']
+            return J(204,None)
+        if n=='challenge_end': st['fr'][0].pop('ch',None);return J(204,None)
         return J(204,None)
     return J(404,{'msg':'?'})
 def page_html(route):
@@ -89,6 +96,18 @@ try:
     assert ('POKE',{'uid':'f1'}) in st['calls']
     pg.click('[data-fr=poke]');pg.wait_for_timeout(300);assert 'já cutucou essa pessoa hoje' in pg.inner_text('#fr-box')
     pg.evaluate("()=>document.querySelector('.frset').open=true");assert pg.is_checked('#fr-poke');pg.uncheck('#fr-poke');pg.wait_for_timeout(300);assert ('friends_pokes_set',{'p_on':False}) in st['calls']
+    # desafio semanal: propor, aguardar, receber, aceitar, ver placar, encerrar
+    assert pg.evaluate("()=>{S.wkd={};P={id:'zz-1',type:'x'};markDone();markDone();markDone();P=null;return S.wkd[ymd()]}")==3,'cada lição concluída conta no dia'
+    assert pg.is_visible('[data-fr=chp]');pg.click('[data-fr=chp]');pg.wait_for_timeout(300);t=pg.inner_text('#fr-box');assert 'Desafio enviado' in t and 'Aguardando' in t and not pg.is_visible('[data-fr=chp]'),t
+    assert any(c[0]=='challenge_propose' and c[1]=={'p_uid':'f1'} for c in st['calls'])
+    assert not any(c[0]=='challenge_stats' for c in st['calls']),'sem desafio ativo não envia total'
+    st['fr'][0]['ch']={'st':'recv'};pg.click('#fr-refresh');pg.wait_for_timeout(300);assert 'te desafiou' in pg.inner_text('.frch')
+    pg.click('[data-fr=cha]');pg.wait_for_timeout(500);t=pg.inner_text('.frch');assert 'Desafio da semana' in t and 'Semana passada' in t and 'Ana venceu' in t,t
+    cs=[c for c in st['calls'] if c[0]=='challenge_stats'];assert cs and cs[-1][1]['p_pages']==3 and re.match(r'^\d{4}-\d\d-\d\d$',cs[-1][1]['p_week']),cs[-1:]
+    import datetime;assert datetime.date.fromisoformat(cs[-1][1]['p_week']).weekday()==0,'p_week deve ser segunda-feira'
+    pg.locator('.frcard').first.screenshot(path='/tmp/frch.png')
+    assert pg.locator('.frvs b').first.inner_text()=='3','placar: você 3'
+    pg.click('.frmore summary');pg.click('[data-fr=chx]');pg.wait_for_timeout(300);assert any(c[0]=='challenge_end' for c in st['calls']);assert pg.is_visible('[data-fr=chp]') and not pg.is_visible('.frch')
     # mudar compartilhamento
     pg.evaluate("()=>document.querySelector('.frset').open=true");pg.check('#fr-s2');pg.wait_for_timeout(300);assert ('friends_share',{'p_streak':True,'p_words':True}) in st['calls']
     pg.check('#fr-s3');pg.wait_for_timeout(300);assert ('friends_share2',{'p_profile':True,'p_langs':False}) in st['calls']

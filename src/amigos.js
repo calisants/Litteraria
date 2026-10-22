@@ -13,6 +13,7 @@
     if(!r.ok){const m=String((j&&(j.message||j.msg))||"");
       if(/Could not find the function|schema cache/i.test(m))throw new Error("O servidor ainda não tem a parte de Amigos instalada.");
       if(/friends_share2|friends_profile/i.test(m))throw new Error("O servidor ainda não tem a parte nova de Amigos (amigos2.sql).");
+      if(/challenge_/i.test(m))throw new Error("O servidor ainda não tem o desafio semanal instalado (desafio.sql).");
       if(/apelido/i.test(m))throw new Error("O apelido precisa ter de 2 a 20 letras.");
       throw new Error("Não consegui agora (erro "+r.status+"). Tente de novo.");}
     return j;
@@ -25,6 +26,15 @@
     let st=0;try{st=window.gamStreak?gamStreak().n:0;}catch(_){}
     return {p_streak:st,p_words:words,p_week:wk};
   }
+  /* desafio semanal: lições concluídas de segunda a domingo (só o total; o dia a dia fica no aparelho) */
+  function weekInfo(){
+    const d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()-((d.getDay()+6)%7));
+    const mon=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    let n=0;const w=S.wkd||{};Object.keys(w).forEach(k=>{if(k>=mon)n+=w[k]||0;});
+    return {p_week:mon,p_pages:n};
+  }
+  const hasCh=()=>!!(lst&&lst.friends&&lst.friends.some(f=>f.ch&&f.ch.st==="on"));
+  async function pushCh(){if(hasCh())await rpc("challenge_stats",weekInfo());}
   /* endereço de envio deste aparelho (para receber cutucadas); só enquanto Amigos estiver ativo e os lembretes com app fechado ligados */
   let lastEp="";
   async function getSub(){
@@ -49,9 +59,9 @@
     let lv=null;try{lv=window.gamLevel?gamLevel():null;}catch(_){}
     return {p_avatar:(S.avatar&&AVATARS[S.avatar])?S.avatar:null,p_motto:S.motto||"",p_level:lv,p_langs:langs};
   }
-  async function pushStats(){if(!ses()||!on())return;try{await rpc("friends_stats",myStats());if(me&&(me.share_profile||me.share_langs))await rpc("friends_profile",myProfile());}catch(_){}syncSub();}
+  async function pushStats(){if(!ses()||!on())return;try{await rpc("friends_stats",myStats());if(me&&(me.share_profile||me.share_langs))await rpc("friends_profile",myProfile());await pushCh();}catch(_){}syncSub();}
   async function load(){
-    try{me=await rpc("friends_me");if(me){setOn(true);await pushStats();lst=await rpc("friends_list");}else{setOn(false);lst=null;}msg="";}
+    try{me=await rpc("friends_me");if(me){setOn(true);await pushStats();lst=await rpc("friends_list");if(hasCh()){try{await pushCh();lst=await rpc("friends_list");}catch(_){}}}else{setOn(false);lst=null;}msg="";}
     catch(e){msg=e.message;}
   }
   const h=s=>esc(String(s==null?"":s));
@@ -78,14 +88,23 @@
     const a=LORD.filter(l=>f.langs[l]>0).map(l=>"<b>"+h(LNAME[l])+"</b> "+h(f.langs[l])+" "+(f.langs[l]===1?"página":"páginas"));
     return a.length?'<div class="frl">Estuda: '+a.join(" · ")+"</div>":"";
   }
+  function chBlock(f){
+    const c=f.ch;if(!c)return "";const u=h(f.uid),nn=h(f.nick);
+    if(c.st==="sent")return '<div class="frch">🏁 Desafio enviado a <b>'+nn+'</b>. Aguardando a resposta. <button type="button" class="btn" data-fr="che" data-u="'+u+'">Cancelar</button></div>';
+    if(c.st==="recv")return '<div class="frch"><b>'+nn+'</b> te desafiou: quem conclui mais lições nesta semana (de segunda a domingo)? Só o total de lições aparece para os dois.<div class="row"><button type="button" class="btn primary" data-fr="cha" data-u="'+u+'">Aceitar</button><button type="button" class="btn" data-fr="che" data-u="'+u+'">Recusar</button></div></div>';
+    const m=c.mine|0,t=c.theirs|0,lead=m>t?"Você está na frente":m<t?nn+" está na frente":"Empatados";
+    let prev="";
+    if(c.mine_prev!=null||c.theirs_prev!=null){const a=c.mine_prev|0,b=c.theirs_prev|0;prev='<div class="frl">Semana passada: você <b>'+a+"</b> × <b>"+b+"</b> "+nn+" · "+(a>b?"você venceu":a<b?nn+" venceu":"empate")+"</div>";}
+    return '<div class="frch"><b>🏁 Desafio da semana</b><div class="frvs"><span><b>'+m+'</b><small>você</small></span><span class="frx" aria-hidden="true">×</span><span><b>'+t+'</b><small>'+nn+'</small></span></div><div class="frl">'+lead+'. Conta as lições concluídas de segunda a domingo.</div>'+prev+"</div>";
+  }
   function friendCard(f){
     const none=!chips(f)&&!f.motto&&!langsLine(f);
     const u=h(f.uid),nn=h(f.nick);
     return '<article class="frcard"><div class="frtop">'+avt(f,48)+'<div class="frw"><b class="frn">'+nn+"</b>"+(f.motto?'<div class="frm">“'+h(f.motto)+"”</div>":"")+
       (ago(f.at)&&(f.streak!=null||f.words!=null)?'<small class="frs">'+h(ago(f.at))+"</small>":"")+"</div></div>"+
-      (chips(f)?'<div class="frchips">'+chips(f)+"</div>":"")+langsLine(f)+(none?'<p class="help">Este amigo não compartilha detalhes.</p>':"")+
-      '<div class="row"><button type="button" class="btn primary" data-fr="poke" data-u="'+u+'" aria-label="Cutucar '+nn+'">👋 Cutucar</button>'+
-      '<details class="frmore"><summary class="btn">Mais</summary><div class="row"><button type="button" class="btn" data-fr="del" data-u="'+u+'">Remover</button><button type="button" class="btn" data-fr="blk" data-u="'+u+'">Bloquear</button><button type="button" class="btn" data-fr="rep" data-u="'+u+'">Denunciar</button></div></details></div></article>';
+      (chips(f)?'<div class="frchips">'+chips(f)+"</div>":"")+langsLine(f)+(none?'<p class="help">Este amigo não compartilha detalhes.</p>':"")+chBlock(f)+
+      '<div class="row"><button type="button" class="btn primary" data-fr="poke" data-u="'+u+'" aria-label="Cutucar '+nn+'">👋 Cutucar</button>'+(f.ch?"":'<button type="button" class="btn" data-fr="chp" data-u="'+u+'" aria-label="Desafiar '+nn+' na semana">🏁 Desafiar</button>')+
+      '<details class="frmore"><summary class="btn">Mais</summary><div class="row">'+(f.ch&&f.ch.st==="on"?'<button type="button" class="btn" data-fr="chx" data-u="'+u+'">Encerrar desafio</button>':"")+'<button type="button" class="btn" data-fr="del" data-u="'+u+'">Remover</button><button type="button" class="btn" data-fr="blk" data-u="'+u+'">Bloquear</button><button type="button" class="btn" data-fr="rep" data-u="'+u+'">Denunciar</button></div></details></div></article>';
   }
   function statsLine(f){
     const a=[];
@@ -174,6 +193,10 @@
       if(!r.ok||!j){msg="Não consegui cutucar agora. Tente de novo mais tarde.";return;}
       msg={ok:"Cutucada enviada! 👋",ja_hoje:"Você já cutucou essa pessoa hoje. Amanhã pode de novo.",recusa:"Esta pessoa não está recebendo cutucadas.",sem_aparelho:"Esta pessoa ainda não tem as notificações ligadas neste aparelho, então a cutucada não chegaria.",limite:"Essa pessoa já recebeu muitas cutucadas hoje. Tente amanhã.",nao_amigo:"Vocês não estão mais conectados.",falhou:"A notificação não saiu. Tente de novo mais tarde."}[j.status]||"Não consegui cutucar agora.";
     });
+    if(a==="chp")return act(async()=>{const r=await rpc("challenge_propose",{p_uid:u});msg={enviado:"Desafio enviado. Ele só começa quando a pessoa aceitar.",ja:"Já existe um desafio com essa pessoa.",nao_amigo:"Vocês não estão mais conectados."}[r]||"Pronto.";});
+    if(a==="cha")return act(async()=>{await rpc("challenge_respond",{p_uid:u,p_accept:true});lst=await rpc("friends_list");await pushCh();msg="Desafio aceito! Vale a semana de segunda a domingo.";});
+    if(a==="che")return act(async()=>{await rpc("challenge_end",{p_uid:u});msg="Pronto. Nada ficou guardado no servidor.";});
+    if(a==="chx")return act(async()=>{if(!confirm("Encerrar o desafio? O total da semana de vocês dois é apagado do servidor."))return;await rpc("challenge_end",{p_uid:u});msg="Desafio encerrado e totais apagados do servidor.";});
     if(a==="unb")return act(()=>rpc("friends_unblock",{p_uid:u}));
     if(a==="rep")return act(async()=>{const m=prompt("Conte em poucas palavras o que aconteceu (opcional):","");if(m===null)return;await rpc("friends_report",{p_uid:u,p_reason:m});msg="Denúncia enviada e pessoa bloqueada.";});
   });

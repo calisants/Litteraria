@@ -505,7 +505,7 @@ svg{display:block}
 /* início */
 .hero{padding:12px 0 0}.hero .brand{font-size:clamp(1.7rem,8vw,2.2rem)}
 .me{padding:6px 0 0;gap:10px}.me .avatar{--av:40px!important}.me .who b{font-size:1.08rem}.me .who small{font-size:.85rem}
-.frme{display:flex;gap:12px;align-items:center;padding:10px;border-radius:var(--radius);background:var(--soft)}.frcard{border:var(--bw) solid var(--line);border-radius:var(--radius);padding:12px;margin:10px 0;background:var(--surface)}.frtop{display:flex;gap:12px;align-items:center}.frw{min-width:0}.frn{font-size:1.05rem}.frm{font-style:italic;color:var(--muted);font-size:.9rem;margin-top:2px;overflow-wrap:anywhere}.frs{display:block;color:var(--muted);font-size:.8rem}.frchips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}.frc{border-radius:99px;padding:3px 10px;background:var(--soft);font-size:.82rem}.frl{font-size:.88rem;margin:6px 0}.frcard .row{align-items:flex-start;margin-top:10px}.frmore summary{list-style:none;cursor:pointer}.frmore summary::-webkit-details-marker{display:none}.frcard>.row{flex-wrap:wrap}.frmore{align-self:flex-start}.frmore[open]{flex:1 0 100%;order:3}.frmore .row{margin-top:8px;flex-wrap:wrap}.frmore[open] summary{margin-bottom:0}
+.frme{display:flex;gap:12px;align-items:center;padding:10px;border-radius:var(--radius);background:var(--soft)}.frcard{border:var(--bw) solid var(--line);border-radius:var(--radius);padding:12px;margin:10px 0;background:var(--surface)}.frtop{display:flex;gap:12px;align-items:center}.frw{min-width:0}.frn{font-size:1.05rem}.frm{font-style:italic;color:var(--muted);font-size:.9rem;margin-top:2px;overflow-wrap:anywhere}.frs{display:block;color:var(--muted);font-size:.8rem}.frchips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}.frc{border-radius:99px;padding:3px 10px;background:var(--soft);font-size:.82rem}.frl{font-size:.88rem;margin:6px 0}.frcard .row{align-items:flex-start;margin-top:10px}.frmore summary{list-style:none;cursor:pointer}.frmore summary::-webkit-details-marker{display:none}.frcard>.row{flex-wrap:wrap}.frch{margin:10px 0 4px;padding:10px;border-radius:var(--radius);background:var(--soft);font-size:.92rem}.frch .row{margin-top:8px}.frvs{display:flex;align-items:center;justify-content:center;gap:18px;margin:8px 0}.frvs span{display:flex;flex-direction:column;align-items:center;min-width:64px}.frvs b{font-size:1.9rem;line-height:1}.frvs small{color:var(--muted);font-size:.8rem;max-width:110px;overflow-wrap:anywhere;text-align:center}.frx{color:var(--muted);font-size:1.3rem}.frmore{align-self:flex-start}.frmore[open]{flex:1 0 100%;order:3}.frmore .row{margin-top:8px;flex-wrap:wrap}.frmore[open] summary{margin-bottom:0}
 .skr{display:grid;grid-template-columns:minmax(0,1fr) 90px 44px;gap:8px;align-items:center;margin:6px 0}.skr .gbar{margin:0;background:var(--line)}.skr .gbar i{background:var(--accent)}.skr b{text-align:right}.skh{margin:12px 0 2px;font-size:.9rem}
 .gchip{display:flex;flex:none;gap:10px;border:0;border-radius:99px;padding:6px 12px;background:var(--soft);color:var(--ink);font-weight:700;font-size:.82rem;cursor:pointer}
 .gchip[hidden]{display:none}.gchip span{display:inline-flex;align-items:center;gap:4px}.gchip svg{color:var(--accent)}.gchip.idle span:first-child svg{opacity:.4}
@@ -991,7 +991,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.49.4",d:"2026-10-22"};
+const APP_REL={v:"1.50.0",d:"2026-10-22"};
 
 
 const RAW={
@@ -2509,7 +2509,7 @@ const ICON_IDS=["padrao","alice","pp","frank","soft","dante"];
 const WD_SRC=["hoje","msg","frase","livro","palavra","off"];
 const DAYRE=/^\d{4}-\d\d-\d\d$/;
 const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},gs:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0},
-  sq:0,lgt:"",gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"off",bk:"all",u:0},ic:"padrao"};
+  sq:0,lgt:"",wkd:{},gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"off",bk:"all",u:0},ic:"padrao"};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -2555,6 +2555,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   const ci=(v,a,b)=>Math.min(b,Math.max(a,Math.floor(+v)||0));
   if(Number.isInteger(sv.sq)&&sv.sq>=0&&sv.sq<100)S.sq=sv.sq;
   if(typeof sv.lgt==="string"&&/^[a-z]{0,20}$/.test(sv.lgt))S.lgt=sv.lgt;
+  if(sv.wkd&&typeof sv.wkd==="object"&&!Array.isArray(sv.wkd)){const w={};Object.keys(sv.wkd).filter(k=>DAYRE.test(k)).sort().slice(-21).forEach(k=>{w[k]=ci(sv.wkd[k],0,30);});S.wkd=w;}
   if(sv.gam&&typeof sv.gam==="object"){
     const g=sv.gam;
     S.gam={on:g.on===true,pts:ci(g.pts,0,1e9),last:DAYRE.test(g.last)?g.last:"",streak:ci(g.streak,0,9999),best:ci(g.best,0,9999),les:ci(g.les,0,1e6),bc:ci(g.bc,0,1e5),
@@ -2739,6 +2740,7 @@ const isDone=p=>!!S.done[doneKey(p)];
 function markDone(){
   if(!P)return;
   S.done[doneKey(P)]=1;
+  {const t=ymd(),w=S.wkd||(S.wkd={});w[t]=Math.min(30,(w[t]||0)+1);const ks=Object.keys(w).sort();while(ks.length>21)delete w[ks.shift()];}
   const pl=S.plays[S.lang]||(S.plays[S.lang]={});pl[P.type]=(pl[P.type]||0)+1;
   save();
 }
@@ -5657,14 +5659,14 @@ window.CLOUDCFG={url:"https://uunfcvgiomzgwtpckzdx.supabase.co",key:"sb_publisha
 /* ===== Política de Privacidade (texto que aparece no app) =====
    Descreve o que o app realmente faz. As partes sobre conta e lembretes só aparecem quando esses recursos estão ligados (CLOUDCFG / PUSHCFG).
    Mudou algo no que o app guarda ou envia? Atualize o texto e PRIV_VER. */
-const PRIV_VER="2026-10-22a";
+const PRIV_VER="2026-10-22b";
 function privSections(){
   const cloud=!!(window.CLOUDCFG&&CLOUDCFG.url&&CLOUDCFG.key),push=!!(window.PUSHCFG&&PUSHCFG.sink);
   const s=[];
   s.push(["Quem cuida dos seus dados","O Mots & Parole é feito por Camila (@calisants), que decide como os dados do app são tratados. Para falar sobre privacidade, use Ajustes → Sobre e ajuda → «Enviar sugestão ou avisar de erro»."]);
   s.push(["Sem conta, nada sai do seu aparelho","O progresso, os ajustes, o nome que você digitar, o caderno de palavras e as citações favoritas ficam só no armazenamento deste aparelho. O app não tem anúncios e não usa ferramentas de estatística de terceiros."]);
   if(cloud)s.push(["Conta (opcional)","Se você criar uma conta, guardamos: o seu e-mail; uma cópia do seu progresso (lições feitas, pontuações, revisões, caderno de palavras, favoritos, ajustes e o nome que você digitou); e a data em que você aceitou esta política e confirmou ter 13 anos ou mais. Isso serve só para você recuperar o progresso se trocar de celular e usar o app em mais de um aparelho. Os dados ficam no Supabase, um serviço de terceiros; eles não ficam no GitHub nem em outro lugar do app. Cada conta só consegue ler e alterar os próprios dados. Tecnicamente, quem administra o projeto tem acesso a eles; esse acesso é para manter o serviço e atender pedidos seus."]);
-  if(cloud)s.push(["Amigos (opcional, só com conta)","Desligado até você ativar. Ao ativar, guardamos: um apelido que você escolher (2 a 20 letras; não use seu nome completo), um código de amigo gerado pelo app, a lista de amigos e convites, e, só se você marcar, a sua sequência de dias, o total de palavras acertadas e quantos dos últimos 7 dias você estudou. Também só se você marcar: o ícone e a frase do seu Perfil, o seu nível, e os idiomas que você estuda com o número de páginas concluídas em cada um. Cada uma dessas opções é separada e começa desligada; ao desligar, o dado é apagado do servidor. Seus amigos aceitos veem apenas o apelido e o que você marcou. Ninguém te encontra por busca: só entra quem tiver o seu código. Não há chat, foto nem mensagens. Você pode remover amigos, bloquear e denunciar (a denúncia guarda quem denunciou, quem foi denunciado e o texto que você escrever, até 300 letras, para a criadora do app analisar). Cutucadas: um amigo aceito pode te mandar um lembrete para estudar (1 por dia por amigo, no máximo 5 por dia no total); você pode desligar em «Aceitar cutucadas». Para isso guardamos o endereço de envio de notificação do seu aparelho (fornecido pela Apple, Google ou Mozilla) e as chaves dele, e registramos quem cutucou quem por poucos dias, só para aplicar os limites. Ao desativar Amigos ou sair da conta neste aparelho, apagamos esses endereços; ao desativar, apagamos também apelido, código, convites e amizades."]);
+  if(cloud)s.push(["Amigos (opcional, só com conta)","Desligado até você ativar. Ao ativar, guardamos: um apelido que você escolher (2 a 20 letras; não use seu nome completo), um código de amigo gerado pelo app, a lista de amigos e convites, e, só se você marcar, a sua sequência de dias, o total de palavras acertadas e quantos dos últimos 7 dias você estudou. Também só se você marcar: o ícone e a frase do seu Perfil, o seu nível, e os idiomas que você estuda com o número de páginas concluídas em cada um. Cada uma dessas opções é separada e começa desligada; ao desligar, o dado é apagado do servidor. Seus amigos aceitos veem apenas o apelido e o que você marcou. Ninguém te encontra por busca: só entra quem tiver o seu código. Não há chat, foto nem mensagens. Você pode remover amigos, bloquear e denunciar (a denúncia guarda quem denunciou, quem foi denunciado e o texto que você escrever, até 300 letras, para a criadora do app analisar). Cutucadas: um amigo aceito pode te mandar um lembrete para estudar (1 por dia por amigo, no máximo 5 por dia no total); você pode desligar em «Aceitar cutucadas». Desafio semanal: um amigo aceito pode te propor um desafio, que só começa se você aceitar. Enquanto ele estiver ativo, guardamos só o total de lições que você concluiu na semana (segunda a domingo) e o da semana anterior, e os dois amigos veem esses totais (nenhum idioma, dia ou lição). Ao encerrar o desafio (qualquer um dos dois), remover o amigo, bloquear ou desativar Amigos, esses totais são apagados. Para as cutucadas guardamos o endereço de envio de notificação do seu aparelho (fornecido pela Apple, Google ou Mozilla) e as chaves dele, e registramos quem cutucou quem por poucos dias, só para aplicar os limites. Ao desativar Amigos ou sair da conta neste aparelho, apagamos esses endereços; ao desativar, apagamos também apelido, código, convites e amizades."]);
   if(push)s.push(["Lembretes com o app fechado (opcional)","Se você ativar, enviamos para uma planilha da criadora do app: o endereço de envio do seu aparelho (fornecido pela Apple, Google ou Mozilla), o horário escolhido, o estilo do lembrete, o idioma e se você já estudou naquele dia. Sem nome, sem e-mail, sem progresso. Uma rotina do GitHub lê essa planilha e manda o aviso. Desligar os lembretes remove a sua linha."]);
   s.push(["Sugestões e avisos de erro","O que você escrever no formulário de sugestões vai para um Google Formulários da criadora. Não escreva dados pessoais ali."]);
   if(cloud)s.push(["Seus direitos","Você pode, a qualquer momento e sem justificar: baixar tudo o que guardamos sobre você («Baixar meus dados»), apagar a conta e todos os dados da nuvem («Apagar minha conta e dados») e sair do aparelho. Pode também pedir correção ou esclarecimentos pelo formulário de sugestões. Apagar a conta não apaga o progresso que já está no seu aparelho."]);
@@ -5925,6 +5927,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     if(!r.ok){const m=String((j&&(j.message||j.msg))||"");
       if(/Could not find the function|schema cache/i.test(m))throw new Error("O servidor ainda não tem a parte de Amigos instalada.");
       if(/friends_share2|friends_profile/i.test(m))throw new Error("O servidor ainda não tem a parte nova de Amigos (amigos2.sql).");
+      if(/challenge_/i.test(m))throw new Error("O servidor ainda não tem o desafio semanal instalado (desafio.sql).");
       if(/apelido/i.test(m))throw new Error("O apelido precisa ter de 2 a 20 letras.");
       throw new Error("Não consegui agora (erro "+r.status+"). Tente de novo.");}
     return j;
@@ -5937,6 +5940,15 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     let st=0;try{st=window.gamStreak?gamStreak().n:0;}catch(_){}
     return {p_streak:st,p_words:words,p_week:wk};
   }
+  /* desafio semanal: lições concluídas de segunda a domingo (só o total; o dia a dia fica no aparelho) */
+  function weekInfo(){
+    const d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()-((d.getDay()+6)%7));
+    const mon=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    let n=0;const w=S.wkd||{};Object.keys(w).forEach(k=>{if(k>=mon)n+=w[k]||0;});
+    return {p_week:mon,p_pages:n};
+  }
+  const hasCh=()=>!!(lst&&lst.friends&&lst.friends.some(f=>f.ch&&f.ch.st==="on"));
+  async function pushCh(){if(hasCh())await rpc("challenge_stats",weekInfo());}
   /* endereço de envio deste aparelho (para receber cutucadas); só enquanto Amigos estiver ativo e os lembretes com app fechado ligados */
   let lastEp="";
   async function getSub(){
@@ -5961,9 +5973,9 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     let lv=null;try{lv=window.gamLevel?gamLevel():null;}catch(_){}
     return {p_avatar:(S.avatar&&AVATARS[S.avatar])?S.avatar:null,p_motto:S.motto||"",p_level:lv,p_langs:langs};
   }
-  async function pushStats(){if(!ses()||!on())return;try{await rpc("friends_stats",myStats());if(me&&(me.share_profile||me.share_langs))await rpc("friends_profile",myProfile());}catch(_){}syncSub();}
+  async function pushStats(){if(!ses()||!on())return;try{await rpc("friends_stats",myStats());if(me&&(me.share_profile||me.share_langs))await rpc("friends_profile",myProfile());await pushCh();}catch(_){}syncSub();}
   async function load(){
-    try{me=await rpc("friends_me");if(me){setOn(true);await pushStats();lst=await rpc("friends_list");}else{setOn(false);lst=null;}msg="";}
+    try{me=await rpc("friends_me");if(me){setOn(true);await pushStats();lst=await rpc("friends_list");if(hasCh()){try{await pushCh();lst=await rpc("friends_list");}catch(_){}}}else{setOn(false);lst=null;}msg="";}
     catch(e){msg=e.message;}
   }
   const h=s=>esc(String(s==null?"":s));
@@ -5990,14 +6002,23 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     const a=LORD.filter(l=>f.langs[l]>0).map(l=>"<b>"+h(LNAME[l])+"</b> "+h(f.langs[l])+" "+(f.langs[l]===1?"página":"páginas"));
     return a.length?'<div class="frl">Estuda: '+a.join(" · ")+"</div>":"";
   }
+  function chBlock(f){
+    const c=f.ch;if(!c)return "";const u=h(f.uid),nn=h(f.nick);
+    if(c.st==="sent")return '<div class="frch">🏁 Desafio enviado a <b>'+nn+'</b>. Aguardando a resposta. <button type="button" class="btn" data-fr="che" data-u="'+u+'">Cancelar</button></div>';
+    if(c.st==="recv")return '<div class="frch"><b>'+nn+'</b> te desafiou: quem conclui mais lições nesta semana (de segunda a domingo)? Só o total de lições aparece para os dois.<div class="row"><button type="button" class="btn primary" data-fr="cha" data-u="'+u+'">Aceitar</button><button type="button" class="btn" data-fr="che" data-u="'+u+'">Recusar</button></div></div>';
+    const m=c.mine|0,t=c.theirs|0,lead=m>t?"Você está na frente":m<t?nn+" está na frente":"Empatados";
+    let prev="";
+    if(c.mine_prev!=null||c.theirs_prev!=null){const a=c.mine_prev|0,b=c.theirs_prev|0;prev='<div class="frl">Semana passada: você <b>'+a+"</b> × <b>"+b+"</b> "+nn+" · "+(a>b?"você venceu":a<b?nn+" venceu":"empate")+"</div>";}
+    return '<div class="frch"><b>🏁 Desafio da semana</b><div class="frvs"><span><b>'+m+'</b><small>você</small></span><span class="frx" aria-hidden="true">×</span><span><b>'+t+'</b><small>'+nn+'</small></span></div><div class="frl">'+lead+'. Conta as lições concluídas de segunda a domingo.</div>'+prev+"</div>";
+  }
   function friendCard(f){
     const none=!chips(f)&&!f.motto&&!langsLine(f);
     const u=h(f.uid),nn=h(f.nick);
     return '<article class="frcard"><div class="frtop">'+avt(f,48)+'<div class="frw"><b class="frn">'+nn+"</b>"+(f.motto?'<div class="frm">“'+h(f.motto)+"”</div>":"")+
       (ago(f.at)&&(f.streak!=null||f.words!=null)?'<small class="frs">'+h(ago(f.at))+"</small>":"")+"</div></div>"+
-      (chips(f)?'<div class="frchips">'+chips(f)+"</div>":"")+langsLine(f)+(none?'<p class="help">Este amigo não compartilha detalhes.</p>':"")+
-      '<div class="row"><button type="button" class="btn primary" data-fr="poke" data-u="'+u+'" aria-label="Cutucar '+nn+'">👋 Cutucar</button>'+
-      '<details class="frmore"><summary class="btn">Mais</summary><div class="row"><button type="button" class="btn" data-fr="del" data-u="'+u+'">Remover</button><button type="button" class="btn" data-fr="blk" data-u="'+u+'">Bloquear</button><button type="button" class="btn" data-fr="rep" data-u="'+u+'">Denunciar</button></div></details></div></article>';
+      (chips(f)?'<div class="frchips">'+chips(f)+"</div>":"")+langsLine(f)+(none?'<p class="help">Este amigo não compartilha detalhes.</p>':"")+chBlock(f)+
+      '<div class="row"><button type="button" class="btn primary" data-fr="poke" data-u="'+u+'" aria-label="Cutucar '+nn+'">👋 Cutucar</button>'+(f.ch?"":'<button type="button" class="btn" data-fr="chp" data-u="'+u+'" aria-label="Desafiar '+nn+' na semana">🏁 Desafiar</button>')+
+      '<details class="frmore"><summary class="btn">Mais</summary><div class="row">'+(f.ch&&f.ch.st==="on"?'<button type="button" class="btn" data-fr="chx" data-u="'+u+'">Encerrar desafio</button>':"")+'<button type="button" class="btn" data-fr="del" data-u="'+u+'">Remover</button><button type="button" class="btn" data-fr="blk" data-u="'+u+'">Bloquear</button><button type="button" class="btn" data-fr="rep" data-u="'+u+'">Denunciar</button></div></details></div></article>';
   }
   function statsLine(f){
     const a=[];
@@ -6086,6 +6107,10 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
       if(!r.ok||!j){msg="Não consegui cutucar agora. Tente de novo mais tarde.";return;}
       msg={ok:"Cutucada enviada! 👋",ja_hoje:"Você já cutucou essa pessoa hoje. Amanhã pode de novo.",recusa:"Esta pessoa não está recebendo cutucadas.",sem_aparelho:"Esta pessoa ainda não tem as notificações ligadas neste aparelho, então a cutucada não chegaria.",limite:"Essa pessoa já recebeu muitas cutucadas hoje. Tente amanhã.",nao_amigo:"Vocês não estão mais conectados.",falhou:"A notificação não saiu. Tente de novo mais tarde."}[j.status]||"Não consegui cutucar agora.";
     });
+    if(a==="chp")return act(async()=>{const r=await rpc("challenge_propose",{p_uid:u});msg={enviado:"Desafio enviado. Ele só começa quando a pessoa aceitar.",ja:"Já existe um desafio com essa pessoa.",nao_amigo:"Vocês não estão mais conectados."}[r]||"Pronto.";});
+    if(a==="cha")return act(async()=>{await rpc("challenge_respond",{p_uid:u,p_accept:true});lst=await rpc("friends_list");await pushCh();msg="Desafio aceito! Vale a semana de segunda a domingo.";});
+    if(a==="che")return act(async()=>{await rpc("challenge_end",{p_uid:u});msg="Pronto. Nada ficou guardado no servidor.";});
+    if(a==="chx")return act(async()=>{if(!confirm("Encerrar o desafio? O total da semana de vocês dois é apagado do servidor."))return;await rpc("challenge_end",{p_uid:u});msg="Desafio encerrado e totais apagados do servidor.";});
     if(a==="unb")return act(()=>rpc("friends_unblock",{p_uid:u}));
     if(a==="rep")return act(async()=>{const m=prompt("Conte em poucas palavras o que aconteceu (opcional):","");if(m===null)return;await rpc("friends_report",{p_uid:u,p_reason:m});msg="Denúncia enviada e pessoa bloqueada.";});
   });
@@ -6138,6 +6163,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.50.0",d:"2026-10-22",t:["Novo: desafio semanal entre amigos. Em Amigos, toque em «Desafiar» no cartão de um amigo; o desafio só começa se ele aceitar. Vence quem concluir mais lições de segunda a domingo","Os dois veem só o total de lições da semana (e o resultado da semana passada). Nenhum idioma, dia ou lição. Qualquer um pode encerrar a qualquer hora e os totais são apagados do servidor","Antes de usar, a criadora precisa instalar a parte nova no servidor (desafio.sql); se não estiver instalada, o app avisa"]},
 {v:"1.49.4",d:"2026-10-22",t:["Corrigido: em Amigos, ao tocar em «Mais» os botões Remover, Bloquear e Denunciar ficavam por cima de «Cutucar»; agora abrem logo abaixo, sem sobrepor"]},
 {v:"1.49.3",d:"2026-10-22",t:["Sherlock Holmes: capítulo 8 («A Aventura da Faixa Malhada») já disponível para ler"]},
 {v:"1.49.2",d:"2026-10-22",t:["Sherlock Holmes: capítulo 7 («A Aventura do Carbúnculo Azul») já disponível para ler"]},

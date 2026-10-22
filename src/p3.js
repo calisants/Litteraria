@@ -72,7 +72,7 @@ const ICON_IDS=["padrao","alice","pp","frank","soft","dante"];
 const WD_SRC=["hoje","msg","frase","livro","palavra","off"];
 const DAYRE=/^\d{4}-\d\d-\d\d$/;
 const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},gs:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0},
-  sq:0,lgt:"",gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"off",bk:"all",u:0},ic:"padrao"};
+  sq:0,lgt:"",wkd:{},gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"off",bk:"all",u:0},ic:"padrao"};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -118,6 +118,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   const ci=(v,a,b)=>Math.min(b,Math.max(a,Math.floor(+v)||0));
   if(Number.isInteger(sv.sq)&&sv.sq>=0&&sv.sq<100)S.sq=sv.sq;
   if(typeof sv.lgt==="string"&&/^[a-z]{0,20}$/.test(sv.lgt))S.lgt=sv.lgt;
+  if(sv.wkd&&typeof sv.wkd==="object"&&!Array.isArray(sv.wkd)){const w={};Object.keys(sv.wkd).filter(k=>DAYRE.test(k)).sort().slice(-21).forEach(k=>{w[k]=ci(sv.wkd[k],0,30);});S.wkd=w;}
   if(sv.gam&&typeof sv.gam==="object"){
     const g=sv.gam;
     S.gam={on:g.on===true,pts:ci(g.pts,0,1e9),last:DAYRE.test(g.last)?g.last:"",streak:ci(g.streak,0,9999),best:ci(g.best,0,9999),les:ci(g.les,0,1e6),bc:ci(g.bc,0,1e5),
@@ -302,6 +303,7 @@ const isDone=p=>!!S.done[doneKey(p)];
 function markDone(){
   if(!P)return;
   S.done[doneKey(P)]=1;
+  {const t=ymd(),w=S.wkd||(S.wkd={});w[t]=Math.min(30,(w[t]||0)+1);const ks=Object.keys(w).sort();while(ks.length>21)delete w[ks.shift()];}
   const pl=S.plays[S.lang]||(S.plays[S.lang]={});pl[P.type]=(pl[P.type]||0)+1;
   save();
 }
