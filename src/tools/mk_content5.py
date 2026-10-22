@@ -5,8 +5,18 @@ items = json.load(open('gram_items.json', encoding='utf8'))
 items2 = json.load(open('gram_items2.json', encoding='utf8'))
 items3 = json.load(open('gram_items3.json', encoding='utf8'))
 for l in items: items[l].update(items2[l]); items[l].update(items3[l])
-import hints
-NH = hints.hint_items(items)
+try:
+    import hints
+    NH = hints.hint_items(items)
+except ImportError:  # módulo conj (verbecc) não está mais no repositório: usa as dicas guardadas em gram_hints.json
+    _H = json.load(open('gram_hints.json', encoding='utf8')); NH = 0
+    for _l, _ts in _H.items():
+        for _t, _ps in _ts.items():
+            for _pi, _qs in _ps.items():
+                for _qi, _o in _qs.items():
+                    _it = items[_l][_t][int(_pi)][int(_qi)]
+                    assert _it['q'] == _o['q'], (_l, _t, _pi, _qi)
+                    _it['d'] = _o['d']; NH += 1
 rules = {l: {**G1.R[l], **G2.R2[l], **G3.R3[l]} for l in G1.R}
 ORDER = [  # ordem didática: vocabulário da gramática -> frase simples no presente -> estruturas -> passado e futuro -> frases complexas
  ("classes", "Classes de palavras", "Classes"),

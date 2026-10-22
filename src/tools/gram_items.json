@@ -1212,6 +1212,86 @@
 "s": "Nous achetons une voiture neuve.",
 "k": "une"
 }
+],
+[
+{
+"q": "Marie est fatiguée, mais elle continue à travailler.\nQual palavra é o PRONOME?",
+"o": [
+"travailler",
+"Marie",
+"fatiguée",
+"elle"
+],
+"a": 3,
+"w": "«elle» é um pronome. O pronome fica no lugar de um substantivo ou se refere a algo já dito ou presente na situação.",
+"s": "Marie est fatiguée, mais elle continue à travailler.",
+"k": "elle"
+},
+{
+"q": "Je mange du pain et je bois de l'eau.\nQual palavra é a CONJUNÇÃO?",
+"o": [
+"bois",
+"et",
+"pain",
+"mange"
+],
+"a": 1,
+"w": "«et» é uma conjunção. A conjunção liga duas partes da frase.",
+"s": "Je mange du pain et je bois de l'eau.",
+"k": "et"
+},
+{
+"q": "Hourra ! Nous avons gagné le match.\nQual palavra é a INTERJEIÇÃO?",
+"o": [
+"gagné",
+"match",
+"Hourra",
+"avons"
+],
+"a": 2,
+"w": "«Hourra» é uma interjeição. A interjeição expressa emoção e vale como uma frase sozinha.",
+"s": "Hourra ! Nous avons gagné le match.",
+"k": "Hourra"
+},
+{
+"q": "Je regarde la télévision avec mon frère.\nQual palavra é o PRONOME?",
+"o": [
+"regarde",
+"frère",
+"télévision",
+"Je"
+],
+"a": 3,
+"w": "«Je» é um pronome. O pronome fica no lugar de um substantivo ou se refere a algo já dito ou presente na situação.",
+"s": "Je regarde la télévision avec mon frère.",
+"k": "Je"
+},
+{
+"q": "Je reste à la maison car il pleut.\nQual palavra é a CONJUNÇÃO?",
+"o": [
+"pleut",
+"reste",
+"car",
+"maison"
+],
+"a": 2,
+"w": "«car» é uma conjunção. A conjunção liga duas partes da frase.",
+"s": "Je reste à la maison car il pleut.",
+"k": "car"
+},
+{
+"q": "Oh ! Le gâteau est délicieux.\nQual palavra é a INTERJEIÇÃO?",
+"o": [
+"gâteau",
+"délicieux",
+"est",
+"Oh"
+],
+"a": 3,
+"w": "«Oh» é uma interjeição. A interjeição expressa emoção e vale como uma frase sozinha.",
+"s": "Oh ! Le gâteau est délicieux.",
+"k": "Oh"
+}
 ]
 ],
 "falsos": [
@@ -2590,6 +2670,86 @@
 "s": "Compriamo una macchina nuova.",
 "k": "una"
 }
+],
+[
+{
+"q": "Maria è stanca, ma lei continua a lavorare.\nQual palavra é o PRONOME?",
+"o": [
+"lei",
+"stanca",
+"lavorare",
+"Maria"
+],
+"a": 0,
+"w": "«lei» é um pronome. O pronome fica no lugar de um substantivo ou se refere a algo já dito ou presente na situação.",
+"s": "Maria è stanca, ma lei continua a lavorare.",
+"k": "lei"
+},
+{
+"q": "Mangio la pasta e bevo l'acqua.\nQual palavra é a CONJUNÇÃO?",
+"o": [
+"Mangio",
+"pasta",
+"e",
+"bevo"
+],
+"a": 2,
+"w": "«e» é uma conjunção. A conjunção liga duas partes da frase.",
+"s": "Mangio la pasta e bevo l'acqua.",
+"k": "e"
+},
+{
+"q": "Evviva! Abbiamo vinto la partita.\nQual palavra é a INTERJEIÇÃO?",
+"o": [
+"vinto",
+"partita",
+"Abbiamo",
+"Evviva"
+],
+"a": 3,
+"w": "«Evviva» é uma interjeição. A interjeição expressa emoção e vale como uma frase sozinha.",
+"s": "Evviva! Abbiamo vinto la partita.",
+"k": "Evviva"
+},
+{
+"q": "Io abito a Roma con mia sorella.\nQual palavra é o PRONOME?",
+"o": [
+"Roma",
+"sorella",
+"abito",
+"Io"
+],
+"a": 3,
+"w": "«Io» é um pronome. O pronome fica no lugar de um substantivo ou se refere a algo já dito ou presente na situação.",
+"s": "Io abito a Roma con mia sorella.",
+"k": "Io"
+},
+{
+"q": "Resto a casa perché piove.\nQual palavra é a CONJUNÇÃO?",
+"o": [
+"casa",
+"Resto",
+"perché",
+"piove"
+],
+"a": 2,
+"w": "«perché» é uma conjunção. A conjunção liga duas partes da frase.",
+"s": "Resto a casa perché piove.",
+"k": "perché"
+},
+{
+"q": "Oh, il gelato è buonissimo!\nQual palavra é a INTERJEIÇÃO?",
+"o": [
+"Oh",
+"gelato",
+"è",
+"buonissimo"
+],
+"a": 0,
+"w": "«Oh» é uma interjeição. A interjeição expressa emoção e vale como uma frase sozinha.",
+"s": "Oh, il gelato è buonissimo!",
+"k": "Oh"
+}
 ]
 ],
 "falsos": [
@@ -3967,6 +4127,86 @@
 "w": "«a» é um artigo. O artigo acompanha o substantivo e indica se ele é conhecido ou não.",
 "s": "We buy a new car.",
 "k": "a"
+}
+],
+[
+{
+"q": "Mary is tired, but she keeps working.\nQual palavra é o PRONOME?",
+"o": [
+"tired",
+"she",
+"working",
+"Mary"
+],
+"a": 1,
+"w": "«she» é um pronome. O pronome fica no lugar de um substantivo ou se refere a algo já dito ou presente na situação.",
+"s": "Mary is tired, but she keeps working.",
+"k": "she"
+},
+{
+"q": "I eat bread and I drink water.\nQual palavra é a CONJUNÇÃO?",
+"o": [
+"eat",
+"and",
+"drink",
+"bread"
+],
+"a": 1,
+"w": "«and» é uma conjunção. A conjunção liga duas partes da frase.",
+"s": "I eat bread and I drink water.",
+"k": "and"
+},
+{
+"q": "Hooray! The team won the match.\nQual palavra é a INTERJEIÇÃO?",
+"o": [
+"Hooray",
+"won",
+"team",
+"match"
+],
+"a": 0,
+"w": "«Hooray» é uma interjeição. A interjeição expressa emoção e vale como uma frase sozinha.",
+"s": "Hooray! The team won the match.",
+"k": "Hooray"
+},
+{
+"q": "I watch television with my brother.\nQual palavra é o PRONOME?",
+"o": [
+"I",
+"television",
+"brother",
+"watch"
+],
+"a": 0,
+"w": "«I» é um pronome. O pronome fica no lugar de um substantivo ou se refere a algo já dito ou presente na situação.",
+"s": "I watch television with my brother.",
+"k": "I"
+},
+{
+"q": "I stay at home because it is raining.\nQual palavra é a CONJUNÇÃO?",
+"o": [
+"home",
+"raining",
+"because",
+"stay"
+],
+"a": 2,
+"w": "«because» é uma conjunção. A conjunção liga duas partes da frase.",
+"s": "I stay at home because it is raining.",
+"k": "because"
+},
+{
+"q": "Wow! This cake is delicious.\nQual palavra é a INTERJEIÇÃO?",
+"o": [
+"is",
+"Wow",
+"cake",
+"delicious"
+],
+"a": 1,
+"w": "«Wow» é uma interjeição. A interjeição expressa emoção e vale como uma frase sozinha.",
+"s": "Wow! This cake is delicious.",
+"k": "Wow"
 }
 ]
 ],
