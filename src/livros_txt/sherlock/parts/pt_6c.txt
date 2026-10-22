@@ -1,0 +1,68 @@
+141|— Sim.
+142|— Um pedido de socorro, a senhora pensou?
+143|— Sim. Ele acenou com as mãos.
+144|— Mas pode ter sido um grito de surpresa. O espanto de vê-la inesperadamente pode tê-lo feito erguer as mãos?
+145|— É possível.
+146|— E a senhora achou que ele foi puxado para trás?
+147|— Ele sumiu tão de repente.
+148|— Pode ter pulado para trás. A senhora não viu mais ninguém na sala?
+149|— Não, mas esse homem horrível confessou ter estado lá, e o lascar estava ao pé da escada.
+150|— Exatamente. O seu marido, até onde a senhora pôde ver, estava com as roupas comuns?
+151|— Mas sem colarinho nem gravata. Vi nitidamente a garganta nua dele.
+152|— Ele já falou alguma vez da Swandam Lane?
+153|— Nunca.
+154|— Ele já mostrou algum sinal de ter tomado ópio?
+155|— Nunca.
+156|— Obrigado, sra. St. Clair. Esses eram os pontos principais sobre os quais eu desejava ter absoluta clareza. Agora faremos um pequeno jantar e depois nos retiraremos, pois amanhã podemos ter um dia muito ocupado.
+157|Puseram à nossa disposição um quarto grande e confortável, de duas camas, e logo eu estava entre os lençóis, pois estava exausto depois da minha noite de aventura. Sherlock Holmes era, porém, um homem que, quando tinha um problema não resolvido na cabeça, passava dias, e até uma semana, sem descanso, revirando-o, reorganizando os fatos, olhando-o de todos os pontos de vista até o ter sondado ou se convencer de que seus dados eram insuficientes. Ficou logo evidente para mim que ele se preparava agora para uma sessão de noite inteira. Tirou o casaco e o colete, vestiu um grande roupão azul e depois vagou pelo quarto juntando travesseiros da sua cama e almofadas do sofá e das poltronas. Com eles construiu uma espécie de divã oriental, sobre o qual se empoleirou de pernas cruzadas, com uma onça de tabaco picado e uma caixa de fósforos dispostas à sua frente. Na luz tênue da lâmpada vi-o sentado ali, um velho cachimbo de urze entre os lábios, os olhos fixos no vazio num canto do teto, a fumaça azul subindo em volutas, silencioso, imóvel, com a luz brilhando sobre os seus traços aquilinos e bem marcados. Assim ele estava quando adormeci, e assim estava quando uma exclamação súbita me fez acordar e vi o sol de verão brilhando no aposento. O cachimbo ainda estava entre os lábios, a fumaça ainda subia em espirais, e o quarto estava cheio de uma densa névoa de tabaco, mas nada restava do monte de fumo que eu vira na noite anterior.
+158|— Acordado, Watson? — perguntou.
+159|— Sim.
+160|— Disposto a um passeio matinal?
+161|— Certamente.
+162|— Então vista-se. Ninguém se mexe ainda, mas sei onde dorme o rapaz do estábulo, e logo teremos a charrete pronta. — Riu consigo mesmo ao falar, os olhos cintilavam, e parecia outro homem, diferente do pensador sombrio da noite anterior.
+163|Enquanto me vestia, olhei o relógio. Não admirava que ninguém se mexesse. Eram quatro e vinte e cinco. Mal eu terminara quando Holmes voltou com a notícia de que o rapaz estava atrelando o cavalo.
+164|— Quero testar uma pequena teoria minha — disse, calçando as botas. — Penso, Watson, que o senhor está agora na presença de um dos tolos mais absolutos da Europa. Mereço ser chutado daqui até Charing Cross. Mas creio que agora tenho a chave do caso.
+165|— E onde está ela? — perguntei, sorrindo.
+166|— No banheiro — respondeu. — Ah, sim, não estou brincando — continuou, vendo o meu olhar de incredulidade. — Acabo de estar lá, e a tirei, e a tenho nesta mala Gladstone. Venha, meu rapaz, e veremos se ela não serve na fechadura.
+167|Descemos a escada o mais silenciosamente possível e saímos para o brilhante sol da manhã. Na estrada estavam o nosso cavalo e a charrete, com o rapaz do estábulo, meio vestido, esperando à cabeça. Ambos saltamos para dentro, e disparamos pela estrada de Londres. Algumas carroças do campo se mexiam, levando legumes à metrópole, mas as fileiras de vilas de cada lado estavam tão silenciosas e sem vida quanto alguma cidade num sonho.
+168|— Foi em alguns pontos um caso singular — disse Holmes, açoitando o cavalo para um galope. — Confesso que fui cego como uma toupeira, mas é melhor aprender a sabedoria tarde do que nunca aprendê-la.
+169|Na cidade, os primeiros a se levantar começavam a olhar sonolentos das janelas quando passamos pelas ruas do lado de Surrey. Descendo pela Waterloo Bridge Road, cruzamos o rio e, subindo a toda pela Wellington Street, viramos bruscamente à direita e nos vimos na Bow Street. Sherlock Holmes era bem conhecido da corporação, e os dois guardas à porta o saudaram. Um deles segurou a cabeça do cavalo enquanto o outro nos levava para dentro.
+170|— Quem está de serviço? — perguntou Holmes.
+171|— O inspetor Bradstreet, senhor.
+172|— Ah, Bradstreet, como vai? — Um oficial alto e corpulento descera pelo corredor de lajes de pedra, de boné de pala e jaqueta agaloada. — Quero ter uma palavra tranquila com o senhor, Bradstreet.
+173|— Certamente, sr. Holmes. Entre na minha sala aqui.
+174|Era uma sala pequena, de aspecto de escritório, com um enorme livro-caixa sobre a mesa e um telefone saindo da parede. O inspetor sentou-se à escrivaninha.
+175|— O que posso fazer pelo senhor, sr. Holmes?
+176|— Vim por causa daquele mendigo, Boone, o que foi acusado de envolvimento no desaparecimento do sr. Neville St. Clair, de Lee.
+177|— Sim. Foi trazido e remetido para novas averiguações.
+178|— Assim ouvi. O senhor o tem aqui?
+179|— Nas celas.
+180|— Ele é quieto?
+181|— Ah, não dá trabalho. Mas é um canalha sujo.
+182|— Sujo?
+183|— Sim, é tudo o que podemos fazer para o fazer lavar as mãos, e o rosto dele é negro como o de um funileiro ambulante. Bem, quando o caso dele for resolvido, ele terá um banho regulamentar de prisão; e acho que, se o senhor o visse, concordaria comigo que ele precisa.
+184|— Gostaria muito de vê-lo.
+185|— Gostaria? Isso é fácil de arranjar. Venha por aqui. Pode deixar a mala.
+186|— Não, acho que vou levá-la.
+187|— Muito bem. Venha por aqui, por favor. — Conduziu-nos por um corredor, abriu uma porta gradeada, desceu por uma escada em caracol e nos levou a um corredor caiado, com uma fileira de portas de cada lado.
+188|— A terceira à direita é a dele — disse o inspetor. — Aqui está! — Correu em silêncio um painel na parte superior da porta e espiou.
+189|— Está dormindo — disse. — O senhor pode vê-lo muito bem.
+190|Ambos pusemos os olhos na grade. O prisioneiro jazia com o rosto voltado para nós, em sono muito profundo, respirando devagar e pesadamente. Era um homem de estatura média, grosseiramente vestido como convinha à profissão, com uma camisa colorida despontando pelo rasgão do casaco esfarrapado. Estava, como o inspetor dissera, extremamente sujo, mas a sujeira que lhe cobria o rosto não podia esconder a feiura repulsiva. Uma larga cicatriz de velha ferida corria por todo ele, do olho ao queixo, e, ao se contrair, virara para cima um lado do lábio superior, de modo que três dentes ficavam expostos num rosnado perpétuo. Uma cabeleira de um vermelho muito vivo crescia baixa sobre os olhos e a testa.
+191|— É uma beleza, não é? — disse o inspetor.
+192|— Decerto precisa de uma lavada — observou Holmes. — Eu tinha uma ideia de que poderia e tomei a liberdade de trazer as ferramentas. — Abriu a mala Gladstone ao falar e tirou, para meu espanto, uma esponja de banho muito grande.
+193|— Hi! hi! O senhor é engraçado — riu baixinho o inspetor.
+194|— Agora, se tiver a grande bondade de abrir aquela porta bem em silêncio, logo o faremos parecer bem mais respeitável.
+195|— Bem, não sei por que não — disse o inspetor. — Ele não faz honra às celas de Bow Street, faz? — Enfiou a chave na fechadura, e todos entramos muito quietos na cela. O adormecido virou-se meio e depois voltou a acomodar-se num sono profundo. Holmes inclinou-se para a jarra de água, umedeceu a esponja e depois a passou duas vezes, vigorosamente, de lado a lado e de cima a baixo pelo rosto do prisioneiro.
+196|— Permitam que eu os apresente — gritou — ao sr. Neville St. Clair, de Lee, no condado de Kent.
+197|Nunca em minha vida vi tal espetáculo. O rosto do homem descascou sob a esponja como a casca de uma árvore. Foi-se a grosseira tonalidade marrom! Foi-se também a horrenda cicatriz que o cruzava e o lábio torcido que dava ao rosto o sorriso de escárnio repulsivo! Um puxão arrancou o cabelo ruivo emaranhado e ali, sentado na cama, estava um homem pálido, de rosto triste e aspecto refinado, de cabelos negros e pele lisa, esfregando os olhos e olhando em volta com sonolenta perplexidade. Então, percebendo de repente a exposição, rompeu num grito e atirou-se com o rosto no travesseiro.
+198|— Grandes céus! — exclamou o inspetor. — É, de fato, o homem desaparecido. Conheço-o da fotografia.
+199|O prisioneiro virou-se com o ar temerário de um homem que se entrega ao destino. — Seja — disse. — E, por favor, de que sou acusado?
+200|— De dar sumiço ao sr. Neville St... Ah, vamos, o senhor não pode ser acusado disso a menos que façam disso um caso de tentativa de suicídio — disse o inspetor com um sorriso. — Bem, estou há vinte e sete anos na corporação, mas isto realmente leva o prêmio.
+201|— Se eu sou o sr. Neville St. Clair, então é óbvio que nenhum crime foi cometido e que, portanto, estou detido ilegalmente.
+202|— Nenhum crime, mas um grande erro foi cometido — disse Holmes. — Teria feito melhor em confiar na sua esposa.
+203|— Não era a esposa; eram os filhos — gemeu o prisioneiro. — Deus me ajude, eu não queria que tivessem vergonha do pai. Meu Deus! Que exposição! O que posso fazer?
+204|Sherlock Holmes sentou-se ao lado dele no sofá e deu-lhe uns tapinhas gentis no ombro.
+205|— Se o senhor deixar a um tribunal esclarecer a questão — disse —, é claro que dificilmente poderá evitar a publicidade. Por outro lado, se convencer as autoridades policiais de que não há caso possível contra o senhor, não sei se há razão para que os pormenores cheguem aos jornais. O inspetor Bradstreet, tenho certeza, tomaria notas de qualquer coisa que o senhor nos dissesse e as submeteria às autoridades competentes. O caso então nunca iria a juízo.
+206|— Deus o abençoe! — exclamou o prisioneiro com paixão. — Eu teria suportado a prisão, sim, até a execução, em vez de deixar o meu miserável segredo como mancha de família para os meus filhos.
+207|«O senhor é o primeiro que ouve a minha história. Meu pai era mestre-escola em Chesterfield, onde recebi uma excelente educação. Viajei na juventude, dediquei-me ao teatro e por fim tornei-me repórter de um jornal vespertino de Londres. Um dia o meu editor quis uma série de artigos sobre a mendicância na metrópole, e eu me ofereci para fornecê-los. Esse foi o ponto de onde partiram todas as minhas aventuras. Só experimentando a mendicância como amador eu podia obter os fatos em que basear os artigos. Como ator, eu aprendera, claro, todos os segredos da maquiagem e era famoso nos bastidores pela minha habilidade. Aproveitei agora os meus dotes. Pintei o rosto e, para me tornar o mais lastimável possível, fiz uma bela cicatriz e fixei um lado do lábio numa torção com a ajuda de uma pequena tira de esparadrapo cor de carne. Depois, com uma cabeleira ruiva e uma roupa apropriada, tomei posição na parte comercial da cidade, ostensivamente como vendedor de fósforos, mas na verdade como mendigo. Por sete horas exerci o meu ofício e, quando voltei para casa à noite, descobri, para minha surpresa, que recebera nada menos que 26 xelins e 4 pence.
+208|«Escrevi os meus artigos e pouco pensei mais no assunto até que, algum tempo depois, avalizei uma letra para um amigo e recebi uma intimação judicial de 25 libras. Eu não sabia mais o que fazer para arranjar o dinheiro, mas de repente me veio uma ideia. Pedi ao credor quinze dias de prazo, pedi férias aos meus patrões e passei o tempo mendigando na City sob o meu disfarce. Em dez dias tinha o dinheiro e pagara a dívida.
