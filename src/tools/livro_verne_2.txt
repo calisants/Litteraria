@@ -1,0 +1,93 @@
+pari|aposta|s|m
+pilote|piloto|s|m
+traversée|travessia|s|f
+consul|cônsul|s|m
+colonel|coronel|s|m
+pagode|pagode (templo asiático)|s|f
+détective|detetive|s|m
+steamer|navio a vapor|s|m
+locomotive|locomotiva|s|f
+rail|trilho|s|m
+goélette|escuna|s|f
+traîneau|trenó|s|m
+plaine|planície|s|f
+poing|punho|s|m
+sifflet|apito|s|m
+embarcation|embarcação|s|f
+coquin|patife, malandro|s|m
+indigène|nativo, indígena|s|m
+brise|brisa|s|f
+revolver|revólver|s|m
+capitale|capital (cidade)|s|f
+palanquin|palanquim|s|m
+opium|ópio|s|m
+fumée|fumaça|s|f
+branche|ramo, galho|s|f
+contrée|região, terra|s|f
+mât|mastro|s|m
+dollar|dólar|s|m
+négociant|comerciante|s|m
+joueur|jogador|s|m
+hélice|hélice|s|f
+rade|enseada, ancoradouro|s|f
+péninsule|península|s|f
+houle|ondulação do mar|s|f
+convoi|comboio|s|m
+méridien|meridiano|s|m
+ivresse|embriaguez|s|f
+désappointement|decepção|s|m
+détroit|estreito (de mar)|s|m
+bec|bico|s|m
+dépêche|telegrama, despacho|s|f
+fureur|fúria|s|f
+flèche|flecha|s|f
+brique|tijolo|s|f
+prophète|profeta|s|m
+bûcher|fogueira, pira|s|m
+halte|parada, pausa|s|f
+ruine|ruína|s|f
+greffier|escrivão|s|m
+passerelle|passarela|s|f
+bourgade|povoado|s|f
+chaîne|corrente, cadeia|s|f
+exactitude|exatidão|s|f
+auteur|autor|s|m
+vingtaine|cerca de vinte|s|f
+gaz|gás|s|m
+distance|distância|s|f
+incident|incidente|s|m
+aspect|aspecto|s|m
+programme|programa|s|m
+communication|comunicação|s|f
+transport|transporte|s|m
+espace|espaço|s|m
+produit|produto|s|m
+offre|oferta|s|f
+sauveur|salvador|s|m
+partenaire|parceiro|s|m
+gentleman|cavalheiro (inglês)|s|m
+whist|uíste (jogo de cartas)|s|m
+express|expresso (trem rápido)|s|m
+railway|ferrovia|s|m
+visa|visto|s|m
+signalement|descrição física|s|m
+fonder|fundar|v
+unir|unir|v
+ruiner|arruinar|v
+entrevoir|entrever|v
+entretenir|manter, conservar|v
+provoquer|provocar|v
+déposer|depositar, pôr|v
+maintenir|manter|v
+reparaître|reaparecer|v
+considérer|considerar|v
+modifier|modificar|v
+inscrire|inscrever|v
+situer|situar|v
+flegmatique|fleumático|adj
+célèbre|célebre|adj
+ému|comovido|adj
+assis|sentado|adj
+élevé|elevado|adj
+curieux|curioso|adj
+mathématiquement|matematicamente|adv

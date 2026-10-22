@@ -1,0 +1,85 @@
+ciuchino|jumento, burrico|s|m
+assassinio|assassinato|s|m
+burattinaio|titereiro, dono de marionetes|s|m
+padrone|patrão, dono|s|m
+mostro|monstro|s|m
+carabiniere|carabineiro|s|m
+parrucca|peruca|s|f
+somaro|burro|s|m
+buca|buraco|s|f
+salto|salto|s|m
+stomaco|estômago|s|m
+fiato|fôlego|s|m
+casacca|casaca, jaqueta|s|f
+osteria|hospedaria, taberna|s|f
+balocco|brinquedo|s|m
+padella|frigideira|s|f
+buccia|casca (de fruta)|s|f
+fieno|feno|s|m
+groppa|garupa|s|f
+olio|óleo, azeite|s|m
+elemosina|esmola|s|f
+viaggio|viagem|s|m
+chilometro|quilômetro|s|m
+lacrima|lágrima|s|f
+lepre|lebre|s|f
+siepe|cerca viva|s|f
+pulcino|pintinho|s|m
+frusta|chicote|s|f
+montone|carneiro|s|m
+grappolo|cacho|s|m
+stalla|estábulo|s|f
+zampa|pata|s|f
+guscio|casca, concha|s|m
+pera|pera|s|f
+collare|coleira, colar|s|m
+manica|manga|s|f
+panno|pano|s|m
+cassetta|caixinha|s|f
+frittata|omelete|s|f
+platea|plateia|s|f
+ragazzetto|garotinho|s|m
+conte|conde|s|m
+zecchino|moeda de ouro (zecchino)|s|m
+quattrino|moedinha|s|m
+balbettare|gaguejar|v
+spalancare|escancarar|v
+friggere|fritar|v
+badare|cuidar, prestar atenção|v
+seguitare|continuar|v
+somigliare|parecer-se com|v
+garbare|agradar|v
+impiccare|enforcar|v
+ragliare|zurrar|v
+sputare|cuspir|v
+strillare|gritar, berrar|v
+cascare|cair|v
+starnutire|espirrar|v
+richiudere|fechar de novo|v
+seminare|semear|v
+cuocere|cozinhar, assar|v
+annaffiare|regar|v
+avvezzare|acostumar|v
+tentennare|vacilar|v
+masticare|mastigar|v
+adagio|devagar|adv
+bruciare|queimar|v
+grattare|coçar, arranhar|v
+martello|martelo|s|m
+sbucciare|descascar|v
+galoppare|galopar|v
+derubare|roubar|v
+scaraventare|arremessar|v
+vagabondo|vagabundo|s|m
+impaurire|assustar|v
+turchino|azul-escuro|adj
+svogliato|preguiçoso, sem vontade|adj
+ubbidiente|obediente|adj
+improvviso|repentino|adj
+zoppo|coxo|adj
+ritto|ereto, em pé|adj
+asinino|de burro, asinino|adj
+veramente|realmente|adv
+tranquillamente|tranquilamente|adv
+laggiù|lá embaixo|adv
+daccapo|de novo, do começo|adv

@@ -1,0 +1,81 @@
+reputazione|reputação|s|f
+repubblica|república|s|f
+opera|obra|s|f
+impeto|ímpeto|s|m
+liberalità|generosidade|s|f
+infamia|infâmia|s|f
+variazione|variação|s|f
+forestiero|estrangeiro, forasteiro|s|m
+disagio|desconforto|s|m
+progresso|progresso|s|m
+dominio|domínio|s|m
+acquisto|aquisição, compra|s|m
+perdita|perda|s|f
+deliberazione|deliberação, decisão|s|f
+campagna|campo, campanha|s|f
+disegno|desenho, plano|s|m
+elezione|eleição|s|f
+disciplina|disciplina|s|f
+servitù|servidão|s|f
+umanità|humanidade|s|f
+accidente|acidente|s|m
+disordine|desordem|s|m
+danaro|dinheiro|s|m
+pontefice|pontífice|s|m
+scelleratezza|maldade|s|f
+magistrato|magistrado|s|m
+astuzia|astúcia|s|f
+discorso|discurso|s|m
+capitano|capitão|s|m
+maestà|majestade|s|f
+invidia|inveja|s|f
+divisa|uniforme|s|f
+partito|partido|s|m
+tumulto|tumulto|s|m
+condotta|conduta|s|f
+ferocia|ferocidade|s|f
+santo|santo|s|m
+papa|papa|s|m
+svizzero|suíço|s|m
+spagnolo|espanhol|s|m
+fiorentino|florentino|s|m
+romano|romano|s|m
+vitello|bezerro|s|m
+offendere|ofender|v
+discorrere|discorrer, conversar|v
+cagione|causa, motivo (forma literária)|s|f
+assicurare|assegurar, garantir|v
+ordinare|ordenar|v
+pervenire|chegar a|v
+volgere|voltar, dirigir|v
+privare|privar|v
+spogliare|despir, despojar|v
+sopportare|suportar|v
+sforzare|forçar, esforçar|v
+curare|tratar, cuidar|v
+nutrire|nutrir, alimentar|v
+aderire|aderir|v
+consentire|consentir|v
+dubitare|duvidar|v
+ridurre|reduzir|v
+disfare|desfazer|v
+maneggiare|manejar|v
+persuadere|persuadir|v
+onorare|honrar|v
+differire|adiar, diferir|v
+edificare|edificar, construir|v
+opprimere|oprimir|v
+esercitare|exercitar, treinar|v
+generare|gerar|v
+attribuire|atribuir|v
+fidare|confiar|v
+odioso|odioso|adj
+dannoso|danoso, prejudicial|adj
+ragionevole|razoável|adj
+universale|universal|adj
+pietoso|piedoso|adj
+moderno|moderno|adj
+gagliardo|vigoroso, forte|adj
+pacifico|pacífico|adj
+potente|poderoso|adj
+facilmente|facilmente|adv
