@@ -1,0 +1,63 @@
+63|— Ah, e o que a senhora concluiu dessa alusão a uma faixa, uma faixa malhada?
+64|— Às vezes pensei que fossem apenas palavras selvagens de delírio, às vezes que se referisse a algum bando de pessoas, talvez a esses mesmos ciganos da plantação. Não sei se os lenços pintados que tantos deles usam na cabeça podem ter sugerido o estranho adjetivo que ela usou.
+65|Holmes balançou a cabeça como quem está longe de satisfeito.
+66|— São águas muito profundas — disse. — Continue a narrativa, por favor.
+67|— Dois anos se passaram desde então, e minha vida foi, até há pouco, mais solitária do que nunca. Há um mês, porém, um querido amigo, que conheço há muitos anos, me fez a honra de pedir a minha mão em casamento. O nome dele é Armitage, Percy Armitage, segundo filho do sr. Armitage, de Crane Water, perto de Reading. Meu padrasto não ofereceu oposição ao casamento, e devemos nos casar no decorrer da primavera. Há dois dias começaram alguns reparos na ala oeste do edifício, e a parede do meu quarto foi perfurada, de modo que tive de me mudar para o aposento em que minha irmã morreu e dormir na mesma cama em que ela dormiu. Imagine, então, meu calafrio de terror quando, na noite passada, deitada acordada, pensando no terrível destino dela, ouvi de repente no silêncio da noite o assobio baixo que fora o arauto da sua própria morte. Saltei e acendi a lâmpada, mas nada se via no quarto. Estava abalada demais para voltar à cama, porém, de modo que me vesti e, assim que clareou, escapei lá para baixo, tomei uma charrete na Crown Inn, que fica em frente, e fui a Leatherhead, de onde vim esta manhã com o único objetivo de vê-lo e pedir-lhe conselho.
+68|— A senhora agiu com sabedoria — disse meu amigo. — Mas me contou tudo?
+69|— Sim, tudo.
+70|— Srta. Roylott, não contou. A senhora está acobertando o seu padrasto.
+71|— Ora, o que quer dizer?
+72|Como resposta, Holmes empurrou para trás o babado de renda preta que orlava a mão que repousava no joelho da nossa visitante. Cinco pequenas manchas lívidas, as marcas de quatro dedos e um polegar, estavam impressas no pulso branco.
+73|— A senhora foi cruelmente tratada — disse Holmes.
+74|A dama corou profundamente e cobriu o pulso ferido. — Ele é um homem duro — disse — e talvez mal conheça a própria força.
+75|Houve um longo silêncio, durante o qual Holmes apoiou o queixo nas mãos e fitou o fogo crepitante.
+76|— Este é um negócio muito profundo — disse por fim. — Há mil pormenores que eu desejaria saber antes de decidir o nosso curso de ação. Contudo, não temos um instante a perder. Se viéssemos a Stoke Moran hoje, seria possível ver esses quartos sem o conhecimento do seu padrasto?
+77|— Por acaso, ele falou em vir à cidade hoje por algum negócio importantíssimo. É provável que fique fora o dia todo e que não haja nada para perturbá-los. Temos agora uma governanta, mas é velha e tola, e eu poderia facilmente tirá-la do caminho.
+78|— Excelente. O senhor não é contrário a essa viagem, Watson?
+79|— De modo algum.
+80|— Então iremos ambos. O que a senhora mesma vai fazer?
+81|— Tenho uma ou duas coisas que desejaria fazer agora que estou na cidade. Mas voltarei no trem do meio-dia, para estar lá a tempo da sua chegada.
+82|— E pode nos esperar no início da tarde. Eu mesmo tenho alguns pequenos negócios a resolver. Não quer esperar e tomar o café da manhã?
+83|— Não, preciso ir. Meu coração já está mais leve desde que lhe confiei o meu problema. Aguardo ansiosa vê-los de novo esta tarde. — Deixou cair o espesso véu preto sobre o rosto e deslizou para fora da sala.
+84|— E o que pensa de tudo isso, Watson? — perguntou Sherlock Holmes, recostando-se na cadeira.
+85|— Parece-me um negócio muito sombrio e sinistro.
+86|— Sombrio e sinistro o bastante.
+87|— Contudo, se a dama tem razão ao dizer que o assoalho e as paredes são sólidos e que a porta, a janela e a chaminé são intransponíveis, então a irmã dela deve ter estado sem dúvida sozinha quando encontrou o fim misterioso.
+88|— O que é feito, então, desses assobios noturnos, e das palavras muito peculiares da mulher moribunda?
+89|— Não consigo pensar.
+90|— Quando o senhor combina as ideias de assobios à noite, a presença de um bando de ciganos que mantêm relações íntimas com esse velho doutor, o fato de que temos toda razão para crer que o doutor tem interesse em impedir o casamento da enteada, a alusão agonizante a uma faixa e, por fim, o fato de que a srta. Helen Stoner ouviu um tinido metálico, que poderia ter sido causado por uma daquelas barras de metal que fechavam as venezianas caindo de volta ao lugar, penso que há boa razão para pensar que o mistério pode ser esclarecido por essas linhas.
+91|— Mas o que fizeram os ciganos, então?
+92|— Não imagino.
+93|— Vejo muitas objeções a qualquer teoria desse tipo.
+94|— E eu também. É precisamente por isso que vamos a Stoke Moran hoje. Quero ver se as objeções são fatais ou se podem ser explicadas. Mas que diabos...!
+95|A exclamação fora arrancada do meu companheiro pelo fato de que a nossa porta fora de repente escancarada e um homem enorme se emoldurara na abertura. Seu traje era uma mistura peculiar de profissional e agrícola, com uma cartola preta, uma longa sobrecasaca e um par de polainas altas, com um chicote de caça balançando na mão. Tão alto era que o chapéu roçava a travessa da porta, e sua largura parecia atravessá-la de lado a lado. Um rosto grande, marcado por mil rugas, queimado de amarelo pelo sol e assinalado por toda paixão má, voltava-se de um para o outro de nós, enquanto os olhos fundos, injetados de bile, e o nariz alto, fino e sem carne, davam-lhe certa semelhança com uma feroz ave de rapina velha.
+96|— Qual dos senhores é Holmes? — perguntou a aparição.
+97|— Meu nome, senhor; mas o senhor leva vantagem sobre mim — disse o meu companheiro calmamente.
+98|— Sou o dr. Grimesby Roylott, de Stoke Moran.
+99|— De fato, doutor — disse Holmes, brandamente. — Faça o favor de sentar-se.
+100|— Não farei nada disso. A minha enteada esteve aqui. Segui o rastro dela. O que ela lhe andou dizendo?
+101|— Está um pouco frio para a época do ano — disse Holmes.
+102|— O que ela lhe andou dizendo? — gritou o velho, furioso.
+103|— Mas ouvi dizer que os açafrões prometem bem — continuou o meu companheiro, imperturbável.
+104|— Ha! O senhor me despista, é? — disse nosso novo visitante, dando um passo à frente e sacudindo o chicote de caça. — Eu o conheço, canalha! Já ouvi falar do senhor. O senhor é Holmes, o intrometido.
+105|Meu amigo sorriu.
+106|— Holmes, o bisbilhoteiro!
+107|O sorriso dele se alargou.
+108|— Holmes, o funcionariozinho arrogante da Scotland Yard!
+109|Holmes riu de coração. — A sua conversa é divertidíssima — disse. — Quando sair, feche a porta, pois há uma corrente de ar considerável.
+110|— Sairei quando tiver dito o que tenho a dizer. Não ouse se meter nos meus assuntos. Sei que a srta. Stoner esteve aqui. Segui o rastro dela! Sou um homem perigoso de se indispor! Veja aqui. — Avançou depressa, agarrou o atiçador e o dobrou em curva com as suas enormes mãos morenas.
+111|— Cuide de ficar fora do meu aperto — rosnou e, atirando o atiçador torcido à lareira, saiu a passos largos da sala.
+112|— Parece uma pessoa muito amável — disse Holmes, rindo. — Não sou tão corpulento, mas, se ele tivesse ficado, eu talvez lhe mostrasse que o meu aperto não é muito mais fraco que o dele. — Ao falar, pegou o atiçador de aço e, com um esforço súbito, endireitou-o de novo.
+113|— Imagine ele ter a insolência de me confundir com a força de detetives oficiais! Esse incidente dá sabor à nossa investigação, porém, e só espero que a nossa pequena amiga não sofra por sua imprudência em permitir que esse bruto lhe siga o rastro. E agora, Watson, pediremos o café da manhã e depois irei a pé a Doctors' Commons, onde espero obter alguns dados que nos ajudem neste caso.
+114|Era quase uma hora quando Sherlock Holmes voltou da excursão. Trazia na mão uma folha de papel azul, rabiscada de notas e cifras.
+115|— Vi o testamento da falecida esposa — disse. — Para determinar seu sentido exato, fui obrigado a calcular os preços atuais dos investimentos de que ele trata. A renda total, que na época da morte da esposa era pouco menos de 1.100 libras, é agora, pela queda dos preços agrícolas, de não mais que 750. Cada filha pode reclamar uma renda de 250 libras em caso de casamento. É evidente, portanto, que, se ambas as moças se tivessem casado, este belo exemplar teria uma mera ninharia, e mesmo uma só delas o prejudicaria em medida muito séria. O trabalho da minha manhã não foi desperdiçado, pois provou que ele tem os motivos mais fortes para se interpor a qualquer coisa do gênero. E agora, Watson, isto é sério demais para perder tempo, sobretudo porque o velho sabe que nos interessamos pelos assuntos dele; portanto, se estiver pronto, chamaremos um carro e iremos a Waterloo. Ficaria muito agradecido se pusesse o seu revólver no bolso. Um Eley nº 2 é um excelente argumento com cavalheiros que sabem torcer atiçadores de aço em nós. Isso e uma escova de dentes são, creio, tudo de que precisamos.
+116|Em Waterloo tivemos a sorte de pegar um trem para Leatherhead, onde alugamos uma charrete na hospedaria da estação e seguimos por quatro ou cinco milhas pelas belas alamedas de Surrey. Era um dia perfeito, com sol brilhante e algumas nuvens felpudas no céu. As árvores e as sebes à beira do caminho começavam a lançar os primeiros brotos verdes, e o ar estava cheio do agradável cheiro da terra úmida. Para mim, pelo menos, havia um estranho contraste entre a doce promessa da primavera e esta busca sinistra em que estávamos empenhados. Meu companheiro sentava-se na frente da charrete, de braços cruzados, chapéu puxado sobre os olhos e queixo afundado no peito, mergulhado no mais fundo pensamento. De repente, porém, sobressaltou-se, bateu-me no ombro e apontou por cima dos prados.
+117|— Olhe ali! — disse.
+118|Um parque densamente arborizado estendia-se numa suave encosta, espessando-se num bosque no ponto mais alto. Do meio dos ramos despontavam as empenas cinzentas e a alta cumeeira de uma mansão muito antiga.
+119|— Stoke Moran? — perguntou.
+120|— Sim, senhor, aquela é a casa do dr. Grimesby Roylott — observou o condutor.
+121|— Há alguma obra ali — disse Holmes. — É para lá que vamos.
+122|— Ali está a aldeia — disse o condutor, apontando um aglomerado de telhados a certa distância à esquerda —; mas, se quiserem chegar à casa, acharão mais curto passar por este degrau de cerca e depois pelo caminho a pé através dos campos. Ali está, onde a dama caminha.
+123|— E a dama, imagino, é a srta. Stoner — observou Holmes, protegendo os olhos. — Sim, creio que é melhor fazermos como o senhor sugere.
+124|Descemos, pagamos a corrida, e a charrete voltou aos solavancos rumo a Leatherhead.
+125|— Achei melhor — disse Holmes enquanto subíamos o degrau — que esse sujeito pense que viemos aqui como arquitetos, ou por algum negócio definido. Isso pode deter as fofocas dele. Boa tarde, srta. Stoner. Vê que fomos tão bons quanto nossa palavra.
