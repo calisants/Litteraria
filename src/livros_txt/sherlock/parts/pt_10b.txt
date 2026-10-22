@@ -1,0 +1,75 @@
+75|— Tem uma fotografia dela?
+76|— Trouxe esta comigo. — Abriu um medalhão e nos mostrou o rosto de frente de uma mulher muito bela. Não era uma fotografia, mas uma miniatura em marfim, e o artista realçara todo o efeito do cabelo negro lustroso, dos grandes olhos escuros e da boca primorosa. Holmes fitou-a longa e atentamente. Depois fechou o medalhão e o devolveu a Lord St. Simon.
+77|— A jovem veio então a Londres, e o senhor renovou o conhecimento?
+78|— Sim, o pai a trouxe para esta última temporada londrina. Encontrei-a várias vezes, fiquei noivo dela e agora me casei com ela.
+79|— Ela trouxe, entendo, um dote considerável?
+80|— Um dote razoável. Não mais que o usual na minha família.
+81|— E isto, é claro, permanece com o senhor, já que o casamento é fato consumado?
+82|— Na verdade não fiz indagações sobre o assunto.
+83|— Muito naturalmente que não. Viu a srta. Doran no dia anterior ao casamento?
+84|— Sim.
+85|— Estava de bom humor?
+86|— Nunca melhor. Não parava de falar do que faríamos nas nossas vidas futuras.
+87|— Deveras! Isso é muito interessante. E na manhã do casamento?
+88|— Estava o mais radiante possível — pelo menos até depois da cerimônia.
+89|— E notou alguma mudança nela então?
+90|— Bem, para dizer a verdade, vi então os primeiros sinais que já vira de que o seu gênio era um pouquinho ríspido. O incidente, porém, foi trivial demais para relatar e não pode ter possível relação com o caso.
+91|— Faça o favor de contá-lo mesmo assim.
+92|— Oh, é pueril. Ela deixou cair o buquê quando íamos para a sacristia. Passava pelo primeiro banco na hora, e ele caiu dentro do banco. Houve um instante de demora, mas o cavalheiro do banco o devolveu a ela, e não pareceu pior pela queda. Contudo, quando lhe falei do assunto, respondeu-me abruptamente; e na carruagem, a caminho de casa, pareceu absurdamente agitada por essa causa trivial.
+93|— Deveras! O senhor diz que havia um cavalheiro no banco. Havia então gente do público presente?
+94|— Oh, sim. É impossível excluí-los quando a igreja está aberta.
+95|— Esse cavalheiro não era amigo da sua esposa?
+96|— Não, não; chamo-o cavalheiro por cortesia, mas era uma pessoa de aspecto bem comum. Mal reparei na aparência. Mas realmente creio que estamos nos afastando bastante do ponto.
+97|— Lady St. Simon, então, voltou do casamento num estado de espírito menos alegre do que o de quando foi. O que fez ao reentrar na casa do pai?
+98|— Vi-a em conversa com a criada.
+99|— E quem é a criada?
+100|— Alice é o nome. É americana e veio da Califórnia com ela.
+101|— Uma criada de confiança?
+102|— Um pouco demais. Pareceu-me que a patroa lhe permitia grandes liberdades. Ainda assim, é claro, na América encaram essas coisas de outro modo.
+103|— Quanto tempo ela falou com essa Alice?
+104|— Oh, alguns minutos. Eu tinha outra coisa em que pensar.
+105|— Não ouviu o que diziam?
+106|— Lady St. Simon disse algo sobre «ocupar uma concessão alheia» [jumping a claim, gíria americana: tomar o terreno de mineração de outro]. Estava acostumada a usar gíria desse tipo. Não faço ideia do que quis dizer.
+107|— A gíria americana é às vezes muito expressiva. E o que fez a sua esposa ao terminar de falar com a criada?
+108|— Entrou na sala do desjejum.
+109|— No seu braço?
+110|— Não, sozinha. Era muito independente em pequenas coisas assim. Depois, quando estávamos sentados havia uns dez minutos, levantou-se apressada, murmurou algumas palavras de desculpa e deixou a sala. Nunca voltou.
+111|— Mas essa criada, Alice, pelo que entendo, depõe que ela foi ao quarto, cobriu o vestido de noiva com um casaco comprido, pôs uma touca e saiu.
+112|— Exatamente. E foi vista depois entrando no Hyde Park em companhia de Flora Millar, uma mulher que agora está sob custódia e que já fizera um tumulto na casa do sr. Doran naquela manhã.
+113|— Ah, sim. Gostaria de alguns pormenores sobre essa jovem e as suas relações com ela.
+114|Lord St. Simon encolheu os ombros e ergueu as sobrancelhas. — Estamos em termos amistosos há alguns anos — posso dizer em termos muito amistosos. Ela costumava estar no Allegro. Não a tratei com mesquinhez, e ela não tinha causa justa de queixa contra mim, mas o senhor sabe como são as mulheres, sr. Holmes. Flora era uma coisinha querida, mas extremamente de cabeça quente e devotadamente apegada a mim. Escreveu-me cartas terríveis quando soube que eu ia me casar e, para dizer a verdade, a razão por que mandei celebrar o casamento tão discretamente foi que eu temia que houvesse escândalo na igreja. Ela chegou à porta do sr. Doran logo depois de voltarmos e tentou abrir caminho à força, proferindo expressões muito injuriosas contra a minha esposa e até a ameaçando, mas eu previra a possibilidade de algo assim e tinha ali dois policiais em trajes civis, que logo a empurraram para fora de novo. Ficou quieta quando viu que não adiantava fazer escândalo.
+115|— A sua esposa ouviu tudo isso?
+116|— Não, graças a Deus, não ouviu.
+117|— E foi vista depois andando com essa mesma mulher?
+118|— Sim. É o que o sr. Lestrade, da Scotland Yard, considera tão grave. Pensa-se que Flora atraiu a minha esposa para fora e lhe armou alguma cilada terrível.
+119|— Bem, é uma suposição possível.
+120|— O senhor também acha?
+121|— Não disse que provável. Mas o senhor mesmo não a considera plausível?
+122|— Não creio que Flora faria mal a uma mosca.
+123|— Ainda assim, o ciúme é um estranho transformador de caracteres. Faça o favor de dizer qual é a sua própria teoria sobre o que se passou.
+124|— Bem, na verdade, vim buscar uma teoria, não propor uma. Dei ao senhor todos os fatos. Já que o pergunta, porém, posso dizer que me ocorreu como possível que a excitação deste caso, a consciência de que dera um passo social tão imenso, tenha causado algum pequeno distúrbio nervoso na minha esposa.
+125|— Em suma, que ela de repente enlouqueceu?
+126|— Bem, na verdade, quando considero que ela deu as costas — não direi a mim, mas a tanta coisa a que muitos aspiraram sem êxito — mal posso explicar de outro modo.
+127|— Bem, certamente essa também é uma hipótese concebível — disse Holmes, sorrindo. — E agora, Lord St. Simon, creio ter quase todos os meus dados. Posso perguntar se estavam sentados à mesa do desjejum de modo a ver pela janela?
+128|— Podíamos ver o outro lado da rua e o Parque.
+129|— Exatamente. Então não creio precisar detê-lo por mais tempo. Comunicar-me-ei com o senhor.
+130|— Se tiver a sorte de resolver este problema — disse o nosso cliente, levantando-se.
+131|— Eu o resolvi.
+132|— Hein? O que foi isso?
+133|— Digo que o resolvi.
+134|— Onde está, então, a minha esposa?
+135|— É um pormenor que fornecerei em breve.
+136|Lord St. Simon sacudiu a cabeça. — Receio que serão necessárias cabeças mais sábias que a do senhor ou a minha — observou e, inclinando-se de maneira majestosa e antiquada, retirou-se.
+137|— É muita bondade de Lord St. Simon honrar a minha cabeça pondo-a no mesmo nível da sua — disse Sherlock Holmes, rindo. — Creio que tomarei um uísque com soda e um charuto depois de todo este interrogatório. Eu formara as minhas conclusões sobre o caso antes de o nosso cliente entrar na sala.
+138|— Meu caro Holmes!
+139|— Tenho notas de vários casos semelhantes, embora nenhum, como observei antes, tão pronto. Todo o meu exame serviu para transformar a minha conjectura em certeza. A prova circunstancial é às vezes muito convincente, como quando se encontra uma truta no leite, para citar o exemplo de Thoreau.
+140|— Mas ouvi tudo o que o senhor ouviu.
+141|— Sem, porém, o conhecimento de casos anteriores que tanto me serve. Houve um caso paralelo em Aberdeen alguns anos atrás e algo muito nas mesmas linhas em Munique no ano seguinte à Guerra Franco-Prussiana. É um desses casos — mas, ora, eis Lestrade! Boa tarde, Lestrade! Achará um copo extra no aparador, e há charutos na caixa.
+142|O detetive oficial estava trajado com um casaco curto de marinheiro e gravata, o que lhe dava um aspecto decididamente náutico, e trazia na mão uma bolsa preta de lona. Com uma breve saudação, sentou-se e acendeu o charuto que lhe fora oferecido.
+143|— O que houve, então? — perguntou Holmes com um brilho no olho. — O senhor parece insatisfeito.
+144|— E estou insatisfeito. É este infernal caso do casamento St. Simon. Não consigo fazer pé nem cabeça do negócio.
+145|— Mesmo! O senhor me surpreende.
+146|— Quem já ouviu falar de um caso tão confuso? Cada pista parece escapar-me entre os dedos. Estive trabalhando nele o dia todo.
+147|— E parece que o deixou muito molhado — disse Holmes, pousando a mão no braço do casaco de marinheiro.
+148|— Sim, estive dragando o Serpentine.
+149|— Em nome do Céu, para quê?
