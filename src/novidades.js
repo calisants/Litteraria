@@ -1,5 +1,6 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.51.1",d:"2026-10-22",t:["Sherlock Holmes: capítulo 12 («A Aventura das Faias de Cobre») já disponível para ler. O livro está completo, com os 12 contos","Tradução escrita por Claude, sem fonte conferida"]},
 {v:"1.50.2",d:"2026-10-22",t:["Sherlock Holmes: capítulo 10 («A Aventura do Nobre Solteirão») já disponível para ler"]},
 {v:"1.51.0",d:"2026-10-22",t:["Vocabulário dos livros ampliado: A Volta ao Mundo em 80 Dias (+93 palavras), As Aventuras de Pinóquio (+85) e O Príncipe (+81), em partes novas no fim de cada livro; as lições antigas não mudam","Existência, classe e gênero das palavras conferidos no Wikcionário (Kaikki); traduções escritas por Claude, sem fonte conferida"]},
 {v:"1.50.5",d:"2026-10-22",t:["Francês, Presente: o rótulo de fonte agora diz o que foi conferido de verdade no Tex's French Grammar (verbos em -ir formam o 2º grupo; o gerúndio em -issant sai do «nous»: finissons → finissant). A divisão completa em três grupos continua sem fonte conferida e o cartão diz isso"]},
