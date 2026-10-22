@@ -1,5 +1,6 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.49.2",d:"2026-10-22",t:["Sherlock Holmes: capítulo 7 («A Aventura do Carbúnculo Azul») já disponível para ler"]},
 {v:"1.49.1",d:"2026-10-22",t:["Sherlock Holmes: capítulo 6 («O Homem do Lábio Torcido») já disponível para ler"]},
 {v:"1.49.0",d:"2026-10-22",t:["Sherlock Holmes: capítulos 4 («O Mistério do Vale de Boscombe») e 5 («As Cinco Sementes de Laranja») já disponíveis para ler. A tradução continua sendo feita aos poucos"]},
 {v:"1.48.0",d:"2026-10-22",t:["O painel de pontos fortes e fracos agora também mostra a Gramática: os assuntos em que você acerta mais (artigos, plural, presente...) e os que precisam de reforço, por idioma","A conta de gramática começa a valer a partir de agora; as respostas antigas não tinham o tipo registrado","«Apagar estatísticas» também zera essa conta","Sherlock Holmes: capítulo 3 já disponível para ler (a tradução continua sendo feita aos poucos)"]},

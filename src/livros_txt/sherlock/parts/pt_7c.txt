@@ -1,0 +1,55 @@
+111|— Boa noite. Está uma noite fria — disse Holmes.
+112|O atacadista assentiu e lançou um olhar interrogativo ao meu companheiro.
+113|— Vendeu todos os gansos, vejo — continuou Holmes, apontando as lajes de mármore vazias.
+114|— Amanhã de manhã arranjo quinhentos para o senhor.
+115|— Isso não adianta.
+116|— Bem, há alguns na barraca com o lampião de gás.
+117|— Ah, mas fui recomendado ao senhor.
+118|— Por quem?
+119|— Pelo dono da Alpha.
+120|— Ah, sim; mandei-lhe duas dúzias.
+121|— Eram aves excelentes, aliás. Agora, de onde as conseguiu?
+122|À minha surpresa, a pergunta provocou um acesso de raiva no atacadista.
+123|— Ora, então, senhor — disse, com a cabeça inclinada e as mãos nas cadeiras —, aonde quer chegar? Fale direto, agora.
+124|— É bastante direto. Gostaria de saber quem lhe vendeu os gansos que o senhor forneceu à Alpha.
+125|— Pois então não vou dizer. Pronto!
+126|— Ah, é um assunto sem importância; mas não sei por que o senhor haveria de se exaltar tanto por uma ninharia.
+127|— Exaltar! O senhor também se exaltaria, talvez, se fosse tão importunado quanto eu. Quando pago bom dinheiro por um bom artigo, devia acabar o negócio; mas é «Onde estão os gansos?» e «A quem vendeu os gansos?» e «Quanto quer pelos gansos?». Pensar-se-ia que eram os únicos gansos do mundo, a julgar pelo alvoroço que se faz com eles.
+128|— Bem, não tenho ligação com nenhuma outra pessoa que tenha andado fazendo perguntas — disse Holmes com displicência. — Se o senhor não quer dizer, a aposta está cancelada, só isso. Mas estou sempre pronto a apoiar a minha opinião em matéria de aves, e tenho uma nota de cinco libras apostada em que a ave que comi foi criada no campo.
+129|— Pois então perdeu a sua nota, porque foi criada na cidade — retrucou rispidamente o atacadista.
+130|— Não é nada disso.
+131|— Digo que é.
+132|— Não acredito.
+133|— O senhor pensa que sabe mais de aves do que eu, que as manejo desde garoto? Digo-lhe que todas aquelas aves que foram para a Alpha eram criadas na cidade.
+134|— Nunca me convencerá a crer nisso.
+135|— Quer apostar, então?
+136|— É apenas tomar o seu dinheiro, pois sei que tenho razão. Mas aposto um soberano com o senhor, só para lhe ensinar a não ser teimoso.
+137|O atacadista riu baixinho, sombrio. — Traga-me os livros, Bill — disse.
+138|O rapazinho trouxe um livro pequeno e fino e outro grande, de lombada engordurada, e os dispôs juntos sob o lampião pendente.
+139|— Agora, então, sr. Convencido — disse o atacadista —, pensei que estava sem gansos, mas, antes de eu acabar, o senhor verá que ainda sobra um na minha loja. Vê este livrinho?
+140|— E daí?
+141|— É a lista da gente de quem eu compro. Está vendo? Pois bem, aqui nesta página estão os do campo, e os números depois dos nomes são onde estão as contas deles no livro grande. Agora, então! Vê esta outra página em tinta vermelha? Pois bem, esta é uma lista dos meus fornecedores da cidade. Agora olhe aquele terceiro nome. Leia-o em voz alta para mim.
+142|— Sra. Oakshott, Brixton Road, 117 — 249 — leu Holmes.
+143|— Exatamente. Agora procure isso no livro grande.
+144|Holmes virou à página indicada. — Aqui está: «Sra. Oakshott, Brixton Road, 117, fornecedora de ovos e aves.»
+145|— Agora, então, qual é a última anotação?
+146|— «22 de dezembro. Vinte e quatro gansos a 7 xelins e 6 pence.»
+147|— Exatamente. Aí está. E embaixo?
+148|— «Vendidos ao sr. Windigate, da Alpha, a 12 xelins.»
+149|— O que tem a dizer agora?
+150|Sherlock Holmes pareceu profundamente contrariado. Tirou um soberano do bolso e atirou-o sobre a laje, virando-se com o ar de um homem cujo desgosto é fundo demais para palavras. A poucas jardas, parou sob um poste de luz e riu à sua maneira franca e silenciosa, que lhe era peculiar.
+151|— Quando se vê um homem com suíças daquele corte e o «Pink 'un» [jornal esportivo da época] despontando do bolso, pode-se sempre fisgá-lo com uma aposta — disse. — Ouso dizer que, se eu tivesse posto 100 libras diante dele, aquele homem não me teria dado informação tão completa quanto a que lhe foi arrancada pela ideia de que estava me passando a perna numa aposta. Pois bem, Watson, estamos, imagino, nos aproximando do fim da nossa busca, e o único ponto que resta determinar é se devemos ir a esta sra. Oakshott hoje à noite ou reservar para amanhã. É claro, pelo que aquele sujeito rabugento disse, que há outros além de nós ansiosos pelo caso, e eu deveria...
+152|As suas observações foram cortadas de súbito por um grande alvoroço que irrompeu da barraca que acabáramos de deixar. Voltando-nos, vimos um homenzinho de cara de rato parado no centro do círculo de luz amarela lançado pelo lampião oscilante, enquanto Breckinridge, o atacadista, emoldurado na porta da barraca, sacudia ferozmente os punhos para a figura encolhida.
+153|— Já me bastam o senhor e os seus gansos — gritou. — Queria que fossem todos ao diabo juntos. Se vier me importunar mais com sua conversa tola, solto o cão em cima do senhor. Traga a sra. Oakshott aqui e eu lhe respondo, mas o que o senhor tem a ver com isso? Comprei os gansos do senhor?
+154|— Não; mas um deles era meu, ainda assim — choramingou o homenzinho.
+155|— Bem, então peça à sra. Oakshott.
+156|— Ela me disse para perguntar ao senhor.
+157|— Bem, pode perguntar ao Rei da Prússia, por mim. Já me chega. Fora daqui! — Avançou ferozmente, e o inquiridor esvoaçou para a escuridão.
+158|— Ha! isto pode nos poupar uma visita à Brixton Road — sussurrou Holmes. — Venha comigo, e veremos o que se pode fazer com este sujeito. — Atravessando a passos largos os grupos dispersos de gente que vagava em torno das barracas flamejantes, meu companheiro alcançou depressa o homenzinho e tocou-lhe o ombro. Ele girou, e vi à luz do gás que todo vestígio de cor fora expulso do seu rosto.
+159|— Quem são os senhores? O que querem? — perguntou, com voz trêmula.
+160|— O senhor me desculpará — disse Holmes, brandamente —, mas não pude deixar de ouvir as perguntas que fez agora ao atacadista. Creio que poderia ser-lhe de ajuda.
+161|— O senhor? Quem é o senhor? Como poderia saber algo do assunto?
+162|— Meu nome é Sherlock Holmes. É o meu ofício saber o que os outros não sabem.
+163|— Mas o senhor não pode saber nada disto.
+164|— Perdoe-me, sei tudo a respeito. O senhor tenta rastrear alguns gansos que foram vendidos pela sra. Oakshott, da Brixton Road, a um atacadista chamado Breckinridge, por este por sua vez ao sr. Windigate, da Alpha, e por este ao seu clube, do qual o sr. Henry Baker é membro.
+165|— Ah, senhor, o senhor é justamente o homem que eu ansiava por encontrar — exclamou o homenzinho, de mãos estendidas e dedos trêmulos. — Mal consigo explicar-lhe quanto este assunto me interessa.

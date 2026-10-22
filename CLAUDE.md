@@ -184,5 +184,5 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Sherlock: caps. 1-3 prontos. Meta semanal com amigo ficou de fora de propósito (exigiria SQL novo e mexe em privacidade): conversar com ela antes.
 
 ## v1.49.0 (22/10/2026)
-- Sherlock Holmes em texto completo: caps. 1-6 prontos (6 na v1.49.1; tradução natural, sem literal). Faltam 7-12. Partes longas ficam em `livros_txt/sherlock/parts/` e são juntadas com `cat` em `pt_<n>.txt`. Cache `mots-parole-v82`.
+- Sherlock Holmes em texto completo: caps. 1-7 prontos (7 na v1.49.2; tradução natural, sem literal). Faltam 8-12. Partes longas ficam em `livros_txt/sherlock/parts/` e são juntadas com `cat` em `pt_<n>.txt`. Cache `mots-parole-v83`.
 - `nuvem/amigos2.sql` já foi colado por ela no Supabase (22/10/2026); falta só conferir no aparelho. Meta semanal com amigo ficou de fora de propósito (exige SQL novo e decisão de privacidade).
