@@ -71,7 +71,7 @@ racconti:{name:"Contos à Luz de Vela",desc:"Inspirado em I racconti delle fate:
 const ICON_IDS=["padrao","alice","pp","frank","soft","dante"];
 const WD_SRC=["hoje","msg","frase","livro","palavra","off"];
 const DAYRE=/^\d{4}-\d\d-\d\d$/;
-const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0},
+const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},gs:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0},
   sq:0,lgt:"",gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"off",bk:"all",u:0},ic:"padrao"};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
@@ -91,6 +91,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(typeof sv.motto==="string")S.motto=sv.motto.slice(0,60);
   if(typeof sv.avatar==="string"&&/^[a-z]+$/.test(sv.avatar))S.avatar=sv.avatar;
   if(sv.plays&&typeof sv.plays==="object")Object.keys(sv.plays).forEach(l=>{if(LNAME[l]&&sv.plays[l]&&typeof sv.plays[l]==="object"){S.plays[l]={};Object.keys(sv.plays[l]).forEach(t=>{const n=+sv.plays[l][t];if(/^[a-z]+$/.test(t)&&n>0)S.plays[l][t]=Math.min(n,1e6);});}});
+  if(sv.gs&&typeof sv.gs==="object")Object.keys(sv.gs).forEach(l=>{if(LNAME[l]&&sv.gs[l]&&typeof sv.gs[l]==="object"){S.gs[l]={};Object.keys(sv.gs[l]).slice(0,60).forEach(k=>{const a=sv.gs[l][k];if(/^[a-z]{2,20}$/.test(k)&&Array.isArray(a)&&a.length>=2)S.gs[l][k]=[Math.min(100000,Math.max(0,+a[0]||0)),Math.min(100000,Math.max(0,+a[1]||0))];});}});
   if(sv.sk&&typeof sv.sk==="object")Object.keys(sv.sk).forEach(l=>{if(LNAME[l]&&sv.sk[l]&&typeof sv.sk[l]==="object"){S.sk[l]={};Object.keys(sv.sk[l]).forEach(k=>{const a=sv.sk[l][k];if(Array.isArray(a)&&a.length>=2)S.sk[l][k]=[Math.max(0,+a[0]||0),Math.max(0,+a[1]||0),String(a[2]||"").slice(0,120)];});}});
   if(sv.rv&&typeof sv.rv==="object")Object.keys(sv.rv).forEach(k=>{const a=sv.rv[k];if(/^(fr|it|en):[a-z]+\|\d+\|\d+$/.test(k)&&Array.isArray(a)&&+a[0]>0)S.rv[k]=[+a[0],Math.min(4,Math.max(0,+a[1]||0)),Math.min(99,Math.max(0,+a[2]||0))];});
   if(sv.rvv&&typeof sv.rvv==="object")Object.keys(sv.rvv).slice(0,400).forEach(k=>{const a=sv.rvv[k];if(/^(fr|it|en):v\|[^|]{1,40}$/.test(k)&&Array.isArray(a)&&+a[0]>0)S.rvv[k]=[+a[0],Math.min(4,Math.max(0,+a[1]||0)),Math.min(99,Math.max(0,+a[2]||0))];});
@@ -305,6 +306,10 @@ function markDone(){
   save();
 }
 /* acertos e erros por palavra/frase: alimentam "para treinar" e "palavras dominadas" */
+function gsRec(t,ok){
+  if(!t||GRAMTYPES.indexOf(t)<0)return;
+  const L=S.gs[S.lang]||(S.gs[S.lang]={}),a=L[t]||(L[t]=[0,0]);a[ok?0:1]++;
+}
 function skRec(w,label,ok){
   if(!w)return;
   const L=S.sk[S.lang]||(S.sk[S.lang]={}),k=String(w).toLowerCase().slice(0,100);
@@ -513,7 +518,7 @@ $("#s-profile").addEventListener("click",onPrefClick);
 $("#s-vol").addEventListener("click",onPrefClick);
 $("#clear-stats").addEventListener("click",()=>{
   if(!clearStatsArmed){clearStatsArmed=true;$("#clear-stats-note").textContent="Toque de novo para apagar as estatísticas (partidas, erros e palavras dominadas). As marcas de concluído ficam.";return;}
-  S.plays={};S.sk={};save();clearStatsArmed=false;$("#clear-stats-note").textContent="Estatísticas apagadas.";
+  S.plays={};S.sk={};S.gs={};save();clearStatsArmed=false;$("#clear-stats-note").textContent="Estatísticas apagadas.";
 });
 $("#clear-done").addEventListener("click",()=>{
   if(!clearArmed){clearArmed=true;$("#clear-note").textContent="Toque de novo para apagar todas as marcas de concluído.";return;}

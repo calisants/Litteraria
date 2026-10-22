@@ -132,6 +132,10 @@
 
 
   /* pontos fortes e fracos: só do que ela realmente jogou (S.sk), por tema do vocabulário */
+  function gramRows(){
+    const g=S.gs[S.lang]||{},names={};VOLUME4.types.forEach(t=>{names[t[0]]=t[2]||t[1];});
+    return Object.keys(g).filter(k=>names[k]&&g[k][0]+g[k][1]>=6).map(k=>({n:names[k],p:Math.round(100*g[k][0]/(g[k][0]+g[k][1])),t:g[k][0]+g[k][1]})).sort((a,b)=>b.p-a.p||b.t-a.t);
+  }
   function skillsHtml(){
     const L=S.lang,sk=S.sk[L]||{},names={};
     CATS.concat(BOOKTHEMES).forEach(c=>{names[c[0]]=c[1];});
@@ -142,15 +146,20 @@
       if(seen>=3&&ok+bad>=6)rows.push({n:names[t]||t,p:Math.round(100*ok/(ok+bad)),t:ok+bad});
     });
     rows.sort((a,b)=>b.p-a.p||b.t-a.t);
+    const gl=gramRows();
     const bar=r=>'<div class="skr"><span>'+esc(r.n)+'</span><span class="gbar" aria-hidden="true"><i style="width:'+r.p+'%"></i></span><b>'+r.p+'%</b></div>';
     let h='<h3 class="sub">Pontos fortes e fracos · '+LNAME[L]+'</h3>';
-    if(rows.length<2)return h+'<p class="help">Ainda há pouco dado. Jogue mais alguns jogos de vocabulário e aqui aparecem os temas em que você vai melhor e os que precisam de reforço.</p>';
-    const top=rows.filter(r=>r.p>=70).slice(0,3),low=rows.slice().reverse().filter(r=>r.p<70).slice(0,3);
-    h+='<p class="help">Cada barra é a porcentagem de acertos nas palavras do tema (só entram temas com pelo menos 3 palavras e 6 respostas suas).</p>';
-    h+='<h4 class="skh">Você vai bem em</h4>'+(top.length?top.map(bar).join(""):'<p class="help">Nenhum tema chegou a 70% ainda.</p>');
-    h+='<h4 class="skh">Precisa de reforço</h4>'+(low.length?low.map(bar).join(""):'<p class="help">Nenhum tema abaixo de 70%. Muito bem!</p>');
+    if(rows.length<2&&gl.length<2)return h+'<p class="help">Ainda há pouco dado. Jogue mais alguns jogos de vocabulário e de gramática e aqui aparecem o que você vai melhor e o que precisa de reforço.</p>';
+    h+='<p class="help">Cada barra é a porcentagem de acertos de primeira. Só entram assuntos com pelo menos 6 respostas suas (no vocabulário, também 3 palavras).</p>';
+    const part=(title,list)=>{
+      if(list.length<2)return "";
+      const top=list.filter(r=>r.p>=70).slice(0,3),low=list.slice().reverse().filter(r=>r.p<70).slice(0,3);
+      return '<h4 class="skh">'+title+" · vai bem</h4>"+(top.length?top.map(bar).join(""):'<p class="help">Nenhum chegou a 70% ainda.</p>')+
+        '<h4 class="skh">'+title+" · precisa de reforço</h4>"+(low.length?low.map(bar).join(""):'<p class="help">Nenhum abaixo de 70%. Muito bem!</p>');
+    };
+    h+=part("Vocabulário",rows)+part("Gramática",gl);
     const weak=Object.keys(sk).filter(k=>sk[k][1]>sk[k][0]).sort((a,b)=>(sk[b][1]-sk[b][0])-(sk[a][1]-sk[a][0])).slice(0,5);
-    if(weak.length)h+='<h4 class="skh">Palavras que mais erra</h4><p class="help">'+weak.map(k=>"<b>"+esc(k)+"</b>"+(sk[k][2]?" ("+esc(sk[k][2])+")":"")).join(" · ")+'</p>';
+    if(weak.length)h+='<h4 class="skh">Mais errados</h4><p class="help">'+weak.map(k=>"<b>"+esc(k)+"</b>"+(sk[k][2]?" ("+esc(sk[k][2])+")":"")).join(" · ")+'</p>';
     return h+'<div class="row"><button type="button" class="btn primary" id="gam-train">Treinar o que preciso reforçar</button></div>';
   }
 

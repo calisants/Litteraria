@@ -18,10 +18,16 @@ try:
     # com dados: dois temas, um forte e um fraco
     pg.evaluate("""()=>{const ths=Object.keys(VOCAB.en);const sk=S.sk.en={};
       ths.slice(0,2).forEach((t,i)=>VOCAB.en[t].slice(0,4).forEach(it=>{sk[it.w.toLowerCase()]=i?[1,5,'x']:[6,0,'x'];}));save();}""")
+    pg.evaluate("()=>{S.gs.en={artigos:[9,1],plural:[1,7],presente:[8,2]};save()}")
     pg.evaluate("()=>openGam()");pg.wait_for_timeout(200)
     t=pg.inner_text('body').lower()
-    assert 'você vai bem em' in t and 'precisa de reforço' in t and 'treinar o que preciso' in t
+    assert 'vocabulário · vai bem' in t and 'gramática · precisa de reforço' in t and 'plural' in t and 'você vai bem em' not in t and 'precisa de reforço' in t and 'treinar o que preciso' in t
     pg.click('#gam-train');pg.wait_for_timeout(300)
+    # jogar de verdade uma página de gramática registra em S.gs
+    pg.evaluate("()=>closeSheet()")
+    pg.evaluate("()=>{S.gs={};S.lang='en';save();const p=VOLUME4.pages.find(x=>x.type==='artigos'&&pageInLang(x));startLesson({vol:4,page:p});}");pg.wait_for_timeout(400)
+    pg.click('#gstage .lopt');pg.click('#gm-submit');pg.wait_for_timeout(200)
+    gs=pg.evaluate("()=>JSON.stringify(S.gs)");assert 'artigos' in gs,gs
     print('errs',errs);assert not errs
     b.close()
 finally:

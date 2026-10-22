@@ -95,12 +95,12 @@ $("#gm-submit").addEventListener("click",()=>{
   if(typed?!gm.txt.trim():gm.sel===null)return;
   const ok=typed?acc.some(a=>nrm(a)===nrm(gm.txt)):gm.sel===it.a;
   if(ok){
-    if(!gm.bad&&!it._noRec){skRec(it.k,R.t,true);rvUpdate(true);}
+    if(!gm.bad&&!it._noRec){gsRec(curType(),true);skRec(it.k,R.t,true);rvUpdate(true);}
     gramSolve(it);setStatus("#gm-status","Certo!","ok");
     return;
   }
   gm.tries++;
-  if(!gm.bad){gm.bad=true;gm.miss++;if(!it._noRec){skRec(it.k,R.t,false);rvUpdate(false);}}
+  if(!gm.bad){gm.bad=true;gm.miss++;if(!it._noRec){gsRec(curType(),false);skRec(it.k,R.t,false);rvUpdate(false);}}
   sfx("bad");
   if(!typed){
     const o=it.o[gm.sel];
