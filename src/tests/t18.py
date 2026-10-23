@@ -53,7 +53,7 @@ try:
     pg.click('#s-vol [data-back]');assert pg.is_visible('#s-home')
     pg.evaluate("()=>go('stats')");assert pg.is_visible('#clear-stats')
     pg.evaluate("()=>go('profile')");assert not pg.is_visible('#clear-stats')
-    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");g=pg.evaluate("()=>[...document.querySelectorAll('#s-settings summary')].map(x=>x.textContent.trim())");print(g);assert g==['Aparência','Som e vibração','Estudo','Lembretes e cartão','Conta e nuvem','Dados','Sobre e ajuda']
+    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");g=pg.evaluate("()=>[...document.querySelectorAll('#s-settings summary')].map(x=>x.textContent.trim())");print(g);assert g==['Aparência','Som e vibração','Estudo','Lembretes','Dados','Sobre e ajuda']
     assert pg.is_visible('#sec-layout');pg.evaluate("()=>{S.style='fofo';save();applyTheme();syncPrefs()}");assert not pg.is_visible('#sec-layout') and pg.is_visible('#sec-estilo')
     # frases dos livros: 2 páginas por livro, só no idioma certo, no fim da trilha, jogáveis
     r=pg.evaluate("()=>VOLUME3.pages.filter(p=>p.book).map(p=>p.id+'|'+p.langs[0]+'|'+p.lines.length)");print(r);assert len(r)==20 and all(x.endswith('|5') for x in r)
