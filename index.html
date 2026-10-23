@@ -991,7 +991,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.52.0",d:"2026-10-22"};
+const APP_REL={v:"1.52.1",d:"2026-10-22"};
 
 
 const RAW={
@@ -5659,16 +5659,17 @@ window.CLOUDCFG={url:"https://uunfcvgiomzgwtpckzdx.supabase.co",key:"sb_publisha
 /* ===== Política de Privacidade (texto que aparece no app) =====
    Descreve o que o app realmente faz. As partes sobre conta e lembretes só aparecem quando esses recursos estão ligados (CLOUDCFG / PUSHCFG).
    Mudou algo no que o app guarda ou envia? Atualize o texto e PRIV_VER. */
-const PRIV_VER="2026-10-22b";
+const PRIV_VER="2026-10-22c";
 function privSections(){
   const cloud=!!(window.CLOUDCFG&&CLOUDCFG.url&&CLOUDCFG.key),push=!!(window.PUSHCFG&&PUSHCFG.sink);
   const s=[];
   s.push(["Quem cuida dos seus dados","O app Litteraria é feito por Camila (@calisants), que decide como os dados do app são tratados. Para falar sobre privacidade, use Ajustes → Sobre e ajuda → «Enviar sugestão ou avisar de erro»."]);
+  s.push(["Onde o app fica hospedado","O app é um site hospedado no GitHub Pages, com endereço próprio registrado no Registro.br. Como em qualquer site, ao abrir o app o seu aparelho se conecta a esses serviços, que podem registrar o seu endereço IP e dados técnicos da conexão, segundo as regras deles. A criadora do app não usa esses registros para identificar ninguém."]);
   s.push(["Sem conta, nada sai do seu aparelho","O progresso, os ajustes, o nome que você digitar, o caderno de palavras e as citações favoritas ficam só no armazenamento deste aparelho. O app não tem anúncios e não usa ferramentas de estatística de terceiros."]);
-  if(cloud)s.push(["Conta (opcional)","Se você criar uma conta, guardamos: o seu e-mail; uma cópia do seu progresso (lições feitas, pontuações, revisões, caderno de palavras, favoritos, ajustes e o nome que você digitou); e a data em que você aceitou esta política e confirmou ter 13 anos ou mais. Isso serve só para você recuperar o progresso se trocar de celular e usar o app em mais de um aparelho. Os dados ficam no Supabase, um serviço de terceiros; eles não ficam no GitHub nem em outro lugar do app. Cada conta só consegue ler e alterar os próprios dados. Tecnicamente, quem administra o projeto tem acesso a eles; esse acesso é para manter o serviço e atender pedidos seus."]);
+  if(cloud)s.push(["Conta (opcional)","Se você criar uma conta, guardamos: o seu e-mail; uma cópia do seu progresso (lições feitas, pontuações, revisões, caderno de palavras, favoritos, ajustes e o nome que você digitou); e a data em que você aceitou esta política e confirmou ter 13 anos ou mais. Isso serve só para você recuperar o progresso se trocar de celular e usar o app em mais de um aparelho. Usamos o seu e-mail só para duas coisas: enviar o código de entrada e, raramente, avisos importantes sobre a conta ou sobre mudanças no app que afetem os seus dados (por exemplo, uma mudança de endereço). Não enviamos propaganda nem compartilhamos o e-mail com ninguém. O código sai por uma conta de e-mail do Google (Gmail) da criadora, então o Google processa essa mensagem. Os servidores do Supabase podem ficar fora do Brasil. Os dados ficam no Supabase, um serviço de terceiros; eles não ficam no GitHub nem em outro lugar do app. Cada conta só consegue ler e alterar os próprios dados. Tecnicamente, quem administra o projeto tem acesso a eles; esse acesso é para manter o serviço e atender pedidos seus."]);
   if(cloud)s.push(["Amigos (opcional, só com conta)","Desligado até você ativar. Ao ativar, guardamos: um apelido que você escolher (2 a 20 letras; não use seu nome completo), um código de amigo gerado pelo app, a lista de amigos e convites, e, só se você marcar, a sua sequência de dias, o total de palavras acertadas e quantos dos últimos 7 dias você estudou. Também só se você marcar: o ícone e a frase do seu Perfil, o seu nível, e os idiomas que você estuda com o número de páginas concluídas em cada um. Cada uma dessas opções é separada e começa desligada; ao desligar, o dado é apagado do servidor. Seus amigos aceitos veem apenas o apelido e o que você marcou. Ninguém te encontra por busca: só entra quem tiver o seu código. Não há chat, foto nem mensagens. Você pode remover amigos, bloquear e denunciar (a denúncia guarda quem denunciou, quem foi denunciado e o texto que você escrever, até 300 letras, para a criadora do app analisar). Cutucadas: um amigo aceito pode te mandar um lembrete para estudar (1 por dia por amigo, no máximo 5 por dia no total); você pode desligar em «Aceitar cutucadas». Desafio semanal: um amigo aceito pode te propor um desafio, que só começa se você aceitar. Enquanto ele estiver ativo, guardamos só o total de lições que você concluiu na semana (segunda a domingo) e o da semana anterior, e os dois amigos veem esses totais (nenhum idioma, dia ou lição). Ao encerrar o desafio (qualquer um dos dois), remover o amigo, bloquear ou desativar Amigos, esses totais são apagados. Para as cutucadas guardamos o endereço de envio de notificação do seu aparelho (fornecido pela Apple, Google ou Mozilla) e as chaves dele, e registramos quem cutucou quem por poucos dias, só para aplicar os limites. Ao desativar Amigos ou sair da conta neste aparelho, apagamos esses endereços; ao desativar, apagamos também apelido, código, convites e amizades."]);
   if(push)s.push(["Lembretes com o app fechado (opcional)","Se você ativar, enviamos para uma planilha da criadora do app: o endereço de envio do seu aparelho (fornecido pela Apple, Google ou Mozilla), o horário escolhido, o estilo do lembrete, o idioma e se você já estudou naquele dia. Sem nome, sem e-mail, sem progresso. Uma rotina do GitHub lê essa planilha e manda o aviso. Desligar os lembretes remove a sua linha."]);
-  s.push(["Sugestões e avisos de erro","O que você escrever no formulário de sugestões vai para um Google Formulários da criadora. Não escreva dados pessoais ali."]);
+  s.push(["Sugestões e avisos de erro","O que você escrever no formulário de sugestões vai para um Google Formulários da criadora. Se a caixa «Enviar junto a versão do app, o idioma e o modelo do aparelho» estiver marcada (ela vem marcada, e você pode desmarcar), vão junto: a versão do app, o idioma e o volume que você estava vendo, o tamanho da tela e a identificação do navegador e do aparelho (o «user agent»). O seu progresso, o seu nome e o seu e-mail não vão. Não escreva dados pessoais na mensagem."]);
   if(cloud)s.push(["Seus direitos","Você pode, a qualquer momento e sem justificar: baixar tudo o que guardamos sobre você («Baixar meus dados»), apagar a conta e todos os dados da nuvem («Apagar minha conta e dados») e sair do aparelho. Pode também pedir correção ou esclarecimentos pelo formulário de sugestões. Apagar a conta não apaga o progresso que já está no seu aparelho."]);
   if(cloud)s.push(["Idade","Contas são para quem tem 13 anos ou mais. Se você tem entre 13 e 17 anos, converse com uma pessoa responsável antes de criar a conta. Quem tem menos de 13 não deve criar conta: o app funciona normalmente sem ela."]);
   s.push(["Quanto tempo guardamos",cloud?"Enquanto a conta existir. Ao apagar a conta, os dados da nuvem são removidos. Cópias de segurança do serviço, se houver, seguem as regras dele.":"No seu aparelho, até você apagar os dados do navegador ou do app."]);
@@ -6163,6 +6164,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.52.1",d:"2026-10-22",t:["O aviso «O app foi atualizado» não volta mais a cada vez que você abre o app: ele aparece uma vez por versão","Aviso de que o app muda de endereço (litteraria.com.br) ainda hoje, com botão para baixar o backup. Quem tem conta na nuvem recupera tudo entrando de novo","Política de Privacidade revisada: agora diz o que vai junto nas sugestões, como o e-mail é usado e onde o app fica hospedado"]},
 {v:"1.52.0",d:"2026-10-22",t:["O app agora se chama Litteraria (antes Mots & Parole). Seu progresso, sua conta e seus amigos continuam como estavam","No iPhone, o ícone que já está na tela inicial pode continuar com o nome antigo: renomeie o atalho, ou instale de novo depois de baixar um backup em Ajustes → Dados"]},
 {v:"1.51.1",d:"2026-10-22",t:["Sherlock Holmes: capítulo 12 («A Aventura das Faias de Cobre») já disponível para ler. O livro está completo, com os 12 contos","Tradução escrita por Claude, sem fonte conferida"]},
 {v:"1.50.2",d:"2026-10-22",t:["Sherlock Holmes: capítulo 10 («A Aventura do Nobre Solteirão») já disponível para ler"]},
@@ -6273,8 +6275,36 @@ document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#op
     if(t.id==="upd-read"){close();go("news");renderNews();}
     else if(t.id==="upd-close")close();
   });
-  const add=()=>document.body.appendChild(box);
+  const add=()=>{mark();document.body.appendChild(box);}; /* marca como visto ao mostrar: sair do app sem tocar nos botões não faz o aviso voltar */
   if(document.body)add();else document.addEventListener("DOMContentLoaded",add);
+})();
+
+/* ===== Aviso de mudança de endereço (v1.52.1) =====
+   Só aparece no endereço antigo (github.io). No endereço novo o armazenamento começa vazio, então lá não faz sentido. */
+(function(){
+  if((window.__moveTest?"calisants.github.io":location.hostname)!=="calisants.github.io")return; /* __moveTest: só para o teste */
+  const K="mots-parole-move";let st=null;
+  try{st=localStorage.getItem(K);}catch(_){}
+  const today=new Date().toISOString().slice(0,10);
+  if(st==="ok"||st===today)return;
+  const box=document.createElement("div");
+  box.id="move-note";box.setAttribute("role","dialog");box.setAttribute("aria-modal","true");box.setAttribute("aria-label","Mudança de endereço");
+  box.style.cssText="position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.5)";
+  box.innerHTML='<div style="max-width:440px;width:100%;max-height:92vh;overflow:auto;background:var(--surface,#fff);color:var(--ink,#222);border:1px solid var(--line,#ccc);border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.3)">'+
+    '<h3 style="margin:0 0 8px;font-size:1.15rem">O Litteraria vai mudar de endereço</h3>'+
+    '<p style="margin:0 0 8px">Ainda hoje, por volta da meia-noite, o app passa a ficar em <b>litteraria.com.br</b>. O progresso que está <b>só neste aparelho</b> não vai junto sozinho.</p>'+
+    '<p style="margin:0 0 8px"><b>Para não perder nada:</b> baixe o backup agora. Depois, no endereço novo, vá em Ajustes → Dados → «Escolher arquivo de backup».</p>'+
+    '<p style="margin:0 0 14px;color:var(--muted,#666);font-size:.92rem">Se você tem conta na nuvem e o progresso já está salvo nela, basta entrar de novo no endereço novo. Você vai precisar instalar o app de novo e ligar os lembretes outra vez.</p>'+
+    '<p id="move-msg" aria-live="polite" style="margin:0 0 10px;font-weight:600"></p>'+
+    '<div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn wide primary" id="move-bk">Baixar backup agora</button><button type="button" class="btn wide" id="move-later">Lembrar depois</button></div></div>';
+  box.addEventListener("click",e=>{
+    const t=e.target.closest&&e.target.closest("button");if(!t)return;
+    if(t.id==="move-bk"){const b=document.getElementById("bk-save");if(b)b.click();try{localStorage.setItem(K,"ok");}catch(_){}
+      document.getElementById("move-msg").textContent="Backup baixado. Procure o arquivo litteraria-progresso em Downloads.";t.hidden=true;document.getElementById("move-later").textContent="Fechar";}
+    else if(t.id==="move-later"){try{if(localStorage.getItem(K)!=="ok")localStorage.setItem(K,today);}catch(_){}box.remove();}
+  });
+  const add=()=>document.body.appendChild(box);
+  if(document.body)setTimeout(add,400);else document.addEventListener("DOMContentLoaded",()=>setTimeout(add,400));
 })();
 
 /* ===== Retomar a lição de onde parou (v1.39) =====

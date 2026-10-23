@@ -1,5 +1,6 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.52.1",d:"2026-10-22",t:["O aviso «O app foi atualizado» não volta mais a cada vez que você abre o app: ele aparece uma vez por versão","Aviso de que o app muda de endereço (litteraria.com.br) ainda hoje, com botão para baixar o backup. Quem tem conta na nuvem recupera tudo entrando de novo","Política de Privacidade revisada: agora diz o que vai junto nas sugestões, como o e-mail é usado e onde o app fica hospedado"]},
 {v:"1.52.0",d:"2026-10-22",t:["O app agora se chama Litteraria (antes Mots & Parole). Seu progresso, sua conta e seus amigos continuam como estavam","No iPhone, o ícone que já está na tela inicial pode continuar com o nome antigo: renomeie o atalho, ou instale de novo depois de baixar um backup em Ajustes → Dados"]},
 {v:"1.51.1",d:"2026-10-22",t:["Sherlock Holmes: capítulo 12 («A Aventura das Faias de Cobre») já disponível para ler. O livro está completo, com os 12 contos","Tradução escrita por Claude, sem fonte conferida"]},
 {v:"1.50.2",d:"2026-10-22",t:["Sherlock Holmes: capítulo 10 («A Aventura do Nobre Solteirão») já disponível para ler"]},
@@ -110,6 +111,34 @@ document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#op
     if(t.id==="upd-read"){close();go("news");renderNews();}
     else if(t.id==="upd-close")close();
   });
-  const add=()=>document.body.appendChild(box);
+  const add=()=>{mark();document.body.appendChild(box);}; /* marca como visto ao mostrar: sair do app sem tocar nos botões não faz o aviso voltar */
   if(document.body)add();else document.addEventListener("DOMContentLoaded",add);
+})();
+
+/* ===== Aviso de mudança de endereço (v1.52.1) =====
+   Só aparece no endereço antigo (github.io). No endereço novo o armazenamento começa vazio, então lá não faz sentido. */
+(function(){
+  if((window.__moveTest?"calisants.github.io":location.hostname)!=="calisants.github.io")return; /* __moveTest: só para o teste */
+  const K="mots-parole-move";let st=null;
+  try{st=localStorage.getItem(K);}catch(_){}
+  const today=new Date().toISOString().slice(0,10);
+  if(st==="ok"||st===today)return;
+  const box=document.createElement("div");
+  box.id="move-note";box.setAttribute("role","dialog");box.setAttribute("aria-modal","true");box.setAttribute("aria-label","Mudança de endereço");
+  box.style.cssText="position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.5)";
+  box.innerHTML='<div style="max-width:440px;width:100%;max-height:92vh;overflow:auto;background:var(--surface,#fff);color:var(--ink,#222);border:1px solid var(--line,#ccc);border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.3)">'+
+    '<h3 style="margin:0 0 8px;font-size:1.15rem">O Litteraria vai mudar de endereço</h3>'+
+    '<p style="margin:0 0 8px">Ainda hoje, por volta da meia-noite, o app passa a ficar em <b>litteraria.com.br</b>. O progresso que está <b>só neste aparelho</b> não vai junto sozinho.</p>'+
+    '<p style="margin:0 0 8px"><b>Para não perder nada:</b> baixe o backup agora. Depois, no endereço novo, vá em Ajustes → Dados → «Escolher arquivo de backup».</p>'+
+    '<p style="margin:0 0 14px;color:var(--muted,#666);font-size:.92rem">Se você tem conta na nuvem e o progresso já está salvo nela, basta entrar de novo no endereço novo. Você vai precisar instalar o app de novo e ligar os lembretes outra vez.</p>'+
+    '<p id="move-msg" aria-live="polite" style="margin:0 0 10px;font-weight:600"></p>'+
+    '<div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn wide primary" id="move-bk">Baixar backup agora</button><button type="button" class="btn wide" id="move-later">Lembrar depois</button></div></div>';
+  box.addEventListener("click",e=>{
+    const t=e.target.closest&&e.target.closest("button");if(!t)return;
+    if(t.id==="move-bk"){const b=document.getElementById("bk-save");if(b)b.click();try{localStorage.setItem(K,"ok");}catch(_){}
+      document.getElementById("move-msg").textContent="Backup baixado. Procure o arquivo litteraria-progresso em Downloads.";t.hidden=true;document.getElementById("move-later").textContent="Fechar";}
+    else if(t.id==="move-later"){try{if(localStorage.getItem(K)!=="ok")localStorage.setItem(K,today);}catch(_){}box.remove();}
+  });
+  const add=()=>document.body.appendChild(box);
+  if(document.body)setTimeout(add,400);else document.addEventListener("DOMContentLoaded",()=>setTimeout(add,400));
 })();

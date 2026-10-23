@@ -18,6 +18,21 @@ try:
     pg.reload();pg.wait_for_timeout(500);assert not pg.query_selector('#upd-note'),'não volta depois de fechar'
     pg.evaluate("()=>localStorage.setItem('mots-parole-lastver','0.0.1')");pg.reload();pg.wait_for_timeout(500)
     pg.click('#upd-read');assert pg.is_visible('#s-news') and not pg.query_selector('#upd-note')
+    # v1.52.1: sair do app sem tocar nos botões não faz o aviso voltar
+    pg.evaluate("()=>localStorage.setItem('mots-parole-lastver','0.0.1')");pg.reload();pg.wait_for_timeout(500)
+    assert pg.is_visible('#upd-note');pg.reload();pg.wait_for_timeout(500);assert not pg.query_selector('#upd-note'),'não volta se só saiu e voltou'
+    # v1.52.1: aviso de mudança de endereço (só no endereço antigo)
+    assert not pg.query_selector('#move-note'),'em localhost não aparece'
+    pg.add_init_script("window.__moveTest=true")
+    pg.evaluate("()=>localStorage.removeItem('mots-parole-move')");pg.reload();pg.wait_for_timeout(900)
+    assert pg.is_visible('#move-note') and 'litteraria.com.br' in pg.inner_text('#move-note')
+    pg.click('#move-later');assert not pg.query_selector('#move-note')
+    pg.reload();pg.wait_for_timeout(900);assert not pg.query_selector('#move-note'),'adiado: não volta no mesmo dia'
+    pg.evaluate("()=>localStorage.removeItem('mots-parole-move')");pg.reload();pg.wait_for_timeout(900)
+    with pg.expect_download() as d: pg.click('#move-bk')
+    assert d.value.suggested_filename.startswith('litteraria-progresso-')
+    assert pg.evaluate("()=>localStorage.getItem('mots-parole-move')")=='ok'
+    pg.click('#move-later');pg.reload();pg.wait_for_timeout(900);assert not pg.query_selector('#move-note'),'backup feito: não volta'
     # usuário antigo (tem progresso, não tem a marca)
     pg.evaluate("()=>{localStorage.removeItem('mots-parole-lastver');save()}");pg.reload();pg.wait_for_timeout(500)
     assert pg.is_visible('#upd-note'),'usuário antigo deve ver o aviso'

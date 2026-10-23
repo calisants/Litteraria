@@ -8,6 +8,10 @@ on:
         description: "Teste: enviar agora para todos, ignorando horário e «já estudou»"
         type: boolean
         default: false
+      aviso:
+        description: "Aviso único (até 140 letras): envia este texto agora a todos que ativaram lembretes. Deixe vazio no uso normal"
+        type: string
+        default: ""
 permissions:
   contents: read
 jobs:
@@ -24,3 +28,4 @@ jobs:
           SINK_KEY: ${{ secrets.SINK_KEY }}
           VAPID_PRIVATE: ${{ secrets.VAPID_PRIVATE }}
           FORCE: ${{ inputs.force }}
+          NOTICE: ${{ inputs.aviso }}

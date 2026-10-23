@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 
 DRY = "--dry" in sys.argv
 FORCE = os.environ.get("FORCE") == "true" or "--force" in sys.argv  # teste: ignora janela de horário, «já enviado» e «já estudou»
+NOTICE = os.environ.get("NOTICE", "").strip()[:140]  # aviso único (texto livre): vai a todos, uma vez, sem marcar «enviado hoje»
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 HOSTS = [r"^fcm\.googleapis\.com$", r"^updates\.push\.services\.mozilla\.com$", r"(^|\.)push\.apple\.com$", r"(^|\.)notify\.windows\.com$"]
 MSGS = ["Cinco minutinhos de {L} hoje já contam.", "Uma lição curta agora vale mais do que uma longa que nunca começa.",
@@ -33,6 +34,8 @@ def host_ok(endpoint):
 
 
 def message(row, day):
+    if NOTICE:
+        return {"t": "Litteraria", "b": NOTICE, "go": "hoje"}
     L = row.get("ln") or "idiomas"
     n = int(hashlib.sha256((day + row["id"]).encode()).hexdigest(), 16)
     if row["st"] == "calma":
@@ -43,7 +46,7 @@ def message(row, day):
 
 
 def due(row, now):
-    if FORCE:
+    if FORCE or NOTICE:
         return True, (now - datetime.timedelta(minutes=int(row["tz"]))).strftime("%Y-%m-%d")
     local = now - datetime.timedelta(minutes=int(row["tz"]))
     day = local.strftime("%Y-%m-%d")
@@ -93,7 +96,7 @@ def main():
         try:
             webpush(sub, json.dumps(message(row, day), ensure_ascii=False), vapid_private_key=os.environ["VAPID_PRIVATE"],
                     vapid_claims={"sub": "mailto:calisants@users.noreply.github.com"}, ttl=6 * 3600, headers={"Urgency": "normal"})
-            if not FORCE:
+            if not (FORCE or NOTICE):
                 call(url, key, a="mark", id=row["id"], d=day)
             sent += 1
         except WebPushException as e:
