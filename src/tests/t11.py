@@ -16,19 +16,16 @@ with sync_playwright() as p:
     pg.evaluate("()=>{skRec('bonjour','bom dia',false);skRec('bonsoir','x',false);Object.keys(S.rvv).forEach(k=>S.rvv[k][0]=Date.now()-5);save();renderMe();}")
     print('rvv:',pg.evaluate("()=>Object.keys(S.rvv)"),'| due:',pg.evaluate("()=>dueCount()"))
     pg.click('#go-today');pg.wait_for_timeout(100)
-    types=pg.evaluate("()=>gm.types");print('tipos revisao',types)
-    # responder revisao: itens de vocabulario digitando
-    for i in range(len(types)):
-        it=pg.evaluate("()=>({a:gm.items[gm.i].a,v:!!gm.items[gm.i]._v,ok:gm.items[gm.i].ok||null,typ:typedOn(gm.items[gm.i])})")
-        if it['v'] and not it['typ']:pg.click('#typed-toggle')
-        if it['v'] or it['typ']:
-            ans=pg.evaluate("()=>accepts(gm.items[gm.i])[0]");pg.fill('#gm-typed',ans);pg.click('#gm-submit')
+    assert 'Ciclo da palavra' in pg.inner_text('#sheet-title'),'Hoje deve abrir o Ciclo da palavra'
+    for i in range(2):
+        c=pg.evaluate("()=>__ciclo().cur")
+        if c['f']<2:pg.click('[data-cic-opt="%d"]'%c['a'])
         else:
-            pg.click(f'#gstage .lopt[data-k="{it["a"]}"]');pg.click('#gm-submit')
-        pg.click('#gm-next')
+            pg.fill('#cic-in',pg.evaluate("()=>{const e=__ciclo().cur.e;return e.w}"));pg.click('#cic-check')
+        pg.click('#cic-next')
     print('sheet:',pg.inner_text('#sheet-in')[:70].replace('\n',' '))
     print('rvv apos:',pg.evaluate("()=>JSON.stringify(S.rvv)")[:120])
-    pg.click('#sheet-close');pg.click('#s-game [data-back]')
+    pg.click('#sheet-close')
     # treino em cada idioma
     for lang in ('fr','it','en'):
         pg.evaluate(f"()=>{{S.lang='{lang}';save();}}")
