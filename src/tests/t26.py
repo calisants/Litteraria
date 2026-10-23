@@ -98,6 +98,17 @@ try:
     assert 'fr:alfabeto-9' in p2.evaluate("()=>Object.keys(S.done)"),'aparelho novo deveria receber o progresso'
     c2.close()
     # 7) sair e apagar a conta
+    # v1.52.2: o navegador descarta a página enquanto a pessoa busca o código no e-mail
+    pg.click('#cl-out');pg.fill('#cl-email','ana@exemplo.com');pg.check('#cl-age');pg.check('#cl-pol');pg.click('#cl-send');pg.wait_for_selector('#cl-code')
+    pg.reload();pg.wait_for_timeout(2200)
+    assert pg.is_visible('#cl-code'),'depois do recarregamento deve voltar ao campo do código'
+    assert 'ana@exemplo.com' in pg.inner_text('#cloud-box')
+    pg.fill('#cl-code','123456');pg.click('#cl-verify');pg.wait_for_selector('#cl-now');pg.wait_for_timeout(500)
+    assert pg.evaluate("()=>localStorage.getItem('mots-parole-cloud-pend')")is None
+    pg.reload();pg.wait_for_timeout(2200);openset(pg);assert not pg.query_selector('#cl-code') or not pg.is_visible('#cl-code'),'login concluído: não volta ao código'
+    pg.click('#cl-out');pg.fill('#cl-email','x@y.com');pg.check('#cl-age');pg.check('#cl-pol');pg.click('#cl-send');pg.wait_for_selector('#cl-code')
+    pg.evaluate("()=>localStorage.setItem('mots-parole-cloud-pend',JSON.stringify({e:'x@y.com',t:Date.now()-31*60e3}))");pg.reload();pg.wait_for_timeout(1500);openset(pg)
+    assert pg.is_visible('#cl-email'),'passo do código vencido (30 min) não é restaurado'
     pg.reload();pg.wait_for_timeout(900);openset(pg)
     pg.click('#cl-out');assert pg.is_visible('#cl-email') and pg.evaluate("()=>Object.keys(S.done).length")>0
     pg.fill('#cl-email','ana@exemplo.com');pg.check('#cl-age');pg.check('#cl-pol');pg.click('#cl-send');pg.wait_for_selector('#cl-code')

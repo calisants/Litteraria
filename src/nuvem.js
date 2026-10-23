@@ -9,6 +9,13 @@
   const SK="mots-parole-cloud";
   let ses=null,busy=false,step="email",pendEmail="",msg="",conflictShown=false,bootDone=false;
   try{ses=JSON.parse(localStorage.getItem(SK)||"null");}catch(_){}
+  /* v1.52.2: o passo «digitar o código» sobrevive se o navegador descartar a página enquanto a pessoa vai ao e-mail (Samsung Internet, Chrome com pouca memória) */
+  const PK="mots-parole-cloud-pend",PMAX=30*60e3;
+  const putPend=()=>{try{pendEmail?localStorage.setItem(PK,JSON.stringify({e:pendEmail,t:Date.now()})):localStorage.removeItem(PK);}catch(_){}};
+  let restored=false;
+  try{const o=JSON.parse(localStorage.getItem(PK)||"null");
+    if(o&&typeof o.e==="string"&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(o.e)&&Date.now()-(+o.t||0)<PMAX&&!ses){pendEmail=o.e;step="code";restored=true;}
+    else if(o)localStorage.removeItem(PK);}catch(_){}
   const putSes=()=>{try{ses?localStorage.setItem(SK,JSON.stringify(ses)):localStorage.removeItem(SK);}catch(_){}};
   const hs=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return s.length+":"+h;};
   const now=()=>Math.floor(Date.now()/1000);
@@ -202,15 +209,15 @@
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){msg="Confira o e-mail.";render();return;}
       if(!$("#cl-age").checked||!$("#cl-pol").checked){msg="Marque as duas caixas para continuar.";render();return;}
       t.disabled=true;
-      try{await requestCode(em);pendEmail=em;step="code";msg="";}catch(er){msg=er.message;}
+      try{await requestCode(em);pendEmail=em;step="code";msg="";putPend();}catch(er){msg=er.message;}
       render();return;
     }
-    if(t.id==="cl-back"){step="email";msg="";render();return;}
+    if(t.id==="cl-back"){step="email";msg="";pendEmail="";putPend();render();return;}
     if(t.id==="cl-verify"){
       const code=($("#cl-code").value||"").replace(/\D/g,"");
       if(code.length<6){msg="Digite o código completo, só os números.";render();return;}
       t.disabled=true;
-      try{await verify(pendEmail,code);step="email";msg="";await afterLogin();}catch(er){msg=er.message;render();}
+      try{await verify(pendEmail,code);step="email";msg="";pendEmail="";putPend();await afterLogin();}catch(er){msg=er.message;render();}
       return;
     }
     if(t.id==="cl-now"){sync(true);return;}
@@ -229,4 +236,7 @@
   const _go5=go;go=function(n){_go5.apply(this,arguments);if(n==="settings")mount();};
   mount();
   setTimeout(()=>{bootDone=true;if(ses)sync(false,true);},2500);
+  if(restored)setTimeout(()=>{ /* volta direto para onde a pessoa estava: o campo do código */
+    try{go("settings");const b=box();if(b){let n=b.parentNode;while(n&&n.nodeType===1){if(n.tagName==="DETAILS")n.open=true;n=n.parentNode;}render();b.scrollIntoView({block:"center"});const c=$("#cl-code");if(c)c.focus();}}catch(_){}
+  },900);
 })();
