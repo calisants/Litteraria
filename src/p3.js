@@ -88,6 +88,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(typeof sv.custom==="string"&&/^#[0-9a-f]{6}$/i.test(sv.custom))S.custom=sv.custom;
   if(typeof sv.player==="string")S.player=sv.player.slice(0,24);else if(typeof sv.dev==="string")S.player=sv.dev.slice(0,24);
   if(typeof sv.motto==="string")S.motto=sv.motto.slice(0,60);
+  if(typeof sv.rfd==="string"&&/^\d{4}-\d\d-\d\d$/.test(sv.rfd))S.rfd=sv.rfd;
   if(typeof sv.fbook==="string"&&/^[a-z0-9]{1,12}$/.test(sv.fbook))S.fbook=sv.fbook;
   if(typeof sv.avatar==="string"&&/^[a-z]+$/.test(sv.avatar))S.avatar=sv.avatar;
   if(sv.plays&&typeof sv.plays==="object")Object.keys(sv.plays).forEach(l=>{if(LNAME[l]&&sv.plays[l]&&typeof sv.plays[l]==="object"){S.plays[l]={};Object.keys(sv.plays[l]).forEach(t=>{const n=+sv.plays[l][t];if(/^[a-z]+$/.test(t)&&n>0)S.plays[l][t]=Math.min(n,1e6);});}});

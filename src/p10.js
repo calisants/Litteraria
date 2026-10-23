@@ -130,6 +130,7 @@ function startToday(){
   const pl=todayPlan();
   if(pl.kind==="review")return startReview();
   if(pl.kind==="weak")return startDrill("r");
+  if(pl.kind==="refresh"){S.rfd=ymd();save();return startLesson(pl.ref);}
   if(pl.kind==="lesson")return startLesson(pl.ref);
   if(pl.gated)return openSheet("Mais palavras primeiro","<p class=\"help\">Por enquanto você fez todas as lições de palavras e jogos disponíveis em "+esc(LNAME[S.lang])+". Ainda restam "+pl.gated+" páginas de gramática e frases, que abrem aos poucos conforme você acerta mais palavras. Treine e revise as palavras (menu Treino) e elas vão aparecendo. Você pode abri-las quando quiser em Lições.</p>",false);
   openSheet("Tudo em dia","<p class=\"help\">Você concluiu todas as lições da trilha em "+esc(LNAME[S.lang])+" e não há nada para revisar. Experimente o Treino, que gera itens novos a cada rodada.</p>",false);

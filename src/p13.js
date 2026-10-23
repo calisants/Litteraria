@@ -106,9 +106,21 @@ function weakWords(){
   return out.sort((x,y)=>y[0]-x[0]).map(x=>x[1]);
 }
 const WEAK_MIN=8;
+/* Retorno aos sons e às palavras (pedido dela, 23/10/2026): mesmo com o Volume de Pronúncia e os temas de vocabulário concluídos,
+   uma vez por dia o «Hoje» sugere rever uma página já feita. Dias alternados: pronúncia (sons das letras e combinações) e vocabulário. */
+function refresher(){
+  if(S.rfd===ymd())return null;
+  const done=lessonPath().filter(r=>(r.audio||r.voc)&&!r.page.book&&pageInLang(r.page)&&S.done[S.lang+":"+r.page.id]);
+  if(!done.length)return null;
+  const day=Math.floor(Date.now()/864e5),pron=done.filter(r=>r.audio),voc=done.filter(r=>r.voc);
+  const pool=(day%2===0&&pron.length)?pron:(voc.length?voc:pron);
+  let h=0;const k=ymd()+S.lang;for(let i=0;i<k.length;i++)h=(h*31+k.charCodeAt(i))>>>0;
+  return pool[h%pool.length];
+}
 function todayPlan(){
   const d=dueCount();if(d)return{kind:"review",n:d};
   const w=weakWords().length;if(w>=WEAK_MIN)return{kind:"weak",n:w};
+  const rf=refresher();if(rf)return{kind:"refresh",ref:rf};
   const r=nextNewPage();return r?{kind:"lesson",ref:r}:{kind:"done",gated:gatedLeft()};
 }
 function lessonName(r){
@@ -117,6 +129,6 @@ function lessonName(r){
 }
 function planText(){
   const p=todayPlan();
-  return p.kind==="review"?p.n+" para revisar":p.kind==="weak"?"reforçar "+p.n+" palavras que errou":p.kind==="lesson"?"próxima: "+lessonName(p.ref):p.gated?"aprenda mais palavras para liberar a gramática":"tudo em dia";
+  return p.kind==="review"?p.n+" para revisar":p.kind==="weak"?"reforçar "+p.n+" palavras que errou":p.kind==="refresh"?"rever: "+lessonName(p.ref):p.kind==="lesson"?"próxima: "+lessonName(p.ref):p.gated?"aprenda mais palavras para liberar a gramática":"tudo em dia";
 }
 function startLesson(r){S.vol=r.vol;S.fGame="all";S.fTheme="all";save();startPage(r.page.id);}
