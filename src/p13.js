@@ -33,6 +33,7 @@ function lessonPath(){
     add(1,"connect-"+g+"-easy-1");
     chunk(gram,gi,gids.length).forEach(p=>out.push({vol:4,page:p,need:GRAM_BASE+GRAM_STEP*(gn++)}));
     chunk(conv,gi,gids.length).forEach(p=>out.push({vol:3,page:p,need:CONV_BASE+CONV_STEP*(cn++)}));
+    if(gi===Math.min(1,gids.length-1))earlyBook(out,add);
   });
   /* temas de livros: novas lições no fim da trilha (só no idioma do livro) */
   BOOKS.forEach(b=>b.chunks.forEach(c=>{
@@ -44,7 +45,20 @@ function lessonPath(){
   BOOKS.forEach(b=>b.chunks.forEach(c=>{add(1,"search-"+c.cat+"-easy");add(1,"cross-"+c.cat+"-easy");}));
   const byT=["memoria","citacao","regra","ouvir","trecho"].map(t=>VOLUME.pages.filter(p=>p.type===t));
   for(let i=0;byT.some(a=>i<a.length);i++)byT.forEach(a=>{if(a[i])out.push({vol:1,page:a[i]});});
-  return(_path=out);
+  const seen=new Set();
+  return(_path=out.filter(r=>{const k=r.page.id;if(seen.has(k))return false;seen.add(k);return true;}));
+}
+/* «Primeiro livrinho» (v1.57, pedido dela: livros curtos mais cedo): depois do 2º grupo de temas entra um pedacinho de um livro curto
+   de cada idioma: as primeiras palavras do livro e uma página de frases (e, no inglês, a primeira Leitura). As páginas continuam também no fim da trilha. */
+const EARLY={en:["peter",["frases-livro-peter-1","leitura-peter-1"]],fr:["perrault",["frases-livro-verne-1"]],it:["racconti",["frases-livro-pinocchio-1"]]};
+function earlyBook(out,add){
+  Object.keys(EARLY).forEach(l=>{
+    const b=BOOKS.find(x=>x.id===EARLY[l][0]);if(!b||!b.chunks.length)return;
+    const cat=b.chunks[0].cat;
+    VOLUME5.pages.filter(p=>p.cat===cat&&p.type==="conheca").slice(0,3).forEach(p=>out.push({vol:5,page:p,voc:true,early:true}));
+    add(5,"reco-"+cat+"-1",{voc:true,early:true});
+    EARLY[l][1].forEach((id,i)=>add(3,id,{need:25+10*i,early:true}));
+  });
 }
 /* Jogos entre lições: depois de 2 lições seguidas, o «Hoje» e o «Próximo» oferecem um jogo (de tipo diferente do último).
    Prioridade: jogo do mesmo tema da próxima lição; jogo de tema anterior ainda não feito; jogo solto (memória, livros). */

@@ -1,5 +1,6 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.58.0",d:"2026-10-23",t:["«Primeiro livrinho» cedo na trilha: depois dos primeiros temas entram as primeiras palavras de um livro curto (Peter Rabbit no inglês; Contos de Perrault no francês; Contos de Collodi no italiano) e uma página de frases do livro; no inglês, também a primeira Leitura","Novo: jogo da memória com as palavras que você está revisando (palavra × desenho). Aparece no fim do Ciclo da palavra e em Treino","As páginas dos livros continuam também no fim da trilha e em Livros","Corrigido: o aviso «O app foi atualizado» podia sumir sozinho; agora ele fica na tela até você tocar num botão (ou até 4 segundos depois de aparecer, para não voltar na próxima abertura)"]},
 {v:"1.57.0",d:"2026-10-23",t:["Novo: «Ciclo da palavra». Uma palavra que você errou volta em formas diferentes: ver (com desenho), ouvir, escrever e usar na frase","Se acertar, ela volta mais adiante e em outra forma; se errar, volta amanhã, também em outra forma","Fica no «Hoje» (revisão) e em Treino → «Ciclo da palavra». «Ouvir» tem o botão «Mostrar a palavra» para quem está sem som"]},
 {v:"1.56.0",d:"2026-10-23",t:["Jogos de literatura refeitos para treinar o idioma: saíram «Quem escreveu?», «De qual livro é?» e «Ordem dos capítulos» (eram perguntas sobre os livros, não sobre a língua)","Novo: «Ouça e escolha (com áudio)»: você ouve uma frase de um livro e escolhe o que ela quer dizer. Sem áudio, há o botão «Mostrar a frase»","Continuam: «Complete a citação», «Ordene o trecho» e «Qual o sentido?»"]},
 {v:"1.55.0",d:"2026-10-23",t:["Novo: notificações de «fulano te convidou para ser amigo», «aceitou o seu convite», «te desafiou» e «aceitou o seu desafio». Só chegam a quem aceita avisos dos amigos e tem as notificações ligadas, e dependem de uma atualização no servidor (feita pela criadora do app)","Mudou: em Amigos, «Aceitar cutucadas» virou «Aceitar avisos dos amigos» e controla todos esses avisos","Ao tocar numa notificação de amigo, o app abre direto em Amigos"]},
@@ -110,13 +111,19 @@ document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#op
     '<p style="margin:0 0 6px">Agora você está na versão <b>'+esc(cur)+'</b>. Leia as notas de atualização para saber o que há de novo.</p>'+
     (n?'<p style="margin:0 0 14px;color:var(--muted,#666);font-size:.92rem">Resumo: '+esc(n.t[0])+(n.t.length>1?" (e mais "+(n.t.length-1)+")":"")+'</p>':'')+
     '<div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn wide" id="upd-read">Ler as novidades</button><button type="button" class="btn wide" id="upd-close">Agora não</button></div></div>';
-  const close=()=>{mark();box.remove();};
+  let closed=false,readd=0;
+  const close=()=>{closed=true;mark();box.remove();};
   box.addEventListener("click",e=>{
     const t=e.target.closest&&e.target.closest("button");if(!t)return;
     if(t.id==="upd-read"){close();go("news");renderNews();}
     else if(t.id==="upd-close")close();
   });
-  const add=()=>{mark();document.body.appendChild(box);}; /* marca como visto ao mostrar: sair do app sem tocar nos botões não faz o aviso voltar */
+  /* Marca como visto só depois de 4 s na tela (ou ao tocar nos botões): sair do app depois de ler não faz o aviso voltar,
+     mas uma recarga logo ao abrir (atualização do app) não gasta o aviso. Se algo tirar o aviso da tela sozinho, ele volta (até 5 vezes). */
+  const add=()=>{
+    document.body.appendChild(box);setTimeout(mark,4000);
+    try{new MutationObserver(()=>{if(!closed&&!box.isConnected&&readd<5){readd++;document.body.appendChild(box);}}).observe(document.body,{childList:true});}catch(_){}
+  };
   if(document.body)add();else document.addEventListener("DOMContentLoaded",add);
 })();
 

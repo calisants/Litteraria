@@ -27,8 +27,32 @@
     mm={cards:cards,open:[],done:new Set(),moves:0,lock:false};
     renderMemoria();
   }
+  /* Memória com as palavras em revisão (v1.57): palavras do ciclo/revisão/erros que têm desenho; completa com palavras já acertadas.
+     Página «virtual» (P.rev): não conta como lição concluída. */
+  window.memRevWords=function(first){
+    const m=byW[S.lang]||{},out=[],add=w=>{w=String(w||"").toLowerCase();if(w&&m[w]&&out.indexOf(w)<0&&out.length<6)out.push(w);};
+    (first||[]).forEach(add);
+    if(typeof dueWords==="function")dueWords().forEach(c=>{if(c.t==="v"){const r=rvVocab(c.k);r&&add(r.e.w);}else add(c.o.w);});
+    Object.keys(S.rvv).filter(k=>k.indexOf(S.lang+":v|")===0).forEach(k=>add(k.slice(S.lang.length+3)));
+    weakWords().forEach(e=>add(e.w));
+    (S.cad||[]).filter(c=>c.l===S.lang).forEach(c=>add(c.w));
+    const sk=S.sk[S.lang]||{};
+    sh0(Object.keys(sk).filter(k=>sk[k][0]>=1)).forEach(add);
+    return out.length>=4?out:[];
+  };
+  window.startMemRev=function(words){
+    if(!words||words.length<4)return false;
+    P={id:"memoria-rev",type:"memoria",n:0,langs:[S.lang],words:words,rev:true};
+    go("game");
+    $("#g-title").textContent="Memória das palavras em revisão";
+    $("#g-sub").textContent=LNAME[S.lang]+" · palavras que você está revisando";
+    ["#stage","#cstage","#sstage","#ostage","#lstage","#rstage","#gstage"].forEach(s=>{$(s).hidden=s!=="#gstage";});
+    ["cross","search","connect","sentence","odd","listen","resp","gram"].forEach(d=>{$("#dock-"+d).hidden=true;});
+    $("#g-list").hidden=true;$("#kb-toggle").hidden=true;$("#zoom-toggle").hidden=true;
+    newGame();return true;
+  };
   RESUME.reg("memoria",{
-    get(){return mm&&mm.cards.length&&mm.done.size<mm.cards.length/2?{cards:mm.cards,done:[...mm.done],moves:mm.moves}:null;},
+    get(){return mm&&!(P&&P.rev)&&mm.cards.length&&mm.done.size<mm.cards.length/2?{cards:mm.cards,done:[...mm.done],moves:mm.moves}:null;},
     set(st){
       const ok=st.cards&&st.cards.length===mm.cards.length&&st.cards.every(c=>c&&ent(c.w));
       if(!ok)return;
@@ -62,7 +86,7 @@
     if(a.w===c.w&&a.kind!==c.kind){
       mm.done.add(a.w);mm.open=[];const e=ent(a.w);mm.last=e;skRec(e.w,e.pt,true);sfx("ok");renderMemoria();
       if(mm.done.size===mm.cards.length/2){
-        markDone();sfx("done");
+        if(!P.rev)markDone();sfx("done");
         setTimeout(()=>doneSheet("Página concluída: "+mm.moves+" tentativas para "+mm.done.size+" pares",P.words.map(ent)),500);
       }
     }else{

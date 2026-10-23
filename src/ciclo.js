@@ -4,7 +4,7 @@
    Acertar sobe um degrau (e muda a forma); errar volta 2 degraus, amanhã, e a forma também muda. Sem tempo e sem pontos. */
 (function(){
   const FORMS=["Ver","Ouvir","Escrever","Usar na frase"];
-  let deck=[],ci=0,cur=null,ok=0,bad=0,heard=false;
+  let deck=[],ci=0,cur=null,ok=0,bad=0,heard=false,seen=[];
   const formOf=cd=>cd.t==="c"?cd.o.s%4:((S.rvv[cd.k]||[0,0,0])[1]+((S.rvv[cd.k]||[0,0,0])[2]||0))%4;
   function entry(cd){
     if(cd.t==="c")return {w:cd.o.w,pt:cd.o.pt,_c:1};
@@ -45,12 +45,15 @@
   }
   function render(){
     if(ci>=deck.length){
-      openSheet("Ciclo concluído",'<p class="help">Você passou por '+deck.length+" palavra(s): "+ok+" certa(s) e "+bad+' para rever. As que você errou voltam amanhã, em outra forma; as certas voltam daqui a mais dias.</p><button type="button" class="btn wide" id="cic-again">Ver se há mais palavras</button>',false);
+      const mw=typeof memRevWords==="function"?memRevWords(seen):[];
+      openSheet("Ciclo concluído",'<p class="help">Você passou por '+deck.length+" palavra(s): "+ok+" certa(s) e "+bad+' para rever. As que você errou voltam amanhã, em outra forma; as certas voltam daqui a mais dias.</p>'+
+        (mw.length?'<p class="help">Quer fixar com imagens? O jogo da memória usa as palavras que você está revisando.</p><button type="button" class="btn wide primary" id="cic-mem" style="margin-bottom:8px">Jogo da memória com essas palavras</button>':"")+
+        '<button type="button" class="btn wide" id="cic-again">Ver se há mais palavras</button>',false);
       return;
     }
     cur=build(deck[ci]);
     if(!cur){ci++;render();return;}
-    heard=false;
+    heard=false;if(cur.e.w&&seen.indexOf(cur.e.w)<0)seen.push(cur.e.w);
     const e=cur.e,dr=drawSvg(S.lang,e.w,e.pt),w=e._c?e.w:full(e);let b="";
     if(cur.f===0)b=(dr?'<div class="wdraw">'+dr+"</div>":"")+'<p class="card-w">'+esc(w)+"</p><p class=\"help\">O que significa?</p>"+optsHtml();
     else if(cur.f===1)b='<p class="help">Ouça a palavra e escolha o significado.</p><p>'+speakBtn(w)+' <button type="button" class="btn" id="cic-show">Mostrar a palavra (sem áudio)</button></p><p class="card-w" id="cic-word"></p>'+optsHtml();
@@ -80,7 +83,7 @@
     feedback(n===norm(e.w)||(cur.f===2&&n===norm(full(e))),v);
   }
   function start(){
-    deck=typeof dueWords==="function"?dueWords():[];ci=0;ok=0;bad=0;
+    deck=typeof dueWords==="function"?dueWords():[];ci=0;ok=0;bad=0;seen=[];
     if(!deck.length){openSheet("Nenhuma palavra para hoje",'<p class="help">Não há palavras vencidas em '+esc(LNAME[S.lang])+' agora. As palavras em que você erra nas lições voltam aqui no dia seguinte, cada vez numa forma diferente: ver, ouvir, escrever e usar na frase.</p>',false);return;}
     render();
   }
@@ -95,6 +98,8 @@
     else if(t.closest("#cic-show")){const w=$("#cic-word");if(w){const e2=cur.e;w.textContent=e2._c?e2.w:full(e2);}}
     else if(t.closest("#cic-next")){ci++;render();}
     else if(t.closest("#cic-again"))start();
+    else if(t.closest("#cic-mem")){const w=memRevWords(seen);closeSheet();startMemRev(w);}
+    else if(t.closest("#train-mem")){const w=memRevWords();closeSheet();if(!startMemRev(w))openSheet("Poucas palavras com desenho",'<p class="help">Ainda não há 4 palavras com desenho para montar o jogo. Conforme você estuda e revisa, elas aparecem aqui.</p>',false);}
     else if(t.closest("#train-cycle")){closeSheet();start();}
   });
   document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target&&e.target.id==="cic-in"){e.preventDefault();check();}});

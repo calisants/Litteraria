@@ -20,7 +20,11 @@ try:
     pg.click('#upd-read');assert pg.is_visible('#s-news') and not pg.query_selector('#upd-note')
     # v1.52.1: sair do app sem tocar nos botões não faz o aviso voltar
     pg.evaluate("()=>localStorage.setItem('mots-parole-lastver','0.0.1')");pg.reload();pg.wait_for_timeout(500)
-    assert pg.is_visible('#upd-note');pg.reload();pg.wait_for_timeout(500);assert not pg.query_selector('#upd-note'),'não volta se só saiu e voltou'
+    assert pg.is_visible('#upd-note');pg.reload();pg.wait_for_timeout(500);assert pg.is_visible('#upd-note'),'recarga logo ao abrir não gasta o aviso'
+    pg.wait_for_timeout(4500);pg.reload();pg.wait_for_timeout(500);assert not pg.query_selector('#upd-note'),'não volta se só saiu e voltou'
+    pg.evaluate("()=>localStorage.setItem('mots-parole-lastver','0.0.1')");pg.reload();pg.wait_for_timeout(500)
+    pg.evaluate("()=>document.getElementById('upd-note').remove()");pg.wait_for_timeout(200);assert pg.is_visible('#upd-note'),'aviso removido sozinho deve voltar'
+    pg.click('#upd-close');assert not pg.query_selector('#upd-note')
     # v1.52.1: aviso de mudança de endereço (só no endereço antigo)
     assert not pg.query_selector('#move-note'),'em localhost não aparece'
     pg.add_init_script("window.__moveTest=true")

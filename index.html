@@ -992,7 +992,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.57.0",d:"2026-10-23"};
+const APP_REL={v:"1.58.0",d:"2026-10-23"};
 
 
 const RAW={
@@ -3922,6 +3922,7 @@ function openTrainMenu(){
     '<p class="help">Cada rodada tem 10 itens. Sem regra na tela: é para testar o que você já sabe. «Revisar palavras que errei» usa as palavras em que você errou mais do que acertou; cada acerto aqui as tira da lista.</p>'+
     Object.keys(L).map(t=>'<button type="button" class="btn wide" data-train="v|'+esc(t)+'" style="margin-bottom:8px">Verbos em '+esc(LNAME[S.lang])+": "+esc(L[t])+"</button>").join("")+
     '<button type="button" class="btn wide primary" id="train-cycle" style="margin-bottom:8px">Ciclo da palavra: ver, ouvir, escrever, usar na frase ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
+    '<button type="button" class="btn wide" id="train-mem" style="margin-bottom:8px">Memória com as palavras em revisão (desenhos)</button>'+
     '<button type="button" class="btn wide" id="train-cards" style="margin-bottom:8px">Cartões de revisão: Fácil / Preciso rever ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
     '<button type="button" class="btn wide" data-train="r" style="margin-bottom:8px"'+(nw?"":" disabled")+'>Revisar palavras que errei ('+nw+")</button>"+
     '<button type="button" class="btn wide" data-train="w" style="margin-bottom:8px">Palavras: português → '+esc(LNAME[S.lang])+"</button>",false);
@@ -4224,6 +4225,7 @@ function lessonPath(){
     add(1,"connect-"+g+"-easy-1");
     chunk(gram,gi,gids.length).forEach(p=>out.push({vol:4,page:p,need:GRAM_BASE+GRAM_STEP*(gn++)}));
     chunk(conv,gi,gids.length).forEach(p=>out.push({vol:3,page:p,need:CONV_BASE+CONV_STEP*(cn++)}));
+    if(gi===Math.min(1,gids.length-1))earlyBook(out,add);
   });
   /* temas de livros: novas lições no fim da trilha (só no idioma do livro) */
   BOOKS.forEach(b=>b.chunks.forEach(c=>{
@@ -4235,7 +4237,20 @@ function lessonPath(){
   BOOKS.forEach(b=>b.chunks.forEach(c=>{add(1,"search-"+c.cat+"-easy");add(1,"cross-"+c.cat+"-easy");}));
   const byT=["memoria","citacao","regra","ouvir","trecho"].map(t=>VOLUME.pages.filter(p=>p.type===t));
   for(let i=0;byT.some(a=>i<a.length);i++)byT.forEach(a=>{if(a[i])out.push({vol:1,page:a[i]});});
-  return(_path=out);
+  const seen=new Set();
+  return(_path=out.filter(r=>{const k=r.page.id;if(seen.has(k))return false;seen.add(k);return true;}));
+}
+/* «Primeiro livrinho» (v1.57, pedido dela: livros curtos mais cedo): depois do 2º grupo de temas entra um pedacinho de um livro curto
+   de cada idioma: as primeiras palavras do livro e uma página de frases (e, no inglês, a primeira Leitura). As páginas continuam também no fim da trilha. */
+const EARLY={en:["peter",["frases-livro-peter-1","leitura-peter-1"]],fr:["perrault",["frases-livro-verne-1"]],it:["racconti",["frases-livro-pinocchio-1"]]};
+function earlyBook(out,add){
+  Object.keys(EARLY).forEach(l=>{
+    const b=BOOKS.find(x=>x.id===EARLY[l][0]);if(!b||!b.chunks.length)return;
+    const cat=b.chunks[0].cat;
+    VOLUME5.pages.filter(p=>p.cat===cat&&p.type==="conheca").slice(0,3).forEach(p=>out.push({vol:5,page:p,voc:true,early:true}));
+    add(5,"reco-"+cat+"-1",{voc:true,early:true});
+    EARLY[l][1].forEach((id,i)=>add(3,id,{need:25+10*i,early:true}));
+  });
 }
 /* Jogos entre lições: depois de 2 lições seguidas, o «Hoje» e o «Próximo» oferecem um jogo (de tipo diferente do último).
    Prioridade: jogo do mesmo tema da próxima lição; jogo de tema anterior ainda não feito; jogo solto (memória, livros). */
@@ -4353,8 +4368,32 @@ function startLesson(r){S.vol=r.vol;S.fGame="all";S.fTheme="all";save();startPag
     mm={cards:cards,open:[],done:new Set(),moves:0,lock:false};
     renderMemoria();
   }
+  /* Memória com as palavras em revisão (v1.57): palavras do ciclo/revisão/erros que têm desenho; completa com palavras já acertadas.
+     Página «virtual» (P.rev): não conta como lição concluída. */
+  window.memRevWords=function(first){
+    const m=byW[S.lang]||{},out=[],add=w=>{w=String(w||"").toLowerCase();if(w&&m[w]&&out.indexOf(w)<0&&out.length<6)out.push(w);};
+    (first||[]).forEach(add);
+    if(typeof dueWords==="function")dueWords().forEach(c=>{if(c.t==="v"){const r=rvVocab(c.k);r&&add(r.e.w);}else add(c.o.w);});
+    Object.keys(S.rvv).filter(k=>k.indexOf(S.lang+":v|")===0).forEach(k=>add(k.slice(S.lang.length+3)));
+    weakWords().forEach(e=>add(e.w));
+    (S.cad||[]).filter(c=>c.l===S.lang).forEach(c=>add(c.w));
+    const sk=S.sk[S.lang]||{};
+    sh0(Object.keys(sk).filter(k=>sk[k][0]>=1)).forEach(add);
+    return out.length>=4?out:[];
+  };
+  window.startMemRev=function(words){
+    if(!words||words.length<4)return false;
+    P={id:"memoria-rev",type:"memoria",n:0,langs:[S.lang],words:words,rev:true};
+    go("game");
+    $("#g-title").textContent="Memória das palavras em revisão";
+    $("#g-sub").textContent=LNAME[S.lang]+" · palavras que você está revisando";
+    ["#stage","#cstage","#sstage","#ostage","#lstage","#rstage","#gstage"].forEach(s=>{$(s).hidden=s!=="#gstage";});
+    ["cross","search","connect","sentence","odd","listen","resp","gram"].forEach(d=>{$("#dock-"+d).hidden=true;});
+    $("#g-list").hidden=true;$("#kb-toggle").hidden=true;$("#zoom-toggle").hidden=true;
+    newGame();return true;
+  };
   RESUME.reg("memoria",{
-    get(){return mm&&mm.cards.length&&mm.done.size<mm.cards.length/2?{cards:mm.cards,done:[...mm.done],moves:mm.moves}:null;},
+    get(){return mm&&!(P&&P.rev)&&mm.cards.length&&mm.done.size<mm.cards.length/2?{cards:mm.cards,done:[...mm.done],moves:mm.moves}:null;},
     set(st){
       const ok=st.cards&&st.cards.length===mm.cards.length&&st.cards.every(c=>c&&ent(c.w));
       if(!ok)return;
@@ -4388,7 +4427,7 @@ function startLesson(r){S.vol=r.vol;S.fGame="all";S.fTheme="all";save();startPag
     if(a.w===c.w&&a.kind!==c.kind){
       mm.done.add(a.w);mm.open=[];const e=ent(a.w);mm.last=e;skRec(e.w,e.pt,true);sfx("ok");renderMemoria();
       if(mm.done.size===mm.cards.length/2){
-        markDone();sfx("done");
+        if(!P.rev)markDone();sfx("done");
         setTimeout(()=>doneSheet("Página concluída: "+mm.moves+" tentativas para "+mm.done.size+" pares",P.words.map(ent)),500);
       }
     }else{
@@ -5224,7 +5263,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
    Acertar sobe um degrau (e muda a forma); errar volta 2 degraus, amanhã, e a forma também muda. Sem tempo e sem pontos. */
 (function(){
   const FORMS=["Ver","Ouvir","Escrever","Usar na frase"];
-  let deck=[],ci=0,cur=null,ok=0,bad=0,heard=false;
+  let deck=[],ci=0,cur=null,ok=0,bad=0,heard=false,seen=[];
   const formOf=cd=>cd.t==="c"?cd.o.s%4:((S.rvv[cd.k]||[0,0,0])[1]+((S.rvv[cd.k]||[0,0,0])[2]||0))%4;
   function entry(cd){
     if(cd.t==="c")return {w:cd.o.w,pt:cd.o.pt,_c:1};
@@ -5265,12 +5304,15 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   }
   function render(){
     if(ci>=deck.length){
-      openSheet("Ciclo concluído",'<p class="help">Você passou por '+deck.length+" palavra(s): "+ok+" certa(s) e "+bad+' para rever. As que você errou voltam amanhã, em outra forma; as certas voltam daqui a mais dias.</p><button type="button" class="btn wide" id="cic-again">Ver se há mais palavras</button>',false);
+      const mw=typeof memRevWords==="function"?memRevWords(seen):[];
+      openSheet("Ciclo concluído",'<p class="help">Você passou por '+deck.length+" palavra(s): "+ok+" certa(s) e "+bad+' para rever. As que você errou voltam amanhã, em outra forma; as certas voltam daqui a mais dias.</p>'+
+        (mw.length?'<p class="help">Quer fixar com imagens? O jogo da memória usa as palavras que você está revisando.</p><button type="button" class="btn wide primary" id="cic-mem" style="margin-bottom:8px">Jogo da memória com essas palavras</button>':"")+
+        '<button type="button" class="btn wide" id="cic-again">Ver se há mais palavras</button>',false);
       return;
     }
     cur=build(deck[ci]);
     if(!cur){ci++;render();return;}
-    heard=false;
+    heard=false;if(cur.e.w&&seen.indexOf(cur.e.w)<0)seen.push(cur.e.w);
     const e=cur.e,dr=drawSvg(S.lang,e.w,e.pt),w=e._c?e.w:full(e);let b="";
     if(cur.f===0)b=(dr?'<div class="wdraw">'+dr+"</div>":"")+'<p class="card-w">'+esc(w)+"</p><p class=\"help\">O que significa?</p>"+optsHtml();
     else if(cur.f===1)b='<p class="help">Ouça a palavra e escolha o significado.</p><p>'+speakBtn(w)+' <button type="button" class="btn" id="cic-show">Mostrar a palavra (sem áudio)</button></p><p class="card-w" id="cic-word"></p>'+optsHtml();
@@ -5300,7 +5342,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     feedback(n===norm(e.w)||(cur.f===2&&n===norm(full(e))),v);
   }
   function start(){
-    deck=typeof dueWords==="function"?dueWords():[];ci=0;ok=0;bad=0;
+    deck=typeof dueWords==="function"?dueWords():[];ci=0;ok=0;bad=0;seen=[];
     if(!deck.length){openSheet("Nenhuma palavra para hoje",'<p class="help">Não há palavras vencidas em '+esc(LNAME[S.lang])+' agora. As palavras em que você erra nas lições voltam aqui no dia seguinte, cada vez numa forma diferente: ver, ouvir, escrever e usar na frase.</p>',false);return;}
     render();
   }
@@ -5315,6 +5357,8 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     else if(t.closest("#cic-show")){const w=$("#cic-word");if(w){const e2=cur.e;w.textContent=e2._c?e2.w:full(e2);}}
     else if(t.closest("#cic-next")){ci++;render();}
     else if(t.closest("#cic-again"))start();
+    else if(t.closest("#cic-mem")){const w=memRevWords(seen);closeSheet();startMemRev(w);}
+    else if(t.closest("#train-mem")){const w=memRevWords();closeSheet();if(!startMemRev(w))openSheet("Poucas palavras com desenho",'<p class="help">Ainda não há 4 palavras com desenho para montar o jogo. Conforme você estuda e revisa, elas aparecem aqui.</p>',false);}
     else if(t.closest("#train-cycle")){closeSheet();start();}
   });
   document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target&&e.target.id==="cic-in"){e.preventDefault();check();}});
@@ -6366,6 +6410,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.58.0",d:"2026-10-23",t:["«Primeiro livrinho» cedo na trilha: depois dos primeiros temas entram as primeiras palavras de um livro curto (Peter Rabbit no inglês; Contos de Perrault no francês; Contos de Collodi no italiano) e uma página de frases do livro; no inglês, também a primeira Leitura","Novo: jogo da memória com as palavras que você está revisando (palavra × desenho). Aparece no fim do Ciclo da palavra e em Treino","As páginas dos livros continuam também no fim da trilha e em Livros","Corrigido: o aviso «O app foi atualizado» podia sumir sozinho; agora ele fica na tela até você tocar num botão (ou até 4 segundos depois de aparecer, para não voltar na próxima abertura)"]},
 {v:"1.57.0",d:"2026-10-23",t:["Novo: «Ciclo da palavra». Uma palavra que você errou volta em formas diferentes: ver (com desenho), ouvir, escrever e usar na frase","Se acertar, ela volta mais adiante e em outra forma; se errar, volta amanhã, também em outra forma","Fica no «Hoje» (revisão) e em Treino → «Ciclo da palavra». «Ouvir» tem o botão «Mostrar a palavra» para quem está sem som"]},
 {v:"1.56.0",d:"2026-10-23",t:["Jogos de literatura refeitos para treinar o idioma: saíram «Quem escreveu?», «De qual livro é?» e «Ordem dos capítulos» (eram perguntas sobre os livros, não sobre a língua)","Novo: «Ouça e escolha (com áudio)»: você ouve uma frase de um livro e escolhe o que ela quer dizer. Sem áudio, há o botão «Mostrar a frase»","Continuam: «Complete a citação», «Ordene o trecho» e «Qual o sentido?»"]},
 {v:"1.55.0",d:"2026-10-23",t:["Novo: notificações de «fulano te convidou para ser amigo», «aceitou o seu convite», «te desafiou» e «aceitou o seu desafio». Só chegam a quem aceita avisos dos amigos e tem as notificações ligadas, e dependem de uma atualização no servidor (feita pela criadora do app)","Mudou: em Amigos, «Aceitar cutucadas» virou «Aceitar avisos dos amigos» e controla todos esses avisos","Ao tocar numa notificação de amigo, o app abre direto em Amigos"]},
@@ -6476,13 +6521,19 @@ document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#op
     '<p style="margin:0 0 6px">Agora você está na versão <b>'+esc(cur)+'</b>. Leia as notas de atualização para saber o que há de novo.</p>'+
     (n?'<p style="margin:0 0 14px;color:var(--muted,#666);font-size:.92rem">Resumo: '+esc(n.t[0])+(n.t.length>1?" (e mais "+(n.t.length-1)+")":"")+'</p>':'')+
     '<div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn wide" id="upd-read">Ler as novidades</button><button type="button" class="btn wide" id="upd-close">Agora não</button></div></div>';
-  const close=()=>{mark();box.remove();};
+  let closed=false,readd=0;
+  const close=()=>{closed=true;mark();box.remove();};
   box.addEventListener("click",e=>{
     const t=e.target.closest&&e.target.closest("button");if(!t)return;
     if(t.id==="upd-read"){close();go("news");renderNews();}
     else if(t.id==="upd-close")close();
   });
-  const add=()=>{mark();document.body.appendChild(box);}; /* marca como visto ao mostrar: sair do app sem tocar nos botões não faz o aviso voltar */
+  /* Marca como visto só depois de 4 s na tela (ou ao tocar nos botões): sair do app depois de ler não faz o aviso voltar,
+     mas uma recarga logo ao abrir (atualização do app) não gasta o aviso. Se algo tirar o aviso da tela sozinho, ele volta (até 5 vezes). */
+  const add=()=>{
+    document.body.appendChild(box);setTimeout(mark,4000);
+    try{new MutationObserver(()=>{if(!closed&&!box.isConnected&&readd<5){readd++;document.body.appendChild(box);}}).observe(document.body,{childList:true});}catch(_){}
+  };
   if(document.body)add();else document.addEventListener("DOMContentLoaded",add);
 })();
 
