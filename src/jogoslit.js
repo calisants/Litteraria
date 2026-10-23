@@ -1,5 +1,5 @@
 /* ===== Jogos de literatura (v1.39) =====
-   Quem escreveu? · Ordene o trecho · Ordem dos capítulos · Qual regra explica a frase? + caça-palavras e cruzadas com as palavras de cada livro.
+   Quem escreveu? · Ordene o trecho · Ordem dos capítulos · O que a frase quer dizer? + caça-palavras e cruzadas com as palavras de cada livro.
    Nenhum mostra tradução antes da resposta (só com «Dica»). Sem áudio. Páginas no Volume 3 · Jogos, no idioma do livro.
    Autores: conferidos em buscas na web em 21/10/2026 (páginas do Projeto Gutenberg, de editoras e de enciclopédias); só o nome, sem texto copiado. */
 (function(){
@@ -10,8 +10,8 @@
     ["autor","Quem escreveu o livro?","Quem escreveu?"],
     ["trecho","Ordene o trecho do livro","Ordene o trecho"],
     ["capitulos","Ordem dos capítulos","Capítulos"],
-    ["regra","Qual regra explica a frase?","Qual regra?"]]);
-  GAMENAME.autor="Quem escreveu?";GAMENAME.trecho="Ordene o trecho";GAMENAME.capitulos="Capítulos";GAMENAME.regra="Qual regra?";
+    ["regra","O que a frase quer dizer?","Qual o sentido?"]]);
+  GAMENAME.autor="Quem escreveu?";GAMENAME.trecho="Ordene o trecho";GAMENAME.capitulos="Capítulos";GAMENAME.regra="Qual o sentido?";
   ["autor","trecho","capitulos","regra"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
   GAMEFN.autor=startQuiz2;GAMEFN.regra=startQuiz2;GAMEFN.trecho=startOrd;GAMEFN.capitulos=startOrd;
 
@@ -37,7 +37,7 @@
   const phMap={};["fr","it","en"].forEach(l=>window.phLangList(l).forEach(p=>{phMap[p.id]=p;}));
   const mask=t=>t.replace(/«[^»]*»/g,"«…»");
 
-  /* ---- Quem escreveu? / Qual regra explica a frase? ---- */
+  /* ---- Quem escreveu? / O que a frase quer dizer? ---- */
   let st=null;
   function startQuiz2(){
     seedNow();fitFn=null;
@@ -57,11 +57,12 @@
     }else{
       const all=window.phLangList(S.lang);
       shuffle(P.qs.map(id=>phMap[id]).filter(Boolean)).forEach(p=>{
-        const pool=all.filter(o=>o.id!==p.id&&o.note.slice(0,28)!==p.note.slice(0,28));
-        const wrong=[],seen=new Set([p.note.slice(0,28)]);
-        shuffle(pool).forEach(o=>{const k=o.note.slice(0,28);if(wrong.length<3&&!seen.has(k)){seen.add(k);wrong.push(o);}});
+        /* interpretações: a tradução da frase e a de 3 outras frases do mesmo idioma (pedido dela, 23/10/2026) */
+        const pool=all.filter(o=>o.id!==p.id&&o.pt&&o.pt!==p.pt);
+        const wrong=[],seen=new Set([p.pt]);
+        shuffle(pool).forEach(o=>{if(wrong.length<3&&!seen.has(o.pt)){seen.add(o.pt);wrong.push(o);}});
         if(wrong.length<3)return;
-        const opts=shuffle([p].concat(wrong)).map(o=>({id:o.id,t:mask(o.note)}));
+        const opts=shuffle([p].concat(wrong)).map(o=>({id:o.id,t:o.pt}));
         qs.push({p:p,opts:opts,ans:p.id});
       });
     }
@@ -72,11 +73,11 @@
     const q=st.qs[st.i],ans=st.sel!==null,reg=st.kind==="regra";
     let h='<p class="ocount">'+(st.i+1)+" de "+st.qs.length+" · acertos: "+st.score+"</p>";
     if(reg){
-      h+='<p class="qz-s">'+esc(q.p.s)+"</p>"+'<p class="help" style="text-align:center">Frase do livro «'+esc(BOOKS.find(b=>b.id===q.p.book).name)+"». Qual explicação combina com a frase? As palavras citadas foram escondidas.</p>";
-      h+='<div class="lopts">'+q.opts.map((o,i)=>'<button type="button" class="lopt long'+(ans?(o.id===q.ans?" right":(st.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+hl(o.t)+"</button>").join("")+"</div>";
+      h+='<p class="qz-s">'+esc(q.p.s)+"</p>"+'<p class="help" style="text-align:center">Frase do livro «'+esc(BOOKS.find(b=>b.id===q.p.book).name)+"». O que ela quer dizer?</p>";
+      h+='<div class="lopts">'+q.opts.map((o,i)=>'<button type="button" class="lopt long'+(ans?(o.id===q.ans?" right":(st.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(o.t)+"</button>").join("")+"</div>";
       if(ans){
         const ok=q.opts[st.sel].id===q.ans;
-        h+='<p class="note"><b>'+(ok?"Certo!":"A explicação certa era:")+"</b> "+hl(q.p.note)+'</p><div class="heard">'+speakBtn(q.p.s)+"<span>"+esc(q.p.pt)+"</span></div>";
+        h+='<p class="note"><b>'+(ok?"Certo!":"O sentido certo era: "+esc(q.p.pt))+"</b><br>Estrutura da frase: "+hl(q.p.note)+'</p><div class="heard">'+speakBtn(q.p.s)+"<span>"+esc(q.p.s)+'</span></div><p class="help">Tradução e nota: escritas por Claude, sem fonte conferida.</p>';
       }
     }else{
       h+='<p class="prompt">'+esc(q.q)+"</p>";
