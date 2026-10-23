@@ -28,7 +28,7 @@ function rvUpdate(ok){
     if(!cur)return;
     const lp=cur[2]||0;
     if(ok){const st=cur[1]+1;if(st>=RV_STEPS.length)delete T[key];else T[key]=[rvDue(rvIvl(st,lp)),st,lp];}
-    else T[key]=[rvDue(1),Math.max(0,cur[1]-2),Math.min(99,lp+1)];
+    else T[key]=[rvDue(1),Math.max(0,cur[1]-(typeof gdDrop==="function"?gdDrop(key):2)),Math.min(99,lp+1)];
   }else if(!ok){T[key]=[rvDue(1),0,cur?Math.min(99,(cur[2]||0)+1):0];}
   save();
 }

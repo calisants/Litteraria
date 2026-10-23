@@ -71,7 +71,7 @@ racconti:{name:"Contos à Luz de Vela",desc:"Inspirado em I racconti delle fate:
 const WD_SRC=["hoje","msg","frase","livro","palavra","off"];
 const DAYRE=/^\d{4}-\d\d-\d\d$/;
 const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},gs:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0},
-  sq:0,lgt:"",wkd:{},gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"off",bk:"all",u:0}};
+  sq:0,lgt:"",wkd:{},gd:{},gdt:0,gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"off",bk:"all",u:0}};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -120,6 +120,8 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   const ci=(v,a,b)=>Math.min(b,Math.max(a,Math.floor(+v)||0));
   if(Number.isInteger(sv.sq)&&sv.sq>=0&&sv.sq<100)S.sq=sv.sq;
   if(typeof sv.lgt==="string"&&/^[a-z]{0,20}$/.test(sv.lgt))S.lgt=sv.lgt;
+  if(sv.gd&&typeof sv.gd==="object"&&!Array.isArray(sv.gd)){const g={};Object.keys(sv.gd).slice(0,2000).forEach(k=>{const a=sv.gd[k];if(/^(fr|it|en):[^|]{1,40}$/.test(k)&&Array.isArray(a))g[k]=[ci(a[0],0,3),ci(a[1],0,99999),ci(a[2],0,63),ci(a[3],0,999),ci(a[4],0,1),ci(a[5],0,99999),ci(a[6],-1,5)];});S.gd=g;}
+  S.gdt=ci(sv.gdt,0,99999);
   if(sv.wkd&&typeof sv.wkd==="object"&&!Array.isArray(sv.wkd)){const w={};Object.keys(sv.wkd).filter(k=>DAYRE.test(k)).sort().slice(-21).forEach(k=>{w[k]=ci(sv.wkd[k],0,30);});S.wkd=w;}
   if(sv.gam&&typeof sv.gam==="object"){
     const g=sv.gam;
@@ -540,7 +542,7 @@ $("#s-profile").addEventListener("click",onPrefClick);
 $("#s-vol").addEventListener("click",onPrefClick);
 $("#clear-stats").addEventListener("click",()=>{
   if(!clearStatsArmed){clearStatsArmed=true;$("#clear-stats-note").textContent="Toque de novo para apagar as estatísticas (partidas, erros e palavras dominadas). As marcas de concluído ficam.";return;}
-  S.plays={};S.sk={};S.gs={};save();clearStatsArmed=false;$("#clear-stats-note").textContent="Estatísticas apagadas.";
+  S.plays={};S.sk={};S.gs={};S.gd={};save();clearStatsArmed=false;$("#clear-stats-note").textContent="Estatísticas apagadas.";
 });
 $("#clear-done").addEventListener("click",()=>{
   if(!clearArmed){clearArmed=true;$("#clear-note").textContent="Toque de novo para apagar todas as marcas de concluído.";return;}

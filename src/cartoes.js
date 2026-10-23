@@ -16,7 +16,8 @@
     const key=card.k,cur=S.rvv[key];if(!cur)return;
     const lp=cur[2]||0;
     if(ok){const st=cur[1]+1;if(st>=RV_STEPS.length)delete S.rvv[key];else S.rvv[key]=[rvDue(rvIvl(st,lp)),st,lp];}
-    else S.rvv[key]=[rvDue(1),Math.max(0,cur[1]-2),Math.min(99,lp+1)];
+    else S.rvv[key]=[rvDue(1),Math.max(0,cur[1]-(typeof gdDrop==="function"?gdDrop(key):2)),Math.min(99,lp+1)];
+    {const m=/^(fr|it|en):v\|(.+)$/.exec(key);if(m&&typeof gdRec==="function")gdRec(m[1],m[2],ok,0);}
     save();
   }
   function render(){

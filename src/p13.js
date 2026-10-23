@@ -166,6 +166,6 @@ function lessonName(r){
 }
 function planText(){
   const p=todayPlan();
-  return p.kind==="review"?p.n+" para revisar":p.kind==="weak"?"reforçar "+p.n+" palavras que errou":p.kind==="refresh"?"rever: "+lessonName(p.ref):p.kind==="lesson"?"próxima: "+lessonName(p.ref):p.gated?"aprenda mais palavras para liberar a gramática":"tudo em dia";
+  return p.kind==="review"?p.n+" para revisar"+(typeof gdWiltCount==="function"&&gdWiltCount()?" ("+gdWiltCount()+" precisa"+(gdWiltCount()>1?"m":"")+" de água)":""):p.kind==="weak"?"reforçar "+p.n+" palavras que errou":p.kind==="refresh"?"rever: "+lessonName(p.ref):p.kind==="lesson"?"próxima: "+lessonName(p.ref):p.gated?"aprenda mais palavras para liberar a gramática":"tudo em dia";
 }
 function startLesson(r){S.vol=r.vol;S.fGame="all";S.fTheme="all";save();startPage(r.page.id);}

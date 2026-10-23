@@ -24,12 +24,13 @@
     const c=S.rvv[cd.k];if(!c)return;
     const lp=c[2]||0;
     if(good){const st=c[1]+1;if(st>=RV_STEPS.length)delete S.rvv[cd.k];else S.rvv[cd.k]=[rvDue(rvIvl(st,lp)),st,lp];}
-    else S.rvv[cd.k]=[rvDue(1),Math.max(0,c[1]-2),Math.min(99,lp+1)];
+    else S.rvv[cd.k]=[rvDue(1),Math.max(0,c[1]-(typeof gdDrop==="function"?gdDrop(cd.k):2)),Math.min(99,lp+1)];
     save();
   }
   function build(cd){
     const e=entry(cd);if(!e)return null;
     let f=formOf(cd),c=null;
+    {const m=cd.k&&/^(fr|it|en):v\|(.+)$/.exec(cd.k);if(m&&typeof gdLastForm==="function"&&gdLastForm(m[1],m[2])===f)f=(f+1)%4;}
     if(f===3){c=ctxFor(e);if(!c)f=2;}
     const o={cd:cd,e:e,f:f,c:c,res:null};
     if(f<2)Object.assign(o,opts(e));
@@ -62,12 +63,13 @@
       const re=new RegExp("(^|[^\\p{L}\\p{N}])"+e.w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?![\\p{L}\\p{N}])","giu");
       b='<p class="help">Complete a frase:</p><p class="card-w">'+esc(cur.c.s.replace(re,(m,p)=>p+"_____"))+'</p><p class="help">Significa: '+esc(cur.c.pt)+"<br>Palavra que falta: «"+esc(e.pt)+"»</p>"+typeHtml();
     }
+    if((cur.f===2||cur.f===3)&&typeof gdWilted==="function"&&gdWilted(S.lang,e.w))b+='<p class="help">Precisa de água. Dica: começa com «'+esc(e.w.charAt(0))+'»</p>';
     openSheet("Ciclo da palavra",head()+b,false);
     const i=$("#cic-in");if(i)i.focus();
   }
   function feedback(good,said){
     const e=cur.e,w=e._c?e.w:full(e);
-    grade(cur.cd,good);if(!e._c)skRec(e.w,"ciclo",good);
+    grade(cur.cd,good);if(!e._c){window.GDFORM=cur.f;try{skRec(e.w,"ciclo",good);}finally{window.GDFORM=undefined;}}
     good?ok++:bad++;
     const dr=drawSvg(S.lang,e.w,e.pt);
     openSheet("Ciclo da palavra",head()+'<p><b>'+(good?"Certo!":"Ainda não.")+"</b></p>"+(dr?'<div class="wdraw">'+dr+"</div>":"")+
@@ -84,6 +86,7 @@
   }
   function start(){
     deck=typeof dueWords==="function"?dueWords():[];ci=0;ok=0;bad=0;seen=[];
+    if(typeof gdCap==="function"){const ok2=new Set(gdCap(deck.map(d=>d.k||d)));deck=deck.filter(d=>!d.k||ok2.has(d.k));}
     if(!deck.length){openSheet("Nenhuma palavra para hoje",'<p class="help">Não há palavras vencidas em '+esc(LNAME[S.lang])+' agora. As palavras em que você erra nas lições voltam aqui no dia seguinte, cada vez numa forma diferente: ver, ouvir, escrever e usar na frase.</p>',false);return;}
     render();
   }
