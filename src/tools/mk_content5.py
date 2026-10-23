@@ -5,6 +5,8 @@ items = json.load(open('gram_items.json', encoding='utf8'))
 items2 = json.load(open('gram_items2.json', encoding='utf8'))
 items3 = json.load(open('gram_items3.json', encoding='utf8'))
 for l in items: items[l].update(items2[l]); items[l].update(items3[l])
+items4 = json.load(open('gram_items4.json', encoding='utf8'))  # páginas só do inglês (gram_en_cam.py)
+for l in items4: items[l].update(items4[l])
 try:
     import hints
     NH = hints.hint_items(items)
@@ -27,6 +29,7 @@ ORDER = [  # ordem didática: vocabulário da gramática -> frase simples no pre
  ("possessivos", "Possessivos e pronomes", "Possessivos"),
  ("falsos", "Falsos amigos (semântica)", "Falsos amigos"),
  ("prep", "Preposições", "Preposições"),
+ ("prep2", "Preposições parecidas: above, over, among, during…", "Preposições parecidas"),
  ("reflexivos", "Verbos e pronomes reflexivos", "Reflexivos"),
  ("ordem", "Ordem da frase (sintaxe)", "Ordem da frase"),
  ("adverbios", "Advérbios", "Advérbios"),
@@ -35,19 +38,22 @@ ORDER = [  # ordem didática: vocabulário da gramática -> frase simples no pre
  ("condicional", "Condicional e frases com «se»", "Condicional"),
  ("subjuntivo", "Subjuntivo", "Subjuntivo"),
  ("conjuncoes", "Conjunções", "Conjunções"),
+ ("confusas", "Palavras que se confundem", "Confundíveis"),
  ("sinonimos", "Sinônimos e antônimos", "Sinônimos"),
 ]
 for _l,_d in G3.OV.items():
-    for _t,_o in _d.items(): rules[_l][_t].update(_o)
+    for _t,_o in _d.items(): rules[_l].setdefault(_t,{}).update(_o)
 for l in items:
-    assert set(items[l]) == {t[0] for t in ORDER}, (l, set(items[l]) ^ {t[0] for t in ORDER})
-    assert set(rules[l]) == {t[0] for t in ORDER}
+    ONLY_EN = {'prep2', 'confusas'}
+    exp = {t[0] for t in ORDER} - (set() if l == 'en' else ONLY_EN)
+    assert set(items[l]) == exp, (l, set(items[l]) ^ exp)
+    assert set(rules[l]) == exp, (l, set(rules[l]) ^ exp)
 dump = lambda o: json.dumps(o, ensure_ascii=False, separators=(',', ':'))
 types = "[" + ", ".join(json.dumps(list(t), ensure_ascii=False) for t in ORDER) + "]"
 js = ("/* ===== Volume 3 (id 4): Gramática. Dados gerados por gram_gen.py, gram_gen2.py e gram_rules*.py; conjugações conferidas por verbecc/lemminflect ===== */\n"
       "const GRAM={items:" + dump(items) + ",rules:" + dump(rules) + "};\n"
       "const VOLUME4={id:4,title:\"Volume 4 · Gramática\",types:" + types + ",pages:[]};\n"
-      "VOLUME4.types.forEach(t=>{const n=GRAM.items.fr[t[0]].length;for(let i=1;i<=n;i++)VOLUME4.pages.push({id:t[0]+\"-\"+i,type:t[0],n:i,meta:\"6 perguntas · \"+t[1],themes:[]});});\n"
+      "VOLUME4.types.forEach(t=>{const ls=[\"fr\",\"it\",\"en\"].filter(l=>GRAM.items[l][t[0]]),n=Math.max(...ls.map(l=>GRAM.items[l][t[0]].length));for(let i=1;i<=n;i++){const pg={id:t[0]+\"-\"+i,type:t[0],n:i,meta:\"6 perguntas · \"+t[1],themes:[]};if(ls.length<3)pg.langs=ls;VOLUME4.pages.push(pg);}});\n"
       "VOLUMES.push(VOLUME4);\n"
       "const DRILL=" + open('bank.json', encoding='utf8').read() + ";\n")
 open(sys.argv[1], 'w', encoding='utf8').write(js)

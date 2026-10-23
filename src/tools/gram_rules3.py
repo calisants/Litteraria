@@ -76,3 +76,20 @@ OV['it']['classes'] = {
        "Em italiano o adjetivo concorda em gênero e número com o substantivo (gatto nero, case grandi)."],
  "src": "Conferido: Treccani, Enciclopedia dell'Italiano, entrada «Parti del discorso» (as nove classes e a divisão em cinco variáveis e quatro invariáveis; as palavras do cartão são minhas, não da Treccani; para pronome, conjunção e interjeição li também as entradas «Pronomi», «Congiunzioni» e «Interiezione»). Definições resumidas: Universal Dependencies, «POS tags» do italiano (genéricas, sem licença informada). Concordância do adjetivo: Wikibooks, «Italian/Grammar/Adjectives» (página que você enviou). As frases dos exercícios de pronome, conjunção e interjeição foram escritas por Claude."}
 OV['it']['adverbios'] = {"src": "Conferido: Wikibooks «Italian Grammar» (capítulos que você enviou), capítulo «Adverbs». O uso de «non … mai» (nunca) foi conferido em LibreTexts, «3.14 Negativi», e Pressbooks, «Negative expressions» (PDFs que você enviou)."}
+
+# ---- inglês: páginas novas conferidas no Cambridge Grammar of English (Carter e McCarthy, 2006; PDF que a Camila deixou no Drive, aberto em 23/10/2026)
+CGEL = "Cambridge Grammar of English (Carter e McCarthy, 2006), seção A–Z"
+OV['en']['prep2'] = {
+ "p": ["Above e below: «above» = mais alto que, «below» = mais baixo que, sem contato. Para números, medidas e níveis: below zero, below average, above sea level. Com idade, usa-se «over 18» e «under 18» (above e below não se usam assim).",
+       "Over e under: «over» cobre ou encosta (a raincoat over his jacket); «under» também pode encostar ou esconder (a vest under his jacket). «Over» é a escolha com números (over 18).",
+       "Between e among: «between» liga duas coisas separadas, dois pontos no tempo ou dois números (between 1994 and 2000). «Among» é para algo no meio de um grupo (among my books).",
+       "During, while, for e since: «during» + substantivo, um evento (during the flight). «While» + oração com sujeito e verbo. «For» + quanto tempo durou (for three weeks). «Since» + ponto de partida (since the wedding); «since» e «for» não se trocam."],
+ "ex": [["He is under 18.", "Ele tem menos de 18 anos."], ["She lived in Japan between 1994 and 2000.", "Ela morou no Japão entre 1994 e 2000."], ["I worked there for three years.", "Trabalhei lá por três anos."], ["Geoff phoned while you were out.", "O Geoff ligou enquanto você estava fora."]],
+ "src": "Conferido: " + CGEL + ", entradas «Above», «Below», «Over», «Between, among», «During», «Since», «For» e «While» (as regras de cada uma). As frases dos exercícios foram escritas por Claude, sem fonte conferida; só os fatos vêm do livro. Observação: o livro diz que «above/over» e «below/under» ficam próximos e, em alguns casos, as duas formas servem; os exercícios usam só casos em que o livro indica uma escolha."}
+OV['en']['confusas'] = {
+ "p": ["Already e yet: «already» fala de algo que aconteceu (talvez mais cedo que o esperado); «yet» pergunta ou nega até agora (Have you booked yet?).",
+       "Especially e specially: «especially» = principalmente; «specially» = de propósito, com uma intenção (specially trained staff).",
+       "Quite e quiet: são palavras diferentes. Em negativas, diz-se «not very good», não «not quite good».",
+       "Opposite e in front of: «opposite» = de frente um para o outro; «in front of» = um está atrás do outro. For e in com tempo: «for a month» = durante um mês; «in a month» = daqui a um mês. «As» (e não «while») para duas coisas que mudam juntas. «Since» e «for» não se trocam."],
+ "ex": [["Have you booked yet?", "Você já reservou?"], ["I like fruit, especially mangoes.", "Gosto de fruta, principalmente manga."], ["We sat opposite each other.", "Sentamos de frente um para o outro."], ["I'm going on holiday in a month.", "Vou viajar daqui a um mês."]],
+ "src": "Conferido: " + CGEL + ", entradas «Already», «Especially», «Quite» (com a nota sobre quiet), «Opposite, in front (of)», «For», «Since» e «While»/«As». Frases dos exercícios e explicações em português: escritas por Claude, sem fonte conferida."}

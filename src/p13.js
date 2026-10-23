@@ -8,8 +8,12 @@ function wordsOf(p){
 }
 /* Gramática e frases só entram em «Hoje»/«Próximo» quando a pessoa já acertou palavras suficientes (decisão dela, 23/10/2026:
    aprender aos poucos, como criança; a gramática não pode presumir que ela conhece as palavras). Os números são julgamento de Claude, não vêm de fonte.
-   A n-ésima página de gramática pede GRAM_BASE+GRAM_STEP*n palavras já acertadas pelo menos uma vez no idioma. As páginas continuam abertas em Lições. */
-const GRAM_BASE=30,GRAM_STEP=9,CONV_BASE=20,CONV_STEP=6;
+   Regra (v1.60): as páginas de um grupo de temas pedem uma fração das palavras JÁ APRESENTADAS até aquele grupo (soma dos temas dos grupos até ele),
+   subindo de GRAM_LO a GRAM_HI dentro do grupo (frases/respostas: CONV_LO a CONV_HI), com mínimo de 20. Assim a exigência acompanha o que o app já ensinou e nunca pede quase todas as palavras. As páginas continuam abertas em Lições. */
+function introUpTo(gi){const g=GROUPS.map(x=>x[0]).filter(x=>CATS.some(c=>c[2]===x)).slice(0,gi+1);let n=0;
+  CATS.forEach(c=>{if(g.indexOf(c[2])>=0)n+=((VOCAB[S.lang]&&VOCAB[S.lang][c[0]])||[]).length;});return n;}
+function needOf(r){if(r.nf){const[gi,lo,hi,k,m]=r.nf;return Math.max(20,Math.round(introUpTo(gi)*(lo+(hi-lo)*(k+1)/m)));}return r.need||0;}
+const GRAM_LO=0.30,GRAM_HI=0.55,CONV_LO=0.20,CONV_HI=0.45;
 function knownWords(){const sk=S.sk[S.lang]||{};let n=0;for(const k in sk)if(sk[k][0]>=1)n++;return n;}
 const VOCLESSON=["conheca","contexto","reco","completar","embaralhar","escreva"];
 let _path=null;
@@ -20,7 +24,7 @@ function lessonPath(){
   VOLUME2.pages.forEach(p=>out.push({vol:2,page:p,audio:true}));
   const gids=GROUPS.map(g=>g[0]).filter(g=>CATS.some(c=>c[2]===g));
   const chunk=(arr,i,n)=>arr.slice(Math.round(i*arr.length/n),Math.round((i+1)*arr.length/n));
-  const gram=VOLUME4.pages,conv=[];let gn=0,cn=0;
+  const gram=VOLUME4.pages,conv=[];
   VOLUME3.pages.filter(p=>p.type==="frases"&&!p.book).forEach(p=>conv.push(p));
   const pairs=VOLUME3.pages.filter(p=>p.type==="sentence").map(s=>[s,M[3].get("resposta-"+s.n)]);
   pairs.forEach(pr=>pr.forEach(p=>{if(p)conv.push(p);}));
@@ -31,8 +35,9 @@ function lessonPath(){
       add(1,"odd-"+c[0]);add(1,"search-"+c[0]+"-easy");add(1,"cross-"+c[0]+"-easy");
     });
     add(1,"connect-"+g+"-easy-1");
-    chunk(gram,gi,gids.length).forEach(p=>out.push({vol:4,page:p,need:GRAM_BASE+GRAM_STEP*(gn++)}));
-    chunk(conv,gi,gids.length).forEach(p=>out.push({vol:3,page:p,need:CONV_BASE+CONV_STEP*(cn++)}));
+    const gc=chunk(gram,gi,gids.length),cc=chunk(conv,gi,gids.length);
+    gc.forEach((p,k)=>out.push({vol:4,page:p,nf:[gi,GRAM_LO,GRAM_HI,k,gc.length]}));
+    cc.forEach((p,k)=>out.push({vol:3,page:p,nf:[gi,CONV_LO,CONV_HI,k,cc.length]}));
     if(gi===Math.min(1,gids.length-1))earlyBook(out,add);
   });
   /* temas de livros: novas lições no fim da trilha (só no idioma do livro) */
@@ -106,8 +111,8 @@ function pageMastered(p){
   return ok/ws.length>=.8;
 }
 const canHear=()=>"speechSynthesis" in window;
-const eligible=r=>pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&!(r.audio&&!canHear())&&!(r.voc&&pageMastered(r.page))&&!(r.need&&knownWords()<r.need);
-const gatedLeft=()=>{const k=knownWords();return lessonPath().filter(r=>r.need&&pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&k<r.need).length;};
+const eligible=r=>pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&!(r.audio&&!canHear())&&!(r.voc&&pageMastered(r.page))&&!(needOf(r)&&knownWords()<needOf(r));
+const gatedLeft=()=>{const k=knownWords();return lessonPath().filter(r=>needOf(r)&&pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&k<needOf(r)).length;};
 function nextNewPage(){
   const up=lessonPath().find(eligible)||null;
   if(S.sq>=2){const g=pickGame(up);if(g)return g;}

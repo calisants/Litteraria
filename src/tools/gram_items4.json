@@ -1,0 +1,328 @@
+{
+"en": {
+"prep2": [
+[
+{
+"q": "You can only buy a ticket if you are ___ 18.",
+"o": [
+"below",
+"under",
+"among",
+"above"
+],
+"a": 1,
+"w": "Com idade, usa-se «under» (e «over» para mais). «Below» não se usa para a idade de alguém.",
+"s": "You can only buy a ticket if you are under 18.",
+"k": "You can only buy a ticket if you are under 18."
+},
+{
+"q": "You can only enter the club if you are ___ 18.",
+"o": [
+"among",
+"over",
+"above",
+"between"
+],
+"a": 1,
+"w": "«Above» normalmente não se usa com números; com idade e quantidade usa-se «over».",
+"s": "You can only enter the club if you are over 18.",
+"k": "You can only enter the club if you are over 18."
+},
+{
+"q": "He put a thick vest ___ his jacket.\n(a roupa fica encostada, por baixo)",
+"o": [
+"among",
+"under",
+"below",
+"above"
+],
+"a": 1,
+"w": "«Under» é a escolha quando uma coisa toca, cobre ou esconde a outra. «Below» é para um nível mais baixo, sem tocar.",
+"s": "He put a thick vest under his jacket.",
+"k": "He put a thick vest under his jacket."
+},
+{
+"q": "He put a raincoat ___ his jacket.\n(a capa cobre a jaqueta, encostada)",
+"o": [
+"among",
+"over",
+"above",
+"below"
+],
+"a": 1,
+"w": "«Above» só vale quando NÃO há contato. Se uma coisa cobre a outra, usa-se «over» (ou «on top of»).",
+"s": "He put a raincoat over his jacket.",
+"k": "He put a raincoat over his jacket."
+},
+{
+"q": "It was already several degrees ___ zero.",
+"o": [
+"during",
+"below",
+"above",
+"among"
+],
+"a": 1,
+"w": "«Below» também fala de níveis mais baixos em números e medidas (below zero, below average).",
+"s": "It was already several degrees below zero.",
+"k": "It was already several degrees below zero."
+},
+{
+"q": "As we can see from the ___ figures, profits will be lower.",
+"o": [
+"under",
+"beneath",
+"below",
+"above"
+],
+"a": 3,
+"w": "«The above» pode vir antes do substantivo para o texto já mencionado (the above figures). «The below» não é possível assim.",
+"s": "As we can see from the above figures, profits will be lower.",
+"k": "As we can see from the above figures, profits will be lower."
+}
+],
+[
+{
+"q": "She lived in Japan ___ 1994 and 2000.",
+"o": [
+"between",
+"during",
+"among",
+"since"
+],
+"a": 0,
+"w": "«Between» liga dois pontos, como dois anos. «Among» não faz isso.",
+"s": "She lived in Japan between 1994 and 2000.",
+"k": "She lived in Japan between 1994 and 2000."
+},
+{
+"q": "I found my old letter ___ my books.",
+"o": [
+"above",
+"during",
+"among",
+"between"
+],
+"a": 2,
+"w": "«Among» é para algo no meio de um grupo ou de uma massa de coisas, sem separação clara. Vem com plural.",
+"s": "I found my old letter among my books.",
+"k": "I found my old letter among my books."
+},
+{
+"q": "You are not allowed to smoke ___ the flight.",
+"o": [
+"since",
+"while",
+"for",
+"during"
+],
+"a": 3,
+"w": "«During» liga-se a um evento ou período (the flight). Não se usa para começar uma frase com verbo.",
+"s": "You are not allowed to smoke during the flight.",
+"k": "You are not allowed to smoke during the flight."
+},
+{
+"q": "I've been here ___ three weeks.",
+"o": [
+"since",
+"between",
+"for",
+"during"
+],
+"a": 2,
+"w": "«For» + período de tempo (three weeks). «During» não vai com números de tempo.",
+"s": "I've been here for three weeks.",
+"k": "I've been here for three weeks."
+},
+{
+"q": "I haven't seen Paul ___ the wedding.",
+"o": [
+"for",
+"since",
+"while",
+"during"
+],
+"a": 1,
+"w": "«Since» marca o ponto no tempo em que algo começou (o casamento) e vale até agora. «For» é para quanto tempo durou.",
+"s": "I haven't seen Paul since the wedding.",
+"k": "I haven't seen Paul since the wedding."
+},
+{
+"q": "Geoff phoned ___ you were walking the dog.",
+"o": [
+"since",
+"between",
+"during",
+"while"
+],
+"a": 3,
+"w": "Antes de uma oração (sujeito + verbo) usa-se «while». «During» é preposição e vem com substantivo.",
+"s": "Geoff phoned while you were walking the dog.",
+"k": "Geoff phoned while you were walking the dog."
+}
+]
+],
+"confusas": [
+[
+{
+"q": "Have you booked a flight ___?\n(Você não sabe se ela já fez até agora.)",
+"o": [
+"specially",
+"quiet",
+"already",
+"yet"
+],
+"a": 3,
+"w": "«Yet» pergunta se algo aconteceu até este momento. «Already» passa a ideia de «tão cedo!».",
+"s": "Have you booked a flight yet?",
+"k": "Have you booked a flight yet?"
+},
+{
+"q": "There are ten people here ___.\n(mais do que se esperava neste horário)",
+"o": [
+"quiet",
+"yet",
+"already",
+"especially"
+],
+"a": 2,
+"w": "«Already» fala de algo que aconteceu antes do esperado.",
+"s": "There are ten people here already.",
+"k": "There are ten people here already."
+},
+{
+"q": "I like all fruit, ___ mangoes.",
+"o": [
+"already",
+"quiet",
+"especially",
+"specially"
+],
+"a": 2,
+"w": "«Especially» significa «principalmente, acima de tudo».",
+"s": "I like all fruit, especially mangoes.",
+"k": "I like all fruit, especially mangoes."
+},
+{
+"q": "All claims are read by ___ trained staff.\n(treinados de propósito para isso)",
+"o": [
+"yet",
+"specially",
+"especially",
+"quiet"
+],
+"a": 1,
+"w": "«Specially» mostra a intenção por trás de uma ação. «Especially» é «principalmente».",
+"s": "All claims are read by specially trained staff.",
+"k": "All claims are read by specially trained staff."
+},
+{
+"q": "It's ___ cold today.",
+"o": [
+"quiet",
+"quite",
+"quote",
+"quit"
+],
+"a": 1,
+"w": "«Quite» (bastante) e «quiet» (quieto) têm grafia parecida, mas são palavras diferentes.",
+"s": "It's quite cold today.",
+"k": "It's quite cold today."
+},
+{
+"q": "We sat ___ each other at the table, face to face.",
+"o": [
+"opposite",
+"behind",
+"in front of",
+"among"
+],
+"a": 0,
+"w": "«Opposite» é de frente um para o outro (A olha para B). «In front of» é quando um está atrás do outro.",
+"s": "We sat opposite each other at the table, face to face.",
+"k": "We sat opposite each other at the table, face to face."
+}
+],
+[
+{
+"q": "I'm going on holiday ___ a month.\n(Viajo daqui a um mês.)",
+"o": [
+"during",
+"in",
+"for",
+"since"
+],
+"a": 1,
+"w": "«In a month» é daqui a um mês. A viagem de um mês de duração seria «for a month».",
+"s": "I'm going on holiday in a month.",
+"k": "I'm going on holiday in a month."
+},
+{
+"q": "I'm going on holiday ___ a month.\n(A viagem dura um mês.)",
+"o": [
+"since",
+"in",
+"during",
+"for"
+],
+"a": 3,
+"w": "«For» + período de tempo diz quanto tempo dura. «In a month» marcaria o início daqui a um mês.",
+"s": "I'm going on holiday for a month.",
+"k": "I'm going on holiday for a month."
+},
+{
+"q": "We moved because the hotel was not ___ good.",
+"o": [
+"quiet",
+"quite",
+"very",
+"during"
+],
+"a": 2,
+"w": "Em frases negativas, o erro comum é usar «not quite good» no lugar de «not very good».",
+"s": "We moved because the hotel was not very good.",
+"k": "We moved because the hotel was not very good."
+},
+{
+"q": "___ they get more experience, their tactics will improve.\n(duas coisas que mudam juntas)",
+"o": [
+"While",
+"As",
+"During",
+"Since"
+],
+"a": 1,
+"w": "Para duas situações que mudam em paralelo, usa-se «as», não «while».",
+"s": "As they get more experience, their tactics will improve.",
+"k": "As they get more experience, their tactics will improve."
+},
+{
+"q": "A tall man sat ___ me, so I couldn't see the screen.",
+"o": [
+"among",
+"opposite",
+"over",
+"in front of"
+],
+"a": 3,
+"w": "«In front of» = ele estava na minha frente, na mesma direção (eu olhava a nuca dele). «Opposite» seria de frente, olho no olho.",
+"s": "A tall man sat in front of me, so I couldn't see the screen.",
+"k": "A tall man sat in front of me, so I couldn't see the screen."
+},
+{
+"q": "I've been here ___ three weeks ago.",
+"o": [
+"since",
+"during",
+"while",
+"for"
+],
+"a": 0,
+"w": "«Since three weeks ago» marca o ponto no passado em que começou. «For three weeks» dá a duração.",
+"s": "I've been here since three weeks ago.",
+"k": "I've been here since three weeks ago."
+}
+]
+]
+}
+}
