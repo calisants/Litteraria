@@ -12,10 +12,14 @@ try:
     assert 'Lições' in pg.inner_text('#go-games') and 'Jogos' not in pg.inner_text('#go-games')
     r=pg.evaluate("()=>{const P=lessonPath();const ids=P.map(r=>r.vol+':'+r.page.id);const c={};P.forEach(r=>c[r.vol]=(c[r.vol]||0)+1);return {n:P.length,dup:ids.length-new Set(ids).size,c}}");print(r);assert r['dup']==0 and r['n']>250
     # trilha: começa pela pronúncia; depois vocabulário do 1º tema; não depende do último jogo aberto
-    pg.evaluate("()=>{S.lang='fr';S.done={};S.rv={};S.rvv={};S.sk={};save()}")
+    pg.evaluate("()=>{S.lang='fr';S.done={};S.rv={};S.rvv={};S.sk={};S.rfd=ymd();save()}")
     s=pg.evaluate("()=>planText()");print(s);assert 'Pronúncia' in s
     pg.evaluate("()=>{lessonPath().filter(r=>r.vol===2).forEach(r=>S.done['fr:'+r.page.id]=1)}")
     s=pg.evaluate("()=>planText()");print(s);assert 'Vocabulário · Conheça #1' in s and 'Cumprimentos' in s
+    # revisão diária de sons/palavras: 1x por dia, só de páginas já concluídas (não das feitas hoje)
+    pg.evaluate("()=>{S.rfd='';save()}");s=pg.evaluate("()=>planText()");print(s);assert s.startswith('rever: Pronúncia') or s.startswith('rever:'),s
+    pg.evaluate("()=>{S.dtd={d:ymd(),ids:lessonPath().filter(r=>r.vol===2).map(r=>'fr:'+r.page.id)};S.rfd='';save()}");s=pg.evaluate("()=>planText()");assert 'rever' not in s,s
+    pg.evaluate("()=>{startToday&&0;S.rfd=ymd();S.dtd=null;save()}");s=pg.evaluate("()=>planText()");assert 'rever' not in s,s
     pg.evaluate("()=>{S.vol=1;startPage('cross-comida-adv');go('home')}")  # último jogo aberto: outro tema/jogo
     assert pg.evaluate("()=>planText()")==s,'não pode mudar pelo último jogo aberto'
     # domínio das palavras: pula a lição de vocabulário

@@ -110,7 +110,7 @@ const WEAK_MIN=8;
    uma vez por dia o «Hoje» sugere rever uma página já feita. Dias alternados: pronúncia (sons das letras e combinações) e vocabulário. */
 function refresher(){
   if(S.rfd===ymd())return null;
-  const done=lessonPath().filter(r=>(r.audio||r.voc)&&!r.page.book&&pageInLang(r.page)&&S.done[S.lang+":"+r.page.id]);
+  const done=lessonPath().filter(r=>(r.audio||r.voc)&&!r.page.book&&pageInLang(r.page)&&S.done[S.lang+":"+r.page.id]&&!(S.dtd&&S.dtd.d===ymd()&&S.dtd.ids.indexOf(S.lang+":"+r.page.id)>=0));
   if(!done.length)return null;
   const day=Math.floor(Date.now()/864e5),pron=done.filter(r=>r.audio),voc=done.filter(r=>r.voc);
   const pool=(day%2===0&&pron.length)?pron:(voc.length?voc:pron);

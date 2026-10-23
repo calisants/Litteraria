@@ -88,6 +88,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(typeof sv.custom==="string"&&/^#[0-9a-f]{6}$/i.test(sv.custom))S.custom=sv.custom;
   if(typeof sv.player==="string")S.player=sv.player.slice(0,24);else if(typeof sv.dev==="string")S.player=sv.dev.slice(0,24);
   if(typeof sv.motto==="string")S.motto=sv.motto.slice(0,60);
+  if(sv.dtd&&typeof sv.dtd.d==="string"&&/^\d{4}-\d\d-\d\d$/.test(sv.dtd.d)&&Array.isArray(sv.dtd.ids))S.dtd={d:sv.dtd.d,ids:sv.dtd.ids.filter(x=>typeof x==="string").slice(0,200)};
   if(typeof sv.rfd==="string"&&/^\d{4}-\d\d-\d\d$/.test(sv.rfd))S.rfd=sv.rfd;
   if(typeof sv.fbook==="string"&&/^[a-z0-9]{1,12}$/.test(sv.fbook))S.fbook=sv.fbook;
   if(typeof sv.avatar==="string"&&/^[a-z]+$/.test(sv.avatar))S.avatar=sv.avatar;
@@ -303,6 +304,7 @@ const isDone=p=>!!S.done[doneKey(p)];
 function markDone(){
   if(!P)return;
   S.done[doneKey(P)]=1;
+  {const t=ymd();if(!S.dtd||S.dtd.d!==t)S.dtd={d:t,ids:[]};if(S.dtd.ids.length<200&&S.dtd.ids.indexOf(doneKey(P))<0)S.dtd.ids.push(doneKey(P));}
   {const t=ymd(),w=S.wkd||(S.wkd={});w[t]=Math.min(30,(w[t]||0)+1);const ks=Object.keys(w).sort();while(ks.length>21)delete w[ks.shift()];}
   const pl=S.plays[S.lang]||(S.plays[S.lang]={});pl[P.type]=(pl[P.type]||0)+1;
   save();
