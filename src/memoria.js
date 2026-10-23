@@ -32,13 +32,15 @@
   window.memRevWords=function(first){
     const m=byW[S.lang]||{},out=[],add=w=>{w=String(w||"").toLowerCase();if(w&&m[w]&&out.indexOf(w)<0&&out.length<6)out.push(w);};
     (first||[]).forEach(add);
+    Object.keys(S.gd||{}).filter(k=>S.gd[k][4]&&k.indexOf(S.lang+":")===0).slice(0,3).forEach(k=>add(k.slice(S.lang.length+1)));
+    const nw=out.length; /* até 3 que precisam de água */
     if(typeof dueWords==="function")dueWords().forEach(c=>{if(c.t==="v"){const r=rvVocab(c.k);r&&add(r.e.w);}else add(c.o.w);});
     Object.keys(S.rvv).filter(k=>k.indexOf(S.lang+":v|")===0).forEach(k=>add(k.slice(S.lang.length+3)));
     weakWords().forEach(e=>add(e.w));
     (S.cad||[]).filter(c=>c.l===S.lang).forEach(c=>add(c.w));
     const sk=S.sk[S.lang]||{};
     sh0(Object.keys(sk).filter(k=>sk[k][0]>=1)).forEach(add);
-    if(out.length<4)return [];
+    if(out.length<4&&!nw)return [];
     sh0(Object.keys(m)).forEach(add); /* completa até 6 pares (grade 3×4) com outras palavras que têm desenho */
     return out;
   };
@@ -47,7 +49,7 @@
     P={id:"memoria-rev",type:"memoria",n:0,langs:[S.lang],words:words,rev:true};
     go("game");
     $("#g-title").textContent="Memória em revisão";
-    $("#g-sub").textContent=LNAME[S.lang]+" · suas palavras em revisão (e outras com desenho, se faltar)";
+    $("#g-sub").textContent=LNAME[S.lang]+" · suas palavras em revisão, as que precisam de água primeiro (e outras com desenho, se faltar)";
     ["#stage","#cstage","#sstage","#ostage","#lstage","#rstage","#gstage"].forEach(s=>{$(s).hidden=s!=="#gstage";});
     ["cross","search","connect","sentence","odd","listen","resp","gram"].forEach(d=>{$("#dock-"+d).hidden=true;});
     $("#g-list").hidden=true;$("#kb-toggle").hidden=true;$("#zoom-toggle").hidden=true;

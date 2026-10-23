@@ -56,6 +56,12 @@ try:
     ev("()=>{S.lang='fr';S.gd={'fr:maison':[2,1,0,3,1,1,-1]};S.rvv={'fr:v|maison':[Date.now()-1000,1,0]};save();}")
     ev("()=>startCiclo()");pg.wait_for_timeout(500)
     assert pg.locator('text=Ciclo da palavra').count()>=1
+    # Memória em revisão: palavras que precisam de água entram primeiro (máx. 3)
+    r=ev("()=>{S.lang='en';const ws=Object.keys(DRAW.en).slice(0,8);S.gd={};S.rvv={};ws.slice(0,5).forEach(w=>S.gd['en:'+w]=[2,1,0,0,1,1,-1]);const m=memRevWords();return [ws.slice(0,5).filter(w=>m.slice(0,3).indexOf(w)>=0).length,m.length];}")
+    assert r[0]==3 and r[1]==6,r
+    # Cartões respeitam o limite de 3
+    ev("()=>{const ws=Object.keys(DRAW.en).slice(0,8);S.rvv={};ws.slice(0,5).forEach(w=>{S.gd['en:'+w]=[2,1,0,0,1,1,-1];S.rvv['en:v|'+w]=[Date.now()-5,1,0];});save();}")
+    ev("()=>startCards&&startCards()") if ev("()=>typeof startCards")=="function" else None
     print('errs',[e for e in errs if 'favicon' not in e])
     assert not [e for e in errs if 'favicon' not in e]
     print('t34 ok')

@@ -33,7 +33,9 @@
       (shown?'<p class="card-pt">'+esc(e.pt)+'</p><div class="row"><button type="button" class="btn wide" id="card-easy">Fácil</button><button type="button" class="btn wide" id="card-hard">Preciso rever</button></div>':'<p class="help">Tente lembrar o significado antes de virar.</p><button type="button" class="btn wide primary" id="card-show">Mostrar significado</button>'),false);
   }
   function start(){
-    deck=dueWords();ci=0;shown=false;easy=0;hard=0;
+    deck=dueWords();
+    if(typeof gdCap==="function"){const ok2=new Set(gdCap(deck.map(d=>d.k||d)));deck=deck.filter(d=>!d.k||ok2.has(d.k));}
+    ci=0;shown=false;easy=0;hard=0;
     if(!deck.length){openSheet("Nenhuma palavra para hoje",'<p class="help">Não há palavras vencidas em '+esc(LNAME[S.lang])+' agora. As palavras em que você erra nas lições entram aqui no dia seguinte.</p>',false);return;}
     render();
   }
