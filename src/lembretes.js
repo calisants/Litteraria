@@ -93,7 +93,7 @@
       const cards={},d0=new Date();
       for(let i=0;i<8;i++){const d=new Date(d0);d.setDate(d0.getDate()+i);const k=dstr(d);cards[k]=cardFor(k,S.lang);}
       const s=window.gamStreak?gamStreak():{n:0};
-      const st={v:1,on:S.rm.on,h:S.rm.h,st:S.rm.st,last:last,streak:s.n,gam:S.gam.on,name:(S.player||"").split(" ")[0],ln:LNAME[S.lang],cards:cards,ic:S.ic,push:window.__pushOn?1:0,notified:prev.notified||""};
+      const st={v:1,on:S.rm.on,h:S.rm.h,st:S.rm.st,last:last,streak:s.n,gam:S.gam.on,name:(S.player||"").split(" ")[0],ln:LNAME[S.lang],cards:cards,push:window.__pushOn?1:0,notified:prev.notified||""};
       await c.put("state.json",new Response(JSON.stringify(st),{headers:{"content-type":"application/json"}}));
     }catch(_){}
   }

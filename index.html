@@ -267,6 +267,7 @@ svg{display:block}
 .dl-h{margin:14px 0 4px;font:700 1.1rem var(--serif,Newsreader,serif);border-bottom:var(--bw) solid var(--grid)}
 .dl-row{display:flex;align-items:center;gap:8px;padding:10px 2px;border-bottom:1px solid var(--grid)}
 .dl-row .tx{flex:1;min-width:0}
+.pares{margin:0 0 12px;border:1px solid var(--grid);border-radius:12px;padding:6px 10px}.pares>summary{cursor:pointer;padding:6px 0}
 .dl-row b{font-size:1.05rem}
 .dl-row .sy{color:var(--muted,#566);letter-spacing:.02em}
 .dl-row .pt{display:block}
@@ -571,8 +572,6 @@ svg{display:block}
 /* cartão do dia, ícone do app, jogos de ordenar */
 .wdl{display:grid;gap:6px}.wdo{display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:8px 12px;border:var(--bw) solid var(--box);border-radius:var(--radius);background:var(--surface);text-align:left;cursor:pointer}
 .wdo small{color:var(--muted);font-size:.8rem}.wdo[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}.wdo[aria-pressed="true"] small{color:inherit}
-.icgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.icb{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border:var(--bw) solid var(--box);border-radius:var(--radius);background:var(--surface);cursor:pointer;font-size:.78rem;font-weight:700}
-.icb img{width:56px;height:56px;border-radius:22%}.icb[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
 .ord-put{margin:0 0 8px;padding:0;list-style:none;display:grid;gap:6px;counter-reset:o}.ord-put li{counter-increment:o;display:flex;gap:8px;align-items:flex-start}.ord-put li::before{content:counter(o);flex:none;min-width:1.4em;padding-top:8px;text-align:right;font-weight:700;color:var(--accent)}
 .ord-bank{display:grid;gap:6px}.blk.seg{display:block;width:100%;text-align:left;font-weight:400;font-size:.98rem;line-height:1.35;min-height:0;padding:8px 12px}.blk.seg small{display:block;margin-top:2px;color:var(--muted);font-size:.84rem}
 .ord-put .blk.seg{flex:1;border-color:var(--accent);background:var(--soft)}.ord-put .blk.seg.okp{border-color:var(--ok)}
@@ -745,7 +744,7 @@ svg{display:block}
             <div class="swatches" id="swatches" role="group" aria-label="Cor do app"></div>
             <p class="swlabel" id="swlabel"></p>
             <label class="custom" id="custom-row" for="custom-color" hidden>Sua cor <input type="color" id="custom-color" value="#7a3b8f"></label>
-          </section><section id="sec-ic"><h2 class="lab">Ícone do app</h2><p class="help">Escolha o ícone do app entre os temas.</p><div class="icgrid" id="ic-grid" role="group" aria-label="Ícone do app"></div><p class="help" id="ic-note"></p></section></div></details><details class="sgrp"><summary>Som e vibração</summary><div class="sin"><section>
+          </section></div></details><details class="sgrp"><summary>Som e vibração</summary><div class="sin"><section>
             <h2 class="lab">Sons suaves</h2>
             <div class="seg" role="group" aria-label="Sons">
               <button type="button" data-k="sound" data-v="on">Ligados</button>
@@ -991,7 +990,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.52.1",d:"2026-10-22"};
+const APP_REL={v:"1.53.0",d:"2026-10-22"};
 
 
 const RAW={
@@ -2505,11 +2504,10 @@ grimm:{name:"Floresta Encantada",desc:"Inspirado nos Contos dos Irmãos Grimm: f
 racconti:{name:"Contos à Luz de Vela",desc:"Inspirado em I racconti delle fate: colinas toscanas, torre, livro aberto e vela",schemes:[["Colinas ao pôr do sol",0,"#fbefe0","#ffffff","#f3dcc0","#dcb98e","#9a4a1e","#2b1c10","#5a4430","#7a4f00","#1f7a45","#b3261e"],["Luz de vela",1,"#1e120a","#2a1a0f","#3a2515","#573820","#f0b060","#f8eee0","#d5c0a6","#f2c864","#7fdca8","#ff9a8f"]]},
 };
 /* v1.39: ícones do app (um por estilo), cartão da tela inicial, lembretes e gamificação opcional */
-const ICON_IDS=["padrao","alice","pp","frank","soft","dante"];
 const WD_SRC=["hoje","msg","frase","livro","palavra","off"];
 const DAYRE=/^\d{4}-\d\d-\d\d$/;
 const S={lang:"fr",layout:"classic",mode:"auto",pal:"auto",style:"padrao",scheme:0,custom:"#7a3b8f",player:"",motto:"",avatar:"book",plays:{},sk:{},gs:{},sound:"on",snd:"mid",hap:"on",trem:"on",kb:false,vol:1,fTheme:"all",fLevel:"all",fGame:"all",done:{},rv:{},rvv:{},typed:false,goal:20,day:{d:"",n:0},zoom:false,bk:0,bks:0,since:0,fav:[],cap:{},trad:"lit",qrv:{},cad:[],rd:{fs:0,bg:"pad",lh:0},
-  sq:0,lgt:"",wkd:{},gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"off",bk:"all",u:0},ic:"padrao"};
+  sq:0,lgt:"",wkd:{},gam:{on:false,pts:0,last:"",streak:0,best:0,les:0,bc:0,days:[],seen:[]},rm:{on:false,h:19,st:"anim"},wd:{src:"off",bk:"all",u:0}};
 try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_){}
 (function load(){
   let sv=null;
@@ -2564,7 +2562,6 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   }
   if(sv.rm&&typeof sv.rm==="object"){S.rm={on:sv.rm.on===true,h:ci(sv.rm.h,0,23)||(+sv.rm.h===0?0:19),st:["anim","calma","cartao"].indexOf(sv.rm.st)>=0?sv.rm.st:"anim"};}
   if(sv.wd&&typeof sv.wd==="object"){S.wd={u:sv.wd.u?1:0,src:WD_SRC.indexOf(sv.wd.src)>=0&&(sv.wd.u||sv.wd.src!=="hoje")?sv.wd.src:"off",bk:typeof sv.wd.bk==="string"&&/^[a-z]{1,12}$/.test(sv.wd.bk)?sv.wd.bk:"all"};}
-  if(ICON_IDS.indexOf(sv.ic)>=0)S.ic=sv.ic;
   /* as marcas de concluído das versões antigas não são trazidas: os ids das páginas mudaram */
   if(!old&&sv.done&&typeof sv.done==="object")Object.keys(sv.done).forEach(k=>{if(/^(fr|it|en):[a-z0-9-]+$/.test(k))S.done[k]=1;});
 })();
@@ -4134,6 +4131,7 @@ function dictRender(){
     h+='<div class="dl-row"><div class="tx"><b>'+esc(full(e))+'</b><span class="pt">'+esc(e.pt)+'</span><small>sílabas: <span class="sy">'+esc(sy)+"</span> · "+esc(catName(e.cat))+"</small>"+exHtml(e)+"</div>"+speakBtn(full(e))+"</div>";
   });
   $("#dict-list").innerHTML=h||'<p class="empty">Nenhuma palavra encontrada.</p>';
+  if(typeof parDict==="function")parDict(q);
   $("#dict-count").textContent=rows.length+(rows.length===1?" palavra":" palavras")+(q?" encontradas":" em ordem alfabética")+" · "+LNAME[S.lang];
   $("#dict-title").textContent="Dicionário de "+LNAME[S.lang];
   const nEx=EX[S.lang]?Object.keys(EX[S.lang]).length:0;
@@ -4146,6 +4144,24 @@ function dictOpen(){
 $("#go-dict").addEventListener("click",dictOpen);
 $("#dict-lang").addEventListener("click",e=>{const b=e.target.closest("[data-dictlang]");if(!b)return;S.lang=b.dataset.dictlang;save();syncPrefs();dictOpen();});
 $("#dict-q").addEventListener("input",dictRender);
+
+/* ===== Palavras parecidas (v1.53): pares que se confundem, no Dicionário =====
+   Pedido dela (22/10/2026): «cousine (prima) e cuisine (cozinha)». Cada par: [palavra, significado, palavra, significado].
+   Escritos por Claude, sem fonte conferida (rótulo na tela). Edite aqui para acrescentar pares. */
+const PARES={
+  fr:[["cuisine","cozinha","cousine","prima"],["poisson","peixe","poison","veneno"],["chair","carne","chaise","cadeira"],["sale","sujo","salle","sala"],["mer","mar","mère","mãe"],["cou","pescoço","coup","golpe"],["ville","cidade","village","vilarejo"],["pain","pão","peine","pena, dificuldade"],["librairie","livraria","bibliothèque","biblioteca"],["livre","livro (m.) ou livre (adj.)","libre","livre"],["père","pai","pair","par, igual"],["verre","copo","vert","verde"]],
+  it:[["fame","fome","fama","fama"],["pozzo","poço","pazzo","louco"],["cane","cachorro","canna","cana"],["pane","pão","panna","creme de leite"],["cena","jantar","scena","cena (de teatro)"],["cassa","caixa","casa","casa"],["burro","manteiga","asino","burro (o animal)"],["ancora","ainda, de novo","àncora","âncora"]],
+  en:[["desert","deserto","dessert","sobremesa"],["quiet","quieto, calmo","quite","bastante"],["angel","anjo","angle","ângulo"],["lose","perder","loose","solto"],["breath","respiração, fôlego","breathe","respirar"],["affect","afetar","effect","efeito"],["their","deles","there","lá, ali"],["weather","tempo (clima)","whether","se (ou não)"],["later","mais tarde","latter","o último, este (de dois)"],["library","biblioteca","bookstore","livraria"],["principal","diretor, principal","principle","princípio"],["stationary","parado","stationery","papelaria, material de escritório"]]
+};
+function parDict(q){
+  const L=PARES[S.lang]||[],el=$("#dict-list");if(!el||!L.length)return;
+  const rows=L.filter(p=>!q||dnorm(p.join(" ")).indexOf(q)>=0);
+  if(!rows.length)return;
+  const h='<details class="pares"'+(q?" open":"")+'><summary><b>Palavras parecidas: não confunda</b> ('+rows.length+')</summary>'+
+    rows.map(p=>'<div class="dl-row"><div class="tx"><b>'+esc(p[0])+'</b> <span class="pt">'+esc(p[1])+'</span><br><b>'+esc(p[2])+'</b> <span class="pt">'+esc(p[3])+"</span></div></div>").join("")+
+    '<p class="help">Pares escritos por Claude, sem fonte conferida.</p></details>';
+  el.insertAdjacentHTML("afterbegin",h);
+}
 
 /* ===== Trilha de aprendizado: o que "Hoje" sugere vem do progresso e dos erros da pessoa, não do último jogo aberto =====
    Prioridade: 1) revisão espaçada vencida; 2) muitas palavras em que errou mais do que acertou; 3) próxima lição da trilha.
@@ -5477,7 +5493,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
       const cards={},d0=new Date();
       for(let i=0;i<8;i++){const d=new Date(d0);d.setDate(d0.getDate()+i);const k=dstr(d);cards[k]=cardFor(k,S.lang);}
       const s=window.gamStreak?gamStreak():{n:0};
-      const st={v:1,on:S.rm.on,h:S.rm.h,st:S.rm.st,last:last,streak:s.n,gam:S.gam.on,name:(S.player||"").split(" ")[0],ln:LNAME[S.lang],cards:cards,ic:S.ic,push:window.__pushOn?1:0,notified:prev.notified||""};
+      const st={v:1,on:S.rm.on,h:S.rm.h,st:S.rm.st,last:last,streak:s.n,gam:S.gam.on,name:(S.player||"").split(" ")[0],ln:LNAME[S.lang],cards:cards,push:window.__pushOn?1:0,notified:prev.notified||""};
       await c.put("state.json",new Response(JSON.stringify(st),{headers:{"content-type":"application/json"}}));
     }catch(_){}
   }
@@ -6146,34 +6162,9 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
   b.addEventListener("click",()=>openFriends());
 })();
 
-/* ===== Ícone do app (v1.39): Padrão + um por tema (Alice, Pequeno Príncipe, Frankenstein, Soft elegante, A Divina Comédia) =====
-   Arte original (tools/mk_icons.py): relógio de bolso, planeta com flor, raio, monograma, anéis e estrela; nenhum personagem de livro.
-   Como funciona: o ícone da aba muda na hora; o ícone do app instalado é lido do manifesto, e o service worker (sw.js) devolve o manifesto com o ícone escolhido
-   (a escolha vai para um cache chamado mp-state). Quando o ícone da tela inicial muda depende do sistema: ver o texto de #ic-note. */
-(function(){
-  const NAMES={padrao:"Padrão",alice:"Alice",pp:"Pequeno Príncipe",frank:"Frankenstein",soft:"Soft elegante",dante:"A Divina Comédia"};
-  const url=(id,z)=>id==="padrao"?(z==="m"?"icon-maskable-512.png":"icon-"+z+".png"):"icons/"+id+"-"+(z==="m"?"maskable-512":z)+".png";
-  function applyIcon(){
-    ["icon","apple-touch-icon"].forEach(rel=>{const l=document.querySelector('link[rel="'+rel+'"]');if(l)l.href=url(S.ic,192);});
-  }
-  function build(){
-    const g=$("#ic-grid");if(!g)return;
-    g.innerHTML=ICON_IDS.map(id=>'<button type="button" class="icb" data-ic="'+id+'" aria-pressed="'+(S.ic===id)+'" aria-label="Ícone '+esc(NAMES[id])+'"><img src="'+url(id,192)+'" alt="" width="56" height="56" loading="lazy"><small>'+esc(NAMES[id])+"</small></button>").join("");
-    $("#ic-note").textContent="Ícone atual: "+NAMES[S.ic]+". A aba do navegador muda na hora. Na tela inicial: no Android (Chrome) o ícone muda sozinho depois que o Chrome atualiza o app (ele só faz isso com o app fechado, o aparelho carregando e no Wi-Fi; pode levar de alguns minutos a alguns dias). No iPhone, o ícone fica o de quando o app foi adicionado: remova-o da tela inicial e adicione de novo. No computador, o Chrome ainda não atualiza o ícone de app instalado.";
-  }
-  document.addEventListener("click",e=>{
-    const b=e.target.closest&&e.target.closest("[data-ic]");if(!b)return;
-    if(ICON_IDS.indexOf(b.dataset.ic)<0)return;
-    S.ic=b.dataset.ic;save();applyIcon();build();
-    if(typeof pushState==="function")pushState();
-    if(navigator.serviceWorker&&navigator.serviceWorker.getRegistration)navigator.serviceWorker.getRegistration().then(r=>{if(r&&r.update)r.update();}).catch(()=>{});
-  });
-  const _go4=go;go=function(n){_go4.apply(this,arguments);if(n==="settings")build();};
-  applyIcon();build();
-})();
-
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.53.0",d:"2026-10-22",t:["Novo ícone do app: o livro aberto com «tt». A escolha de ícones saiu de Ajustes","Entrar na conta: o passo do código não se perde mais quando você vai ao e-mail e volta (Samsung Internet e outros navegadores)","Ao sair do app e voltar, ele reabre na última tela (Ajustes, Livros, Estatísticas…), e não mais na tela inicial","Dicionário: nova seção «Palavras parecidas: não confunda» (cuisine e cousine, desert e dessert…), nos 3 idiomas. Pares escritos por Claude, sem fonte conferida","O app muda para o endereço litteraria.com.br. Quem tem conta entra de novo e recupera tudo; quem não tem, baixe o backup antes em Ajustes → Dados"]},
 {v:"1.52.1",d:"2026-10-22",t:["O aviso «O app foi atualizado» não volta mais a cada vez que você abre o app: ele aparece uma vez por versão","Aviso de que o app muda de endereço (litteraria.com.br) ainda hoje, com botão para baixar o backup. Quem tem conta na nuvem recupera tudo entrando de novo","Política de Privacidade revisada: agora diz o que vai junto nas sugestões, como o e-mail é usado e onde o app fica hospedado"]},
 {v:"1.52.0",d:"2026-10-22",t:["O app agora se chama Litteraria (antes Mots & Parole). Seu progresso, sua conta e seus amigos continuam como estavam","No iPhone, o ícone que já está na tela inicial pode continuar com o nome antigo: renomeie o atalho, ou instale de novo depois de baixar um backup em Ajustes → Dados"]},
 {v:"1.51.1",d:"2026-10-22",t:["Sherlock Holmes: capítulo 12 («A Aventura das Faias de Cobre») já disponível para ler. O livro está completo, com os 12 contos","Tradução escrita por Claude, sem fonte conferida"]},
@@ -6534,6 +6525,25 @@ buildSettings();applyTheme();buildKb();go("home");
       if(typeof handleGo==="function")setTimeout(()=>handleGo(g),150);
     }
   }catch(_){}
+})();
+/* ===== Lembrar a última tela (v1.53) =====
+   No Android o navegador descarta a página quando a pessoa sai do app; ao voltar, tudo recomeçava na tela inicial.
+   Guarda a última tela simples (Ajustes, Estatísticas, Perfil, Lições, Livros...) por até 3 horas, fora do progresso.
+   A lição em andamento (retomar.js) e o passo do código da conta (nuvem.js) têm prioridade. */
+(function(){
+  const SK=KEY+"-scr",OK=["settings","stats","profile","vol","index","books","album","news"],MAX=3*3600e3;
+  try{
+    const u=new URL(location.href),pend=localStorage.getItem("mots-parole-cloud-pend");
+    const o=JSON.parse(localStorage.getItem(SK)||"null");
+    if(o&&OK.indexOf(o.n)>=0&&Date.now()-(+o.t||0)<MAX&&!window.__resumed&&!pend&&!u.searchParams.get("go")){
+      go(o.n);if(o.n==="news"&&typeof renderNews==="function")renderNews();
+    }
+  }catch(_){}
+  const _g=go;
+  go=function(n){
+    _g.apply(this,arguments);
+    try{if(n!=="game")localStorage.setItem(SK,JSON.stringify({n:n,t:Date.now()}));}catch(_){}
+  };
 })();
 
 </script>

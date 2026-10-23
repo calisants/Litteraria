@@ -12,12 +12,16 @@ try:
     # pontos desligados por padrão; dias são anotados mesmo assim
     assert pg.evaluate("()=>S.gam.on")==False
     assert pg.evaluate("()=>S.gam.pts")==0
-    # ícone
+    # v1.53: a escolha de ícones foi retirada
     pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}")
-    assert pg.locator('#ic-grid .icb').count()==6
-    pg.click('#ic-grid [data-ic="alice"]');assert pg.evaluate("()=>S.ic")=='alice'
-    assert 'alice' in pg.evaluate("()=>document.querySelector('link[rel=icon]').href")
-    pg.evaluate("()=>{S.ic='padrao';save()}")
+    assert not pg.query_selector('#ic-grid'),'sem escolha de ícones'
+    # v1.53: palavras parecidas no dicionário e última tela
+    pg.evaluate("()=>{S.lang='fr';save();dictOpen()}");pg.wait_for_timeout(200)
+    assert 'cousine' in pg.text_content('#dict-list .pares') and 'cuisine' in pg.text_content('#dict-list .pares')
+    pg.fill('#dict-q','cousine');pg.wait_for_timeout(200);assert pg.locator('#dict-list .pares').count()==1
+    pg.evaluate("()=>{go('stats')}");pg.reload();pg.wait_for_timeout(900)
+    assert pg.is_visible('#s-stats'),'reabre na última tela'
+    pg.evaluate("()=>{go('home')}");pg.reload();pg.wait_for_timeout(900);assert pg.is_visible('#s-home')
     # Frase do dia sem imagem; retomada
     pg.evaluate("()=>{S.lang='en';save();go('home')}")
     pg.evaluate("()=>{const r=lessonPath().find(eligible);startLesson(r);}");pg.wait_for_timeout(300)

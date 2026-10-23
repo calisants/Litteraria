@@ -29,6 +29,7 @@ function dictRender(){
     h+='<div class="dl-row"><div class="tx"><b>'+esc(full(e))+'</b><span class="pt">'+esc(e.pt)+'</span><small>sílabas: <span class="sy">'+esc(sy)+"</span> · "+esc(catName(e.cat))+"</small>"+exHtml(e)+"</div>"+speakBtn(full(e))+"</div>";
   });
   $("#dict-list").innerHTML=h||'<p class="empty">Nenhuma palavra encontrada.</p>';
+  if(typeof parDict==="function")parDict(q);
   $("#dict-count").textContent=rows.length+(rows.length===1?" palavra":" palavras")+(q?" encontradas":" em ordem alfabética")+" · "+LNAME[S.lang];
   $("#dict-title").textContent="Dicionário de "+LNAME[S.lang];
   const nEx=EX[S.lang]?Object.keys(EX[S.lang]).length:0;
