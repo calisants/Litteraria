@@ -6,6 +6,11 @@ function wordsOf(p){
   const arr=(VOCAB[S.lang]&&VOCAB[S.lang][p.cat])||[],K=p.K||2,n=arr.length;
   return arr.slice(Math.round((p.part-1)*n/K),Math.round(p.part*n/K));
 }
+/* Gramática e frases só entram em «Hoje»/«Próximo» quando a pessoa já acertou palavras suficientes (decisão dela, 23/10/2026:
+   aprender aos poucos, como criança; a gramática não pode presumir que ela conhece as palavras). Os números são julgamento de Claude, não vêm de fonte.
+   A n-ésima página de gramática pede GRAM_BASE+GRAM_STEP*n palavras já acertadas pelo menos uma vez no idioma. As páginas continuam abertas em Lições. */
+const GRAM_BASE=30,GRAM_STEP=9,CONV_BASE=20,CONV_STEP=6;
+function knownWords(){const sk=S.sk[S.lang]||{};let n=0;for(const k in sk)if(sk[k][0]>=1)n++;return n;}
 const VOCLESSON=["conheca","contexto","reco","completar","embaralhar","escreva"];
 let _path=null;
 function lessonPath(){
@@ -15,7 +20,7 @@ function lessonPath(){
   VOLUME2.pages.forEach(p=>out.push({vol:2,page:p,audio:true}));
   const gids=GROUPS.map(g=>g[0]).filter(g=>CATS.some(c=>c[2]===g));
   const chunk=(arr,i,n)=>arr.slice(Math.round(i*arr.length/n),Math.round((i+1)*arr.length/n));
-  const gram=VOLUME4.pages,conv=[];
+  const gram=VOLUME4.pages,conv=[];let gn=0,cn=0;
   VOLUME3.pages.filter(p=>p.type==="frases"&&!p.book).forEach(p=>conv.push(p));
   const pairs=VOLUME3.pages.filter(p=>p.type==="sentence").map(s=>[s,M[3].get("resposta-"+s.n)]);
   pairs.forEach(pr=>pr.forEach(p=>{if(p)conv.push(p);}));
@@ -26,8 +31,8 @@ function lessonPath(){
       add(1,"odd-"+c[0]);add(1,"search-"+c[0]+"-easy");add(1,"cross-"+c[0]+"-easy");
     });
     add(1,"connect-"+g+"-easy-1");
-    chunk(gram,gi,gids.length).forEach(p=>out.push({vol:4,page:p}));
-    chunk(conv,gi,gids.length).forEach(p=>out.push({vol:3,page:p}));
+    chunk(gram,gi,gids.length).forEach(p=>out.push({vol:4,page:p,need:GRAM_BASE+GRAM_STEP*(gn++)}));
+    chunk(conv,gi,gids.length).forEach(p=>out.push({vol:3,page:p,need:CONV_BASE+CONV_STEP*(cn++)}));
   });
   /* temas de livros: novas lições no fim da trilha (só no idioma do livro) */
   BOOKS.forEach(b=>b.chunks.forEach(c=>{
@@ -75,7 +80,8 @@ function pageMastered(p){
   return ok/ws.length>=.8;
 }
 const canHear=()=>"speechSynthesis" in window;
-const eligible=r=>pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&!(r.audio&&!canHear())&&!(r.voc&&pageMastered(r.page));
+const eligible=r=>pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&!(r.audio&&!canHear())&&!(r.voc&&pageMastered(r.page))&&!(r.need&&knownWords()<r.need);
+const gatedLeft=()=>{const k=knownWords();return lessonPath().filter(r=>r.need&&pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&k<r.need).length;};
 function nextNewPage(){
   const up=lessonPath().find(eligible)||null;
   if(S.sq>=2){const g=pickGame(up);if(g)return g;}
@@ -103,7 +109,7 @@ const WEAK_MIN=8;
 function todayPlan(){
   const d=dueCount();if(d)return{kind:"review",n:d};
   const w=weakWords().length;if(w>=WEAK_MIN)return{kind:"weak",n:w};
-  const r=nextNewPage();return r?{kind:"lesson",ref:r}:{kind:"done"};
+  const r=nextNewPage();return r?{kind:"lesson",ref:r}:{kind:"done",gated:gatedLeft()};
 }
 function lessonName(r){
   const V=VOLUMES.find(v=>v.id===r.vol),t=V.types.find(x=>x[0]===r.page.type);
@@ -111,6 +117,6 @@ function lessonName(r){
 }
 function planText(){
   const p=todayPlan();
-  return p.kind==="review"?p.n+" para revisar":p.kind==="weak"?"reforçar "+p.n+" palavras que errou":p.kind==="lesson"?"próxima: "+lessonName(p.ref):"tudo em dia";
+  return p.kind==="review"?p.n+" para revisar":p.kind==="weak"?"reforçar "+p.n+" palavras que errou":p.kind==="lesson"?"próxima: "+lessonName(p.ref):p.gated?"aprenda mais palavras para liberar a gramática":"tudo em dia";
 }
 function startLesson(r){S.vol=r.vol;S.fGame="all";S.fTheme="all";save();startPage(r.page.id);}
