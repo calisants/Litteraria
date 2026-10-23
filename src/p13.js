@@ -42,13 +42,13 @@ function lessonPath(){
   BOOKS.forEach(b=>VOLUME3.pages.filter(p=>p.book===b.id||p.rd===b.id).forEach(p=>out.push({vol:3,page:p})));
   /* jogos de livros e de memória: entram no fim da trilha e, antes disso, como intervalo entre lições (ver pickGame) */
   BOOKS.forEach(b=>b.chunks.forEach(c=>{add(1,"search-"+c.cat+"-easy");add(1,"cross-"+c.cat+"-easy");}));
-  const byT=["memoria","citacao","qualivro","regra","trecho","autor","capitulos"].map(t=>VOLUME.pages.filter(p=>p.type===t));
+  const byT=["memoria","citacao","regra","ouvir","trecho"].map(t=>VOLUME.pages.filter(p=>p.type===t));
   for(let i=0;byT.some(a=>i<a.length);i++)byT.forEach(a=>{if(a[i])out.push({vol:1,page:a[i]});});
   return(_path=out);
 }
 /* Jogos entre lições: depois de 2 lições seguidas, o «Hoje» e o «Próximo» oferecem um jogo (de tipo diferente do último).
    Prioridade: jogo do mesmo tema da próxima lição; jogo de tema anterior ainda não feito; jogo solto (memória, livros). */
-const GAME_T=["odd","connect","search","cross","memoria","citacao","qualivro","autor","trecho","capitulos","regra"];
+const GAME_T=["odd","connect","search","cross","memoria","citacao","trecho","regra","ouvir"];
 const isGameRef=r=>GAME_T.indexOf(r.page.type)>=0;
 const refCat=r=>r.page.cat||r.page.main||null;
 function pickGame(up){
@@ -64,7 +64,7 @@ function pickGame(up){
   for(const a of lv)if(a.length)return alt(a)[0][0];
   return null;
 }
-const SOLTOS=new Set(["memoria","citacao","qualivro","autor","trecho","capitulos","regra"]);
+const SOLTOS=new Set(["memoria","citacao","trecho","regra","ouvir"]);
 const _mdone=markDone;
 markDone=function(){
   const t=P&&P.type;

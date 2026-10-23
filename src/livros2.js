@@ -143,13 +143,13 @@
   window.phLangList=phLang;window.phBookMap=BK;window.phHash=hash;
 
   /* ---- páginas novas ---- */
-  VOLUME.types=VOLUME.types.concat([["citacao","Complete a citação","Citação"],["qualivro","De qual livro é?","De qual livro?"]]);
+  VOLUME.types=VOLUME.types.concat([["citacao","Complete a citação","Citação"]]);
   VOLUME3.types=VOLUME3.types.concat([["leitura","Leitura de um trecho","Leitura"]]);
   const PER=6;
   ["fr","it","en"].forEach(lang=>{
     const L=interleave(lang);if(!L.length)return;
     const n=Math.max(1,Math.ceil(L.length/PER));
-    ["citacao","qualivro"].forEach(type=>{
+    ["citacao"].forEach(type=>{
       for(let i=0;i<n;i++){
         const part=L.slice(Math.round(i*L.length/n),Math.round((i+1)*L.length/n));
         VOLUME.pages.push({id:type+"-"+lang+"-"+(i+1),type:type,n:i+1,langs:[lang],themes:[],sub:"Frases dos livros",meta:"Frases dos livros · parte "+(i+1)+" de "+n,qs:part.map(p=>p.id)});

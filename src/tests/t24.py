@@ -21,6 +21,15 @@ try:
     pg.select_option('#fbook','alice');assert pg.evaluate("()=>S.fbook")=='alice'
     pg.evaluate("()=>{S.motto='';renderMe()}");assert 'Alice' in pg.inner_text('#me-motto')
     pg.select_option('#fbook','');assert pg.evaluate("()=>S.fbook")is None
+    # v1.55: jogos de literatura que treinam o idioma (Qual o sentido? e Ouça e escolha); os de curiosidade saíram
+    tp=pg.evaluate("()=>VOLUME.pages.map(p=>p.type)");assert not any(t in ('autor','qualivro','capitulos') for t in tp)
+    pg.evaluate("()=>{S.lang='en';save();S.vol=1;startPage('ouvir-en-1')}");pg.wait_for_timeout(200)
+    assert pg.is_visible('#ouv-play') and pg.is_visible('#ouv-show') and not pg.locator('.qz-s').count()
+    pg.click('#ouv-show');assert pg.is_visible('.qz-s')
+    pg.locator('.lopt').first.click();assert pg.locator('.lopt.right').count()==1 and pg.is_visible('#lit-next')
+    pg.evaluate("()=>{S.vol=1;startPage('regra-en-1')}");pg.wait_for_timeout(200)
+    assert pg.is_visible('.qz-s') and pg.locator('.lopt').count()==4 and not pg.locator('#ouv-play').count()
+    pg.evaluate("()=>{go('home')}")
     # v1.53: palavras parecidas no dicionário e última tela
     pg.evaluate("()=>{S.lang='fr';save();dictOpen()}");pg.wait_for_timeout(200)
     assert 'cousine' in pg.text_content('#dict-list .pares') and 'cuisine' in pg.text_content('#dict-list .pares')

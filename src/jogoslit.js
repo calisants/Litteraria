@@ -7,29 +7,27 @@
   window.LITAUT=AUT;
   const cnt=t=>VOLUME.pages.filter(p=>p.type===t).length;
   VOLUME.types=VOLUME.types.concat([
-    ["autor","Quem escreveu o livro?","Quem escreveu?"],
     ["trecho","Ordene o trecho do livro","Ordene o trecho"],
-    ["capitulos","Ordem dos capítulos","Capítulos"],
-    ["regra","O que a frase quer dizer?","Qual o sentido?"]]);
-  GAMENAME.autor="Quem escreveu?";GAMENAME.trecho="Ordene o trecho";GAMENAME.capitulos="Capítulos";GAMENAME.regra="Qual o sentido?";
-  ["autor","trecho","capitulos","regra"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
-  GAMEFN.autor=startQuiz2;GAMEFN.regra=startQuiz2;GAMEFN.trecho=startOrd;GAMEFN.capitulos=startOrd;
+    ["regra","O que a frase quer dizer?","Qual o sentido?"],
+    ["ouvir","Ouça a frase e escolha o sentido","Ouça e escolha (com áudio)"]]);
+  GAMENAME.autor="Quem escreveu?";GAMENAME.trecho="Ordene o trecho";GAMENAME.capitulos="Capítulos";GAMENAME.regra="Qual o sentido?";GAMENAME.ouvir="Ouça e escolha (com áudio)";
+  ["autor","trecho","capitulos","regra","ouvir"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
+  GAMEFN.autor=startQuiz2;GAMEFN.regra=startQuiz2;GAMEFN.ouvir=startQuiz2;GAMEFN.trecho=startOrd;GAMEFN.capitulos=startOrd;
 
   /* ---- páginas ---- */
   ["fr","it","en"].forEach(lang=>{
     const bs=BOOKS.filter(b=>b.lang===lang);
     if(bs.length<3)return;
-    [["b2a","Livro → autor"],["a2b","Autor → livro"]].forEach(([kind,lab])=>VOLUME.pages.push({id:"autor-"+lang+"-"+kind,type:"autor",n:cnt("autor")+1,kind:kind,langs:[lang],themes:[],sub:"Autores dos livros",meta:lab}));
     const L=window.phLangList(lang),PER=6,n=Math.max(1,Math.ceil(L.length/PER));
     for(let i=0;i<n&&L.length>=4;i++){
       const part=L.slice(Math.round(i*L.length/n),Math.round((i+1)*L.length/n));
       VOLUME.pages.push({id:"regra-"+lang+"-"+(i+1),type:"regra",n:cnt("regra")+1,langs:[lang],themes:[],sub:"Frases dos livros",meta:"Frases dos livros · parte "+(i+1)+" de "+n,qs:part.map(p=>p.id)});
+      VOLUME.pages.push({id:"ouvir-"+lang+"-"+(i+1),type:"ouvir",n:cnt("ouvir")+1,langs:[lang],themes:[],sub:"Frases dos livros",meta:"Frases dos livros · parte "+(i+1)+" de "+n,qs:part.map(p=>p.id).reverse()});
     }
   });
   BOOKS.forEach(b=>{
     const R=BOOKREAD[b.id]||[];
     R.forEach((r,k)=>{if(r.segs.length>=2)VOLUME.pages.push({id:"trecho-"+b.id+"-"+(k+1),type:"trecho",n:cnt("trecho")+1,bk:b.id,k:k,langs:[b.lang],themes:["livro-"+b.id],sub:b.name,meta:"Trecho de «"+b.name+"» · "+(k+1)+" de "+R.length});});
-    if(b.id==="alice"||b.id==="principe")[1,2].forEach(j=>VOLUME.pages.push({id:"capitulos-"+b.id+"-"+j,type:"capitulos",n:cnt("capitulos")+1,bk:b.id,j:j,langs:[b.lang],themes:["livro-"+b.id],sub:b.name,meta:"«"+b.name+"» · sequência "+j+" de 2"}));
     b.chunks.forEach(c=>["search","cross"].forEach(t=>VOLUME.pages.push({id:t+"-"+c.cat+"-easy",type:t,level:"easy",cat:c.cat,n:cnt(t)+1,langs:[b.lang],themes:["livro-"+b.id,c.cat],sub:c.name,meta:c.name+" · Fácil"})));
   });
 
@@ -70,10 +68,14 @@
     renderQuiz2();
   }
   function renderQuiz2(){
-    const q=st.qs[st.i],ans=st.sel!==null,reg=st.kind==="regra";
+    const q=st.qs[st.i],ans=st.sel!==null,reg=st.kind==="regra"||st.kind==="ouvir",ouv=st.kind==="ouvir";
     let h='<p class="ocount">'+(st.i+1)+" de "+st.qs.length+" · acertos: "+st.score+"</p>";
     if(reg){
-      h+='<p class="qz-s">'+esc(q.p.s)+"</p>"+'<p class="help" style="text-align:center">Frase do livro «'+esc(BOOKS.find(b=>b.id===q.p.book).name)+"». O que ela quer dizer?</p>";
+      if(ouv&&!ans){
+        h+='<div class="row" style="justify-content:center"><button type="button" class="btn primary" id="ouv-play">🔊 Ouvir a frase</button></div>';
+        h+=st.show?'<p class="qz-s">'+esc(q.p.s)+"</p>":'<div class="row" style="justify-content:center"><button type="button" class="btn" id="ouv-show">Mostrar a frase (sem áudio)</button></div>';
+        h+='<p class="help" style="text-align:center">Ouça a frase de um livro e escolha o que ela quer dizer.</p>';
+      }else h+='<p class="qz-s">'+esc(q.p.s)+"</p>"+'<p class="help" style="text-align:center">Frase do livro «'+esc(BOOKS.find(b=>b.id===q.p.book).name)+"». O que ela quer dizer?</p>";
       h+='<div class="lopts">'+q.opts.map((o,i)=>'<button type="button" class="lopt long'+(ans?(o.id===q.ans?" right":(st.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(o.t)+"</button>").join("")+"</div>";
       if(ans){
         const ok=q.opts[st.sel].id===q.ans;
@@ -91,22 +93,24 @@
     $("#gstage").innerHTML=h;
   }
   $("#gstage").addEventListener("click",ev=>{
-    if(!P||!st||(P.type!=="autor"&&P.type!=="regra"))return;
+    if(!P||!st||(P.type!=="autor"&&P.type!=="regra"&&P.type!=="ouvir"))return;
     const o=ev.target.closest(".lopt");
     if(o&&st.sel===null){
       st.sel=+o.dataset.o;const q=st.qs[st.i];
-      const ok=st.kind==="regra"?q.opts[st.sel].id===q.ans:q.opts[st.sel]===q.ans;
+      const ok=st.kind!=="autor"?q.opts[st.sel].id===q.ans:q.opts[st.sel]===q.ans;
       if(ok)st.score++;litRec(ok);sfx(ok?"ok":"bad");renderQuiz2();return;
     }
+    if(ev.target.closest("#ouv-play")){const q=st.qs[st.i];if(q&&q.p)speak(q.p.s);return;}
+    if(ev.target.closest("#ouv-show")){st.show=true;renderQuiz2();return;}
     if(ev.target.closest("#lit-next")){
-      if(st.i<st.qs.length-1){st.i++;st.sel=null;renderQuiz2();return;}
+      if(st.i<st.qs.length-1){st.i++;st.sel=null;st.show=false;renderQuiz2();return;}
       markDone();sfx("done");
       const rows=st.kind==="autor"?st.qs.map(q=>{const b=BOOKS.find(x=>x.id===q.bk);return '<div class="srow"><span class="w">'+esc(b.name)+'</span><span class="pt">'+esc(AUT[b.id])+"</span></div>";}).join("")+'<p class="help">Autores conferidos em buscas na web em 21/10/2026 (Projeto Gutenberg, editoras e enciclopédias).</p>'
         :st.qs.map(q=>'<div class="srow"><span class="pt"><b>'+esc(q.p.s)+"</b><br><small>"+esc(q.p.pt)+"</small></span>"+speakBtn(q.p.s)+"</div>").join("");
       openSheet("Página concluída: "+st.score+" de "+st.qs.length+" certas",rows,true);
     }
   });
-  RESUME.reg(["autor","regra"],{
+  RESUME.reg(["autor","regra","ouvir"],{
     get(){return st&&st.kind===P.type&&st.i<st.qs.length?{qs:st.qs,i:st.i,score:st.score,sel:st.sel}:null;},
     set(s){
       if(!s.qs||!s.qs.length)return;

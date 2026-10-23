@@ -28,7 +28,7 @@ try:
     pg.evaluate("()=>{for(const w of sn.words){const b=sn.bank.find(x=>x.w===w&&!sn.slot.includes(x));sn.slot.push(b)}renderSentence()}");pg.click('#sn-submit');pg.wait_for_timeout(80)
     assert pg.is_visible('#sstage .favbtn');pg.click('#sstage .favbtn');assert pg.evaluate("()=>S.fav")==['peter:0']
     # jogos de citação: acerta tudo, conclui e marca como feita
-    ids=pg.evaluate("()=>VOLUME.pages.filter(p=>p.type==='citacao'||p.type==='qualivro').map(p=>p.id+'|'+p.langs[0]+'|'+p.qs.length)");print(len(ids),'páginas de citação');assert len(ids)>=20
+    ids=pg.evaluate("()=>VOLUME.pages.filter(p=>p.type==='citacao').map(p=>p.id+'|'+p.langs[0]+'|'+p.qs.length)");print(len(ids),'páginas de citação');assert len(ids)>=10
     for x in ids:
         pid,lang,n=x.split('|');start(pg,lang,1,pid)
         q=pg.evaluate("()=>quizState().qs.length");assert q>=4,(pid,q)
@@ -39,7 +39,7 @@ try:
             pg.click(f'.opt[data-o="{right}"]');pg.click('#qz-next');pg.wait_for_timeout(40)
         assert pg.evaluate("(k)=>!!S.done[k]",lang+':'+pid),pid
     # um erro mostra a resposta certa
-    start(pg,'fr',1,'qualivro-fr-1');pg.evaluate("()=>{}");wrong=pg.evaluate("()=>{const q=quizState().qs[0];return q.opts.findIndex(x=>x!==q.p.book)}")
+    start(pg,'fr',1,'citacao-fr-1');wrong=pg.evaluate("()=>{const q=quizState().qs[0];return q.opts.findIndex(x=>x!==q.ans)}")
     pg.click(f'.opt[data-o="{wrong}"]');assert pg.is_visible('.opt.right') and pg.is_visible('.opt.wrong') and 'Era' in pg.inner_text('#gstage')
     # mini-leitura: 12 trechos (sem Verne e Pinóquio), palavra do vocabulário abre o significado, tradução liga e desliga
     rids=pg.evaluate("()=>VOLUME3.pages.filter(p=>p.type==='leitura').map(p=>p.id+'|'+p.langs[0])");print(len(rids),'trechos');assert len(rids)==16
