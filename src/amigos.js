@@ -106,13 +106,6 @@
       '<div class="row"><button type="button" class="btn primary" data-fr="poke" data-u="'+u+'" aria-label="Cutucar '+nn+'">👋 Cutucar</button>'+(f.ch?"":'<button type="button" class="btn" data-fr="chp" data-u="'+u+'" aria-label="Desafiar '+nn+' na semana">🏁 Desafiar</button>')+
       '<details class="frmore"><summary class="btn">Mais</summary><div class="row">'+(f.ch&&f.ch.st==="on"?'<button type="button" class="btn" data-fr="chx" data-u="'+u+'">Encerrar desafio</button>':"")+'<button type="button" class="btn" data-fr="del" data-u="'+u+'">Remover</button><button type="button" class="btn" data-fr="blk" data-u="'+u+'">Bloquear</button><button type="button" class="btn" data-fr="rep" data-u="'+u+'">Denunciar</button></div></details></div></article>';
   }
-  function statsLine(f){
-    const a=[];
-    if(f.streak!=null)a.push(f.streak+(f.streak===1?" dia":" dias")+" seguidos");
-    if(f.words!=null)a.push(f.words+" palavras acertadas");
-    if(f.week!=null)a.push(f.week+" de 7 dias estudados");
-    return a.length?a.join(" · "):"não compartilha números";
-  }
   /* convite por link: ?amigo=CODIGO (guardado até a pessoa entrar/ativar; nunca envia sozinho) */
   const IK="mots-parole-invite";
   let inv="";

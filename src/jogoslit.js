@@ -1,18 +1,15 @@
 /* ===== Jogos de literatura (v1.39) =====
-   Quem escreveu? · Ordene o trecho · Ordem dos capítulos · O que a frase quer dizer? + caça-palavras e cruzadas com as palavras de cada livro.
-   Nenhum mostra tradução antes da resposta (só com «Dica»). Sem áudio. Páginas no Volume 3 · Jogos, no idioma do livro.
-   Autores: conferidos em buscas na web em 21/10/2026 (páginas do Projeto Gutenberg, de editoras e de enciclopédias); só o nome, sem texto copiado. */
+   Ordene o trecho · Qual o sentido? · Ouça e escolha (com áudio) + caça-palavras e cruzadas com as palavras de cada livro.
+   (Em 23/10/2026 saíram «Quem escreveu?» e «Ordem dos capítulos»: não treinavam o idioma.) Páginas no Volume 3 · Jogos, no idioma do livro. */
 (function(){
-  const AUT={pp:"Antoine de Saint-Exupéry",verne:"Jules Verne",pinocchio:"Carlo Collodi",alice:"Lewis Carroll",peter:"Beatrix Potter",wind:"Kenneth Grahame",sherlock:"Arthur Conan Doyle",frank:"Mary Shelley",musq:"Alexandre Dumas",principe:"Nicolau Maquiavel",dante:"Dante Alighieri",perrault:"Charles Perrault",grimm:"Irmãos Grimm",racconti:"Carlo Collodi"};
-  window.LITAUT=AUT;
   const cnt=t=>VOLUME.pages.filter(p=>p.type===t).length;
   VOLUME.types=VOLUME.types.concat([
     ["trecho","Ordene o trecho do livro","Ordene o trecho"],
     ["regra","O que a frase quer dizer?","Qual o sentido?"],
     ["ouvir","Ouça a frase e escolha o sentido","Ouça e escolha (com áudio)"]]);
-  GAMENAME.autor="Quem escreveu?";GAMENAME.trecho="Ordene o trecho";GAMENAME.capitulos="Capítulos";GAMENAME.regra="Qual o sentido?";GAMENAME.ouvir="Ouça e escolha (com áudio)";
-  ["autor","trecho","capitulos","regra","ouvir"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
-  GAMEFN.autor=startQuiz2;GAMEFN.regra=startQuiz2;GAMEFN.ouvir=startQuiz2;GAMEFN.trecho=startOrd;GAMEFN.capitulos=startOrd;
+  GAMENAME.trecho="Ordene o trecho";GAMENAME.regra="Qual o sentido?";GAMENAME.ouvir="Ouça e escolha (com áudio)";
+  ["trecho","regra","ouvir"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
+  GAMEFN.regra=startQuiz2;GAMEFN.ouvir=startQuiz2;GAMEFN.trecho=startOrd;
 
   /* ---- páginas ---- */
   ["fr","it","en"].forEach(lang=>{
@@ -35,24 +32,12 @@
   const phMap={};["fr","it","en"].forEach(l=>window.phLangList(l).forEach(p=>{phMap[p.id]=p;}));
   const mask=t=>t.replace(/«[^»]*»/g,"«…»");
 
-  /* ---- Quem escreveu? / O que a frase quer dizer? ---- */
+  /* ---- Qual o sentido? / Ouça e escolha ---- */
   let st=null;
   function startQuiz2(){
     seedNow();fitFn=null;
     let qs=[];
-    if(P.type==="autor"){
-      const bs=BOOKS.filter(b=>b.lang===S.lang),allA=[...new Set(BOOKS.map(b=>AUT[b.id]))],seen=new Set();
-      shuffle(bs).forEach(b=>{
-        if(P.kind==="a2b"){
-          if(seen.has(AUT[b.id]))return;seen.add(AUT[b.id]);
-          const wrong=shuffle(BOOKS.filter(x=>AUT[x.id]!==AUT[b.id])).slice(0,3).map(x=>x.name);
-          qs.push({q:"Qual destes livros foi escrito por "+AUT[b.id]+"?",ans:b.name,opts:shuffle([b.name].concat(wrong)),bk:b.id});
-        }else{
-          const wrong=shuffle(allA.filter(a=>a!==AUT[b.id])).slice(0,3);
-          qs.push({q:"Quem escreveu «"+b.name+"»?",ans:AUT[b.id],opts:shuffle([AUT[b.id]].concat(wrong)),bk:b.id});
-        }
-      });
-    }else{
+    {
       const all=window.phLangList(S.lang);
       shuffle(P.qs.map(id=>phMap[id]).filter(Boolean)).forEach(p=>{
         /* interpretações: a tradução da frase e a de 3 outras frases do mesmo idioma (pedido dela, 23/10/2026) */
@@ -81,23 +66,16 @@
         const ok=q.opts[st.sel].id===q.ans;
         h+='<p class="note"><b>'+(ok?"Certo!":"O sentido certo era: "+esc(q.p.pt))+"</b><br>Estrutura da frase: "+hl(q.p.note)+'</p><div class="heard">'+speakBtn(q.p.s)+"<span>"+esc(q.p.s)+'</span></div><p class="help">Tradução e nota: escritas por Claude, sem fonte conferida.</p>';
       }
-    }else{
-      h+='<p class="prompt">'+esc(q.q)+"</p>";
-      h+='<div class="lopts">'+q.opts.map((o,i)=>'<button type="button" class="lopt'+(ans?(o===q.ans?" right":(st.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(o)+"</button>").join("")+"</div>";
-      if(ans){
-        const b=BOOKS.find(x=>x.id===q.bk),ok=q.opts[st.sel]===q.ans;
-        h+='<p class="note"><b>'+(ok?"Certo!":"Não foi essa.")+"</b> «"+esc(b.name)+"» é de "+esc(AUT[b.id])+".</p>";
-      }
     }
     if(ans)h+='<div class="row"><button type="button" class="btn primary" id="lit-next">'+(st.i===st.qs.length-1?"Ver resultado":"Próxima")+"</button></div>";
     $("#gstage").innerHTML=h;
   }
   $("#gstage").addEventListener("click",ev=>{
-    if(!P||!st||(P.type!=="autor"&&P.type!=="regra"&&P.type!=="ouvir"))return;
+    if(!P||!st||(P.type!=="regra"&&P.type!=="ouvir"))return;
     const o=ev.target.closest(".lopt");
     if(o&&st.sel===null){
       st.sel=+o.dataset.o;const q=st.qs[st.i];
-      const ok=st.kind!=="autor"?q.opts[st.sel].id===q.ans:q.opts[st.sel]===q.ans;
+      const ok=q.opts[st.sel].id===q.ans;
       if(ok)st.score++;litRec(ok);sfx(ok?"ok":"bad");renderQuiz2();return;
     }
     if(ev.target.closest("#ouv-play")){const q=st.qs[st.i];if(q&&q.p)speak(q.p.s);return;}
@@ -105,12 +83,11 @@
     if(ev.target.closest("#lit-next")){
       if(st.i<st.qs.length-1){st.i++;st.sel=null;st.show=false;renderQuiz2();return;}
       markDone();sfx("done");
-      const rows=st.kind==="autor"?st.qs.map(q=>{const b=BOOKS.find(x=>x.id===q.bk);return '<div class="srow"><span class="w">'+esc(b.name)+'</span><span class="pt">'+esc(AUT[b.id])+"</span></div>";}).join("")+'<p class="help">Autores conferidos em buscas na web em 21/10/2026 (Projeto Gutenberg, editoras e enciclopédias).</p>'
-        :st.qs.map(q=>'<div class="srow"><span class="pt"><b>'+esc(q.p.s)+"</b><br><small>"+esc(q.p.pt)+"</small></span>"+speakBtn(q.p.s)+"</div>").join("");
+      const rows=st.qs.map(q=>'<div class="srow"><span class="pt"><b>'+esc(q.p.s)+"</b><br><small>"+esc(q.p.pt)+"</small></span>"+speakBtn(q.p.s)+"</div>").join("");
       openSheet("Página concluída: "+st.score+" de "+st.qs.length+" certas",rows,true);
     }
   });
-  RESUME.reg(["autor","regra","ouvir"],{
+  RESUME.reg(["regra","ouvir"],{
     get(){return st&&st.kind===P.type&&st.i<st.qs.length?{qs:st.qs,i:st.i,score:st.score,sel:st.sel}:null;},
     set(s){
       if(!s.qs||!s.qs.length)return;
@@ -119,25 +96,15 @@
     }
   });
 
-  /* ---- Ordene o trecho / Ordem dos capítulos (mesmo motor) ---- */
+  /* ---- Ordene o trecho ---- */
   let od2=null;
-  const cleanT=t=>t.replace(/^(CHAPTER|Chapter|Capítulo|Cap\.)\s+[IVXLC\d]+\.?\s*[·.\-–—]?\s*/,"").trim();
   function startOrd(){
     seedNow();fitFn=null;
-    let items=[],intro="",title="",foot=null;
-    if(P.type==="trecho"){
-      const r=BOOKREAD[P.bk][P.k];
-      items=r.segs.map((g,i)=>({id:i,t:g.s,pt:g.pt}));
-      intro="Estas frases estão fora de ordem. Toque nelas na ordem em que aparecem no livro."+(r.ctx?" Contexto: "+r.ctx:"");
-      title="Trecho na ordem certa";
-    }else{
-      const info=BOOKTXT_INFO[P.bk].chs.filter(c=>cleanT(c.t)!==c.t);
-      const L=info.length,N=5,pick=[];
-      for(let i=0;i<N;i++){const ix=P.j===1?Math.round(i*(L-1)/(N-1)):Math.floor((i+.5)*L/N);if(pick.indexOf(ix)<0)pick.push(ix);}
-      items=pick.map(ix=>({id:info[ix].n,t:cleanT(info[ix].t),pt:cleanT(info[ix].tp)}));
-      intro="Estes são capítulos de «"+BOOKS.find(b=>b.id===P.bk).name+"». Toque neles na ordem em que aparecem no livro. Os números foram escondidos.";
-      title="Capítulos na ordem certa";
-    }
+    let items=[],intro="",title="";
+    const r=BOOKREAD[P.bk][P.k];
+    items=r.segs.map((g,i)=>({id:i,t:g.s,pt:g.pt}));
+    intro="Estas frases estão fora de ordem. Toque nelas na ordem em que aparecem no livro."+(r.ctx?" Contexto: "+r.ctx:"");
+    title="Trecho na ordem certa";
     const ord=items.slice().sort((a,b)=>a.id-b.id).map(x=>x.id);
     let bank=shuffle(items.map(x=>x.id));
     if(bank.length>1&&bank.every((v,k)=>v===ord[k]))bank.reverse();
@@ -156,7 +123,7 @@
     $("#gstage").innerHTML=h;
   }
   $("#gstage").addEventListener("click",ev=>{
-    if(!P||!od2||(P.type!=="trecho"&&P.type!=="capitulos")||od2.done)return;
+    if(!P||!od2||P.type!=="trecho"||od2.done)return;
     const o=od2,w=ev.target.closest("[data-w]"),u=ev.target.closest("[data-un]");
     if(w){o.put.push(+w.dataset.w);o.msg="";renderOrd();return;}
     if(u){const id=+u.dataset.un;o.put=o.put.filter(x=>x!==id);o.msg="";renderOrd();return;}
@@ -175,7 +142,7 @@
       }
     }
   });
-  RESUME.reg(["trecho","capitulos"],{
+  RESUME.reg(["trecho"],{
     get(){return od2&&!od2.done?{bank:od2.bank,put:od2.put,hint:od2.hint,tries:od2.tries}:null;},
     set(s){
       const ids=od2.items.map(x=>x.id).sort((a,b)=>a-b).join();

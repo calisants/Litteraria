@@ -160,9 +160,9 @@
     const R=BOOKREAD[b.id];if(!R)return;
     R.forEach((r,k)=>VOLUME3.pages.push({id:"leitura-"+b.id+"-"+(k+1),type:"leitura",n:200+VOLUME3.pages.length,rd:b.id,k:k+1,themes:["livro-"+b.id],langs:[b.lang],sub:b.name,meta:"Trecho de «"+b.name+"» · "+(k+1)+" de "+R.length}));
   });
-  GAMENAME.citacao="Citação";GAMENAME.qualivro="De qual livro?";GAMENAME.leitura="Leitura";
-  ["citacao","qualivro","leitura"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
-  GAMEFN.citacao=startCit;GAMEFN.qualivro=startQual;GAMEFN.leitura=startLeitura;
+  GAMENAME.citacao="Citação";GAMENAME.leitura="Leitura";
+  ["citacao","leitura"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
+  GAMEFN.citacao=startCit;GAMEFN.leitura=startLeitura;
 
   /* ---- Complete a citação ---- */
   const STOP={
@@ -185,7 +185,7 @@
     return{p:p,shown:shown,ans:cap(ans.toLowerCase(),ans),opts:all};
   }
   let qz=null;window.quizState=()=>qz;
-  RESUME.reg(["citacao","qualivro"],{
+  RESUME.reg(["citacao"],{
     get(){return qz&&qz.qs&&qz.i<qz.qs.length?{kind:qz.kind,qs:qz.qs,i:qz.i,score:qz.score,sel:qz.sel}:null;},
     set(st){
       if(!st.qs||st.kind!==qz.kind||!st.qs.length)return;
@@ -207,38 +207,27 @@
     const qs=withRev(P.qs).map(id=>cloze(phById[id])).filter(Boolean);
     qz={kind:"cit",qs:qs,i:0,score:0,sel:null};renderQ();
   }
-  function startQual(){
-    fitFn=null;
-    const opts=BOOKS.filter(b=>b.lang===S.lang);
-    const qs=withRev(P.qs).map(id=>{const p=phById[id];return{p:p,opts:shufS(opts.map(b=>b.id),"ql|"+p.id)};});
-    qz={kind:"qual",qs:qs,i:0,score:0,sel:null};renderQ();
-  }
   function renderQ(){
     const q=qz.qs[qz.i],p=q.p,ans=qz.sel!==null;
-    let h='<p class="ocount">'+(qz.kind==="cit"?"Citação ":"Frase ")+(qz.i+1)+" de "+qz.qs.length+" · acertos: "+qz.score+"</p>";
-    if(qz.kind==="cit"){
-      h+=(q.hint||ans?'<p class="prompt"><small>Tradução (dica)</small>'+esc(p.pt)+'</p>':'')+'<p class="qz-s">'+esc(q.shown)+'</p><p class="help" style="text-align:center">Qual palavra completa a frase do livro «'+esc(BK[p.book].name)+"»?</p>";
-      h+='<div class="opts">'+q.opts.map((w,i)=>'<button type="button" class="opt'+(ans?(w===q.ans?" right":(qz.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(w)+"</button>").join("")+"</div>";
-    }else{
-      h+='<p class="prompt"><small>De qual livro é esta frase?</small>'+esc(p.s)+(ans?" "+speakBtn(p.s):"")+'</p>'+(q.hint||ans?'<p class="help" style="text-align:center">Tradução (dica): '+esc(p.pt)+"</p>":"");
-      h+='<div class="opts">'+q.opts.map((id,i)=>'<button type="button" class="opt'+(ans?(id===p.book?" right":(qz.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(BK[id].name)+"</button>").join("")+"</div>";
-    }
+    let h='<p class="ocount">Citação '+(qz.i+1)+" de "+qz.qs.length+" · acertos: "+qz.score+"</p>";
+    h+=(q.hint||ans?'<p class="prompt"><small>Tradução (dica)</small>'+esc(p.pt)+'</p>':'')+'<p class="qz-s">'+esc(q.shown)+'</p><p class="help" style="text-align:center">Qual palavra completa a frase do livro «'+esc(BK[p.book].name)+"»?</p>";
+    h+='<div class="opts">'+q.opts.map((w,i)=>'<button type="button" class="opt'+(ans?(w===q.ans?" right":(qz.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(w)+"</button>").join("")+"</div>";
     if(!ans&&!q.hint)h+='<div class="row"><button type="button" class="btn" id="qz-hint">Dica: ver a tradução</button></div>';
     if(ans){
-      const ok=qz.kind==="cit"?q.opts[qz.sel]===q.ans:q.opts[qz.sel]===p.book;
-      h+='<p class="note"><b>'+(ok?"Certo!":(qz.kind==="cit"?"Era «"+esc(q.ans)+"».":"Era «"+esc(BK[p.book].name)+"».")).replace(/«([^»]*)»/g,"<b>$1</b>")+"</b></p>";
+      const ok=q.opts[qz.sel]===q.ans;
+      h+='<p class="note"><b>'+(ok?"Certo!":"Era «"+esc(q.ans)+"».").replace(/«([^»]*)»/g,"<b>$1</b>")+"</b></p>";
       h+='<div class="heard">'+speakBtn(p.s)+"<span>"+esc(p.s)+'</span></div><p class="note"><b>Nota:</b> '+hl(p.note)+'</p><p class="note"><small>Frase copiada do livro «'+esc(BK[p.book].name)+"». Tradução e nota: escritas por Claude, sem fonte conferida.</small></p>"+favBtn(p.id)+
         '<div class="row"><button type="button" class="btn primary" id="qz-next">'+(qz.i===qz.qs.length-1?"Ver resultado":"Próxima")+"</button></div>";
     }
     $("#gstage").innerHTML=h;
   }
   $("#gstage").addEventListener("click",e=>{
-    if(!P||(P.type!=="citacao"&&P.type!=="qualivro")||!qz)return;
+    if(!P||P.type!=="citacao"||!qz)return;
     if(e.target.closest("#qz-hint")&&qz.sel===null){qz.qs[qz.i].hint=true;renderQ();return;}
     const o=e.target.closest(".opt");
     if(o&&qz.sel===null){
       qz.sel=+o.dataset.o;const q=qz.qs[qz.i];
-      const ok=qz.kind==="cit"?q.opts[qz.sel]===q.ans:q.opts[qz.sel]===q.p.book;
+      const ok=q.opts[qz.sel]===q.ans;
       if(ok&&!q.hint)qz.score++;qrvGrade(q.p.id,ok&&!q.hint);sfx(ok?"ok":"bad");renderQ();return;
     }
     if(e.target.closest("#qz-next")){

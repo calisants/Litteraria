@@ -992,7 +992,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.58.0",d:"2026-10-23"};
+const APP_REL={v:"1.59.0",d:"2026-10-23"};
 
 
 const RAW={
@@ -3921,8 +3921,8 @@ function openTrainMenu(){
     '<div class="seg" role="group" aria-label="Idioma do treino" style="margin-bottom:12px">'+Object.keys(LNAME).map(l=>'<button type="button" data-trainlang="'+l+'" aria-pressed="'+(l===S.lang)+'">'+LNAME[l]+"</button>").join("")+"</div>"+
     '<p class="help">Cada rodada tem 10 itens. Sem regra na tela: é para testar o que você já sabe. «Revisar palavras que errei» usa as palavras em que você errou mais do que acertou; cada acerto aqui as tira da lista.</p>'+
     Object.keys(L).map(t=>'<button type="button" class="btn wide" data-train="v|'+esc(t)+'" style="margin-bottom:8px">Verbos em '+esc(LNAME[S.lang])+": "+esc(L[t])+"</button>").join("")+
-    '<button type="button" class="btn wide primary" id="train-cycle" style="margin-bottom:8px">Ciclo da palavra: ver, ouvir, escrever, usar na frase ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
-    '<button type="button" class="btn wide" id="train-mem" style="margin-bottom:8px">Memória com as palavras em revisão (desenhos)</button>'+
+    '<button type="button" class="btn wide primary" id="train-cycle" style="margin-bottom:8px">Ciclo da palavra ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
+    '<button type="button" class="btn wide" id="train-mem" style="margin-bottom:8px">Memória das palavras em revisão</button>'+
     '<button type="button" class="btn wide" id="train-cards" style="margin-bottom:8px">Cartões de revisão: Fácil / Preciso rever ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
     '<button type="button" class="btn wide" data-train="r" style="margin-bottom:8px"'+(nw?"":" disabled")+'>Revisar palavras que errei ('+nw+")</button>"+
     '<button type="button" class="btn wide" data-train="w" style="margin-bottom:8px">Palavras: português → '+esc(LNAME[S.lang])+"</button>",false);
@@ -4270,12 +4270,24 @@ function pickGame(up){
   for(const a of lv)if(a.length)return alt(a)[0][0];
   return null;
 }
+/* Esquecer faz parte (pedido dela, 23/10/2026): palavras acertadas numa lição de vocabulário também voltam, bem espaçadas, para o Ciclo da palavra.
+   Até 6 por lição, só as acertadas ao menos uma vez e ainda fora da fila; primeira volta em 2 dias, no degrau 1 (depois 7, 14 e 30 dias). Os números são julgamento de Claude, não vêm de fonte. */
+function scheduleLearned(p){
+  if(!p||!p.cat||!p.part)return;
+  const sk=S.sk[S.lang]||{};let n=0;
+  wordsOf(p).forEach(e=>{
+    const k=e.w.toLowerCase(),key=S.lang+":v|"+k,a=sk[k];
+    if(n>=6||!a||a[0]<1||S.rvv[key]||Object.keys(S.rvv).length>=400)return;
+    S.rvv[key]=[rvDue(2),1,0];n++;
+  });
+}
 const SOLTOS=new Set(["memoria","citacao","trecho","regra","ouvir"]);
 const _mdone=markDone;
 markDone=function(){
   const t=P&&P.type;
   if(t&&t!=="revisao"&&t!=="treino"){
     if(GAME_T.indexOf(t)>=0){S.sq=0;S.lgt=t;}else S.sq=Math.min(99,S.sq+1);
+    if(["reco","completar","embaralhar","escreva","contexto"].indexOf(t)>=0)scheduleLearned(P);
   }
   _mdone();
 };
@@ -4379,14 +4391,16 @@ function startLesson(r){S.vol=r.vol;S.fGame="all";S.fTheme="all";save();startPag
     (S.cad||[]).filter(c=>c.l===S.lang).forEach(c=>add(c.w));
     const sk=S.sk[S.lang]||{};
     sh0(Object.keys(sk).filter(k=>sk[k][0]>=1)).forEach(add);
-    return out.length>=4?out:[];
+    if(out.length<4)return [];
+    sh0(Object.keys(m)).forEach(add); /* completa até 6 pares (grade 3×4) com outras palavras que têm desenho */
+    return out;
   };
   window.startMemRev=function(words){
     if(!words||words.length<4)return false;
     P={id:"memoria-rev",type:"memoria",n:0,langs:[S.lang],words:words,rev:true};
     go("game");
-    $("#g-title").textContent="Memória das palavras em revisão";
-    $("#g-sub").textContent=LNAME[S.lang]+" · palavras que você está revisando";
+    $("#g-title").textContent="Memória em revisão";
+    $("#g-sub").textContent=LNAME[S.lang]+" · suas palavras em revisão (e outras com desenho, se faltar)";
     ["#stage","#cstage","#sstage","#ostage","#lstage","#rstage","#gstage"].forEach(s=>{$(s).hidden=s!=="#gstage";});
     ["cross","search","connect","sentence","odd","listen","resp","gram"].forEach(d=>{$("#dock-"+d).hidden=true;});
     $("#g-list").hidden=true;$("#kb-toggle").hidden=true;$("#zoom-toggle").hidden=true;
@@ -4694,9 +4708,9 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     const R=BOOKREAD[b.id];if(!R)return;
     R.forEach((r,k)=>VOLUME3.pages.push({id:"leitura-"+b.id+"-"+(k+1),type:"leitura",n:200+VOLUME3.pages.length,rd:b.id,k:k+1,themes:["livro-"+b.id],langs:[b.lang],sub:b.name,meta:"Trecho de «"+b.name+"» · "+(k+1)+" de "+R.length}));
   });
-  GAMENAME.citacao="Citação";GAMENAME.qualivro="De qual livro?";GAMENAME.leitura="Leitura";
-  ["citacao","qualivro","leitura"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
-  GAMEFN.citacao=startCit;GAMEFN.qualivro=startQual;GAMEFN.leitura=startLeitura;
+  GAMENAME.citacao="Citação";GAMENAME.leitura="Leitura";
+  ["citacao","leitura"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
+  GAMEFN.citacao=startCit;GAMEFN.leitura=startLeitura;
 
   /* ---- Complete a citação ---- */
   const STOP={
@@ -4719,7 +4733,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     return{p:p,shown:shown,ans:cap(ans.toLowerCase(),ans),opts:all};
   }
   let qz=null;window.quizState=()=>qz;
-  RESUME.reg(["citacao","qualivro"],{
+  RESUME.reg(["citacao"],{
     get(){return qz&&qz.qs&&qz.i<qz.qs.length?{kind:qz.kind,qs:qz.qs,i:qz.i,score:qz.score,sel:qz.sel}:null;},
     set(st){
       if(!st.qs||st.kind!==qz.kind||!st.qs.length)return;
@@ -4741,38 +4755,27 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     const qs=withRev(P.qs).map(id=>cloze(phById[id])).filter(Boolean);
     qz={kind:"cit",qs:qs,i:0,score:0,sel:null};renderQ();
   }
-  function startQual(){
-    fitFn=null;
-    const opts=BOOKS.filter(b=>b.lang===S.lang);
-    const qs=withRev(P.qs).map(id=>{const p=phById[id];return{p:p,opts:shufS(opts.map(b=>b.id),"ql|"+p.id)};});
-    qz={kind:"qual",qs:qs,i:0,score:0,sel:null};renderQ();
-  }
   function renderQ(){
     const q=qz.qs[qz.i],p=q.p,ans=qz.sel!==null;
-    let h='<p class="ocount">'+(qz.kind==="cit"?"Citação ":"Frase ")+(qz.i+1)+" de "+qz.qs.length+" · acertos: "+qz.score+"</p>";
-    if(qz.kind==="cit"){
-      h+=(q.hint||ans?'<p class="prompt"><small>Tradução (dica)</small>'+esc(p.pt)+'</p>':'')+'<p class="qz-s">'+esc(q.shown)+'</p><p class="help" style="text-align:center">Qual palavra completa a frase do livro «'+esc(BK[p.book].name)+"»?</p>";
-      h+='<div class="opts">'+q.opts.map((w,i)=>'<button type="button" class="opt'+(ans?(w===q.ans?" right":(qz.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(w)+"</button>").join("")+"</div>";
-    }else{
-      h+='<p class="prompt"><small>De qual livro é esta frase?</small>'+esc(p.s)+(ans?" "+speakBtn(p.s):"")+'</p>'+(q.hint||ans?'<p class="help" style="text-align:center">Tradução (dica): '+esc(p.pt)+"</p>":"");
-      h+='<div class="opts">'+q.opts.map((id,i)=>'<button type="button" class="opt'+(ans?(id===p.book?" right":(qz.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(BK[id].name)+"</button>").join("")+"</div>";
-    }
+    let h='<p class="ocount">Citação '+(qz.i+1)+" de "+qz.qs.length+" · acertos: "+qz.score+"</p>";
+    h+=(q.hint||ans?'<p class="prompt"><small>Tradução (dica)</small>'+esc(p.pt)+'</p>':'')+'<p class="qz-s">'+esc(q.shown)+'</p><p class="help" style="text-align:center">Qual palavra completa a frase do livro «'+esc(BK[p.book].name)+"»?</p>";
+    h+='<div class="opts">'+q.opts.map((w,i)=>'<button type="button" class="opt'+(ans?(w===q.ans?" right":(qz.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(w)+"</button>").join("")+"</div>";
     if(!ans&&!q.hint)h+='<div class="row"><button type="button" class="btn" id="qz-hint">Dica: ver a tradução</button></div>';
     if(ans){
-      const ok=qz.kind==="cit"?q.opts[qz.sel]===q.ans:q.opts[qz.sel]===p.book;
-      h+='<p class="note"><b>'+(ok?"Certo!":(qz.kind==="cit"?"Era «"+esc(q.ans)+"».":"Era «"+esc(BK[p.book].name)+"».")).replace(/«([^»]*)»/g,"<b>$1</b>")+"</b></p>";
+      const ok=q.opts[qz.sel]===q.ans;
+      h+='<p class="note"><b>'+(ok?"Certo!":"Era «"+esc(q.ans)+"».").replace(/«([^»]*)»/g,"<b>$1</b>")+"</b></p>";
       h+='<div class="heard">'+speakBtn(p.s)+"<span>"+esc(p.s)+'</span></div><p class="note"><b>Nota:</b> '+hl(p.note)+'</p><p class="note"><small>Frase copiada do livro «'+esc(BK[p.book].name)+"». Tradução e nota: escritas por Claude, sem fonte conferida.</small></p>"+favBtn(p.id)+
         '<div class="row"><button type="button" class="btn primary" id="qz-next">'+(qz.i===qz.qs.length-1?"Ver resultado":"Próxima")+"</button></div>";
     }
     $("#gstage").innerHTML=h;
   }
   $("#gstage").addEventListener("click",e=>{
-    if(!P||(P.type!=="citacao"&&P.type!=="qualivro")||!qz)return;
+    if(!P||P.type!=="citacao"||!qz)return;
     if(e.target.closest("#qz-hint")&&qz.sel===null){qz.qs[qz.i].hint=true;renderQ();return;}
     const o=e.target.closest(".opt");
     if(o&&qz.sel===null){
       qz.sel=+o.dataset.o;const q=qz.qs[qz.i];
-      const ok=qz.kind==="cit"?q.opts[qz.sel]===q.ans:q.opts[qz.sel]===q.p.book;
+      const ok=q.opts[qz.sel]===q.ans;
       if(ok&&!q.hint)qz.score++;qrvGrade(q.p.id,ok&&!q.hint);sfx(ok?"ok":"bad");renderQ();return;
     }
     if(e.target.closest("#qz-next")){
@@ -5023,20 +5026,17 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
 })();
 
 /* ===== Jogos de literatura (v1.39) =====
-   Quem escreveu? · Ordene o trecho · Ordem dos capítulos · O que a frase quer dizer? + caça-palavras e cruzadas com as palavras de cada livro.
-   Nenhum mostra tradução antes da resposta (só com «Dica»). Sem áudio. Páginas no Volume 3 · Jogos, no idioma do livro.
-   Autores: conferidos em buscas na web em 21/10/2026 (páginas do Projeto Gutenberg, de editoras e de enciclopédias); só o nome, sem texto copiado. */
+   Ordene o trecho · Qual o sentido? · Ouça e escolha (com áudio) + caça-palavras e cruzadas com as palavras de cada livro.
+   (Em 23/10/2026 saíram «Quem escreveu?» e «Ordem dos capítulos»: não treinavam o idioma.) Páginas no Volume 3 · Jogos, no idioma do livro. */
 (function(){
-  const AUT={pp:"Antoine de Saint-Exupéry",verne:"Jules Verne",pinocchio:"Carlo Collodi",alice:"Lewis Carroll",peter:"Beatrix Potter",wind:"Kenneth Grahame",sherlock:"Arthur Conan Doyle",frank:"Mary Shelley",musq:"Alexandre Dumas",principe:"Nicolau Maquiavel",dante:"Dante Alighieri",perrault:"Charles Perrault",grimm:"Irmãos Grimm",racconti:"Carlo Collodi"};
-  window.LITAUT=AUT;
   const cnt=t=>VOLUME.pages.filter(p=>p.type===t).length;
   VOLUME.types=VOLUME.types.concat([
     ["trecho","Ordene o trecho do livro","Ordene o trecho"],
     ["regra","O que a frase quer dizer?","Qual o sentido?"],
     ["ouvir","Ouça a frase e escolha o sentido","Ouça e escolha (com áudio)"]]);
-  GAMENAME.autor="Quem escreveu?";GAMENAME.trecho="Ordene o trecho";GAMENAME.capitulos="Capítulos";GAMENAME.regra="Qual o sentido?";GAMENAME.ouvir="Ouça e escolha (com áudio)";
-  ["autor","trecho","capitulos","regra","ouvir"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
-  GAMEFN.autor=startQuiz2;GAMEFN.regra=startQuiz2;GAMEFN.ouvir=startQuiz2;GAMEFN.trecho=startOrd;GAMEFN.capitulos=startOrd;
+  GAMENAME.trecho="Ordene o trecho";GAMENAME.regra="Qual o sentido?";GAMENAME.ouvir="Ouça e escolha (com áudio)";
+  ["trecho","regra","ouvir"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
+  GAMEFN.regra=startQuiz2;GAMEFN.ouvir=startQuiz2;GAMEFN.trecho=startOrd;
 
   /* ---- páginas ---- */
   ["fr","it","en"].forEach(lang=>{
@@ -5059,24 +5059,12 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   const phMap={};["fr","it","en"].forEach(l=>window.phLangList(l).forEach(p=>{phMap[p.id]=p;}));
   const mask=t=>t.replace(/«[^»]*»/g,"«…»");
 
-  /* ---- Quem escreveu? / O que a frase quer dizer? ---- */
+  /* ---- Qual o sentido? / Ouça e escolha ---- */
   let st=null;
   function startQuiz2(){
     seedNow();fitFn=null;
     let qs=[];
-    if(P.type==="autor"){
-      const bs=BOOKS.filter(b=>b.lang===S.lang),allA=[...new Set(BOOKS.map(b=>AUT[b.id]))],seen=new Set();
-      shuffle(bs).forEach(b=>{
-        if(P.kind==="a2b"){
-          if(seen.has(AUT[b.id]))return;seen.add(AUT[b.id]);
-          const wrong=shuffle(BOOKS.filter(x=>AUT[x.id]!==AUT[b.id])).slice(0,3).map(x=>x.name);
-          qs.push({q:"Qual destes livros foi escrito por "+AUT[b.id]+"?",ans:b.name,opts:shuffle([b.name].concat(wrong)),bk:b.id});
-        }else{
-          const wrong=shuffle(allA.filter(a=>a!==AUT[b.id])).slice(0,3);
-          qs.push({q:"Quem escreveu «"+b.name+"»?",ans:AUT[b.id],opts:shuffle([AUT[b.id]].concat(wrong)),bk:b.id});
-        }
-      });
-    }else{
+    {
       const all=window.phLangList(S.lang);
       shuffle(P.qs.map(id=>phMap[id]).filter(Boolean)).forEach(p=>{
         /* interpretações: a tradução da frase e a de 3 outras frases do mesmo idioma (pedido dela, 23/10/2026) */
@@ -5105,23 +5093,16 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
         const ok=q.opts[st.sel].id===q.ans;
         h+='<p class="note"><b>'+(ok?"Certo!":"O sentido certo era: "+esc(q.p.pt))+"</b><br>Estrutura da frase: "+hl(q.p.note)+'</p><div class="heard">'+speakBtn(q.p.s)+"<span>"+esc(q.p.s)+'</span></div><p class="help">Tradução e nota: escritas por Claude, sem fonte conferida.</p>';
       }
-    }else{
-      h+='<p class="prompt">'+esc(q.q)+"</p>";
-      h+='<div class="lopts">'+q.opts.map((o,i)=>'<button type="button" class="lopt'+(ans?(o===q.ans?" right":(st.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(o)+"</button>").join("")+"</div>";
-      if(ans){
-        const b=BOOKS.find(x=>x.id===q.bk),ok=q.opts[st.sel]===q.ans;
-        h+='<p class="note"><b>'+(ok?"Certo!":"Não foi essa.")+"</b> «"+esc(b.name)+"» é de "+esc(AUT[b.id])+".</p>";
-      }
     }
     if(ans)h+='<div class="row"><button type="button" class="btn primary" id="lit-next">'+(st.i===st.qs.length-1?"Ver resultado":"Próxima")+"</button></div>";
     $("#gstage").innerHTML=h;
   }
   $("#gstage").addEventListener("click",ev=>{
-    if(!P||!st||(P.type!=="autor"&&P.type!=="regra"&&P.type!=="ouvir"))return;
+    if(!P||!st||(P.type!=="regra"&&P.type!=="ouvir"))return;
     const o=ev.target.closest(".lopt");
     if(o&&st.sel===null){
       st.sel=+o.dataset.o;const q=st.qs[st.i];
-      const ok=st.kind!=="autor"?q.opts[st.sel].id===q.ans:q.opts[st.sel]===q.ans;
+      const ok=q.opts[st.sel].id===q.ans;
       if(ok)st.score++;litRec(ok);sfx(ok?"ok":"bad");renderQuiz2();return;
     }
     if(ev.target.closest("#ouv-play")){const q=st.qs[st.i];if(q&&q.p)speak(q.p.s);return;}
@@ -5129,12 +5110,11 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     if(ev.target.closest("#lit-next")){
       if(st.i<st.qs.length-1){st.i++;st.sel=null;st.show=false;renderQuiz2();return;}
       markDone();sfx("done");
-      const rows=st.kind==="autor"?st.qs.map(q=>{const b=BOOKS.find(x=>x.id===q.bk);return '<div class="srow"><span class="w">'+esc(b.name)+'</span><span class="pt">'+esc(AUT[b.id])+"</span></div>";}).join("")+'<p class="help">Autores conferidos em buscas na web em 21/10/2026 (Projeto Gutenberg, editoras e enciclopédias).</p>'
-        :st.qs.map(q=>'<div class="srow"><span class="pt"><b>'+esc(q.p.s)+"</b><br><small>"+esc(q.p.pt)+"</small></span>"+speakBtn(q.p.s)+"</div>").join("");
+      const rows=st.qs.map(q=>'<div class="srow"><span class="pt"><b>'+esc(q.p.s)+"</b><br><small>"+esc(q.p.pt)+"</small></span>"+speakBtn(q.p.s)+"</div>").join("");
       openSheet("Página concluída: "+st.score+" de "+st.qs.length+" certas",rows,true);
     }
   });
-  RESUME.reg(["autor","regra","ouvir"],{
+  RESUME.reg(["regra","ouvir"],{
     get(){return st&&st.kind===P.type&&st.i<st.qs.length?{qs:st.qs,i:st.i,score:st.score,sel:st.sel}:null;},
     set(s){
       if(!s.qs||!s.qs.length)return;
@@ -5143,25 +5123,15 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     }
   });
 
-  /* ---- Ordene o trecho / Ordem dos capítulos (mesmo motor) ---- */
+  /* ---- Ordene o trecho ---- */
   let od2=null;
-  const cleanT=t=>t.replace(/^(CHAPTER|Chapter|Capítulo|Cap\.)\s+[IVXLC\d]+\.?\s*[·.\-–—]?\s*/,"").trim();
   function startOrd(){
     seedNow();fitFn=null;
-    let items=[],intro="",title="",foot=null;
-    if(P.type==="trecho"){
-      const r=BOOKREAD[P.bk][P.k];
-      items=r.segs.map((g,i)=>({id:i,t:g.s,pt:g.pt}));
-      intro="Estas frases estão fora de ordem. Toque nelas na ordem em que aparecem no livro."+(r.ctx?" Contexto: "+r.ctx:"");
-      title="Trecho na ordem certa";
-    }else{
-      const info=BOOKTXT_INFO[P.bk].chs.filter(c=>cleanT(c.t)!==c.t);
-      const L=info.length,N=5,pick=[];
-      for(let i=0;i<N;i++){const ix=P.j===1?Math.round(i*(L-1)/(N-1)):Math.floor((i+.5)*L/N);if(pick.indexOf(ix)<0)pick.push(ix);}
-      items=pick.map(ix=>({id:info[ix].n,t:cleanT(info[ix].t),pt:cleanT(info[ix].tp)}));
-      intro="Estes são capítulos de «"+BOOKS.find(b=>b.id===P.bk).name+"». Toque neles na ordem em que aparecem no livro. Os números foram escondidos.";
-      title="Capítulos na ordem certa";
-    }
+    let items=[],intro="",title="";
+    const r=BOOKREAD[P.bk][P.k];
+    items=r.segs.map((g,i)=>({id:i,t:g.s,pt:g.pt}));
+    intro="Estas frases estão fora de ordem. Toque nelas na ordem em que aparecem no livro."+(r.ctx?" Contexto: "+r.ctx:"");
+    title="Trecho na ordem certa";
     const ord=items.slice().sort((a,b)=>a.id-b.id).map(x=>x.id);
     let bank=shuffle(items.map(x=>x.id));
     if(bank.length>1&&bank.every((v,k)=>v===ord[k]))bank.reverse();
@@ -5180,7 +5150,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     $("#gstage").innerHTML=h;
   }
   $("#gstage").addEventListener("click",ev=>{
-    if(!P||!od2||(P.type!=="trecho"&&P.type!=="capitulos")||od2.done)return;
+    if(!P||!od2||P.type!=="trecho"||od2.done)return;
     const o=od2,w=ev.target.closest("[data-w]"),u=ev.target.closest("[data-un]");
     if(w){o.put.push(+w.dataset.w);o.msg="";renderOrd();return;}
     if(u){const id=+u.dataset.un;o.put=o.put.filter(x=>x!==id);o.msg="";renderOrd();return;}
@@ -5199,7 +5169,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
       }
     }
   });
-  RESUME.reg(["trecho","capitulos"],{
+  RESUME.reg(["trecho"],{
     get(){return od2&&!od2.done?{bank:od2.bank,put:od2.put,hint:od2.hint,tries:od2.tries}:null;},
     set(s){
       const ids=od2.items.map(x=>x.id).sort((a,b)=>a-b).join();
@@ -6264,13 +6234,6 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
       '<div class="row"><button type="button" class="btn primary" data-fr="poke" data-u="'+u+'" aria-label="Cutucar '+nn+'">👋 Cutucar</button>'+(f.ch?"":'<button type="button" class="btn" data-fr="chp" data-u="'+u+'" aria-label="Desafiar '+nn+' na semana">🏁 Desafiar</button>')+
       '<details class="frmore"><summary class="btn">Mais</summary><div class="row">'+(f.ch&&f.ch.st==="on"?'<button type="button" class="btn" data-fr="chx" data-u="'+u+'">Encerrar desafio</button>':"")+'<button type="button" class="btn" data-fr="del" data-u="'+u+'">Remover</button><button type="button" class="btn" data-fr="blk" data-u="'+u+'">Bloquear</button><button type="button" class="btn" data-fr="rep" data-u="'+u+'">Denunciar</button></div></details></div></article>';
   }
-  function statsLine(f){
-    const a=[];
-    if(f.streak!=null)a.push(f.streak+(f.streak===1?" dia":" dias")+" seguidos");
-    if(f.words!=null)a.push(f.words+" palavras acertadas");
-    if(f.week!=null)a.push(f.week+" de 7 dias estudados");
-    return a.length?a.join(" · "):"não compartilha números";
-  }
   /* convite por link: ?amigo=CODIGO (guardado até a pessoa entrar/ativar; nunca envia sozinho) */
   const IK="mots-parole-invite";
   let inv="";
@@ -6410,6 +6373,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.59.0",d:"2026-10-23",t:["Esquecer faz parte: as palavras que você acertou numa lição de vocabulário também voltam para revisão, bem espaçadas (primeiro em 2 dias, depois 7, 14 e 30), no Ciclo da palavra. Até 6 palavras por lição","Jogo da memória das palavras em revisão: sempre 6 pares (completa com outras palavras que têm desenho) e título mais curto","Treino: o botão do Ciclo da palavra ficou mais curto","Limpeza interna: código e arquivos que não eram mais usados foram removidos, e os textos de ajuda foram atualizados"]},
 {v:"1.58.0",d:"2026-10-23",t:["«Primeiro livrinho» cedo na trilha: depois dos primeiros temas entram as primeiras palavras de um livro curto (Peter Rabbit no inglês; Contos de Perrault no francês; Contos de Collodi no italiano) e uma página de frases do livro; no inglês, também a primeira Leitura","Novo: jogo da memória com as palavras que você está revisando (palavra × desenho). Aparece no fim do Ciclo da palavra e em Treino","As páginas dos livros continuam também no fim da trilha e em Livros","Corrigido: o aviso «O app foi atualizado» podia sumir sozinho; agora ele fica na tela até você tocar num botão (ou até 4 segundos depois de aparecer, para não voltar na próxima abertura)"]},
 {v:"1.57.0",d:"2026-10-23",t:["Novo: «Ciclo da palavra». Uma palavra que você errou volta em formas diferentes: ver (com desenho), ouvir, escrever e usar na frase","Se acertar, ela volta mais adiante e em outra forma; se errar, volta amanhã, também em outra forma","Fica no «Hoje» (revisão) e em Treino → «Ciclo da palavra». «Ouvir» tem o botão «Mostrar a palavra» para quem está sem som"]},
 {v:"1.56.0",d:"2026-10-23",t:["Jogos de literatura refeitos para treinar o idioma: saíram «Quem escreveu?», «De qual livro é?» e «Ordem dos capítulos» (eram perguntas sobre os livros, não sobre a língua)","Novo: «Ouça e escolha (com áudio)»: você ouve uma frase de um livro e escolhe o que ela quer dizer. Sem áudio, há o botão «Mostrar a frase»","Continuam: «Complete a citação», «Ordene o trecho» e «Qual o sentido?»"]},

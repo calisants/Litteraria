@@ -11,7 +11,7 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 
 ## Regras técnicas
 - Ao publicar, troque o número do cache em `sw.js` (mots-parole-vNN) e a linha de `src/VERSION` (versão e data mostradas no app). **Não mude `APP_VERSION` em `src/p3.js`** (v6), senão o progresso dela some.
-- Rodar antes de publicar (incl. `t20`, `t21`, `t22`): `python3 -I tests/gt.py`, `t10.py`, `t11.py`, `t13.py`, `t14.py`, `t15.py`, `t16.py`, `t17.py`, `t18.py` e `t19.py` (dentro de `src/`). O t11 agora roda pelo servidor local (como os outros) e deve terminar com `errs []`; qualquer erro é falha de verdade.
+- Rodar antes de publicar, **um teste de cada vez e sem editar `src/` nem rebuildar durante a rodada** (dois rodadores ao mesmo tempo ou edição no meio geram falhas falsas): `gt`, `t10`, `t11`, `t13` a `t31` (`python3 -I tests/<nome>.py`, dentro de `src/`). O t11 agora roda pelo servidor local (como os outros) e deve terminar com `errs []`; qualquer erro é falha de verdade.
 - Conteúdo de gramática: `src/tools/` (geradores) e `src/content5.js` (gerado por `tools/mk_content5.py`). As correções de rótulo e de texto dos cartões ficam em `tools/gram_rules3.py` (dicionário `OV`).
 - Commits terminam com os trailers de atribuição pedidos pela sessão.
 
@@ -29,7 +29,7 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Ordem didática das páginas de gramática já aplicada (está no `LEIA-ME.md`).
 - Sem exercício ainda: as preposições soltas do inglês (above, among, during etc.) e «easily confused words», cujos PDFs do Cambridge ela já enviou, ainda não viraram páginas.
 - Sem fonte conferida: «a university» e instrumentos com «the» (inglês), «in Brazil» / «in the kitchen» (inglês) e a divisão completa em «três grupos» do francês (o «-issant» e o «-ir = 2º grupo» foram conferidos no Tex's, vpp1 e vir1, em 22/10/2026). O Cambridge não abre pelo leitor e os PDFs dela sumiram do ambiente: precisa que ela reenvie os do «above/over…» e «easily confused words».
-- Fora de escopo por decisão dela: amigos, perfil compartilhado e servidor.
+- (Antigo «fora de escopo: amigos, perfil compartilhado e servidor» foi substituído em 21/10/2026: conta Supabase, Amigos, cutucar e desafios existem; ver as seções v1.41–v1.55.)
 - Reconhecimento de fala para pronúncia: não começado; só funciona em Chrome/Android e precisa da confirmação dela.
 
 ## Lição em 3 passos e destaque (18/10/2026)
@@ -253,3 +253,10 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - «Primeiro livrinho» (`EARLY`/`earlyBook` em `p13.js`): depois do 2º grupo de temas a trilha inclui, por idioma, 3 páginas «Conheça» + 1 «Reconheça» do 1º tema de um livro curto (en peter, fr perrault, it racconti) e uma página de frases (`frases-livro-peter-1` + `leitura-peter-1`; `frases-livro-verne-1`; `frases-livro-pinocchio-1`), com `need` 25/35 palavras. `lessonPath` agora remove páginas repetidas (fica a 1ª ocorrência). Fr/it não têm Leitura de livro curto (Perrault/Collodi só têm o leitor de capítulos).
 - Memória com palavras em revisão (`memRevWords`, `startMemRev` em `memoria.js`): página virtual `memoria-rev` (`P.rev`, não conta como lição nem entra no salvamento de retomada); botão no fim do Ciclo (`#cic-mem`) e em Treino (`#train-mem`). Palavras: do ciclo, vencidas, em `S.rvv`, fracas, do caderno e, para completar 4+, já acertadas, só as que têm desenho. Teste: `tests/t31.py`.
 - Aviso «O app foi atualizado» (v1.58.0): marcava a versão como vista ao mostrar, então uma recarga logo ao abrir (ou o navegador descartando a página) fazia o aviso sumir sem toque. Agora marca depois de 4 s na tela ou ao tocar nos botões, e um `MutationObserver` o recoloca se algo o tirar sozinho (até 5 vezes). `t27.py`. `t18.py` espera o «primeiro livrinho» antes dos livros no fim da trilha.
+
+## v1.59.0 (23/10/2026): revisão geral feita de madrugada (ela dormiu e deu permissão para revisar e limpar)
+- **Esquecer faz parte**: `scheduleLearned` (`p13.js`, chamado em `markDone` para páginas `reco/completar/embaralhar/escreva/contexto`): até 6 palavras acertadas (`S.sk` ≥1 acerto) e fora de `S.rvv` entram na fila em `[rvDue(2), degrau 1, 0]`. Antes só o que ela errava voltava. Números são julgamento de Claude. Teste: `tests/t32.py`.
+- Memória em revisão: `memRevWords` completa até 6 pares com outras palavras que têm desenho (grade 3×4 sem carta sobrando); título «Memória em revisão».
+- Limpeza: removidos o código morto de «Quem escreveu?», «Ordem dos capítulos» e «De qual livro?» (`jogoslit.js`, `livros2.js`), `statsLine`, a roda `simplemma` (18 MB; `pip install simplemma` funciona), `gram_items.before2.json`, `verbecc.log` e as capturas de tela dos testes (agora ignoradas pelo git: `src/*.png`). `S.done` de quem já tinha concluído páginas desses jogos continua guardado (inofensivo).
+- Documentação corrigida: `LEIA-ME.md` (mandava trocar `APP_VERSION` a cada versão — **isso apagaria o progresso**; agora diz o contrário e descreve GitHub Pages + `litteraria.com.br`), `src/README.md` (lista de testes t19–t32), `nuvem/LEIA-ME.md`, descrição do `manifest.webmanifest`, e «fora de escopo: amigos/servidor» (antigo) no próprio CLAUDE.md.
+- Bateria de testes agora inclui `t30`, `t31` e `t32` (ver `src/README.md`).

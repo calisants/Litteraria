@@ -4,38 +4,31 @@ Esta pasta é o app completo. Ele precisa ficar em um endereço https para o cel
 
 ## Arquivos
 
-- index.html: o app, em francês, italiano e inglês, em 5 volumes na ordem de aprendizado: 1 Pronúncia (alfabeto, sons, sons difíceis), 2 Vocabulário (reconheça, ouça e entenda, complete, embaralhe, escreva, ditado; os de escrita não precisam de áudio), 3 Jogos (intruso, conecte, caça-palavras, cruzadas), 4 Gramática, 5 Conversação (frases, falas, respostas). Versão e data: arquivo `src/VERSION`.
-- manifest.webmanifest: nome, cores e ícones do app
-- sw.js: guarda o app no aparelho para funcionar sem internet
-- icon-192.png, icon-512.png, icon-maskable-512.png: ícones
+- `index.html`: o app inteiro (francês, italiano e inglês). É **gerado** a partir de `src/` (`cd src && python3 build.py`); não edite à mão. Os 5 volumes, na ordem de aprendizado: 1 Pronúncia, 2 Vocabulário, 3 Jogos, 4 Gramática, 5 Conversação, mais Livros (frases, leitura e capítulos completos de livros de domínio público), Treino, Dicionário, Estatísticas, Perfil e Amigos. Versão e data: `src/VERSION` (aparece em Ajustes → Sobre e ajuda).
+- `manifest.webmanifest`: nome, cores e ícones do app.
+- `sw.js`: guarda o app no aparelho para funcionar sem internet.
+- `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`: ícones.
+- `books/`: texto completo dos livros, carregado só quando a pessoa abre o capítulo. `fonts/`: fontes locais.
+- `nuvem/` (conta, amigos, avisos no Supabase) e `push/` (lembretes com o app fechado): têm o próprio `LEIA-ME.md`.
+- `CNAME`: o endereço do app (`litteraria.com.br`) no GitHub Pages.
 
-Mantenha todos juntos na mesma pasta.
+Mantenha tudo na mesma pasta.
 
-## Passo 1: hospedar (grátis)
+## Onde está publicado
 
-### Opção A: Netlify (mais rápida)
-1. Descompacte o zip no computador.
-2. Entre em app.netlify.com/drop.
-3. Arraste a pasta inteira para a página.
-4. Você recebe um endereço https. Pode ser que o site peça login gratuito para continuar no ar.
+GitHub Pages, repositório `calisants/motsparole`, branch `main`, pasta raiz, com o domínio `litteraria.com.br` (Registro.br; DNS: 4 registros A do GitHub Pages e CNAME `www`). Cada commit na `main` publica sozinho. O endereço antigo `calisants.github.io/motsparole` redireciona para o domínio.
 
-### Opção B: GitHub Pages (fica no ar sem prazo)
-1. Crie uma conta gratuita no GitHub e um repositório novo, público.
-2. Envie todos os arquivos desta pasta para o repositório (botão Add file, depois Upload files).
-3. Em Settings, depois Pages, escolha a branch main e a pasta root, e salve.
-4. Depois de alguns minutos o endereço aparece nessa mesma tela.
+## Instalar no celular
 
-## Passo 2: instalar no celular
-
-- iPhone (Safari): abra o endereço, toque em Compartilhar e depois em Adicionar à Tela de Início.
+- iPhone (Safari): abra **litteraria.com.br**, toque em Compartilhar e depois em Adicionar à Tela de Início. Só assim o app abre sem a barra do Safari.
 - Android (Chrome): abra o endereço, toque nos três pontinhos e depois em Instalar app (ou Adicionar à tela inicial).
 - Computador (Chrome ou Edge): ícone de instalar na barra de endereço.
 
-Abra o app uma vez com internet. Depois disso ele funciona offline.
+Abra o app uma vez com internet. Depois disso ele funciona offline. O armazenamento do aparelho é por endereço: ao mudar de endereço, o progresso só vem junto por backup (Ajustes → Dados) ou pela conta na nuvem (Perfil).
 
 ## Atualizar depois
 
-Quando houver uma versão nova do index.html, substitua o arquivo no mesmo lugar e troque o número em CACHE no começo do sw.js (de v6 para v7) e a constante APP_VERSION no index.html (de "v6" para "v7"). Os dois precisam ter o mesmo número: o sw.js usa mots-parole-vN e o LocalStorage usa mots-parole-vN. Assim os aparelhos baixam a versão nova. (Ao mudar a chave do LocalStorage, as marcas de concluído começam do zero; se quiser mantê-las, não mude APP_VERSION.)
+Edite os arquivos em `src/`, rode `python3 build.py` e os testes (lista em `src/README.md`), troque o número do cache em `sw.js` (`mots-parole-vNN`) e a linha de `src/VERSION`, acrescente a entrada em `src/novidades.js` e publique. **Não mude `APP_VERSION` em `src/p3.js`** (`v6`): ele é a chave do LocalStorage, e mudar apaga o progresso de quem já usa o app. O número do cache em `sw.js` pode mudar à vontade.
 
 ## De onde vêm as pronúncias
 
@@ -46,7 +39,7 @@ Quando houver uma versão nova do index.html, substitua o arquivo no mesmo lugar
 - Vocabulário do francês: conferido contra o dicionário do Kaikki (Wiktionary em dados abertos). As 482 palavras têm entrada, os gêneros dos artigos le/la batem com o dicionário (as palavras com dois gêneros, como livre, mari e vague, batem no sentido usado) e as traduções foram lidas contra as definições, sem erros. Os artigos com l' e les não têm como ser conferidos assim. Vocabulário do inglês: ainda só conferido quanto à existência da palavra; falta o dicionário inglês do Kaikki.
 - A voz do botão de som vem do próprio aparelho (Web Speech) e varia entre celulares.
 
-## De onde vem a gramática (Volume 3)
+## De onde vem a gramática (Volume 4)
 
 Cada página tem um cartão de regra e 6 perguntas. O cartão mostra a fonte de cada regra, com um destes níveis:
 
@@ -59,19 +52,10 @@ Cada página tem um cartão de regra e 6 perguntas. O cartão mostra a fonte de 
 
 ## Observações
 
-- As fontes do título vêm do Google Fonts. Se o aparelho nunca abriu o app com internet, usa uma fonte parecida do sistema.
-- Só é guardado o que está concluído (por idioma e página) e os ajustes (idioma, layout, claro/escuro, cor, som, teclado), o perfil do jogador (nome, frase e logo) e as estatísticas (partidas concluídas, erros e palavras dominadas). Nenhum progresso parcial é salvo, como num caderno de papel.
-- Os sons são gerados pelo próprio app (Web Audio) e podem ser desligados em Ajustes.
-
-
-## Novidades desta versão
-- Hoje: botão na tela inicial que traz primeiro a revisão e depois a próxima página nova. Mostra a meta do dia (10, 20 ou 40 respostas, em Ajustes), sem sequência nem punição.
-- Revisão: os erros de primeira, de gramática e de vocabulário, voltam em 1, 3, 7 e 14 dias (acertar avança, errar volta ao início). Os erros de palavras vêm dos jogos e do Treino.
-- Treino: rodadas de 10 itens novos e digitados, de verbos (6 tempos em francês e italiano; 3 em inglês) ou de palavras (português para o idioma). As formas verbais vêm do verbecc (FR/IT) e do lemminflect (EN).
-- Digitar a resposta: também nas páginas de verbos (presente, passado, futuro, condicional, subjuntivo e reflexivos). Aceita maiúsculas/minúsculas e avisa quando só os acentos estão errados.
-- Erro explicado: nas conjugações de francês e italiano, a alternativa errada que você escolheu diz que forma ela é (pessoa e tempo), segundo o verbecc.
-- Sinônimos e antônimos: 2 páginas por idioma, com alternativas-armadilha (antônimo numa pergunta de sinônimo e o inverso), todas conferidas nas listas do Kaikki (FR/IT) e do WordNet 3.0 (EN).
-- Backup: Ajustes > Backup do progresso baixa um arquivo e restaura por ele.
+- As fontes (Atkinson Hyperlegible e Newsreader) ficam em `fonts/` e funcionam sem internet.
+- O app guarda no aparelho: páginas concluídas por idioma, ajustes (idioma, estilo visual, claro/escuro, som, teclado, lembretes), perfil (nome, frase, ícone, livro favorito), estatísticas, revisões, caderno de palavras e álbum de citações. Se uma lição ou jogo for interrompido, o app tenta voltar a ele quando é reaberto em até 3 horas. Com conta na nuvem (opcional) o mesmo progresso fica guardado no Supabase. O texto completo está em Ajustes → Sobre e ajuda → Política de Privacidade.
+- Os sons de aviso são gerados pelo próprio app (Web Audio) e podem ser desligados em Ajustes. A voz do botão de áudio vem do aparelho.
+- Novidades de cada versão: Ajustes → Sobre e ajuda → «Novidades desta versão» (arquivo `src/novidades.js`).
 
 ## Conferências desta rodada
 - Vocabulário inglês: 470 das 483 palavras estão no WordNet 3.0; as 13 restantes são palavras funcionais, plurais e expressões (see you, excuse me, cheers, when, how, how much, what, which, where, because, parents, trousers, boots). O significado de cada uma foi comparado com a glosa do WordNet, lida por Claude, e não apareceu divergência. A tradução em si não vem de dicionário bilíngue.

@@ -112,8 +112,8 @@ function openTrainMenu(){
     '<div class="seg" role="group" aria-label="Idioma do treino" style="margin-bottom:12px">'+Object.keys(LNAME).map(l=>'<button type="button" data-trainlang="'+l+'" aria-pressed="'+(l===S.lang)+'">'+LNAME[l]+"</button>").join("")+"</div>"+
     '<p class="help">Cada rodada tem 10 itens. Sem regra na tela: é para testar o que você já sabe. «Revisar palavras que errei» usa as palavras em que você errou mais do que acertou; cada acerto aqui as tira da lista.</p>'+
     Object.keys(L).map(t=>'<button type="button" class="btn wide" data-train="v|'+esc(t)+'" style="margin-bottom:8px">Verbos em '+esc(LNAME[S.lang])+": "+esc(L[t])+"</button>").join("")+
-    '<button type="button" class="btn wide primary" id="train-cycle" style="margin-bottom:8px">Ciclo da palavra: ver, ouvir, escrever, usar na frase ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
-    '<button type="button" class="btn wide" id="train-mem" style="margin-bottom:8px">Memória com as palavras em revisão (desenhos)</button>'+
+    '<button type="button" class="btn wide primary" id="train-cycle" style="margin-bottom:8px">Ciclo da palavra ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
+    '<button type="button" class="btn wide" id="train-mem" style="margin-bottom:8px">Memória das palavras em revisão</button>'+
     '<button type="button" class="btn wide" id="train-cards" style="margin-bottom:8px">Cartões de revisão: Fácil / Preciso rever ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
     '<button type="button" class="btn wide" data-train="r" style="margin-bottom:8px"'+(nw?"":" disabled")+'>Revisar palavras que errei ('+nw+")</button>"+
     '<button type="button" class="btn wide" data-train="w" style="margin-bottom:8px">Palavras: português → '+esc(LNAME[S.lang])+"</button>",false);

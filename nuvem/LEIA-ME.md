@@ -9,7 +9,7 @@ O app guarda tudo no aparelho. Com a conta (opcional), uma cópia do progresso f
 4. **Authentication → Email Templates → Magic Link**: troque o corpo por algo como `<p>Seu código do Litteraria: <b>{{ .Token }}</b></p><p>Vale por 1 hora.</p>` (a variável `{{ .Token }}` é o código).
 5. **Envio de e-mail (obrigatório antes de abrir ao público)**: o envio embutido do Supabase só entrega para membros da sua equipe e a 2 mensagens por hora (docs: supabase.com/docs/guides/auth/auth-smtp). Em Authentication → SMTP Settings configure um provedor (os docs citam Resend, AWS SES, Postmark, SendGrid, ZeptoMail, Brevo). Normalmente exige um remetente verificado; um domínio próprio melhora a entrega.
 6. **Project Settings → API**: copie a «Project URL» e a chave pública (a chave «publishable», ou a antiga `anon`). Cole em `src/nuvemcfg.js` (`url`, `key`), rode `python3 build.py` e publique. A chave pública pode ficar no app; **nunca** use a `service_role`.
-7. Teste: Ajustes → Conta e nuvem.
+7. Teste: Perfil → Conta e backup na nuvem.
 
 ## Pausa por inatividade
 O plano gratuito pausa projetos após 1 semana sem atividade (supabase.com/pricing). O `push/send.py` faz uma consulta (`ping`) por dia às 12h UTC no GitHub Actions. Não conferi quais chamadas o Supabase conta como atividade; olhe o painel do projeto de vez em quando.
@@ -17,7 +17,7 @@ O plano gratuito pausa projetos após 1 semana sem atividade (supabase.com/prici
 ## Como funciona a sincronização
 - Salva a cada 20 s após uma mudança, ao voltar ao app e ao abrir. «Sincronizar agora» força.
 - O servidor carimba `updated_at`. O app só grava se o carimbo que ele conhece ainda é o atual; senão pergunta «usar o da nuvem» ou «usar o deste aparelho». Não há mistura automática.
-- Lembretes (`rm`) e cartão (`wd`) não viajam entre aparelhos.
+- Lembretes (`rm`) e `wd` (resto do antigo Cartão do dia) não viajam entre aparelhos.
 - Apagar conta: `delete_me()` remove o usuário; as linhas somem junto. O progresso local fica.
 
 ## Privacidade

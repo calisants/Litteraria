@@ -5,7 +5,7 @@ O `index.html` da raiz é **gerado** a partir desta pasta. Não edite o `index.h
 ## Como reconstruir
     cd src
     python3 build.py        # monta o app e atualiza ../index.html
-    python3 -I tests/gt.py ; python3 -I tests/t10.py ; python3 -I tests/t11.py ; python3 -I tests/t13.py ; python3 -I tests/t14.py ; python3 -I tests/t15.py ; python3 -I tests/t16.py ; python3 -I tests/t17.py ; python3 -I tests/t18.py
+    for t in gt t10 t11 t13 t14 t15 t16 t17 t18 t19 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t30 t31 t32; do python3 -I tests/$t.py || break; done   # um de cada vez; todos têm de passar antes de publicar
 
 ## O que é cada parte
 - `p1.html` (CSS) e `p2.html` (telas) · `p3.js` (estado, salvar/carregar) · `p4`–`p7.js` (jogos) · `p9.js` (motor de gramática) · `p10.js` (Hoje, revisão, Treino, backup, versão, envio de sugestões) · `p11.js` (exercícios de escrita do Vocabulário).
@@ -25,7 +25,7 @@ Os arquivos `gram_items*.json`, `bank.json` e `syn_*.json` já estão prontos aq
 Troque o número do cache em `../sw.js` (mots-parole-vNN) e a linha de `VERSION`. Não mude `APP_VERSION` em `p3.js`, senão o progresso some.
 
 ## Formulário de sugestões
-O app envia para um Google Forms. Em `p10.js`, preencha `FB_FORM` (`action` = URL do formulário terminando em `/formResponse`; `kind`, `text`, `info` = `entry.NNN` de cada pergunta). Já configurado (formulário «Mots & Parole · Sugestões e erros»). Se `action` ficar vazio, o envio fica desligado e só há "Copiar o texto". Formulário e planilha de respostas: pasta «motseparole» no Drive da Camila.
+O app envia para um Google Forms. Em `p10.js`, preencha `FB_FORM` (`action` = URL do formulário terminando em `/formResponse`; `kind`, `text`, `info` = `entry.NNN` de cada pergunta). Já configurado (formulário de sugestões e erros). Se `action` ficar vazio, o envio fica desligado e só há "Copiar o texto". Formulário e planilha de respostas: pasta «litteraria» no Drive da Camila.
 
 ## Dicionário e sílabas
 `p12.js` é o dicionário (tela «Dicionário» na página inicial). As sílabas ficam em `sil.js`, **gerado** por `tools/mk_syl.py` (usa `syl_fr.py`, `syl_en.py`, o arquivo Kaikki do italiano e os pacotes pip `pyphen` e `cmudict`; ver o topo do script para a fonte de cada idioma). Se mudar as palavras em `data.js`, rode o gerador de novo (o `t15.py` falha se faltar divisão).

@@ -78,12 +78,24 @@ function pickGame(up){
   for(const a of lv)if(a.length)return alt(a)[0][0];
   return null;
 }
+/* Esquecer faz parte (pedido dela, 23/10/2026): palavras acertadas numa lição de vocabulário também voltam, bem espaçadas, para o Ciclo da palavra.
+   Até 6 por lição, só as acertadas ao menos uma vez e ainda fora da fila; primeira volta em 2 dias, no degrau 1 (depois 7, 14 e 30 dias). Os números são julgamento de Claude, não vêm de fonte. */
+function scheduleLearned(p){
+  if(!p||!p.cat||!p.part)return;
+  const sk=S.sk[S.lang]||{};let n=0;
+  wordsOf(p).forEach(e=>{
+    const k=e.w.toLowerCase(),key=S.lang+":v|"+k,a=sk[k];
+    if(n>=6||!a||a[0]<1||S.rvv[key]||Object.keys(S.rvv).length>=400)return;
+    S.rvv[key]=[rvDue(2),1,0];n++;
+  });
+}
 const SOLTOS=new Set(["memoria","citacao","trecho","regra","ouvir"]);
 const _mdone=markDone;
 markDone=function(){
   const t=P&&P.type;
   if(t&&t!=="revisao"&&t!=="treino"){
     if(GAME_T.indexOf(t)>=0){S.sq=0;S.lgt=t;}else S.sq=Math.min(99,S.sq+1);
+    if(["reco","completar","embaralhar","escreva","contexto"].indexOf(t)>=0)scheduleLearned(P);
   }
   _mdone();
 };

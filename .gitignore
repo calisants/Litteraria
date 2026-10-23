@@ -1,3 +1,6 @@
 src/mots-parole-v4.html
 __pycache__/
 *.pyc
+
+# capturas de tela geradas pelos testes
+src/*.png

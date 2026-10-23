@@ -27,7 +27,7 @@ try:
     n=pg.evaluate("()=>{S.lang='en';S.done={};S.rvv={};const ws=Object.keys(DRAW.en).slice(0,6);ws.forEach(w=>S.rvv['en:v|'+w]=[Date.now()-5,0,0]);save();return memRevWords().length}")
     assert n==6,n
     pg.evaluate("()=>{closeSheet();startMemRev(memRevWords())}")
-    assert 'Memória das palavras em revisão' in pg.inner_text('#g-title')
+    assert 'Memória em revisão' in pg.inner_text('#g-title')
     # joga todos os pares
     pg.evaluate("""()=>{const m=memState();const ws=[...new Set(m.cards.map(c=>c.w))];window.__ws=ws}""")
     for w in pg.evaluate("()=>window.__ws"):
@@ -48,7 +48,7 @@ try:
         pg.click('#cic-next')
         if 'Ciclo concluído' in pg.inner_text('#sheet-title'):break
     assert pg.is_visible('#cic-mem'),pg.inner_text('#sheet')
-    pg.click('#cic-mem');assert 'Memória das palavras em revisão' in pg.inner_text('#g-title')
+    pg.click('#cic-mem');assert 'Memória em revisão' in pg.inner_text('#g-title')
     pg.evaluate("()=>go('home');openTrainMenu()");assert pg.is_visible('#train-mem')
     assert not errs,errs
     print('ok t31 errs',errs)

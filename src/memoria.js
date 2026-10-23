@@ -38,14 +38,16 @@
     (S.cad||[]).filter(c=>c.l===S.lang).forEach(c=>add(c.w));
     const sk=S.sk[S.lang]||{};
     sh0(Object.keys(sk).filter(k=>sk[k][0]>=1)).forEach(add);
-    return out.length>=4?out:[];
+    if(out.length<4)return [];
+    sh0(Object.keys(m)).forEach(add); /* completa até 6 pares (grade 3×4) com outras palavras que têm desenho */
+    return out;
   };
   window.startMemRev=function(words){
     if(!words||words.length<4)return false;
     P={id:"memoria-rev",type:"memoria",n:0,langs:[S.lang],words:words,rev:true};
     go("game");
-    $("#g-title").textContent="Memória das palavras em revisão";
-    $("#g-sub").textContent=LNAME[S.lang]+" · palavras que você está revisando";
+    $("#g-title").textContent="Memória em revisão";
+    $("#g-sub").textContent=LNAME[S.lang]+" · suas palavras em revisão (e outras com desenho, se faltar)";
     ["#stage","#cstage","#sstage","#ostage","#lstage","#rstage","#gstage"].forEach(s=>{$(s).hidden=s!=="#gstage";});
     ["cross","search","connect","sentence","odd","listen","resp","gram"].forEach(d=>{$("#dock-"+d).hidden=true;});
     $("#g-list").hidden=true;$("#kb-toggle").hidden=true;$("#zoom-toggle").hidden=true;
