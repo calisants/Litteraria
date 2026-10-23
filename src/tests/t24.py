@@ -15,6 +15,12 @@ try:
     # v1.53: a escolha de ícones foi retirada
     pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}")
     assert not pg.query_selector('#ic-grid'),'sem escolha de ícones'
+    # v1.54: ícones novos e livro favorito no Perfil
+    pg.evaluate("()=>go('profile')")
+    assert pg.locator('#avgrid button').count()>=31,pg.locator('#avgrid button').count()
+    pg.select_option('#fbook','alice');assert pg.evaluate("()=>S.fbook")=='alice'
+    pg.evaluate("()=>{S.motto='';renderMe()}");assert 'Alice' in pg.inner_text('#me-motto')
+    pg.select_option('#fbook','');assert pg.evaluate("()=>S.fbook")is None
     # v1.53: palavras parecidas no dicionário e última tela
     pg.evaluate("()=>{S.lang='fr';save();dictOpen()}");pg.wait_for_timeout(200)
     assert 'cousine' in pg.text_content('#dict-list .pares') and 'cuisine' in pg.text_content('#dict-list .pares')

@@ -232,6 +232,7 @@ svg{display:block}
 .rule .in p{margin:6px 0 0;line-height:1.45}
 .rule .rex{margin:0;padding-left:18px;display:grid;gap:4px}
 .rule .rex span{color:var(--muted)}
+.srcbox{margin:8px 0}.srcbox>summary{cursor:pointer;font-size:.85rem;color:var(--muted);padding:4px 0;list-style:none}.srcbox>summary::before{content:"▸ "}.srcbox[open]>summary::before{content:"▾ "}.srcbox>summary::-webkit-details-marker{display:none}.srcbox>p{margin:4px 0 0}
 .rule .src{font-size:.85rem;color:var(--muted)}
 .gq{white-space:normal}
 .stats h3{margin:10px 0 6px;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-family:var(--font-body);font-weight:700}
@@ -596,7 +597,6 @@ svg{display:block}
       </div>
       <div class="nudge" id="nudge" hidden></div>
       <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><span class="tt"><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small></span></button>
-      <section class="wcard" id="wcard" hidden aria-label="Cartão do dia"></section>
       <div class="menu">
         <button type="button" class="mrow" id="go-games"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><span class="tt"><b>Lições</b><small>Pronúncia, palavras, jogos, gramática</small></span></button>
         <button type="button" class="mrow" id="go-train"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><span class="tt"><b>Treino</b><small id="train-sub">Digitar verbos e palavras</small></span></button>
@@ -699,6 +699,8 @@ svg{display:block}
             <h2 class="lab">Perfil do jogador</h2>
             <input class="field" id="player" type="text" maxlength="24" placeholder="Seu nome" autocomplete="off" aria-label="Nome do jogador">
             <input class="field" id="motto" type="text" maxlength="60" placeholder="Uma frase sua (opcional)" autocomplete="off" aria-label="Frase do perfil" style="margin-top:8px">
+            <h2 class="lab" style="margin-top:12px">Livro favorito</h2>
+            <select class="field" id="fbook" aria-label="Livro favorito"></select>
             <h2 class="lab" style="margin-top:12px">Logo</h2>
             <div class="avgrid" id="avgrid" role="group" aria-label="Logo do perfil"></div>
           </section>
@@ -785,7 +787,7 @@ svg{display:block}
               <button type="button" data-zoom="on">Ligado</button>
               <button type="button" data-zoom="off">Desligado</button>
             </div>
-          </section></div></details><details class="sgrp"><summary>Lembretes e cartão</summary><div class="sin"><section id="sec-rm"><h2 class="lab">Lembretes</h2><p class="help">Um aviso para fazer a lição do dia. Sem servidor, o horário exato não é garantido: veja a nota abaixo.</p><div class="seg" role="group" aria-label="Lembretes" id="rm-seg"><button type="button" data-rm="on">Ligados</button><button type="button" data-rm="off">Desligados</button></div><label class="flt" style="margin-top:10px">A partir de <select class="field" id="rm-hour" aria-label="Horário do lembrete"></select></label><h2 class="lab" style="margin-top:10px">Estilo do aviso</h2><div class="seg" role="group" aria-label="Estilo do aviso" id="rm-st"><button type="button" data-rmst="anim">Animado</button><button type="button" data-rmst="calma">Calmo</button><button type="button" data-rmst="cartao">Cartão do dia</button></div><div class="row" style="margin-top:10px"><button type="button" class="btn" id="rm-perm">Permitir notificações</button><button type="button" class="btn" id="rm-test">Testar agora</button></div><p class="help" id="rm-note" aria-live="polite"></p><div id="rm-push"></div></section><section id="sec-wd"><h2 class="lab">Cartão do dia</h2><p class="help">O «widget» do app: um cartão na tela inicial. Um app instalado pelo Chrome não consegue criar widget na tela inicial do celular; para ver o cartão sem abrir o app, escolha «Cartão do dia» no estilo do lembrete, ou segure o ícone do app e toque em «Cartão do dia».</p><div id="wd-box"></div></section></div></details><details class="sgrp"><summary>Dados</summary><div class="sin"><section>
+          </section></div></details><details class="sgrp"><summary>Lembretes</summary><div class="sin"><section id="sec-rm"><h2 class="lab">Lembretes</h2><p class="help">Um aviso para fazer a lição do dia. Sem servidor, o horário exato não é garantido: veja a nota abaixo.</p><div class="seg" role="group" aria-label="Lembretes" id="rm-seg"><button type="button" data-rm="on">Ligados</button><button type="button" data-rm="off">Desligados</button></div><label class="flt" style="margin-top:10px">A partir de <select class="field" id="rm-hour" aria-label="Horário do lembrete"></select></label><h2 class="lab" style="margin-top:10px">Estilo do aviso</h2><div class="seg" role="group" aria-label="Estilo do aviso" id="rm-st"><button type="button" data-rmst="anim">Animado</button><button type="button" data-rmst="calma">Calmo</button></div><div class="row" style="margin-top:10px"><button type="button" class="btn" id="rm-perm">Permitir notificações</button><button type="button" class="btn" id="rm-test">Testar agora</button></div><p class="help" id="rm-note" aria-live="polite"></p><div id="rm-push"></div></section></div></details><details class="sgrp"><summary>Dados</summary><div class="sin"><section>
             <h2 class="lab">Backup do progresso</h2>
             <p class="help">Seu progresso fica só neste aparelho. Baixe um arquivo de vez em quando; se trocar de celular ou limpar os dados do navegador, restaure por ele.</p>
             <button type="button" class="btn wide" id="bk-save">Baixar backup</button>
@@ -816,7 +818,7 @@ svg{display:block}
       <input class="tin" id="dict-q" type="search" inputmode="search" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Pesquisar no dicionário" placeholder="Pesquisar palavra ou tradução">
       <p class="help" id="dict-count" aria-live="polite"></p>
       <div id="dict-list"></div>
-      <p class="help" id="dict-src"></p>
+      <details class="srcbox"><summary>Fontes das sílabas e dos exemplos</summary><p class="help" id="dict-src"></p></details>
     </div>
   </section>
   <section class="screen" id="s-feedback" hidden>
@@ -990,7 +992,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.53.0",d:"2026-10-22"};
+const APP_REL={v:"1.54.0",d:"2026-10-23"};
 
 
 const RAW={
@@ -2524,6 +2526,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(typeof sv.custom==="string"&&/^#[0-9a-f]{6}$/i.test(sv.custom))S.custom=sv.custom;
   if(typeof sv.player==="string")S.player=sv.player.slice(0,24);else if(typeof sv.dev==="string")S.player=sv.dev.slice(0,24);
   if(typeof sv.motto==="string")S.motto=sv.motto.slice(0,60);
+  if(typeof sv.fbook==="string"&&/^[a-z0-9]{1,12}$/.test(sv.fbook))S.fbook=sv.fbook;
   if(typeof sv.avatar==="string"&&/^[a-z]+$/.test(sv.avatar))S.avatar=sv.avatar;
   if(sv.plays&&typeof sv.plays==="object")Object.keys(sv.plays).forEach(l=>{if(LNAME[l]&&sv.plays[l]&&typeof sv.plays[l]==="object"){S.plays[l]={};Object.keys(sv.plays[l]).forEach(t=>{const n=+sv.plays[l][t];if(/^[a-z]+$/.test(t)&&n>0)S.plays[l][t]=Math.min(n,1e6);});}});
   if(sv.gs&&typeof sv.gs==="object")Object.keys(sv.gs).forEach(l=>{if(LNAME[l]&&sv.gs[l]&&typeof sv.gs[l]==="object"){S.gs[l]={};Object.keys(sv.gs[l]).slice(0,60).forEach(k=>{const a=sv.gs[l][k];if(/^[a-z]{2,20}$/.test(k)&&Array.isArray(a)&&a.length>=2)S.gs[l][k]=[Math.min(100000,Math.max(0,+a[0]||0)),Math.min(100000,Math.max(0,+a[1]||0))];});}});
@@ -2560,7 +2563,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
       days:Array.isArray(g.days)?g.days.filter(d=>typeof d==="string"&&DAYRE.test(d)).slice(-400):[],
       seen:Array.isArray(g.seen)?g.seen.filter(k=>typeof k==="string"&&/^[a-z0-9]{1,12}$/.test(k)).slice(0,40):[]};
   }
-  if(sv.rm&&typeof sv.rm==="object"){S.rm={on:sv.rm.on===true,h:ci(sv.rm.h,0,23)||(+sv.rm.h===0?0:19),st:["anim","calma","cartao"].indexOf(sv.rm.st)>=0?sv.rm.st:"anim"};}
+  if(sv.rm&&typeof sv.rm==="object"){S.rm={on:sv.rm.on===true,h:ci(sv.rm.h,0,23)||(+sv.rm.h===0?0:19),st:["anim","calma"].indexOf(sv.rm.st)>=0?sv.rm.st:"anim"};}
   if(sv.wd&&typeof sv.wd==="object"){S.wd={u:sv.wd.u?1:0,src:WD_SRC.indexOf(sv.wd.src)>=0&&(sv.wd.u||sv.wd.src!=="hoje")?sv.wd.src:"off",bk:typeof sv.wd.bk==="string"&&/^[a-z]{1,12}$/.test(sv.wd.bk)?sv.wd.bk:"all"};}
   /* as marcas de concluído das versões antigas não são trazidas: os ids das páginas mudaram */
   if(!old&&sv.done&&typeof sv.done==="object")Object.keys(sv.done).forEach(k=>{if(/^(fr|it|en):[a-z0-9-]+$/.test(k))S.done[k]=1;});
@@ -2849,7 +2852,24 @@ const AVATARS={
   mountain:'<path d="M3 19l6-10 4 6 2-3 6 7z"/>',
   coffee:'<path d="M5 9h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4zM16 10h1.5a2 2 0 0 1 0 4H16M8 4v2M12 4v2"/>',
   heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
-  chat:'<path d="M4 5h16v11H9l-5 4z"/>'
+  chat:'<path d="M4 5h16v11H9l-5 4z"/>',
+  quill:'<path d="M20 4c-7 0-12 4-13 11l-2 5 5-2c7-1 11-6 11-13zM9 15l7-7"/>',
+  inkwell:'<path d="M8 10h8l2 3v5a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-5zM10 10V8h4v2M15 3l-3 5"/>',
+  glasses:'<circle cx="7" cy="14" r="3.5"/><circle cx="17" cy="14" r="3.5"/><path d="M10.5 14h3M3.5 14L5 8M20.5 14L19 8"/>',
+  bookmark:'<path d="M7 4h10v16l-5-4-5 4z"/>',
+  stack:'<path d="M5 8l7-3 7 3-7 3zM5 12l7 3 7-3M5 16l7 3 7-3"/>',
+  scroll:'<path d="M7 4h11a2 2 0 0 1 0 4H9M7 4a2 2 0 0 0-2 2v10a3 3 0 0 0 3 3h9a2 2 0 0 0 2-2V8M9 12h6M9 15h4"/>',
+  candle:'<path d="M9 11h6v9H9zM12 3c1.5 2 2 3 0 5-2-2-1.5-3 0-5zM8 20h8"/>',
+  lantern:'<path d="M10 3h4M9 5h6l2 3v9l-2 3H9l-2-3V8zM9 9h6M12 11v5"/>',
+  castle:'<path d="M4 20V9h3v2h2V9h2v2h2V9h2v2h2V9h3v11zM10 20v-4a2 2 0 0 1 4 0v4"/>',
+  rose:'<path d="M12 4c3 0 5 2 5 5s-2.5 5-5 5-5-2-5-5 2-5 5-5zM12 9c-1.5 0-1.5 2 0 2s1.5-1.5 0-2M12 14v7M12 17c2-1 3-1 4-3M12 19c-2-1-3-1-4-3"/>',
+  hourglass:'<path d="M7 4h10M7 20h10M8 4c0 5 4 5 4 8s-4 3-4 8M16 4c0 5-4 5-4 8s4 3 4 8"/>',
+  teapot:'<path d="M6 10h10v5a4 4 0 0 1-4 4h-2a4 4 0 0 1-4-4zM16 11h2a2 2 0 0 1 0 4h-2M6 12L4 10M10 7h2M11 5v2"/>',
+  owl:'<path d="M7 6l2 2h6l2-2v8a5 5 0 0 1-10 0zM10 11h.01M14 11h.01M12 13v2"/>',
+  star:'<path d="M12 4l2.5 5 5.5.8-4 3.9 1 5.5-5-2.6-5 2.6 1-5.5-4-3.9 5.5-.8z"/>',
+  anchor:'<circle cx="12" cy="6" r="2"/><path d="M12 8v12M6 13a6 6 0 0 0 12 0M8 11h8"/>',
+  balloon:'<path d="M12 3c-4 0-6 3-6 6 0 3 2.5 5 4 6h4c1.5-1 4-3 4-6 0-3-2-6-6-6zM10 15l1 3h2l1-3M11 18v2h2v-2"/>',
+  map:'<path d="M4 6l5-2 6 2 5-2v14l-5 2-6-2-5 2zM9 4v14M15 6v14"/>'
 };
 function avatarHtml(k,size){
   const st='style="--av:'+size+'px"';
@@ -3699,7 +3719,7 @@ function ruleCard(){
   return '<details class="rule"'+(gm.open?" open":"")+"><summary>Regra · "+hl(R.t)+"</summary><div class=\"in\">"+
     R.p.map(x=>"<p>"+hl(x)+"</p>").join("")+
     '<ul class="rex">'+R.ex.map(e=>"<li><b>"+hl(e[0])+"</b>"+(e[1]?" <span>"+hl(e[1])+"</span>":"")+"</li>").join("")+"</ul>"+
-    '<p class="src"><b>Fonte:</b> '+esc(R.src)+"</p></div></details>";
+    '<details class="srcbox"><summary>Fonte</summary><p class="src">'+esc(R.src)+"</p></details></div></details>";
 }
 function renderGram(){
   const it=gm.items[gm.i],lines=it.q.split("\n"),typed=typedOn(it),canType=canTypeIt(it)&&!it._force;
@@ -4762,7 +4782,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     const e=rd.sel&&m[rd.sel];
     h+='<div class="rd-def" aria-live="polite">'+(e?"<b>"+esc(full(e))+"</b> = "+esc(e.pt)+" <small>("+esc(e.c)+")</small>":(Object.keys(rd.found).length?"Toque numa palavra sublinhada para ver o significado. As que você já acertou nos exercícios aparecem em negrito e com cor.":"Neste trecho não aparece nenhuma palavra do vocabulário deste livro no app. Use a tradução frase a frase e a nota abaixo."))+"</div>";
     h+='<p class="note"><b>Para reparar:</b> '+hl(rd.D.gn)+"</p>";
-    h+='<p class="note"><small>Trecho do livro «'+esc(b.name)+"». Tradução, contexto e nota: escritas por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p>";
+    h+='<details class="srcbox"><summary>Fonte da tradução</summary><p class="note"><small>Trecho do livro «'+esc(b.name)+"». Tradução, contexto e nota: escritas por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p></details>";
     h+='<div class="row"><button type="button" class="btn" id="rd-all">Ver toda a tradução</button><button type="button" class="btn primary" id="rd-done">Concluí a leitura</button></div>';
     $("#gstage").innerHTML=h;
   }
@@ -4864,7 +4884,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
       return '<button type="button" class="chb'+(ok?" ok":"")+'" data-ch="'+c.n+'"><span class="chn">'+(ok?"✓":c.n)+'</span><span class="cht"><b>'+esc(c.t)+"</b>"+(c.tp?"<small>"+esc(c.tp)+"</small>":"")+"<small>"+c.w+" palavras</small></span></button>";
     }).join("")+"</div>";
     if(info.chs.length<info.total)h+='<p class="note"><small>Os outros capítulos ainda estão sendo preparados.</small></p>';
-    h+='<p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução: escrita por Claude, sem fonte conferida; pode ter erros ou escolhas diferentes de uma tradução publicada.</small></p>';
+    h+='<details class="srcbox"><summary>Fonte da tradução</summary><p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução: escrita por Claude, sem fonte conferida; pode ter erros ou escolhas diferentes de uma tradução publicada.</small></p></details>';
     $("#rdr-body").innerHTML=h;$("#rdr-body").scrollTop=0;
   }
   function openChapter(n){
@@ -4895,7 +4915,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     if(RK.id==="racconti"&&c.n>=10)h+='<p class="note"><small>Este conto não é um dos contos de Perrault: faz parte da mesma coletânea do livro.</small></p>';
     h+='<div class="rd" id="rdr-pars">'+c.p.map((_,i)=>parHtml(i)).join("")+"</div>";
     h+='<div class="rd-def" id="rdr-def" aria-live="polite">'+(Object.keys(RK.found).length?"Toque numa palavra sublinhada para ver o significado. As que você já acertou nos exercícios aparecem em negrito e com cor.":"Neste capítulo não aparece nenhuma palavra do vocabulário deste livro no app.")+"</div>";
-    h+='<p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução ('+(hasLit()?"literal e natural":"natural")+'): escrita por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p>';
+    h+='<details class="srcbox"><summary>Fonte da tradução</summary><p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução ('+(hasLit()?"literal e natural":"natural")+'): escrita por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p></details>';
     h+='<div class="row"><button type="button" class="btn" id="rdr-all">Ver toda a tradução</button><button type="button" class="btn primary" id="rdr-done">Concluí o capítulo</button></div>';
     h+='<div class="row">'+(pos>0?'<button type="button" class="btn" data-go-ch="'+info.chs[pos-1].n+'">← Capítulo anterior</button>':"")+(pos<info.chs.length-1?'<button type="button" class="btn" data-go-ch="'+info.chs[pos+1].n+'">Próximo capítulo →</button>':"")+'<button type="button" class="btn" id="rdr-list">Lista de capítulos</button></div>';
     $("#rdr-body").innerHTML=h;$("#rdr-body").scrollTop=0;
@@ -5192,6 +5212,28 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     if(b){const k=b.dataset.rd;S.rd[k]=k==="bg"?b.dataset.v:+b.dataset.v;save();apply();panel();}
   });
   apply();
+})();
+
+/* ===== Livro favorito no Perfil (v1.54) =====
+   Fica só no aparelho (e no backup da conta, se ela tiver uma). Não é enviado a amigos. */
+(function(){
+  const sel=$("#fbook");if(!sel)return;
+  const LN={fr:"Francês",it:"Italiano",en:"Inglês"};
+  function fill(){
+    let h='<option value="">Nenhum (escolha um livro)</option>';
+    ["fr","it","en"].forEach(l=>{
+      const bs=BOOKS.filter(b=>b.lang===l);if(!bs.length)return;
+      h+='<optgroup label="'+LN[l]+'">'+bs.map(b=>'<option value="'+b.id+'">'+esc(b.name)+"</option>").join("")+"</optgroup>";
+    });
+    sel.innerHTML=h;sel.value=S.fbook&&BOOKS.some(b=>b.id===S.fbook)?S.fbook:"";
+  }
+  function show(){
+    const b=BOOKS.find(x=>x.id===S.fbook),el=$("#me-motto");
+    if(el&&b&&!S.motto)el.textContent="Livro favorito: "+b.name;
+  }
+  fill();show();
+  sel.addEventListener("change",()=>{if(sel.value)S.fbook=sel.value;else delete S.fbook;save();renderMe();show();});
+  const _rm=renderMe;renderMe=function(){_rm.apply(this,arguments);try{show();}catch(_){}};
 })();
 
 /* ===== Pontos, sequências e conquistas (opcional, v1.39) =====
@@ -5507,7 +5549,6 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   function textFor(style){
     const s=window.gamStreak?gamStreak():{n:0,today:false},nm=(S.player||"").split(" ")[0];
     if(style==="calma")return {title:"Litteraria",body:"Quando puder, uma lição curta de "+LNAME[S.lang]+"."};
-    if(style==="cartao"){const c=cardFor(ymd(),S.lang);return {title:c.k,body:c.t+(c.s?"\n"+c.s:"")};}
     const body=S.gam.on&&s.n>0&&!s.today?"Sua sequência de "+s.n+(s.n===1?" dia":" dias")+" está esperando. 5 minutos salvam o dia!":"Que tal 5 minutos de "+LNAME[S.lang]+"? Uma lição curta já vale.";
     return {title:"📚 "+(nm?nm+", ":"")+"hora de brincar com as palavras!",body:body};
   }
@@ -5583,7 +5624,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   /* ---- atalhos (?go=…) e toque na notificação ---- */
   function handleGo(g){
     if(g==="hoje")startToday();
-    else if(g==="cartao")openCard();
+    else if(g==="cartao")startToday();
     else if(g==="treino")openTrainMenu();
   }
   window.handleGo=handleGo;
@@ -5894,11 +5935,11 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
   }
   function mount(){
     if($("#sec-cloud"))return;
-    const dados=[...document.querySelectorAll("#s-settings details.sgrp")].find(d=>/Dados/.test(d.querySelector("summary").textContent));
-    if(!dados)return;
-    const d=document.createElement("details");d.className="sgrp";d.id="sec-cloud";
-    d.innerHTML='<summary>Conta e nuvem</summary><div class="sin"><section><h2 class="lab">Conta e backup na nuvem</h2><div id="cloud-box"></div></section></div>';
-    dados.parentNode.insertBefore(d,dados);render();
+    const st=document.querySelectorAll("#s-profile .stack");
+    if(!st.length)return;
+    const d=document.createElement("section");d.id="sec-cloud";
+    d.innerHTML='<h2 class="lab">Conta e backup na nuvem</h2><div id="cloud-box"></div>';
+    st[st.length-1].appendChild(d);render();
   }
   document.addEventListener("click",async e=>{
     const t=e.target.closest&&e.target.closest("#cl-send,#cl-verify,#cl-back,#cl-now,#cl-friends,#cl-dl,#cl-out,#cl-del,#cl-del2,#cl-cancel");if(!t)return;
@@ -5931,11 +5972,11 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
   let tm=null;
   const _sv=save;save=function(){const r=_sv.apply(this,arguments);if(ses){clearTimeout(tm);tm=setTimeout(()=>{if(ses&&hs(JSON.stringify(S))!==ses.lh)sync(false,false);},20000);}return r;};
   document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&ses&&bootDone)sync(false,false);});
-  const _go5=go;go=function(n){_go5.apply(this,arguments);if(n==="settings")mount();};
+  const _go5=go;go=function(n){_go5.apply(this,arguments);if(n==="profile")mount();};
   mount();
   setTimeout(()=>{bootDone=true;if(ses)sync(false,true);},2500);
   if(restored)setTimeout(()=>{ /* volta direto para onde a pessoa estava: o campo do código */
-    try{go("settings");const b=box();if(b){let n=b.parentNode;while(n&&n.nodeType===1){if(n.tagName==="DETAILS")n.open=true;n=n.parentNode;}render();b.scrollIntoView({block:"center"});const c=$("#cl-code");if(c)c.focus();}}catch(_){}
+    try{go("profile");const b=box();if(b){let n=b.parentNode;while(n&&n.nodeType===1){if(n.tagName==="DETAILS")n.open=true;n=n.parentNode;}render();b.scrollIntoView({block:"center"});const c=$("#cl-code");if(c)c.focus();}}catch(_){}
   },900);
 })();
 
@@ -6054,9 +6095,22 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     if(f.week!=null)a.push(f.week+" de 7 dias estudados");
     return a.length?a.join(" · "):"não compartilha números";
   }
+  /* convite por link: ?amigo=CODIGO (guardado até a pessoa entrar/ativar; nunca envia sozinho) */
+  const IK="mots-parole-invite";
+  let inv="";
+  try{
+    const q=new URLSearchParams(location.search).get("amigo");
+    if(q&&/^[A-Za-z0-9]{4,12}$/.test(q)){inv=q.toUpperCase();localStorage.setItem(IK,JSON.stringify({c:inv,t:Date.now()}));
+      const u=new URL(location.href);u.searchParams.delete("amigo");history.replaceState(null,"",u.pathname+u.search+u.hash);}
+    else{const o=JSON.parse(localStorage.getItem(IK)||"null");if(o&&/^[A-Z0-9]{4,12}$/.test(o.c||"")&&Date.now()-o.t<7*864e5)inv=o.c;else localStorage.removeItem(IK);}
+  }catch(_){}
+  window.__hasInvite=()=>!!inv;
+  function inviteLink(){return location.origin+location.pathname.replace(/index\.html$/,"")+"?amigo="+encodeURIComponent(me.code);}
+  function invNote(){return inv?'<p class="help" role="status"><b>Você recebeu um convite de amizade (código '+h(inv)+').</b> '+(me?"O código já está preenchido abaixo: confira e toque em «Enviar convite».":ses()?"Ative Amigos abaixo; depois o código já aparece preenchido para você enviar o convite.":"Entre na conta (e-mail e código) e ative Amigos; depois o código aparece preenchido.")+"</p>":"";}
   function view(){
-    if(!ses())return '<p class="help">Para usar Amigos, primeiro entre na conta: Ajustes → Conta e nuvem.</p><button type="button" class="btn primary wide" id="fr-login">Ir para Conta e nuvem</button>';
-    const note=msg?'<p class="help" role="status"><b>'+h(msg)+"</b></p>":"";
+    if(!ses())return invNote()+ '<p class="help">Para usar Amigos, primeiro entre na conta: Perfil → Conta e backup na nuvem.</p><button type="button" class="btn primary wide" id="fr-login">Ir para Conta e nuvem</button>';
+    const note0=msg?'<p class="help" role="status"><b>'+h(msg)+"</b></p>":"";
+    const note=invNote()+note0;
     if(!me){
       return '<p class="help">Amigos é opcional e começa desligado. Quando você ativar:</p><ul class="help"><li>Seus amigos veem o seu <b>apelido</b> e só os números que você deixar marcados.</li><li>Ninguém te encontra por busca: só entra quem tiver o seu <b>código</b>.</li><li>Não há chat, foto nem mensagens.</li><li>Você pode bloquear, denunciar e desativar quando quiser; desativar apaga seus convites e amizades.</li></ul>'+
         '<input class="tin" id="fr-nick" maxlength="20" autocomplete="off" aria-label="Apelido (2 a 20 letras)" placeholder="Apelido (não use seu nome completo)">'+
@@ -6072,10 +6126,10 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     o+='<h3 class="lab" style="margin-top:14px">Amigos ('+L.friends.length+')</h3>'+(L.friends.length?L.friends.map(friendCard).join(""):'<p class="help">Ainda sem amigos. Envie o seu código ou digite o de alguém em «Adicionar um amigo».</p>');
     if(L.outgoing.length)o+='<h3 class="lab" style="margin-top:14px">Convites enviados</h3>'+L.outgoing.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b> · aguardando</span><button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Cancelar</button></div>').join("");
     o+='<h3 class="lab" style="margin-top:14px">Adicionar um amigo</h3>'+
-      '<input class="tin" id="fr-add" maxlength="12" autocapitalize="characters" autocomplete="off" aria-label="Código do amigo" placeholder="Código do amigo">'+
+      '<input class="tin" id="fr-add" maxlength="12" autocapitalize="characters" autocomplete="off" aria-label="Código do amigo" placeholder="Código do amigo" value="'+h(inv)+'">'+
       '<button type="button" class="btn primary wide" id="fr-req" style="margin-top:8px">Enviar convite</button>'+
       '<h3 class="lab" style="margin-top:14px">Seu código de amigo</h3><p style="font-size:1.6rem;font-weight:800;letter-spacing:.12em;margin:4px 0" id="fr-code">'+h(me.code)+'</p>'+
-      '<p class="help">Passe este código só para quem você quer como amigo.</p><div class="row"><button type="button" class="btn" id="fr-copy">Copiar código</button></div>'+
+      '<p class="help">Passe este código só para quem você quer como amigo.</p><div class="row"><button type="button" class="btn" id="fr-copy">Copiar código</button> <button type="button" class="btn primary" id="fr-share">Convidar por link</button> <button type="button" class="btn" id="fr-copylink">Copiar link</button></div><p class="help">O link abre o Litteraria com o seu código já preenchido. Quem recebe ainda precisa tocar em «Enviar convite» e você aceita depois.</p>'+
       '<details class="frset" style="margin-top:14px"><summary class="lab">O que meus amigos veem e preferências</summary>'+
       '<label class="chk"><input type="checkbox" id="fr-s1" '+(me.share_streak?"checked":"")+'> Minha sequência de dias</label>'+
       '<label class="chk"><input type="checkbox" id="fr-s2" '+(me.share_words?"checked":"")+'> Palavras acertadas e dias estudados na semana</label>'+
@@ -6103,8 +6157,8 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     paint();
   }
   document.addEventListener("click",e=>{
-    const t=e.target.closest&&e.target.closest("#fr-login,#fr-on,#fr-copy,#fr-req,#fr-off,#fr-refresh,[data-fr]");if(!t||!$("#fr-box")||!$("#fr-box").contains(t))return;
-    if(t.id==="fr-login"){closeSheet();go("settings");const d=$("#sec-cloud");if(d){d.open=true;setTimeout(()=>d.scrollIntoView({block:"start"}),50);}return;}
+    const t=e.target.closest&&e.target.closest("#fr-login,#fr-on,#fr-copy,#fr-share,#fr-copylink,#fr-req,#fr-off,#fr-refresh,[data-fr]");if(!t||!$("#fr-box")||!$("#fr-box").contains(t))return;
+    if(t.id==="fr-login"){closeSheet();go("profile");const d=$("#sec-cloud");if(d){setTimeout(()=>d.scrollIntoView({block:"start"}),50);}return;}
     if(t.id==="fr-on")return act(async()=>{
       const nick=($("#fr-nick").value||"").trim(),s1=$("#fr-s1").checked,s2=$("#fr-s2").checked;
       await rpc("friends_enable",{p_nick:nick});await rpc("friends_share",{p_streak:s1,p_words:s2});
@@ -6112,6 +6166,13 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
       me=await rpc("friends_me");setOn(true);await pushStats();msg="Amigos ativado. Passe o seu código a quem você quiser como amigo.";
     });
     if(t.id==="fr-copy"){try{navigator.clipboard.writeText(me.code);msg="Código copiado.";}catch(_){msg="Não consegui copiar; selecione o código e copie.";}paint();return;}
+    if(t.id==="fr-copylink"){try{navigator.clipboard.writeText(inviteLink());msg="Link copiado.";}catch(_){msg="Não consegui copiar o link.";}paint();return;}
+    if(t.id==="fr-share"){
+      const txt="Vem estudar idiomas comigo no Litteraria! Toque no link para me adicionar como amigo: "+inviteLink();
+      if(navigator.share){navigator.share({text:txt}).catch(()=>{});}
+      else window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank","noopener");
+      return;
+    }
     if(t.id==="fr-req")return act(async()=>{
       const c=($("#fr-add").value||"").trim();if(c.length<4){msg="Digite o código do amigo.";return;}
       const r=await rpc("friends_request",{p_code:c});
@@ -6134,7 +6195,9 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
       if(!r.ok||!j){msg="Não consegui cutucar agora. Tente de novo mais tarde.";return;}
       msg={ok:"Cutucada enviada! 👋",ja_hoje:"Você já cutucou essa pessoa hoje. Amanhã pode de novo.",recusa:"Esta pessoa não está recebendo cutucadas.",sem_aparelho:"Esta pessoa ainda não tem as notificações ligadas neste aparelho, então a cutucada não chegaria.",limite:"Essa pessoa já recebeu muitas cutucadas hoje. Tente amanhã.",nao_amigo:"Vocês não estão mais conectados.",falhou:"A notificação não saiu. Tente de novo mais tarde."}[j.status]||"Não consegui cutucar agora.";
     });
-    if(a==="chp")return act(async()=>{const r=await rpc("challenge_propose",{p_uid:u});msg={enviado:"Desafio enviado. Ele só começa quando a pessoa aceitar.",ja:"Já existe um desafio com essa pessoa.",nao_amigo:"Vocês não estão mais conectados."}[r]||"Pronto.";});
+    if(a==="chp")return act(async()=>{const r=await rpc("challenge_propose",{p_uid:u});msg={enviado:"Desafio enviado. Ele só começa quando a pessoa aceitar.",ja:"Já existe um desafio com essa pessoa.",nao_amigo:"Vocês não estão mais conectados."}[r]||"Pronto.";
+      if(r!=="limite"&&r!=="nao_encontrado"){inv="";try{localStorage.removeItem(IK);}catch(_){}}
+    });
     if(a==="cha")return act(async()=>{await rpc("challenge_respond",{p_uid:u,p_accept:true});lst=await rpc("friends_list");await pushCh();msg="Desafio aceito! Vale a semana de segunda a domingo.";});
     if(a==="che")return act(async()=>{await rpc("challenge_end",{p_uid:u});msg="Pronto. Nada ficou guardado no servidor.";});
     if(a==="chx")return act(async()=>{if(!confirm("Encerrar o desafio? O total da semana de vocês dois é apagado do servidor."))return;await rpc("challenge_end",{p_uid:u});msg="Desafio encerrado e totais apagados do servidor.";});
@@ -6160,10 +6223,12 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
   const b=$("#go-friends");if(!b)return;
   if(window.CLOUDCFG&&CLOUDCFG.url&&CLOUDCFG.key)b.hidden=false;
   b.addEventListener("click",()=>openFriends());
+  if(window.__hasInvite&&window.__hasInvite()&&!b.hidden)setTimeout(()=>{if(!$("#fr-box"))openFriends();},1500);
 })();
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.54.0",d:"2026-10-23",t:["Novo: link de convite para amigos. Em Amigos, «Convidar por link» abre o WhatsApp (ou o menu de compartilhar) com um link; quem toca nele já vê o seu código preenchido","Novo: 17 ícones novos de perfil ligados aos livros (pena, tinteiro, castelo, coruja, rosa, lanterna etc.)","Novo: «Livro favorito» no Perfil (fica só no seu aparelho; não é enviado a amigos)","Mudou: Conta e backup na nuvem (o e-mail) agora fica no Perfil, não mais em Ajustes","Mudou: as fontes ficaram recolhidas. Em cada regra, no dicionário e nos textos dos livros há um «Fonte» que você abre só se quiser ver","Removido: o Cartão do dia (o cartão da tela inicial e a opção nos lembretes e no ícone do app). Os lembretes continuam","Ainda não existe: aviso de notificação para convites e desafios (exige mudança no servidor)"]},
 {v:"1.53.0",d:"2026-10-22",t:["Novo ícone do app: o livro aberto com «tt». A escolha de ícones saiu de Ajustes","Entrar na conta: o passo do código não se perde mais quando você vai ao e-mail e volta (Samsung Internet e outros navegadores)","Ao sair do app e voltar, ele reabre na última tela (Ajustes, Livros, Estatísticas…), e não mais na tela inicial","Dicionário: nova seção «Palavras parecidas: não confunda» (cuisine e cousine, desert e dessert…), nos 3 idiomas. Pares escritos por Claude, sem fonte conferida","O app muda para o endereço litteraria.com.br. Quem tem conta entra de novo e recupera tudo; quem não tem, baixe o backup antes em Ajustes → Dados"]},
 {v:"1.52.1",d:"2026-10-22",t:["O aviso «O app foi atualizado» não volta mais a cada vez que você abre o app: ele aparece uma vez por versão","Aviso de que o app muda de endereço (litteraria.com.br) ainda hoje, com botão para baixar o backup. Quem tem conta na nuvem recupera tudo entrando de novo","Política de Privacidade revisada: agora diz o que vai junto nas sugestões, como o e-mail é usado e onde o app fica hospedado"]},
 {v:"1.52.0",d:"2026-10-22",t:["O app agora se chama Litteraria (antes Mots & Parole). Seu progresso, sua conta e seus amigos continuam como estavam","No iPhone, o ícone que já está na tela inicial pode continuar com o nome antigo: renomeie o atalho, ou instale de novo depois de baixar um backup em Ajustes → Dados"]},
@@ -6293,7 +6358,7 @@ document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#op
   box.style.cssText="position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.5)";
   box.innerHTML='<div style="max-width:440px;width:100%;max-height:92vh;overflow:auto;background:var(--surface,#fff);color:var(--ink,#222);border:1px solid var(--line,#ccc);border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.3)">'+
     '<h3 style="margin:0 0 8px;font-size:1.15rem">O Litteraria vai mudar de endereço</h3>'+
-    '<p style="margin:0 0 8px">Ainda hoje, por volta da meia-noite, o app passa a ficar em <b>litteraria.com.br</b>. O progresso que está <b>só neste aparelho</b> não vai junto sozinho.</p>'+
+    '<p style="margin:0 0 8px">Em breve o app passa a ficar em <b>litteraria.com.br</b>. O progresso que está <b>só neste aparelho</b> não vai junto sozinho.</p>'+
     '<p style="margin:0 0 8px"><b>Para não perder nada:</b> baixe o backup agora. Depois, no endereço novo, vá em Ajustes → Dados → «Escolher arquivo de backup».</p>'+
     '<p style="margin:0 0 14px;color:var(--muted,#666);font-size:.92rem">Se você tem conta na nuvem e o progresso já está salvo nela, basta entrar de novo no endereço novo. Você vai precisar instalar o app de novo e ligar os lembretes outra vez.</p>'+
     '<p id="move-msg" aria-live="polite" style="margin:0 0 10px;font-weight:600"></p>'+

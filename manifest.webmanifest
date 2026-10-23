@@ -10,7 +10,6 @@
   "theme_color": "#1f3d7a",
   "shortcuts": [
     { "name": "Hoje", "short_name": "Hoje", "description": "A próxima lição sugerida", "url": "./?go=hoje", "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }] },
-    { "name": "Cartão do dia", "short_name": "Cartão", "description": "Frase, palavra ou mensagem do dia", "url": "./?go=cartao", "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }] },
     { "name": "Treino", "short_name": "Treino", "description": "Verbos e palavras que você errou", "url": "./?go=treino", "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }] }
   ],
   "icons": [

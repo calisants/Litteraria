@@ -49,14 +49,14 @@ try:
             pg.route('http://cloud.test/**',handler)
             pg.route('**/index.html',page_html)
         return pg
-    openset=lambda pg:pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}")
+    openset=lambda pg:pg.evaluate("()=>{go('profile')}")
     # 1) sem nuvem configurada: sem o grupo; política sem a parte de conta
     CFG[0]='{url:"",key:""}'
     c0=b.new_context(viewport={'width':390,'height':844},service_workers='block');pg=newpage(c0,cloud=False)
     pg.route('**/index.html',page_html)
     pg.goto('http://localhost:8787/index.html');pg.wait_for_timeout(800);openset(pg)
     assert pg.locator('#sec-cloud').count()==0
-    pg.click('#open-priv');t=pg.inner_text('#sheet').lower();assert 'sem conta, nada sai do seu aparelho' in t and 'conta (opcional)' not in t and 'seus direitos' not in t
+    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}");pg.click('#open-priv');t=pg.inner_text('#sheet').lower();assert 'sem conta, nada sai do seu aparelho' in t and 'conta (opcional)' not in t and 'seus direitos' not in t
     c0.close();CFG[0]='{url:"http://cloud.test",key:"anon-test"}'
     # 2) com nuvem: entrar
     c1=b.new_context(viewport={'width':390,'height':844},service_workers='block');pg=newpage(c1)

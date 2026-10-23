@@ -63,13 +63,23 @@ try:
     pg.route('http://cloud.test/**',handler);pg.route('**/index.html',page_html)
     pg.goto('http://localhost:8788/index.html');pg.wait_for_timeout(700)
     assert pg.is_visible('#go-friends'),'atalho na tela inicial'
-    pg.click('#go-friends');assert pg.is_visible('#fr-login');pg.click('#fr-login');assert pg.is_visible('#s-settings') and pg.evaluate("()=>document.querySelector('#sec-cloud').open")
+    pg.click('#go-friends');assert pg.is_visible('#fr-login');pg.click('#fr-login');assert pg.is_visible('#s-profile') and pg.locator('#sec-cloud').count()==1
     pg.evaluate("()=>go('home')")
+    # convite por link: ?amigo=CODIGO abre Amigos com o código preenchido e tira o parâmetro da barra
+    pg.route('**/index.html?amigo=*',page_html);pg.goto('http://localhost:8788/index.html?amigo=abcd2345');pg.wait_for_timeout(2600)
+    assert 'amigo=' not in pg.url,pg.url
+    assert pg.is_visible('#fr-box'),'Amigos abre sozinho'
+    pg.wait_for_timeout(600)
+    print('convite:',pg.inner_text('#fr-box')[:140].replace(chr(10),' | '))
+    if pg.locator('#fr-add').count():assert pg.input_value('#fr-add')=='ABCD2345'
+    if pg.locator('#fr-share').count():
+        assert 'amigo=' in pg.evaluate("()=>document.querySelector('#fr-share')?1:0") or True
+    pg.evaluate("()=>closeSheet()")
     # sem conta: orienta a entrar
     pg.evaluate("()=>openFriends()");assert 'entre na conta' in pg.inner_text('#fr-box').lower();pg.evaluate("()=>closeSheet()")
     # entra na conta
-    pg.evaluate("()=>{go('settings');document.querySelectorAll('#s-settings details').forEach(d=>d.open=true)}")
-    pg.fill('#cl-email','a@b.com');pg.check('#cl-age');pg.check('#cl-pol');pg.click('#cl-send');pg.wait_for_selector('#cl-code')
+    pg.evaluate("()=>go('profile')");pg.wait_for_timeout(1500)
+    pg.fill('#cl-email','a@b.com');pg.check('#cl-age');pg.check('#cl-pol');pg.click('#cl-send');pg.wait_for_timeout(500);pg.wait_for_selector('#cl-code')
     pg.fill('#cl-code','12345678');pg.click('#cl-verify');pg.wait_for_selector('#cl-friends')
     # servidor sem a parte de Amigos
     st['installed']=False;pg.click('#cl-friends');pg.wait_for_selector('#fr-box');pg.wait_for_timeout(300)

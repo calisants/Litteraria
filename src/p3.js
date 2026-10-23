@@ -88,6 +88,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
   if(typeof sv.custom==="string"&&/^#[0-9a-f]{6}$/i.test(sv.custom))S.custom=sv.custom;
   if(typeof sv.player==="string")S.player=sv.player.slice(0,24);else if(typeof sv.dev==="string")S.player=sv.dev.slice(0,24);
   if(typeof sv.motto==="string")S.motto=sv.motto.slice(0,60);
+  if(typeof sv.fbook==="string"&&/^[a-z0-9]{1,12}$/.test(sv.fbook))S.fbook=sv.fbook;
   if(typeof sv.avatar==="string"&&/^[a-z]+$/.test(sv.avatar))S.avatar=sv.avatar;
   if(sv.plays&&typeof sv.plays==="object")Object.keys(sv.plays).forEach(l=>{if(LNAME[l]&&sv.plays[l]&&typeof sv.plays[l]==="object"){S.plays[l]={};Object.keys(sv.plays[l]).forEach(t=>{const n=+sv.plays[l][t];if(/^[a-z]+$/.test(t)&&n>0)S.plays[l][t]=Math.min(n,1e6);});}});
   if(sv.gs&&typeof sv.gs==="object")Object.keys(sv.gs).forEach(l=>{if(LNAME[l]&&sv.gs[l]&&typeof sv.gs[l]==="object"){S.gs[l]={};Object.keys(sv.gs[l]).slice(0,60).forEach(k=>{const a=sv.gs[l][k];if(/^[a-z]{2,20}$/.test(k)&&Array.isArray(a)&&a.length>=2)S.gs[l][k]=[Math.min(100000,Math.max(0,+a[0]||0)),Math.min(100000,Math.max(0,+a[1]||0))];});}});
@@ -124,7 +125,7 @@ try{S.kb=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);}catch(_)
       days:Array.isArray(g.days)?g.days.filter(d=>typeof d==="string"&&DAYRE.test(d)).slice(-400):[],
       seen:Array.isArray(g.seen)?g.seen.filter(k=>typeof k==="string"&&/^[a-z0-9]{1,12}$/.test(k)).slice(0,40):[]};
   }
-  if(sv.rm&&typeof sv.rm==="object"){S.rm={on:sv.rm.on===true,h:ci(sv.rm.h,0,23)||(+sv.rm.h===0?0:19),st:["anim","calma","cartao"].indexOf(sv.rm.st)>=0?sv.rm.st:"anim"};}
+  if(sv.rm&&typeof sv.rm==="object"){S.rm={on:sv.rm.on===true,h:ci(sv.rm.h,0,23)||(+sv.rm.h===0?0:19),st:["anim","calma"].indexOf(sv.rm.st)>=0?sv.rm.st:"anim"};}
   if(sv.wd&&typeof sv.wd==="object"){S.wd={u:sv.wd.u?1:0,src:WD_SRC.indexOf(sv.wd.src)>=0&&(sv.wd.u||sv.wd.src!=="hoje")?sv.wd.src:"off",bk:typeof sv.wd.bk==="string"&&/^[a-z]{1,12}$/.test(sv.wd.bk)?sv.wd.bk:"all"};}
   /* as marcas de concluído das versões antigas não são trazidas: os ids das páginas mudaram */
   if(!old&&sv.done&&typeof sv.done==="object")Object.keys(sv.done).forEach(k=>{if(/^(fr|it|en):[a-z0-9-]+$/.test(k))S.done[k]=1;});
@@ -413,7 +414,24 @@ const AVATARS={
   mountain:'<path d="M3 19l6-10 4 6 2-3 6 7z"/>',
   coffee:'<path d="M5 9h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4zM16 10h1.5a2 2 0 0 1 0 4H16M8 4v2M12 4v2"/>',
   heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
-  chat:'<path d="M4 5h16v11H9l-5 4z"/>'
+  chat:'<path d="M4 5h16v11H9l-5 4z"/>',
+  quill:'<path d="M20 4c-7 0-12 4-13 11l-2 5 5-2c7-1 11-6 11-13zM9 15l7-7"/>',
+  inkwell:'<path d="M8 10h8l2 3v5a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-5zM10 10V8h4v2M15 3l-3 5"/>',
+  glasses:'<circle cx="7" cy="14" r="3.5"/><circle cx="17" cy="14" r="3.5"/><path d="M10.5 14h3M3.5 14L5 8M20.5 14L19 8"/>',
+  bookmark:'<path d="M7 4h10v16l-5-4-5 4z"/>',
+  stack:'<path d="M5 8l7-3 7 3-7 3zM5 12l7 3 7-3M5 16l7 3 7-3"/>',
+  scroll:'<path d="M7 4h11a2 2 0 0 1 0 4H9M7 4a2 2 0 0 0-2 2v10a3 3 0 0 0 3 3h9a2 2 0 0 0 2-2V8M9 12h6M9 15h4"/>',
+  candle:'<path d="M9 11h6v9H9zM12 3c1.5 2 2 3 0 5-2-2-1.5-3 0-5zM8 20h8"/>',
+  lantern:'<path d="M10 3h4M9 5h6l2 3v9l-2 3H9l-2-3V8zM9 9h6M12 11v5"/>',
+  castle:'<path d="M4 20V9h3v2h2V9h2v2h2V9h2v2h2V9h3v11zM10 20v-4a2 2 0 0 1 4 0v4"/>',
+  rose:'<path d="M12 4c3 0 5 2 5 5s-2.5 5-5 5-5-2-5-5 2-5 5-5zM12 9c-1.5 0-1.5 2 0 2s1.5-1.5 0-2M12 14v7M12 17c2-1 3-1 4-3M12 19c-2-1-3-1-4-3"/>',
+  hourglass:'<path d="M7 4h10M7 20h10M8 4c0 5 4 5 4 8s-4 3-4 8M16 4c0 5-4 5-4 8s4 3 4 8"/>',
+  teapot:'<path d="M6 10h10v5a4 4 0 0 1-4 4h-2a4 4 0 0 1-4-4zM16 11h2a2 2 0 0 1 0 4h-2M6 12L4 10M10 7h2M11 5v2"/>',
+  owl:'<path d="M7 6l2 2h6l2-2v8a5 5 0 0 1-10 0zM10 11h.01M14 11h.01M12 13v2"/>',
+  star:'<path d="M12 4l2.5 5 5.5.8-4 3.9 1 5.5-5-2.6-5 2.6 1-5.5-4-3.9 5.5-.8z"/>',
+  anchor:'<circle cx="12" cy="6" r="2"/><path d="M12 8v12M6 13a6 6 0 0 0 12 0M8 11h8"/>',
+  balloon:'<path d="M12 3c-4 0-6 3-6 6 0 3 2.5 5 4 6h4c1.5-1 4-3 4-6 0-3-2-6-6-6zM10 15l1 3h2l1-3M11 18v2h2v-2"/>',
+  map:'<path d="M4 6l5-2 6 2 5-2v14l-5 2-6-2-5 2zM9 4v14M15 6v14"/>'
 };
 function avatarHtml(k,size){
   const st='style="--av:'+size+'px"';

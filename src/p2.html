@@ -16,7 +16,6 @@
       </div>
       <div class="nudge" id="nudge" hidden></div>
       <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><span class="tt"><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small></span></button>
-      <section class="wcard" id="wcard" hidden aria-label="Cartão do dia"></section>
       <div class="menu">
         <button type="button" class="mrow" id="go-games"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><span class="tt"><b>Lições</b><small>Pronúncia, palavras, jogos, gramática</small></span></button>
         <button type="button" class="mrow" id="go-train"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><span class="tt"><b>Treino</b><small id="train-sub">Digitar verbos e palavras</small></span></button>
@@ -119,6 +118,8 @@
             <h2 class="lab">Perfil do jogador</h2>
             <input class="field" id="player" type="text" maxlength="24" placeholder="Seu nome" autocomplete="off" aria-label="Nome do jogador">
             <input class="field" id="motto" type="text" maxlength="60" placeholder="Uma frase sua (opcional)" autocomplete="off" aria-label="Frase do perfil" style="margin-top:8px">
+            <h2 class="lab" style="margin-top:12px">Livro favorito</h2>
+            <select class="field" id="fbook" aria-label="Livro favorito"></select>
             <h2 class="lab" style="margin-top:12px">Logo</h2>
             <div class="avgrid" id="avgrid" role="group" aria-label="Logo do perfil"></div>
           </section>
@@ -205,7 +206,7 @@
               <button type="button" data-zoom="on">Ligado</button>
               <button type="button" data-zoom="off">Desligado</button>
             </div>
-          </section></div></details><details class="sgrp"><summary>Lembretes e cartão</summary><div class="sin"><section id="sec-rm"><h2 class="lab">Lembretes</h2><p class="help">Um aviso para fazer a lição do dia. Sem servidor, o horário exato não é garantido: veja a nota abaixo.</p><div class="seg" role="group" aria-label="Lembretes" id="rm-seg"><button type="button" data-rm="on">Ligados</button><button type="button" data-rm="off">Desligados</button></div><label class="flt" style="margin-top:10px">A partir de <select class="field" id="rm-hour" aria-label="Horário do lembrete"></select></label><h2 class="lab" style="margin-top:10px">Estilo do aviso</h2><div class="seg" role="group" aria-label="Estilo do aviso" id="rm-st"><button type="button" data-rmst="anim">Animado</button><button type="button" data-rmst="calma">Calmo</button><button type="button" data-rmst="cartao">Cartão do dia</button></div><div class="row" style="margin-top:10px"><button type="button" class="btn" id="rm-perm">Permitir notificações</button><button type="button" class="btn" id="rm-test">Testar agora</button></div><p class="help" id="rm-note" aria-live="polite"></p><div id="rm-push"></div></section><section id="sec-wd"><h2 class="lab">Cartão do dia</h2><p class="help">O «widget» do app: um cartão na tela inicial. Um app instalado pelo Chrome não consegue criar widget na tela inicial do celular; para ver o cartão sem abrir o app, escolha «Cartão do dia» no estilo do lembrete, ou segure o ícone do app e toque em «Cartão do dia».</p><div id="wd-box"></div></section></div></details><details class="sgrp"><summary>Dados</summary><div class="sin"><section>
+          </section></div></details><details class="sgrp"><summary>Lembretes</summary><div class="sin"><section id="sec-rm"><h2 class="lab">Lembretes</h2><p class="help">Um aviso para fazer a lição do dia. Sem servidor, o horário exato não é garantido: veja a nota abaixo.</p><div class="seg" role="group" aria-label="Lembretes" id="rm-seg"><button type="button" data-rm="on">Ligados</button><button type="button" data-rm="off">Desligados</button></div><label class="flt" style="margin-top:10px">A partir de <select class="field" id="rm-hour" aria-label="Horário do lembrete"></select></label><h2 class="lab" style="margin-top:10px">Estilo do aviso</h2><div class="seg" role="group" aria-label="Estilo do aviso" id="rm-st"><button type="button" data-rmst="anim">Animado</button><button type="button" data-rmst="calma">Calmo</button></div><div class="row" style="margin-top:10px"><button type="button" class="btn" id="rm-perm">Permitir notificações</button><button type="button" class="btn" id="rm-test">Testar agora</button></div><p class="help" id="rm-note" aria-live="polite"></p><div id="rm-push"></div></section></div></details><details class="sgrp"><summary>Dados</summary><div class="sin"><section>
             <h2 class="lab">Backup do progresso</h2>
             <p class="help">Seu progresso fica só neste aparelho. Baixe um arquivo de vez em quando; se trocar de celular ou limpar os dados do navegador, restaure por ele.</p>
             <button type="button" class="btn wide" id="bk-save">Baixar backup</button>
@@ -236,7 +237,7 @@
       <input class="tin" id="dict-q" type="search" inputmode="search" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Pesquisar no dicionário" placeholder="Pesquisar palavra ou tradução">
       <p class="help" id="dict-count" aria-live="polite"></p>
       <div id="dict-list"></div>
-      <p class="help" id="dict-src"></p>
+      <details class="srcbox"><summary>Fontes das sílabas e dos exemplos</summary><p class="help" id="dict-src"></p></details>
     </div>
   </section>
   <section class="screen" id="s-feedback" hidden>

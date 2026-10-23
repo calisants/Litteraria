@@ -52,7 +52,7 @@ function ruleCard(){
   return '<details class="rule"'+(gm.open?" open":"")+"><summary>Regra · "+hl(R.t)+"</summary><div class=\"in\">"+
     R.p.map(x=>"<p>"+hl(x)+"</p>").join("")+
     '<ul class="rex">'+R.ex.map(e=>"<li><b>"+hl(e[0])+"</b>"+(e[1]?" <span>"+hl(e[1])+"</span>":"")+"</li>").join("")+"</ul>"+
-    '<p class="src"><b>Fonte:</b> '+esc(R.src)+"</p></div></details>";
+    '<details class="srcbox"><summary>Fonte</summary><p class="src">'+esc(R.src)+"</p></details></div></details>";
 }
 function renderGram(){
   const it=gm.items[gm.i],lines=it.q.split("\n"),typed=typedOn(it),canType=canTypeIt(it)&&!it._force;

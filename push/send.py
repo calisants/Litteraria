@@ -40,8 +40,6 @@ def message(row, day):
     n = int(hashlib.sha256((day + row["id"]).encode()).hexdigest(), 16)
     if row["st"] == "calma":
         return {"t": "Litteraria", "b": "Quando puder, uma lição curta de " + L + ".", "go": "hoje"}
-    if row["st"] == "cartao":
-        return {"t": "Cartão do dia", "b": "Toque para ver o cartão de hoje.", "go": "cartao"}
     return {"t": "📚 Hora de brincar com as palavras!", "b": MSGS[n % len(MSGS)].replace("{L}", L), "go": "hoje"}
 
 

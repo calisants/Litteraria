@@ -311,7 +311,7 @@
     const e=rd.sel&&m[rd.sel];
     h+='<div class="rd-def" aria-live="polite">'+(e?"<b>"+esc(full(e))+"</b> = "+esc(e.pt)+" <small>("+esc(e.c)+")</small>":(Object.keys(rd.found).length?"Toque numa palavra sublinhada para ver o significado. As que você já acertou nos exercícios aparecem em negrito e com cor.":"Neste trecho não aparece nenhuma palavra do vocabulário deste livro no app. Use a tradução frase a frase e a nota abaixo."))+"</div>";
     h+='<p class="note"><b>Para reparar:</b> '+hl(rd.D.gn)+"</p>";
-    h+='<p class="note"><small>Trecho do livro «'+esc(b.name)+"». Tradução, contexto e nota: escritas por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p>";
+    h+='<details class="srcbox"><summary>Fonte da tradução</summary><p class="note"><small>Trecho do livro «'+esc(b.name)+"». Tradução, contexto e nota: escritas por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p></details>";
     h+='<div class="row"><button type="button" class="btn" id="rd-all">Ver toda a tradução</button><button type="button" class="btn primary" id="rd-done">Concluí a leitura</button></div>';
     $("#gstage").innerHTML=h;
   }
@@ -413,7 +413,7 @@
       return '<button type="button" class="chb'+(ok?" ok":"")+'" data-ch="'+c.n+'"><span class="chn">'+(ok?"✓":c.n)+'</span><span class="cht"><b>'+esc(c.t)+"</b>"+(c.tp?"<small>"+esc(c.tp)+"</small>":"")+"<small>"+c.w+" palavras</small></span></button>";
     }).join("")+"</div>";
     if(info.chs.length<info.total)h+='<p class="note"><small>Os outros capítulos ainda estão sendo preparados.</small></p>';
-    h+='<p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução: escrita por Claude, sem fonte conferida; pode ter erros ou escolhas diferentes de uma tradução publicada.</small></p>';
+    h+='<details class="srcbox"><summary>Fonte da tradução</summary><p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução: escrita por Claude, sem fonte conferida; pode ter erros ou escolhas diferentes de uma tradução publicada.</small></p></details>';
     $("#rdr-body").innerHTML=h;$("#rdr-body").scrollTop=0;
   }
   function openChapter(n){
@@ -444,7 +444,7 @@
     if(RK.id==="racconti"&&c.n>=10)h+='<p class="note"><small>Este conto não é um dos contos de Perrault: faz parte da mesma coletânea do livro.</small></p>';
     h+='<div class="rd" id="rdr-pars">'+c.p.map((_,i)=>parHtml(i)).join("")+"</div>";
     h+='<div class="rd-def" id="rdr-def" aria-live="polite">'+(Object.keys(RK.found).length?"Toque numa palavra sublinhada para ver o significado. As que você já acertou nos exercícios aparecem em negrito e com cor.":"Neste capítulo não aparece nenhuma palavra do vocabulário deste livro no app.")+"</div>";
-    h+='<p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução ('+(hasLit()?"literal e natural":"natural")+'): escrita por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p>';
+    h+='<details class="srcbox"><summary>Fonte da tradução</summary><p class="note"><small>Texto do livro «'+esc(b.name)+'». Tradução ('+(hasLit()?"literal e natural":"natural")+'): escrita por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p></details>';
     h+='<div class="row"><button type="button" class="btn" id="rdr-all">Ver toda a tradução</button><button type="button" class="btn primary" id="rdr-done">Concluí o capítulo</button></div>';
     h+='<div class="row">'+(pos>0?'<button type="button" class="btn" data-go-ch="'+info.chs[pos-1].n+'">← Capítulo anterior</button>':"")+(pos<info.chs.length-1?'<button type="button" class="btn" data-go-ch="'+info.chs[pos+1].n+'">Próximo capítulo →</button>':"")+'<button type="button" class="btn" id="rdr-list">Lista de capítulos</button></div>';
     $("#rdr-body").innerHTML=h;$("#rdr-body").scrollTop=0;

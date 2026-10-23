@@ -196,11 +196,11 @@
   }
   function mount(){
     if($("#sec-cloud"))return;
-    const dados=[...document.querySelectorAll("#s-settings details.sgrp")].find(d=>/Dados/.test(d.querySelector("summary").textContent));
-    if(!dados)return;
-    const d=document.createElement("details");d.className="sgrp";d.id="sec-cloud";
-    d.innerHTML='<summary>Conta e nuvem</summary><div class="sin"><section><h2 class="lab">Conta e backup na nuvem</h2><div id="cloud-box"></div></section></div>';
-    dados.parentNode.insertBefore(d,dados);render();
+    const st=document.querySelectorAll("#s-profile .stack");
+    if(!st.length)return;
+    const d=document.createElement("section");d.id="sec-cloud";
+    d.innerHTML='<h2 class="lab">Conta e backup na nuvem</h2><div id="cloud-box"></div>';
+    st[st.length-1].appendChild(d);render();
   }
   document.addEventListener("click",async e=>{
     const t=e.target.closest&&e.target.closest("#cl-send,#cl-verify,#cl-back,#cl-now,#cl-friends,#cl-dl,#cl-out,#cl-del,#cl-del2,#cl-cancel");if(!t)return;
@@ -233,10 +233,10 @@
   let tm=null;
   const _sv=save;save=function(){const r=_sv.apply(this,arguments);if(ses){clearTimeout(tm);tm=setTimeout(()=>{if(ses&&hs(JSON.stringify(S))!==ses.lh)sync(false,false);},20000);}return r;};
   document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&ses&&bootDone)sync(false,false);});
-  const _go5=go;go=function(n){_go5.apply(this,arguments);if(n==="settings")mount();};
+  const _go5=go;go=function(n){_go5.apply(this,arguments);if(n==="profile")mount();};
   mount();
   setTimeout(()=>{bootDone=true;if(ses)sync(false,true);},2500);
   if(restored)setTimeout(()=>{ /* volta direto para onde a pessoa estava: o campo do código */
-    try{go("settings");const b=box();if(b){let n=b.parentNode;while(n&&n.nodeType===1){if(n.tagName==="DETAILS")n.open=true;n=n.parentNode;}render();b.scrollIntoView({block:"center"});const c=$("#cl-code");if(c)c.focus();}}catch(_){}
+    try{go("profile");const b=box();if(b){let n=b.parentNode;while(n&&n.nodeType===1){if(n.tagName==="DETAILS")n.open=true;n=n.parentNode;}render();b.scrollIntoView({block:"center"});const c=$("#cl-code");if(c)c.focus();}}catch(_){}
   },900);
 })();

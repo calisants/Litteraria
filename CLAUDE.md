@@ -226,3 +226,10 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - **Última tela**: `boot2.js` guarda a última tela simples (`KEY+"-scr"`, até 3 h; settings, stats, profile, vol, index, books, album, news); lição em andamento e passo do código têm prioridade. `t24.py`.
 - **Palavras parecidas** (`parecidas.js`, `PARES`; seção no Dicionário): 12 pares fr, 8 it, 12 en (cuisine/cousine etc.), escritos por Claude, sem fonte conferida. Sugestão dela de 22/10.
 - Domínio: `litteraria.com.br` com DNS no Registro.br (4 A do GitHub Pages + CNAME www; conferidos na foto que ela mandou); falta ela colocar o domínio em Settings → Pages. Cache `mots-parole-v96`.
+
+## v1.54.0 (23/10/2026)
+- Perfil: +17 ícones de livros/objetos em `AVATARS` (`p3.js`); «Livro favorito» (`S.fbook`, id de `BOOKS`, validado no `load`; `src/perfil2.js`; fica só no aparelho, não vai a amigos); a **Conta e backup na nuvem** (`#sec-cloud`/`#cloud-box`, `nuvem.js` `mount()`) saiu de Ajustes e fica no Perfil (`go("profile")`).
+- Convite por link: `?amigo=CODIGO` (`amigos.js`: guarda em `mots-parole-invite` por 7 dias, tira o parâmetro da barra, abre Amigos com o código preenchido; nunca envia sozinho). Botões «Convidar por link» (Web Share ou wa.me) e «Copiar link». Teste em `t28.py`.
+- **Cartão do dia removido** (cartão da tela inicial, opção nos lembretes, atalho do ícone); `rm.st` só aceita anim/calma. `cardFor`/`pushState` ficam por compatibilidade do `sw.js`.
+- Fontes recolhidas: `<details class="srcbox">` em regras (p9.js), dicionário (p2.html) e textos dos livros (livros2.js).
+- Aviso de mudança de endereço diz «Em breve». Notificação de convite/desafio: NÃO feita (exige SQL + Edge Function). Cache `mots-parole-v97`.
