@@ -108,6 +108,8 @@
       '<p class="help">Dica: se tiver dúvida, baixe um backup em Ajustes → Dados antes de escolher.</p>',false);
     window.__cloudRow=row;
   }
+  /* o código aparece em grupos de 3 (482 917); espaços digitados ou colados são ignorados na hora de enviar */
+  document.addEventListener("input",e=>{const t=e.target;if(!t||t.id!=="cl-code")return;const d=(t.value||"").replace(/\D/g,"").slice(0,8);t.value=d.replace(/(\d{3})(?=\d)/g,"$1 ");});
   document.addEventListener("click",async e=>{
     const t=e.target.closest&&e.target.closest("#cl-cloud,#cl-local");if(!t)return;
     const row=window.__cloudRow;if(!row)return;
@@ -174,8 +176,8 @@
     const note=msg?'<p class="help" role="status">'+esc(msg)+"</p>":"";
     if(!ses){
       if(step==="code"){
-        el.innerHTML='<p class="help">Enviamos um código de números (6 a 8) para <b>'+esc(pendEmail)+'</b>. Digite abaixo. Olhe também a caixa de spam.</p>'+
-          '<input class="tin" id="cl-code" inputmode="numeric" autocomplete="one-time-code" maxlength="8" aria-label="Código recebido por e-mail" placeholder="000000">'+
+        el.innerHTML='<p class="help">Enviamos um código de 6 números para <b>'+esc(pendEmail)+'</b>. Digite abaixo. Olhe também a caixa de spam.</p>'+
+          '<input class="tin" id="cl-code" inputmode="numeric" autocomplete="one-time-code" maxlength="11" aria-label="Código recebido por e-mail" placeholder="000 000">'+
           '<div class="row" style="margin-top:8px"><button type="button" class="btn primary" id="cl-verify">Entrar</button><button type="button" class="btn" id="cl-back">Trocar e-mail</button></div>'+note;
       }else{
         el.innerHTML='<p class="help">A conta é opcional. Com ela, seu progresso fica guardado na nuvem: você recupera tudo se trocar de celular e pode usar em mais de um aparelho. Sem conta, o app continua igual, só neste aparelho.</p>'+

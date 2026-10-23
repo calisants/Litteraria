@@ -1004,7 +1004,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.62.0",d:"2026-10-23"};
+const APP_REL={v:"1.62.1",d:"2026-10-23"};
 
 
 const RAW={
@@ -6088,6 +6088,8 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
       '<p class="help">Dica: se tiver dúvida, baixe um backup em Ajustes → Dados antes de escolher.</p>',false);
     window.__cloudRow=row;
   }
+  /* o código aparece em grupos de 3 (482 917); espaços digitados ou colados são ignorados na hora de enviar */
+  document.addEventListener("input",e=>{const t=e.target;if(!t||t.id!=="cl-code")return;const d=(t.value||"").replace(/\D/g,"").slice(0,8);t.value=d.replace(/(\d{3})(?=\d)/g,"$1 ");});
   document.addEventListener("click",async e=>{
     const t=e.target.closest&&e.target.closest("#cl-cloud,#cl-local");if(!t)return;
     const row=window.__cloudRow;if(!row)return;
@@ -6154,8 +6156,8 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     const note=msg?'<p class="help" role="status">'+esc(msg)+"</p>":"";
     if(!ses){
       if(step==="code"){
-        el.innerHTML='<p class="help">Enviamos um código de números (6 a 8) para <b>'+esc(pendEmail)+'</b>. Digite abaixo. Olhe também a caixa de spam.</p>'+
-          '<input class="tin" id="cl-code" inputmode="numeric" autocomplete="one-time-code" maxlength="8" aria-label="Código recebido por e-mail" placeholder="000000">'+
+        el.innerHTML='<p class="help">Enviamos um código de 6 números para <b>'+esc(pendEmail)+'</b>. Digite abaixo. Olhe também a caixa de spam.</p>'+
+          '<input class="tin" id="cl-code" inputmode="numeric" autocomplete="one-time-code" maxlength="11" aria-label="Código recebido por e-mail" placeholder="000 000">'+
           '<div class="row" style="margin-top:8px"><button type="button" class="btn primary" id="cl-verify">Entrar</button><button type="button" class="btn" id="cl-back">Trocar e-mail</button></div>'+note;
       }else{
         el.innerHTML='<p class="help">A conta é opcional. Com ela, seu progresso fica guardado na nuvem: você recupera tudo se trocar de celular e pode usar em mais de um aparelho. Sem conta, o app continua igual, só neste aparelho.</p>'+
@@ -6468,6 +6470,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.62.1",d:"2026-10-23",t:["Código de entrada em grupos de 3 números (ex.: 482 917), no e-mail e no app; você pode digitar com ou sem espaço"]},
 {v:"1.62.0",d:"2026-10-23",t:["Novo: tutorial de boas-vindas na primeira abertura (6 telas curtas). Para rever: Ajustes → Sobre e ajuda → «Ver o tutorial»","«Hoje» agora alterna entre Pronúncia, Vocabulário e Jogos (volumes 1, 2 e 3). Gramática e Conversação (volumes 4 e 5) só entram depois de todos os grupos de temas; continuam abertas em Lições","Perfil: o logo ficou recolhido; toque em «Trocar o logo» para ver todos","Notificações: ícone de livro na barra de cima, no lugar do quadrado branco (pode demorar para atualizar no aparelho)"]},
 {v:"1.61.0",d:"2026-10-23",t:["«As Aventuras de Pinóquio» (Collodi) agora tem o texto completo em italiano, nos 36 capítulos, com «Ver tradução» em cada parágrafo, palavras do vocabulário sublinhadas e toque em qualquer palavra","Em Livros → Pinóquio → «Ler o livro». A tradução é escrita por Claude, sem fonte conferida; só existe a versão natural"]},
 {v:"1.60.0",d:"2026-10-23",t:["Trilha mais gradual: gramática e frases agora pedem só uma parte das palavras que o app já apresentou (de 30% a 55%, dentro de cada grupo de temas), em vez de quase todas. Continuam abertas em Lições","Inglês: 2 páginas novas de gramática, «Preposições parecidas» (above, over, below, under, between, among, during, while, for, since) e «Palavras que se confundem» (already/yet, especially/specially, quite/quiet, opposite/in front of). Os fatos foram conferidos no Cambridge Grammar of English; as frases dos exercícios são de Claude, sem fonte conferida","Cerca de 55 desenhos novos (cozinha, quarto, moinho, riacho, estações do ano, médico, dentista, tesouro, coroa, chama e outros) ligados a palavras em francês, italiano e inglês. Aparecem no Conheça, no Ciclo da palavra e no jogo da memória"]},
