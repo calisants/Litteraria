@@ -11,7 +11,7 @@ function parDict(q){
   const rows=L.filter(p=>!q||dnorm(p.join(" ")).indexOf(q)>=0);
   if(!rows.length)return;
   const h='<details class="pares"'+(q?" open":"")+'><summary><b>Palavras parecidas: não confunda</b> ('+rows.length+')</summary>'+
-    rows.map(p=>'<div class="dl-row"><div class="tx"><b>'+esc(p[0])+'</b> <span class="pt">'+esc(p[1])+'</span><br><b>'+esc(p[2])+'</b> <span class="pt">'+esc(p[3])+"</span></div></div>").join("")+
+    rows.map(p=>'<div class="par-row"><div class="tx"><b>'+esc(p[0])+'</b> <span class="pt">'+esc(p[1])+'</span><br><b>'+esc(p[2])+'</b> <span class="pt">'+esc(p[3])+"</span></div></div>").join("")+
     '<p class="help">Pares escritos por Claude, sem fonte conferida.</p></details>';
   el.insertAdjacentHTML("afterbegin",h);
 }
