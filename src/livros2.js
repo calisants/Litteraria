@@ -264,6 +264,7 @@
     return c;
   }
   window.candsOf=candsOf;
+  window.__rdh={wordsHtml:(...a)=>wordsHtml(...a),vmap:id=>vmap(id),keyOf:(...a)=>keyOf(...a),BK:BK};
   function keyOf(tok,m,lang){
     const c=candsOf(tok,lang),k=c[0];
     for(const x of c){if(m[x]&&(x===k||x.length>=4))return x;}

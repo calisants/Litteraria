@@ -51,7 +51,7 @@ function lessonPath(){
     VOLUME5.pages.filter(p=>p.cat===c.cat&&p.type==="conheca").forEach(p=>out.push({vol:5,page:p,voc:true}));
     ["reco","completar","embaralhar","escreva"].forEach(t=>[1,2].forEach(k=>add(5,t+"-"+c.cat+"-"+k,{voc:true})));
   }));
-  BOOKS.forEach(b=>VOLUME3.pages.filter(p=>p.book===b.id||p.rd===b.id).forEach(p=>out.push({vol:3,page:p})));
+  BOOKS.forEach(b=>VOLUME3.pages.filter(p=>p.type!=="jardim"&&(p.book===b.id||p.rd===b.id)).forEach(p=>out.push({vol:3,page:p})));
   /* jogos de livros e de memória: entram no fim da trilha e, antes disso, como intervalo entre lições (ver pickGame) */
   BOOKS.forEach(b=>b.chunks.forEach(c=>{add(1,"search-"+c.cat+"-easy");add(1,"cross-"+c.cat+"-easy");}));
   const byT=["memoria","citacao","regra","ouvir","trecho"].map(t=>VOLUME.pages.filter(p=>p.type===t));
