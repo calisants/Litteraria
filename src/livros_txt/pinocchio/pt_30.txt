@@ -1,0 +1,93 @@
+T|30. Pinóquio, em vez de se tornar um menino, parte às escondidas com o seu amigo Pavio para o «País dos Brinquedos».
+1|Como é natural, Pinóquio pediu logo à Fada licença para andar pela cidade fazendo os convites: e a Fada lhe disse:
+2|— Vá convidar os seus colegas para o café da manhã de amanhã: mas lembre-se de voltar para casa antes que anoiteça. Entendeu?
+3|— Daqui a uma hora prometo já estar de volta — replicou o boneco.
+4|— Cuidado, Pinóquio! Os meninos são rápidos em prometer, mas, na maioria das vezes, demoram a cumprir.
+5|— Mas eu não sou como os outros: eu, quando digo uma coisa, cumpro.
+6|— Veremos. Caso desobedeça, pior para você.
+7|— Por quê?
+8|— Porque os meninos que não dão ouvidos aos conselhos de quem sabe mais do que eles sempre se deparam com alguma desgraça.
+9|— E eu já experimentei! — disse Pinóquio. — Mas agora não caio mais!
+10|— Veremos se diz a verdade. —
+11|Sem acrescentar outras palavras, o boneco despediu-se da sua boa Fada, que era para ele uma espécie de mamãe, e, cantando e dançando, saiu pela porta de casa.
+12|Em pouco mais de uma hora todos os seus amigos foram convidados. Alguns aceitaram logo e de bom grado, outros, no início, se fizeram um pouco de rogados; mas quando souberam que os pãezinhos para molhar no café com leite seriam amanteigados também por fora, acabaram todos dizendo: — Nós também viremos, para te agradar. —
+13|Ora é preciso saber que Pinóquio, entre seus amigos e colegas de escola, tinha um predileto e caríssimo, que se chamava de nome Romeu; mas todos o chamavam pelo apelido de _Pavio_, por causa do seu corpinho enxuto, seco e magricela, tal e qual o pavio novo de uma lamparina de noite.
+14|Pavio era o menino mais preguiçoso e mais travesso de toda a escola: mas Pinóquio lhe queria um grande bem. De fato foi logo procurá-lo em casa para convidá-lo ao café da manhã e não o encontrou: voltou uma segunda vez e Pavio não estava: voltou uma terceira vez e fez o caminho em vão.
+15|Onde poder pescá-lo? Procura daqui, procura dali, finalmente o viu escondido sob o pórtico de uma casa de camponeses.
+16|— O que faz aí? — perguntou-lhe Pinóquio, avançando.
+17|— Espero a meia-noite para partir....
+18|— Aonde vai?
+19|— Longe, longe, longe!
+20|— E eu que vim procurá-lo em casa três vezes!...
+21|— O que queria de mim?
+22|— Não sabe do grande acontecimento? Não sabe da sorte que me coube?
+23|— Qual?
+24|— Amanhã deixo de ser um boneco e me torno um menino como você e como todos os outros.
+25|— Bom proveito.
+26|— Amanhã, então, espero-o para o café da manhã na minha casa.
+27|— Mas se estou dizendo que parto esta noite.
+28|— A que horas?
+29|— Daqui a pouco.
+30|— E aonde vai?
+31|— Vou morar num país.... que é o mais belo país deste mundo: uma verdadeira terra da fartura!...
+32|— E como se chama?
+33|— Chama-se o «País dos Brinquedos». Por que não vem também?
+34|— Eu? de jeito nenhum!
+35|— Está errado, Pinóquio! Acredite em mim, que, se não vier, vai se arrepender. Onde quer encontrar um país mais saudável para nós, meninos? Lá não há escolas: lá não há mestres; lá não há livros. Naquele país bendito nunca se estuda. Na quinta-feira não há aula: e cada semana é composta de seis quintas-feiras e de um domingo. Imagine que as férias do outono começam no primeiro de janeiro e terminam no último de dezembro. Eis um país como realmente me agrada! Eis como deveriam ser todos os países civilizados!...
+36|— Mas como se passam os dias no «País dos Brinquedos»?
+37|— Passam-se brincando e se divertindo da manhã à noite. À noite depois vai-se para a cama e, na manhã seguinte, recomeça-se do início. O que acha?
+38|— Hum!... — fez Pinóquio; e balançou levemente a cabeça, como para dizer: — É uma vida que eu também levaria de bom grado.
+39|— Então, quer partir comigo? Sim ou não? Decida-se.
+40|— Não, não, não e mais não. Agora já prometi à minha boa Fada me tornar um menino de bem e quero cumprir a promessa. Aliás, como vejo que o sol está se pondo, deixo-o já e saio correndo. Então adeus e boa viagem.
+41|— Aonde corre com tanta pressa?
+42|— Para casa. A minha boa Fada quer que eu volte antes de anoitecer.
+43|— Espere mais dois minutos.
+44|— Vou chegar tarde demais.
+45|— Só dois minutos.
+46|— E se depois a Fada gritar comigo?
+47|— Deixe-a gritar. Quando tiver gritado bastante, vai se calar — disse aquele maroto do Pavio.
+48|— E como você faz? Parte sozinho ou em companhia?
+49|— Sozinho? Seremos mais de cem meninos.
+50|— E a viagem vocês fazem a pé?
+51|— Daqui a pouco passará por aqui a carroça que deve me pegar e conduzir até dentro dos confins daquele felicíssimo país.
+52|— O que eu pagaria para que a carroça passasse agora!...
+53|— Por quê?
+54|— Para ver vocês partirem todos juntos.
+55|— Fique aqui mais um pouco e nos verá.
+56|— Não, não: quero voltar para casa.
+57|— Espere mais dois minutos.
+58|— Já demorei até demais. A Fada deve estar preocupada comigo.
+59|— Pobre Fada! Tem medo, talvez, de que os morcegos o comam?
+60|— Mas então — acrescentou Pinóquio — você tem mesmo certeza de que naquele país não há nenhuma escola?...
+61|— Nem sombra.
+62|— E nem mestres?
+63|— Nem um.
+64|— E não há nunca a obrigação de estudar?
+65|— Nunca, nunca, nunca!
+66|— Que belo país! — disse Pinóquio, sentindo vir-lhe água à boca. — Que belo país! Nunca estive lá, mas imagino!...
+67|— Por que não vem também?
+68|— É inútil que você me tente! Agora já prometi à minha boa Fada me tornar um menino de juízo e não quero faltar com a palavra.
+69|— Então adeus e dê muitas lembranças às escolas ginasiais!... e também às do liceu, se as encontrar pela rua.
+70|— Adeus, Pavio; faça boa viagem, divirta-se e lembre-se às vezes dos amigos. —
+71|Dito isso, o boneco deu dois passos em atitude de ir embora: mas depois, parando e voltando-se para o amigo, perguntou-lhe:
+72|— Mas tem mesmo certeza de que naquele país todas as semanas são compostas de seis quintas-feiras e de um domingo?
+73|— Certeza absoluta.
+74|— Mas sabe com certeza que as férias têm início no primeiro de janeiro e terminam no último de dezembro?
+75|— Com certeza absoluta.
+76|— Que belo país! — repetiu Pinóquio, cuspindo de tanto contentamento. Depois, tomando uma decisão, acrescentou às pressas:
+77|— Então adeus de verdade: e boa viagem.
+78|— Adeus.
+79|— Daqui a quanto partirão?
+80|— Daqui a pouco.
+81|— Pena! se faltasse para a partida uma hora só, eu seria quase capaz de esperar.
+82|— E a Fada?
+83|— Agora já me atrasei!... e voltar para casa uma hora antes ou uma hora depois dá no mesmo.
+84|— Pobre Pinóquio! E se a Fada gritar com você?
+85|— Paciência! Deixarei que grite. Quando tiver gritado bastante, se calará. —
+86|Entretanto já era noite, e noite escura: quando de repente viram mover-se ao longe uma lamparininha.... e ouviram um som de guizos e um toque de trombeta, tão pequenino e abafado que parecia o zumbido de um mosquito.
+87|— Aí está! — gritou Pavio, pondo-se de pé.
+88|— Quem é? — perguntou baixinho Pinóquio.
+89|— É a carroça que vem me pegar. Então, quer vir, sim ou não?
+90|— Mas é mesmo verdade — perguntou o boneco — que naquele país os meninos nunca têm a obrigação de estudar?
+91|— Nunca, nunca, nunca!
+92|— Que belo país!... que belo país!... Que belo país!... —
