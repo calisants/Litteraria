@@ -992,7 +992,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.55.0",d:"2026-10-23"};
+const APP_REL={v:"1.56.0",d:"2026-10-23"};
 
 
 const RAW={
@@ -4232,13 +4232,13 @@ function lessonPath(){
   BOOKS.forEach(b=>VOLUME3.pages.filter(p=>p.book===b.id||p.rd===b.id).forEach(p=>out.push({vol:3,page:p})));
   /* jogos de livros e de memória: entram no fim da trilha e, antes disso, como intervalo entre lições (ver pickGame) */
   BOOKS.forEach(b=>b.chunks.forEach(c=>{add(1,"search-"+c.cat+"-easy");add(1,"cross-"+c.cat+"-easy");}));
-  const byT=["memoria","citacao","qualivro","regra","trecho","autor","capitulos"].map(t=>VOLUME.pages.filter(p=>p.type===t));
+  const byT=["memoria","citacao","regra","ouvir","trecho"].map(t=>VOLUME.pages.filter(p=>p.type===t));
   for(let i=0;byT.some(a=>i<a.length);i++)byT.forEach(a=>{if(a[i])out.push({vol:1,page:a[i]});});
   return(_path=out);
 }
 /* Jogos entre lições: depois de 2 lições seguidas, o «Hoje» e o «Próximo» oferecem um jogo (de tipo diferente do último).
    Prioridade: jogo do mesmo tema da próxima lição; jogo de tema anterior ainda não feito; jogo solto (memória, livros). */
-const GAME_T=["odd","connect","search","cross","memoria","citacao","qualivro","autor","trecho","capitulos","regra"];
+const GAME_T=["odd","connect","search","cross","memoria","citacao","trecho","regra","ouvir"];
 const isGameRef=r=>GAME_T.indexOf(r.page.type)>=0;
 const refCat=r=>r.page.cat||r.page.main||null;
 function pickGame(up){
@@ -4254,7 +4254,7 @@ function pickGame(up){
   for(const a of lv)if(a.length)return alt(a)[0][0];
   return null;
 }
-const SOLTOS=new Set(["memoria","citacao","qualivro","autor","trecho","capitulos","regra"]);
+const SOLTOS=new Set(["memoria","citacao","trecho","regra","ouvir"]);
 const _mdone=markDone;
 markDone=function(){
   const t=P&&P.type;
@@ -4637,13 +4637,13 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   window.phLangList=phLang;window.phBookMap=BK;window.phHash=hash;
 
   /* ---- páginas novas ---- */
-  VOLUME.types=VOLUME.types.concat([["citacao","Complete a citação","Citação"],["qualivro","De qual livro é?","De qual livro?"]]);
+  VOLUME.types=VOLUME.types.concat([["citacao","Complete a citação","Citação"]]);
   VOLUME3.types=VOLUME3.types.concat([["leitura","Leitura de um trecho","Leitura"]]);
   const PER=6;
   ["fr","it","en"].forEach(lang=>{
     const L=interleave(lang);if(!L.length)return;
     const n=Math.max(1,Math.ceil(L.length/PER));
-    ["citacao","qualivro"].forEach(type=>{
+    ["citacao"].forEach(type=>{
       for(let i=0;i<n;i++){
         const part=L.slice(Math.round(i*L.length/n),Math.round((i+1)*L.length/n));
         VOLUME.pages.push({id:type+"-"+lang+"-"+(i+1),type:type,n:i+1,langs:[lang],themes:[],sub:"Frases dos livros",meta:"Frases dos livros · parte "+(i+1)+" de "+n,qs:part.map(p=>p.id)});
@@ -4991,29 +4991,27 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   window.LITAUT=AUT;
   const cnt=t=>VOLUME.pages.filter(p=>p.type===t).length;
   VOLUME.types=VOLUME.types.concat([
-    ["autor","Quem escreveu o livro?","Quem escreveu?"],
     ["trecho","Ordene o trecho do livro","Ordene o trecho"],
-    ["capitulos","Ordem dos capítulos","Capítulos"],
-    ["regra","O que a frase quer dizer?","Qual o sentido?"]]);
-  GAMENAME.autor="Quem escreveu?";GAMENAME.trecho="Ordene o trecho";GAMENAME.capitulos="Capítulos";GAMENAME.regra="Qual o sentido?";
-  ["autor","trecho","capitulos","regra"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
-  GAMEFN.autor=startQuiz2;GAMEFN.regra=startQuiz2;GAMEFN.trecho=startOrd;GAMEFN.capitulos=startOrd;
+    ["regra","O que a frase quer dizer?","Qual o sentido?"],
+    ["ouvir","Ouça a frase e escolha o sentido","Ouça e escolha (com áudio)"]]);
+  GAMENAME.autor="Quem escreveu?";GAMENAME.trecho="Ordene o trecho";GAMENAME.capitulos="Capítulos";GAMENAME.regra="Qual o sentido?";GAMENAME.ouvir="Ouça e escolha (com áudio)";
+  ["autor","trecho","capitulos","regra","ouvir"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
+  GAMEFN.autor=startQuiz2;GAMEFN.regra=startQuiz2;GAMEFN.ouvir=startQuiz2;GAMEFN.trecho=startOrd;GAMEFN.capitulos=startOrd;
 
   /* ---- páginas ---- */
   ["fr","it","en"].forEach(lang=>{
     const bs=BOOKS.filter(b=>b.lang===lang);
     if(bs.length<3)return;
-    [["b2a","Livro → autor"],["a2b","Autor → livro"]].forEach(([kind,lab])=>VOLUME.pages.push({id:"autor-"+lang+"-"+kind,type:"autor",n:cnt("autor")+1,kind:kind,langs:[lang],themes:[],sub:"Autores dos livros",meta:lab}));
     const L=window.phLangList(lang),PER=6,n=Math.max(1,Math.ceil(L.length/PER));
     for(let i=0;i<n&&L.length>=4;i++){
       const part=L.slice(Math.round(i*L.length/n),Math.round((i+1)*L.length/n));
       VOLUME.pages.push({id:"regra-"+lang+"-"+(i+1),type:"regra",n:cnt("regra")+1,langs:[lang],themes:[],sub:"Frases dos livros",meta:"Frases dos livros · parte "+(i+1)+" de "+n,qs:part.map(p=>p.id)});
+      VOLUME.pages.push({id:"ouvir-"+lang+"-"+(i+1),type:"ouvir",n:cnt("ouvir")+1,langs:[lang],themes:[],sub:"Frases dos livros",meta:"Frases dos livros · parte "+(i+1)+" de "+n,qs:part.map(p=>p.id).reverse()});
     }
   });
   BOOKS.forEach(b=>{
     const R=BOOKREAD[b.id]||[];
     R.forEach((r,k)=>{if(r.segs.length>=2)VOLUME.pages.push({id:"trecho-"+b.id+"-"+(k+1),type:"trecho",n:cnt("trecho")+1,bk:b.id,k:k,langs:[b.lang],themes:["livro-"+b.id],sub:b.name,meta:"Trecho de «"+b.name+"» · "+(k+1)+" de "+R.length});});
-    if(b.id==="alice"||b.id==="principe")[1,2].forEach(j=>VOLUME.pages.push({id:"capitulos-"+b.id+"-"+j,type:"capitulos",n:cnt("capitulos")+1,bk:b.id,j:j,langs:[b.lang],themes:["livro-"+b.id],sub:b.name,meta:"«"+b.name+"» · sequência "+j+" de 2"}));
     b.chunks.forEach(c=>["search","cross"].forEach(t=>VOLUME.pages.push({id:t+"-"+c.cat+"-easy",type:t,level:"easy",cat:c.cat,n:cnt(t)+1,langs:[b.lang],themes:["livro-"+b.id,c.cat],sub:c.name,meta:c.name+" · Fácil"})));
   });
 
@@ -5054,10 +5052,14 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     renderQuiz2();
   }
   function renderQuiz2(){
-    const q=st.qs[st.i],ans=st.sel!==null,reg=st.kind==="regra";
+    const q=st.qs[st.i],ans=st.sel!==null,reg=st.kind==="regra"||st.kind==="ouvir",ouv=st.kind==="ouvir";
     let h='<p class="ocount">'+(st.i+1)+" de "+st.qs.length+" · acertos: "+st.score+"</p>";
     if(reg){
-      h+='<p class="qz-s">'+esc(q.p.s)+"</p>"+'<p class="help" style="text-align:center">Frase do livro «'+esc(BOOKS.find(b=>b.id===q.p.book).name)+"». O que ela quer dizer?</p>";
+      if(ouv&&!ans){
+        h+='<div class="row" style="justify-content:center"><button type="button" class="btn primary" id="ouv-play">🔊 Ouvir a frase</button></div>';
+        h+=st.show?'<p class="qz-s">'+esc(q.p.s)+"</p>":'<div class="row" style="justify-content:center"><button type="button" class="btn" id="ouv-show">Mostrar a frase (sem áudio)</button></div>';
+        h+='<p class="help" style="text-align:center">Ouça a frase de um livro e escolha o que ela quer dizer.</p>';
+      }else h+='<p class="qz-s">'+esc(q.p.s)+"</p>"+'<p class="help" style="text-align:center">Frase do livro «'+esc(BOOKS.find(b=>b.id===q.p.book).name)+"». O que ela quer dizer?</p>";
       h+='<div class="lopts">'+q.opts.map((o,i)=>'<button type="button" class="lopt long'+(ans?(o.id===q.ans?" right":(st.sel===i?" wrong":"")):"")+'" data-o="'+i+'"'+(ans?" disabled":"")+">"+esc(o.t)+"</button>").join("")+"</div>";
       if(ans){
         const ok=q.opts[st.sel].id===q.ans;
@@ -5075,22 +5077,24 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     $("#gstage").innerHTML=h;
   }
   $("#gstage").addEventListener("click",ev=>{
-    if(!P||!st||(P.type!=="autor"&&P.type!=="regra"))return;
+    if(!P||!st||(P.type!=="autor"&&P.type!=="regra"&&P.type!=="ouvir"))return;
     const o=ev.target.closest(".lopt");
     if(o&&st.sel===null){
       st.sel=+o.dataset.o;const q=st.qs[st.i];
-      const ok=st.kind==="regra"?q.opts[st.sel].id===q.ans:q.opts[st.sel]===q.ans;
+      const ok=st.kind!=="autor"?q.opts[st.sel].id===q.ans:q.opts[st.sel]===q.ans;
       if(ok)st.score++;litRec(ok);sfx(ok?"ok":"bad");renderQuiz2();return;
     }
+    if(ev.target.closest("#ouv-play")){const q=st.qs[st.i];if(q&&q.p)speak(q.p.s);return;}
+    if(ev.target.closest("#ouv-show")){st.show=true;renderQuiz2();return;}
     if(ev.target.closest("#lit-next")){
-      if(st.i<st.qs.length-1){st.i++;st.sel=null;renderQuiz2();return;}
+      if(st.i<st.qs.length-1){st.i++;st.sel=null;st.show=false;renderQuiz2();return;}
       markDone();sfx("done");
       const rows=st.kind==="autor"?st.qs.map(q=>{const b=BOOKS.find(x=>x.id===q.bk);return '<div class="srow"><span class="w">'+esc(b.name)+'</span><span class="pt">'+esc(AUT[b.id])+"</span></div>";}).join("")+'<p class="help">Autores conferidos em buscas na web em 21/10/2026 (Projeto Gutenberg, editoras e enciclopédias).</p>'
         :st.qs.map(q=>'<div class="srow"><span class="pt"><b>'+esc(q.p.s)+"</b><br><small>"+esc(q.p.pt)+"</small></span>"+speakBtn(q.p.s)+"</div>").join("");
       openSheet("Página concluída: "+st.score+" de "+st.qs.length+" certas",rows,true);
     }
   });
-  RESUME.reg(["autor","regra"],{
+  RESUME.reg(["autor","regra","ouvir"],{
     get(){return st&&st.kind===P.type&&st.i<st.qs.length?{qs:st.qs,i:st.i,score:st.score,sel:st.sel}:null;},
     set(s){
       if(!s.qs||!s.qs.length)return;
@@ -6259,6 +6263,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.56.0",d:"2026-10-23",t:["Jogos de literatura refeitos para treinar o idioma: saíram «Quem escreveu?», «De qual livro é?» e «Ordem dos capítulos» (eram perguntas sobre os livros, não sobre a língua)","Novo: «Ouça e escolha (com áudio)»: você ouve uma frase de um livro e escolhe o que ela quer dizer. Sem áudio, há o botão «Mostrar a frase»","Continuam: «Complete a citação», «Ordene o trecho» e «Qual o sentido?»"]},
 {v:"1.55.0",d:"2026-10-23",t:["Novo: notificações de «fulano te convidou para ser amigo», «aceitou o seu convite», «te desafiou» e «aceitou o seu desafio». Só chegam a quem aceita avisos dos amigos e tem as notificações ligadas, e dependem de uma atualização no servidor (feita pela criadora do app)","Mudou: em Amigos, «Aceitar cutucadas» virou «Aceitar avisos dos amigos» e controla todos esses avisos","Ao tocar numa notificação de amigo, o app abre direto em Amigos"]},
 {v:"1.54.0",d:"2026-10-23",t:["Novo: link de convite para amigos. Em Amigos, «Convidar por link» abre o WhatsApp (ou o menu de compartilhar) com um link; quem toca nele já vê o seu código preenchido","Novo: 17 ícones novos de perfil ligados aos livros (pena, tinteiro, castelo, coruja, rosa, lanterna etc.)","Novo: «Livro favorito» no Perfil (fica só no seu aparelho; não é enviado a amigos)","Mudou: Conta e backup na nuvem (o e-mail) agora fica no Perfil, não mais em Ajustes","Mudou: «Hoje» e «Próximo» agora só levam à gramática e às frases quando você já acertou palavras suficientes (a primeira página pede 30 palavras, e cada página seguinte, mais 9). Antes disso, seguem as palavras e os jogos. Tudo continua aberto em Lições","Novo: uma vez por dia, «Hoje» sugere rever uma página que você já concluiu, alternando entre os sons das letras (Pronúncia) e as palavras, mesmo com o volume terminado","Corrigido e refeito: «Qual regra?» agora se chama «Qual o sentido?»: você lê uma frase do livro e escolhe o que ela quer dizer entre 4 opções. Depois da resposta aparece a estrutura gramatical da frase. O visual quebrado das opções foi corrigido","Mudou: as fontes ficaram recolhidas. Em cada regra, no dicionário e nos textos dos livros há um «Fonte» que você abre só se quiser ver","Removido: o Cartão do dia (o cartão da tela inicial e a opção nos lembretes e no ícone do app). Os lembretes continuam","Ainda não existe: aviso de notificação para convites e desafios (exige mudança no servidor)"]},
 {v:"1.53.0",d:"2026-10-22",t:["Novo ícone do app: o livro aberto com «tt». A escolha de ícones saiu de Ajustes","Entrar na conta: o passo do código não se perde mais quando você vai ao e-mail e volta (Samsung Internet e outros navegadores)","Ao sair do app e voltar, ele reabre na última tela (Ajustes, Livros, Estatísticas…), e não mais na tela inicial","Dicionário: nova seção «Palavras parecidas: não confunda» (cuisine e cousine, desert e dessert…), nos 3 idiomas. Pares escritos por Claude, sem fonte conferida","O app muda para o endereço litteraria.com.br. Quem tem conta entra de novo e recupera tudo; quem não tem, baixe o backup antes em Ajustes → Dados"]},
