@@ -153,7 +153,7 @@
       '<label class="chk"><input type="checkbox" id="fr-s2" '+(me.share_words?"checked":"")+'> Palavras acertadas e dias estudados na semana</label>'+
       '<label class="chk"><input type="checkbox" id="fr-s3" '+(me.share_profile?"checked":"")+'> Meu ícone, minha frase e meu nível (o ícone e a frase vêm do Perfil)</label>'+
       '<label class="chk"><input type="checkbox" id="fr-s4" '+(me.share_langs?"checked":"")+'> Os idiomas que estudo e quantas páginas concluí em cada um</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-poke" '+(me.poke_ok!==false?"checked":"")+'> Aceitar cutucadas dos amigos (um lembrete para estudar)</label>'+
+      '<label class="chk"><input type="checkbox" id="fr-poke" '+(me.poke_ok!==false?"checked":"")+'> Aceitar avisos dos amigos (cutucadas, convites e desafios)</label>'+
       (window.__pushOn?'<p class="help">Este aparelho está pronto para receber cutucadas.</p>':'<p class="help">Para receber cutucadas, ligue os lembretes com o app fechado em Ajustes → Lembretes e cartão. Sem isso, você ainda pode cutucar os outros.</p>')+
       '<p class="help">Apelido atual: <b>'+h(me.nick)+'</b>.</p></details>';
     if(L.blocked.length)o+='<h3 class="lab" style="margin-top:14px">Bloqueados</h3>'+L.blocked.map(f=>'<div class="cad-row"><span>'+h(f.nick)+'</span><button type="button" class="btn" data-fr="unb" data-u="'+h(f.uid)+'">Desbloquear</button></div>').join("");
@@ -167,6 +167,10 @@
     if(ses())await load();paint();
   }
   window.openFriends=openFriends;
+  /* aviso por notificação (convite, aceite, desafio): melhor esforço, em segundo plano; falhar nunca atrapalha a ação */
+  function notify(kind,uid,code){
+    try{CLOUD.authed("/functions/v1/poke",{method:"POST",body:{kind:kind,uid:uid||undefined,code:code||undefined}}).catch(()=>{});}catch(_){}
+  }
   async function act(fn){
     if(busy)return;busy=true;
     try{await fn();msg=msg||"";}catch(e){msg=e.message;}
@@ -194,6 +198,8 @@
     if(t.id==="fr-req")return act(async()=>{
       const c=($("#fr-add").value||"").trim();if(c.length<4){msg="Digite o código do amigo.";return;}
       const r=await rpc("friends_request",{p_code:c});
+      if(r==="enviado")notify("invite",null,c);
+      if(r!=="limite"&&r!=="nao_encontrado"){inv="";try{localStorage.removeItem(IK);}catch(_){}}
       msg={enviado:"Convite enviado. Quando a pessoa aceitar, ela aparece em «Amigos».",ja:"Vocês já estão conectados ou há um convite pendente.",nao_encontrado:"Não achei esse código. Confira com o seu amigo.",limite:"Você já tem muitos convites pendentes. Espere alguém responder."}[r]||"Pronto.";
     });
     if(t.id==="fr-refresh")return act(async()=>{await pushStats();msg="Lista atualizada.";});
@@ -202,7 +208,7 @@
       await rpc("friends_disable");me=null;lst=null;setOn(false);msg="Amigos desativado e dados apagados do servidor.";
     });
     const a=t.dataset.fr,u=t.dataset.u;
-    if(a==="acc")return act(()=>rpc("friends_respond",{p_uid:u,p_accept:true}));
+    if(a==="acc")return act(async()=>{await rpc("friends_respond",{p_uid:u,p_accept:true});notify("accepted",u);});
     if(a==="rej")return act(()=>rpc("friends_respond",{p_uid:u,p_accept:false}));
     if(a==="del")return act(()=>rpc("friends_remove",{p_uid:u}));
     if(a==="blk")return act(async()=>{await rpc("friends_block",{p_uid:u});msg="Pessoa bloqueada.";});
@@ -214,9 +220,9 @@
       msg={ok:"Cutucada enviada! 👋",ja_hoje:"Você já cutucou essa pessoa hoje. Amanhã pode de novo.",recusa:"Esta pessoa não está recebendo cutucadas.",sem_aparelho:"Esta pessoa ainda não tem as notificações ligadas neste aparelho, então a cutucada não chegaria.",limite:"Essa pessoa já recebeu muitas cutucadas hoje. Tente amanhã.",nao_amigo:"Vocês não estão mais conectados.",falhou:"A notificação não saiu. Tente de novo mais tarde."}[j.status]||"Não consegui cutucar agora.";
     });
     if(a==="chp")return act(async()=>{const r=await rpc("challenge_propose",{p_uid:u});msg={enviado:"Desafio enviado. Ele só começa quando a pessoa aceitar.",ja:"Já existe um desafio com essa pessoa.",nao_amigo:"Vocês não estão mais conectados."}[r]||"Pronto.";
-      if(r!=="limite"&&r!=="nao_encontrado"){inv="";try{localStorage.removeItem(IK);}catch(_){}}
+      if(r==="enviado")notify("challenge",u);
     });
-    if(a==="cha")return act(async()=>{await rpc("challenge_respond",{p_uid:u,p_accept:true});lst=await rpc("friends_list");await pushCh();msg="Desafio aceito! Vale a semana de segunda a domingo.";});
+    if(a==="cha")return act(async()=>{await rpc("challenge_respond",{p_uid:u,p_accept:true});notify("ch_ok",u);lst=await rpc("friends_list");await pushCh();msg="Desafio aceito! Vale a semana de segunda a domingo.";});
     if(a==="che")return act(async()=>{await rpc("challenge_end",{p_uid:u});msg="Pronto. Nada ficou guardado no servidor.";});
     if(a==="chx")return act(async()=>{if(!confirm("Encerrar o desafio? O total da semana de vocês dois é apagado do servidor."))return;await rpc("challenge_end",{p_uid:u});msg="Desafio encerrado e totais apagados do servidor.";});
     if(a==="unb")return act(()=>rpc("friends_unblock",{p_uid:u}));

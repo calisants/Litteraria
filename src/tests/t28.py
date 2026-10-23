@@ -16,6 +16,8 @@ def handler(route):
     if path=='/auth/v1/verify': return J(200,{'access_token':'at1','refresh_token':'rt1','expires_in':3600,'expires_at':int(time.time())+3600,'user':{'id':'u1','email':body['email']}})
     if path.startswith('/rest/v1/progress'): return J(200,[]) if rq.method=='GET' else J(201,[{'data':body.get('data'),'updated_at':'2026-10-21T15:00:00.000001+00:00'}])
     if path.startswith('/rest/v1/consents'): return J(201,[]) if rq.method=='POST' else J(200,[])
+    if path=='/functions/v1/poke' and body.get('kind') and body['kind']!='poke':
+        st['calls'].append(('NOTIFY',body['kind']));return J(200,{'status':'ok','sent':1})
     if path=='/functions/v1/poke':
         st['poked']+=1;st['calls'].append(('POKE',body))
         return J(200,{'status':'ok' if st['poked']==1 else 'ja_hoje','sent':1})
@@ -96,8 +98,9 @@ try:
     # convite por código inexistente e existente
     pg.fill('#fr-add','zzzzzzzz');pg.click('#fr-req');pg.wait_for_timeout(300);assert 'Não achei' in pg.inner_text('#fr-box')
     pg.fill('#fr-add','ABCD2345');pg.click('#fr-req');pg.wait_for_timeout(300);t=pg.inner_text('#fr-box');assert 'Convite enviado' in t and 'Bia' in t
+    assert ('NOTIFY','invite') in st['calls'],'aviso de convite'
     # aceita convite recebido; lista mostra só o que o amigo compartilha
-    pg.click('[data-fr=acc]');pg.wait_for_timeout(300);t=pg.inner_text('#fr-box').lower();assert 'amigos (1)' in t and '5 dias seguidos' in t and 'palavras acertadas' not in t.split('amigos (1)')[1].split('convites enviados')[0]
+    pg.click('[data-fr=acc]');pg.wait_for_timeout(300);assert ('NOTIFY','accepted') in st['calls'],'aviso de aceite';t=pg.inner_text('#fr-box').lower();assert 'amigos (1)' in t and '5 dias seguidos' in t and 'palavras acertadas' not in t.split('amigos (1)')[1].split('convites enviados')[0]
     # cartão do amigo: ícone, frase, nível, idiomas
     card=pg.inner_text('.frcard');assert 'Um dia de cada vez' in card and 'Nív. 3' in card and 'Francês' in card and '12 páginas' in card and 'ativo hoje' in card,card
     assert pg.locator('.frcard .avatar svg').count()==1,'ícone do amigo'
@@ -108,11 +111,11 @@ try:
     pg.evaluate("()=>document.querySelector('.frset').open=true");assert pg.is_checked('#fr-poke');pg.uncheck('#fr-poke');pg.wait_for_timeout(300);assert ('friends_pokes_set',{'p_on':False}) in st['calls']
     # desafio semanal: propor, aguardar, receber, aceitar, ver placar, encerrar
     assert pg.evaluate("()=>{S.wkd={};P={id:'zz-1',type:'x'};markDone();markDone();markDone();P=null;return S.wkd[ymd()]}")==3,'cada lição concluída conta no dia'
-    assert pg.is_visible('[data-fr=chp]');pg.click('[data-fr=chp]');pg.wait_for_timeout(300);t=pg.inner_text('#fr-box');assert 'Desafio enviado' in t and 'Aguardando' in t and not pg.is_visible('[data-fr=chp]'),t
+    assert pg.is_visible('[data-fr=chp]');pg.click('[data-fr=chp]');pg.wait_for_timeout(300);t=pg.inner_text('#fr-box');assert ('NOTIFY','challenge') in st['calls'],'aviso de desafio';assert 'Desafio enviado' in t and 'Aguardando' in t and not pg.is_visible('[data-fr=chp]'),t
     assert any(c[0]=='challenge_propose' and c[1]=={'p_uid':'f1'} for c in st['calls'])
     assert not any(c[0]=='challenge_stats' for c in st['calls']),'sem desafio ativo não envia total'
     st['fr'][0]['ch']={'st':'recv'};pg.click('#fr-refresh');pg.wait_for_timeout(300);assert 'te desafiou' in pg.inner_text('.frch')
-    pg.click('[data-fr=cha]');pg.wait_for_timeout(500);t=pg.inner_text('.frch');assert 'Desafio da semana' in t and 'Semana passada' in t and 'Ana venceu' in t,t
+    pg.click('[data-fr=cha]');pg.wait_for_timeout(500);assert ('NOTIFY','ch_ok') in st['calls'],'aviso de desafio aceito';t=pg.inner_text('.frch');assert 'Desafio da semana' in t and 'Semana passada' in t and 'Ana venceu' in t,t
     cs=[c for c in st['calls'] if c[0]=='challenge_stats'];assert cs and cs[-1][1]['p_pages']==3 and re.match(r'^\d{4}-\d\d-\d\d$',cs[-1][1]['p_week']),cs[-1:]
     import datetime;assert datetime.date.fromisoformat(cs[-1][1]['p_week']).weekday()==0,'p_week deve ser segunda-feira'
     pg.locator('.frcard').first.screenshot(path='/tmp/frch.png')

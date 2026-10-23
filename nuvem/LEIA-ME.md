@@ -35,3 +35,8 @@ Limites no banco: só amigos aceitos, sem bloqueio, 1 por amigo por dia, 5 receb
 ## Amigos, parte 2 (v1.47: ícone, frase, nível e idiomas)
 1. Supabase → SQL Editor → New query → cole TODO o conteúdo de `nuvem/amigos2.sql` → Run. Pode rodar mais de uma vez. (Rode antes `amigos.sql` e `cutucar.sql`, se ainda não rodou.)
 2. Sem esse passo, o app continua funcionando como antes; só as duas opções novas («Meu ícone, minha frase e meu nível» e «Os idiomas que estudo») avisam que o servidor ainda não tem a parte nova.
+
+## Avisos de convite e desafio (v1.55)
+1. SQL Editor: rode `nuvem/avisos.sql` (depois de `amigos.sql`, `cutucar.sql`, `amigos2.sql` e `desafio.sql`). Pode rodar mais de uma vez.
+2. Edge Functions → `poke` → cole o conteúdo novo de `nuvem/poke/index.ts` → Deploy. (Mesmo nome, mesmos segredos VAPID.)
+Avisos: «te convidou para ser amigo», «aceitou o seu convite», «te desafiou», «aceitou o seu desafio». Só chegam a quem aceita avisos (a caixa «Aceitar avisos dos amigos») e tem as notificações ligadas no aparelho. Limites: 1 de cada tipo por pessoa por dia e 10 por dia recebidos; cutucadas continuam com os seus 5 por dia.

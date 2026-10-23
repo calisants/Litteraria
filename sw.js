@@ -1,6 +1,6 @@
 // Service worker do Litteraria: guarda o app no aparelho para funcionar sem internet.
 // Ao publicar uma versão nova do index.html, troque o número em CACHE (v6 -> v7, e APP_VERSION no index.html).
-const CACHE = "mots-parole-v97"; // só o cache muda; a chave do LocalStorage (APP_VERSION) segue v6 para não apagar o progresso
+const CACHE = "mots-parole-v98"; // só o cache muda; a chave do LocalStorage (APP_VERSION) segue v6 para não apagar o progresso
 const ASSETS = [
   "./",
   "./index.html",
@@ -140,17 +140,18 @@ self.addEventListener("periodicsync", (event) => {
 self.addEventListener("push", (event) => {
   let d = {};
   try { d = event.data ? event.data.json() : {}; } catch (_) {}
-  const go = d.go === "cartao" ? "cartao" : "hoje";
+  const go = d.go === "amigos" ? "amigos" : d.go === "cartao" ? "cartao" : "hoje";
   event.waitUntil(self.registration.showNotification(String(d.t || "Litteraria").slice(0, 80), {
     body: String(d.b || "Uma lição curta de hoje?").slice(0, 200), icon: "icon-192.png", badge: "icon-192.png",
-    vibrate: [120, 60, 120, 60, 220], tag: "mp-lembrete", renotify: true, data: { go },
-    actions: [{ action: "hoje", title: "Fazer agora" }, { action: "depois", title: "Depois" }]
+    vibrate: [120, 60, 120, 60, 220], tag: go === "amigos" ? "mp-amigos" : "mp-lembrete", renotify: true, data: { go },
+    actions: go === "amigos" ? [{ action: "hoje", title: "Abrir" }, { action: "depois", title: "Depois" }] : [{ action: "hoje", title: "Fazer agora" }, { action: "depois", title: "Depois" }]
   }));
 });
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
   if (event.action === "depois") return;
-  const alvo = (event.notification.data && event.notification.data.go) === "cartao" ? "cartao" : "hoje";
+  const g0 = event.notification.data && event.notification.data.go;
+  const alvo = g0 === "amigos" ? "amigos" : g0 === "cartao" ? "cartao" : "hoje";
   event.waitUntil(
     self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((cs) => {
       for (const c of cs) {

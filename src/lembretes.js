@@ -184,6 +184,7 @@
     if(g==="hoje")startToday();
     else if(g==="cartao")startToday();
     else if(g==="treino")openTrainMenu();
+    else if(g==="amigos"&&typeof openFriends==="function")openFriends();
   }
   window.handleGo=handleGo;
   if(navigator.serviceWorker)navigator.serviceWorker.addEventListener("message",e=>{if(e.data&&e.data.t==="go")handleGo(e.data.go);});

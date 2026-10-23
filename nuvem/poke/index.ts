@@ -21,19 +21,33 @@ Deno.serve(async (req) => {
     const { data: u, error: ue } = await admin.auth.getUser(token);
     if (ue || !u || !u.user) return out(401, { error: "login inválido" });
     const body = await req.json().catch(() => ({}));
-    const uid = String(body.uid || "");
-    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(uid)) return out(400, { error: "pessoa inválida" });
+    let uid = String(body.uid || "");
+    const kind = String(body.kind || "poke");
+    if (!["poke", "invite", "accepted", "challenge", "ch_ok"].includes(kind)) return out(400, { error: "tipo inválido" });
+    const code = String(body.code || "").slice(0, 12);
+    if (!(kind === "invite" && code && !uid) && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(uid)) return out(400, { error: "pessoa inválida" });
 
     // o banco confere amizade, bloqueio, preferência, limites e registra a cutucada, no nome de quem chamou
     const user = createClient(url, anon, { global: { headers: { Authorization: "Bearer " + token } }, auth: { persistSession: false } });
-    const { data: r, error: re } = await user.rpc("friends_poke", { p_uid: uid });
+    const { data: r, error: re } = kind === "poke"
+      ? await user.rpc("friends_poke", { p_uid: uid })
+      : await user.rpc("friends_notify", { p_kind: kind, p_uid: uid || null, p_code: code || null });
     if (re) return out(500, { error: "banco", detail: String(re.message || "").slice(0, 120) });
     if (!r || r.status !== "ok") return out(200, { status: (r && r.status) || "nao_amigo" });
+    if (r.uid) uid = r.uid;
 
     const { data: subs } = await admin.from("push_subs").select("endpoint,p256dh,auth").eq("user_id", uid);
     webpush.setVapidDetails(Deno.env.get("VAPID_SUBJECT"), Deno.env.get("VAPID_PUBLIC"), Deno.env.get("VAPID_PRIVATE"));
     const text = MSGS[Math.floor(Math.random() * MSGS.length)];
-    const payload = JSON.stringify({ t: "👋 " + r.nick + " te cutucou", b: text, go: "hoje" });
+    const TXT = {
+      poke: ["👋 " + r.nick + " te cutucou", text, "hoje"],
+      invite: ["🤝 " + r.nick + " te convidou para ser amigo", "Abra o Litteraria, toque em Amigos e aceite o convite.", "amigos"],
+      accepted: ["🎉 " + r.nick + " aceitou o seu convite", "Vocês agora são amigos no Litteraria.", "amigos"],
+      challenge: ["🏆 " + r.nick + " te desafiou", "Quem conclui mais lições na semana? Abra Amigos para aceitar.", "amigos"],
+      ch_ok: ["🏁 " + r.nick + " aceitou o seu desafio", "A semana de lições começou. Boa sorte!", "amigos"],
+    };
+    const tx = TXT[kind];
+    const payload = JSON.stringify({ t: tx[0], b: tx[1], go: tx[2] });
     let sent = 0;
     for (const s of subs || []) {
       try {
@@ -44,7 +58,8 @@ Deno.serve(async (req) => {
       }
     }
     if (sent === 0) {
-      await admin.rpc("poke_undo", { p_sender: u.user.id, p_receiver: uid });
+      if (kind === "poke") await admin.rpc("poke_undo", { p_sender: u.user.id, p_receiver: uid });
+      else await admin.rpc("notify_undo", { p_sender: u.user.id, p_receiver: uid, p_kind: kind });
       return out(200, { status: "falhou" });
     }
     return out(200, { status: "ok", sent });
