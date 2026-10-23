@@ -148,8 +148,8 @@
       const c=await authed("/rest/v1/consents?select=policy_version,age_ok,at&user_id=eq."+ses.uid);
       const o={email:ses.email,consentimento:c.ok?await c.json():[],progresso:row?row.data:null,salvo_em:row?row.updated_at:null};
       const blob=new Blob([JSON.stringify(o,null,1)],{type:"application/json"}),a=document.createElement("a");
-      a.href=URL.createObjectURL(blob);a.download="mots-parole-meus-dados-"+ymd()+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),3000);
-      say("Arquivo baixado: procure mots-parole-meus-dados-"+ymd()+".json.");
+      a.href=URL.createObjectURL(blob);a.download="litteraria-meus-dados-"+ymd()+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),3000);
+      say("Arquivo baixado: procure litteraria-meus-dados-"+ymd()+".json.");
     }catch(_){say("Não consegui baixar agora. Tente de novo.");}
   }
   async function deleteAccount(){

@@ -1,4 +1,4 @@
--- Mots & Parole: AMIGOS, parte 2 (v1.47). Cole no SQL Editor do Supabase e clique em Run. Pode rodar mais de uma vez.
+-- Litteraria: AMIGOS, parte 2 (v1.47). Cole no SQL Editor do Supabase e clique em Run. Pode rodar mais de uma vez.
 -- Acrescenta ao perfil de amigo: ícone, frase, nível e idiomas. Tudo continua OPCIONAL: cada pessoa liga ou desliga
 -- «ícone, frase e nível» e «idiomas que estudo» (começam desligados). Quem desliga tem os dados apagados do servidor.
 -- Rode DEPOIS de amigos.sql e cutucar.sql.

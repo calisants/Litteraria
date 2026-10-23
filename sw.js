@@ -1,6 +1,6 @@
-// Service worker do Mots & Parole: guarda o app no aparelho para funcionar sem internet.
+// Service worker do Litteraria: guarda o app no aparelho para funcionar sem internet.
 // Ao publicar uma versão nova do index.html, troque o número em CACHE (v6 -> v7, e APP_VERSION no index.html).
-const CACHE = "mots-parole-v93"; // só o cache muda; a chave do LocalStorage (APP_VERSION) segue v6 para não apagar o progresso
+const CACHE = "mots-parole-v94"; // só o cache muda; a chave do LocalStorage (APP_VERSION) segue v6 para não apagar o progresso
 const ASSETS = [
   "./",
   "./index.html",
@@ -141,7 +141,7 @@ async function lembrete() {
   const now = new Date(), dia = hoje();
   if (now.getHours() < st.h || st.last === dia || st.notified === dia) return;
   let title, body;
-  if (st.st === "calma") { title = "Mots & Parole"; body = "Quando puder, uma lição curta de " + (st.ln || "idiomas") + "."; }
+  if (st.st === "calma") { title = "Litteraria"; body = "Quando puder, uma lição curta de " + (st.ln || "idiomas") + "."; }
   else if (st.st === "cartao" && st.cards && (st.cards[dia] || st.cards[Object.keys(st.cards)[0]])) {
     const c = st.cards[dia] || st.cards[Object.keys(st.cards)[0]];
     title = c.k; body = c.t + (c.s ? "\n" + c.s : "");
@@ -166,7 +166,7 @@ self.addEventListener("push", (event) => {
   let d = {};
   try { d = event.data ? event.data.json() : {}; } catch (_) {}
   const go = d.go === "cartao" ? "cartao" : "hoje";
-  event.waitUntil(self.registration.showNotification(String(d.t || "Mots & Parole").slice(0, 80), {
+  event.waitUntil(self.registration.showNotification(String(d.t || "Litteraria").slice(0, 80), {
     body: String(d.b || "Uma lição curta de hoje?").slice(0, 200), icon: "icon-192.png", badge: "icon-192.png",
     vibrate: [120, 60, 120, 60, 220], tag: "mp-lembrete", renotify: true, data: { go },
     actions: [{ action: "hoje", title: "Fazer agora" }, { action: "depois", title: "Depois" }]

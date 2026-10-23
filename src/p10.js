@@ -144,10 +144,10 @@ function bkReset(){bkPending=null;const g=$("#bk-go"),n=$("#bk-note"),f=$("#bk-f
 $("#bk-save").addEventListener("click",()=>{
   try{
     const blob=new Blob([JSON.stringify(S)],{type:"application/json"}),a=document.createElement("a");
-    a.href=URL.createObjectURL(blob);a.download="mots-parole-progresso-"+ymd()+".json";
+    a.href=URL.createObjectURL(blob);a.download="litteraria-progresso-"+ymd()+".json";
     document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),3000);
     S.bk=Date.now();save();renderBkWarn();
-    $("#bk-note").textContent="Backup baixado: procure o arquivo mots-parole-progresso-"+ymd()+".json em Downloads.";
+    $("#bk-note").textContent="Backup baixado: procure o arquivo litteraria-progresso-"+ymd()+".json em Downloads.";
   }catch(_){$("#bk-note").textContent="Não consegui gerar o arquivo neste navegador.";}
 });
 $("#bk-file").addEventListener("change",e=>{
@@ -160,7 +160,7 @@ $("#bk-file").addEventListener("change",e=>{
       bkPending=JSON.stringify(o);
       $("#bk-note").textContent="Arquivo válido: "+Object.keys(o.done||{}).length+" páginas concluídas, "+(Object.keys(o.rv||{}).length+Object.keys(o.rvv||{}).length)+" itens em revisão. Toque em Restaurar para substituir o progresso atual.";
       $("#bk-go").hidden=false;
-    }catch(_){bkPending=null;$("#bk-go").hidden=true;$("#bk-note").textContent="Esse arquivo não parece um backup do Mots & Parole.";}
+    }catch(_){bkPending=null;$("#bk-go").hidden=true;$("#bk-note").textContent="Esse arquivo não parece um backup do app Litteraria.";}
   };
   rd.onerror=()=>{$("#bk-note").textContent="Não consegui ler o arquivo.";};
   rd.readAsText(f);

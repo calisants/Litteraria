@@ -62,7 +62,7 @@
     tl.forEach(l=>{x.fillText(l,pad,y);y+=56;});
     x.fillStyle=muted;x.font="400 26px Georgia,serif";
     x.fillText("Tradução: escrita por Claude, sem fonte conferida",pad,H-170);
-    x.fillStyle=acc;x.font="700 34px Georgia,serif";x.fillText("Mots & Parole",pad,H-120);
+    x.fillStyle=acc;x.font="700 34px Georgia,serif";x.fillText("Litteraria",pad,H-120);
     return c;
   }
   async function saveCard(id){

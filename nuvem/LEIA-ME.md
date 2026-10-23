@@ -6,7 +6,7 @@ O app guarda tudo no aparelho. Com a conta (opcional), uma cópia do progresso f
 1. supabase.com → New project (plano Free). Escolha a região mais perto do Brasil que aparecer; guarde a senha do banco.
 2. **SQL Editor** → cole `nuvem/setup.sql` inteiro → Run. Cria as tabelas `progress` e `consents`, as regras (cada pessoa só vê a própria linha), `delete_me()` e `ping()`.
 3. **Authentication → Sign In / Providers → Email**: ligado (é o único provedor necessário). O padrão do Supabase já exige confirmar o e-mail; com código, a confirmação acontece ao digitar o código.
-4. **Authentication → Email Templates → Magic Link**: troque o corpo por algo como `<p>Seu código do Mots & Parole: <b>{{ .Token }}</b></p><p>Vale por 1 hora.</p>` (a variável `{{ .Token }}` é o código).
+4. **Authentication → Email Templates → Magic Link**: troque o corpo por algo como `<p>Seu código do Litteraria: <b>{{ .Token }}</b></p><p>Vale por 1 hora.</p>` (a variável `{{ .Token }}` é o código).
 5. **Envio de e-mail (obrigatório antes de abrir ao público)**: o envio embutido do Supabase só entrega para membros da sua equipe e a 2 mensagens por hora (docs: supabase.com/docs/guides/auth/auth-smtp). Em Authentication → SMTP Settings configure um provedor (os docs citam Resend, AWS SES, Postmark, SendGrid, ZeptoMail, Brevo). Normalmente exige um remetente verificado; um domínio próprio melhora a entrega.
 6. **Project Settings → API**: copie a «Project URL» e a chave pública (a chave «publishable», ou a antiga `anon`). Cole em `src/nuvemcfg.js` (`url`, `key`), rode `python3 build.py` e publique. A chave pública pode ficar no app; **nunca** use a `service_role`.
 7. Teste: Ajustes → Conta e nuvem.

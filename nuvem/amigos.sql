@@ -1,4 +1,4 @@
--- Mots & Parole: AMIGOS (opcional). Cole tudo no SQL Editor do Supabase e clique em Run. Pode rodar mais de uma vez.
+-- Litteraria: AMIGOS (opcional). Cole tudo no SQL Editor do Supabase e clique em Run. Pode rodar mais de uma vez.
 -- Princípios: tudo desligado até a pessoa ativar; só apelido + o que ela escolher mostrar (sequência de dias, palavras, semana);
 -- sem chat, sem foto, sem busca de pessoas (só entra por código); bloquear e denunciar; sair apaga tudo.
 -- As tabelas ficam fechadas (RLS ligada e sem política): todo acesso passa pelas funções abaixo, que só enxergam a própria pessoa e os amigos aceitos.

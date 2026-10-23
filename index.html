@@ -6,12 +6,12 @@
 <meta name="theme-color" content="#1f3d7a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Mots &amp; Parole">
+<meta name="apple-mobile-web-app-title" content="Litteraria">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
-<title>Mots &amp; Parole</title>
+<title>Litteraria</title>
 <style>
 @font-face{font-family:"Atkinson Hyperlegible";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-400-normal.woff2) format("woff2")}
 @font-face{font-family:"Atkinson Hyperlegible";font-weight:700;font-style:normal;font-display:swap;src:url(fonts/atkinson-hyperlegible-latin-700-normal.woff2) format("woff2")}
@@ -584,7 +584,7 @@ svg{display:block}
   <section class="screen" id="s-home">
     <div class="scroll">
       <div class="hero">
-        <h1 class="brand"><span class="fr">Mots</span> <i>&amp;</i> <span class="it">Parole</span></h1>
+        <h1 class="brand"><span class="fr">Litteraria</span></h1>
       </div>
       <div class="me">
         <span class="avatar" id="me-av" aria-hidden="true"></span>
@@ -991,7 +991,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.51.1",d:"2026-10-22"};
+const APP_REL={v:"1.52.0",d:"2026-10-22"};
 
 
 const RAW={
@@ -3933,10 +3933,10 @@ function bkReset(){bkPending=null;const g=$("#bk-go"),n=$("#bk-note"),f=$("#bk-f
 $("#bk-save").addEventListener("click",()=>{
   try{
     const blob=new Blob([JSON.stringify(S)],{type:"application/json"}),a=document.createElement("a");
-    a.href=URL.createObjectURL(blob);a.download="mots-parole-progresso-"+ymd()+".json";
+    a.href=URL.createObjectURL(blob);a.download="litteraria-progresso-"+ymd()+".json";
     document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),3000);
     S.bk=Date.now();save();renderBkWarn();
-    $("#bk-note").textContent="Backup baixado: procure o arquivo mots-parole-progresso-"+ymd()+".json em Downloads.";
+    $("#bk-note").textContent="Backup baixado: procure o arquivo litteraria-progresso-"+ymd()+".json em Downloads.";
   }catch(_){$("#bk-note").textContent="Não consegui gerar o arquivo neste navegador.";}
 });
 $("#bk-file").addEventListener("change",e=>{
@@ -3949,7 +3949,7 @@ $("#bk-file").addEventListener("change",e=>{
       bkPending=JSON.stringify(o);
       $("#bk-note").textContent="Arquivo válido: "+Object.keys(o.done||{}).length+" páginas concluídas, "+(Object.keys(o.rv||{}).length+Object.keys(o.rvv||{}).length)+" itens em revisão. Toque em Restaurar para substituir o progresso atual.";
       $("#bk-go").hidden=false;
-    }catch(_){bkPending=null;$("#bk-go").hidden=true;$("#bk-note").textContent="Esse arquivo não parece um backup do Mots & Parole.";}
+    }catch(_){bkPending=null;$("#bk-go").hidden=true;$("#bk-note").textContent="Esse arquivo não parece um backup do app Litteraria.";}
   };
   rd.onerror=()=>{$("#bk-note").textContent="Não consegui ler o arquivo.";};
   rd.readAsText(f);
@@ -4497,7 +4497,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     tl.forEach(l=>{x.fillText(l,pad,y);y+=56;});
     x.fillStyle=muted;x.font="400 26px Georgia,serif";
     x.fillText("Tradução: escrita por Claude, sem fonte conferida",pad,H-170);
-    x.fillStyle=acc;x.font="700 34px Georgia,serif";x.fillText("Mots & Parole",pad,H-120);
+    x.fillStyle=acc;x.font="700 34px Georgia,serif";x.fillText("Litteraria",pad,H-120);
     return c;
   }
   async function saveCard(id){
@@ -5490,7 +5490,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   async function swReg(){try{return await Promise.race([navigator.serviceWorker.ready,new Promise((_,r)=>setTimeout(r,2500))]);}catch(_){return null;}}
   function textFor(style){
     const s=window.gamStreak?gamStreak():{n:0,today:false},nm=(S.player||"").split(" ")[0];
-    if(style==="calma")return {title:"Mots & Parole",body:"Quando puder, uma lição curta de "+LNAME[S.lang]+"."};
+    if(style==="calma")return {title:"Litteraria",body:"Quando puder, uma lição curta de "+LNAME[S.lang]+"."};
     if(style==="cartao"){const c=cardFor(ymd(),S.lang);return {title:c.k,body:c.t+(c.s?"\n"+c.s:"")};}
     const body=S.gam.on&&s.n>0&&!s.today?"Sua sequência de "+s.n+(s.n===1?" dia":" dias")+" está esperando. 5 minutos salvam o dia!":"Que tal 5 minutos de "+LNAME[S.lang]+"? Uma lição curta já vale.";
     return {title:"📚 "+(nm?nm+", ":"")+"hora de brincar com as palavras!",body:body};
@@ -5663,7 +5663,7 @@ const PRIV_VER="2026-10-22b";
 function privSections(){
   const cloud=!!(window.CLOUDCFG&&CLOUDCFG.url&&CLOUDCFG.key),push=!!(window.PUSHCFG&&PUSHCFG.sink);
   const s=[];
-  s.push(["Quem cuida dos seus dados","O Mots & Parole é feito por Camila (@calisants), que decide como os dados do app são tratados. Para falar sobre privacidade, use Ajustes → Sobre e ajuda → «Enviar sugestão ou avisar de erro»."]);
+  s.push(["Quem cuida dos seus dados","O app Litteraria é feito por Camila (@calisants), que decide como os dados do app são tratados. Para falar sobre privacidade, use Ajustes → Sobre e ajuda → «Enviar sugestão ou avisar de erro»."]);
   s.push(["Sem conta, nada sai do seu aparelho","O progresso, os ajustes, o nome que você digitar, o caderno de palavras e as citações favoritas ficam só no armazenamento deste aparelho. O app não tem anúncios e não usa ferramentas de estatística de terceiros."]);
   if(cloud)s.push(["Conta (opcional)","Se você criar uma conta, guardamos: o seu e-mail; uma cópia do seu progresso (lições feitas, pontuações, revisões, caderno de palavras, favoritos, ajustes e o nome que você digitou); e a data em que você aceitou esta política e confirmou ter 13 anos ou mais. Isso serve só para você recuperar o progresso se trocar de celular e usar o app em mais de um aparelho. Os dados ficam no Supabase, um serviço de terceiros; eles não ficam no GitHub nem em outro lugar do app. Cada conta só consegue ler e alterar os próprios dados. Tecnicamente, quem administra o projeto tem acesso a eles; esse acesso é para manter o serviço e atender pedidos seus."]);
   if(cloud)s.push(["Amigos (opcional, só com conta)","Desligado até você ativar. Ao ativar, guardamos: um apelido que você escolher (2 a 20 letras; não use seu nome completo), um código de amigo gerado pelo app, a lista de amigos e convites, e, só se você marcar, a sua sequência de dias, o total de palavras acertadas e quantos dos últimos 7 dias você estudou. Também só se você marcar: o ícone e a frase do seu Perfil, o seu nível, e os idiomas que você estuda com o número de páginas concluídas em cada um. Cada uma dessas opções é separada e começa desligada; ao desligar, o dado é apagado do servidor. Seus amigos aceitos veem apenas o apelido e o que você marcou. Ninguém te encontra por busca: só entra quem tiver o seu código. Não há chat, foto nem mensagens. Você pode remover amigos, bloquear e denunciar (a denúncia guarda quem denunciou, quem foi denunciado e o texto que você escrever, até 300 letras, para a criadora do app analisar). Cutucadas: um amigo aceito pode te mandar um lembrete para estudar (1 por dia por amigo, no máximo 5 por dia no total); você pode desligar em «Aceitar cutucadas». Desafio semanal: um amigo aceito pode te propor um desafio, que só começa se você aceitar. Enquanto ele estiver ativo, guardamos só o total de lições que você concluiu na semana (segunda a domingo) e o da semana anterior, e os dois amigos veem esses totais (nenhum idioma, dia ou lição). Ao encerrar o desafio (qualquer um dos dois), remover o amigo, bloquear ou desativar Amigos, esses totais são apagados. Para as cutucadas guardamos o endereço de envio de notificação do seu aparelho (fornecido pela Apple, Google ou Mozilla) e as chaves dele, e registramos quem cutucou quem por poucos dias, só para aplicar os limites. Ao desativar Amigos ou sair da conta neste aparelho, apagamos esses endereços; ao desativar, apagamos também apelido, código, convites e amizades."]);
@@ -5829,8 +5829,8 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
       const c=await authed("/rest/v1/consents?select=policy_version,age_ok,at&user_id=eq."+ses.uid);
       const o={email:ses.email,consentimento:c.ok?await c.json():[],progresso:row?row.data:null,salvo_em:row?row.updated_at:null};
       const blob=new Blob([JSON.stringify(o,null,1)],{type:"application/json"}),a=document.createElement("a");
-      a.href=URL.createObjectURL(blob);a.download="mots-parole-meus-dados-"+ymd()+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),3000);
-      say("Arquivo baixado: procure mots-parole-meus-dados-"+ymd()+".json.");
+      a.href=URL.createObjectURL(blob);a.download="litteraria-meus-dados-"+ymd()+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),3000);
+      say("Arquivo baixado: procure litteraria-meus-dados-"+ymd()+".json.");
     }catch(_){say("Não consegui baixar agora. Tente de novo.");}
   }
   async function deleteAccount(){
@@ -6163,6 +6163,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.52.0",d:"2026-10-22",t:["O app agora se chama Litteraria (antes Mots & Parole). Seu progresso, sua conta e seus amigos continuam como estavam","No iPhone, o ícone que já está na tela inicial pode continuar com o nome antigo: renomeie o atalho, ou instale de novo depois de baixar um backup em Ajustes → Dados"]},
 {v:"1.51.1",d:"2026-10-22",t:["Sherlock Holmes: capítulo 12 («A Aventura das Faias de Cobre») já disponível para ler. O livro está completo, com os 12 contos","Tradução escrita por Claude, sem fonte conferida"]},
 {v:"1.50.2",d:"2026-10-22",t:["Sherlock Holmes: capítulo 10 («A Aventura do Nobre Solteirão») já disponível para ler"]},
 {v:"1.51.0",d:"2026-10-22",t:["Vocabulário dos livros ampliado: A Volta ao Mundo em 80 Dias (+93 palavras), As Aventuras de Pinóquio (+85) e O Príncipe (+81), em partes novas no fim de cada livro; as lições antigas não mudam","Existência, classe e gênero das palavras conferidos no Wikcionário (Kaikki); traduções escritas por Claude, sem fonte conferida"]},

@@ -1,4 +1,4 @@
--- Mots & Parole: DESAFIO SEMANAL ENTRE AMIGOS (v1.50). Cole no SQL Editor do Supabase e clique em Run. Pode rodar mais de uma vez.
+-- Litteraria: DESAFIO SEMANAL ENTRE AMIGOS (v1.50). Cole no SQL Editor do Supabase e clique em Run. Pode rodar mais de uma vez.
 -- Rode DEPOIS de amigos.sql, cutucar.sql e amigos2.sql.
 -- Como funciona: um amigo aceito propõe um desafio e o outro aceita (nada começa sem os dois). Cada um vê só o TOTAL de
 -- lições concluídas na semana (segunda a domingo) dele e do outro, e o resultado da semana passada. Nenhum idioma, dia ou lição.

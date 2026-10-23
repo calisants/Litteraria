@@ -1,4 +1,4 @@
-// Edge Function «poke» do Mots & Parole: envia a notificação de cutucada.
+// Edge Function «poke» do Litteraria: envia a notificação de cutucada.
 // Fluxo: o app chama esta função com o login da pessoa -> o banco confere amizade/limites (friends_poke) -> aqui enviamos o Web Push.
 // Segredos necessários (Edge Functions -> Secrets): VAPID_PUBLIC, VAPID_PRIVATE, VAPID_SUBJECT (mailto:...). Os outros vêm prontos do Supabase.
 import { createClient } from "npm:@supabase/supabase-js@2";

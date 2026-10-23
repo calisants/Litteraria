@@ -1,4 +1,4 @@
-"""Envia os lembretes de «Mots & Parole» (Web Push). Roda de hora em hora no GitHub Actions (.github/workflows/push.yml).
+"""Envia os lembretes de «Litteraria» (Web Push). Roda de hora em hora no GitHub Actions (.github/workflows/push.yml).
 Lê as inscrições da caixa (Apps Script), manda a notificação de quem está na janela do horário escolhido e ainda não recebeu/estudou hoje.
 Variáveis: SINK_KEY, VAPID_PRIVATE. O endereço da caixa vem de src/pushcfg.js. Uso: python3 push/send.py [--dry]"""
 import os, re, sys, json, hashlib, datetime, urllib.request, urllib.parse
@@ -36,7 +36,7 @@ def message(row, day):
     L = row.get("ln") or "idiomas"
     n = int(hashlib.sha256((day + row["id"]).encode()).hexdigest(), 16)
     if row["st"] == "calma":
-        return {"t": "Mots & Parole", "b": "Quando puder, uma lição curta de " + L + ".", "go": "hoje"}
+        return {"t": "Litteraria", "b": "Quando puder, uma lição curta de " + L + ".", "go": "hoje"}
     if row["st"] == "cartao":
         return {"t": "Cartão do dia", "b": "Toque para ver o cartão de hoje.", "go": "cartao"}
     return {"t": "📚 Hora de brincar com as palavras!", "b": MSGS[n % len(MSGS)].replace("{L}", L), "go": "hoje"}

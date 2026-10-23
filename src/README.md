@@ -1,4 +1,4 @@
-# Código-fonte do Mots & Parole
+# Código-fonte do Litteraria (antes Mots & Parole)
 
 O `index.html` da raiz é **gerado** a partir desta pasta. Não edite o `index.html` à mão.
 

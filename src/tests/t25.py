@@ -62,7 +62,7 @@ vm.runInNewContext(fs.readFileSync(process.argv[2],'utf8'),{self,caches:{open:()
 """
     open('/tmp/_swpush.js','w').write(js)
     r=subprocess.run(['node','/tmp/_swpush.js',os.path.join(root,'sw.js')],capture_output=True,text=True);print(r.stdout.strip(),r.stderr.strip()[:300])
-    o=json.loads(r.stdout.strip().splitlines()[-1]);assert o['n']==2 and o['t0']=='Teste' and o['g0']=='cartao' and o['t1']=='Mots & Parole' and o['g1']=='hoje' and o['opened']==['./?go=cartao'],o
+    o=json.loads(r.stdout.strip().splitlines()[-1]);assert o['n']==2 and o['t0']=='Teste' and o['g0']=='cartao' and o['t1']=='Litteraria' and o['g1']=='hoje' and o['opened']==['./?go=cartao'],o
     print('erros:',errs);assert not errs
     print('OK t25')
 finally: srv.terminate()

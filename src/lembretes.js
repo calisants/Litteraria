@@ -106,7 +106,7 @@
   async function swReg(){try{return await Promise.race([navigator.serviceWorker.ready,new Promise((_,r)=>setTimeout(r,2500))]);}catch(_){return null;}}
   function textFor(style){
     const s=window.gamStreak?gamStreak():{n:0,today:false},nm=(S.player||"").split(" ")[0];
-    if(style==="calma")return {title:"Mots & Parole",body:"Quando puder, uma lição curta de "+LNAME[S.lang]+"."};
+    if(style==="calma")return {title:"Litteraria",body:"Quando puder, uma lição curta de "+LNAME[S.lang]+"."};
     if(style==="cartao"){const c=cardFor(ymd(),S.lang);return {title:c.k,body:c.t+(c.s?"\n"+c.s:"")};}
     const body=S.gam.on&&s.n>0&&!s.today?"Sua sequência de "+s.n+(s.n===1?" dia":" dias")+" está esperando. 5 minutos salvam o dia!":"Que tal 5 minutos de "+LNAME[S.lang]+"? Uma lição curta já vale.";
     return {title:"📚 "+(nm?nm+", ":"")+"hora de brincar com as palavras!",body:body};

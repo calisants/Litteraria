@@ -1,4 +1,4 @@
--- Mots & Parole: CUTUCAR (opcional, só entre amigos aceitos). Rode DEPOIS de amigos.sql. Cole tudo no SQL Editor e clique em Run. Pode rodar mais de uma vez.
+-- Litteraria: CUTUCAR (opcional, só entre amigos aceitos). Rode DEPOIS de amigos.sql. Cole tudo no SQL Editor e clique em Run. Pode rodar mais de uma vez.
 -- Guarda o endereço de envio de notificação (push) de quem ativou Amigos e quer receber cutucadas, e controla os limites:
 -- só amigos aceitos, sem bloqueio, 1 cutucada por amigo por dia, no máximo 5 recebidas por dia, e a pessoa pode desligar.
 

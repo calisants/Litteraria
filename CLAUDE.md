@@ -1,4 +1,4 @@
-# Mots & Parole: notas para quem for mexer neste repositório
+# Litteraria (antes Mots & Parole): notas para quem for mexer neste repositório
 
 App de palavras (francês, italiano, inglês) em um único `index.html`, publicado no GitHub Pages. O `index.html` é **gerado**: edite `src/` e rode `cd src && python3 build.py`. Veja `src/README.md`.
 
@@ -138,7 +138,7 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Falta do plano combinado: cartão de citação em imagem (só livros de domínio público).
 
 ## Cartão de citação em imagem (20/10/2026, v1.38.0)
-- Botão «Salvar como imagem» (`[data-img]`) na Frase do dia e no Álbum (`livros2.js`: `cardCanvas`, `saveCard`): PNG 1080x1350 desenhado em canvas, com as cores do tema atual, a frase do livro, a tradução, «Frase do livro «Título» · Idioma», o rótulo «Tradução: escrita por Claude, sem fonte conferida» e «Mots & Parole». Sem a nota de gramática. Só frases de livros de domínio público (nunca O Pequeno Príncipe: ele nem tem frases no app). No celular usa o menu de compartilhar (Web Share com arquivo); sem isso, baixa o arquivo. Teste: `t23.py`.
+- Botão «Salvar como imagem» (`[data-img]`) na Frase do dia e no Álbum (`livros2.js`: `cardCanvas`, `saveCard`): PNG 1080x1350 desenhado em canvas, com as cores do tema atual, a frase do livro, a tradução, «Frase do livro «Título» · Idioma», o rótulo «Tradução: escrita por Claude, sem fonte conferida» e «Litteraria». Sem a nota de gramática. Só frases de livros de domínio público (nunca O Pequeno Príncipe: ele nem tem frases no app). No celular usa o menu de compartilhar (Web Share com arquivo); sem isso, baixa o arquivo. Teste: `t23.py`.
 - Plano combinado em 19/10 (autoavaliação, toque em palavra e caderno, contexto histórico, conforto de leitura, cartão de imagem): **todos feitos**. Livros de história ficam para depois, por decisão dela.
 
 ## v1.39.0 (21/10/2026): resumo para quem mexer
@@ -205,3 +205,9 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 
 ## v1.51.1 (22/10/2026)
 - Sherlock Holmes completo (12 capítulos, só tradução natural). Cache `mots-parole-v93`. Próximos textos completos: Vento nos Salgueiros, Mosqueteiros, Divina Comédia, Verne e Pinóquio (os .txt ficam em `/tmp/claude-0/bk/` e podem sumir).
+
+## v1.52.0 (22/10/2026): o app virou «Litteraria»
+- Nome novo, escolhido por ela, antes Mots & Parole. Consultas feitas em 22/10/2026 no INPI (marca por nome exato e por radical, classes 9, 41 e 42): nada para «Litteraria». Vizinhos conhecidos: «Litterarius» (cl. 35, em vigor) e «Litterae» (cl. 42, em exame). Ainda sem pedido de marca nem domínio registrado.
+- Mudou só o que aparece: título, manifest, `apple-mobile-web-app-title` (no `<head>` de `index.html`, que o build **preserva**: edite lá à mão), cabeçalho da tela inicial (`p2.html`), título das notificações (`sw.js`, `lembretes.js`, `push/send.py`), cartão de imagem, Política de Privacidade, nomes dos arquivos baixados (`litteraria-progresso-…`, `litteraria-meus-dados-…`; o import não depende do nome) e textos de docs/SQL.
+- **NÃO mudou, de propósito:** chaves do LocalStorage (`mots-parole-<APP_VERSION>`, `-cloud`, `-friends`, `-lastver`, `-rs`), prefixo do cache `mots-parole-vNN` em `sw.js`, nome do repositório e do endereço (`calisants/motsparole`) e o nome do arquivo de build de testes (`mots-parole-v4.html`). Mudar qualquer um apagaria progresso, sessão ou quebraria o app já instalado e as notificações.
+- Fora do repositório (ela ajusta): modelo do e-mail de código no Supabase («Seu código do Litteraria»), nome do remetente do SMTP, título do Google Forms de sugestões, nome da planilha de notificações; no iPhone o ícone já instalado pode manter o nome antigo.

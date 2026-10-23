@@ -1,4 +1,4 @@
-# Mots & Parole: como colocar no ar e instalar
+# Litteraria (antes Mots & Parole): como colocar no ar e instalar
 
 Esta pasta é o app completo. Ele precisa ficar em um endereço https para o celular oferecer a instalação e para funcionar offline. Abrir o index.html direto do arquivo funciona como página, mas não instala como app.
 

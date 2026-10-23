@@ -1,5 +1,6 @@
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.52.0",d:"2026-10-22",t:["O app agora se chama Litteraria (antes Mots & Parole). Seu progresso, sua conta e seus amigos continuam como estavam","No iPhone, o ícone que já está na tela inicial pode continuar com o nome antigo: renomeie o atalho, ou instale de novo depois de baixar um backup em Ajustes → Dados"]},
 {v:"1.51.1",d:"2026-10-22",t:["Sherlock Holmes: capítulo 12 («A Aventura das Faias de Cobre») já disponível para ler. O livro está completo, com os 12 contos","Tradução escrita por Claude, sem fonte conferida"]},
 {v:"1.50.2",d:"2026-10-22",t:["Sherlock Holmes: capítulo 10 («A Aventura do Nobre Solteirão») já disponível para ler"]},
 {v:"1.51.0",d:"2026-10-22",t:["Vocabulário dos livros ampliado: A Volta ao Mundo em 80 Dias (+93 palavras), As Aventuras de Pinóquio (+85) e O Príncipe (+81), em partes novas no fim de cada livro; as lições antigas não mudam","Existência, classe e gênero das palavras conferidos no Wikcionário (Kaikki); traduções escritas por Claude, sem fonte conferida"]},

@@ -1,4 +1,4 @@
-/* Mots & Parole: caixa de inscrições para notificações (Google Apps Script).
+/* Litteraria: caixa de inscrições para notificações (Google Apps Script).
    Guarda, por aparelho: endereço de envio (da Apple/Google/Mozilla), horário, estilo, idioma e se já estudou hoje.
    NÃO guarda nome, e-mail nem progresso. Veja push/LEIA-ME.md para publicar. */
 const KEY = '__SINK_KEY__';

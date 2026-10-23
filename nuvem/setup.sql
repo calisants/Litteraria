@@ -1,4 +1,4 @@
--- Mots & Parole: banco de dados da conta (Supabase). Cole tudo no SQL Editor do projeto e clique em Run.
+-- Litteraria: banco de dados da conta (Supabase). Cole tudo no SQL Editor do projeto e clique em Run.
 -- Cada pessoa só enxerga e altera as próprias linhas (RLS). A chave "anon" do app é pública por desenho; quem protege os dados são estas regras.
 
 create table if not exists public.progress (
