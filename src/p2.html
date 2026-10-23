@@ -121,7 +121,8 @@
             <h2 class="lab" style="margin-top:12px">Livro favorito</h2>
             <select class="field" id="fbook" aria-label="Livro favorito"></select>
             <h2 class="lab" style="margin-top:12px">Logo</h2>
-            <div class="avgrid" id="avgrid" role="group" aria-label="Logo do perfil"></div>
+            <details class="avbox" id="avbox"><summary><span id="av-cur" aria-hidden="true"></span><span>Trocar o logo</span></summary>
+              <div class="avgrid" id="avgrid" role="group" aria-label="Logo do perfil"></div></details>
           </section>
         </div>
         <div class="stack">
@@ -221,6 +222,7 @@
             <h2 class="lab">Sobre e ajuda</h2>
             <p class="help" id="ver-set"></p>
             <button type="button" class="btn wide" id="open-news">Novidades desta versão</button>
+            <button type="button" class="btn wide" id="open-tour">Ver o tutorial</button>
             <button type="button" class="btn wide" id="open-priv">Política de Privacidade</button>
             <button type="button" class="btn wide" data-feedback>Enviar sugestão ou avisar de erro</button>
           </section></div></details></div>

@@ -21,7 +21,10 @@ function lessonPath(){
   if(_path)return _path;
   const M={};VOLUMES.forEach(v=>{M[v.id]=new Map(v.pages.map(p=>[p.id,p]));});
   const out=[],add=(vid,id,extra)=>{const p=M[vid].get(id);if(p)out.push(Object.assign({vol:vid,page:p},extra||{}));};
-  VOLUME2.pages.forEach(p=>out.push({vol:2,page:p,audio:true}));
+  /* Pedido dela (23/10/2026): «Hoje» alterna entre os volumes 1, 2 e 3 (Pronúncia, Vocabulário e Jogos) e só leva à Gramática e à Conversação (volumes 4 e 5) bem depois.
+     Pronúncia: 3 páginas no começo e o resto espalhado, uma por tema; Gramática e Conversação entram depois de TODOS os grupos de temas (variável late). */
+  const pron=VOLUME2.pages.slice(),late=[];
+  pron.splice(0,3).forEach(p=>out.push({vol:2,page:p,audio:true}));
   const gids=GROUPS.map(g=>g[0]).filter(g=>CATS.some(c=>c[2]===g));
   const chunk=(arr,i,n)=>arr.slice(Math.round(i*arr.length/n),Math.round((i+1)*arr.length/n));
   const gram=VOLUME4.pages,conv=[];
@@ -30,16 +33,19 @@ function lessonPath(){
   pairs.forEach(pr=>pr.forEach(p=>{if(p)conv.push(p);}));
   gids.forEach((g,gi)=>{
     CATS.filter(c=>c[2]===g).forEach(c=>{
+      if(pron.length)out.push({vol:2,page:pron.shift(),audio:true});
       VOLUME5.pages.filter(p=>p.cat===c[0]&&p.type==="conheca").forEach(p=>out.push({vol:5,page:p,voc:true}));
       ["contexto","reco","completar","embaralhar","escreva"].forEach(t=>[1,2].forEach(k=>add(5,t+"-"+c[0]+"-"+k,{voc:true})));
       add(1,"odd-"+c[0]);add(1,"search-"+c[0]+"-easy");add(1,"cross-"+c[0]+"-easy");
     });
     add(1,"connect-"+g+"-easy-1");
     const gc=chunk(gram,gi,gids.length),cc=chunk(conv,gi,gids.length);
-    gc.forEach((p,k)=>out.push({vol:4,page:p,nf:[gi,GRAM_LO,GRAM_HI,k,gc.length]}));
-    cc.forEach((p,k)=>out.push({vol:3,page:p,nf:[gi,CONV_LO,CONV_HI,k,cc.length]}));
+    gc.forEach((p,k)=>late.push({vol:4,page:p,nf:[gi,GRAM_LO,GRAM_HI,k,gc.length]}));
+    cc.forEach((p,k)=>late.push({vol:3,page:p,nf:[gi,CONV_LO,CONV_HI,k,cc.length]}));
     if(gi===Math.min(1,gids.length-1))earlyBook(out,add);
   });
+  pron.forEach(p=>out.push({vol:2,page:p,audio:true}));
+  late.forEach(r=>out.push(r));
   /* temas de livros: novas lições no fim da trilha (só no idioma do livro) */
   BOOKS.forEach(b=>b.chunks.forEach(c=>{
     VOLUME5.pages.filter(p=>p.cat===c.cat&&p.type==="conheca").forEach(p=>out.push({vol:5,page:p,voc:true}));

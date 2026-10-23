@@ -233,6 +233,16 @@ svg{display:block}
 .train .tr{display:flex;align-items:center;gap:8px;padding:6px 8px;border:var(--bw) solid var(--line);border-radius:var(--radius)}
 .train .tr span{flex:1;min-width:0}
 .train .tr small{color:var(--muted)}
+#tour{position:fixed;inset:0;z-index:9997;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.5)}
+.tour-in{max-width:440px;width:100%;max-height:92vh;overflow:auto;background:var(--surface,#fff);color:var(--ink,#222);border:1px solid var(--line,#ccc);border-radius:16px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.tour-in h3{margin:0 0 10px;font-size:1.2rem}.tour-in p{margin:0 0 10px;line-height:1.5}.tour-in .tour-n{color:var(--muted);font-size:.85rem;margin:0 0 4px}
+.tour-dots{display:flex;gap:6px;margin:14px 0}.tour-dots span{width:8px;height:8px;border-radius:50%;background:var(--grid,#ccc)}.tour-dots span.on{background:var(--accent)}
+.tour-btns{display:flex;gap:8px}.tour-btns .btn{flex:1}
+.avbox>summary{cursor:pointer;min-height:48px;display:flex;align-items:center;gap:12px;list-style:none;font-weight:700}
+.avbox>summary::-webkit-details-marker{display:none}
+.avbox>summary::after{content:"▾";margin-left:auto;color:var(--muted)}
+.avbox[open]>summary::after{content:"▴"}
+.avbox .avgrid{margin-top:8px}
 .avgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(56px,1fr));gap:8px}
 .avgrid button{padding:6px;border:var(--bw) solid var(--grid);border-radius:var(--radius);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--ink)}
 .avgrid button[aria-pressed="true"]{outline:3px solid var(--accent);outline-offset:1px}

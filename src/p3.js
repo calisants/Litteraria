@@ -446,6 +446,7 @@ function renderMe(){
   $("#me-name").textContent=S.player||"Jogador(a)";
   $("#me-motto").textContent=S.motto||"Seu caderno de idiomas";
   $$("#avgrid button").forEach(b=>{b.innerHTML=avatarHtml(b.dataset.av,40);});
+  {const cur=$("#av-cur");if(cur)cur.innerHTML=avatarHtml(S.avatar,40);}
 }
 
 /* ----- resumo do caderno (tela inicial) ----- */
@@ -532,7 +533,7 @@ $("#s-settings").addEventListener("click",onPrefClick);
 $("#custom-color").addEventListener("input",e=>{S.custom=e.target.value;save();applyTheme();});
 $("#player").addEventListener("input",e=>{S.player=e.target.value.slice(0,24);save();renderMe();});
 $("#motto").addEventListener("input",e=>{S.motto=e.target.value.slice(0,60);save();renderMe();});
-$("#avgrid").addEventListener("click",e=>{const b=e.target.closest("[data-av]");if(!b)return;S.avatar=b.dataset.av;save();syncPrefs();});
+$("#avgrid").addEventListener("click",e=>{const b=e.target.closest("[data-av]");if(!b)return;S.avatar=b.dataset.av;save();syncPrefs();const bx=$("#avbox");if(bx)bx.open=false;});
 $(".me").addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#gam-chip"))return;go("profile");});
 $("#s-stats").addEventListener("click",e=>{onPrefClick(e);renderStats();});
 $("#s-profile").addEventListener("click",onPrefClick);

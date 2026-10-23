@@ -113,7 +113,7 @@
   async function showNow(style){
     if(!can()||Notification.permission!=="granted")return false;
     const reg=await swReg(),t=textFor(style||S.rm.st);
-    const o={body:t.body,icon:"icon-192.png",badge:"icon-192.png",vibrate:[120,60,120,60,220],tag:"mp-lembrete",renotify:true,data:{go:"hoje"},actions:[{action:"hoje",title:"Fazer agora"},{action:"depois",title:"Depois"}]};
+    const o={body:t.body,icon:"icon-192.png",badge:"badge-96.png",vibrate:[120,60,120,60,220],tag:"mp-lembrete",renotify:true,data:{go:"hoje"},actions:[{action:"hoje",title:"Fazer agora"},{action:"depois",title:"Depois"}]};
     try{if(reg)await reg.showNotification(t.title,o);else new Notification(t.title,o);return true;}catch(_){try{new Notification(t.title,{body:t.body});return true;}catch(__){return false;}}
   }
   let rmT=null;

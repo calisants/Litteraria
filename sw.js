@@ -1,6 +1,6 @@
 // Service worker do Litteraria: guarda o app no aparelho para funcionar sem internet.
 // Ao publicar uma versão nova do index.html, troque o número em CACHE (v6 -> v7, e APP_VERSION no index.html).
-const CACHE = "mots-parole-v104"; // só o cache muda; a chave do LocalStorage (APP_VERSION) segue v6 para não apagar o progresso
+const CACHE = "mots-parole-v105"; // só o cache muda; a chave do LocalStorage (APP_VERSION) segue v6 para não apagar o progresso
 const ASSETS = [
   "./",
   "./index.html",
@@ -16,6 +16,7 @@ const ASSETS = [
   "./books/pinocchio.js",
   "./icon-192.png",
   "./icon-512.png",
+  "./badge-96.png",
   "./icon-maskable-512.png",
   "./fonts/atkinson-hyperlegible-latin-400-normal.woff2",
   "./fonts/atkinson-hyperlegible-latin-700-normal.woff2",
@@ -128,7 +129,7 @@ async function lembrete() {
     body = viva ? "Sua sequência de " + st.streak + (st.streak === 1 ? " dia" : " dias") + " está esperando. 5 minutos salvam o dia!" : "Que tal 5 minutos de " + (st.ln || "idiomas") + "? Uma lição curta já vale.";
   }
   await self.registration.showNotification(title, {
-    body, icon: "icon-192.png", badge: "icon-192.png", vibrate: [120, 60, 120, 60, 220], tag: "mp-lembrete", renotify: true,
+    body, icon: "icon-192.png", badge: "badge-96.png", vibrate: [120, 60, 120, 60, 220], tag: "mp-lembrete", renotify: true,
     data: { go: "hoje" }, actions: [{ action: "hoje", title: "Fazer agora" }, { action: "depois", title: "Depois" }]
   });
   st.notified = dia;
@@ -143,7 +144,7 @@ self.addEventListener("push", (event) => {
   try { d = event.data ? event.data.json() : {}; } catch (_) {}
   const go = d.go === "amigos" ? "amigos" : d.go === "cartao" ? "cartao" : "hoje";
   event.waitUntil(self.registration.showNotification(String(d.t || "Litteraria").slice(0, 80), {
-    body: String(d.b || "Uma lição curta de hoje?").slice(0, 200), icon: "icon-192.png", badge: "icon-192.png",
+    body: String(d.b || "Uma lição curta de hoje?").slice(0, 200), icon: "icon-192.png", badge: "badge-96.png",
     vibrate: [120, 60, 120, 60, 220], tag: go === "amigos" ? "mp-amigos" : "mp-lembrete", renotify: true, data: { go },
     actions: go === "amigos" ? [{ action: "hoje", title: "Abrir" }, { action: "depois", title: "Depois" }] : [{ action: "hoje", title: "Fazer agora" }, { action: "depois", title: "Depois" }]
   }));
