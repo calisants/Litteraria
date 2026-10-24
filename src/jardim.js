@@ -45,6 +45,7 @@
   window.gdWilted=function(lang,w){const g=S.gd[gkey(lang,w)];return !!(g&&g[4]);};
   window.gdLastForm=function(lang,w){const g=S.gd[gkey(lang,w)];return g?g[6]:-1;};
   window.GD_STAGES=STAGES;
+  window.gdChip=function(lang,w){const st=window.gdStage(lang,w);return '<span class="gdchip gd'+st+'">'+STAGES[st]+(window.gdWilted(lang,w)?" · precisa de água":"")+"</span>";};
   /* verificação diária: murcha, volta à fila e, depois de mais de 2 semanas fora, espalha as revisões em 5 dias */
   function tick(){
     if(!S.gd)return;const t=dn();let ch=false;

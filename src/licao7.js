@@ -58,9 +58,16 @@
     if(mw.length<3)Object.values(m).forEach(e=>{if(mw.length<4&&!mw.some(x=>x.w===e.w))mw.push(e);});
     mw=mw.slice(0,4);
     const before={};words.concat(mw).forEach(e=>{before[e.w]=window.gdStage(lang,e.w);});
-    return {b:b,D:D,m:m,lang:lang,found:found,words:words,gaps:gaps,main:main,parts:parts,order:order,pick:[],bwrong:0,match:{e:mw,sel:null,done:{},picks:sh0(mw.map(e=>e.pt))},
+    const fitE=mw.filter(e=>/^\p{L}{4,10}$/u.test(e.w)).slice(0,3);
+    const detE=words.filter(e=>L0(e.w,D)).slice(0,3);
+    let game=typeof window.__jdGame==="number"?window.__jdGame:(P.k+Math.floor(Date.now()/864e5))%3;
+    if(game===1&&!fitE.length)game=0;
+    if(game===2&&!detE.length)game=0;
+    return {game:game,fw:{items:fitE.map(e=>({e:e,t:sh0(e.w.toLowerCase().split("")),pick:[],tries:0,done:false})),i:0},dt:{items:detE.map(e=>({e:e,tries:0,done:false})),i:0},b:b,D:D,m:m,lang:lang,found:found,words:words,gaps:gaps,main:main,parts:parts,order:order,pick:[],bwrong:0,match:{e:mw,sel:null,done:{},picks:sh0(mw.map(e=>e.pt))},
       fresh:null,before:before,scr:0,sel:null,gi:0,wilted:wilE.map(e=>e.w),listening:-1,tr:{},ok:0};
   }
+  /* a palavra aparece inteira em alguma frase do trecho? */
+  function L0(w,D){const re=new RegExp("(^|[^\\p{L}])"+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?![\\p{L}])","iu");return D.segs.some(s=>re.test(s.s));}
   function cut(s){
     const w=s.split(/\s+/);if(w.length<6)return [s];
     const n=w.length>=14?4:3;let pieces=[],at=0;
@@ -75,12 +82,12 @@
   function startJardim(){
     fitFn=null;L=build();L.scr=0;render();
   }
-  const NAMES=["Capa","Leitura","Lacunas","Blocos","Combine","Frase nova","Jardim"];
+  const NAMES=["Capa","Leitura","Lacunas","Blocos","Jogo","Frase nova","Jardim"];
   function bar(){
     return '<div class="jd-bar" role="progressbar" aria-valuemin="1" aria-valuemax="7" aria-valuenow="'+(L.scr+1)+'" aria-label="Tela '+(L.scr+1)+' de 7: '+NAMES[L.scr]+'"><span class="jd-fill" style="width:'+Math.round((L.scr+1)*100/7)+'%"></span></div><p class="ocount">Tela '+(L.scr+1)+' de 7 · '+NAMES[L.scr]+"</p>";
   }
   function render(){
-    const f=[sCapa,sLeitura,sLacunas,sBlocos,sCombine,sFrase,sJardim][L.scr];
+    const f=[sCapa,sLeitura,sLacunas,sBlocos,sJogo,sFrase,sJardim][L.scr];
     $("#gstage").innerHTML='<div class="jd">'+bar()+f()+"</div>";
     const ac=$("#gstage").querySelector("[data-focus]");if(ac&&L.scr>0)ac.focus({preventScroll:false});
   }
@@ -131,7 +138,33 @@
     if(done)h+='<p class="rd-pt">'+esc(L.D.segs[L.main.i].pt)+'</p><button type="button" class="btn wide primary" data-jd="next" data-focus>Continuar</button>';
     return h;
   }
-  /* ---- 5 Combine ---- */
+  /* ---- 5 Jogo (rodízio: Combine, Fitwords, Detetive de Fragmentos) ---- */
+  function sJogo(){return L.game===1?sFit():L.game===2?sDet():sCombine();}
+  function sFit(){
+    const F=L.fw,it=F.items[F.i];
+    if(!it)return '<p class="help">Fitwords concluído.</p><button type="button" class="btn wide primary" data-jd="next" data-focus>Continuar</button>';
+    const wl=window.gdWilted(L.lang,it.e.w);
+    let h='<p class="help"><b>Fitwords</b> '+(F.i+1)+" de "+F.items.length+'. Monte a palavra com as letras. Significado: «'+esc(it.e.pt)+"»"+(wl?" · <b>precisa de água</b>. Dica: começa com «"+esc(it.e.w.charAt(0).toLowerCase())+"»":"")+"</p>";
+    h+='<div class="jd-build" id="jd-build" aria-live="polite" aria-label="Palavra montada">'+(it.pick.map(i=>esc(it.t[i])).join("")||"…")+"</div>";
+    h+='<div class="jd-tiles">'+it.t.map((c,i)=>'<button type="button" class="btn jd-tile" data-jd="tile" data-i="'+i+'"'+(it.pick.indexOf(i)>=0?' disabled aria-label="'+esc(c)+', já usada"':"")+">"+esc(c)+"</button>").join("")+"</div>";
+    if(!it.done)h+='<button type="button" class="btn" data-jd="untile"'+(it.pick.length?"":" disabled")+">Apagar a última letra</button>";
+    h+='<p class="help" id="jd-fb" aria-live="polite">'+(it.fb||"")+"</p>";
+    if(it.done)h+='<button type="button" class="btn wide primary" data-jd="fnext" data-focus>'+(F.i+1<F.items.length?"Próxima palavra":"Continuar")+"</button>";
+    return h;
+  }
+  function sDet(){
+    const T=L.dt,it=T.items[T.i];
+    if(!it)return '<p class="help">Detetive concluído.</p><button type="button" class="btn wide primary" data-jd="next" data-focus>Continuar</button>';
+    let h='<p class="help"><b>Detetive de Fragmentos</b> '+(T.i+1)+" de "+T.items.length+'. Ache no trecho a palavra que significa «'+esc(it.e.pt)+"». Toque nela.</p><div class=\"rd\">";
+    L.D.segs.forEach((sg,si)=>{
+      h+='<div class="rd-line"><p class="rd-s">'+sg.s.split(/(\p{L}[\p{L}\u2019']*)/u).map(t=>/^\p{L}/u.test(t)?'<button type="button" class="jd-tok" data-jd="tok" data-t="'+esc(t)+'"'+(it.bad&&it.bad[t.toLowerCase()]?' disabled aria-label="'+esc(t)+', não é essa"':"")+'>'+esc(t)+"</button>":esc(t)).join("")+"</p></div>";
+    });
+    h+="</div>";
+    h+='<p class="help" id="jd-fb" aria-live="polite">'+(it.fb||"")+"</p>";
+    if(it.done)h+='<button type="button" class="btn wide primary" data-jd="dnext" data-focus>'+(T.i+1<T.items.length?"Próximo fragmento":"Continuar")+"</button>";
+    return h;
+  }
+  /* ---- Combine ---- */
   function sCombine(){
     const M=L.match,e=M.e;
     let h='<p class="help">Combine cada palavra com o significado. Toque numa palavra e depois no significado.'+(L.wilted.length?" As que precisam de água vêm primeiro.":"")+"</p>";
@@ -229,6 +262,32 @@
       else{L.mfb="Não é esse significado. Tente outro.";rec(e,false,4);sfx("bad");}
       render();return;
     }
+    if(a==="tile"){
+      const it=L.fw.items[L.fw.i];if(!it||it.done)return;
+      it.pick.push(i);it.fb="";
+      if(it.pick.length===it.t.length){
+        const got=it.pick.map(j=>it.t[j]).join("");
+        if(got===it.e.w.toLowerCase()){it.done=true;it.fb="Certo! "+full(it.e)+" = "+it.e.pt;if(it.tries===0)rec(it.e,true,2);sfx("ok");}
+        else{it.tries++;if(it.tries===1)rec(it.e,false,2);sfx("bad");shake($("#jd-build"));
+          if(it.tries>=2){it.done=true;it.pick=[];it.fb="A palavra era «"+it.e.w+"». Ela volta na revisão.";}
+          else{it.pick=[];it.fb="Essa ordem não forma a palavra. Tente de novo.";}}
+      }
+      render();return;
+    }
+    if(a==="untile"){const it=L.fw.items[L.fw.i];if(it&&!it.done){it.pick.pop();render();}return;}
+    if(a==="fnext"){if(L.fw.i+1<L.fw.items.length){L.fw.i++;render();}else next();return;}
+    if(a==="tok"){
+      const it=L.dt.items[L.dt.i];if(!it||it.done)return;
+      const t=t0=>String(t0).toLowerCase(),tok=t(ev.target.closest("[data-t]").dataset.t);
+      if(tok===t(it.e.w)||(window.candsOf&&window.candsOf(tok,L.lang).indexOf(t(it.e.w))>=0)){
+        it.done=true;it.fb="Achou! "+full(it.e)+" = "+it.e.pt;if(it.tries===0)rec(it.e,true,4);sfx("ok");
+      }else{
+        it.tries++;it.bad=it.bad||{};it.bad[tok]=1;if(it.tries===1)rec(it.e,false,4);sfx("bad");
+        if(it.tries>=2){it.done=true;it.fb="Era «"+it.e.w+"». Ela volta na revisão.";}else it.fb="Não é essa palavra. Procure outra.";
+      }
+      render();return;
+    }
+    if(a==="dnext"){if(L.dt.i+1<L.dt.items.length){L.dt.i++;render();}else next();return;}
     if(a==="chk"){checkFresh();return;}
     if(a==="fin"){
       markDone();sfx("done");

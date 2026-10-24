@@ -288,7 +288,8 @@
       if(!k)return all?'<span class="tw" data-t="'+esc(t)+'">'+esc(t)+"</span>":esc(t);
       found[k]=m[k];
       const a=sk[k],learned=a&&a[0]>0;
-      return '<button type="button" class="rw '+(learned?"k":"u")+'" data-k="'+esc(k)+'">'+esc(t)+"</button>";
+      const gs=typeof window.gdStage==="function"?window.gdStage(lang,m[k].w):0;
+      return '<button type="button" class="rw '+(learned?"k":"u")+' gs'+gs+'" data-k="'+esc(k)+'">'+esc(t)+"</button>";
     }).join("");
   }
   function lineHtml(seg,i,m,lang){
@@ -299,7 +300,7 @@
     let h='<p class="ocount">'+esc(P.meta)+"</p>"+'<p class="note"><b>Contexto:</b> '+esc(rd.D.ctx)+"</p>";
     h+='<div class="rd">'+rd.D.segs.map((s,i)=>lineHtml(s,i,m,S.lang)).join("")+"</div>";
     const e=rd.sel&&m[rd.sel];
-    h+='<div class="rd-def" aria-live="polite">'+(e?"<b>"+esc(full(e))+"</b> = "+esc(e.pt)+" <small>("+esc(e.c)+")</small>":(Object.keys(rd.found).length?"Toque numa palavra sublinhada para ver o significado. As que você já acertou nos exercícios aparecem em negrito e com cor.":"Neste trecho não aparece nenhuma palavra do vocabulário deste livro no app. Use a tradução frase a frase e a nota abaixo."))+"</div>";
+    h+='<div class="rd-def" aria-live="polite">'+(e?"<b>"+esc(full(e))+"</b> = "+esc(e.pt)+" <small>("+esc(e.c)+")</small>"+(window.gdChip?" "+window.gdChip(S.lang,e.w):""):(Object.keys(rd.found).length?"Toque numa palavra sublinhada para ver o significado. As que você já acertou nos exercícios aparecem em negrito e com cor.":"Neste trecho não aparece nenhuma palavra do vocabulário deste livro no app. Use a tradução frase a frase e a nota abaixo."))+"</div>";
     h+='<p class="note"><b>Para reparar:</b> '+hl(rd.D.gn)+"</p>";
     h+='<details class="srcbox"><summary>Fonte da tradução</summary><p class="note"><small>Trecho do livro «'+esc(b.name)+"». Tradução, contexto e nota: escritas por Claude, sem fonte conferida. As palavras sublinhadas são as do vocabulário do livro neste app.</small></p></details>";
     h+='<div class="row"><button type="button" class="btn" id="rd-all">Ver toda a tradução</button><button type="button" class="btn primary" id="rd-done">Concluí a leitura</button></div>';
@@ -449,7 +450,7 @@
     if(e.target.closest("#cad-save")){cadSave();return;}
     if(w){
       RK.sel=w.dataset.k;const en=vmap(RK.id)[RK.sel];
-      $("#rdr-def").innerHTML=en?"<b>"+esc(full(en))+"</b> = "+esc(en.pt)+" <small>("+esc(en.c)+")</small>":"";
+      $("#rdr-def").innerHTML=en?"<b>"+esc(full(en))+"</b> = "+esc(en.pt)+" <small>("+esc(en.c)+")</small>"+(window.gdChip?" "+window.gdChip(S.lang,en.w):""):"";
       return;
     }
     if(t){const i=+t.dataset.i;RK.shown[i]=!RK.shown[i];const el=t.closest(".rd-line");el.outerHTML=parHtml(i);return;}
