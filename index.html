@@ -393,6 +393,11 @@ svg{display:block}
 .bkwarn{margin:12px 0 0;padding:12px 14px;border:var(--bw) solid var(--accent);border-radius:var(--radius);background:var(--soft)}
 .bkwarn p{margin:0 0 10px;font-size:.95rem}
 .bkwarn .row{display:flex;gap:8px;flex-wrap:wrap}
+.instcard{margin:12px 0 0;padding:12px 14px;border:var(--bw) solid var(--accent);border-radius:var(--radius);background:var(--soft)}
+.instcard[hidden]{display:none}
+.instcard p{margin:0 0 10px;font-size:.95rem}
+.instcard .row{display:flex;gap:8px;flex-wrap:wrap}
+.inst-g ol{padding-left:1.2em}.inst-g li{margin:.3em 0}
 .bkwarn .btn{flex:1 1 140px}
 #toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:40;max-width:min(92vw,420px);padding:12px 16px;border-radius:var(--radius);background:var(--ink);color:var(--bg);font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.3)}
 .grp{margin:22px 0 10px;padding-bottom:6px;border-bottom:var(--bw) solid var(--line);font-family:var(--font-title);font-size:1.2rem;font-weight:600}
@@ -629,6 +634,10 @@ svg{display:block}
         <div class="row"><button type="button" class="btn primary" id="bk-warn-go">Fazer backup agora</button><button type="button" class="btn" id="bk-warn-later">Lembrar em 7 dias</button></div>
       </div>
       <div class="nudge" id="nudge" hidden></div>
+      <div class="instcard" id="inst-card" hidden>
+        <p><b>Baixe o app</b> no seu aparelho: abre direto da tela inicial, sem a barra do navegador.</p>
+        <div class="row"><button type="button" class="btn primary" id="inst-go">Como instalar</button><button type="button" class="btn" id="inst-later">Agora não</button></div>
+      </div>
       <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><span class="tt"><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small></span></button>
       <div class="menu">
         <button type="button" class="mrow" id="go-games"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><span class="tt"><b>Lições</b><small>Pronúncia, palavras, jogos, gramática</small></span></button>
@@ -836,6 +845,7 @@ svg{display:block}
             <h2 class="lab">Sobre e ajuda</h2>
             <p class="help" id="ver-set"></p>
             <button type="button" class="btn wide" id="open-news">Novidades desta versão</button>
+            <button type="button" class="btn wide" id="open-install">Baixar o app (instalar)</button>
             <button type="button" class="btn wide" id="open-tour">Ver o tutorial</button>
             <button type="button" class="btn wide" id="open-priv">Política de Privacidade</button>
             <button type="button" class="btn wide" data-feedback>Enviar sugestão ou avisar de erro</button>
@@ -1027,7 +1037,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.65.0",d:"2026-10-23"};
+const APP_REL={v:"1.66.0",d:"2026-10-23"};
 
 
 const RAW={
@@ -6906,6 +6916,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.66.0",d:"2026-10-23",t:["Novo: «Baixar o app». Quem abre o site no navegador vê um cartão na tela inicial para instalar o Litteraria (Android e computador abrem a janela de instalação; no iPhone aparece o passo a passo do Safari). Também fica em Ajustes → Sobre e ajuda → «Baixar o app (instalar)». No app já instalado o cartão não aparece","No iPhone, guarde o progresso antes (conta ou backup): o app instalado pode começar vazio"]},
 {v:"1.65.0",d:"2026-10-23",t:["Lição do Jardim: a tela 5 agora alterna entre três jogos: Combine, Fitwords (monte a palavra com as letras) e Detetive de Fragmentos (ache no trecho a palavra que tem aquele significado)","Palavras do leitor e da Leitura têm sublinhado por estágio (pontilhado = Sombra, simples = Semente, duplo = Flor, grosso = Fruto) e o balão mostra o nome do estágio, então nada depende só de cor","Os textos da Lição do Jardim usam a fonte Atkinson Hyperlegible, feita para leitura fácil"]},
 {v:"1.64.0",d:"2026-10-23",t:["Novo: Lição do Jardim, 7 telas curtas sobre um trecho real de um livro: Capa, Leitura guiada (com «Ouvir a frase» e o estágio de cada palavra), 5 Lacunas, Blocos de sentido, Combine, Palavra em frase nova e «O que cresceu»","Está em Treino → «Lição do Jardim» e em Lições → Volume 5 (Conversação), uma por trecho dos livros de domínio público","Nas lacunas, o primeiro erro balança a frase e mostra a tradução; no segundo, a resposta aparece e a palavra volta na revisão. Nada depende só de cor ou de som","As palavras que precisam de água (até 3) entram na tela Combine e na frase nova, com a primeira letra de dica"]},
 {v:"1.63.1",d:"2026-10-23",t:["Jardim da Memória: as palavras que «precisam de água» (no máximo 3 por vez) agora entram primeiro também no jogo da memória com imagens e nos Cartões de revisão"]},
@@ -7126,6 +7137,71 @@ document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#op
     setTimeout(open,600);
   };
   if(document.body)auto();else document.addEventListener("DOMContentLoaded",auto);
+})();
+
+/* ===== Instalar o app (v1.66, pedido dela em 23/10/2026: «download direto para quem entrar no site») =====
+   O Litteraria é um PWA: "baixar" = instalar na tela inicial. Chrome/Edge/Samsung (Android e PC) oferecem um botão que abre a janela
+   de instalação (evento beforeinstallprompt); iPhone/iPad (Safari) não têm isso, então mostramos o passo a passo.
+   Cartão na tela inicial (#inst-card): só em navegador, nunca no app já instalado; «Agora não» esconde por 14 dias (localStorage `mots-parole-inst`).
+   Botão fixo em Ajustes → Sobre e ajuda (#open-install). Em navegador automatizado (testes) o cartão só aparece com window.__instTest. */
+(function(){
+  const K="mots-parole-inst",DAYS14=14*864e5;
+  let dp=null;
+  const ua=navigator.userAgent||"";
+  const isIOS=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+  const isAndroid=/Android/.test(ua);
+  const isSamsung=/SamsungBrowser/.test(ua);
+  const isFirefox=/Firefox|FxiOS/.test(ua);
+  function installed(){
+    try{if(window.__instStandalone!==undefined)return !!window.__instStandalone;}catch(_){}
+    try{if(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)return true;}catch(_){}
+    return navigator.standalone===true;
+  }
+  function dismissed(){try{const t=+localStorage.getItem(K)||0;return t&&Date.now()-t<DAYS14;}catch(_){return false;}}
+  function guide(){
+    if(isIOS)return '<p>No iPhone ou iPad, a instalação é feita pelo <b>Safari</b> (em outros navegadores o botão pode não aparecer):</p><ol><li>Toque no botão <b>Compartilhar</b> (o quadrado com uma seta para cima).</li><li>Role a lista e toque em <b>Adicionar à Tela de Início</b>.</li><li>Toque em <b>Adicionar</b>.</li></ol><p><b>Antes, guarde seu progresso:</b> o app instalado pode começar vazio. Entre na sua conta (Perfil) ou faça um backup em Ajustes → Dados e restaure depois.</p>';
+    if(isSamsung)return '<p>No Samsung Internet: toque no menu (três linhas) e em <b>Adicionar página a</b> → <b>Tela inicial</b>. Se aparecer «Instalar», use essa opção.</p>';
+    if(isFirefox)return '<p>O Firefox no computador não instala sites como apps. No Android, toque no menu (⋮) e em <b>Instalar</b>. No computador, abra o endereço no <b>Chrome</b> ou no <b>Edge</b>.</p>';
+    if(isAndroid)return '<p>No Chrome do Android: toque no menu (⋮) e em <b>Instalar app</b> (ou <b>Adicionar à tela inicial</b>).</p>';
+    return '<p>No Chrome ou no Edge do computador: clique no ícone de instalar no fim da barra de endereço (um monitor com uma seta), ou no menu (⋮) → <b>Instalar Litteraria</b>.</p>';
+  }
+  function showGuide(){
+    if(typeof openSheet!=="function")return;
+    openSheet("Instalar o Litteraria",'<div class="inst-g">'+guide()+'<p class="help">Instalar não custa nada, não ocupa quase espaço e o app abre sem a barra do navegador. Funciona sem internet depois da primeira abertura.</p></div>');
+  }
+  async function install(){
+    if(installed()){if(typeof openSheet==="function")openSheet("Instalar o Litteraria",'<p>O Litteraria já está instalado neste aparelho.</p>');return;}
+    if(dp){
+      const e=dp;dp=null;
+      try{e.prompt();const r=await e.userChoice;if(r&&r.outcome==="accepted")hideCard(true);}catch(_){showGuide();}
+      paint();return;
+    }
+    showGuide();
+  }
+  function hideCard(forever){
+    try{localStorage.setItem(K,String(forever?Date.now()+3650*864e5-DAYS14:Date.now()));}catch(_){}
+    paint();
+  }
+  function paint(){
+    const c=document.getElementById("inst-card");
+    const b=document.getElementById("open-install");
+    const inst=installed();
+    if(b){b.hidden=inst;}
+    if(!c)return;
+    const auto=!!navigator.webdriver&&!window.__instTest;
+    const can=!inst&&!dismissed()&&!auto&&(dp||isIOS||isAndroid||/Chrome|Edg\//.test(ua));
+    c.hidden=!can;
+    const t=c.querySelector("#inst-go");if(t)t.textContent=dp?"Instalar o app":"Como instalar";
+  }
+  window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();dp=e;paint();});
+  window.addEventListener("appinstalled",()=>{dp=null;paint();});
+  document.addEventListener("click",e=>{
+    const t=e.target.closest&&e.target.closest("#inst-go,#open-install");if(t){install();return;}
+    if(e.target.closest&&e.target.closest("#inst-later"))hideCard(false);
+  });
+  window.__instState=()=>({installed:installed(),prompt:!!dp,card:!(document.getElementById("inst-card")||{}).hidden});
+  window.__instPaint=paint;
+  paint();
 })();
 
 /* ===== Retomar a lição de onde parou (v1.39) =====

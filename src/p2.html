@@ -15,6 +15,10 @@
         <div class="row"><button type="button" class="btn primary" id="bk-warn-go">Fazer backup agora</button><button type="button" class="btn" id="bk-warn-later">Lembrar em 7 dias</button></div>
       </div>
       <div class="nudge" id="nudge" hidden></div>
+      <div class="instcard" id="inst-card" hidden>
+        <p><b>Baixe o app</b> no seu aparelho: abre direto da tela inicial, sem a barra do navegador.</p>
+        <div class="row"><button type="button" class="btn primary" id="inst-go">Como instalar</button><button type="button" class="btn" id="inst-later">Agora não</button></div>
+      </div>
       <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><span class="tt"><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small></span></button>
       <div class="menu">
         <button type="button" class="mrow" id="go-games"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><span class="tt"><b>Lições</b><small>Pronúncia, palavras, jogos, gramática</small></span></button>
@@ -222,6 +226,7 @@
             <h2 class="lab">Sobre e ajuda</h2>
             <p class="help" id="ver-set"></p>
             <button type="button" class="btn wide" id="open-news">Novidades desta versão</button>
+            <button type="button" class="btn wide" id="open-install">Baixar o app (instalar)</button>
             <button type="button" class="btn wide" id="open-tour">Ver o tutorial</button>
             <button type="button" class="btn wide" id="open-priv">Política de Privacidade</button>
             <button type="button" class="btn wide" data-feedback>Enviar sugestão ou avisar de erro</button>
