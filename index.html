@@ -1037,7 +1037,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.66.0",d:"2026-10-23"};
+const APP_REL={v:"1.67.0",d:"2026-10-25"};
 
 
 const RAW={
@@ -4347,8 +4347,13 @@ function lessonPath(){
     CATS.filter(c=>c[2]===g).forEach(c=>{
       if(pron.length)out.push({vol:2,page:pron.shift(),audio:true});
       VOLUME5.pages.filter(p=>p.cat===c[0]&&p.type==="conheca").forEach(p=>out.push({vol:5,page:p,voc:true}));
-      ["contexto","reco","completar","embaralhar","escreva"].forEach(t=>[1,2].forEach(k=>add(5,t+"-"+c[0]+"-"+k,{voc:true})));
-      add(1,"odd-"+c[0]);add(1,"search-"+c[0]+"-easy");add(1,"cross-"+c[0]+"-easy");
+      /* Ordem dentro de cada tema (pedido dela, 25/10/2026): Conheça > Complete > Caça-palavras > Cruzadas > Escreva > Frase, e só então o tema seguinte.
+         Reconheça e Embaralhe (que ela não citou) entram como degraus fáceis: Reconheça logo depois do Conheça, Embaralhe depois do Complete; O Intruso fecha o tema. Ordem = julgamento de Claude, sem fonte. */
+      const lv=(t)=>[1,2].forEach(k=>add(5,t+"-"+c[0]+"-"+k,{voc:true}));
+      lv("reco");lv("completar");lv("embaralhar");
+      add(1,"search-"+c[0]+"-easy");add(1,"cross-"+c[0]+"-easy");
+      lv("escreva");lv("contexto");
+      add(1,"odd-"+c[0]);
     });
     add(1,"connect-"+g+"-easy-1");
     const gc=chunk(gram,gi,gids.length),cc=chunk(conv,gi,gids.length);
@@ -4394,7 +4399,7 @@ function pickGame(up){
   if(!el.length)return null;
   const alt=a=>{const x=a.filter(y=>y[0].page.type!==S.lgt);return x.length?x:a;};
   const lv=[
-    cat?el.filter(x=>refCat(x[0])===cat):[],
+    cat?el.filter(x=>refCat(x[0])===cat&&x[1]<upI):[], /* só jogos do tema que já estariam na vez; os de adiante seguem a ordem do tema */
     el.filter(x=>x[1]<upI&&!SOLTOS.has(x[0].page.type)),
     el.filter(x=>SOLTOS.has(x[0].page.type))
   ];
@@ -6916,6 +6921,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.67.0",d:"2026-10-25",t:["Nova ordem das lições dentro de cada tema: Conheça → Reconheça → Complete → Embaralhe → Caça-palavras → Cruzadas → Escreva → Frase → O Intruso. Só depois começa o tema seguinte","Os jogos soltos (memória, citação etc.) continuam aparecendo como intervalo entre lições, mas não puxam mais um jogo do mesmo tema para antes da vez dele"]},
 {v:"1.66.0",d:"2026-10-23",t:["Novo: «Baixar o app». Quem abre o site no navegador vê um cartão na tela inicial para instalar o Litteraria (Android e computador abrem a janela de instalação; no iPhone aparece o passo a passo do Safari). Também fica em Ajustes → Sobre e ajuda → «Baixar o app (instalar)». No app já instalado o cartão não aparece","No iPhone, guarde o progresso antes (conta ou backup): o app instalado pode começar vazio"]},
 {v:"1.65.0",d:"2026-10-23",t:["Lição do Jardim: a tela 5 agora alterna entre três jogos: Combine, Fitwords (monte a palavra com as letras) e Detetive de Fragmentos (ache no trecho a palavra que tem aquele significado)","Palavras do leitor e da Leitura têm sublinhado por estágio (pontilhado = Sombra, simples = Semente, duplo = Flor, grosso = Fruto) e o balão mostra o nome do estágio, então nada depende só de cor","Os textos da Lição do Jardim usam a fonte Atkinson Hyperlegible, feita para leitura fácil"]},
 {v:"1.64.0",d:"2026-10-23",t:["Novo: Lição do Jardim, 7 telas curtas sobre um trecho real de um livro: Capa, Leitura guiada (com «Ouvir a frase» e o estágio de cada palavra), 5 Lacunas, Blocos de sentido, Combine, Palavra em frase nova e «O que cresceu»","Está em Treino → «Lição do Jardim» e em Lições → Volume 5 (Conversação), uma por trecho dos livros de domínio público","Nas lacunas, o primeiro erro balança a frase e mostra a tradução; no segundo, a resposta aparece e a palavra volta na revisão. Nada depende só de cor ou de som","As palavras que precisam de água (até 3) entram na tela Combine e na frase nova, com a primeira letra de dica"]},

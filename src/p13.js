@@ -35,8 +35,13 @@ function lessonPath(){
     CATS.filter(c=>c[2]===g).forEach(c=>{
       if(pron.length)out.push({vol:2,page:pron.shift(),audio:true});
       VOLUME5.pages.filter(p=>p.cat===c[0]&&p.type==="conheca").forEach(p=>out.push({vol:5,page:p,voc:true}));
-      ["contexto","reco","completar","embaralhar","escreva"].forEach(t=>[1,2].forEach(k=>add(5,t+"-"+c[0]+"-"+k,{voc:true})));
-      add(1,"odd-"+c[0]);add(1,"search-"+c[0]+"-easy");add(1,"cross-"+c[0]+"-easy");
+      /* Ordem dentro de cada tema (pedido dela, 25/10/2026): Conheça > Complete > Caça-palavras > Cruzadas > Escreva > Frase, e só então o tema seguinte.
+         Reconheça e Embaralhe (que ela não citou) entram como degraus fáceis: Reconheça logo depois do Conheça, Embaralhe depois do Complete; O Intruso fecha o tema. Ordem = julgamento de Claude, sem fonte. */
+      const lv=(t)=>[1,2].forEach(k=>add(5,t+"-"+c[0]+"-"+k,{voc:true}));
+      lv("reco");lv("completar");lv("embaralhar");
+      add(1,"search-"+c[0]+"-easy");add(1,"cross-"+c[0]+"-easy");
+      lv("escreva");lv("contexto");
+      add(1,"odd-"+c[0]);
     });
     add(1,"connect-"+g+"-easy-1");
     const gc=chunk(gram,gi,gids.length),cc=chunk(conv,gi,gids.length);
@@ -82,7 +87,7 @@ function pickGame(up){
   if(!el.length)return null;
   const alt=a=>{const x=a.filter(y=>y[0].page.type!==S.lgt);return x.length?x:a;};
   const lv=[
-    cat?el.filter(x=>refCat(x[0])===cat):[],
+    cat?el.filter(x=>refCat(x[0])===cat&&x[1]<upI):[], /* só jogos do tema que já estariam na vez; os de adiante seguem a ordem do tema */
     el.filter(x=>x[1]<upI&&!SOLTOS.has(x[0].page.type)),
     el.filter(x=>SOLTOS.has(x[0].page.type))
   ];

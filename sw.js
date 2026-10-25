@@ -1,6 +1,6 @@
 // Service worker do Litteraria: guarda o app no aparelho para funcionar sem internet.
 // Ao publicar uma versão nova do index.html, troque o número em CACHE (v6 -> v7, e APP_VERSION no index.html).
-const CACHE = "mots-parole-v111"; // só o cache muda; a chave do LocalStorage (APP_VERSION) segue v6 para não apagar o progresso
+const CACHE = "mots-parole-v112"; // só o cache muda; a chave do LocalStorage (APP_VERSION) segue v6 para não apagar o progresso
 const ASSETS = [
   "./",
   "./index.html",
