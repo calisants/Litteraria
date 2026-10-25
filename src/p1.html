@@ -624,4 +624,8 @@ svg{display:block}
 .gd-ctx{margin:8px 0;padding:8px 10px;border-left:3px solid var(--accent)}.gd-ctx p{margin:2px 0}
 @media (prefers-reduced-motion:no-preference){.gd-svg.gd2:not(.wilted) g,.gd-svg.gd3:not(.wilted) g{transform-origin:24px 50px;animation:gdsway 4.5s ease-in-out infinite}}
 @keyframes gdsway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.gd-in{width:100%;min-height:48px;padding:6px 10px;font-size:1.1rem;border:var(--bw) solid var(--box);border-radius:var(--radius);background:var(--surface);color:var(--ink)}
+.gd-vis{margin:4px 0 8px}
+@media (prefers-reduced-motion:no-preference){.gd-fly{animation:gdfly 5s ease-in-out infinite}.gd-fly2{animation-duration:7s}.gd-fly3{animation-duration:6s;animation-delay:-2s}}
+@keyframes gdfly{0%,100%{transform:translate(0,0)}25%{transform:translate(6px,-4px)}50%{transform:translate(12px,2px)}75%{transform:translate(5px,5px)}}
 </style>

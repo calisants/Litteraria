@@ -30,6 +30,14 @@
     return '<svg viewBox="0 0 48 56" class="gd-svg gd'+lv+(wilt?" wilted":"")+'" aria-hidden="true" focusable="false">'+soil+"<g"+tilt+">"+body+"</g>"+drop+"</svg>";
   }
   window.gdPlantSvg=plant;
+  /* Visitantes do jardim: chegam conforme o número de flores e frutos (limiares: ideia de Claude, sem fonte). Bichinhos genéricos, desenhados em SVG. */
+  const VIS=[
+    {n:3,nome:"uma borboleta",svg:'<g class="gd-fly"><path d="M56 22c-6-8-12-4-9 2 2 4 7 3 9-2zM56 22c6-8 12-4 9 2-2 4-7 3-9-2z" fill="hsl(285 65% 70%)"/><rect x="55.3" y="18" width="1.4" height="9" rx=".7" fill="hsl(25 30% 25%)"/></g>'},
+    {n:10,nome:"uma abelha",svg:'<g class="gd-fly gd-fly2"><ellipse cx="150" cy="32" rx="6" ry="4.2" fill="hsl(46 95% 58%)"/><path d="M147 28v8M151 28v8" stroke="hsl(25 30% 20%)" stroke-width="1.6"/><ellipse cx="148" cy="27" rx="3.6" ry="2.2" fill="hsl(200 60% 88%)" opacity=".85"/></g>'},
+    {n:20,nome:"outra borboleta",svg:'<g class="gd-fly gd-fly3"><path d="M206 16c-6-8-12-4-9 2 2 4 7 3 9-2zM206 16c6-8 12-4 9 2-2 4-7 3-9-2z" fill="hsl(18 85% 64%)"/><rect x="205.3" y="12" width="1.4" height="9" rx=".7" fill="hsl(25 30% 25%)"/></g>'},
+    {n:40,nome:"um passarinho",svg:'<g class="gd-fly gd-fly2"><ellipse cx="112" cy="14" rx="7" ry="4.6" fill="hsl(205 70% 62%)"/><circle cx="118.5" cy="11.5" r="3" fill="hsl(205 70% 62%)"/><path d="M121 11.5l4 1.2-4 1z" fill="hsl(35 90% 55%)"/><circle cx="119.3" cy="11" r=".8" fill="#222"/><path d="M106 14l-6-2 1 4z" fill="hsl(205 60% 50%)"/></g>'},
+    {n:80,nome:"uma joaninha",svg:'<g><ellipse cx="34" cy="60" rx="5" ry="3.8" fill="hsl(5 80% 50%)"/><path d="M34 56.4v7.2" stroke="#222" stroke-width="1"/><circle cx="32" cy="59" r=".9" fill="#222"/><circle cx="36" cy="61" r=".9" fill="#222"/><circle cx="38.6" cy="60" r="2" fill="#222"/></g>'}
+  ];
   function groups(){
     const lang=S.lang,out=[],seen={};
     Object.keys(VOCAB[lang]||{}).forEach(cat=>{
@@ -49,9 +57,11 @@
     const cnt=[0,0,0,0];let total=0,met=0,wilted=0;
     G.forEach(g=>{total+=g.total;g.items.forEach(x=>{cnt[x.i.lv]++;met++;if(x.i.wilt)wilted++;});});
     const due=typeof dueWords==="function"?dueWords().length:0;
-    let h='<div class="gd-sky" aria-hidden="true"><svg viewBox="0 0 320 70" preserveAspectRatio="none"><circle cx="268" cy="24" r="12" fill="hsl(46 95% 62%)"/><path d="M0 70 V52 Q40 40 80 50 T160 48 T240 50 T320 44 V70z" fill="hsl(125 38% 52%)" opacity=".55"/><path d="M0 70 V60 Q50 52 100 59 T200 58 T320 56 V70z" fill="hsl(125 40% 42%)" opacity=".7"/></svg></div>';
+    const gf=cnt[2]+cnt[3],vis=VIS.filter(v=>gf>=v.n),nv=VIS.find(v=>gf<v.n);
+    let h='<div class="gd-sky" aria-hidden="true"><svg viewBox="0 0 320 70" preserveAspectRatio="none"><circle cx="268" cy="24" r="12" fill="hsl(46 95% 62%)"/>'+vis.map(v=>v.svg).join("")+'<path d="M0 70 V52 Q40 40 80 50 T160 48 T240 50 T320 44 V70z" fill="hsl(125 38% 52%)" opacity=".55"/><path d="M0 70 V60 Q50 52 100 59 T200 58 T320 56 V70z" fill="hsl(125 40% 42%)" opacity=".7"/></svg></div>';
     h+='<div class="gd-sum"><span class="gdchip gd3">'+cnt[3]+" fruto"+(cnt[3]===1?"":"s")+'</span><span class="gdchip gd2">'+cnt[2]+" flor"+(cnt[2]===1?"":"es")+'</span><span class="gdchip gd1">'+cnt[1]+" semente"+(cnt[1]===1?"":"s")+'</span><span class="gdchip gd0">'+cnt[0]+" sombra"+(cnt[0]===1?"":"s")+"</span></div>";
     h+='<p class="help">'+met+" de "+total+" palavras de "+LNAME[S.lang]+" já estão no seu jardim. Cada palavra que você acerta cresce: sombra → semente → flor → fruto.</p>";
+    h+='<p class="help gd-vis">'+(vis.length?"Visitas no jardim: "+vis.map(v=>v.nome).join(", ")+". ":"Ainda sem visitas. ")+(nv?"Próxima visita: "+nv.nome+", quando você tiver "+nv.n+" flores ou frutos (hoje: "+gf+").":"Seu jardim já recebeu todas as visitas!")+"</p>";
     if(wilted||due)h+='<div class="gd-water"><p><b>'+(wilted?wilted+(wilted===1?" planta precisa":" plantas precisam")+" de água.":"Há "+due+" palavra"+(due===1?"":"s")+" para rever hoje.")+'</b> Regar é rever a palavra: ela volta a crescer.</p><button type="button" class="btn primary" id="gd-water">Regar agora</button></div>';
     if(!met)h+='<div class="gd-empty"><p><b>Seu jardim ainda é só terra.</b></p><p>Acerte a primeira palavra de uma lição de Vocabulário e a primeira semente nasce aqui.</p><button type="button" class="btn primary" id="gd-start">Ir para «Hoje»</button></div>';
     G.forEach(g=>{
@@ -76,8 +86,35 @@
     const nxt=["Acerte esta palavra uma vez para plantar a semente.","Acerte de novo, em outro dia (3 dias ou mais depois do último acerto), para ela virar flor.","Para virar fruto: acertar 7 dias ou mais depois do último acerto, de pelo menos 3 formas (ver, ouvir, escrever, usar na frase) e em 4 dias diferentes.","Fruto! Para não murchar, reveja a palavra de vez em quando (cerca de uma vez por mês)."][i.lv];
     h+='<p><b>Como cresce:</b> '+nxt+"</p>";
     if(i.met&&i.lv>0)h+='<p class="help">Até agora: '+i.days+" dia"+(i.days===1?"":"s")+" com acerto, "+i.forms+" forma"+(i.forms===1?"":"s")+" diferente"+(i.forms===1?"":"s")+(i.last?"; último acerto há "+Math.max(0,t-i.last)+" dia"+(t-i.last===1?"":"s"):"")+".</p>";
+    h+='<div id="gd-q" data-g="'+esc(key)+"|"+k+'"><button type="button" class="btn primary" data-gdw="start">'+(i.lv===0?"Plantar: tentar agora":"Regar só esta palavra")+"</button></div>";
     openSheet(e.w,h,false);
   }
+  /* Regar uma palavra só: escrever a palavra a partir da tradução (conta como forma «Escrever») */
+  const n2=x=>String(x||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[’]/g,"'").replace(/\s+/g," ").trim();
+  document.getElementById("sheet-in").addEventListener("click",ev=>{
+    const b=ev.target.closest("[data-gdw]");if(!b)return;
+    const q=document.getElementById("gd-q");if(!q)return;
+    const pr=q.dataset.g.split("|"),g=G.find(x=>x.key===pr[0]),x=g&&g.items[+pr[1]];if(!x)return;
+    const e=x.e;
+    if(b.dataset.gdw==="start"){
+      q.innerHTML='<p><b>Como se escreve em '+LNAME[S.lang]+'?</b> «'+esc(e.pt)+'»</p>'+(e.a?'<p class="help">Pode escrever só a palavra, sem o artigo.</p>':"")+'<input type="text" id="gd-in" class="gd-in" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Sua resposta"><div class="row" style="margin-top:8px"><button type="button" class="btn primary" data-gdw="ok">Conferir</button></div><p class="help" id="gd-res" aria-live="polite"></p>';
+      const inp=document.getElementById("gd-in");inp.focus();
+      inp.addEventListener("keydown",kv=>{if(kv.key==="Enter"){kv.preventDefault();q.querySelector("[data-gdw=ok]").click();}});
+      return;
+    }
+    if(b.dataset.gdw==="ok"){
+      const v=n2(document.getElementById("gd-in").value);if(!v)return;
+      const ok=v===n2(e.w)||v===n2(full(e));
+      const key=S.lang+":v|"+e.w.toLowerCase(),cur=S.rvv[key];
+      window.GDFORM=2;try{skRec(e.w,e.pt,ok);}finally{window.GDFORM=undefined;}
+      if(ok&&cur){const st=cur[1]+1;if(st>=RV_STEPS.length)delete S.rvv[key];else S.rvv[key]=[rvDue(rvIvl(st,cur[2]||0)),st,cur[2]||0];save();}
+      const res=document.getElementById("gd-res");
+      res.textContent=ok?"Certo! A planta recebeu água.":"Quase. Era «"+full(e)+"». Ela volta para a fila de revisão.";
+      q.querySelector("[data-gdw=ok]").hidden=true;
+      render();
+      return;
+    }
+  });
   window.renderGarden=render;
   const root=document.getElementById("s-garden");
   root.addEventListener("click",ev=>{
