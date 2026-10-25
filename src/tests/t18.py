@@ -20,14 +20,18 @@ try:
     # trilha: livros ficam no fim e só no idioma certo; com tudo feito, a próxima lição é do livro
     pg.evaluate("()=>{S.lang='fr';S.done={};S.sk={};save()}")
     pg.evaluate("()=>lessonPath().forEach(r=>{if(!r.page.langs)S.done['fr:'+r.page.id]=1})")
-    nx=pg.evaluate("()=>nextNewPage().page.id");print('próxima (fr, tudo feito):',nx);assert nx=='conheca-perrault1-1','primeiro livrinho vem cedo'
-    pg.evaluate("()=>lessonPath().forEach(r=>{if(r.early)S.done['fr:'+r.page.id]=1})");assert pg.evaluate("()=>nextNewPage().page.id")=='conheca-pp1-1'
+    # v1.70: lições de livros NÃO entram em Hoje/Próximo; seguem na trilha (Lições/Livros) na ordem de antes
+    FIRST="(l)=>{const r=lessonPath().find(x=>isBookRef(x)&&pageInLang(x.page)&&!S.done[l+':'+x.page.id]);return r&&r.page.id}"
+    NX="()=>{const n=nextNewPage();return n&&isBookRef(n)}"
+    nx=pg.evaluate("()=>nextNewPage().page.id");print('próxima (fr, tudo feito):',nx);assert not pg.evaluate(NX),'livro não entra em Hoje'
+    assert pg.evaluate(FIRST,'fr')=='conheca-perrault1-1'
+    pg.evaluate("()=>lessonPath().forEach(r=>{if(r.early)S.done['fr:'+r.page.id]=1})");assert not pg.evaluate(NX) and pg.evaluate(FIRST,'fr')=='conheca-pp1-1'
     pg.evaluate("()=>{S.lang='it';S.done={};lessonPath().forEach(r=>{if(!r.page.langs)S.done['it:'+r.page.id]=1})}")
-    assert pg.evaluate("()=>nextNewPage().page.id")=='conheca-racconti1-1'
-    pg.evaluate("()=>lessonPath().forEach(r=>{if(r.early)S.done['it:'+r.page.id]=1})");assert pg.evaluate("()=>nextNewPage().page.id")=='conheca-pinocchio1-1'
+    assert not pg.evaluate(NX) and pg.evaluate(FIRST,'it')=='conheca-racconti1-1'
+    pg.evaluate("()=>lessonPath().forEach(r=>{if(r.early)S.done['it:'+r.page.id]=1})");assert not pg.evaluate(NX) and pg.evaluate(FIRST,'it')=='conheca-pinocchio1-1'
     pg.evaluate("()=>{S.lang='en';S.done={};lessonPath().forEach(r=>{if(!r.page.langs)S.done['en:'+r.page.id]=1})}")
-    assert pg.evaluate("()=>nextNewPage().page.id")=='conheca-peter1-1'
-    pg.evaluate("()=>lessonPath().forEach(r=>{if(r.early)S.done['en:'+r.page.id]=1})");assert pg.evaluate("()=>nextNewPage().page.id")=='conheca-alice1-1'
+    assert not pg.evaluate(NX) and pg.evaluate(FIRST,'en')=='conheca-peter1-1'
+    pg.evaluate("()=>lessonPath().forEach(r=>{if(r.early)S.done['en:'+r.page.id]=1})");assert not pg.evaluate(NX) and pg.evaluate(FIRST,'en')=='conheca-alice1-1'
     # sumário: fr mostra, it não mostra; filtro de tema do livro
     pg.evaluate("()=>{S.lang='fr';S.vol=5;save();go('vol');renderIndex()}")
     assert pg.evaluate("()=>document.querySelectorAll('#toc [data-id=\"conheca-pp1-1\"]').length")==1

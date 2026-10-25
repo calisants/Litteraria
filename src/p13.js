@@ -122,7 +122,13 @@ function pageMastered(p){
   return ok/ws.length>=.8;
 }
 const canHear=()=>"speechSynthesis" in window;
-const eligible=r=>pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&!(r.audio&&!canHear())&&!(r.voc&&pageMastered(r.page))&&!(needOf(r)&&knownWords()<needOf(r));
+/* Pedido dela (25/10/2026): lições de livros (frases, leitura, temas de vocabulário e jogos de livros, «primeiro livrinho», citação/trecho/sentido/ouvir) NÃO entram em «Hoje» nem no «Próximo» automático:
+   a pessoa só as faz se for a Lições ou Livros. Exceção: quem já está numa lição de livro segue o livro no «Próximo». */
+const BOOKGAMES=new Set(["citacao","trecho","regra","ouvir"]);
+const isBookPage=p=>!!(p.book||p.rd||(p.cat&&BOOKCAT[p.cat])||(p.main&&BOOKCAT[p.main])||BOOKGAMES.has(p.type));
+const isBookRef=r=>!!r.early||isBookPage(r.page);
+let _bookOK=false;
+const eligible=r=>(_bookOK||!isBookRef(r))&&pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&!(r.audio&&!canHear())&&!(r.voc&&pageMastered(r.page))&&!(needOf(r)&&knownWords()<needOf(r));
 const gatedLeft=()=>{const k=knownWords();return lessonPath().filter(r=>needOf(r)&&pageInLang(r.page)&&!S.done[S.lang+":"+r.page.id]&&k<needOf(r)).length;};
 function nextNewPage(){
   const up=lessonPath().find(eligible)||null;
@@ -133,9 +139,12 @@ function nextNewPage(){
    Se não há mais nada à frente, cai na primeira lição ainda não feita; sem nenhuma, o botão nem aparece. */
 function nextAfter(p){
   const L=lessonPath(),i=L.findIndex(r=>r.page.id===p.id);
-  const up=(i>=0&&L.slice(i+1).find(eligible))||L.find(eligible)||null;
-  if(S.sq>=2){const g=pickGame(up);if(g)return g;}
-  return up;
+  _bookOK=isBookPage(p);
+  try{
+    const up=(i>=0&&L.slice(i+1).find(eligible))||L.find(eligible)||null;
+    if(S.sq>=2&&!_bookOK){const g=pickGame(up);if(g)return g;}
+    return up;
+  }finally{_bookOK=false;}
 }
 const canGoNext=()=>!!P&&P.type!=="revisao"&&P.type!=="treino"&&isDone(P)&&!!nextAfter(P);
 $("#sheet-next").addEventListener("click",()=>{

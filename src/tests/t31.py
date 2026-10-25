@@ -21,7 +21,7 @@ try:
         e,fb,ids=info[l];assert e>0 and len(ids)>=4 and (fb<0 or e<fb),(l,info[l])
     assert any('leitura-peter-1' in i for i in info['en'][2]),info['en']
     # a Leitura inicial só abre depois de palavras suficientes
-    r=pg.evaluate("()=>{S.lang='en';S.sk.en={};S.done={};const r=lessonPath().find(x=>x.page.id==='leitura-peter-1');const a=eligible(r);const sk={};Object.keys(vIdx().en).slice(0,40).forEach(k=>sk[k]=[1,0]);S.sk.en=sk;return [a,eligible(r)]}")
+    r=pg.evaluate("()=>{S.lang='en';S.sk.en={};S.done={};const r=lessonPath().find(x=>x.page.id==='leitura-peter-1');const a=knownWords()>=needOf(r);const sk={};Object.keys(vIdx().en).slice(0,40).forEach(k=>sk[k]=[1,0]);S.sk.en=sk;return [a,knownWords()>=needOf(r)]}")
     assert r==[False,True],r
     # memória com palavras em revisão
     n=pg.evaluate("()=>{S.lang='en';S.done={};S.rvv={};const ws=Object.keys(DRAW.en).slice(0,6);ws.forEach(w=>S.rvv['en:v|'+w]=[Date.now()-5,0,0]);save();return memRevWords().length}")
