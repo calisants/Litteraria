@@ -602,4 +602,26 @@ svg{display:block}
 .jd-tiles{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.jd-tile{min-width:48px;min-height:48px;font-size:1.2rem}
 .jd-build{min-height:52px;padding:8px 12px;border:var(--bw) dashed var(--line);border-radius:var(--radius);font-size:1.4rem;letter-spacing:.12em}
 .jd-tok{padding:2px 3px;min-height:36px;border:0;border-bottom:2px dotted var(--muted);background:none;color:inherit;font:inherit;cursor:pointer}
+
+/* Meu jardim (v1.68) */
+.gd-sky{margin:0 -4px 8px;border-radius:var(--radius);overflow:hidden;background:linear-gradient(var(--soft),var(--bg));height:64px}
+.gd-sky svg{display:block;width:100%;height:100%}
+.gd-sum{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px}
+.gd-water,.gd-empty{margin:10px 0;padding:12px 14px;border:var(--bw) solid var(--accent);border-radius:var(--radius);background:var(--soft)}
+.gd-water p,.gd-empty p{margin:0 0 8px}
+.gd-bed{margin:8px 0;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.gd-bed>summary{display:flex;justify-content:space-between;gap:8px;align-items:center;min-height:48px;padding:6px 12px;cursor:pointer;font-family:var(--font-title);font-weight:600}
+.gd-bed>summary small{color:var(--muted);font-weight:400;font-family:inherit}
+.gd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:4px;padding:4px 8px 10px}
+.gd-pl{display:flex;flex-direction:column;align-items:center;min-height:92px;padding:2px;border:0;border-radius:var(--radius);background:transparent;color:var(--ink);cursor:pointer}
+.gd-pl:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.gd-svg{width:56px;height:64px;display:block}
+.gd-w{max-width:100%;font-size:.78rem;line-height:1.15;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gd-none{padding:0 12px 10px}
+.gd-card{display:flex;gap:12px;align-items:center}.gd-card .gd-svg{width:84px;height:96px;flex:none}.gd-card p{margin:2px 0}
+.gd-word{font-size:1.2rem}
+.gd-draw{width:96px;margin:8px 0}.gd-draw svg{width:100%;height:auto}
+.gd-ctx{margin:8px 0;padding:8px 10px;border-left:3px solid var(--accent)}.gd-ctx p{margin:2px 0}
+@media (prefers-reduced-motion:no-preference){.gd-svg.gd2:not(.wilted) g,.gd-svg.gd3:not(.wilted) g{transform-origin:24px 50px;animation:gdsway 4.5s ease-in-out infinite}}
+@keyframes gdsway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
 </style>

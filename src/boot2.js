@@ -20,7 +20,7 @@
    Guarda a última tela simples (Ajustes, Estatísticas, Perfil, Lições, Livros...) por até 3 horas, fora do progresso.
    A lição em andamento (retomar.js) e o passo do código da conta (nuvem.js) têm prioridade. */
 (function(){
-  const SK=KEY+"-scr",OK=["settings","stats","profile","vol","index","books","album","news"],MAX=3*3600e3;
+  const SK=KEY+"-scr",OK=["settings","stats","profile","vol","index","books","album","news","garden"],MAX=3*3600e3;
   try{
     const u=new URL(location.href),pend=localStorage.getItem("mots-parole-cloud-pend");
     const o=JSON.parse(localStorage.getItem(SK)||"null");

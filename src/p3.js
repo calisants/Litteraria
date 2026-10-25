@@ -328,7 +328,7 @@ function skRec(w,label,ok){
 function seedNow(){seedWith(S.lang+"|"+(P.vid||curVol().id)+"|"+P.id);}
 
 let clearStatsArmed=false;
-const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback","dict","books","album","reader","news"];
+const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback","dict","books","album","reader","news","garden"];
 let clearArmed=false;
 function go(name){
   SCREENS.forEach(s=>{$("#s-"+s).hidden=s!==name;});
@@ -337,6 +337,7 @@ function go(name){
   if(name==="index")renderIndex();
   if(name==="home"){renderMe();if(typeof renderQod==="function")renderQod();}
   if(name==="books"&&typeof renderBooks==="function")renderBooks();
+  if(name==="garden"&&typeof renderGarden==="function")renderGarden();
   if(name==="album"&&typeof renderAlbum==="function")renderAlbum();
   if(name==="vol"){$("#vol-lang").textContent=LNAME[S.lang];if(typeof renderToday==="function")renderToday();if(typeof renderQod==="function")renderQod();}
   if(name==="stats"){syncPrefs();renderStats();}

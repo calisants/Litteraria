@@ -615,6 +615,28 @@ svg{display:block}
 .jd-tiles{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.jd-tile{min-width:48px;min-height:48px;font-size:1.2rem}
 .jd-build{min-height:52px;padding:8px 12px;border:var(--bw) dashed var(--line);border-radius:var(--radius);font-size:1.4rem;letter-spacing:.12em}
 .jd-tok{padding:2px 3px;min-height:36px;border:0;border-bottom:2px dotted var(--muted);background:none;color:inherit;font:inherit;cursor:pointer}
+
+/* Meu jardim (v1.68) */
+.gd-sky{margin:0 -4px 8px;border-radius:var(--radius);overflow:hidden;background:linear-gradient(var(--soft),var(--bg));height:64px}
+.gd-sky svg{display:block;width:100%;height:100%}
+.gd-sum{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px}
+.gd-water,.gd-empty{margin:10px 0;padding:12px 14px;border:var(--bw) solid var(--accent);border-radius:var(--radius);background:var(--soft)}
+.gd-water p,.gd-empty p{margin:0 0 8px}
+.gd-bed{margin:8px 0;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.gd-bed>summary{display:flex;justify-content:space-between;gap:8px;align-items:center;min-height:48px;padding:6px 12px;cursor:pointer;font-family:var(--font-title);font-weight:600}
+.gd-bed>summary small{color:var(--muted);font-weight:400;font-family:inherit}
+.gd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:4px;padding:4px 8px 10px}
+.gd-pl{display:flex;flex-direction:column;align-items:center;min-height:92px;padding:2px;border:0;border-radius:var(--radius);background:transparent;color:var(--ink);cursor:pointer}
+.gd-pl:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.gd-svg{width:56px;height:64px;display:block}
+.gd-w{max-width:100%;font-size:.78rem;line-height:1.15;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gd-none{padding:0 12px 10px}
+.gd-card{display:flex;gap:12px;align-items:center}.gd-card .gd-svg{width:84px;height:96px;flex:none}.gd-card p{margin:2px 0}
+.gd-word{font-size:1.2rem}
+.gd-draw{width:96px;margin:8px 0}.gd-draw svg{width:100%;height:auto}
+.gd-ctx{margin:8px 0;padding:8px 10px;border-left:3px solid var(--accent)}.gd-ctx p{margin:2px 0}
+@media (prefers-reduced-motion:no-preference){.gd-svg.gd2:not(.wilted) g,.gd-svg.gd3:not(.wilted) g{transform-origin:24px 50px;animation:gdsway 4.5s ease-in-out infinite}}
+@keyframes gdsway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
 </style>
 
 <div id="app" data-lang="fr">
@@ -642,6 +664,7 @@ svg{display:block}
       <div class="menu">
         <button type="button" class="mrow" id="go-games"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><span class="tt"><b>Lições</b><small>Pronúncia, palavras, jogos, gramática</small></span></button>
         <button type="button" class="mrow" id="go-train"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><span class="tt"><b>Treino</b><small id="train-sub">Digitar verbos e palavras</small></span></button>
+        <button type="button" class="mrow" id="go-garden"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-8M12 13c-3 0-4.5-2-4.5-4.5S9.5 4 12 4s4.5 2 4.5 4.5S15 13 12 13zM12 17c-2.5 0-4-1-5-3M12 18c2.5 0 4-1 5-3"/></svg><span class="tt"><b>Meu jardim</b><small>Cada palavra vira uma planta</small></span></button>
         <button type="button" class="mrow" id="go-books"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg><span class="tt"><b>Livros</b><small>Leitura, frases e álbum</small></span></button>
         <button type="button" class="mrow" id="go-dict"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/></svg><span class="tt"><b>Dicionário</b><small>Palavras e áudio</small></span></button>
         <button type="button" class="mrow" id="go-friends" hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17.5" cy="9" r="2.6"/><path d="M17 14.6c2.6.2 4.2 1.8 4.6 4.9"/></svg><span class="tt"><b>Amigos</b><small>Cutucar e ver a sequência</small></span></button>
@@ -882,6 +905,13 @@ svg{display:block}
       <p class="help" id="fb-note" aria-live="polite"></p>
     </div>
   </section>
+  <section class="screen" id="s-garden" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Meu jardim</h2><p class="vol" id="gd-lang"></p></div>
+    </header>
+    <div class="scroll"><div id="gd-body"></div></div>
+  </section>
   <section class="screen" id="s-books" hidden>
     <header class="bar">
       <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -1037,7 +1067,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.67.0",d:"2026-10-25"};
+const APP_REL={v:"1.68.0",d:"2026-10-25"};
 
 
 const RAW={
@@ -2882,7 +2912,7 @@ function skRec(w,label,ok){
 function seedNow(){seedWith(S.lang+"|"+(P.vid||curVol().id)+"|"+P.id);}
 
 let clearStatsArmed=false;
-const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback","dict","books","album","reader","news"];
+const SCREENS=["home","lang","vol","index","stats","settings","profile","game","feedback","dict","books","album","reader","news","garden"];
 let clearArmed=false;
 function go(name){
   SCREENS.forEach(s=>{$("#s-"+s).hidden=s!==name;});
@@ -2891,6 +2921,7 @@ function go(name){
   if(name==="index")renderIndex();
   if(name==="home"){renderMe();if(typeof renderQod==="function")renderQod();}
   if(name==="books"&&typeof renderBooks==="function")renderBooks();
+  if(name==="garden"&&typeof renderGarden==="function")renderGarden();
   if(name==="album"&&typeof renderAlbum==="function")renderAlbum();
   if(name==="vol"){$("#vol-lang").textContent=LNAME[S.lang];if(typeof renderToday==="function")renderToday();if(typeof renderQod==="function")renderQod();}
   if(name==="stats"){syncPrefs();renderStats();}
@@ -6131,6 +6162,101 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick();});
 })();
 
+/* ===== Meu jardim (v1.68, pedido dela em 25/10/2026): aba própria onde cada palavra vira uma planta.
+   Sombra (errou/ainda não acertou) → Semente → Flor → Fruto, em canteiros por tema. Só aparecem as palavras que ela já encontrou
+   (têm registro em S.sk ou S.gd); o jardim vai enchendo conforme ela aprende. Estágios e regras: jardim.js (limiares: julgamento de Claude, sem fonte).
+   Desenhos das plantas: SVG originais de Claude. Nada é gravado aqui: o jardim é calculado de S.gd, S.sk e S.rvv. */
+(function(){
+  const ST=["Sombra","Semente","Flor","Fruto"];
+  const bits=n=>{let c=0;while(n){c+=n&1;n>>=1;}return c;};
+  const dn=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5);};
+  /* estágio sem mexer no estado (igual a ensure() de jardim.js, só leitura) */
+  function info(e){
+    const lang=S.lang,w=e.w.toLowerCase(),key=lang+":"+w.slice(0,40),g=S.gd&&S.gd[key];
+    const sk=(S.sk[lang]||{})[w];
+    if(g)return {lv:g[0],wilt:!!g[4],days:g[3]||0,forms:bits(g[2]||0),last:g[1]||0,met:true};
+    if(!sk)return null;
+    const a=sk[0]||0,r=S.rvv[lang+":v|"+w],deg=r?r[1]:-1;
+    return {lv:deg>=4?3:deg>=2?2:a>=1?1:0,wilt:false,days:a>=1?1:0,forms:0,last:0,met:true};
+  }
+  /* desenho da planta: matiz muda por canteiro; murcha = inclinada, apagada e com uma gota */
+  function plant(lv,hue,wilt,uid){
+    const soil='<ellipse cx="24" cy="51" rx="15" ry="4.5" fill="hsl(28 32% 40%)"/><ellipse cx="24" cy="49.5" rx="11" ry="3" fill="hsl(28 30% 33%)"/>';
+    const leaf=(x,y,r)=>'<ellipse cx="'+x+'" cy="'+y+'" rx="5" ry="2.4" fill="hsl(125 40% 42%)" transform="rotate('+r+' '+x+' '+y+')"/>';
+    const petals=(cx,cy,R,r,fill)=>{let s="";for(let i=0;i<6;i++){const a=i*Math.PI/3;s+='<circle cx="'+(cx+R*Math.cos(a)).toFixed(1)+'" cy="'+(cy+R*Math.sin(a)).toFixed(1)+'" r="'+r+'" fill="'+fill+'"/>';}return s;};
+    let body="";
+    if(lv===0)body='<path d="M24 49 C24 44 24 41 24 38" stroke="hsl(0 0% 55%)" stroke-width="1.6" stroke-dasharray="2.5 2.5" fill="none" stroke-linecap="round"/><circle cx="24" cy="35" r="4" fill="none" stroke="hsl(0 0% 55%)" stroke-width="1.6" stroke-dasharray="2.5 2.5"/>';
+    else if(lv===1)body='<ellipse cx="24" cy="47.5" rx="3.6" ry="2.3" fill="hsl(32 55% 35%)"/><path d="M24 46 C24 42 24 40 24 37" stroke="hsl(125 40% 38%)" stroke-width="2" fill="none" stroke-linecap="round"/>'+leaf(20,38,-25)+leaf(28,37,25);
+    else if(lv===2)body='<path d="M24 49 C24 40 24 32 24 25" stroke="hsl(125 40% 38%)" stroke-width="2.4" fill="none" stroke-linecap="round"/>'+leaf(19,40,-30)+leaf(29,37,30)+petals(24,21,6.5,5,"hsl("+hue+" 78% 72%)")+'<circle cx="24" cy="21" r="4.4" fill="hsl(46 90% 58%)"/>';
+    else body='<path d="M24 49 C24 38 24 28 24 19" stroke="hsl(125 40% 38%)" stroke-width="2.6" fill="none" stroke-linecap="round"/>'+leaf(18,41,-30)+leaf(30,37,30)+petals(24,15,7.5,5.6,"hsl("+hue+" 80% 70%)")+'<circle cx="24" cy="15" r="4.8" fill="hsl(46 92% 56%)"/><circle cx="14.5" cy="33" r="3.6" fill="hsl('+((hue+330)%360)+' 70% 50%)"/><circle cx="33.5" cy="30" r="3.6" fill="hsl('+((hue+330)%360)+' 70% 50%)"/><circle cx="19" cy="25" r="3" fill="hsl('+((hue+330)%360)+' 70% 52%)"/><path d="M40 8l1.2 3 3 1.2-3 1.2L40 16.4l-1.2-3-3-1.2 3-1.2z" fill="hsl(46 95% 62%)"/>';
+    const drop=wilt?'<path d="M40 22c-3 4-4.2 6-4.2 8a4.2 4.2 0 008.4 0c0-2-1.2-4-4.2-8z" fill="hsl(205 80% 58%)"/>':"";
+    const tilt=wilt?' transform="rotate(14 24 50)" opacity=".72"':"";
+    return '<svg viewBox="0 0 48 56" class="gd-svg gd'+lv+(wilt?" wilted":"")+'" aria-hidden="true" focusable="false">'+soil+"<g"+tilt+">"+body+"</g>"+drop+"</svg>";
+  }
+  window.gdPlantSvg=plant;
+  function groups(){
+    const lang=S.lang,out=[],seen={};
+    Object.keys(VOCAB[lang]||{}).forEach(cat=>{
+      const bc=BOOKCAT[cat],key=bc?"livro-"+bc.book:cat;
+      let g=seen[key];
+      if(!g){g=seen[key]={key:key,name:bc?bc.name:catName(cat),book:!!bc,items:[],total:0};out.push(g);}
+      VOCAB[lang][cat].forEach(e=>{g.total++;const i=info(e);if(i)g.items.push({e:e,i:i});});
+    });
+    out.forEach((g,k)=>{g.hue=(k*47+330)%360;g.items.sort((a,b)=>b.i.lv-a.i.lv);});
+    return out;
+  }
+  let G=[];
+  function render(){
+    const box=document.getElementById("gd-body");if(!box)return;
+    document.getElementById("gd-lang").textContent=LNAME[S.lang];
+    G=groups();
+    const cnt=[0,0,0,0];let total=0,met=0,wilted=0;
+    G.forEach(g=>{total+=g.total;g.items.forEach(x=>{cnt[x.i.lv]++;met++;if(x.i.wilt)wilted++;});});
+    const due=typeof dueWords==="function"?dueWords().length:0;
+    let h='<div class="gd-sky" aria-hidden="true"><svg viewBox="0 0 320 70" preserveAspectRatio="none"><circle cx="268" cy="24" r="12" fill="hsl(46 95% 62%)"/><path d="M0 70 V52 Q40 40 80 50 T160 48 T240 50 T320 44 V70z" fill="hsl(125 38% 52%)" opacity=".55"/><path d="M0 70 V60 Q50 52 100 59 T200 58 T320 56 V70z" fill="hsl(125 40% 42%)" opacity=".7"/></svg></div>';
+    h+='<div class="gd-sum"><span class="gdchip gd3">'+cnt[3]+" fruto"+(cnt[3]===1?"":"s")+'</span><span class="gdchip gd2">'+cnt[2]+" flor"+(cnt[2]===1?"":"es")+'</span><span class="gdchip gd1">'+cnt[1]+" semente"+(cnt[1]===1?"":"s")+'</span><span class="gdchip gd0">'+cnt[0]+" sombra"+(cnt[0]===1?"":"s")+"</span></div>";
+    h+='<p class="help">'+met+" de "+total+" palavras de "+LNAME[S.lang]+" já estão no seu jardim. Cada palavra que você acerta cresce: sombra → semente → flor → fruto.</p>";
+    if(wilted||due)h+='<div class="gd-water"><p><b>'+(wilted?wilted+(wilted===1?" planta precisa":" plantas precisam")+" de água.":"Há "+due+" palavra"+(due===1?"":"s")+" para rever hoje.")+'</b> Regar é rever a palavra: ela volta a crescer.</p><button type="button" class="btn primary" id="gd-water">Regar agora</button></div>';
+    if(!met)h+='<div class="gd-empty"><p><b>Seu jardim ainda é só terra.</b></p><p>Acerte a primeira palavra de uma lição de Vocabulário e a primeira semente nasce aqui.</p><button type="button" class="btn primary" id="gd-start">Ir para «Hoje»</button></div>';
+    G.forEach(g=>{
+      const n=g.items.length;
+      h+='<details class="gd-bed"'+(n?" open":"")+'><summary><span>'+esc(g.name)+(g.book?" (livro)":"")+'</span><small>'+n+" de "+g.total+"</small></summary>";
+      if(n)h+='<div class="gd-grid">'+g.items.map((x,k)=>'<button type="button" class="gd-pl" data-gd="'+g.key+"|"+k+'" aria-label="'+esc(full(x.e))+", "+ST[x.i.lv]+(x.i.wilt?", precisa de água":"")+'">'+plant(x.i.lv,g.hue,x.i.wilt)+'<span class="gd-w">'+esc(x.e.w)+"</span></button>").join("")+"</div>";
+      else h+='<p class="help gd-none">Terra vazia: nenhuma palavra deste tema ainda.</p>';
+      h+="</details>";
+    });
+    h+='<p class="help">Estágios e prazos: escritos por Claude, sem fonte conferida. O histórico de acertos e erros nunca é apagado.</p>';
+    box.innerHTML=h;
+  }
+  function openPlant(key,k){
+    const g=G.find(x=>x.key===key),x=g&&g.items[k];if(!x)return;
+    const e=x.e,i=x.i,t=dn();
+    let h='<div class="gd-card">'+plant(i.lv,g.hue,i.wilt)+'<div><p class="gd-word"><b>'+esc(full(e))+"</b> "+speakBtn(full(e))+"</p><p>"+esc(e.pt)+"</p><p>"+'<span class="gdchip gd'+i.lv+'">'+ST[i.lv]+(i.wilt?" · precisa de água":"")+"</span></p></div></div>";
+    const dr=typeof drawSvg==="function"?drawSvg(S.lang,e.w,e.pt):"";
+    if(dr)h+='<div class="gd-draw">'+dr+"</div>";
+    const c=i.lv>=2&&typeof ctxFor==="function"?ctxFor(e):null;
+    if(c)h+='<div class="gd-ctx"><p class="gd-s">«'+esc(c.s)+"» "+speakBtn(c.s)+"</p><p>"+esc(c.pt)+'</p><p class="help">'+esc(c.src)+"</p></div>";
+    else if(i.lv<2)h+='<p class="help">Quando esta palavra virar flor, a frase de exemplo aparece aqui.</p>';
+    const nxt=["Acerte esta palavra uma vez para plantar a semente.","Acerte de novo, em outro dia (3 dias ou mais depois do último acerto), para ela virar flor.","Para virar fruto: acertar 7 dias ou mais depois do último acerto, de pelo menos 3 formas (ver, ouvir, escrever, usar na frase) e em 4 dias diferentes.","Fruto! Para não murchar, reveja a palavra de vez em quando (cerca de uma vez por mês)."][i.lv];
+    h+='<p><b>Como cresce:</b> '+nxt+"</p>";
+    if(i.met&&i.lv>0)h+='<p class="help">Até agora: '+i.days+" dia"+(i.days===1?"":"s")+" com acerto, "+i.forms+" forma"+(i.forms===1?"":"s")+" diferente"+(i.forms===1?"":"s")+(i.last?"; último acerto há "+Math.max(0,t-i.last)+" dia"+(t-i.last===1?"":"s"):"")+".</p>";
+    openSheet(e.w,h,false);
+  }
+  window.renderGarden=render;
+  const root=document.getElementById("s-garden");
+  root.addEventListener("click",ev=>{
+    const b=ev.target.closest("[data-gd]");
+    if(b){const p=b.dataset.gd.split("|");openPlant(p[0],+p[1]);return;}
+    if(ev.target.closest("#gd-water")){
+      if(typeof startCiclo==="function"&&typeof dueWords==="function"&&dueWords().length)startCiclo();
+      else if(typeof say==="function")say("Nada vencido agora. Volte mais tarde para regar.");
+      return;
+    }
+    if(ev.target.closest("#gd-start")){go("home");const t=document.getElementById("go-today");if(t)t.click();}
+  });
+  document.getElementById("go-garden").addEventListener("click",()=>go("garden"));
+})();
+
 /* ===== Cartão do dia («widget» dentro do app), lembretes e atalhos (v1.39) =====
    Limites reais (ditos na tela, em Ajustes):
    · Um PWA instalado pelo Chrome no Android NÃO consegue criar um widget na tela inicial do celular. Por isso o «widget» é um cartão na tela inicial do app,
@@ -6921,6 +7047,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.68.0",d:"2026-10-25",t:["Novo: «Meu jardim», uma aba na tela inicial. Cada palavra que você acerta vira uma planta (sombra, semente, flor e fruto) num canteiro do seu tema, e o jardim vai enchendo conforme você aprende","Toque numa planta para ver a palavra, a tradução, o desenho, a frase de exemplo (a partir da flor) e o que falta para ela crescer","Plantas que murcham mostram uma gota: «Regar agora» abre o Ciclo da palavra"]},
 {v:"1.67.0",d:"2026-10-25",t:["Nova ordem das lições dentro de cada tema: Conheça → Reconheça → Complete → Embaralhe → Caça-palavras → Cruzadas → Escreva → Frase → O Intruso. Só depois começa o tema seguinte","Os jogos soltos (memória, citação etc.) continuam aparecendo como intervalo entre lições, mas não puxam mais um jogo do mesmo tema para antes da vez dele"]},
 {v:"1.66.0",d:"2026-10-23",t:["Novo: «Baixar o app». Quem abre o site no navegador vê um cartão na tela inicial para instalar o Litteraria (Android e computador abrem a janela de instalação; no iPhone aparece o passo a passo do Safari). Também fica em Ajustes → Sobre e ajuda → «Baixar o app (instalar)». No app já instalado o cartão não aparece","No iPhone, guarde o progresso antes (conta ou backup): o app instalado pode começar vazio"]},
 {v:"1.65.0",d:"2026-10-23",t:["Lição do Jardim: a tela 5 agora alterna entre três jogos: Combine, Fitwords (monte a palavra com as letras) e Detetive de Fragmentos (ache no trecho a palavra que tem aquele significado)","Palavras do leitor e da Leitura têm sublinhado por estágio (pontilhado = Sombra, simples = Semente, duplo = Flor, grosso = Fruto) e o balão mostra o nome do estágio, então nada depende só de cor","Os textos da Lição do Jardim usam a fonte Atkinson Hyperlegible, feita para leitura fácil"]},
@@ -7433,7 +7560,7 @@ buildSettings();applyTheme();buildKb();go("home");
    Guarda a última tela simples (Ajustes, Estatísticas, Perfil, Lições, Livros...) por até 3 horas, fora do progresso.
    A lição em andamento (retomar.js) e o passo do código da conta (nuvem.js) têm prioridade. */
 (function(){
-  const SK=KEY+"-scr",OK=["settings","stats","profile","vol","index","books","album","news"],MAX=3*3600e3;
+  const SK=KEY+"-scr",OK=["settings","stats","profile","vol","index","books","album","news","garden"],MAX=3*3600e3;
   try{
     const u=new URL(location.href),pend=localStorage.getItem("mots-parole-cloud-pend");
     const o=JSON.parse(localStorage.getItem(SK)||"null");

@@ -23,6 +23,7 @@
       <div class="menu">
         <button type="button" class="mrow" id="go-games"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><span class="tt"><b>Lições</b><small>Pronúncia, palavras, jogos, gramática</small></span></button>
         <button type="button" class="mrow" id="go-train"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><span class="tt"><b>Treino</b><small id="train-sub">Digitar verbos e palavras</small></span></button>
+        <button type="button" class="mrow" id="go-garden"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-8M12 13c-3 0-4.5-2-4.5-4.5S9.5 4 12 4s4.5 2 4.5 4.5S15 13 12 13zM12 17c-2.5 0-4-1-5-3M12 18c2.5 0 4-1 5-3"/></svg><span class="tt"><b>Meu jardim</b><small>Cada palavra vira uma planta</small></span></button>
         <button type="button" class="mrow" id="go-books"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg><span class="tt"><b>Livros</b><small>Leitura, frases e álbum</small></span></button>
         <button type="button" class="mrow" id="go-dict"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/></svg><span class="tt"><b>Dicionário</b><small>Palavras e áudio</small></span></button>
         <button type="button" class="mrow" id="go-friends" hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17.5" cy="9" r="2.6"/><path d="M17 14.6c2.6.2 4.2 1.8 4.6 4.9"/></svg><span class="tt"><b>Amigos</b><small>Cutucar e ver a sequência</small></span></button>
@@ -262,6 +263,13 @@
       <button type="button" class="btn wide" id="fb-copy">Copiar o texto</button>
       <p class="help" id="fb-note" aria-live="polite"></p>
     </div>
+  </section>
+  <section class="screen" id="s-garden" hidden>
+    <header class="bar">
+      <button type="button" class="btn icon" data-back="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="ttl"><h2>Meu jardim</h2><p class="vol" id="gd-lang"></p></div>
+    </header>
+    <div class="scroll"><div id="gd-body"></div></div>
   </section>
   <section class="screen" id="s-books" hidden>
     <header class="bar">
