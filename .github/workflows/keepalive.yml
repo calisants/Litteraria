@@ -1,0 +1,21 @@
+name: Manter a conta acordada (Supabase)
+# Uma chamada por dia ao Supabase (função ping + leitura de uma tabela), para o projeto gratuito não ser pausado por inatividade.
+on:
+  schedule:
+    - cron: "23 11 * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Chamar o Supabase
+        run: |
+          U=$(grep -o 'url:"[^"]*"' src/nuvemcfg.js | cut -d'"' -f2)
+          K=$(grep -o 'key:"[^"]*"' src/nuvemcfg.js | cut -d'"' -f2)
+          [ -z "$U" ] && { echo "sem url"; exit 0; }
+          echo "ping:"; curl -sS -m 40 -o /dev/null -w "%{http_code}\n" -X POST "$U/rest/v1/rpc/ping" -H "apikey: $K" -H "content-type: application/json" -d '{}'
+          echo "auth health:"; curl -sS -m 40 -o /dev/null -w "%{http_code}\n" "$U/auth/v1/health" -H "apikey: $K"
+          echo "leitura:"; curl -sS -m 40 -o /dev/null -w "%{http_code}\n" "$U/rest/v1/consents?select=user_id&limit=1" -H "apikey: $K" -H "authorization: Bearer $K"
