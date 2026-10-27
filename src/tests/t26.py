@@ -17,6 +17,7 @@ def handler(route):
     if rq.method=='OPTIONS': return route.fulfill(status=204,headers=CORS)
     def J(code,obj): route.fulfill(status=code,headers=dict(CORS,**{'content-type':'application/json'}),body=json.dumps(obj))
     body=json.loads(rq.post_data) if rq.post_data else {}
+    if path=='/auth/v1/otp' and getattr(fk,'down',False): return route.abort()
     if path=='/auth/v1/otp': fk.codes.append(body['email']);return J(200,{})
     if path=='/auth/v1/verify':
         if body.get('token')!='123456': return J(400,{'msg':'Token has expired or is invalid'})
@@ -66,6 +67,10 @@ try:
     pg.click('#cl-send');assert 'e-mail' in pg.inner_text('#cloud-box')   # e-mail vazio
     pg.fill('#cl-email','ana@exemplo.com');pg.click('#cl-send');assert 'duas caixas' in pg.inner_text('#cloud-box')
     pg.fill('#cl-email','ana@exemplo.com');pg.check('#cl-age');pg.check('#cl-pol')
+    fk.down=True;pg.click('#cl-send');pg.wait_for_timeout(600);assert 'dormindo' in pg.inner_text('#cloud-box');fk.down=False   # servidor fora do ar
+    pg.fill('#cl-email','ana@exemplo.com')
+    if not pg.is_checked('#cl-age'):pg.check('#cl-age')
+    if not pg.is_checked('#cl-pol'):pg.check('#cl-pol')
     pg.click('#cl-send');pg.wait_for_selector('#cl-code');assert fk.codes==['ana@exemplo.com']
     pg.fill('#cl-code','000000');pg.click('#cl-verify');pg.wait_for_timeout(400);assert 'incorreto ou vencido' in pg.inner_text('#cloud-box')
     pg.fill('#cl-code','123456');pg.click('#cl-verify');pg.wait_for_selector('#cl-now');pg.wait_for_timeout(500)

@@ -27,7 +27,10 @@
     const h={apikey:C.key,"content-type":"application/json"};
     if(o.token)h.authorization="Bearer "+o.token;else if(/^eyJ/.test(C.key))h.authorization="Bearer "+C.key; /* chaves novas (sb_publishable_…) não são JWT: só vão no cabeçalho apikey */
     if(o.prefer)h.prefer=o.prefer;
-    return fetch(C.url+path,{method:o.method||"GET",headers:h,body:o.body===undefined?undefined:JSON.stringify(o.body)});
+    /* v1.70.2: sem resposta em 25 s o pedido é cortado (antes ficava esperando sem avisar quando o servidor gratuito estava "dormindo") */
+    const ac=typeof AbortController!=="undefined"?new AbortController():null,tm=ac?setTimeout(()=>ac.abort(),25000):0;
+    try{return await fetch(C.url+path,{method:o.method||"GET",headers:h,body:o.body===undefined?undefined:JSON.stringify(o.body),signal:ac?ac.signal:undefined});}
+    finally{clearTimeout(tm);}
   }
   async function token(){
     if(!ses)return null;
@@ -50,12 +53,13 @@
     if(/sending|smtp|mail/i.test(m))return "O serviço não conseguiu enviar o e-mail (conferir a conexão do Gmail no Supabase). Detalhe: "+m.slice(0,140);
     return "Não consegui concluir"+(r?" (erro "+r.status+(m?": "+m.slice(0,140):"")+")":"")+". Confira a internet e o e-mail e tente de novo.";
   }
+  const WAKE="O servidor não respondeu. O serviço gratuito pode estar «dormindo» depois de dias sem uso: espere 1 a 2 minutos e toque em enviar de novo. Se continuar, avise nas sugestões.";
   async function requestCode(email){
-    const r=await raw("/auth/v1/otp",{method:"POST",body:{email:email,create_user:true}});
+    let r;try{r=await raw("/auth/v1/otp",{method:"POST",body:{email:email,create_user:true}});}catch(_){throw new Error(navigator.onLine===false?"Sem internet no momento.":WAKE);}
     if(!r.ok){let j=null;try{j=await r.json();}catch(_){}throw new Error(errText(r,j));}
   }
   async function verify(email,code){
-    const r=await raw("/auth/v1/verify",{method:"POST",body:{type:"email",email:email,token:code}});
+    let r;try{r=await raw("/auth/v1/verify",{method:"POST",body:{type:"email",email:email,token:code}});}catch(_){throw new Error(navigator.onLine===false?"Sem internet no momento.":WAKE);}
     let j=null;try{j=await r.json();}catch(_){}
     if(!r.ok||!j||!j.access_token)throw new Error(errText(r,j));
     ses={at:j.access_token,rt:j.refresh_token,exp:j.expires_at||now()+(j.expires_in||3600),uid:j.user&&j.user.id,email:(j.user&&j.user.email)||email,ts:"",lh:""};

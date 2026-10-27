@@ -1079,7 +1079,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.70.1",d:"2026-10-27"};
+const APP_REL={v:"1.70.2",d:"2026-10-27"};
 
 
 const RAW={
@@ -6671,7 +6671,10 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     const h={apikey:C.key,"content-type":"application/json"};
     if(o.token)h.authorization="Bearer "+o.token;else if(/^eyJ/.test(C.key))h.authorization="Bearer "+C.key; /* chaves novas (sb_publishable_…) não são JWT: só vão no cabeçalho apikey */
     if(o.prefer)h.prefer=o.prefer;
-    return fetch(C.url+path,{method:o.method||"GET",headers:h,body:o.body===undefined?undefined:JSON.stringify(o.body)});
+    /* v1.70.2: sem resposta em 25 s o pedido é cortado (antes ficava esperando sem avisar quando o servidor gratuito estava "dormindo") */
+    const ac=typeof AbortController!=="undefined"?new AbortController():null,tm=ac?setTimeout(()=>ac.abort(),25000):0;
+    try{return await fetch(C.url+path,{method:o.method||"GET",headers:h,body:o.body===undefined?undefined:JSON.stringify(o.body),signal:ac?ac.signal:undefined});}
+    finally{clearTimeout(tm);}
   }
   async function token(){
     if(!ses)return null;
@@ -6694,12 +6697,13 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     if(/sending|smtp|mail/i.test(m))return "O serviço não conseguiu enviar o e-mail (conferir a conexão do Gmail no Supabase). Detalhe: "+m.slice(0,140);
     return "Não consegui concluir"+(r?" (erro "+r.status+(m?": "+m.slice(0,140):"")+")":"")+". Confira a internet e o e-mail e tente de novo.";
   }
+  const WAKE="O servidor não respondeu. O serviço gratuito pode estar «dormindo» depois de dias sem uso: espere 1 a 2 minutos e toque em enviar de novo. Se continuar, avise nas sugestões.";
   async function requestCode(email){
-    const r=await raw("/auth/v1/otp",{method:"POST",body:{email:email,create_user:true}});
+    let r;try{r=await raw("/auth/v1/otp",{method:"POST",body:{email:email,create_user:true}});}catch(_){throw new Error(navigator.onLine===false?"Sem internet no momento.":WAKE);}
     if(!r.ok){let j=null;try{j=await r.json();}catch(_){}throw new Error(errText(r,j));}
   }
   async function verify(email,code){
-    const r=await raw("/auth/v1/verify",{method:"POST",body:{type:"email",email:email,token:code}});
+    let r;try{r=await raw("/auth/v1/verify",{method:"POST",body:{type:"email",email:email,token:code}});}catch(_){throw new Error(navigator.onLine===false?"Sem internet no momento.":WAKE);}
     let j=null;try{j=await r.json();}catch(_){}
     if(!r.ok||!j||!j.access_token)throw new Error(errText(r,j));
     ses={at:j.access_token,rt:j.refresh_token,exp:j.expires_at||now()+(j.expires_in||3600),uid:j.user&&j.user.id,email:(j.user&&j.user.email)||email,ts:"",lh:""};
@@ -7134,6 +7138,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.70.2",d:"2026-10-27",t:["Pedir o código por e-mail: se o servidor não responder em 25 segundos, o app avisa que ele pode estar «dormindo» (comum no serviço gratuito depois de dias sem uso) e pede para esperar 1 a 2 minutos e tentar de novo, em vez de ficar sem resposta"]},
 {v:"1.70.1",d:"2026-10-27",t:["Jogo da memória: duas palavras com o mesmo desenho (como lunch e dinner) nunca ficam na mesma página","Francês dos livros: 241 palavras apareciam e eram faladas como «f traversée» ou «m pari». Agora são «la traversée», «le pari», «l'homme» etc.","Áudio: o app escolhe uma voz do idioma certo e avisa se o aparelho não tem voz em francês, italiano ou inglês. Em Ajustes → Som e vibração há botões para testar cada idioma e ver qual voz está em uso","Novo: Ajustes → Sobre e ajuda → «Compartilhar o app com alguém». Abre o menu de compartilhar do celular (ou copia o convite / envia pelo WhatsApp) com o endereço do app"]},
 {v:"1.70.0",d:"2026-10-25",t:["«Hoje» e «Próximo» não levam mais às lições dos livros (frases, leitura, palavras dos livros e jogos de citação). Elas continuam em Lições e em Livros, para quem quiser ir lá. Quem já está numa lição de livro segue no livro ao tocar em «Próximo»"]},
 {v:"1.69.0",d:"2026-10-25",t:["Meu jardim agora recebe visitas: uma borboleta com 3 flores ou frutos, uma abelha com 10, outra borboleta com 20, um passarinho com 40 e uma joaninha com 80. O jardim diz qual é a próxima visita","Regar só uma palavra: toque numa planta e escolha «Regar só esta palavra» (ou «Plantar», se ainda é sombra). Você escreve a palavra a partir da tradução; acertar faz a planta crescer e errar manda a palavra para a revisão"]},
