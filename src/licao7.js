@@ -215,7 +215,7 @@
     const done=()=>{if(L.listening===i){L.listening=-1;if(L.scr===1)render0(i,false);}};
     try{
       if(!window.speechSynthesis){setTimeout(done,1800);return;}
-      const u=new SpeechSynthesisUtterance(seg.s);u.lang=SPEECH[S.lang];u.rate=.9;u.onend=done;u.onerror=done;
+      const u=mkUtt(seg.s);u.onend=done;u.onerror=done;
       speechSynthesis.cancel();speechSynthesis.speak(u);setTimeout(done,Math.max(4000,seg.s.length*130));
     }catch(_){setTimeout(done,1800);}
   }

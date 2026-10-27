@@ -32,6 +32,12 @@ def sy(lang,w):
 BOOKS=[("pp","fr","francês","O Pequeno Príncipe","pp_words.txt"),("verne","fr","francês","A Volta ao Mundo em 80 Dias","livro_verne.txt"),("pinocchio","it","italiano","As Aventuras de Pinóquio","livro_pinocchio.txt"),("alice","en","inglês","Alice no País das Maravilhas","livro_alice.txt"),("peter","en","inglês","Peter Rabbit","livro_peter.txt"),("wind","en","inglês","O Vento nos Salgueiros","livro_wind.txt"),("sherlock","en","inglês","As Aventuras de Sherlock Holmes","livro_sherlock.txt"),("frank","en","inglês","Frankenstein","livro_frank.txt"),("musq","fr","francês","Os Três Mosqueteiros","livro_musq.txt"),("principe","it","italiano","O Príncipe","livro_principe.txt"),("dante","it","italiano","A Divina Comédia","livro_dante.txt"),("perrault","fr","francês","Contos de Perrault","livro_perrault.txt"),("grimm","en","inglês","Contos dos Irmãos Grimm","livro_grimm.txt"),("racconti","it","italiano","I racconti delle fate (Collodi)","livro_racconti.txt")]
 miss=[]
 out=[]
+ASP={'houppe','hutte','houle','halte'}   # h aspirado: sem elisão (la houppe)
+def fr_art(w,g):
+    if g not in ('m','f'):return g   # já vem «le», «la», «l'», «les»
+    ini=w[0].lower()
+    if (ini in 'aeiouyàâäéèêëîïôöûüœ' or (ini=='h' and w.lower() not in ASP)):return "l'"
+    return 'le' if g=='m' else 'la'
 def load(fn,lang):
     ws=[]
     for l in open(fn,encoding='utf8'):
@@ -39,7 +45,7 @@ def load(fn,lang):
         if len(p)<3:continue
         if lang=='en' and p[0] not in cm:miss.append(p[0])
         d={'w':p[0],'pt':p[1],'c':CL[p[2]],'sy':sy(lang,p[0])}
-        if len(p)>3 and p[3]:d['a']=it_art(p[0],p[3]) if lang=='it' else p[3]
+        if len(p)>3 and p[3]:d['a']=it_art(p[0],p[3]) if lang=='it' else (fr_art(p[0],p[3]) if lang=='fr' else p[3])
         ws.append(d)
     return ws
 for bid,lang,ln,name,fn in BOOKS:

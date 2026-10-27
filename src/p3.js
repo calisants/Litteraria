@@ -238,11 +238,31 @@ function shake(el){
 /* ----- pronúncia ----- */
 const SPK='<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 const speakBtn=t=>'<button class="speak" type="button" data-say="'+esc(t)+'" aria-label="Ouvir '+esc(t)+'">'+SPK+"</button>";
+/* Voz (v1.70.1): escolhe uma voz que combine com o idioma (fr-FR, it-IT, en-GB); se o aparelho não tiver nenhuma, a fala sai com a voz padrão
+   (o sotaque fica errado) e o app avisa. A escolha da voz é do aparelho: o app não consegue "ouvir" o resultado. */
+function pickVoice(lang){
+  try{
+    const vs=speechSynthesis.getVoices()||[],pre=lang.toLowerCase().replace("_","-"),base=pre.split("-")[0];
+    const sc=v=>{const l=(v.lang||"").toLowerCase().replace("_","-");if(l!==pre&&l.split("-")[0]!==base)return -1;return (l===pre?10:0)+(v.localService?0:2)+(/google|natural|neural|enhanced|premium/i.test(v.name)?3:0);};
+    let best=null,bs=-1;vs.forEach(v=>{const x=sc(v);if(x>bs){bs=x;best=v;}});
+    return best;
+  }catch(_){return null;}
+}
+function mkUtt(t,lang){
+  const u=new SpeechSynthesisUtterance(String(t).replace(/\u00a0/g," "));u.lang=lang||SPEECH[S.lang];u.rate=.9;
+  const v=pickVoice(u.lang);if(v)u.voice=v;
+  return u;
+}
+let _noVoiceWarned={};
 function speak(t){
   try{
     if(!window.speechSynthesis)return;
-    const u=new SpeechSynthesisUtterance(t.replace(/ /g," "));u.lang=SPEECH[S.lang];u.rate=.9;
+    const u=mkUtt(t);
     speechSynthesis.cancel();speechSynthesis.speak(u);
+    const vs=speechSynthesis.getVoices();
+    if(vs&&vs.length&&!u.voice&&!_noVoiceWarned[S.lang]){_noVoiceWarned[S.lang]=1;
+      const d=document.createElement("div");d.className="toast";d.setAttribute("role","status");d.textContent="Este aparelho não tem uma voz em "+LNAME[S.lang].toLowerCase()+": o som pode sair com sotaque errado. Veja Ajustes → Som e vibração.";
+      document.body.appendChild(d);setTimeout(()=>d.remove(),6000);}
   }catch(_){}
 }
 if(!("speechSynthesis" in window))$("#app").classList.add("no-speech");

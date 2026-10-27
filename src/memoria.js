@@ -10,11 +10,20 @@
       const k=e.w.toLowerCase();
       if(DRAW[lang]&&DRAW[lang][k]&&!m[k]){m[k]=e;list.push(k);}
     }));
-    const n=Math.max(1,Math.ceil(list.length/PER));
-    for(let i=0;i<n;i++){
-      const part=list.slice(Math.round(i*list.length/n),Math.round((i+1)*list.length/n));
+    /* v1.70.1: duas palavras com o MESMO desenho (ex. lunch/dinner = refeição) nunca ficam na mesma página, senão as cartas se confundem */
+    const pages=[];let cur=[],svgs=new Set(),later=[];
+    const flush=()=>{pages.push(cur);cur=later.slice();later=[];svgs=new Set(cur.map(w=>DRAW[lang][w]));};
+    list.forEach(k=>{
+      if(cur.length>=PER)flush();
+      if(svgs.has(DRAW[lang][k]))later.push(k);else{cur.push(k);svgs.add(DRAW[lang][k]);}
+    });
+    while(cur.length||later.length){flush();if(!cur.length&&!later.length)break;}
+    const parts=pages.filter(p=>p.length);
+    const lastP=parts[parts.length-1];
+    if(lastP&&lastP.length<4){const used=new Set(lastP.map(w=>DRAW[lang][w]));for(const k of list.slice().reverse()){if(lastP.length>=6)break;if(lastP.indexOf(k)<0&&!used.has(DRAW[lang][k])){lastP.push(k);used.add(DRAW[lang][k]);}}}const n=Math.max(1,parts.length);
+    parts.forEach((part,i)=>{
       VOLUME.pages.push({id:"memoria-"+lang+"-"+(i+1),type:"memoria",n:i+1,langs:[lang],themes:[],sub:"Palavras com desenho",meta:"Palavras com desenho · parte "+(i+1)+" de "+n,words:part});
-    }
+    });
   });
   GAMENAME.memoria="Memória";
   STAGES.memoria="#gstage";DOCKS.memoria="none";GAMEFN.memoria=startMemoria;
@@ -30,7 +39,7 @@
   /* Memória com as palavras em revisão (v1.57): palavras do ciclo/revisão/erros que têm desenho; completa com palavras já acertadas.
      Página «virtual» (P.rev): não conta como lição concluída. */
   window.memRevWords=function(first){
-    const m=byW[S.lang]||{},out=[],add=w=>{w=String(w||"").toLowerCase();if(w&&m[w]&&out.indexOf(w)<0&&out.length<6)out.push(w);};
+    const m=byW[S.lang]||{},out=[],add=w=>{w=String(w||"").toLowerCase();if(w&&m[w]&&out.indexOf(w)<0&&out.length<6&&!out.some(o=>DRAW[S.lang][o]===DRAW[S.lang][w]))out.push(w);};
     (first||[]).forEach(add);
     Object.keys(S.gd||{}).filter(k=>S.gd[k][4]&&k.indexOf(S.lang+":")===0).slice(0,3).forEach(k=>add(k.slice(S.lang.length+1)));
     const nw=out.length; /* até 3 que precisam de água */
