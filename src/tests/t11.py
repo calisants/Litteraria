@@ -31,9 +31,8 @@ with sync_playwright() as p:
         pg.evaluate(f"()=>{{S.lang='{lang}';save();}}")
         for kind in ('verb','word'):
             pg.evaluate("()=>go('home')");pg.click('#go-train');pg.wait_for_timeout(50)
-            btns=pg.locator('#sheet-in [data-train]');n=btns.count()
-            idx=1 if kind=='verb' else n-1
-            btns.nth(idx).click();pg.wait_for_timeout(80)
+            pg.evaluate("()=>{const d=document.querySelector('.trverbs');if(d)d.open=true}");btns=pg.locator('#sheet-in [data-train^="v|"]' if kind=='verb' else '#sheet-in [data-train=w]')
+            btns.nth(1 if kind=='verb' else 0).click();pg.wait_for_timeout(80)
             q0=pg.inner_text('#gstage .gq');
             for i in range(10):
                 ans=pg.evaluate("()=>accepts(gm.items[gm.i])[0]")
