@@ -8,6 +8,34 @@
     const R=BOOKREAD[b.id];if(!R)return;
     R.forEach((r,k)=>VOLUME3.pages.push({id:"jardim-"+b.id+"-"+(k+1),type:"jardim",n:k,rd:b.id,k:k+1,themes:["livro-"+b.id],langs:[b.lang],sub:b.name,meta:"Lição do Jardim · «"+b.name+"» · trecho "+(k+1)+" de "+R.length}));
   });
+  /* Por tema (v1.73): as frases do tema (Wikcionário ou escritas por Claude) viram o «trecho»; as palavras do tema são o vocabulário */
+  const ctxOf=(lang,e)=>{
+    const k=e.w.toLowerCase(),x=typeof EX!=="undefined"&&EX[lang]&&EX[lang][k],c=!x&&typeof CTXC!=="undefined"&&CTXC[lang]&&(CTXC[lang][e.w]||CTXC[lang][k]);
+    const r=x?{s:x[0],pt:x[1],w:1}:c?{s:c[0],pt:c[1],w:0}:null;
+    if(!r)return null;
+    return new RegExp("(^|[^\\p{L}\\p{N}])"+e.w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?![\\p{L}\\p{N}])","iu").test(r.s)?r:null;
+  };
+  const TEMA={};
+  ["fr","it","en"].forEach(lang=>{
+    Object.keys(VOCAB[lang]||{}).forEach(cat=>{
+      if(BOOKCAT[cat])return;
+      const ws=[];VOCAB[lang][cat].forEach(e=>{const c=ctxOf(lang,e);if(c&&!ws.some(x=>x.e.w===e.w))ws.push({e:e,c:c});});
+      if(ws.length<5)return;
+      const n=Math.max(1,Math.round(ws.length/7));
+      for(let i=0;i<n;i++){
+        const part=ws.slice(Math.round(i*ws.length/n),Math.round((i+1)*ws.length/n)),id="jardim-tema-"+lang+"-"+cat+"-"+(i+1);
+        TEMA[id]=part;
+        VOLUME3.pages.push({id:id,type:"jardim",n:VOLUME3.pages.filter(p=>p.type==="jardim").length,tema:cat,k:i+1,themes:[cat],langs:[lang],sub:catName(cat),meta:"Lição do Jardim · tema «"+catName(cat)+"» · parte "+(i+1)+" de "+n});
+      }
+    });
+  });
+  function temaSrc(){
+    const part=TEMA[P.id],lang=S.lang,m={};
+    part.forEach(x=>{m[x.e.w.toLowerCase()]=x.e;});
+    const srcs=part.some(x=>x.c.w)&&part.some(x=>!x.c.w)?"Frases: do Wikcionário (CC BY-SA 4.0, traduzidas por Claude) e escritas por Claude, sem fonte conferida.":part.some(x=>x.c.w)?"Frases do Wikcionário (CC BY-SA 4.0), traduzidas por Claude.":"Frases escritas por Claude, sem fonte conferida.";
+    return {b:{id:"tema-"+P.tema,name:"Tema: "+catName(P.tema),lang:lang},m:m,D:{ctx:"frases curtas, uma para cada palavra do tema «"+catName(P.tema)+"». "+srcs,segs:part.map(x=>({s:x.c.s,pt:x.c.pt})),gn:"as palavras sublinhadas são as do tema «"+catName(P.tema)+"»: cada uma ganha um estágio no seu jardim."}};
+  }
+  const srcOf=()=>P.tema?temaSrc():{b:H.BK[P.rd],D:BOOKREAD[P.rd][P.k-1],m:H.vmap(P.rd)};
   GAMENAME.jardim="Lição do Jardim";STAGES.jardim="#gstage";DOCKS.jardim="none";GAMEFN.jardim=startJardim;
   const SN=["Sombra","Semente","Flor","Fruto"];
   const SD=["Só vista, ainda sem acerto","Já acertou uma vez","Acertou em dias diferentes","Firme: acertou em dias e formas diferentes"];
@@ -17,7 +45,7 @@
   const nw=t=>(t.match(/\p{L}[\p{L}'’]*/gu)||[]).length;
   function stageChip(lang,w){const st=window.gdStage(lang,w),wl=window.gdWilted(lang,w);return '<span class="gdchip gd'+st+'">'+SN[st]+(wl?" · precisa de água":"")+"</span>";}
   function build(){
-    const b=H.BK[P.rd],D=BOOKREAD[P.rd][P.k-1],m=H.vmap(P.rd),lang=b.lang;
+    const sc=srcOf(),b=sc.b,D=sc.D,m=sc.m,lang=b.lang;
     /* palavras do vocabulário que aparecem no trecho */
     const found={},toks=[];
     D.segs.forEach((sg,si)=>{const re0=/\p{L}[\p{L}'’]*/gu;let mm;while((mm=re0.exec(sg.s))){const t=mm[0],pre=sg.s.slice(0,mm.index),post=sg.s.charAt(mm.index+t.length);
@@ -33,7 +61,7 @@
     const pool=Object.values(m).filter(e=>e.w.length>=3);
     /* poucas palavras do vocabulário no trecho: completa com palavras comuns do próprio trecho (sem registro no jardim) */
     if(gaps.length<5){
-      const all=[];BOOKREAD[P.rd].forEach(r=>r.segs.forEach(sg=>(sg.s.match(/\p{L}[\p{L}'’]*/gu)||[]).forEach(t=>{if(t.length>=5&&t===t.toLowerCase())all.push(t);})));
+      const all=[];(P.tema?[D]:BOOKREAD[P.rd]).forEach(r=>r.segs.forEach(sg=>(sg.s.match(/\p{L}[\p{L}'’]*/gu)||[]).forEach(t=>{if(t.length>=5&&t===t.toLowerCase())all.push(t);})));
       const uniq=[...new Set(all)];
       D.segs.forEach((sg,si)=>{
         const ws=(sg.s.match(/\p{L}[\p{L}'’]*/gu)||[]).filter(t=>t.length>=5&&t===t.toLowerCase()&&!seen[t.toLowerCase()]);
@@ -47,7 +75,7 @@
       const o=ds.slice();o.splice(R0(o.length+1),0,ans);g.o=o;g.a=o.indexOf(ans);g.tries=0;g.done=false;g.word=g.extra?null:m[g.k];
     });
     /* blocos: a frase principal em 3 ou 4 pedaços */
-    let main=D.segs.map((s,i)=>({s:s.s,i:i,n:nw(s.s)})).filter(x=>x.n>=6&&x.n<=34).sort((a,b2)=>Math.abs(a.n-14)-Math.abs(b2.n-14))[0]||{s:D.segs[0].s,i:0};
+    let main=D.segs.map((s,i)=>({s:s.s,i:i,n:nw(s.s)})).filter(x=>x.n>=(P.tema?4:6)&&x.n<=34).sort((a,b2)=>Math.abs(a.n-(P.tema?8:14))-Math.abs(b2.n-(P.tema?8:14)))[0]||{s:D.segs[0].s,i:0};
     const parts=cut(main.s);
     const order=sh0(parts.map((_,i)=>i));if(order.every((v,i)=>v===i)&&order.length>1)order.reverse();
     /* palavras da combinação: até 3 que precisam de água + as do trecho */
@@ -69,7 +97,7 @@
   /* a palavra aparece inteira em alguma frase do trecho? */
   function L0(w,D){const re=new RegExp("(^|[^\\p{L}])"+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?![\\p{L}])","iu");return D.segs.some(s=>re.test(s.s));}
   function cut(s){
-    const w=s.split(/\s+/);if(w.length<6)return [s];
+    const w=s.split(/\s+/);if(w.length<4)return [s];
     const n=w.length>=14?4:3;let pieces=[],at=0;
     for(let i=1;i<n;i++){
       let target=Math.round(w.length*i/n),best=target;
@@ -95,9 +123,9 @@
   /* ---- 1 Capa ---- */
   function sCapa(){
     const n=L.words.length,w=L.wilted.length;
-    return '<h3 class="jd-h">«'+esc(L.b.name)+"»</h3>"+
-      '<p class="note"><b>O trecho:</b> '+esc(L.D.ctx)+"</p>"+
-      '<p class="help">'+(n?"Este trecho tem <b>"+n+"</b> palavra(s) do vocabulário do livro. ":"")+(w?"<b>"+w+"</b> palavra(s) <b>precisam de água</b> e aparecem nesta lição.":"Nenhuma palavra precisa de água agora.")+"</p>"+
+    return '<h3 class="jd-h">'+(P.tema?esc(L.b.name):"«"+esc(L.b.name)+"»")+"</h3>"+
+      '<p class="note"><b>'+(P.tema?'As frases:':'O trecho:')+'</b> '+esc(L.D.ctx)+"</p>"+
+      '<p class="help">'+(n?"Esta lição tem <b>"+n+"</b> palavra(s) do vocabulário "+(P.tema?"do tema":"do livro")+". ":"")+(w?"<b>"+w+"</b> palavra(s) <b>precisam de água</b> e aparecem nesta lição.":"Nenhuma palavra precisa de água agora.")+"</p>"+
       '<p class="help">São 7 telas curtas: ler, completar, ordenar, combinar, usar a palavra numa frase nova e ver o que cresceu no seu jardim.</p>'+
       '<button type="button" class="btn wide primary" data-jd="next" data-focus>Começar</button>';
   }
@@ -291,7 +319,7 @@
     if(a==="chk"){checkFresh();return;}
     if(a==="fin"){
       markDone();sfx("done");
-      openSheet("Lição concluída",'<p class="help">Você completou o trecho de «'+esc(L.b.name)+'». As palavras que errou voltam amanhã; as que acertou voltam mais adiante, e o jardim cresce conforme você volta.</p>',true);
+      openSheet("Lição concluída",'<p class="help">Você completou '+(P.tema?"a lição do ":"o trecho de ")+(P.tema?esc(L.b.name):"«"+esc(L.b.name)+"»")+'. As palavras que errou voltam amanhã; as que acertou voltam mais adiante, e o jardim cresce conforme você volta.</p>',true);
     }
   });
   function checkFresh(){
@@ -305,10 +333,19 @@
   $("#gstage").addEventListener("keydown",e=>{if(P&&P.type==="jardim"&&e.key==="Enter"&&e.target&&e.target.id==="jd-in"){e.preventDefault();checkFresh();}});
   /* próxima lição do Jardim para o idioma atual (Treino) */
   window.nextJardimPage=function(){
-    const ps=VOLUME3.pages.filter(p=>p.type==="jardim"&&p.langs[0]===S.lang);
+    const ps=VOLUME3.pages.filter(p=>p.type==="jardim"&&!p.tema&&p.langs[0]===S.lang);
     return ps.find(p=>!S.done[S.lang+":"+p.id])||ps[0]||null;
   };
+  window.nextJardimTema=function(){
+    const ps=VOLUME3.pages.filter(p=>p.type==="jardim"&&p.tema&&p.langs[0]===S.lang&&!S.done[S.lang+":"+p.id]);
+    const sk=S.sk[S.lang]||{},met=p=>(TEMA[p.id]||[]).filter(x=>sk[x.e.w.toLowerCase()]).length;
+    return ps.slice().sort((a,b)=>met(b)-met(a))[0]||ps[0]||VOLUME3.pages.find(p=>p.type==="jardim"&&p.tema&&p.langs[0]===S.lang)||null;
+  };
   document.addEventListener("click",e=>{
+    if(e.target.closest&&e.target.closest("#train-garden-t")){
+      const p=window.nextJardimTema();closeSheet();
+      if(p)startLesson({vol:VOLUME3.id,page:p});return;
+    }
     if(e.target.closest&&e.target.closest("#train-garden")){
       const p=window.nextJardimPage();closeSheet();
       if(p)startLesson({vol:VOLUME3.id,page:p});

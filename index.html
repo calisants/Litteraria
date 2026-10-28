@@ -600,36 +600,49 @@ svg{display:block}
 .jd-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .jd-list{margin:6px 0 10px;padding-left:20px;line-height:1.7}
 .rd-line.rd-play{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent)}
-.gdchip{display:inline-block;padding:1px 8px;border-radius:999px;border:var(--bw) solid var(--line);font-size:.85rem;font-weight:600;text-decoration-line:underline;text-underline-offset:4px}
-.gdchip.gd0{text-decoration-style:dotted;text-decoration-thickness:1px}
-.gdchip.gd1{text-decoration-style:solid;text-decoration-thickness:1px}
-.gdchip.gd2{text-decoration-style:double;text-decoration-thickness:3px}
-.gdchip.gd3{text-decoration-style:solid;text-decoration-thickness:3px}
+.gdchip{display:inline-flex;align-items:center;gap:4px;padding:1px 9px;border-radius:999px;border:var(--bw) solid var(--line);background:var(--surface);font-size:.85rem;font-weight:600}
+.gdchip::before{font-size:.95em;line-height:1}
+.gdchip.gd0::before{content:"\25CB";color:var(--muted)}
+.gdchip.gd1::before{content:"\1F331"}
+.gdchip.gd2::before{content:"\1F338"}
+.gdchip.gd3::before{content:"\1F34E"}
+.gdchip.gd0{color:var(--muted)}
 
-/* sublinhado por estágio nas palavras do leitor (não depende só de cor: pontilhado, simples, duplo, grosso) */
-.rw.gs0{border-bottom:2px dotted var(--muted)}
-.rw.gs1{border-bottom:2px solid var(--muted)}
-.rw.gs2{border-bottom:5px double var(--accent)}
-.rw.gs3{border-bottom:4px solid var(--accent)}
+/* estágio nas palavras do leitor: um sinalzinho depois da palavra (o sublinhado volta a ser só «ainda não aprendida» × «aprendida») */
+.rw.gs1::after,.rw.gs2::after,.rw.gs3::after{font-size:.62em;margin-left:2px;vertical-align:.35em;font-weight:400;text-decoration:none;display:inline-block}
+.rw.gs1::after{content:"\1F331"}
+.rw.gs2::after{content:"\1F338"}
+.rw.gs3::after{content:"\1F34E"}
 .jd .rd-s,.jd .jd-h,.jd .rd-pt{font-family:"Atkinson Hyperlegible",system-ui,sans-serif}
 .jd-tiles{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.jd-tile{min-width:48px;min-height:48px;font-size:1.2rem}
 .jd-build{min-height:52px;padding:8px 12px;border:var(--bw) dashed var(--line);border-radius:var(--radius);font-size:1.4rem;letter-spacing:.12em}
 .jd-tok{padding:2px 3px;min-height:36px;border:0;border-bottom:2px dotted var(--muted);background:none;color:inherit;font:inherit;cursor:pointer}
 
 /* Meu jardim (v1.68) */
-.gd-sky{margin:0 -4px 8px;border-radius:var(--radius);overflow:hidden;background:linear-gradient(var(--soft),var(--bg));height:64px}
+.gd-sky{margin:0 -4px 10px;border-radius:var(--radius);overflow:hidden;background:linear-gradient(hsl(200 70% 86%),hsl(150 40% 90%));height:84px}
 .gd-sky svg{display:block;width:100%;height:100%}
-.gd-sum{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px}
+.gd-sum{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:4px 0 10px}
+.gd-tile{display:flex;flex-direction:column;align-items:center;padding:6px 2px 8px;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.gd-tile .gd-svg{width:40px;height:46px}.gd-tile b{font-size:1.25rem;line-height:1.1}.gd-tile span{font-size:.78rem;color:var(--muted)}
+.gd-prog{margin:4px 0 4px}
+.gd-bar{height:8px;border-radius:99px;background:var(--soft);overflow:hidden;margin:0 0 8px}.gd-bar span{display:block;height:100%;border-radius:99px;background:var(--accent)}
+.gd-bar2{margin-top:6px;height:6px}.gd-bar2 span{background:hsl(46 90% 55%)}
+.gd-vis{margin:4px 0 10px;padding:10px 12px;border-radius:var(--radius);background:var(--soft);font-size:.92rem}
 .gd-water,.gd-empty{margin:10px 0;padding:12px 14px;border:var(--bw) solid var(--accent);border-radius:var(--radius);background:var(--soft)}
 .gd-water p,.gd-empty p{margin:0 0 8px}
-.gd-bed{margin:8px 0;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
-.gd-bed>summary{display:flex;justify-content:space-between;gap:8px;align-items:center;min-height:48px;padding:6px 12px;cursor:pointer;font-family:var(--font-title);font-weight:600}
+.gd-bed{margin:10px 0;border:var(--bw) solid var(--line);border-top:5px solid hsl(var(--bh,125) 55% 62%);border-radius:var(--radius);background:var(--surface)}
+.gd-bed>summary{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;min-height:48px;padding:8px 12px;cursor:pointer;font-family:var(--font-title);font-weight:600}
+.gd-bn{flex:1 1 auto;min-width:0}
 .gd-bed>summary small{color:var(--muted);font-weight:400;font-family:inherit}
-.gd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:4px;padding:4px 8px 10px}
-.gd-pl{display:flex;flex-direction:column;align-items:center;min-height:92px;padding:2px;border:0;border-radius:var(--radius);background:transparent;color:var(--ink);cursor:pointer}
+.gd-stack{flex:1 0 100%;display:flex;height:6px;border-radius:99px;overflow:hidden;background:var(--soft)}
+.gd-seg{display:block;height:100%}.gd-s3{background:hsl(46 90% 55%)}.gd-s2{background:hsl(335 70% 72%)}.gd-s1{background:hsl(125 45% 55%)}.gd-s0{background:var(--line)}
+.gd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px;padding:6px 10px 12px}
+.gd-pl{display:flex;flex-direction:column;align-items:center;min-height:96px;padding:6px 2px 4px;border:var(--bw) solid var(--line);border-radius:var(--radius);background:linear-gradient(var(--surface),var(--soft));color:var(--ink);cursor:pointer}
+.gd-pl.wilt{border-style:dashed}
 .gd-pl:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
 .gd-svg{width:56px;height:64px;display:block}
 .gd-w{max-width:100%;font-size:.78rem;line-height:1.15;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gd-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 12px}.gd-chip{padding:3px 10px;border-radius:99px;background:var(--soft);font-size:.82rem;color:var(--muted)}
 .gd-none{padding:0 12px 10px}
 .gd-card{display:flex;gap:12px;align-items:center}.gd-card .gd-svg{width:84px;height:96px;flex:none}.gd-card p{margin:2px 0}
 .gd-word{font-size:1.2rem}
@@ -1079,7 +1092,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.72.0",d:"2026-10-27"};
+const APP_REL={v:"1.73.0",d:"2026-10-28"};
 
 
 const RAW={
@@ -4104,7 +4117,8 @@ function openTrainMenu(){
     '<p class="help">Cada rodada tem 10 itens. Sem regra na tela: é para testar o que você já sabe. «Revisar palavras que errei» usa as palavras em que você errou mais do que acertou; cada acerto aqui as tira da lista.</p>'+
     Object.keys(L).map(t=>'<button type="button" class="btn wide" data-train="v|'+esc(t)+'" style="margin-bottom:8px">Verbos em '+esc(LNAME[S.lang])+": "+esc(L[t])+"</button>").join("")+
     '<button type="button" class="btn wide primary" id="train-cycle" style="margin-bottom:8px">Ciclo da palavra ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
-    '<button type="button" class="btn wide" id="train-garden" style="margin-bottom:8px">Lição do Jardim (trecho de um livro, 7 telas)</button>'+
+    '<button type="button" class="btn wide" id="train-garden" style="margin-bottom:8px">Lição do Jardim: trecho de um livro (7 telas)</button>'+
+    '<button type="button" class="btn wide" id="train-garden-t" style="margin-bottom:8px">Lição do Jardim: palavras de um tema (7 telas)</button>'+
     '<button type="button" class="btn wide" id="train-mem" style="margin-bottom:8px">Memória das palavras em revisão</button>'+
     '<button type="button" class="btn wide" id="train-cards" style="margin-bottom:8px">Cartões de revisão: Fácil / Preciso rever ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
     '<button type="button" class="btn wide" data-train="r" style="margin-bottom:8px"'+(nw?"":" disabled")+'>Revisar palavras que errei ('+nw+")</button>"+
@@ -5839,6 +5853,34 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     const R=BOOKREAD[b.id];if(!R)return;
     R.forEach((r,k)=>VOLUME3.pages.push({id:"jardim-"+b.id+"-"+(k+1),type:"jardim",n:k,rd:b.id,k:k+1,themes:["livro-"+b.id],langs:[b.lang],sub:b.name,meta:"Lição do Jardim · «"+b.name+"» · trecho "+(k+1)+" de "+R.length}));
   });
+  /* Por tema (v1.73): as frases do tema (Wikcionário ou escritas por Claude) viram o «trecho»; as palavras do tema são o vocabulário */
+  const ctxOf=(lang,e)=>{
+    const k=e.w.toLowerCase(),x=typeof EX!=="undefined"&&EX[lang]&&EX[lang][k],c=!x&&typeof CTXC!=="undefined"&&CTXC[lang]&&(CTXC[lang][e.w]||CTXC[lang][k]);
+    const r=x?{s:x[0],pt:x[1],w:1}:c?{s:c[0],pt:c[1],w:0}:null;
+    if(!r)return null;
+    return new RegExp("(^|[^\\p{L}\\p{N}])"+e.w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?![\\p{L}\\p{N}])","iu").test(r.s)?r:null;
+  };
+  const TEMA={};
+  ["fr","it","en"].forEach(lang=>{
+    Object.keys(VOCAB[lang]||{}).forEach(cat=>{
+      if(BOOKCAT[cat])return;
+      const ws=[];VOCAB[lang][cat].forEach(e=>{const c=ctxOf(lang,e);if(c&&!ws.some(x=>x.e.w===e.w))ws.push({e:e,c:c});});
+      if(ws.length<5)return;
+      const n=Math.max(1,Math.round(ws.length/7));
+      for(let i=0;i<n;i++){
+        const part=ws.slice(Math.round(i*ws.length/n),Math.round((i+1)*ws.length/n)),id="jardim-tema-"+lang+"-"+cat+"-"+(i+1);
+        TEMA[id]=part;
+        VOLUME3.pages.push({id:id,type:"jardim",n:VOLUME3.pages.filter(p=>p.type==="jardim").length,tema:cat,k:i+1,themes:[cat],langs:[lang],sub:catName(cat),meta:"Lição do Jardim · tema «"+catName(cat)+"» · parte "+(i+1)+" de "+n});
+      }
+    });
+  });
+  function temaSrc(){
+    const part=TEMA[P.id],lang=S.lang,m={};
+    part.forEach(x=>{m[x.e.w.toLowerCase()]=x.e;});
+    const srcs=part.some(x=>x.c.w)&&part.some(x=>!x.c.w)?"Frases: do Wikcionário (CC BY-SA 4.0, traduzidas por Claude) e escritas por Claude, sem fonte conferida.":part.some(x=>x.c.w)?"Frases do Wikcionário (CC BY-SA 4.0), traduzidas por Claude.":"Frases escritas por Claude, sem fonte conferida.";
+    return {b:{id:"tema-"+P.tema,name:"Tema: "+catName(P.tema),lang:lang},m:m,D:{ctx:"frases curtas, uma para cada palavra do tema «"+catName(P.tema)+"». "+srcs,segs:part.map(x=>({s:x.c.s,pt:x.c.pt})),gn:"as palavras sublinhadas são as do tema «"+catName(P.tema)+"»: cada uma ganha um estágio no seu jardim."}};
+  }
+  const srcOf=()=>P.tema?temaSrc():{b:H.BK[P.rd],D:BOOKREAD[P.rd][P.k-1],m:H.vmap(P.rd)};
   GAMENAME.jardim="Lição do Jardim";STAGES.jardim="#gstage";DOCKS.jardim="none";GAMEFN.jardim=startJardim;
   const SN=["Sombra","Semente","Flor","Fruto"];
   const SD=["Só vista, ainda sem acerto","Já acertou uma vez","Acertou em dias diferentes","Firme: acertou em dias e formas diferentes"];
@@ -5848,7 +5890,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   const nw=t=>(t.match(/\p{L}[\p{L}'’]*/gu)||[]).length;
   function stageChip(lang,w){const st=window.gdStage(lang,w),wl=window.gdWilted(lang,w);return '<span class="gdchip gd'+st+'">'+SN[st]+(wl?" · precisa de água":"")+"</span>";}
   function build(){
-    const b=H.BK[P.rd],D=BOOKREAD[P.rd][P.k-1],m=H.vmap(P.rd),lang=b.lang;
+    const sc=srcOf(),b=sc.b,D=sc.D,m=sc.m,lang=b.lang;
     /* palavras do vocabulário que aparecem no trecho */
     const found={},toks=[];
     D.segs.forEach((sg,si)=>{const re0=/\p{L}[\p{L}'’]*/gu;let mm;while((mm=re0.exec(sg.s))){const t=mm[0],pre=sg.s.slice(0,mm.index),post=sg.s.charAt(mm.index+t.length);
@@ -5864,7 +5906,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     const pool=Object.values(m).filter(e=>e.w.length>=3);
     /* poucas palavras do vocabulário no trecho: completa com palavras comuns do próprio trecho (sem registro no jardim) */
     if(gaps.length<5){
-      const all=[];BOOKREAD[P.rd].forEach(r=>r.segs.forEach(sg=>(sg.s.match(/\p{L}[\p{L}'’]*/gu)||[]).forEach(t=>{if(t.length>=5&&t===t.toLowerCase())all.push(t);})));
+      const all=[];(P.tema?[D]:BOOKREAD[P.rd]).forEach(r=>r.segs.forEach(sg=>(sg.s.match(/\p{L}[\p{L}'’]*/gu)||[]).forEach(t=>{if(t.length>=5&&t===t.toLowerCase())all.push(t);})));
       const uniq=[...new Set(all)];
       D.segs.forEach((sg,si)=>{
         const ws=(sg.s.match(/\p{L}[\p{L}'’]*/gu)||[]).filter(t=>t.length>=5&&t===t.toLowerCase()&&!seen[t.toLowerCase()]);
@@ -5878,7 +5920,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
       const o=ds.slice();o.splice(R0(o.length+1),0,ans);g.o=o;g.a=o.indexOf(ans);g.tries=0;g.done=false;g.word=g.extra?null:m[g.k];
     });
     /* blocos: a frase principal em 3 ou 4 pedaços */
-    let main=D.segs.map((s,i)=>({s:s.s,i:i,n:nw(s.s)})).filter(x=>x.n>=6&&x.n<=34).sort((a,b2)=>Math.abs(a.n-14)-Math.abs(b2.n-14))[0]||{s:D.segs[0].s,i:0};
+    let main=D.segs.map((s,i)=>({s:s.s,i:i,n:nw(s.s)})).filter(x=>x.n>=(P.tema?4:6)&&x.n<=34).sort((a,b2)=>Math.abs(a.n-(P.tema?8:14))-Math.abs(b2.n-(P.tema?8:14)))[0]||{s:D.segs[0].s,i:0};
     const parts=cut(main.s);
     const order=sh0(parts.map((_,i)=>i));if(order.every((v,i)=>v===i)&&order.length>1)order.reverse();
     /* palavras da combinação: até 3 que precisam de água + as do trecho */
@@ -5900,7 +5942,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   /* a palavra aparece inteira em alguma frase do trecho? */
   function L0(w,D){const re=new RegExp("(^|[^\\p{L}])"+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?![\\p{L}])","iu");return D.segs.some(s=>re.test(s.s));}
   function cut(s){
-    const w=s.split(/\s+/);if(w.length<6)return [s];
+    const w=s.split(/\s+/);if(w.length<4)return [s];
     const n=w.length>=14?4:3;let pieces=[],at=0;
     for(let i=1;i<n;i++){
       let target=Math.round(w.length*i/n),best=target;
@@ -5926,9 +5968,9 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   /* ---- 1 Capa ---- */
   function sCapa(){
     const n=L.words.length,w=L.wilted.length;
-    return '<h3 class="jd-h">«'+esc(L.b.name)+"»</h3>"+
-      '<p class="note"><b>O trecho:</b> '+esc(L.D.ctx)+"</p>"+
-      '<p class="help">'+(n?"Este trecho tem <b>"+n+"</b> palavra(s) do vocabulário do livro. ":"")+(w?"<b>"+w+"</b> palavra(s) <b>precisam de água</b> e aparecem nesta lição.":"Nenhuma palavra precisa de água agora.")+"</p>"+
+    return '<h3 class="jd-h">'+(P.tema?esc(L.b.name):"«"+esc(L.b.name)+"»")+"</h3>"+
+      '<p class="note"><b>'+(P.tema?'As frases:':'O trecho:')+'</b> '+esc(L.D.ctx)+"</p>"+
+      '<p class="help">'+(n?"Esta lição tem <b>"+n+"</b> palavra(s) do vocabulário "+(P.tema?"do tema":"do livro")+". ":"")+(w?"<b>"+w+"</b> palavra(s) <b>precisam de água</b> e aparecem nesta lição.":"Nenhuma palavra precisa de água agora.")+"</p>"+
       '<p class="help">São 7 telas curtas: ler, completar, ordenar, combinar, usar a palavra numa frase nova e ver o que cresceu no seu jardim.</p>'+
       '<button type="button" class="btn wide primary" data-jd="next" data-focus>Começar</button>';
   }
@@ -6122,7 +6164,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     if(a==="chk"){checkFresh();return;}
     if(a==="fin"){
       markDone();sfx("done");
-      openSheet("Lição concluída",'<p class="help">Você completou o trecho de «'+esc(L.b.name)+'». As palavras que errou voltam amanhã; as que acertou voltam mais adiante, e o jardim cresce conforme você volta.</p>',true);
+      openSheet("Lição concluída",'<p class="help">Você completou '+(P.tema?"a lição do ":"o trecho de ")+(P.tema?esc(L.b.name):"«"+esc(L.b.name)+"»")+'. As palavras que errou voltam amanhã; as que acertou voltam mais adiante, e o jardim cresce conforme você volta.</p>',true);
     }
   });
   function checkFresh(){
@@ -6136,10 +6178,19 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   $("#gstage").addEventListener("keydown",e=>{if(P&&P.type==="jardim"&&e.key==="Enter"&&e.target&&e.target.id==="jd-in"){e.preventDefault();checkFresh();}});
   /* próxima lição do Jardim para o idioma atual (Treino) */
   window.nextJardimPage=function(){
-    const ps=VOLUME3.pages.filter(p=>p.type==="jardim"&&p.langs[0]===S.lang);
+    const ps=VOLUME3.pages.filter(p=>p.type==="jardim"&&!p.tema&&p.langs[0]===S.lang);
     return ps.find(p=>!S.done[S.lang+":"+p.id])||ps[0]||null;
   };
+  window.nextJardimTema=function(){
+    const ps=VOLUME3.pages.filter(p=>p.type==="jardim"&&p.tema&&p.langs[0]===S.lang&&!S.done[S.lang+":"+p.id]);
+    const sk=S.sk[S.lang]||{},met=p=>(TEMA[p.id]||[]).filter(x=>sk[x.e.w.toLowerCase()]).length;
+    return ps.slice().sort((a,b)=>met(b)-met(a))[0]||ps[0]||VOLUME3.pages.find(p=>p.type==="jardim"&&p.tema&&p.langs[0]===S.lang)||null;
+  };
   document.addEventListener("click",e=>{
+    if(e.target.closest&&e.target.closest("#train-garden-t")){
+      const p=window.nextJardimTema();closeSheet();
+      if(p)startLesson({vol:VOLUME3.id,page:p});return;
+    }
     if(e.target.closest&&e.target.closest("#train-garden")){
       const p=window.nextJardimPage();closeSheet();
       if(p)startLesson({vol:VOLUME3.id,page:p});
@@ -6702,18 +6753,21 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     const due=typeof dueWords==="function"?dueWords().length:0;
     const gf=cnt[2]+cnt[3],vis=VIS.filter(v=>gf>=v.n),nv=VIS.find(v=>gf<v.n);
     let h='<div class="gd-sky" aria-hidden="true"><svg viewBox="0 0 320 70" preserveAspectRatio="none"><circle cx="268" cy="24" r="12" fill="hsl(46 95% 62%)"/>'+vis.map(v=>v.svg).join("")+'<path d="M0 70 V52 Q40 40 80 50 T160 48 T240 50 T320 44 V70z" fill="hsl(125 38% 52%)" opacity=".55"/><path d="M0 70 V60 Q50 52 100 59 T200 58 T320 56 V70z" fill="hsl(125 40% 42%)" opacity=".7"/></svg></div>';
-    h+='<div class="gd-sum"><span class="gdchip gd3">'+cnt[3]+" fruto"+(cnt[3]===1?"":"s")+'</span><span class="gdchip gd2">'+cnt[2]+" flor"+(cnt[2]===1?"":"es")+'</span><span class="gdchip gd1">'+cnt[1]+" semente"+(cnt[1]===1?"":"s")+'</span><span class="gdchip gd0">'+cnt[0]+" sombra"+(cnt[0]===1?"":"s")+"</span></div>";
-    h+='<p class="help">'+met+" de "+total+" palavras de "+LNAME[S.lang]+" já estão no seu jardim. Cada palavra que você acerta cresce: sombra → semente → flor → fruto.</p>";
-    h+='<p class="help gd-vis">'+(vis.length?"Visitas no jardim: "+vis.map(v=>v.nome).join(", ")+". ":"Ainda sem visitas. ")+(nv?"Próxima visita: "+nv.nome+", quando você tiver "+nv.n+" flores ou frutos (hoje: "+gf+").":"Seu jardim já recebeu todas as visitas!")+"</p>";
+    const tile=(lv,n,lab)=>'<div class="gd-tile gd'+lv+'">'+plant(lv,330,false)+'<b>'+n+'</b><span>'+lab+'</span></div>';
+    h+='<div class="gd-sum">'+tile(3,cnt[3],cnt[3]===1?"fruto":"frutos")+tile(2,cnt[2],cnt[2]===1?"flor":"flores")+tile(1,cnt[1],cnt[1]===1?"semente":"sementes")+tile(0,cnt[0],cnt[0]===1?"sombra":"sombras")+"</div>";
+    h+='<p class="help gd-prog">'+met+" de "+total+" palavras de "+LNAME[S.lang]+' já chegaram ao jardim.</p><div class="gd-bar" aria-hidden="true"><span style="width:'+Math.round(100*met/Math.max(1,total))+'%"></span></div>';
+    h+='<div class="gd-vis"><b>'+(vis.length?"Visitas: ":"Ainda sem visitas. ")+"</b>"+(vis.length?esc(vis.map(v=>v.nome).join(", "))+". ":"")+(nv?"Próxima: "+nv.nome+" com "+nv.n+" flores ou frutos (hoje: "+gf+").":"O jardim já recebeu todas as visitas!")+(nv?'<div class="gd-bar gd-bar2" aria-hidden="true"><span style="width:'+Math.min(100,Math.round(100*gf/nv.n))+'%"></span></div>':"")+"</div>";
     if(wilted||due)h+='<div class="gd-water"><p><b>'+(wilted?wilted+(wilted===1?" planta precisa":" plantas precisam")+" de água.":"Há "+due+" palavra"+(due===1?"":"s")+" para rever hoje.")+'</b> Regar é rever a palavra: ela volta a crescer.</p><button type="button" class="btn primary" id="gd-water">Regar agora</button></div>';
     if(!met)h+='<div class="gd-empty"><p><b>Seu jardim ainda é só terra.</b></p><p>Acerte a primeira palavra de uma lição de Vocabulário e a primeira semente nasce aqui.</p><button type="button" class="btn primary" id="gd-start">Ir para «Hoje»</button></div>';
-    G.forEach(g=>{
-      const n=g.items.length;
-      h+='<details class="gd-bed"'+(n?" open":"")+'><summary><span>'+esc(g.name)+(g.book?" (livro)":"")+'</span><small>'+n+" de "+g.total+"</small></summary>";
-      if(n)h+='<div class="gd-grid">'+g.items.map((x,k)=>'<button type="button" class="gd-pl" data-gd="'+g.key+"|"+k+'" aria-label="'+esc(full(x.e))+", "+ST[x.i.lv]+(x.i.wilt?", precisa de água":"")+'">'+plant(x.i.lv,g.hue,x.i.wilt)+'<span class="gd-w">'+esc(x.e.w)+"</span></button>").join("")+"</div>";
-      else h+='<p class="help gd-none">Terra vazia: nenhuma palavra deste tema ainda.</p>';
-      h+="</details>";
+    const live=G.filter(g=>g.items.length).sort((x,y)=>(y.items.filter(i=>i.i.lv>=2).length-x.items.filter(i=>i.i.lv>=2).length)||(y.items.length-x.items.length));
+    live.forEach(g=>{
+      const n=g.items.length,c=[0,0,0,0];g.items.forEach(x=>c[x.i.lv]++);
+      const seg=lv=>c[lv]?'<span class="gd-seg gd-s'+lv+'" style="flex:'+c[lv]+'"></span>':"";
+      h+='<details class="gd-bed" style="--bh:'+g.hue+'" open><summary><span class="gd-bn">'+esc(g.name)+(g.book?" (livro)":"")+'</span><small>'+n+" de "+g.total+'</small><span class="gd-stack" aria-hidden="true">'+seg(3)+seg(2)+seg(1)+seg(0)+"</span></summary>";
+      h+='<div class="gd-grid">'+g.items.map((x,k)=>'<button type="button" class="gd-pl'+(x.i.wilt?" wilt":"")+'" data-gd="'+g.key+"|"+k+'" aria-label="'+esc(full(x.e))+", "+ST[x.i.lv]+(x.i.wilt?", precisa de água":"")+'">'+plant(x.i.lv,g.hue,x.i.wilt)+'<span class="gd-w">'+esc(x.e.w)+"</span></button>").join("")+"</div></details>";
     });
+    const empty=G.filter(g=>!g.items.length);
+    if(empty.length)h+='<details class="gd-bed gd-emptybeds"><summary><span class="gd-bn">Canteiros ainda vazios</span><small>'+empty.length+'</small></summary><p class="help gd-none">Terra pronta para plantar. Acerte uma palavra de cada tema e ele ganha as primeiras sementes:</p><div class="gd-chips">'+empty.map(g=>'<span class="gd-chip">'+esc(g.name)+"</span>").join("")+"</div></details>";
     h+='<p class="help">Estágios e prazos: escritos por Claude, sem fonte conferida. O histórico de acertos e erros nunca é apagado.</p>';
     box.innerHTML=h;
   }
@@ -7567,6 +7621,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.73.0",d:"2026-10-28",t:["Lição do Jardim por tema: além dos trechos de livros, agora dá para fazer as 7 telas com as palavras e frases de um tema de Vocabulário (Treino → «Lição do Jardim: palavras de um tema», ou pela lista de Conversação). As frases são do Wikcionário ou escritas por Claude, e a tela diz qual","Estágio das palavras no leitor: saíram os sublinhados duplo e grosso, que ficavam estranhos. Agora aparece um sinal depois da palavra: 🌱 semente, 🌸 flor, 🍎 fruto (sombra não tem sinal). O sublinhado só mostra se a palavra já foi aprendida","Meu jardim com novo visual: resumo em quatro cartões, barra de progresso, barra até a próxima visita, canteiros em cartões com uma faixa de cores que mostra quantas plantas estão em cada estágio, e os canteiros vazios ficam juntos no fim"]},
 {v:"1.72.0",d:"2026-10-27",t:["Novo jogo «Parece, mas não é» (falsos amigos): você vê a palavra em francês, italiano ou inglês e escolhe o que ela significa, com o falso amigo entre as opções (ex.: library não é livraria; é biblioteca). Os pares vêm de páginas que abri e conferi, e a fonte aparece na tela","Novas «Conversas com escolhas» (Conversação): 3 diálogos por idioma (café, pedir o caminho, hotel). Você escolhe a resposta, o app mostra se soa natural, seca ou estranha e por quê. Diálogos escritos por Claude, sem fonte conferida","Nenhuma tradução aparece antes de você responder"]},
 {v:"1.71.0",d:"2026-10-27",t:["Novo jogo «Gênero das palavras» (francês e italiano): você vê a palavra e escolhe o artigo (le/la; il/lo/la). Erros voltam na revisão. Palavras com «l'» ficam de fora, porque o app não guarda o gênero delas","Novo jogo «Ditado de frases (com áudio)»: ouça a frase e escreva. Sem áudio, há o botão «Mostrar a frase». Acento esquecido conta como certo, com aviso","Novo em Treino: «Só 5 minutos», 6 passos rápidos (3 palavras, 2 de gênero ou escrita, 1 ditado) com um círculo de progresso"]},
 {v:"1.70.2",d:"2026-10-27",t:["Pedir o código por e-mail: se o servidor não responder em 25 segundos, o app avisa que ele pode estar «dormindo» (comum no serviço gratuito depois de dias sem uso) e pede para esperar 1 a 2 minutos e tentar de novo, em vez de ficar sem resposta"]},

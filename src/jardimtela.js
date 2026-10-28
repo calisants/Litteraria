@@ -59,18 +59,21 @@
     const due=typeof dueWords==="function"?dueWords().length:0;
     const gf=cnt[2]+cnt[3],vis=VIS.filter(v=>gf>=v.n),nv=VIS.find(v=>gf<v.n);
     let h='<div class="gd-sky" aria-hidden="true"><svg viewBox="0 0 320 70" preserveAspectRatio="none"><circle cx="268" cy="24" r="12" fill="hsl(46 95% 62%)"/>'+vis.map(v=>v.svg).join("")+'<path d="M0 70 V52 Q40 40 80 50 T160 48 T240 50 T320 44 V70z" fill="hsl(125 38% 52%)" opacity=".55"/><path d="M0 70 V60 Q50 52 100 59 T200 58 T320 56 V70z" fill="hsl(125 40% 42%)" opacity=".7"/></svg></div>';
-    h+='<div class="gd-sum"><span class="gdchip gd3">'+cnt[3]+" fruto"+(cnt[3]===1?"":"s")+'</span><span class="gdchip gd2">'+cnt[2]+" flor"+(cnt[2]===1?"":"es")+'</span><span class="gdchip gd1">'+cnt[1]+" semente"+(cnt[1]===1?"":"s")+'</span><span class="gdchip gd0">'+cnt[0]+" sombra"+(cnt[0]===1?"":"s")+"</span></div>";
-    h+='<p class="help">'+met+" de "+total+" palavras de "+LNAME[S.lang]+" já estão no seu jardim. Cada palavra que você acerta cresce: sombra → semente → flor → fruto.</p>";
-    h+='<p class="help gd-vis">'+(vis.length?"Visitas no jardim: "+vis.map(v=>v.nome).join(", ")+". ":"Ainda sem visitas. ")+(nv?"Próxima visita: "+nv.nome+", quando você tiver "+nv.n+" flores ou frutos (hoje: "+gf+").":"Seu jardim já recebeu todas as visitas!")+"</p>";
+    const tile=(lv,n,lab)=>'<div class="gd-tile gd'+lv+'">'+plant(lv,330,false)+'<b>'+n+'</b><span>'+lab+'</span></div>';
+    h+='<div class="gd-sum">'+tile(3,cnt[3],cnt[3]===1?"fruto":"frutos")+tile(2,cnt[2],cnt[2]===1?"flor":"flores")+tile(1,cnt[1],cnt[1]===1?"semente":"sementes")+tile(0,cnt[0],cnt[0]===1?"sombra":"sombras")+"</div>";
+    h+='<p class="help gd-prog">'+met+" de "+total+" palavras de "+LNAME[S.lang]+' já chegaram ao jardim.</p><div class="gd-bar" aria-hidden="true"><span style="width:'+Math.round(100*met/Math.max(1,total))+'%"></span></div>';
+    h+='<div class="gd-vis"><b>'+(vis.length?"Visitas: ":"Ainda sem visitas. ")+"</b>"+(vis.length?esc(vis.map(v=>v.nome).join(", "))+". ":"")+(nv?"Próxima: "+nv.nome+" com "+nv.n+" flores ou frutos (hoje: "+gf+").":"O jardim já recebeu todas as visitas!")+(nv?'<div class="gd-bar gd-bar2" aria-hidden="true"><span style="width:'+Math.min(100,Math.round(100*gf/nv.n))+'%"></span></div>':"")+"</div>";
     if(wilted||due)h+='<div class="gd-water"><p><b>'+(wilted?wilted+(wilted===1?" planta precisa":" plantas precisam")+" de água.":"Há "+due+" palavra"+(due===1?"":"s")+" para rever hoje.")+'</b> Regar é rever a palavra: ela volta a crescer.</p><button type="button" class="btn primary" id="gd-water">Regar agora</button></div>';
     if(!met)h+='<div class="gd-empty"><p><b>Seu jardim ainda é só terra.</b></p><p>Acerte a primeira palavra de uma lição de Vocabulário e a primeira semente nasce aqui.</p><button type="button" class="btn primary" id="gd-start">Ir para «Hoje»</button></div>';
-    G.forEach(g=>{
-      const n=g.items.length;
-      h+='<details class="gd-bed"'+(n?" open":"")+'><summary><span>'+esc(g.name)+(g.book?" (livro)":"")+'</span><small>'+n+" de "+g.total+"</small></summary>";
-      if(n)h+='<div class="gd-grid">'+g.items.map((x,k)=>'<button type="button" class="gd-pl" data-gd="'+g.key+"|"+k+'" aria-label="'+esc(full(x.e))+", "+ST[x.i.lv]+(x.i.wilt?", precisa de água":"")+'">'+plant(x.i.lv,g.hue,x.i.wilt)+'<span class="gd-w">'+esc(x.e.w)+"</span></button>").join("")+"</div>";
-      else h+='<p class="help gd-none">Terra vazia: nenhuma palavra deste tema ainda.</p>';
-      h+="</details>";
+    const live=G.filter(g=>g.items.length).sort((x,y)=>(y.items.filter(i=>i.i.lv>=2).length-x.items.filter(i=>i.i.lv>=2).length)||(y.items.length-x.items.length));
+    live.forEach(g=>{
+      const n=g.items.length,c=[0,0,0,0];g.items.forEach(x=>c[x.i.lv]++);
+      const seg=lv=>c[lv]?'<span class="gd-seg gd-s'+lv+'" style="flex:'+c[lv]+'"></span>':"";
+      h+='<details class="gd-bed" style="--bh:'+g.hue+'" open><summary><span class="gd-bn">'+esc(g.name)+(g.book?" (livro)":"")+'</span><small>'+n+" de "+g.total+'</small><span class="gd-stack" aria-hidden="true">'+seg(3)+seg(2)+seg(1)+seg(0)+"</span></summary>";
+      h+='<div class="gd-grid">'+g.items.map((x,k)=>'<button type="button" class="gd-pl'+(x.i.wilt?" wilt":"")+'" data-gd="'+g.key+"|"+k+'" aria-label="'+esc(full(x.e))+", "+ST[x.i.lv]+(x.i.wilt?", precisa de água":"")+'">'+plant(x.i.lv,g.hue,x.i.wilt)+'<span class="gd-w">'+esc(x.e.w)+"</span></button>").join("")+"</div></details>";
     });
+    const empty=G.filter(g=>!g.items.length);
+    if(empty.length)h+='<details class="gd-bed gd-emptybeds"><summary><span class="gd-bn">Canteiros ainda vazios</span><small>'+empty.length+'</small></summary><p class="help gd-none">Terra pronta para plantar. Acerte uma palavra de cada tema e ele ganha as primeiras sementes:</p><div class="gd-chips">'+empty.map(g=>'<span class="gd-chip">'+esc(g.name)+"</span>").join("")+"</div></details>";
     h+='<p class="help">Estágios e prazos: escritos por Claude, sem fonte conferida. O histórico de acertos e erros nunca é apagado.</p>';
     box.innerHTML=h;
   }
