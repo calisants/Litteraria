@@ -350,3 +350,8 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 
 ## v1.73.1 (28/10/2026): cena do jardim
 - Pedido dela: a cena do topo (borboleta e abelha) precisava ser mais elaborada. `jardimtela.js` `sceneSvg(cnt,vis)`: céu em degradê, sol, 2 nuvens, colinas em camadas, cerca, árvore (1º fruto; maçãs com 3) e até 14 florzinhas que aparecem com `flores+frutos` (~0,9 por planta); visitantes (`VIS`, com `x,y`) com asas que batem (`.gd-wing`) e caminhos (`.gd-path`). Animações só com `prefers-reduced-motion:no-preference` (CSS em `p1.html`). SVG original, sem personagens. Cache `mots-parole-v121`.
+
+## v1.74.0 (28/10/2026): compartilhar o jardim
+- Pedido dela: compartilhar o jardim por link («esse é meu jardim italiano/francês/inglês do Litteraria») com convite para a pessoa fazer o dela. `src/jardimcomp.js` (depois de `jardimtela.js` no `build.py`): botão `#gd-share` em Meu jardim → folha com nome opcional (`#jc-name`, guardado em `mots-parole-gname`), «Compartilhar» (Web Share; sem ele copia texto + link), «Copiar o link» e «Salvar como imagem» (PNG 1080x1350 em canvas). `jardimtela.js` expõe `window.gdLast()` (contagens do idioma atual) e `gdSceneSvg(cnt,gf)`.
+- O link é `?jardim=<base64url de {v:1,l,c:[sombra,semente,flor,fruto],m,t,n}>`: **nenhum servidor**; quem recebe vê uma folha só de leitura (`viewGarden`) com cena, números e «Quero fazer o meu jardim» / «Como instalar o app», sem tocar no `S` dela. Validação estrita (idioma fr/it/en, inteiros limitados, nome ≤24 sem `<>&"'`); o parâmetro sai da barra de endereço. Política de Privacidade: seção «Compartilhar o jardim», `PRIV_VER` 2026-10-28a. Teste: `tests/t44.py`. Cache `mots-parole-v122`.
+- Em standby por pedido dela: amigos pelos contatos do telefone.

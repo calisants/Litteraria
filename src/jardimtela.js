@@ -70,7 +70,8 @@
     out.forEach((g,k)=>{g.hue=(k*47+330)%360;g.items.sort((a,b)=>b.i.lv-a.i.lv);});
     return out;
   }
-  let G=[];
+  let G=[],LAST={cnt:[0,0,0,0],met:0,total:0};
+  window.gdLast=()=>LAST;window.gdSceneSvg=(cnt,gf)=>sceneSvg(cnt,VIS.filter(v=>(gf!=null?gf:cnt[2]+cnt[3])>=v.n));
   function render(){
     const box=document.getElementById("gd-body");if(!box)return;
     document.getElementById("gd-lang").textContent=LNAME[S.lang];
@@ -79,7 +80,9 @@
     G.forEach(g=>{total+=g.total;g.items.forEach(x=>{cnt[x.i.lv]++;met++;if(x.i.wilt)wilted++;});});
     const due=typeof dueWords==="function"?dueWords().length:0;
     const gf=cnt[2]+cnt[3],vis=VIS.filter(v=>gf>=v.n),nv=VIS.find(v=>gf<v.n);
+    LAST={cnt:cnt.slice(),met:met,total:total};
     let h='<div class="gd-sky">'+sceneSvg(cnt,vis)+'</div>';
+    h+='<button type="button" class="btn wide" id="gd-share" style="margin-bottom:8px">Compartilhar meu jardim</button>';
     const tile=(lv,n,lab)=>'<div class="gd-tile gd'+lv+'">'+plant(lv,330,false)+'<b>'+n+'</b><span>'+lab+'</span></div>';
     h+='<div class="gd-sum">'+tile(3,cnt[3],cnt[3]===1?"fruto":"frutos")+tile(2,cnt[2],cnt[2]===1?"flor":"flores")+tile(1,cnt[1],cnt[1]===1?"semente":"sementes")+tile(0,cnt[0],cnt[0]===1?"sombra":"sombras")+"</div>";
     h+='<p class="help gd-prog">'+met+" de "+total+" palavras de "+LNAME[S.lang]+' já chegaram ao jardim.</p><div class="gd-bar" aria-hidden="true"><span style="width:'+Math.round(100*met/Math.max(1,total))+'%"></span></div>';

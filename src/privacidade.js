@@ -1,7 +1,7 @@
 /* ===== Política de Privacidade (texto que aparece no app) =====
    Descreve o que o app realmente faz. As partes sobre conta e lembretes só aparecem quando esses recursos estão ligados (CLOUDCFG / PUSHCFG).
    Mudou algo no que o app guarda ou envia? Atualize o texto e PRIV_VER. */
-const PRIV_VER="2026-10-23a";
+const PRIV_VER="2026-10-28a";
 function privSections(){
   const cloud=!!(window.CLOUDCFG&&CLOUDCFG.url&&CLOUDCFG.key),push=!!(window.PUSHCFG&&PUSHCFG.sink);
   const s=[];
@@ -15,6 +15,7 @@ function privSections(){
   if(cloud)s.push(["Seus direitos","Você pode, a qualquer momento e sem justificar: baixar tudo o que guardamos sobre você («Baixar meus dados»), apagar a conta e todos os dados da nuvem («Apagar minha conta e dados») e sair do aparelho. Pode também pedir correção ou esclarecimentos pelo formulário de sugestões. Apagar a conta não apaga o progresso que já está no seu aparelho."]);
   if(cloud)s.push(["Idade","Contas são para quem tem 13 anos ou mais. Se você tem entre 13 e 17 anos, converse com uma pessoa responsável antes de criar a conta. Quem tem menos de 13 não deve criar conta: o app funciona normalmente sem ela."]);
   s.push(["Quanto tempo guardamos",cloud?"Enquanto a conta existir. Ao apagar a conta, os dados da nuvem são removidos. Cópias de segurança do serviço, se houver, seguem as regras dele.":"No seu aparelho, até você apagar os dados do navegador ou do app."]);
+  s.push(["Compartilhar o jardim","Se você tocar em «Compartilhar meu jardim», o app cria um link que leva dentro do próprio endereço o idioma, quantas plantas você tem em cada estágio e o nome que você digitar ali (opcional). Nada disso é enviado aos nossos servidores: quem receber o link vê esses números e você só compartilha se quiser."]);
   s.push(["Mudanças","Se este texto mudar, a data abaixo muda. Versão do texto: "+PRIV_VER+". Este texto explica o que o app faz; não é aconselhamento jurídico."]);
   return s;
 }
