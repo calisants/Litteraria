@@ -533,7 +533,7 @@ svg{display:block}
 .wt{margin:4px 0 0;font-family:var(--font-title);font-size:1.12rem;line-height:1.35}.ws{margin:2px 0 0;color:var(--muted);font-size:.9rem}
 .wrow{display:flex;gap:8px;margin-top:8px}.wbtn{min-height:38px;padding:4px 14px;font-size:.88rem;border-color:var(--box)}.wbtn.quiet{background:transparent;border-color:transparent;color:var(--muted)}
 .wbig{padding:6px 0 12px}.wbig .wt{font-size:1.4rem}
-.menu{display:grid;gap:6px;margin:10px 0 0}
+.menu{display:grid;gap:6px;margin:6px 0 0}.msec{font-family:var(--font-title);font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 2px 2px}.menu:empty,.menu:not(:has(.mrow:not([hidden]))){display:none}
 .mrow{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:6px 12px;border:var(--bw) solid var(--box);border-radius:var(--radius);background:var(--surface);text-align:left;cursor:pointer}
 .mrow svg{flex:none;color:var(--accent)}.mrow .tt{display:flex;flex-direction:column;min-width:0}.mrow b{font-family:var(--font-title);font-size:1.05rem;font-weight:600}
 .mrow small{color:var(--muted);font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -663,6 +663,21 @@ svg{display:block}
 @keyframes gdcloud{from{transform:translateX(-14px)}to{transform:translateX(22px)}}
 @keyframes gdsun{from{transform:scale(1)}to{transform:scale(1.08)}}
 @keyframes gdlady{0%,100%{transform:translateX(0)}50%{transform:translateX(26px)}}
+/* Amigos mais enxuto (v1.76) */
+.frtabs{margin:10px 0 6px;display:flex}.frtabs button{flex:1;min-height:44px}
+.frme{padding:6px 10px}.frme .frn{font-size:1rem}.frme .frm{margin-top:0;font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frcard{padding:12px;margin:8px 0}.frcard .frtop{gap:10px}.frcard .frm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.frcard .frchips{margin:8px 0 2px;gap:5px}.frcard .frc{font-size:.78rem;padding:2px 8px}.frwet{background:hsl(200 85% 90%);color:#0b3a5a}
+.frcard .frl{font-size:.82rem;margin:4px 0;color:var(--muted)}
+.fract{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:8px;margin-top:10px}.fract .btn{min-height:44px;width:100%;margin:0}
+.frcard .frmore{margin-top:6px}.frcard .frmore summary{display:inline-block;min-height:32px;padding:4px 2px;font-size:.82rem;color:var(--muted);text-decoration:underline}
+.frcard .frmore[open]{flex:none;order:0}
+.frnote{margin:8px 0;padding:8px 10px;border-radius:var(--radius);background:var(--soft)}
+.frcode{font-size:1.6rem;font-weight:800;letter-spacing:.12em;margin:4px 0}
+.frdev{margin:10px 0;padding:10px;border-radius:var(--radius);font-size:.9rem}.frdev.ok{background:hsl(140 55% 90%);color:#0d3b1c}.frdev.bad{background:hsl(40 90% 90%);color:#4a3000}
+.frset .lab,#fr-box .lab{margin-top:14px}
+.gd-fr{margin:6px 0}
+.trh{margin:14px 0 6px}.trverbs{margin-top:6px}.trverbs summary{cursor:pointer;list-style:none}.trverbs summary::-webkit-details-marker{display:none}
 .toast{position:fixed;left:16px;right:16px;bottom:84px;z-index:60;background:var(--ink);color:var(--bg);padding:12px 14px;border-radius:12px;font-size:.95rem;box-shadow:0 4px 16px #0004}
 #voice-box .bad{color:var(--bad,#b3261e);font-weight:600}
 </style>
@@ -688,13 +703,20 @@ svg{display:block}
         <p><b>Baixe o app</b> no seu aparelho: abre direto da tela inicial, sem a barra do navegador.</p>
         <div class="row"><button type="button" class="btn primary" id="inst-go">Como instalar</button><button type="button" class="btn" id="inst-later">Agora não</button></div>
       </div>
+      <h2 class="msec">Estudar</h2>
       <button type="button" class="tile today" id="go-today"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg><span class="tt"><b>Hoje</b><small id="today-sub">Revisão e uma página nova</small></span></button>
       <div class="menu">
         <button type="button" class="mrow" id="go-games"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7v14H4zM13 5h7v14h-7z"/></svg><span class="tt"><b>Lições</b><small>Pronúncia, palavras, jogos, gramática</small></span></button>
         <button type="button" class="mrow" id="go-train"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3"/></svg><span class="tt"><b>Treino</b><small id="train-sub">Digitar verbos e palavras</small></span></button>
+      </div>
+      <h2 class="msec">Explorar</h2>
+      <div class="menu">
         <button type="button" class="mrow" id="go-garden"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-8M12 13c-3 0-4.5-2-4.5-4.5S9.5 4 12 4s4.5 2 4.5 4.5S15 13 12 13zM12 17c-2.5 0-4-1-5-3M12 18c2.5 0 4-1 5-3"/></svg><span class="tt"><b>Meu jardim</b><small>Cada palavra vira uma planta</small></span></button>
         <button type="button" class="mrow" id="go-books"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/></svg><span class="tt"><b>Livros</b><small>Leitura, frases e álbum</small></span></button>
         <button type="button" class="mrow" id="go-dict"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/></svg><span class="tt"><b>Dicionário</b><small>Palavras e áudio</small></span></button>
+      </div>
+      <h2 class="msec">Você</h2>
+      <div class="menu">
         <button type="button" class="mrow" id="go-friends" hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17.5" cy="9" r="2.6"/><path d="M17 14.6c2.6.2 4.2 1.8 4.6 4.9"/></svg><span class="tt"><b>Amigos</b><small>Cutucar e ver a sequência</small></span></button>
       </div>
       <div class="mini">
@@ -1100,7 +1122,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.75.1",d:"2026-10-28"};
+const APP_REL={v:"1.76.0",d:"2026-10-28"};
 
 
 const RAW={
@@ -4122,15 +4144,19 @@ function openTrainMenu(){
   openSheet("Treino de "+LNAME[S.lang],
     '<p class="help">Idioma do treino (é o mesmo idioma do app):</p>'+
     '<div class="seg" role="group" aria-label="Idioma do treino" style="margin-bottom:12px">'+Object.keys(LNAME).map(l=>'<button type="button" data-trainlang="'+l+'" aria-pressed="'+(l===S.lang)+'">'+LNAME[l]+"</button>").join("")+"</div>"+
-    '<p class="help">Cada rodada tem 10 itens. Sem regra na tela: é para testar o que você já sabe. «Revisar palavras que errei» usa as palavras em que você errou mais do que acertou; cada acerto aqui as tira da lista.</p>'+
-    Object.keys(L).map(t=>'<button type="button" class="btn wide" data-train="v|'+esc(t)+'" style="margin-bottom:8px">Verbos em '+esc(LNAME[S.lang])+": "+esc(L[t])+"</button>").join("")+
-    '<button type="button" class="btn wide primary" id="train-cycle" style="margin-bottom:8px">Ciclo da palavra ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
-    '<button type="button" class="btn wide" id="train-garden" style="margin-bottom:8px">Lição do Jardim: trecho de um livro (7 telas)</button>'+
-    '<button type="button" class="btn wide" id="train-garden-t" style="margin-bottom:8px">Lição do Jardim: palavras de um tema (7 telas)</button>'+
+    '<p class="help">Sem regra na tela: é para testar o que você já sabe. Cada acerto tira a palavra da lista de revisão.</p>'+
+    '<h3 class="lab trh">Revisar o que você já viu</h3>'+
+    '<button type="button" class="btn wide" id="train-cycle" style="margin-bottom:8px">Ciclo da palavra ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
+    '<button type="button" class="btn wide" id="train-cards" style="margin-bottom:8px">Cartões: Fácil / Preciso rever ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
     '<button type="button" class="btn wide" id="train-mem" style="margin-bottom:8px">Memória das palavras em revisão</button>'+
-    '<button type="button" class="btn wide" id="train-cards" style="margin-bottom:8px">Cartões de revisão: Fácil / Preciso rever ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
     '<button type="button" class="btn wide" data-train="r" style="margin-bottom:8px"'+(nw?"":" disabled")+'>Revisar palavras que errei ('+nw+")</button>"+
-    '<button type="button" class="btn wide" data-train="w" style="margin-bottom:8px">Palavras: português → '+esc(LNAME[S.lang])+"</button>",false);
+    '<h3 class="lab trh">Lição do Jardim (7 telas)</h3>'+
+    '<button type="button" class="btn wide" id="train-garden" style="margin-bottom:8px">Trecho de um livro</button>'+
+    '<button type="button" class="btn wide" id="train-garden-t" style="margin-bottom:8px">Palavras de um tema</button>'+
+    '<h3 class="lab trh">Digitar</h3>'+
+    '<button type="button" class="btn wide" data-train="w" style="margin-bottom:8px">Palavras: português → '+esc(LNAME[S.lang])+"</button>"+
+    '<details class="trverbs"><summary class="btn wide">Verbos em '+esc(LNAME[S.lang])+" ("+Object.keys(L).length+' tipos)</summary><div style="margin-top:8px">'+
+      Object.keys(L).map(t=>'<button type="button" class="btn wide" data-train="v|'+esc(t)+'" style="margin-bottom:8px">'+esc(L[t])+"</button>").join("")+"</div></details>",false);
 }
 function trainSub(){const e=$("#train-sub");if(e)e.textContent=LNAME[S.lang]+" · digitar verbos e palavras";}
 $("#go-train").addEventListener("click",openTrainMenu);
@@ -5830,7 +5856,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     const box=document.getElementById("sheet-in");
     if(box&&!document.getElementById("train-five")){
       const b=document.createElement("button");b.type="button";b.className="btn wide primary";b.id="train-five";b.style.marginBottom="8px";b.textContent="Só 5 minutos (6 passos rápidos)";
-      box.insertBefore(b,box.firstChild);
+      box.insertBefore(b,box.querySelector('.trh')||box.firstChild);
     }
   };
   window.__f5Open=open;window.__f5State=()=>f5;
@@ -6725,7 +6751,20 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     {n:40,nome:"um passarinho",x:120,y:30,svg:'<g class="gd-path gd-p4"><ellipse cx="0" cy="0" rx="8" ry="5.2" fill="hsl(205 70% 62%)"/><circle cx="7" cy="-3" r="3.4" fill="hsl(205 70% 62%)"/><path d="M10-3l4.5 1.4-4.5 1.2z" fill="hsl(35 90% 55%)"/><circle cx="8" cy="-3.6" r=".9" fill="#222"/><path d="M-7 1l-8-3 1.5 5z" fill="hsl(205 55% 48%)"/><path d="M-1 0c-1-6 3-8 6-6" fill="none" stroke="hsl(205 55% 48%)" stroke-width="2" class="gd-wing"/></g>'},
     {n:80,nome:"uma joaninha",x:148,y:115,svg:'<g class="gd-lady"><ellipse cx="0" cy="0" rx="5.4" ry="4.2" fill="hsl(5 82% 50%)"/><path d="M0-4.2v8.4" stroke="#222" stroke-width="1"/><circle cx="-2.2" cy="-1" r=".95" fill="#222"/><circle cx="2.2" cy="1.2" r=".95" fill="#222"/><circle cx="-2" cy="2" r=".8" fill="#222"/><circle cx="5.6" cy="0" r="2.2" fill="#222"/></g>'}
   ];
-  function sceneSvg(cnt,vis){
+  /* bichinhos dos amigos que regaram o seu jardim hoje (até 3; só o apelido, vindo de Amigos). Original, sem personagens. */
+  const FPOS=[[100,52],[176,64],[246,74]];
+  function friendCritters(fr){
+    if(!fr||!fr.length)return "";
+    return fr.slice(0,3).map((nick,k)=>{
+      let hs=0;for(const c of String(nick))hs=(hs*31+c.charCodeAt(0))%360;
+      const body="hsl("+hs+" 70% 66%)",line="hsl("+hs+" 40% 32%)",p=FPOS[k],nm=esc(String(nick).slice(0,10));
+      return '<g transform="translate('+p[0]+' '+p[1]+') scale(1.35)"><g class="gd-path gd-p'+(k+2)+'"><g class="gd-wing"><path d="M-2-2C-6-12-16-12-14-4-12 0-6 0-2-2z" fill="#fff" opacity=".85" stroke="'+line+'" stroke-width=".6"/></g>'+
+        '<ellipse cx="0" cy="0" rx="7" ry="4.6" fill="'+body+'" stroke="'+line+'" stroke-width=".7"/><circle cx="6.5" cy="-2.6" r="3.2" fill="'+body+'" stroke="'+line+'" stroke-width=".7"/><circle cx="7.4" cy="-3.2" r=".7" fill="#222"/><path d="M9.4-2.6l4 .9-4 1z" fill="hsl(35 90% 55%)"/>'+
+        '<path d="M-6 1.5l-5 3 5 .6z" fill="'+line+'" opacity=".7"/><path d="M1 5.5c-2 3-3 4.2-3 5.4a3 3 0 006 0c0-1.2-1-2.4-3-5.4z" fill="hsl(200 85% 62%)" stroke="hsl(205 60% 38%)" stroke-width=".5"/>'+
+        '<text x="0" y="-9" text-anchor="middle" font-size="7" font-weight="700" fill="#fff" stroke="'+line+'" stroke-width="2.2" paint-order="stroke" stroke-linejoin="round">'+nm+'</text></g></g>';
+    }).join("");
+  }
+  function sceneSvg(cnt,vis,fr){
     const gf=cnt[2]+cnt[3],fruits=cnt[3];
     const flowers=Math.min(14,Math.round(gf*0.9));
     let fl="";
@@ -6744,7 +6783,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
       '<g stroke="hsl(30 30% 62%)" stroke-width="2" opacity=".9"><path d="M230 116v-12M240 116v-12M250 116v-12M260 116v-12M226 109h38M226 114h38" fill="none"/></g>'+
       fl+
       '<path d="M0 122 Q80 114 160 121 T320 119 V130H0z" fill="hsl(125 40% 38%)"/>'+
-      vis.map(v=>'<g transform="translate('+v.x+' '+v.y+')">'+v.svg+'</g>').join("")+"</svg>";
+      vis.map(v=>'<g transform="translate('+v.x+' '+v.y+')">'+v.svg+'</g>').join("")+friendCritters(fr)+"</svg>";
   }
   function groups(){
     const lang=S.lang,out=[],seen={};
@@ -6759,7 +6798,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   }
   /* quantidades por estágio de um idioma (só leitura); usadas por «Compartilhar» e por Amigos */
   window.gdCounts=function(lang){const c=[0,0,0,0];Object.keys(VOCAB[lang]||{}).forEach(cat=>VOCAB[lang][cat].forEach(e=>{const i=info(e,lang);if(i)c[i.lv]++;}));return c;};
-  let G=[],LAST={cnt:[0,0,0,0],met:0,total:0};
+  let FR=[],FRT=0,G=[],LAST={cnt:[0,0,0,0],met:0,total:0};
   window.gdLast=()=>LAST;window.gdSceneSvg=(cnt,gf)=>sceneSvg(cnt,VIS.filter(v=>(gf!=null?gf:cnt[2]+cnt[3])>=v.n));
   function render(){
     const box=document.getElementById("gd-body");if(!box)return;
@@ -6770,7 +6809,8 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     const due=typeof dueWords==="function"?dueWords().length:0;
     const gf=cnt[2]+cnt[3],vis=VIS.filter(v=>gf>=v.n),nv=VIS.find(v=>gf<v.n);
     LAST={cnt:cnt.slice(),met:met,total:total};
-    let h='<div class="gd-sky">'+sceneSvg(cnt,vis)+'</div>';
+    let h='<div class="gd-sky">'+sceneSvg(cnt,vis,FR)+'</div>';
+    if(FR.length)h+='<p class="help gd-fr" role="status">💧 '+esc(FR.slice(0,3).join(", "))+(FR.length>3?" e mais "+(FR.length-3):"")+(FR.length===1?" regou":" regaram")+" o seu jardim hoje.</p>";
     h+='<button type="button" class="btn wide" id="gd-share" style="margin-bottom:8px">Compartilhar meu jardim</button>';
     const tile=(lv,n,lab)=>'<div class="gd-tile gd'+lv+'">'+plant(lv,330,false)+'<b>'+n+'</b><span>'+lab+'</span></div>';
     h+='<div class="gd-sum">'+tile(3,cnt[3],cnt[3]===1?"fruto":"frutos")+tile(2,cnt[2],cnt[2]===1?"flor":"flores")+tile(1,cnt[1],cnt[1]===1?"semente":"sementes")+tile(0,cnt[0],cnt[0]===1?"sombra":"sombras")+"</div>";
@@ -6789,6 +6829,7 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     if(empty.length)h+='<details class="gd-bed gd-emptybeds"><summary><span class="gd-bn">Canteiros ainda vazios</span><small>'+empty.length+'</small></summary><p class="help gd-none">Terra pronta para plantar. Acerte uma palavra de cada tema e ele ganha as primeiras sementes:</p><div class="gd-chips">'+empty.map(g=>'<span class="gd-chip">'+esc(g.name)+"</span>").join("")+"</div></details>";
     h+='<p class="help">Estágios e prazos: escritos por Claude, sem fonte conferida. O histórico de acertos e erros nunca é apagado.</p>';
     box.innerHTML=h;
+    if(window.frWaterers&&Date.now()-FRT>20000){FRT=Date.now();window.frWaterers().then(a=>{if(Array.isArray(a)&&a.join("|")!==FR.join("|")){FR=a;render();}}).catch(()=>{});}
   }
   function openPlant(key,k){
     const g=G.find(x=>x.key===key),x=g&&g.items[k];if(!x)return;
@@ -7630,13 +7671,12 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
   }
   function friendCard(f){
     const none=!chips(f)&&!f.motto&&!langsLine(f)&&!f.garden;
-    const u=h(f.uid),nn=h(f.nick);
-    return '<article class="frcard"><div class="frtop">'+avt(f,48)+'<div class="frw"><b class="frn">'+nn+"</b>"+(f.motto?'<div class="frm">“'+h(f.motto)+"”</div>":"")+
-      (ago(f.at)&&(f.streak!=null||f.words!=null)?'<small class="frs">'+h(ago(f.at))+"</small>":"")+"</div></div>"+
-      (chips(f)?'<div class="frchips">'+chips(f)+"</div>":"")+langsLine(f)+(none?'<p class="help">Este amigo não compartilha detalhes.</p>':"")+chBlock(f)+
-      (f.wme?'<div class="frl">💧 <b>'+nn+'</b> regou o seu jardim hoje.</div>':"")+
-      '<div class="row"><button type="button" class="btn primary" data-fr="poke" data-u="'+u+'" aria-label="Cutucar '+nn+'">👋 Cutucar</button>'+(f.garden?'<button type="button" class="btn" data-fr="gard" data-u="'+u+'" aria-label="Ver o jardim de '+nn+'">🌱 Ver jardim</button>':"")+(f.ch?"":'<button type="button" class="btn" data-fr="chp" data-u="'+u+'" aria-label="Desafiar '+nn+' na semana">🏁 Desafiar</button>')+
-      '<details class="frmore"><summary class="btn">Mais</summary><div class="row">'+(f.ch&&f.ch.st==="on"?'<button type="button" class="btn" data-fr="chx" data-u="'+u+'">Encerrar desafio</button>':"")+'<button type="button" class="btn" data-fr="del" data-u="'+u+'">Remover</button><button type="button" class="btn" data-fr="blk" data-u="'+u+'">Bloquear</button><button type="button" class="btn" data-fr="rep" data-u="'+u+'">Denunciar</button></div></details></div></article>';
+    const u=h(f.uid),nn=h(f.nick),ag=ago(f.at);
+    return '<article class="frcard"><div class="frtop">'+avt(f,44)+'<div class="frw"><b class="frn">'+nn+"</b>"+
+      (ag&&(f.streak!=null||f.words!=null)?'<small class="frs">'+h(ag)+"</small>":"")+(f.motto?'<div class="frm">“'+h(f.motto)+"”</div>":"")+"</div></div>"+
+      ((chips(f)||f.wme)?'<div class="frchips">'+chips(f)+(f.wme?'<span class="frc frwet">💧 regou o seu jardim hoje</span>':"")+"</div>":"")+langsLine(f)+(none?'<p class="help">Este amigo não compartilha detalhes.</p>':"")+chBlock(f)+
+      '<div class="fract"><button type="button" class="btn primary" data-fr="poke" data-u="'+u+'" aria-label="Cutucar '+nn+'">👋 Cutucar</button>'+(f.garden?'<button type="button" class="btn" data-fr="gard" data-u="'+u+'" aria-label="Ver o jardim de '+nn+'">🌱 Jardim</button>':"")+(f.ch?"":'<button type="button" class="btn" data-fr="chp" data-u="'+u+'" aria-label="Desafiar '+nn+' na semana">🏁 Desafiar</button>')+"</div>"+
+      '<details class="frmore"><summary>Mais opções</summary><div class="row">'+(f.ch&&f.ch.st==="on"?'<button type="button" class="btn" data-fr="chx" data-u="'+u+'">Encerrar desafio</button>':"")+'<button type="button" class="btn" data-fr="del" data-u="'+u+'">Remover</button><button type="button" class="btn" data-fr="blk" data-u="'+u+'">Bloquear</button><button type="button" class="btn" data-fr="rep" data-u="'+u+'">Denunciar</button></div></details></article>';
   }
   /* convite por link: ?amigo=CODIGO (guardado até a pessoa entrar/ativar; nunca envia sozinho) */
   const IK="mots-parole-invite";
@@ -7650,9 +7690,26 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
   window.__hasInvite=()=>!!inv;
   function inviteLink(){return location.origin+location.pathname.replace(/index\.html$/,"")+"?amigo="+encodeURIComponent(me.code);}
   function invNote(){return inv?'<p class="help" role="status"><b>Você recebeu um convite de amizade (código '+h(inv)+').</b> '+(me?"O código já está preenchido abaixo: confira e toque em «Enviar convite».":ses()?"Ative Amigos abaixo; depois o código já aparece preenchido para você enviar o convite.":"Entre na conta (e-mail e código) e ative Amigos; depois o código aparece preenchido.")+"</p>":"";}
+  let tab="amigos",devSt=null;
+  async function dev(){
+    try{const sub=await getSub();devSt={sub:!!sub,perm:window.Notification?Notification.permission:"indisponivel",rm:!!(S.rm&&S.rm.on)};}catch(_){devSt=null;}
+  }
+  function devLine(){
+    if(!devSt)return '<p class="help">Não consegui verificar este aparelho agora.</p>';
+    const falta=[];
+    if(!devSt.rm)falta.push("ligar os <b>lembretes com o app fechado</b> (Ajustes → Lembretes e cartão)");
+    else if(devSt.perm!=="granted")falta.push("permitir <b>notificações</b> para o Litteraria nas configurações do navegador ou do celular");
+    else if(!devSt.sub)falta.push("ativar de novo os lembretes com o app fechado: este aparelho ainda não tem endereço de envio");
+    if(me&&me.poke_ok===false)falta.push("marcar «Aceitar avisos dos amigos» acima");
+    return falta.length?'<div class="frdev bad"><b>Este aparelho ainda não recebe avisos.</b> Falta: '+falta.join("; ")+".</div>":'<div class="frdev ok"><b>Este aparelho está pronto para receber avisos dos amigos.</b></div>';
+  }
+  function tabsBar(L){
+    const n=L.incoming.length,T=[["amigos","Amigos"+(L.friends.length?" ("+L.friends.length+")":"")+(n?" ●":"")],["add","Adicionar"],["set","Ajustes"]];
+    return '<div class="seg frtabs" role="group" aria-label="Seções de Amigos">'+T.map(x=>'<button type="button" data-fr="tab" data-t="'+x[0]+'" aria-pressed="'+(tab===x[0])+'">'+x[1]+"</button>").join("")+"</div>";
+  }
   function view(){
     if(!ses())return invNote()+ '<p class="help">Para usar Amigos, primeiro entre na conta: Perfil → Conta e backup na nuvem.</p><button type="button" class="btn primary wide" id="fr-login">Ir para Conta e nuvem</button>';
-    const note0=msg?'<p class="help" role="status"><b>'+h(msg)+"</b></p>":"";
+    const note0=msg?'<p class="help frnote" role="status"><b>'+h(msg)+"</b></p>":"";
     const note=invNote()+note0;
     if(!me){
       return '<p class="help">Amigos é opcional e começa desligado. Quando você ativar:</p><ul class="help"><li>Seus amigos veem o seu <b>apelido</b> e só os números que você deixar marcados.</li><li>Ninguém te encontra por busca: só entra quem tiver o seu <b>código</b>.</li><li>Não há chat, foto nem mensagens.</li><li>Você pode bloquear, denunciar e desativar quando quiser; desativar apaga seus convites e amizades.</li></ul>'+
@@ -7666,40 +7723,76 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     }
     const L=lst||{friends:[],incoming:[],outgoing:[],blocked:[]};
     if(gv){const f=L.friends.find(x=>x.uid===gv.u);if(f&&window.gdSceneSvg)return gardenView(f,gv.l);gv=null;}
-    let o='<div class="frme">'+avt({nick:me.nick,avatar:S.avatar&&AVATARS[S.avatar]?S.avatar:null},56)+'<div class="frw"><b class="frn">'+h(me.nick)+"</b>"+(S.motto?'<div class="frm">“'+h(S.motto)+"”</div>":'<small class="frs">Sem frase. Escreva uma no Perfil.</small>')+"</div></div>"+note;
-    if(L.incoming.length)o+='<h3 class="lab" style="margin-top:14px">Convites recebidos</h3>'+L.incoming.map(f=>'<div class="cad-row"><span>'+avt(f,32)+' <b>'+h(f.nick)+'</b></span><span><button type="button" class="btn primary" data-fr="acc" data-u="'+h(f.uid)+'">Aceitar</button> <button type="button" class="btn" data-fr="rej" data-u="'+h(f.uid)+'">Recusar</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button></span></div>').join("");
-    o+='<h3 class="lab" style="margin-top:14px">Amigos ('+L.friends.length+')</h3>'+(L.friends.length?L.friends.map(friendCard).join(""):'<p class="help">Ainda sem amigos. Envie o seu código ou digite o de alguém em «Adicionar um amigo».</p>');
-    if(L.outgoing.length)o+='<h3 class="lab" style="margin-top:14px">Convites enviados</h3>'+L.outgoing.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b> · aguardando</span><button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Cancelar</button></div>').join("");
-    o+='<h3 class="lab" style="margin-top:14px">Adicionar um amigo</h3>'+
-      '<input class="tin" id="fr-add" maxlength="12" autocapitalize="characters" autocomplete="off" aria-label="Código do amigo" placeholder="Código do amigo" value="'+h(inv)+'">'+
-      '<button type="button" class="btn primary wide" id="fr-req" style="margin-top:8px">Enviar convite</button>'+
-      '<h3 class="lab" style="margin-top:14px">Seu código de amigo</h3><p style="font-size:1.6rem;font-weight:800;letter-spacing:.12em;margin:4px 0" id="fr-code">'+h(me.code)+'</p>'+
-      '<p class="help">Passe este código só para quem você quer como amigo.</p><div class="row"><button type="button" class="btn" id="fr-copy">Copiar código</button> <button type="button" class="btn primary" id="fr-share">Convidar por link</button> <button type="button" class="btn" id="fr-copylink">Copiar link</button></div><p class="help">O link abre o Litteraria com o seu código já preenchido. Quem recebe ainda precisa tocar em «Enviar convite» e você aceita depois.</p>'+
-      '<details class="frset" style="margin-top:14px"><summary class="lab">O que meus amigos veem e preferências</summary>'+
-      '<label class="chk"><input type="checkbox" id="fr-s1" '+(me.share_streak?"checked":"")+'> Minha sequência de dias</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-s2" '+(me.share_words?"checked":"")+'> Palavras acertadas e dias estudados na semana</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-s3" '+(me.share_profile?"checked":"")+'> Meu ícone, minha frase e meu nível (o ícone e a frase vêm do Perfil)</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-s4" '+(me.share_langs?"checked":"")+'> Os idiomas que estudo e quantas páginas concluí em cada um</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-s5" '+(me.share_garden?"checked":"")+'> O meu jardim: a cena e quantas plantas tenho em cada estágio, por idioma (nunca as palavras). Quem é seu amigo pode regá-lo 1 vez por dia, de brincadeira.</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-tone" '+(me.cheeky!==false?"checked":"")+'> Avisos de rega em tom brincalhão (desmarcado, o aviso é neutro)</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-poke" '+(me.poke_ok!==false?"checked":"")+'> Aceitar avisos dos amigos (cutucadas, convites e desafios)</label>'+
-      (window.__pushOn?'<p class="help">Este aparelho está pronto para receber cutucadas.</p>':'<p class="help">Para receber cutucadas, ligue os lembretes com o app fechado em Ajustes → Lembretes e cartão. Sem isso, você ainda pode cutucar os outros.</p>')+
-      '<p class="help">Apelido atual: <b>'+h(me.nick)+'</b>.</p></details>';
-    if(L.blocked.length)o+='<h3 class="lab" style="margin-top:14px">Bloqueados</h3>'+L.blocked.map(f=>'<div class="cad-row"><span>'+h(f.nick)+'</span><button type="button" class="btn" data-fr="unb" data-u="'+h(f.uid)+'">Desbloquear</button></div>').join("");
-    o+='<div class="row" style="margin-top:16px"><button type="button" class="btn" id="fr-refresh">Atualizar lista</button><button type="button" class="btn" id="fr-off">Desativar Amigos</button></div>'+
-      '<p class="help">Denunciar bloqueia a pessoa e registra a denúncia para a criadora do app. Veja a <a href="#" data-open-priv>Política de Privacidade</a>.</p>';
+    const head='<div class="frme">'+avt({nick:me.nick,avatar:S.avatar&&AVATARS[S.avatar]?S.avatar:null},40)+'<div class="frw"><b class="frn">'+h(me.nick)+"</b>"+(S.motto?'<div class="frm">“'+h(S.motto)+"”</div>":"")+"</div></div>";
+    let o=head+tabsBar(L)+note;
+    if(tab==="amigos"){
+      if(L.incoming.length)o+='<h3 class="lab">Convites recebidos</h3>'+L.incoming.map(f=>'<div class="cad-row"><span>'+avt(f,32)+' <b>'+h(f.nick)+'</b></span><span><button type="button" class="btn primary" data-fr="acc" data-u="'+h(f.uid)+'">Aceitar</button> <button type="button" class="btn" data-fr="rej" data-u="'+h(f.uid)+'">Recusar</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button></span></div>').join("");
+      o+=(L.friends.length?L.friends.map(friendCard).join(""):'<p class="help">Ainda sem amigos. Na aba «Adicionar» você envia o seu código ou digita o de alguém.</p>');
+      if(L.outgoing.length)o+='<h3 class="lab">Convites enviados</h3>'+L.outgoing.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b> · aguardando</span><button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Cancelar</button></div>').join("");
+      o+='<div class="row" style="margin-top:12px"><button type="button" class="btn" id="fr-refresh">↻ Atualizar lista</button></div>';
+    }else if(tab==="add"){
+      o+='<h3 class="lab">Adicionar um amigo</h3>'+
+        '<input class="tin" id="fr-add" maxlength="12" autocapitalize="characters" autocomplete="off" aria-label="Código do amigo" placeholder="Código do amigo" value="'+h(inv)+'">'+
+        '<button type="button" class="btn primary wide" id="fr-req" style="margin-top:8px">Enviar convite</button>'+
+        '<h3 class="lab">Seu código de amigo</h3><p class="frcode" id="fr-code">'+h(me.code)+'</p>'+
+        '<p class="help">Passe este código só para quem você quer como amigo.</p><div class="row"><button type="button" class="btn primary" id="fr-share">Convidar por link</button> <button type="button" class="btn" id="fr-copy">Copiar código</button> <button type="button" class="btn" id="fr-copylink">Copiar link</button></div><p class="help">O link abre o Litteraria com o seu código já preenchido. Quem recebe ainda precisa tocar em «Enviar convite» e você aceita depois.</p>';
+    }else{
+      o+='<div class="frset"><h3 class="lab">O que meus amigos veem</h3>'+
+        '<label class="chk"><input type="checkbox" id="fr-s1" '+(me.share_streak?"checked":"")+'> Minha sequência de dias</label>'+
+        '<label class="chk"><input type="checkbox" id="fr-s2" '+(me.share_words?"checked":"")+'> Palavras acertadas e dias estudados na semana</label>'+
+        '<label class="chk"><input type="checkbox" id="fr-s3" '+(me.share_profile?"checked":"")+'> Meu ícone, minha frase e meu nível (o ícone e a frase vêm do Perfil)</label>'+
+        '<label class="chk"><input type="checkbox" id="fr-s4" '+(me.share_langs?"checked":"")+'> Os idiomas que estudo e quantas páginas concluí em cada um</label>'+
+        '<label class="chk"><input type="checkbox" id="fr-s5" '+(me.share_garden?"checked":"")+'> O meu jardim: a cena e quantas plantas tenho em cada estágio, por idioma (nunca as palavras). Quem é seu amigo pode regá-lo 1 vez por dia, de brincadeira.</label>'+
+        '<h3 class="lab">Avisos</h3>'+
+        '<label class="chk"><input type="checkbox" id="fr-tone" '+(me.cheeky!==false?"checked":"")+'> Avisos de rega em tom brincalhão (desmarcado, o aviso é neutro)</label>'+
+        '<label class="chk"><input type="checkbox" id="fr-poke" '+(me.poke_ok!==false?"checked":"")+'> Aceitar avisos dos amigos (cutucadas, convites, desafios e regas)</label>'+devLine()+
+        '<p class="help">Apelido atual: <b>'+h(me.nick)+'</b>.</p></div>';
+      if(L.blocked.length)o+='<h3 class="lab">Bloqueados</h3>'+L.blocked.map(f=>'<div class="cad-row"><span>'+h(f.nick)+'</span><button type="button" class="btn" data-fr="unb" data-u="'+h(f.uid)+'">Desbloquear</button></div>').join("");
+      o+='<div class="row" style="margin-top:16px"><button type="button" class="btn" id="fr-off">Desativar Amigos</button></div>'+
+        '<p class="help">Denunciar bloqueia a pessoa e registra a denúncia para a criadora do app. Veja a <a href="#" data-open-priv>Política de Privacidade</a>.</p>';
+    }
     return o;
   }
-  function paint(){const el=$("#fr-box");if(!el)return;const d=$(".frset"),was=d?d.open:false;el.innerHTML=view();const n=$(".frset");if(n&&was)n.open=true;}
+  window.__frTab=t=>{tab=t;gv=null;paint();};
+  function paint(){const el=$("#fr-box");if(!el)return;el.innerHTML=view();}
   async function openFriends(){
     openSheet("Amigos",'<div id="fr-box"><p class="help">Carregando…</p></div>',false);
-    if(ses())await load();paint();
+    tab=inv?"add":"amigos";
+    if(ses()){await load();dev().then(()=>{if(tab==="set")paint();});}paint();
   }
   window.openFriends=openFriends;
   /* aviso por notificação (convite, aceite, desafio): melhor esforço, em segundo plano; falhar nunca atrapalha a ação */
-  function notify(kind,uid,code){
-    try{CLOUD.authed("/functions/v1/poke",{method:"POST",body:{kind:kind,uid:uid||undefined,code:code||undefined}}).catch(()=>{});}catch(_){}
+  async function notify(kind,uid,code){
+    try{const r=await CLOUD.authed("/functions/v1/poke",{method:"POST",body:{kind:kind,uid:uid||undefined,code:code||undefined}});
+      let j=null;try{j=await r.json();}catch(_){}
+      return Object.assign({http:r.status},j||{});}catch(_){return {status:"rede"};}
   }
+  /* o que dizer depois de regar, conforme a resposta da função de avisos */
+  function waterMsg(nn,n){
+    const ok="Jardim regado! 💧 ";
+    if(!n||n.status==="rede")return ok+"Não consegui falar com o servidor de avisos agora; a rega valeu, mas "+nn+" não foi avisado(a).";
+    if(n.http===404)return ok+"A rega valeu, mas a função de avisos «poke» ainda não está publicada no Supabase.";
+    if(n.http===401||n.http===403)return ok+"A rega valeu, mas o servidor recusou o login para enviar o aviso (erro "+n.http+").";
+    if(n.http>=500)return ok+"A rega valeu, mas a função de avisos deu erro"+(n.detail?" ("+String(n.detail).slice(0,60)+")":"")+".";
+    if(n.status==="ok"&&n.sent>0)return ok+"O aviso foi enviado para "+nn+".";
+    if(n.status==="ok")return ok+"A rega valeu, mas o servidor não enviou o aviso (a função de avisos pode estar desatualizada: publique de novo o poke.ts).";
+    if(n.status==="sem_aviso"){
+      const w=n.why;
+      if(w==="sem_aceite")return ok+nn+" desligou os avisos dos amigos, então a rega valeu sem notificação.";
+      if(w==="sem_aparelho")return ok+nn+" ainda não tem um aparelho recebendo avisos (precisa ligar os lembretes com o app fechado em Ajustes), então a rega valeu sem notificação.";
+      return ok+"A rega valeu, sem notificação.";
+    }
+    if(n.status==="falhou")return ok+"A rega valeu, mas o aparelho de "+nn+" não aceitou o aviso"+(n.why?" ("+String(n.why).slice(0,40)+")":"")+".";
+    return ok+"A rega valeu, mas o aviso não saiu.";
+  }
+  /* apelidos de quem regou o meu jardim hoje (usado pela cena do jardim; só com Amigos ativo; no máximo 1 consulta por minuto) */
+  let wc={t:0,v:[]};
+  window.frWaterers=async function(){
+    if(!ses()||!on()){wc={t:0,v:[]};return [];}
+    if(Date.now()-wc.t<60000)return wc.v;
+    try{const l=await rpc("friends_list");lst=l;wc={t:Date.now(),v:(l.friends||[]).filter(f=>f.wme).map(f=>String(f.nick||"")).filter(Boolean)};}catch(_){wc={t:Date.now(),v:wc.v};}
+    return wc.v;
+  };
   async function act(fn){
     if(busy)return;busy=true;
     try{await fn();msg=msg||"";}catch(e){msg=e.message;}
@@ -7715,7 +7808,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
       await rpc("friends_enable",{p_nick:nick});await rpc("friends_share",{p_streak:s1,p_words:s2});
       if($("#fr-s3").checked||$("#fr-s4").checked)await rpc("friends_share2",{p_profile:$("#fr-s3").checked,p_langs:$("#fr-s4").checked});
       if($("#fr-s5").checked)await rpc("friends_share3",{p_garden:true,p_cheeky:true});
-      me=await rpc("friends_me");setOn(true);await pushStats();msg="Amigos ativado. Passe o seu código a quem você quiser como amigo.";
+      me=await rpc("friends_me");setOn(true);tab="add";await pushStats();dev();msg="Amigos ativado. Passe o seu código a quem você quiser como amigo.";
     });
     if(t.id==="fr-copy"){try{navigator.clipboard.writeText(me.code);msg="Código copiado.";}catch(_){msg="Não consegui copiar; selecione o código e copie.";}paint();return;}
     if(t.id==="fr-copylink"){try{navigator.clipboard.writeText(inviteLink());msg="Link copiado.";}catch(_){msg="Não consegui copiar o link.";}paint();return;}
@@ -7761,9 +7854,10 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
     if(a==="water")return act(async()=>{
       const f=(lst&&lst.friends||[]).find(x=>x.uid===u),nn=f?f.nick:"seu amigo";
       const r=await rpc("garden_water",{p_uid:u});
-      if(r&&r.status==="ok")notify("water",u);
-      msg={ok:"Jardim regado! 💧 Se "+nn+" aceita avisos, a notificação já está a caminho.",ja_hoje:"Você já regou o jardim de "+nn+" hoje. Amanhã pode de novo.",sem_jardim:nn+" não está mostrando o jardim.",nao_amigo:"Vocês não estão mais conectados.",limite:"O jardim de "+nn+" já foi regado muitas vezes hoje. Tente amanhã."}[r&&r.status]||"Pronto.";
+      if(r&&r.status==="ok"){msg="Regando… 💧";paint();msg=waterMsg(nn,await notify("water",u));return;}
+      msg={ja_hoje:"Você já regou o jardim de "+nn+" hoje. Amanhã pode de novo.",sem_jardim:nn+" não está mostrando o jardim.",nao_amigo:"Vocês não estão mais conectados.",limite:"O jardim de "+nn+" já foi regado muitas vezes hoje. Tente amanhã."}[r&&r.status]||"Pronto.";
     });
+    if(a==="tab"){tab=t.dataset.t;msg="";if(tab==="set")dev().then(paint);paint();return;}
     if(a==="unb")return act(()=>rpc("friends_unblock",{p_uid:u}));
     if(a==="rep")return act(async()=>{const m=prompt("Conte em poucas palavras o que aconteceu (opcional):","");if(m===null)return;await rpc("friends_report",{p_uid:u,p_reason:m});msg="Denúncia enviada e pessoa bloqueada.";});
   });
@@ -7792,6 +7886,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.76.0",d:"2026-10-28",t:["Depois de regar o jardim de um amigo, o app diz na hora se o aviso foi enviado ou por que não saiu (amigo sem avisos, sem aparelho inscrito, função desatualizada)","Quem regou o seu jardim hoje aparece na cena como um bichinho voando com o apelido, e uma linha embaixo diz quem foi","Amigos ficou mais enxuto: três abas (Amigos, Adicionar, Ajustes), cartões menores e a verificação se este aparelho recebe avisos","Tela inicial em seções (Estudar, Explorar, Você) e menu de Treino em grupos, com os verbos recolhidos"]},
 {v:"1.75.1",d:"2026-10-28",t:["A Frase do dia saiu da tela de Lições, a pedido. As citações continuam em Livros e no Álbum, e dá para guardar as que você gostar"]},
 {v:"1.75.0",d:"2026-10-28",t:["Jardim dos amigos: em Amigos → preferências, marque «O meu jardim» (começa desligado) e seus amigos veem a cena e quantas plantas você tem em cada estágio. Nunca as palavras","Quem é seu amigo tem o botão «Ver jardim» no cartão e pode regar o seu jardim 1 vez por dia, de brincadeira (não muda o progresso de ninguém). O cartão mostra «regou o seu jardim hoje»","Se você aceita avisos, chega uma notificação de rega, com um tom brincalhão (dá para trocar por um aviso neutro). Precisa do arquivo jardim.sql no Supabase e da função poke republicada. A Política de Privacidade foi atualizada"]},
 {v:"1.74.0",d:"2026-10-28",t:["Meu jardim agora tem «Compartilhar meu jardim»: gera um link (e uma imagem) que diz «Esse é o meu jardim de italiano/francês/inglês no Litteraria» e convida a pessoa a fazer o dela estudando e lendo no app","Quem abre o link vê o seu jardim só para olhar (cena e quantidade de frutos, flores, sementes e sombras) e um botão para começar o dele. Nada do progresso dela é alterado","Você pode pôr um nome ou apelido (opcional). O link leva só o idioma, as quantidades e esse nome, dentro do próprio endereço: nada é enviado a servidor. A Política de Privacidade foi atualizada"]},

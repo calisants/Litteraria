@@ -110,15 +110,19 @@ function openTrainMenu(){
   openSheet("Treino de "+LNAME[S.lang],
     '<p class="help">Idioma do treino (é o mesmo idioma do app):</p>'+
     '<div class="seg" role="group" aria-label="Idioma do treino" style="margin-bottom:12px">'+Object.keys(LNAME).map(l=>'<button type="button" data-trainlang="'+l+'" aria-pressed="'+(l===S.lang)+'">'+LNAME[l]+"</button>").join("")+"</div>"+
-    '<p class="help">Cada rodada tem 10 itens. Sem regra na tela: é para testar o que você já sabe. «Revisar palavras que errei» usa as palavras em que você errou mais do que acertou; cada acerto aqui as tira da lista.</p>'+
-    Object.keys(L).map(t=>'<button type="button" class="btn wide" data-train="v|'+esc(t)+'" style="margin-bottom:8px">Verbos em '+esc(LNAME[S.lang])+": "+esc(L[t])+"</button>").join("")+
-    '<button type="button" class="btn wide primary" id="train-cycle" style="margin-bottom:8px">Ciclo da palavra ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
-    '<button type="button" class="btn wide" id="train-garden" style="margin-bottom:8px">Lição do Jardim: trecho de um livro (7 telas)</button>'+
-    '<button type="button" class="btn wide" id="train-garden-t" style="margin-bottom:8px">Lição do Jardim: palavras de um tema (7 telas)</button>'+
+    '<p class="help">Sem regra na tela: é para testar o que você já sabe. Cada acerto tira a palavra da lista de revisão.</p>'+
+    '<h3 class="lab trh">Revisar o que você já viu</h3>'+
+    '<button type="button" class="btn wide" id="train-cycle" style="margin-bottom:8px">Ciclo da palavra ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
+    '<button type="button" class="btn wide" id="train-cards" style="margin-bottom:8px">Cartões: Fácil / Preciso rever ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
     '<button type="button" class="btn wide" id="train-mem" style="margin-bottom:8px">Memória das palavras em revisão</button>'+
-    '<button type="button" class="btn wide" id="train-cards" style="margin-bottom:8px">Cartões de revisão: Fácil / Preciso rever ('+(typeof dueWords==="function"?dueWords().length:0)+")</button>"+
     '<button type="button" class="btn wide" data-train="r" style="margin-bottom:8px"'+(nw?"":" disabled")+'>Revisar palavras que errei ('+nw+")</button>"+
-    '<button type="button" class="btn wide" data-train="w" style="margin-bottom:8px">Palavras: português → '+esc(LNAME[S.lang])+"</button>",false);
+    '<h3 class="lab trh">Lição do Jardim (7 telas)</h3>'+
+    '<button type="button" class="btn wide" id="train-garden" style="margin-bottom:8px">Trecho de um livro</button>'+
+    '<button type="button" class="btn wide" id="train-garden-t" style="margin-bottom:8px">Palavras de um tema</button>'+
+    '<h3 class="lab trh">Digitar</h3>'+
+    '<button type="button" class="btn wide" data-train="w" style="margin-bottom:8px">Palavras: português → '+esc(LNAME[S.lang])+"</button>"+
+    '<details class="trverbs"><summary class="btn wide">Verbos em '+esc(LNAME[S.lang])+" ("+Object.keys(L).length+' tipos)</summary><div style="margin-top:8px">'+
+      Object.keys(L).map(t=>'<button type="button" class="btn wide" data-train="v|'+esc(t)+'" style="margin-bottom:8px">'+esc(L[t])+"</button>").join("")+"</div></details>",false);
 }
 function trainSub(){const e=$("#train-sub");if(e)e.textContent=LNAME[S.lang]+" · digitar verbos e palavras";}
 $("#go-train").addEventListener("click",openTrainMenu);

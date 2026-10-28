@@ -520,7 +520,7 @@ svg{display:block}
 .wt{margin:4px 0 0;font-family:var(--font-title);font-size:1.12rem;line-height:1.35}.ws{margin:2px 0 0;color:var(--muted);font-size:.9rem}
 .wrow{display:flex;gap:8px;margin-top:8px}.wbtn{min-height:38px;padding:4px 14px;font-size:.88rem;border-color:var(--box)}.wbtn.quiet{background:transparent;border-color:transparent;color:var(--muted)}
 .wbig{padding:6px 0 12px}.wbig .wt{font-size:1.4rem}
-.menu{display:grid;gap:6px;margin:10px 0 0}
+.menu{display:grid;gap:6px;margin:6px 0 0}.msec{font-family:var(--font-title);font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 2px 2px}.menu:empty,.menu:not(:has(.mrow:not([hidden]))){display:none}
 .mrow{display:flex;align-items:center;gap:12px;width:100%;min-height:52px;padding:6px 12px;border:var(--bw) solid var(--box);border-radius:var(--radius);background:var(--surface);text-align:left;cursor:pointer}
 .mrow svg{flex:none;color:var(--accent)}.mrow .tt{display:flex;flex-direction:column;min-width:0}.mrow b{font-family:var(--font-title);font-size:1.05rem;font-weight:600}
 .mrow small{color:var(--muted);font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -650,6 +650,21 @@ svg{display:block}
 @keyframes gdcloud{from{transform:translateX(-14px)}to{transform:translateX(22px)}}
 @keyframes gdsun{from{transform:scale(1)}to{transform:scale(1.08)}}
 @keyframes gdlady{0%,100%{transform:translateX(0)}50%{transform:translateX(26px)}}
+/* Amigos mais enxuto (v1.76) */
+.frtabs{margin:10px 0 6px;display:flex}.frtabs button{flex:1;min-height:44px}
+.frme{padding:6px 10px}.frme .frn{font-size:1rem}.frme .frm{margin-top:0;font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.frcard{padding:12px;margin:8px 0}.frcard .frtop{gap:10px}.frcard .frm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.frcard .frchips{margin:8px 0 2px;gap:5px}.frcard .frc{font-size:.78rem;padding:2px 8px}.frwet{background:hsl(200 85% 90%);color:#0b3a5a}
+.frcard .frl{font-size:.82rem;margin:4px 0;color:var(--muted)}
+.fract{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:8px;margin-top:10px}.fract .btn{min-height:44px;width:100%;margin:0}
+.frcard .frmore{margin-top:6px}.frcard .frmore summary{display:inline-block;min-height:32px;padding:4px 2px;font-size:.82rem;color:var(--muted);text-decoration:underline}
+.frcard .frmore[open]{flex:none;order:0}
+.frnote{margin:8px 0;padding:8px 10px;border-radius:var(--radius);background:var(--soft)}
+.frcode{font-size:1.6rem;font-weight:800;letter-spacing:.12em;margin:4px 0}
+.frdev{margin:10px 0;padding:10px;border-radius:var(--radius);font-size:.9rem}.frdev.ok{background:hsl(140 55% 90%);color:#0d3b1c}.frdev.bad{background:hsl(40 90% 90%);color:#4a3000}
+.frset .lab,#fr-box .lab{margin-top:14px}
+.gd-fr{margin:6px 0}
+.trh{margin:14px 0 6px}.trverbs{margin-top:6px}.trverbs summary{cursor:pointer;list-style:none}.trverbs summary::-webkit-details-marker{display:none}
 .toast{position:fixed;left:16px;right:16px;bottom:84px;z-index:60;background:var(--ink);color:var(--bg);padding:12px 14px;border-radius:12px;font-size:.95rem;box-shadow:0 4px 16px #0004}
 #voice-box .bad{color:var(--bad,#b3261e);font-weight:600}
 </style>

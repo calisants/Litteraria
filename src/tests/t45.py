@@ -18,7 +18,8 @@ def handler(route):
     if path=='/auth/v1/verify': return J(200,{'access_token':'at1','refresh_token':'rt1','expires_in':3600,'expires_at':int(time.time())+3600,'user':{'id':'u1','email':body['email']}})
     if path.startswith('/rest/v1/progress'): return J(200,[]) if rq.method=='GET' else J(201,[{'data':body.get('data'),'updated_at':'2026-10-21T15:00:00.000001+00:00'}])
     if path.startswith('/rest/v1/consents'): return J(201,[]) if rq.method=='POST' else J(200,[])
-    if path=='/functions/v1/poke': st['notified'].append(body);return J(200,{'status':'ok','sent':1})
+    if path=='/functions/v1/poke':
+        st['notified'].append(body);rs=st.get('pokeResp') or (200,{'status':'ok','sent':1});return J(rs[0],rs[1])
     if path.startswith('/rest/v1/rpc/'):
         n=path.split('/')[-1];st['calls'].append((n,body))
         if not st['installed'] and n in('friends_share3','friends_garden','garden_water'): return J(404,{'message':'Could not find the function public.%s in the schema cache'%n})
@@ -53,7 +54,7 @@ try:
     assert pg.locator('[data-fr=gard]').count()==1,'só quem compartilha tem «Ver jardim»'
     assert 'Caio' in t
     # preferências: jardim desligado por padrão; ligar envia as quantidades por idioma (nunca palavras)
-    pg.evaluate("()=>document.querySelector('.frset').open=true")
+    pg.evaluate("()=>__frTab('set')")
     assert not pg.is_checked('#fr-s5') and pg.is_checked('#fr-tone')
     pg.check('#fr-s5');pg.wait_for_timeout(500)
     assert ('friends_share3',{'p_garden':True,'p_cheeky':True}) in st['calls'],st['calls'][-6:]
@@ -61,10 +62,10 @@ try:
     g=g[-1][1]['p_garden'];assert set(g.keys())=={'fr','en'} and all(len(v)==4 and all(isinstance(x,int) for x in v) for v in g.values()),g
     assert 'it' not in g
     assert 'w' not in json.dumps(g).replace('"','') or True
-    pg.evaluate("()=>document.querySelector('.frset').open=true");pg.uncheck('#fr-tone');pg.wait_for_timeout(400)
+    pg.evaluate("()=>__frTab('set')");pg.uncheck('#fr-tone');pg.wait_for_timeout(400)
     assert ('friends_share3',{'p_garden':True,'p_cheeky':False}) in st['calls']
     # ver o jardim do amigo
-    pg.click('[data-fr=gard]');pg.wait_for_timeout(300)
+    pg.evaluate("()=>__frTab('amigos')");pg.click('[data-fr=gard]');pg.wait_for_timeout(300)
     t=pg.inner_text('#fr-box');assert 'jardim de ana' in t.lower() and 'amigos' in t.lower(),t[:200]
     assert pg.locator('#fr-box .gd-sky svg').count()==1 and pg.locator('#fr-box .gd-tile').count()==4
     nums=pg.evaluate("()=>[...document.querySelectorAll('#fr-box .gd-tile b')].map(e=>e.textContent)");assert nums==['1','4','2','3'],nums
@@ -72,19 +73,29 @@ try:
     pg.click('[data-fr=gl][data-l=it]');pg.wait_for_timeout(200)
     nums=pg.evaluate("()=>[...document.querySelectorAll('#fr-box .gd-tile b')].map(e=>e.textContent)");assert nums==['0','0','0','1'],nums
     # regar
-    pg.screenshot(path='t45_a.png')
+    pg.screenshot(path='/tmp/claude-0/s_garden_friend.png')
     pg.click('[data-fr=water]');pg.wait_for_timeout(500)
     assert any(c[0]=='garden_water' for c in st['calls']) and {'kind':'water','uid':'f1'} in st['notified'],st['notified']
-    assert 'Jardim regado' in pg.inner_text('#fr-box')
+    assert 'Jardim regado' in pg.inner_text('#fr-box') and 'O aviso foi enviado para Ana' in pg.inner_text('#fr-box'),pg.inner_text('#fr-box')[:300]
     assert pg.is_disabled('[data-fr=water]') and 'já regou hoje' in pg.inner_text('#fr-box')
+    # o que o app diz quando o aviso não sai
+    for resp,txt in [((200,{'status':'sem_aviso','why':'sem_aparelho'}),'ainda não tem um aparelho recebendo avisos'),((200,{'status':'sem_aviso','why':'sem_aceite'}),'desligou os avisos dos amigos'),((404,{}),'«poke» ainda não está publicada'),((200,{'status':'falhou','why':'envio:410'}),'não aceitou o aviso'),((200,{'status':'ok','sent':0}),'desatualizada')]:
+        F['wby']=False;st['pokeResp']=resp;pg.evaluate("()=>__frTab('amigos')");pg.click('#fr-refresh');pg.wait_for_timeout(300);pg.click('[data-fr=gard]');pg.wait_for_timeout(200)
+        pg.click('[data-fr=water]');pg.wait_for_timeout(500);t=pg.inner_text('#fr-box');assert txt in t,(txt,t[:300])
+    st['pokeResp']=None
     # voltar à lista
     pg.click('[data-fr=gback]');pg.wait_for_timeout(200);assert pg.locator('.frcard').count()==2
     # servidor sem o SQL novo
-    st['installed']=False;pg.evaluate("()=>document.querySelector('.frset').open=true");pg.uncheck('#fr-s5');pg.wait_for_timeout(500)
+    st['installed']=False;pg.evaluate("()=>__frTab('set')");pg.uncheck('#fr-s5');pg.wait_for_timeout(500)
     assert 'jardim.sql' in pg.inner_text('#fr-box'),pg.inner_text('#fr-box')[:300]
     # política
     pg.evaluate("()=>closeSheet()");pg.evaluate("()=>openPrivacy()");pg.wait_for_timeout(200)
     t=pg.inner_text('#sheet');assert 'Regar o jardim' in t and 'quantas plantas você tem em cada estágio' in t
+    # bichinho de quem regou o meu jardim
+    F['wme']=True;st['wc']=1
+    pg.evaluate("()=>{closeSheet();go('garden')}");pg.wait_for_timeout(900)
+    assert pg.locator('#gd-body .gd-sky svg text').count()==1 and 'Ana' in pg.inner_text('#gd-body .gd-fr'),pg.inner_text('#gd-body')[:200]
+    F['wme']=False
     assert errs==[],errs
     print('t45 ok')
 finally:

@@ -106,7 +106,7 @@
     const box=document.getElementById("sheet-in");
     if(box&&!document.getElementById("train-five")){
       const b=document.createElement("button");b.type="button";b.className="btn wide primary";b.id="train-five";b.style.marginBottom="8px";b.textContent="Só 5 minutos (6 passos rápidos)";
-      box.insertBefore(b,box.firstChild);
+      box.insertBefore(b,box.querySelector('.trh')||box.firstChild);
     }
   };
   window.__f5Open=open;window.__f5State=()=>f5;

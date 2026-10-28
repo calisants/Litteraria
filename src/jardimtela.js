@@ -38,7 +38,20 @@
     {n:40,nome:"um passarinho",x:120,y:30,svg:'<g class="gd-path gd-p4"><ellipse cx="0" cy="0" rx="8" ry="5.2" fill="hsl(205 70% 62%)"/><circle cx="7" cy="-3" r="3.4" fill="hsl(205 70% 62%)"/><path d="M10-3l4.5 1.4-4.5 1.2z" fill="hsl(35 90% 55%)"/><circle cx="8" cy="-3.6" r=".9" fill="#222"/><path d="M-7 1l-8-3 1.5 5z" fill="hsl(205 55% 48%)"/><path d="M-1 0c-1-6 3-8 6-6" fill="none" stroke="hsl(205 55% 48%)" stroke-width="2" class="gd-wing"/></g>'},
     {n:80,nome:"uma joaninha",x:148,y:115,svg:'<g class="gd-lady"><ellipse cx="0" cy="0" rx="5.4" ry="4.2" fill="hsl(5 82% 50%)"/><path d="M0-4.2v8.4" stroke="#222" stroke-width="1"/><circle cx="-2.2" cy="-1" r=".95" fill="#222"/><circle cx="2.2" cy="1.2" r=".95" fill="#222"/><circle cx="-2" cy="2" r=".8" fill="#222"/><circle cx="5.6" cy="0" r="2.2" fill="#222"/></g>'}
   ];
-  function sceneSvg(cnt,vis){
+  /* bichinhos dos amigos que regaram o seu jardim hoje (até 3; só o apelido, vindo de Amigos). Original, sem personagens. */
+  const FPOS=[[100,52],[176,64],[246,74]];
+  function friendCritters(fr){
+    if(!fr||!fr.length)return "";
+    return fr.slice(0,3).map((nick,k)=>{
+      let hs=0;for(const c of String(nick))hs=(hs*31+c.charCodeAt(0))%360;
+      const body="hsl("+hs+" 70% 66%)",line="hsl("+hs+" 40% 32%)",p=FPOS[k],nm=esc(String(nick).slice(0,10));
+      return '<g transform="translate('+p[0]+' '+p[1]+') scale(1.35)"><g class="gd-path gd-p'+(k+2)+'"><g class="gd-wing"><path d="M-2-2C-6-12-16-12-14-4-12 0-6 0-2-2z" fill="#fff" opacity=".85" stroke="'+line+'" stroke-width=".6"/></g>'+
+        '<ellipse cx="0" cy="0" rx="7" ry="4.6" fill="'+body+'" stroke="'+line+'" stroke-width=".7"/><circle cx="6.5" cy="-2.6" r="3.2" fill="'+body+'" stroke="'+line+'" stroke-width=".7"/><circle cx="7.4" cy="-3.2" r=".7" fill="#222"/><path d="M9.4-2.6l4 .9-4 1z" fill="hsl(35 90% 55%)"/>'+
+        '<path d="M-6 1.5l-5 3 5 .6z" fill="'+line+'" opacity=".7"/><path d="M1 5.5c-2 3-3 4.2-3 5.4a3 3 0 006 0c0-1.2-1-2.4-3-5.4z" fill="hsl(200 85% 62%)" stroke="hsl(205 60% 38%)" stroke-width=".5"/>'+
+        '<text x="0" y="-9" text-anchor="middle" font-size="7" font-weight="700" fill="#fff" stroke="'+line+'" stroke-width="2.2" paint-order="stroke" stroke-linejoin="round">'+nm+'</text></g></g>';
+    }).join("");
+  }
+  function sceneSvg(cnt,vis,fr){
     const gf=cnt[2]+cnt[3],fruits=cnt[3];
     const flowers=Math.min(14,Math.round(gf*0.9));
     let fl="";
@@ -57,7 +70,7 @@
       '<g stroke="hsl(30 30% 62%)" stroke-width="2" opacity=".9"><path d="M230 116v-12M240 116v-12M250 116v-12M260 116v-12M226 109h38M226 114h38" fill="none"/></g>'+
       fl+
       '<path d="M0 122 Q80 114 160 121 T320 119 V130H0z" fill="hsl(125 40% 38%)"/>'+
-      vis.map(v=>'<g transform="translate('+v.x+' '+v.y+')">'+v.svg+'</g>').join("")+"</svg>";
+      vis.map(v=>'<g transform="translate('+v.x+' '+v.y+')">'+v.svg+'</g>').join("")+friendCritters(fr)+"</svg>";
   }
   function groups(){
     const lang=S.lang,out=[],seen={};
@@ -72,7 +85,7 @@
   }
   /* quantidades por estágio de um idioma (só leitura); usadas por «Compartilhar» e por Amigos */
   window.gdCounts=function(lang){const c=[0,0,0,0];Object.keys(VOCAB[lang]||{}).forEach(cat=>VOCAB[lang][cat].forEach(e=>{const i=info(e,lang);if(i)c[i.lv]++;}));return c;};
-  let G=[],LAST={cnt:[0,0,0,0],met:0,total:0};
+  let FR=[],FRT=0,G=[],LAST={cnt:[0,0,0,0],met:0,total:0};
   window.gdLast=()=>LAST;window.gdSceneSvg=(cnt,gf)=>sceneSvg(cnt,VIS.filter(v=>(gf!=null?gf:cnt[2]+cnt[3])>=v.n));
   function render(){
     const box=document.getElementById("gd-body");if(!box)return;
@@ -83,7 +96,8 @@
     const due=typeof dueWords==="function"?dueWords().length:0;
     const gf=cnt[2]+cnt[3],vis=VIS.filter(v=>gf>=v.n),nv=VIS.find(v=>gf<v.n);
     LAST={cnt:cnt.slice(),met:met,total:total};
-    let h='<div class="gd-sky">'+sceneSvg(cnt,vis)+'</div>';
+    let h='<div class="gd-sky">'+sceneSvg(cnt,vis,FR)+'</div>';
+    if(FR.length)h+='<p class="help gd-fr" role="status">💧 '+esc(FR.slice(0,3).join(", "))+(FR.length>3?" e mais "+(FR.length-3):"")+(FR.length===1?" regou":" regaram")+" o seu jardim hoje.</p>";
     h+='<button type="button" class="btn wide" id="gd-share" style="margin-bottom:8px">Compartilhar meu jardim</button>';
     const tile=(lv,n,lab)=>'<div class="gd-tile gd'+lv+'">'+plant(lv,330,false)+'<b>'+n+'</b><span>'+lab+'</span></div>';
     h+='<div class="gd-sum">'+tile(3,cnt[3],cnt[3]===1?"fruto":"frutos")+tile(2,cnt[2],cnt[2]===1?"flor":"flores")+tile(1,cnt[1],cnt[1]===1?"semente":"sementes")+tile(0,cnt[0],cnt[0]===1?"sombra":"sombras")+"</div>";
@@ -102,6 +116,7 @@
     if(empty.length)h+='<details class="gd-bed gd-emptybeds"><summary><span class="gd-bn">Canteiros ainda vazios</span><small>'+empty.length+'</small></summary><p class="help gd-none">Terra pronta para plantar. Acerte uma palavra de cada tema e ele ganha as primeiras sementes:</p><div class="gd-chips">'+empty.map(g=>'<span class="gd-chip">'+esc(g.name)+"</span>").join("")+"</div></details>";
     h+='<p class="help">Estágios e prazos: escritos por Claude, sem fonte conferida. O histórico de acertos e erros nunca é apagado.</p>';
     box.innerHTML=h;
+    if(window.frWaterers&&Date.now()-FRT>20000){FRT=Date.now();window.frWaterers().then(a=>{if(Array.isArray(a)&&a.join("|")!==FR.join("|")){FR=a;render();}}).catch(()=>{});}
   }
   function openPlant(key,k){
     const g=G.find(x=>x.key===key),x=g&&g.items[k];if(!x)return;

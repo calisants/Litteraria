@@ -92,12 +92,12 @@ try:
     # apelido curto é recusado; depois ativa com sequência marcada
     pg.fill('#fr-nick','a');pg.click('#fr-on');pg.wait_for_timeout(300);assert '2 a 20' in pg.inner_text('#fr-box')
     pg.fill('#fr-nick','Cami');pg.check('#fr-s1');pg.click('#fr-on');pg.wait_for_selector('#fr-code')
-    assert pg.inner_text('#fr-code')=='K7M2QX9P' and 'Ana' in pg.inner_text('#fr-box')
+    assert pg.inner_text('#fr-code')=='K7M2QX9P';pg.evaluate("()=>__frTab('amigos')");assert 'Ana' in pg.inner_text('#fr-box');pg.evaluate("()=>__frTab('add')")
     assert ('friends_share',{'p_streak':True,'p_words':False}) in st['calls']
     assert any(c[0]=='friends_stats' for c in st['calls']),'deve enviar números'
     # convite por código inexistente e existente
     pg.fill('#fr-add','zzzzzzzz');pg.click('#fr-req');pg.wait_for_timeout(300);assert 'Não achei' in pg.inner_text('#fr-box')
-    pg.fill('#fr-add','ABCD2345');pg.click('#fr-req');pg.wait_for_timeout(300);t=pg.inner_text('#fr-box');assert 'Convite enviado' in t and 'Bia' in t
+    pg.fill('#fr-add','ABCD2345');pg.click('#fr-req');pg.wait_for_timeout(300);t=pg.inner_text('#fr-box');assert 'Convite enviado' in t;pg.evaluate("()=>__frTab('amigos')");assert 'Bia' in pg.inner_text('#fr-box')
     assert ('NOTIFY','invite') in st['calls'],'aviso de convite'
     # aceita convite recebido; lista mostra só o que o amigo compartilha
     pg.click('[data-fr=acc]');pg.wait_for_timeout(300);assert ('NOTIFY','accepted') in st['calls'],'aviso de aceite';t=pg.inner_text('#fr-box').lower();assert 'amigos (1)' in t and '5 dias seguidos' in t and 'palavras acertadas' not in t.split('amigos (1)')[1].split('convites enviados')[0]
@@ -108,10 +108,10 @@ try:
     pg.click('[data-fr=poke]');pg.wait_for_timeout(300);assert 'Cutucada enviada' in pg.inner_text('#fr-box')
     assert ('POKE',{'uid':'f1'}) in st['calls']
     pg.click('[data-fr=poke]');pg.wait_for_timeout(300);assert 'já cutucou essa pessoa hoje' in pg.inner_text('#fr-box')
-    pg.evaluate("()=>document.querySelector('.frset').open=true");assert pg.is_checked('#fr-poke');pg.uncheck('#fr-poke');pg.wait_for_timeout(300);assert ('friends_pokes_set',{'p_on':False}) in st['calls']
+    pg.evaluate("()=>__frTab('set')");assert pg.is_checked('#fr-poke');pg.uncheck('#fr-poke');pg.wait_for_timeout(300);assert ('friends_pokes_set',{'p_on':False}) in st['calls']
     # desafio semanal: propor, aguardar, receber, aceitar, ver placar, encerrar
     assert pg.evaluate("()=>{S.wkd={};P={id:'zz-1',type:'x'};markDone();markDone();markDone();P=null;return S.wkd[ymd()]}")==3,'cada lição concluída conta no dia'
-    assert pg.is_visible('[data-fr=chp]');pg.click('[data-fr=chp]');pg.wait_for_timeout(300);t=pg.inner_text('#fr-box');assert ('NOTIFY','challenge') in st['calls'],'aviso de desafio';assert 'Desafio enviado' in t and 'Aguardando' in t and not pg.is_visible('[data-fr=chp]'),t
+    pg.evaluate("()=>__frTab('amigos')");assert pg.is_visible('[data-fr=chp]');pg.click('[data-fr=chp]');pg.wait_for_timeout(300);t=pg.inner_text('#fr-box');assert ('NOTIFY','challenge') in st['calls'],'aviso de desafio';assert 'Desafio enviado' in t and 'Aguardando' in t and not pg.is_visible('[data-fr=chp]'),t
     assert any(c[0]=='challenge_propose' and c[1]=={'p_uid':'f1'} for c in st['calls'])
     assert not any(c[0]=='challenge_stats' for c in st['calls']),'sem desafio ativo não envia total'
     st['fr'][0]['ch']={'st':'recv'};pg.click('#fr-refresh');pg.wait_for_timeout(300);assert 'te desafiou' in pg.inner_text('.frch')
@@ -122,12 +122,12 @@ try:
     assert pg.locator('.frvs b').first.inner_text()=='3','placar: você 3'
     pg.click('.frmore summary');pg.click('[data-fr=chx]');pg.wait_for_timeout(300);assert any(c[0]=='challenge_end' for c in st['calls']);assert pg.is_visible('[data-fr=chp]') and not pg.is_visible('.frch')
     # mudar compartilhamento
-    pg.evaluate("()=>document.querySelector('.frset').open=true");pg.check('#fr-s2');pg.wait_for_timeout(300);assert ('friends_share',{'p_streak':True,'p_words':True}) in st['calls']
+    pg.evaluate("()=>__frTab('set')");pg.check('#fr-s2');pg.wait_for_timeout(300);assert ('friends_share',{'p_streak':True,'p_words':True}) in st['calls']
     pg.check('#fr-s3');pg.wait_for_timeout(300);assert ('friends_share2',{'p_profile':True,'p_langs':False}) in st['calls']
     pg.check('#fr-s4');pg.wait_for_timeout(300);assert ('friends_share2',{'p_profile':True,'p_langs':True}) in st['calls']
     pr=[c for c in st['calls'] if c[0]=='friends_profile'];assert pr and set(pr[-1][1])=={'p_avatar','p_motto','p_level','p_langs'},pr[-1:]
     # denunciar bloqueia; desbloquear
-    pg.click('.frmore summary');pg.click('[data-fr=rep]');pg.wait_for_timeout(300);assert any(c[0]=='friends_report' and 'ofensivo' in c[1]['p_reason'] for c in st['calls']);assert 'bloqueados' in pg.inner_text('#fr-box').lower()
+    pg.evaluate("()=>__frTab('amigos')");pg.click('.frmore summary');pg.click('[data-fr=rep]');pg.wait_for_timeout(300);pg.evaluate("()=>__frTab('set')");assert any(c[0]=='friends_report' and 'ofensivo' in c[1]['p_reason'] for c in st['calls']);assert 'bloqueados' in pg.inner_text('#fr-box').lower()
     pg.click('[data-fr=unb]');pg.wait_for_timeout(300);assert 'bloqueados' not in pg.inner_text('#fr-box').lower()
     # desativar
     pg.click('#fr-off');pg.wait_for_selector('#fr-on');assert pg.evaluate("()=>localStorage.getItem('mots-parole-friends')")is None

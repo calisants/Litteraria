@@ -1,4 +1,4 @@
-// Edge Function «poke» do Litteraria: envia a notificação de cutucada.
+// Edge Function «poke» do Litteraria: envia as notificações (cutucada, convite, desafio, rega do jardim). Versão 1.76.
 // Fluxo: o app chama esta função com o login da pessoa -> o banco confere amizade/limites (friends_poke) -> aqui enviamos o Web Push.
 // Segredos necessários (Edge Functions -> Secrets): VAPID_PUBLIC, VAPID_PRIVATE, VAPID_SUBJECT (mailto:...). Os outros vêm prontos do Supabase.
 import { createClient } from "npm:@supabase/supabase-js@2";
@@ -36,7 +36,7 @@ Deno.serve(async (req) => {
         ? await user.rpc("garden_water_push", { p_uid: uid })
         : await user.rpc("friends_notify", { p_kind: kind, p_uid: uid || null, p_code: code || null });
     if (re) return out(500, { error: "banco", detail: String(re.message || "").slice(0, 120) });
-    if (kind === "water" && r && r.status === "sem_aviso") return out(200, { status: "ok", sent: 0 });
+    if (kind === "water" && r && r.status === "sem_aviso") return out(200, { status: "sem_aviso", why: r.why || "" });
     if (!r || r.status !== "ok") return out(200, { status: (r && r.status) || "nao_amigo" });
     if (r.uid) uid = r.uid;
 
@@ -62,23 +62,25 @@ Deno.serve(async (req) => {
     };
     const tx = TXT[kind];
     const payload = JSON.stringify({ t: tx[0], b: tx[1], go: tx[2] });
-    let sent = 0;
+    let sent = 0, lastErr = "";
     for (const s of subs || []) {
       try {
         await webpush.sendNotification({ endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } }, payload, { TTL: 3600, urgency: "normal" });
         sent++;
       } catch (e) {
+        lastErr = String((e && (e.statusCode || e.message)) || e).slice(0, 80);
+        console.error("webpush falhou", lastErr);
         if (e && (e.statusCode === 404 || e.statusCode === 410)) await admin.from("push_subs").delete().eq("endpoint", s.endpoint);
       }
     }
     if (sent === 0) {
       if (kind === "water") {
         await admin.rpc("water_undo", { p_sender: u.user.id, p_receiver: uid });
-        return out(200, { status: "falhou" });
+        return out(200, { status: "falhou", why: (subs || []).length ? "envio:" + lastErr : "sem_aparelho" });
       }
       if (kind === "poke") await admin.rpc("poke_undo", { p_sender: u.user.id, p_receiver: uid });
       else await admin.rpc("notify_undo", { p_sender: u.user.id, p_receiver: uid, p_kind: kind });
-      return out(200, { status: "falhou" });
+      return out(200, { status: "falhou", why: (subs || []).length ? "envio:" + lastErr : "sem_aparelho" });
     }
     return out(200, { status: "ok", sent });
   } catch (e) {

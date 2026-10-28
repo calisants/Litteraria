@@ -118,13 +118,12 @@
   }
   function friendCard(f){
     const none=!chips(f)&&!f.motto&&!langsLine(f)&&!f.garden;
-    const u=h(f.uid),nn=h(f.nick);
-    return '<article class="frcard"><div class="frtop">'+avt(f,48)+'<div class="frw"><b class="frn">'+nn+"</b>"+(f.motto?'<div class="frm">“'+h(f.motto)+"”</div>":"")+
-      (ago(f.at)&&(f.streak!=null||f.words!=null)?'<small class="frs">'+h(ago(f.at))+"</small>":"")+"</div></div>"+
-      (chips(f)?'<div class="frchips">'+chips(f)+"</div>":"")+langsLine(f)+(none?'<p class="help">Este amigo não compartilha detalhes.</p>':"")+chBlock(f)+
-      (f.wme?'<div class="frl">💧 <b>'+nn+'</b> regou o seu jardim hoje.</div>':"")+
-      '<div class="row"><button type="button" class="btn primary" data-fr="poke" data-u="'+u+'" aria-label="Cutucar '+nn+'">👋 Cutucar</button>'+(f.garden?'<button type="button" class="btn" data-fr="gard" data-u="'+u+'" aria-label="Ver o jardim de '+nn+'">🌱 Ver jardim</button>':"")+(f.ch?"":'<button type="button" class="btn" data-fr="chp" data-u="'+u+'" aria-label="Desafiar '+nn+' na semana">🏁 Desafiar</button>')+
-      '<details class="frmore"><summary class="btn">Mais</summary><div class="row">'+(f.ch&&f.ch.st==="on"?'<button type="button" class="btn" data-fr="chx" data-u="'+u+'">Encerrar desafio</button>':"")+'<button type="button" class="btn" data-fr="del" data-u="'+u+'">Remover</button><button type="button" class="btn" data-fr="blk" data-u="'+u+'">Bloquear</button><button type="button" class="btn" data-fr="rep" data-u="'+u+'">Denunciar</button></div></details></div></article>';
+    const u=h(f.uid),nn=h(f.nick),ag=ago(f.at);
+    return '<article class="frcard"><div class="frtop">'+avt(f,44)+'<div class="frw"><b class="frn">'+nn+"</b>"+
+      (ag&&(f.streak!=null||f.words!=null)?'<small class="frs">'+h(ag)+"</small>":"")+(f.motto?'<div class="frm">“'+h(f.motto)+"”</div>":"")+"</div></div>"+
+      ((chips(f)||f.wme)?'<div class="frchips">'+chips(f)+(f.wme?'<span class="frc frwet">💧 regou o seu jardim hoje</span>':"")+"</div>":"")+langsLine(f)+(none?'<p class="help">Este amigo não compartilha detalhes.</p>':"")+chBlock(f)+
+      '<div class="fract"><button type="button" class="btn primary" data-fr="poke" data-u="'+u+'" aria-label="Cutucar '+nn+'">👋 Cutucar</button>'+(f.garden?'<button type="button" class="btn" data-fr="gard" data-u="'+u+'" aria-label="Ver o jardim de '+nn+'">🌱 Jardim</button>':"")+(f.ch?"":'<button type="button" class="btn" data-fr="chp" data-u="'+u+'" aria-label="Desafiar '+nn+' na semana">🏁 Desafiar</button>')+"</div>"+
+      '<details class="frmore"><summary>Mais opções</summary><div class="row">'+(f.ch&&f.ch.st==="on"?'<button type="button" class="btn" data-fr="chx" data-u="'+u+'">Encerrar desafio</button>':"")+'<button type="button" class="btn" data-fr="del" data-u="'+u+'">Remover</button><button type="button" class="btn" data-fr="blk" data-u="'+u+'">Bloquear</button><button type="button" class="btn" data-fr="rep" data-u="'+u+'">Denunciar</button></div></details></article>';
   }
   /* convite por link: ?amigo=CODIGO (guardado até a pessoa entrar/ativar; nunca envia sozinho) */
   const IK="mots-parole-invite";
@@ -138,9 +137,26 @@
   window.__hasInvite=()=>!!inv;
   function inviteLink(){return location.origin+location.pathname.replace(/index\.html$/,"")+"?amigo="+encodeURIComponent(me.code);}
   function invNote(){return inv?'<p class="help" role="status"><b>Você recebeu um convite de amizade (código '+h(inv)+').</b> '+(me?"O código já está preenchido abaixo: confira e toque em «Enviar convite».":ses()?"Ative Amigos abaixo; depois o código já aparece preenchido para você enviar o convite.":"Entre na conta (e-mail e código) e ative Amigos; depois o código aparece preenchido.")+"</p>":"";}
+  let tab="amigos",devSt=null;
+  async function dev(){
+    try{const sub=await getSub();devSt={sub:!!sub,perm:window.Notification?Notification.permission:"indisponivel",rm:!!(S.rm&&S.rm.on)};}catch(_){devSt=null;}
+  }
+  function devLine(){
+    if(!devSt)return '<p class="help">Não consegui verificar este aparelho agora.</p>';
+    const falta=[];
+    if(!devSt.rm)falta.push("ligar os <b>lembretes com o app fechado</b> (Ajustes → Lembretes e cartão)");
+    else if(devSt.perm!=="granted")falta.push("permitir <b>notificações</b> para o Litteraria nas configurações do navegador ou do celular");
+    else if(!devSt.sub)falta.push("ativar de novo os lembretes com o app fechado: este aparelho ainda não tem endereço de envio");
+    if(me&&me.poke_ok===false)falta.push("marcar «Aceitar avisos dos amigos» acima");
+    return falta.length?'<div class="frdev bad"><b>Este aparelho ainda não recebe avisos.</b> Falta: '+falta.join("; ")+".</div>":'<div class="frdev ok"><b>Este aparelho está pronto para receber avisos dos amigos.</b></div>';
+  }
+  function tabsBar(L){
+    const n=L.incoming.length,T=[["amigos","Amigos"+(L.friends.length?" ("+L.friends.length+")":"")+(n?" ●":"")],["add","Adicionar"],["set","Ajustes"]];
+    return '<div class="seg frtabs" role="group" aria-label="Seções de Amigos">'+T.map(x=>'<button type="button" data-fr="tab" data-t="'+x[0]+'" aria-pressed="'+(tab===x[0])+'">'+x[1]+"</button>").join("")+"</div>";
+  }
   function view(){
     if(!ses())return invNote()+ '<p class="help">Para usar Amigos, primeiro entre na conta: Perfil → Conta e backup na nuvem.</p><button type="button" class="btn primary wide" id="fr-login">Ir para Conta e nuvem</button>';
-    const note0=msg?'<p class="help" role="status"><b>'+h(msg)+"</b></p>":"";
+    const note0=msg?'<p class="help frnote" role="status"><b>'+h(msg)+"</b></p>":"";
     const note=invNote()+note0;
     if(!me){
       return '<p class="help">Amigos é opcional e começa desligado. Quando você ativar:</p><ul class="help"><li>Seus amigos veem o seu <b>apelido</b> e só os números que você deixar marcados.</li><li>Ninguém te encontra por busca: só entra quem tiver o seu <b>código</b>.</li><li>Não há chat, foto nem mensagens.</li><li>Você pode bloquear, denunciar e desativar quando quiser; desativar apaga seus convites e amizades.</li></ul>'+
@@ -154,40 +170,76 @@
     }
     const L=lst||{friends:[],incoming:[],outgoing:[],blocked:[]};
     if(gv){const f=L.friends.find(x=>x.uid===gv.u);if(f&&window.gdSceneSvg)return gardenView(f,gv.l);gv=null;}
-    let o='<div class="frme">'+avt({nick:me.nick,avatar:S.avatar&&AVATARS[S.avatar]?S.avatar:null},56)+'<div class="frw"><b class="frn">'+h(me.nick)+"</b>"+(S.motto?'<div class="frm">“'+h(S.motto)+"”</div>":'<small class="frs">Sem frase. Escreva uma no Perfil.</small>')+"</div></div>"+note;
-    if(L.incoming.length)o+='<h3 class="lab" style="margin-top:14px">Convites recebidos</h3>'+L.incoming.map(f=>'<div class="cad-row"><span>'+avt(f,32)+' <b>'+h(f.nick)+'</b></span><span><button type="button" class="btn primary" data-fr="acc" data-u="'+h(f.uid)+'">Aceitar</button> <button type="button" class="btn" data-fr="rej" data-u="'+h(f.uid)+'">Recusar</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button></span></div>').join("");
-    o+='<h3 class="lab" style="margin-top:14px">Amigos ('+L.friends.length+')</h3>'+(L.friends.length?L.friends.map(friendCard).join(""):'<p class="help">Ainda sem amigos. Envie o seu código ou digite o de alguém em «Adicionar um amigo».</p>');
-    if(L.outgoing.length)o+='<h3 class="lab" style="margin-top:14px">Convites enviados</h3>'+L.outgoing.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b> · aguardando</span><button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Cancelar</button></div>').join("");
-    o+='<h3 class="lab" style="margin-top:14px">Adicionar um amigo</h3>'+
-      '<input class="tin" id="fr-add" maxlength="12" autocapitalize="characters" autocomplete="off" aria-label="Código do amigo" placeholder="Código do amigo" value="'+h(inv)+'">'+
-      '<button type="button" class="btn primary wide" id="fr-req" style="margin-top:8px">Enviar convite</button>'+
-      '<h3 class="lab" style="margin-top:14px">Seu código de amigo</h3><p style="font-size:1.6rem;font-weight:800;letter-spacing:.12em;margin:4px 0" id="fr-code">'+h(me.code)+'</p>'+
-      '<p class="help">Passe este código só para quem você quer como amigo.</p><div class="row"><button type="button" class="btn" id="fr-copy">Copiar código</button> <button type="button" class="btn primary" id="fr-share">Convidar por link</button> <button type="button" class="btn" id="fr-copylink">Copiar link</button></div><p class="help">O link abre o Litteraria com o seu código já preenchido. Quem recebe ainda precisa tocar em «Enviar convite» e você aceita depois.</p>'+
-      '<details class="frset" style="margin-top:14px"><summary class="lab">O que meus amigos veem e preferências</summary>'+
-      '<label class="chk"><input type="checkbox" id="fr-s1" '+(me.share_streak?"checked":"")+'> Minha sequência de dias</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-s2" '+(me.share_words?"checked":"")+'> Palavras acertadas e dias estudados na semana</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-s3" '+(me.share_profile?"checked":"")+'> Meu ícone, minha frase e meu nível (o ícone e a frase vêm do Perfil)</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-s4" '+(me.share_langs?"checked":"")+'> Os idiomas que estudo e quantas páginas concluí em cada um</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-s5" '+(me.share_garden?"checked":"")+'> O meu jardim: a cena e quantas plantas tenho em cada estágio, por idioma (nunca as palavras). Quem é seu amigo pode regá-lo 1 vez por dia, de brincadeira.</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-tone" '+(me.cheeky!==false?"checked":"")+'> Avisos de rega em tom brincalhão (desmarcado, o aviso é neutro)</label>'+
-      '<label class="chk"><input type="checkbox" id="fr-poke" '+(me.poke_ok!==false?"checked":"")+'> Aceitar avisos dos amigos (cutucadas, convites e desafios)</label>'+
-      (window.__pushOn?'<p class="help">Este aparelho está pronto para receber cutucadas.</p>':'<p class="help">Para receber cutucadas, ligue os lembretes com o app fechado em Ajustes → Lembretes e cartão. Sem isso, você ainda pode cutucar os outros.</p>')+
-      '<p class="help">Apelido atual: <b>'+h(me.nick)+'</b>.</p></details>';
-    if(L.blocked.length)o+='<h3 class="lab" style="margin-top:14px">Bloqueados</h3>'+L.blocked.map(f=>'<div class="cad-row"><span>'+h(f.nick)+'</span><button type="button" class="btn" data-fr="unb" data-u="'+h(f.uid)+'">Desbloquear</button></div>').join("");
-    o+='<div class="row" style="margin-top:16px"><button type="button" class="btn" id="fr-refresh">Atualizar lista</button><button type="button" class="btn" id="fr-off">Desativar Amigos</button></div>'+
-      '<p class="help">Denunciar bloqueia a pessoa e registra a denúncia para a criadora do app. Veja a <a href="#" data-open-priv>Política de Privacidade</a>.</p>';
+    const head='<div class="frme">'+avt({nick:me.nick,avatar:S.avatar&&AVATARS[S.avatar]?S.avatar:null},40)+'<div class="frw"><b class="frn">'+h(me.nick)+"</b>"+(S.motto?'<div class="frm">“'+h(S.motto)+"”</div>":"")+"</div></div>";
+    let o=head+tabsBar(L)+note;
+    if(tab==="amigos"){
+      if(L.incoming.length)o+='<h3 class="lab">Convites recebidos</h3>'+L.incoming.map(f=>'<div class="cad-row"><span>'+avt(f,32)+' <b>'+h(f.nick)+'</b></span><span><button type="button" class="btn primary" data-fr="acc" data-u="'+h(f.uid)+'">Aceitar</button> <button type="button" class="btn" data-fr="rej" data-u="'+h(f.uid)+'">Recusar</button> <button type="button" class="btn" data-fr="blk" data-u="'+h(f.uid)+'">Bloquear</button></span></div>').join("");
+      o+=(L.friends.length?L.friends.map(friendCard).join(""):'<p class="help">Ainda sem amigos. Na aba «Adicionar» você envia o seu código ou digita o de alguém.</p>');
+      if(L.outgoing.length)o+='<h3 class="lab">Convites enviados</h3>'+L.outgoing.map(f=>'<div class="cad-row"><span><b>'+h(f.nick)+'</b> · aguardando</span><button type="button" class="btn" data-fr="del" data-u="'+h(f.uid)+'">Cancelar</button></div>').join("");
+      o+='<div class="row" style="margin-top:12px"><button type="button" class="btn" id="fr-refresh">↻ Atualizar lista</button></div>';
+    }else if(tab==="add"){
+      o+='<h3 class="lab">Adicionar um amigo</h3>'+
+        '<input class="tin" id="fr-add" maxlength="12" autocapitalize="characters" autocomplete="off" aria-label="Código do amigo" placeholder="Código do amigo" value="'+h(inv)+'">'+
+        '<button type="button" class="btn primary wide" id="fr-req" style="margin-top:8px">Enviar convite</button>'+
+        '<h3 class="lab">Seu código de amigo</h3><p class="frcode" id="fr-code">'+h(me.code)+'</p>'+
+        '<p class="help">Passe este código só para quem você quer como amigo.</p><div class="row"><button type="button" class="btn primary" id="fr-share">Convidar por link</button> <button type="button" class="btn" id="fr-copy">Copiar código</button> <button type="button" class="btn" id="fr-copylink">Copiar link</button></div><p class="help">O link abre o Litteraria com o seu código já preenchido. Quem recebe ainda precisa tocar em «Enviar convite» e você aceita depois.</p>';
+    }else{
+      o+='<div class="frset"><h3 class="lab">O que meus amigos veem</h3>'+
+        '<label class="chk"><input type="checkbox" id="fr-s1" '+(me.share_streak?"checked":"")+'> Minha sequência de dias</label>'+
+        '<label class="chk"><input type="checkbox" id="fr-s2" '+(me.share_words?"checked":"")+'> Palavras acertadas e dias estudados na semana</label>'+
+        '<label class="chk"><input type="checkbox" id="fr-s3" '+(me.share_profile?"checked":"")+'> Meu ícone, minha frase e meu nível (o ícone e a frase vêm do Perfil)</label>'+
+        '<label class="chk"><input type="checkbox" id="fr-s4" '+(me.share_langs?"checked":"")+'> Os idiomas que estudo e quantas páginas concluí em cada um</label>'+
+        '<label class="chk"><input type="checkbox" id="fr-s5" '+(me.share_garden?"checked":"")+'> O meu jardim: a cena e quantas plantas tenho em cada estágio, por idioma (nunca as palavras). Quem é seu amigo pode regá-lo 1 vez por dia, de brincadeira.</label>'+
+        '<h3 class="lab">Avisos</h3>'+
+        '<label class="chk"><input type="checkbox" id="fr-tone" '+(me.cheeky!==false?"checked":"")+'> Avisos de rega em tom brincalhão (desmarcado, o aviso é neutro)</label>'+
+        '<label class="chk"><input type="checkbox" id="fr-poke" '+(me.poke_ok!==false?"checked":"")+'> Aceitar avisos dos amigos (cutucadas, convites, desafios e regas)</label>'+devLine()+
+        '<p class="help">Apelido atual: <b>'+h(me.nick)+'</b>.</p></div>';
+      if(L.blocked.length)o+='<h3 class="lab">Bloqueados</h3>'+L.blocked.map(f=>'<div class="cad-row"><span>'+h(f.nick)+'</span><button type="button" class="btn" data-fr="unb" data-u="'+h(f.uid)+'">Desbloquear</button></div>').join("");
+      o+='<div class="row" style="margin-top:16px"><button type="button" class="btn" id="fr-off">Desativar Amigos</button></div>'+
+        '<p class="help">Denunciar bloqueia a pessoa e registra a denúncia para a criadora do app. Veja a <a href="#" data-open-priv>Política de Privacidade</a>.</p>';
+    }
     return o;
   }
-  function paint(){const el=$("#fr-box");if(!el)return;const d=$(".frset"),was=d?d.open:false;el.innerHTML=view();const n=$(".frset");if(n&&was)n.open=true;}
+  window.__frTab=t=>{tab=t;gv=null;paint();};
+  function paint(){const el=$("#fr-box");if(!el)return;el.innerHTML=view();}
   async function openFriends(){
     openSheet("Amigos",'<div id="fr-box"><p class="help">Carregando…</p></div>',false);
-    if(ses())await load();paint();
+    tab=inv?"add":"amigos";
+    if(ses()){await load();dev().then(()=>{if(tab==="set")paint();});}paint();
   }
   window.openFriends=openFriends;
   /* aviso por notificação (convite, aceite, desafio): melhor esforço, em segundo plano; falhar nunca atrapalha a ação */
-  function notify(kind,uid,code){
-    try{CLOUD.authed("/functions/v1/poke",{method:"POST",body:{kind:kind,uid:uid||undefined,code:code||undefined}}).catch(()=>{});}catch(_){}
+  async function notify(kind,uid,code){
+    try{const r=await CLOUD.authed("/functions/v1/poke",{method:"POST",body:{kind:kind,uid:uid||undefined,code:code||undefined}});
+      let j=null;try{j=await r.json();}catch(_){}
+      return Object.assign({http:r.status},j||{});}catch(_){return {status:"rede"};}
   }
+  /* o que dizer depois de regar, conforme a resposta da função de avisos */
+  function waterMsg(nn,n){
+    const ok="Jardim regado! 💧 ";
+    if(!n||n.status==="rede")return ok+"Não consegui falar com o servidor de avisos agora; a rega valeu, mas "+nn+" não foi avisado(a).";
+    if(n.http===404)return ok+"A rega valeu, mas a função de avisos «poke» ainda não está publicada no Supabase.";
+    if(n.http===401||n.http===403)return ok+"A rega valeu, mas o servidor recusou o login para enviar o aviso (erro "+n.http+").";
+    if(n.http>=500)return ok+"A rega valeu, mas a função de avisos deu erro"+(n.detail?" ("+String(n.detail).slice(0,60)+")":"")+".";
+    if(n.status==="ok"&&n.sent>0)return ok+"O aviso foi enviado para "+nn+".";
+    if(n.status==="ok")return ok+"A rega valeu, mas o servidor não enviou o aviso (a função de avisos pode estar desatualizada: publique de novo o poke.ts).";
+    if(n.status==="sem_aviso"){
+      const w=n.why;
+      if(w==="sem_aceite")return ok+nn+" desligou os avisos dos amigos, então a rega valeu sem notificação.";
+      if(w==="sem_aparelho")return ok+nn+" ainda não tem um aparelho recebendo avisos (precisa ligar os lembretes com o app fechado em Ajustes), então a rega valeu sem notificação.";
+      return ok+"A rega valeu, sem notificação.";
+    }
+    if(n.status==="falhou")return ok+"A rega valeu, mas o aparelho de "+nn+" não aceitou o aviso"+(n.why?" ("+String(n.why).slice(0,40)+")":"")+".";
+    return ok+"A rega valeu, mas o aviso não saiu.";
+  }
+  /* apelidos de quem regou o meu jardim hoje (usado pela cena do jardim; só com Amigos ativo; no máximo 1 consulta por minuto) */
+  let wc={t:0,v:[]};
+  window.frWaterers=async function(){
+    if(!ses()||!on()){wc={t:0,v:[]};return [];}
+    if(Date.now()-wc.t<60000)return wc.v;
+    try{const l=await rpc("friends_list");lst=l;wc={t:Date.now(),v:(l.friends||[]).filter(f=>f.wme).map(f=>String(f.nick||"")).filter(Boolean)};}catch(_){wc={t:Date.now(),v:wc.v};}
+    return wc.v;
+  };
   async function act(fn){
     if(busy)return;busy=true;
     try{await fn();msg=msg||"";}catch(e){msg=e.message;}
@@ -203,7 +255,7 @@
       await rpc("friends_enable",{p_nick:nick});await rpc("friends_share",{p_streak:s1,p_words:s2});
       if($("#fr-s3").checked||$("#fr-s4").checked)await rpc("friends_share2",{p_profile:$("#fr-s3").checked,p_langs:$("#fr-s4").checked});
       if($("#fr-s5").checked)await rpc("friends_share3",{p_garden:true,p_cheeky:true});
-      me=await rpc("friends_me");setOn(true);await pushStats();msg="Amigos ativado. Passe o seu código a quem você quiser como amigo.";
+      me=await rpc("friends_me");setOn(true);tab="add";await pushStats();dev();msg="Amigos ativado. Passe o seu código a quem você quiser como amigo.";
     });
     if(t.id==="fr-copy"){try{navigator.clipboard.writeText(me.code);msg="Código copiado.";}catch(_){msg="Não consegui copiar; selecione o código e copie.";}paint();return;}
     if(t.id==="fr-copylink"){try{navigator.clipboard.writeText(inviteLink());msg="Link copiado.";}catch(_){msg="Não consegui copiar o link.";}paint();return;}
@@ -249,9 +301,10 @@
     if(a==="water")return act(async()=>{
       const f=(lst&&lst.friends||[]).find(x=>x.uid===u),nn=f?f.nick:"seu amigo";
       const r=await rpc("garden_water",{p_uid:u});
-      if(r&&r.status==="ok")notify("water",u);
-      msg={ok:"Jardim regado! 💧 Se "+nn+" aceita avisos, a notificação já está a caminho.",ja_hoje:"Você já regou o jardim de "+nn+" hoje. Amanhã pode de novo.",sem_jardim:nn+" não está mostrando o jardim.",nao_amigo:"Vocês não estão mais conectados.",limite:"O jardim de "+nn+" já foi regado muitas vezes hoje. Tente amanhã."}[r&&r.status]||"Pronto.";
+      if(r&&r.status==="ok"){msg="Regando… 💧";paint();msg=waterMsg(nn,await notify("water",u));return;}
+      msg={ja_hoje:"Você já regou o jardim de "+nn+" hoje. Amanhã pode de novo.",sem_jardim:nn+" não está mostrando o jardim.",nao_amigo:"Vocês não estão mais conectados.",limite:"O jardim de "+nn+" já foi regado muitas vezes hoje. Tente amanhã."}[r&&r.status]||"Pronto.";
     });
+    if(a==="tab"){tab=t.dataset.t;msg="";if(tab==="set")dev().then(paint);paint();return;}
     if(a==="unb")return act(()=>rpc("friends_unblock",{p_uid:u}));
     if(a==="rep")return act(async()=>{const m=prompt("Conte em poucas palavras o que aconteceu (opcional):","");if(m===null)return;await rpc("friends_report",{p_uid:u,p_reason:m});msg="Denúncia enviada e pessoa bloqueada.";});
   });

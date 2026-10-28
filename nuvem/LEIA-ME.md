@@ -46,3 +46,9 @@ Avisos: «te convidou para ser amigo», «aceitou o seu convite», «te desafiou
 2. Edge Functions → `poke` → cole o conteúdo novo de `nuvem/poke/index.ts` → Deploy (agora aceita `kind: "water"`).
 3. No app: Amigos → «O que meus amigos veem e preferências» → marque «O meu jardim» (começa desligado). Quem é amigo aceito e tem o jardim visível ganha o botão «🌱 Ver jardim» no cartão e pode «Regar» 1 vez por dia (máx. 5 regas por dia no jardim de cada pessoa).
 Só quantidades por estágio (sombra, semente, flor, fruto) por idioma vão ao servidor, nunca palavras. Regar não muda o progresso de ninguém. O aviso é brincalhão por padrão; quem desmarca «Avisos de rega em tom brincalhão» recebe um aviso neutro. Sem o passo 1, o app avisa «O servidor ainda não tem o jardim dos amigos instalado (jardim.sql)»; sem o passo 2 a rega é registrada, mas a notificação não chega.
+
+
+## Atualização 1.76 (aviso de rega com motivo)
+1. SQL Editor: rode de novo `jardim.sql` (pode rodar quantas vezes quiser). Ele passa a devolver o motivo quando o aviso não sai.
+2. Edge Functions → poke → Code: cole o `poke/index.ts` novo e clique em «Deploy updates».
+3. Para receber avisos, o aparelho do amigo precisa de: lembretes com o app fechado ligados (Ajustes), permissão de notificações e «Aceitar avisos dos amigos» marcado. Amigos → Ajustes mostra o que falta.

@@ -65,19 +65,19 @@ begin
 end $$;
 
 -- usada pela Edge Function antes de enviar a notificação da rega. Só 1 aviso por rega e só se a pessoa aceita avisos e tem aparelho inscrito.
--- Devolve {status, nick, cheeky}: ok | sem_aviso
+-- Devolve {status, nick, cheeky}: ok | sem_aviso (com why: invalido | sem_aceite | sem_aparelho | ja_enviado)
 create or replace function public.garden_water_push(p_uid uuid) returns jsonb language plpgsql security definer set search_path = '' as $$
 declare me uuid := (select auth.uid()); d date := (now() at time zone 'America/Sao_Paulo')::date; mynick text; ok boolean; ch boolean; got int;
 begin
-  if me is null or p_uid is null or p_uid = me then return jsonb_build_object('status', 'sem_aviso'); end if;
+  if me is null or p_uid is null or p_uid = me then return jsonb_build_object('status', 'sem_aviso', 'why', 'invalido'); end if;
   select nick into mynick from public.friend_profiles where user_id = me;
   select poke_ok, cheeky into ok, ch from public.friend_profiles where user_id = p_uid;
-  if mynick is null or ok is distinct from true or not exists (select 1 from public.push_subs where user_id = p_uid) then
-    return jsonb_build_object('status', 'sem_aviso');
-  end if;
+  if mynick is null then return jsonb_build_object('status', 'sem_aviso', 'why', 'invalido'); end if;
+  if ok is distinct from true then return jsonb_build_object('status', 'sem_aviso', 'why', 'sem_aceite'); end if;
+  if not exists (select 1 from public.push_subs where user_id = p_uid) then return jsonb_build_object('status', 'sem_aviso', 'why', 'sem_aparelho'); end if;
   update public.waterings set pushed = true where sender = me and receiver = p_uid and day = d and not pushed;
   get diagnostics got = row_count;
-  if got = 0 then return jsonb_build_object('status', 'sem_aviso'); end if;
+  if got = 0 then return jsonb_build_object('status', 'sem_aviso', 'why', 'ja_enviado'); end if;
   return jsonb_build_object('status', 'ok', 'nick', mynick, 'cheeky', coalesce(ch, true));
 end $$;
 
