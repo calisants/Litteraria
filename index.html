@@ -1079,7 +1079,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.70.2",d:"2026-10-27"};
+const APP_REL={v:"1.71.0",d:"2026-10-27"};
 
 
 const RAW={
@@ -4434,7 +4434,7 @@ function lessonPath(){
   BOOKS.forEach(b=>VOLUME3.pages.filter(p=>p.type!=="jardim"&&(p.book===b.id||p.rd===b.id)).forEach(p=>out.push({vol:3,page:p})));
   /* jogos de livros e de memória: entram no fim da trilha e, antes disso, como intervalo entre lições (ver pickGame) */
   BOOKS.forEach(b=>b.chunks.forEach(c=>{add(1,"search-"+c.cat+"-easy");add(1,"cross-"+c.cat+"-easy");}));
-  const byT=["memoria","citacao","regra","ouvir","trecho"].map(t=>VOLUME.pages.filter(p=>p.type===t));
+  const byT=["memoria","genero","ditado","citacao","regra","ouvir","trecho"].map(t=>VOLUME.pages.filter(p=>p.type===t));
   for(let i=0;byT.some(a=>i<a.length);i++)byT.forEach(a=>{if(a[i])out.push({vol:1,page:a[i]});});
   const seen=new Set();
   return(_path=out.filter(r=>{const k=r.page.id;if(seen.has(k))return false;seen.add(k);return true;}));
@@ -4453,7 +4453,7 @@ function earlyBook(out,add){
 }
 /* Jogos entre lições: depois de 2 lições seguidas, o «Hoje» e o «Próximo» oferecem um jogo (de tipo diferente do último).
    Prioridade: jogo do mesmo tema da próxima lição; jogo de tema anterior ainda não feito; jogo solto (memória, livros). */
-const GAME_T=["odd","connect","search","cross","memoria","citacao","trecho","regra","ouvir"];
+const GAME_T=["odd","connect","search","cross","memoria","citacao","trecho","regra","ouvir","genero","ditado"];
 const isGameRef=r=>GAME_T.indexOf(r.page.type)>=0;
 const refCat=r=>r.page.cat||r.page.main||null;
 function pickGame(up){
@@ -4480,7 +4480,7 @@ function scheduleLearned(p){
     S.rvv[key]=[rvDue(2),1,0];n++;
   });
 }
-const SOLTOS=new Set(["memoria","citacao","trecho","regra","ouvir"]);
+const SOLTOS=new Set(["memoria","citacao","trecho","regra","ouvir","genero","ditado"]);
 const _mdone=markDone;
 markDone=function(){
   const t=P&&P.type;
@@ -5398,6 +5398,257 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
       od2.bank=s.bank;od2.put=(s.put||[]).filter(id=>s.bank.indexOf(id)>=0);od2.hint=!!s.hint;od2.tries=+s.tries||0;renderOrd();
     }
   });
+})();
+
+/* ===== Jogos novos (v1.71): «Gênero das palavras» (le/la, il/lo/la) e «Ditado de frases (com áudio)» =====
+   Volume 3 · Jogos. Gênero: só francês e italiano, só palavras com artigo definido que mostra o gênero (le/la; il/lo/la). As palavras com «l'» ficam de fora,
+   porque o app não guarda o gênero delas. Acertos NÃO contam como palavra conhecida (só os erros vão para a revisão), para um chute certo não liberar a gramática.
+   Ditado: as frases de «Construção de frases» e dos diálogos (nunca frases de livros); sem áudio há o botão «Mostrar a frase». */
+(function(){
+  const cnt=t=>VOLUME.pages.filter(p=>p.type===t).length;
+  VOLUME.types=VOLUME.types.concat([
+    ["genero","Gênero das palavras: le ou la? il, lo ou la?","Gênero (le/la)"],
+    ["ditado","Ouça a frase e escreva","Ditado de frases (com áudio)"]]);
+  GAMENAME.genero="Gênero das palavras";GAMENAME.ditado="Ditado de frases (com áudio)";
+  ["genero","ditado"].forEach(t=>{STAGES[t]="#gstage";DOCKS[t]="none";});
+  GAMEFN.genero=startGenero;GAMEFN.ditado=startDitado;
+
+  const ART={fr:["le","la"],it:["il","lo","la"]};
+  const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))>>>0;return h;};
+  const genPool=lang=>{
+    const seen=new Set(),out=[];
+    Object.keys(VOCAB[lang]||{}).forEach(c=>VOCAB[lang][c].forEach(e=>{
+      const k=e.w.toLowerCase();
+      if(!seen.has(k)&&ART[lang]&&ART[lang].indexOf(e.a)>=0&&(!e.cls||e.cls==="substantivo")){seen.add(k);out.push(e);}
+    }));
+    return out;
+  };
+  const dictLines=lang=>{
+    const out=[];
+    const add=a=>(a||[]).forEach(pg=>(pg||[]).forEach(l=>{const n=l.s.split(/\s+/).length;if(n>=3&&n<=12)out.push(l);}));
+    add(FRASES[lang]);add(DIALOGS[lang]);
+    return out;
+  };
+  window.__genPool=genPool;window.__dictLines=dictLines;
+
+  /* ---- páginas ---- */
+  const byW={};
+  ["fr","it"].forEach(lang=>{
+    const pool=genPool(lang).sort((a,b)=>hash(lang+a.w)-hash(lang+b.w)),PER=12;
+    byW[lang]={};pool.forEach(e=>{byW[lang][e.w.toLowerCase()]=e;});
+    const n=Math.max(1,Math.ceil(pool.length/PER));
+    for(let i=0;i<n&&pool.length>=6;i++){
+      const part=pool.slice(Math.round(i*pool.length/n),Math.round((i+1)*pool.length/n));
+      VOLUME.pages.push({id:"genero-"+lang+"-"+(i+1),type:"genero",n:cnt("genero")+1,langs:[lang],themes:[],sub:"Artigo certo",meta:"Artigo certo · parte "+(i+1)+" de "+n,words:part.map(e=>e.w.toLowerCase())});
+    }
+  });
+  ["fr","it","en"].forEach(lang=>{
+    const L=dictLines(lang),PER=5,n=Math.floor(L.length/PER);
+    for(let i=0;i<n;i++){
+      VOLUME.pages.push({id:"ditado-"+lang+"-"+(i+1),type:"ditado",n:cnt("ditado")+1,langs:[lang],themes:[],sub:"Frases do dia a dia",meta:"Frases do dia a dia · parte "+(i+1)+" de "+n,lines:L.slice(i*PER,(i+1)*PER).map(l=>({s:l.s,pt:l.pt}))});
+    }
+  });
+
+  const rec=ok=>{bump();if(typeof gamAns==="function")gamAns(ok);};
+
+  /* ---- Gênero ---- */
+  let gn=null;
+  function startGenero(){
+    seedNow();fitFn=null;
+    const es=P.words.map(w=>byW[S.lang][w]).filter(Boolean);
+    gn={items:shuffle(es),i:0,score:0,sel:null};
+    renderGenero();
+  }
+  function renderGenero(){
+    const e=gn.items[gn.i],arts=ART[S.lang],ans=gn.sel!==null;
+    let h='<p class="ocount">'+(gn.i+1)+" de "+gn.items.length+" · acertos: "+gn.score+"</p>";
+    h+='<div style="text-align:center">'+(DRAW[S.lang]&&DRAW[S.lang][e.w.toLowerCase()]?'<span class="wdraw-sm" style="display:inline-block;width:72px">'+drawSvg(S.lang,e.w,e.pt)+"</span>":"")+'<p class="qz-s" style="font-size:1.6rem;margin:6px 0"><b>'+esc(e.w)+"</b></p></div>";
+    h+='<p class="help" style="text-align:center">Qual artigo vai antes desta palavra?</p>';
+    h+='<div class="lopts">'+arts.map((a,i)=>'<button type="button" class="lopt'+(ans?(a===e.a?" right":(gn.sel===i?" wrong":"")):"")+'" data-g="'+i+'"'+(ans?" disabled":"")+">"+esc(a)+"</button>").join("")+"</div>";
+    if(ans){
+      const ok=arts[gn.sel]===e.a;
+      h+='<p class="note"><b>'+(ok?"Certo!":"O certo é: "+esc(e.a))+"</b><br>"+esc(full(e))+" = "+esc(e.pt)+' '+speakBtn(full(e))+'</p><p class="help">Dica de estudo: aprenda a palavra sempre com o artigo («'+esc(full(e))+"»).</p>";
+      h+='<div class="row"><button type="button" class="btn primary" id="gn-next">'+(gn.i===gn.items.length-1?"Ver resultado":"Próxima")+"</button></div>";
+    }
+    $("#gstage").innerHTML=h;
+  }
+  $("#gstage").addEventListener("click",ev=>{
+    if(!P||P.type!=="genero"||!gn)return;
+    const b=ev.target.closest("[data-g]");
+    if(b&&gn.sel===null){
+      gn.sel=+b.dataset.g;const e=gn.items[gn.i],ok=ART[S.lang][gn.sel]===e.a;
+      if(ok)gn.score++;else{window.GDFORM=4;try{skRec(e.w,e.pt,false);}finally{window.GDFORM=undefined;}}
+      rec(ok);sfx(ok?"ok":"bad");renderGenero();return;
+    }
+    if(ev.target.closest("#gn-next")){
+      if(gn.i<gn.items.length-1){gn.i++;gn.sel=null;renderGenero();return;}
+      markDone();sfx("done");
+      openSheet("Página concluída: "+gn.score+" de "+gn.items.length+" certas",gn.items.map(e=>'<div class="srow"><span class="w">'+esc(full(e))+'</span><span class="pt">'+esc(e.pt)+"</span>"+speakBtn(full(e))+"</div>").join(""),true);
+    }
+  });
+
+  /* ---- Ditado ---- */
+  const norm=s=>String(s).toLowerCase().replace(/[’‘`]/g,"'").replace(/[.,!?;:«»"“”()¿¡…\-–—]/g," ").replace(/\s+/g," ").trim();
+  const plain=s=>norm(s).normalize("NFD").replace(/[̀-ͯ]/g,"");
+  window.__dictNorm=norm;window.__dictPlain=plain;
+  let dt=null;
+  function startDitado(){
+    seedNow();fitFn=null;
+    dt={items:shuffle(P.lines),i:0,score:0,res:null,show:false};
+    renderDitado();
+  }
+  function renderDitado(){
+    const l=dt.items[dt.i],r=dt.res;
+    let h='<p class="ocount">'+(dt.i+1)+" de "+dt.items.length+" · acertos: "+dt.score+"</p>";
+    h+='<div class="row" style="justify-content:center"><button type="button" class="btn primary" id="dt-play">🔊 Ouvir a frase</button></div>';
+    if(!r){
+      h+=dt.show?'<p class="qz-s">'+esc(l.s)+'</p><p class="help" style="text-align:center">Copie a frase para treinar a escrita.</p>':'<div class="row" style="justify-content:center"><button type="button" class="btn" id="dt-show">Mostrar a frase (sem áudio)</button></div>';
+      h+='<label class="help" for="dt-in">Escreva o que você ouviu em '+esc(LNAME[S.lang])+':</label><input id="dt-in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width:100%;font-size:1.1rem;padding:12px;min-height:48px">';
+      h+='<div class="row"><button type="button" class="btn primary" id="dt-ok">Conferir</button></div>';
+    }else{
+      h+='<p class="note"><b>'+(r==="ok"?"Certo!":r==="acc"?"Certo, mas faltaram acentos.":"Quase lá. A frase era:")+"</b><br>"+esc(l.s)+" "+speakBtn(l.s)+"<br><small>"+esc(l.pt)+"</small></p>";
+      if(r==="bad")h+='<p class="help">Você escreveu: '+esc(dt.typed)+"</p>";
+      h+='<p class="help">Tradução: escrita por Claude, sem fonte conferida.</p>';
+      h+='<div class="row"><button type="button" class="btn primary" id="dt-next">'+(dt.i===dt.items.length-1?"Ver resultado":"Próxima")+"</button></div>";
+    }
+    $("#gstage").innerHTML=h;
+    const inp=$("#dt-in");if(inp&&!/Android|iPhone|iPad/.test(navigator.userAgent))inp.focus();
+  }
+  function checkDit(){
+    const inp=$("#dt-in");if(!inp||dt.res)return;
+    const l=dt.items[dt.i],t=inp.value;if(!t.trim()){inp.focus();return;}
+    dt.typed=t;
+    dt.res=norm(t)===norm(l.s)?"ok":(plain(t)===plain(l.s)?"acc":"bad");
+    if(dt.res!=="bad")dt.score++;
+    rec(dt.res!=="bad");sfx(dt.res==="bad"?"bad":"ok");renderDitado();
+  }
+  $("#gstage").addEventListener("click",ev=>{
+    if(!P||P.type!=="ditado"||!dt)return;
+    if(ev.target.closest("#dt-play")){speak(dt.items[dt.i].s);return;}
+    if(ev.target.closest("#dt-show")){dt.show=true;const v=($("#dt-in")||{}).value;renderDitado();if(v&&$("#dt-in"))$("#dt-in").value=v;return;}
+    if(ev.target.closest("#dt-ok")){checkDit();return;}
+    if(ev.target.closest("#dt-next")){
+      if(dt.i<dt.items.length-1){dt.i++;dt.res=null;dt.show=false;renderDitado();speak(dt.items[dt.i].s);return;}
+      markDone();sfx("done");
+      openSheet("Página concluída: "+dt.score+" de "+dt.items.length+" certas",dt.items.map(l=>'<div class="srow"><span class="pt"><b>'+esc(l.s)+"</b><br><small>"+esc(l.pt)+"</small></span>"+speakBtn(l.s)+"</div>").join(""),true);
+    }
+  });
+  $("#gstage").addEventListener("keydown",ev=>{if(ev.key==="Enter"&&ev.target&&ev.target.id==="dt-in"){ev.preventDefault();checkDit();}});
+  window.__gnState=()=>gn;window.__dtState=()=>dt;
+})();
+
+/* ===== Só 5 minutos (v1.71) =====
+   Sessão curta que se monta sozinha, em Treino: 3 palavras (as que estão para rever; senão as mais fracas; senão as que você já viu),
+   2 de gênero (fr/it) ou de escrita (en) e 1 ditado de frase. 6 passos, círculo de progresso. A quantidade e a mistura são julgamento de Claude, sem fonte. */
+(function(){
+  let f5=null;
+  const TOTAL=6;
+  const ring=n=>{const r=26,c=2*Math.PI*r,d=c*n/TOTAL;return '<svg viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="'+n+' de '+TOTAL+'"><circle cx="32" cy="32" r="'+r+'" fill="none" stroke="currentColor" stroke-opacity=".18" stroke-width="7"/><circle cx="32" cy="32" r="'+r+'" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-dasharray="'+d.toFixed(1)+" "+c.toFixed(1)+'" transform="rotate(-90 32 32)"/><text x="32" y="37" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor">'+n+"</text></svg>";};
+
+  function pickWords(){
+    const ix=vIdx()[S.lang]||{},out=[],seen=new Set();
+    const add=e=>{if(e&&e.w&&!seen.has(e.w.toLowerCase())&&out.length<3){seen.add(e.w.toLowerCase());out.push(e);}};
+    Object.keys(S.rvv).filter(k=>k.indexOf(S.lang+":v|")===0).sort((a,b)=>S.rvv[a][0]-S.rvv[b][0]).forEach(k=>{const r=rvVocab(k);if(r)add(r.e);});
+    weakWords().forEach(add);
+    const sk=S.sk[S.lang]||{};
+    shuffle(Object.keys(sk)).forEach(k=>add(ix[k]));
+    if(out.length<3)shuffle(Object.values(ix)).forEach(add);
+    return out;
+  }
+  function meaningQ(e){
+    const ix=Object.values(vIdx()[S.lang]||{}).filter(x=>x.pt&&x.pt!==e.pt);
+    const wrong=[],seen=new Set([e.pt]);
+    shuffle(ix).forEach(x=>{if(wrong.length<3&&!seen.has(x.pt)&&x.cls===e.cls){seen.add(x.pt);wrong.push(x.pt);}});
+    shuffle(ix).forEach(x=>{if(wrong.length<3&&!seen.has(x.pt)){seen.add(x.pt);wrong.push(x.pt);}});
+    return {k:"m",e:e,opts:shuffle([e.pt].concat(wrong))};
+  }
+  function build(){
+    const steps=pickWords().map(meaningQ);
+    const gen=(S.lang==="fr"||S.lang==="it")?shuffle(window.__genPool(S.lang)).slice(0,2).map(e=>({k:"g",e:e})):null;
+    if(gen&&gen.length)gen.forEach(x=>steps.push(x));
+    else{
+      shuffle(Object.values(vIdx()[S.lang]||{}).filter(e=>e.w.length>=4&&e.w.length<=9&&!/[\s'-]/.test(e.w))).slice(0,2).forEach(e=>steps.push({k:"w",e:e}));
+    }
+    const L=window.__dictLines(S.lang);
+    if(L.length)steps.push({k:"d",l:shuffle(L)[0]});
+    return steps.slice(0,TOTAL);
+  }
+  const rec=(w,pt,ok)=>{
+    bump();if(typeof gamAns==="function")gamAns(ok);
+    if(w){window.GDFORM=4;try{skRec(w,pt,ok);}finally{window.GDFORM=undefined;}}
+  };
+
+  function open(){
+    const st=build();
+    if(st.length<3){openSheet("Só 5 minutos",'<p>Ainda não há itens suficientes neste idioma. Faça uma lição de vocabulário primeiro.</p>',true);return;}
+    f5={st:st,i:0,score:0,res:null,sel:null,typed:""};
+    openSheet("Só 5 minutos",'<div id="f5"></div>',false);
+    paint();
+  }
+  function head(){return '<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><span style="color:var(--accent,currentColor)">'+ring(f5.i)+'</span><span class="help" style="margin:0">Passo '+(Math.min(f5.i+1,f5.st.length))+" de "+f5.st.length+" · "+LNAME[S.lang]+"</span></div>";}
+  function paint(){
+    const el=document.getElementById("f5");if(!el||!f5)return;
+    if(f5.i>=f5.st.length){
+      el.innerHTML=head()+'<p class="note"><b>Sessão concluída!</b><br>'+f5.score+" de "+f5.st.length+" certas. Cinco minutos já contam como dia de estudo.</p>"+
+        '<div class="row"><button type="button" class="btn primary" id="f5-close">Fechar</button> <button type="button" class="btn" id="f5-again">Mais uma sessão</button></div>';
+      sfx("done");return;
+    }
+    const s=f5.st[f5.i],a=f5.res!==null;
+    let h=head();
+    if(s.k==="m"){
+      h+='<p class="qz-s" style="font-size:1.5rem;text-align:center"><b>'+esc(full(s.e))+"</b> "+speakBtn(full(s.e))+'</p><p class="help" style="text-align:center">O que significa?</p>';
+      h+='<div class="lopts">'+s.opts.map((o,i)=>'<button type="button" class="lopt long'+(a?(o===s.e.pt?" right":(f5.sel===i?" wrong":"")):"")+'" data-f5o="'+i+'"'+(a?" disabled":"")+">"+esc(o)+"</button>").join("")+"</div>";
+    }else if(s.k==="g"){
+      const arts=S.lang==="fr"?["le","la"]:["il","lo","la"];
+      h+='<p class="qz-s" style="font-size:1.5rem;text-align:center"><b>'+esc(s.e.w)+'</b></p><p class="help" style="text-align:center">Qual artigo vai antes?</p>';
+      h+='<div class="lopts">'+arts.map((x,i)=>'<button type="button" class="lopt'+(a?(x===s.e.a?" right":(f5.sel===i?" wrong":"")):"")+'" data-f5g="'+i+'"'+(a?" disabled":"")+">"+esc(x)+"</button>").join("")+"</div>";
+    }else if(s.k==="w"){
+      h+='<p class="qz-s" style="text-align:center">Escreva em '+esc(LNAME[S.lang])+": <b>"+esc(s.e.pt)+"</b></p>";
+      h+=a?"":'<input id="f5-in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width:100%;font-size:1.1rem;padding:12px;min-height:48px"><div class="row"><button type="button" class="btn primary" id="f5-ok">Conferir</button></div>';
+    }else{
+      h+='<div class="row" style="justify-content:center"><button type="button" class="btn primary" id="f5-play">🔊 Ouvir a frase</button></div>';
+      h+=a?"":'<div class="row" style="justify-content:center"><button type="button" class="btn" id="f5-show">Mostrar a frase (sem áudio)</button></div>'+(f5.show?'<p class="qz-s">'+esc(s.l.s)+"</p>":"")+'<input id="f5-in" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width:100%;font-size:1.1rem;padding:12px;min-height:48px"><div class="row"><button type="button" class="btn primary" id="f5-ok">Conferir</button></div>';
+    }
+    if(a){
+      const ok=f5.res!=="bad";
+      const ans=s.k==="m"?full(s.e)+" = "+s.e.pt:s.k==="g"?full(s.e)+" = "+s.e.pt:s.k==="w"?full(s.e)+" = "+s.e.pt:s.l.s+" ("+s.l.pt+")";
+      h+='<p class="note"><b>'+(ok?"Certo!":"Resposta:")+"</b> "+esc(ans)+"</p>"+'<div class="row"><button type="button" class="btn primary" id="f5-next">'+(f5.i===f5.st.length-1?"Ver resultado":"Próximo")+"</button></div>";
+    }
+    el.innerHTML=h;
+  }
+  function done(ok){f5.res=ok?"ok":"bad";if(ok)f5.score++;sfx(ok?"ok":"bad");paint();}
+  document.addEventListener("click",ev=>{
+    const t=ev.target;if(!t.closest)return;
+    if(t.closest("#train-five")){closeSheet();open();return;}
+    if(!f5)return;
+    if(!t.closest("#f5")&&!t.closest("#f5-close"))return;
+    const s=f5.st[f5.i];
+    let b;
+    if((b=t.closest("[data-f5o]"))&&f5.res===null){f5.sel=+b.dataset.f5o;const ok=s.opts[f5.sel]===s.e.pt;rec(s.e.w,s.e.pt,ok);done(ok);return;}
+    if((b=t.closest("[data-f5g]"))&&f5.res===null){f5.sel=+b.dataset.f5g;const arts=S.lang==="fr"?["le","la"]:["il","lo","la"];const ok=arts[f5.sel]===s.e.a;rec(ok?null:s.e.w,s.e.pt,ok);done(ok);return;}
+    if(t.closest("#f5-ok")&&f5.res===null){
+      const v=(document.getElementById("f5-in")||{}).value||"";if(!v.trim())return;
+      if(s.k==="w"){const ok=window.__dictPlain(v)===window.__dictPlain(s.e.w);rec(s.e.w,s.e.pt,ok);done(ok);}
+      else{const ok=window.__dictPlain(v)===window.__dictPlain(s.l.s);rec(null,null,ok);done(ok);}
+      return;
+    }
+    if(t.closest("#f5-play")){speak(s.l.s);return;}
+    if(t.closest("#f5-show")){f5.show=true;const v=(document.getElementById("f5-in")||{}).value;paint();if(v)document.getElementById("f5-in").value=v;return;}
+    if(t.closest("#f5-next")){f5.i++;f5.res=null;f5.sel=null;f5.show=false;paint();const n=f5.st[f5.i];if(n&&n.k==="d")speak(n.l.s);return;}
+    if(t.closest("#f5-close")){f5=null;closeSheet();return;}
+    if(t.closest("#f5-again")){closeSheet();open();return;}
+  });
+  document.addEventListener("keydown",ev=>{if(ev.key==="Enter"&&ev.target&&ev.target.id==="f5-in"){ev.preventDefault();const b=document.getElementById("f5-ok");if(b)b.click();}});
+  const _otm=openTrainMenu;
+  openTrainMenu=function(){
+    _otm();
+    const box=document.getElementById("sheet-in");
+    if(box&&!document.getElementById("train-five")){
+      const b=document.createElement("button");b.type="button";b.className="btn wide primary";b.id="train-five";b.style.marginBottom="8px";b.textContent="Só 5 minutos (6 passos rápidos)";
+      box.insertBefore(b,box.firstChild);
+    }
+  };
+  window.__f5Open=open;window.__f5State=()=>f5;
 })();
 
 /* ===== Lição do Jardim: 7 telas sobre um trecho real de um livro de domínio público =====
@@ -7138,6 +7389,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.71.0",d:"2026-10-27",t:["Novo jogo «Gênero das palavras» (francês e italiano): você vê a palavra e escolhe o artigo (le/la; il/lo/la). Erros voltam na revisão. Palavras com «l'» ficam de fora, porque o app não guarda o gênero delas","Novo jogo «Ditado de frases (com áudio)»: ouça a frase e escreva. Sem áudio, há o botão «Mostrar a frase». Acento esquecido conta como certo, com aviso","Novo em Treino: «Só 5 minutos», 6 passos rápidos (3 palavras, 2 de gênero ou escrita, 1 ditado) com um círculo de progresso"]},
 {v:"1.70.2",d:"2026-10-27",t:["Pedir o código por e-mail: se o servidor não responder em 25 segundos, o app avisa que ele pode estar «dormindo» (comum no serviço gratuito depois de dias sem uso) e pede para esperar 1 a 2 minutos e tentar de novo, em vez de ficar sem resposta"]},
 {v:"1.70.1",d:"2026-10-27",t:["Jogo da memória: duas palavras com o mesmo desenho (como lunch e dinner) nunca ficam na mesma página","Francês dos livros: 241 palavras apareciam e eram faladas como «f traversée» ou «m pari». Agora são «la traversée», «le pari», «l'homme» etc.","Áudio: o app escolhe uma voz do idioma certo e avisa se o aparelho não tem voz em francês, italiano ou inglês. Em Ajustes → Som e vibração há botões para testar cada idioma e ver qual voz está em uso","Novo: Ajustes → Sobre e ajuda → «Compartilhar o app com alguém». Abre o menu de compartilhar do celular (ou copia o convite / envia pelo WhatsApp) com o endereço do app"]},
 {v:"1.70.0",d:"2026-10-25",t:["«Hoje» e «Próximo» não levam mais às lições dos livros (frases, leitura, palavras dos livros e jogos de citação). Elas continuam em Lições e em Livros, para quem quiser ir lá. Quem já está numa lição de livro segue no livro ao tocar em «Próximo»"]},
