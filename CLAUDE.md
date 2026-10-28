@@ -362,3 +362,6 @@ App de palavras (francês, italiano, inglês) em um único `index.html`, publica
 - Edge Function: `nuvem/poke/index.ts` aceita `kind:"water"` (chama `garden_water_push`; 5 frases brincalhões em `WATER_FUN`, ou aviso neutro; destino `go:"amigos"`, sem mexer no `sw.js`). **Ela precisa republicar a função.** A entrega real só no aparelho (o sandbox não alcança o Supabase nem tem Deno; só conferida a sintaxe).
 - Cliente: `amigos.js` (`myGarden`, `gardenView`, estado `gv`; botões `gard`, `gl`, `gback`, `water`; caixas `#fr-s5` e `#fr-tone`; erro «jardim.sql» se o SQL falta); `jardimtela.js` expõe `window.gdCounts(lang)` (só leitura). `PRIV_VER` 2026-10-28b. Teste: `tests/t45.py`. Cache `mots-parole-v123`.
 
+## v1.75.1 (28/10/2026): Frase do dia removida de Lições
+- Pedido dela: «como eu faço pra tirar a frase do dia das lições?». Saiu o `<section id="qod">` de `p2.html` e o código de `renderQod` (`livros2.js`, chamadas em `p3.js`). Continuam: o Álbum de citações, as estrelas nas frases dos livros/jogos de citação e a opção «Frase do dia» como conteúdo dos lembretes (`lembretes.js`, `src:"frase"`; é notificação, não a tela). O CSS `.qod*` em `p1.html` ficou sem uso (inofensivo). `hash` em `livros2.js` e `phHash` ficam (outras telas usam). Testes ajustados: `t20` (álbum com `S.fav` direto) e `t23`. Cache `mots-parole-v124`.
+

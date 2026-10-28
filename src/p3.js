@@ -355,11 +355,11 @@ function go(name){
   $$(".scroll").forEach(n=>{n.scrollTop=0;});
   if(name!=="game")fitFn=null;
   if(name==="index")renderIndex();
-  if(name==="home"){renderMe();if(typeof renderQod==="function")renderQod();}
+  if(name==="home"){renderMe();}
   if(name==="books"&&typeof renderBooks==="function")renderBooks();
   if(name==="garden"&&typeof renderGarden==="function")renderGarden();
   if(name==="album"&&typeof renderAlbum==="function")renderAlbum();
-  if(name==="vol"){$("#vol-lang").textContent=LNAME[S.lang];if(typeof renderToday==="function")renderToday();if(typeof renderQod==="function")renderQod();}
+  if(name==="vol"){$("#vol-lang").textContent=LNAME[S.lang];if(typeof renderToday==="function")renderToday();}
   if(name==="stats"){syncPrefs();renderStats();}
   if(name==="settings"){bkReset();clearArmed=false;$("#clear-note").textContent="";syncPrefs();}
   if(name==="profile"){clearStatsArmed=false;$("#clear-stats-note").textContent="";syncPrefs();}
@@ -547,7 +547,7 @@ function onPrefClick(e){
   if(k)S[k.dataset.k]=k.dataset.k==="vol"?+k.dataset.v:k.dataset.v;else if(p)S.pal=p.dataset.pal;else return;
   save();applyTheme();
   if(k&&(k.dataset.k==="lang"||k.dataset.k==="vol"))renderIndex();else syncPrefs();
-  if(k&&k.dataset.k==="lang"&&!$("#s-vol").hidden){if(typeof renderToday==="function")renderToday();if(typeof renderQod==="function")renderQod();}
+  if(k&&k.dataset.k==="lang"&&!$("#s-vol").hidden){if(typeof renderToday==="function")renderToday();}
   if(k&&(k.dataset.k==="sound"||k.dataset.k==="snd"))sfx("ok");
   if(k&&k.dataset.k==="hap"&&S.hap==="on"){try{navigator.vibrate&&navigator.vibrate([40,30,40]);}catch(_){}}
 }

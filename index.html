@@ -749,7 +749,6 @@ svg{display:block}
     <div class="scroll">
       <div class="seg" role="group" aria-label="Idioma" style="margin-bottom:10px"><button type="button" data-k="lang" data-v="fr">Français</button><button type="button" data-k="lang" data-v="it">Italiano</button><button type="button" data-k="lang" data-v="en">English</button></div>
       <div class="goalbox"><b>Meta de hoje</b><span class="gbar" aria-hidden="true"><i id="goal-fill"></i></span><small id="goal-txt"></small></div>
-      <section class="qod" id="qod" hidden aria-label="Frase do dia"></section>
       <p class="help">Siga a ordem de 1 a 5: cada volume prepara o seguinte. Você também pode pular para o que quiser.</p>
       <div class="tiles one">
         <button type="button" class="tile plain" data-pick-vol="2"><b>Volume 1 · Pronúncia</b><small>Comece aqui: alfabeto, sons e sons difíceis</small></button>
@@ -1101,7 +1100,7 @@ svg{display:block}
 <div id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
-const APP_REL={v:"1.75.0",d:"2026-10-28"};
+const APP_REL={v:"1.75.1",d:"2026-10-28"};
 
 
 const RAW={
@@ -2973,11 +2972,11 @@ function go(name){
   $$(".scroll").forEach(n=>{n.scrollTop=0;});
   if(name!=="game")fitFn=null;
   if(name==="index")renderIndex();
-  if(name==="home"){renderMe();if(typeof renderQod==="function")renderQod();}
+  if(name==="home"){renderMe();}
   if(name==="books"&&typeof renderBooks==="function")renderBooks();
   if(name==="garden"&&typeof renderGarden==="function")renderGarden();
   if(name==="album"&&typeof renderAlbum==="function")renderAlbum();
-  if(name==="vol"){$("#vol-lang").textContent=LNAME[S.lang];if(typeof renderToday==="function")renderToday();if(typeof renderQod==="function")renderQod();}
+  if(name==="vol"){$("#vol-lang").textContent=LNAME[S.lang];if(typeof renderToday==="function")renderToday();}
   if(name==="stats"){syncPrefs();renderStats();}
   if(name==="settings"){bkReset();clearArmed=false;$("#clear-note").textContent="";syncPrefs();}
   if(name==="profile"){clearStatsArmed=false;$("#clear-stats-note").textContent="";syncPrefs();}
@@ -3165,7 +3164,7 @@ function onPrefClick(e){
   if(k)S[k.dataset.k]=k.dataset.k==="vol"?+k.dataset.v:k.dataset.v;else if(p)S.pal=p.dataset.pal;else return;
   save();applyTheme();
   if(k&&(k.dataset.k==="lang"||k.dataset.k==="vol"))renderIndex();else syncPrefs();
-  if(k&&k.dataset.k==="lang"&&!$("#s-vol").hidden){if(typeof renderToday==="function")renderToday();if(typeof renderQod==="function")renderQod();}
+  if(k&&k.dataset.k==="lang"&&!$("#s-vol").hidden){if(typeof renderToday==="function")renderToday();}
   if(k&&(k.dataset.k==="sound"||k.dataset.k==="snd"))sfx("ok");
   if(k&&k.dataset.k==="hap"&&S.hap==="on"){try{navigator.vibrate&&navigator.vibrate([40,30,40]);}catch(_){}}
 }
@@ -4913,23 +4912,9 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
     const d=e.target.closest&&e.target.closest("[data-cad-del]");
     if(d){S.cad.splice(+d.dataset.cadDel,1);save();openCad();}
   });
-  /* ---- frase do dia ---- */
-  let qodExtra=0;
+  /* (a Frase do dia saiu de Lições em 28/10/2026, pedido dela; `hash` fica porque outras telas usam) */
   const hash=s=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return Math.abs(h);};
-  function renderQod(){
-    const el=$("#qod");if(!el)return;
-    const L=phLang(S.lang);
-    if(!L.length){el.hidden=true;return;}
-    const d=new Date(),day=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-    const p=L[(hash(day+S.lang)+qodExtra)%L.length];
-    el.hidden=false;
-    el.innerHTML='<p class="qod-k">Frase do dia · «'+esc(BK[p.book].name)+"»</p>"+
-      '<p class="qod-s">'+esc(p.s)+" "+speakBtn(p.s)+'</p>'+
-      '<details class="qod-d"><summary>Tradução e nota</summary><p class="qod-pt">'+esc(p.pt)+'</p><p class="qod-n">'+hl(p.note)+'</p><p class="qod-src">Frase copiada do livro. Tradução e nota: Claude, sem fonte conferida.</p></details>'+
-      '<div class="row">'+favBtn(p.id)+'<button type="button" class="btn" id="qod-more">Outra frase</button></div>';
-  }
-  document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#qod-more")){qodExtra++;renderQod();}});
-  window.renderQod=renderQod;window.renderAlbum=renderAlbum;
+  window.renderAlbum=renderAlbum;
   window.phLangList=phLang;window.phBookMap=BK;window.phHash=hash;
 
   /* ---- páginas novas ---- */
@@ -5266,7 +5251,6 @@ window.CTXH={"alice":{"intro":[{"t":"Lewis Carroll é pseudônimo de Charles Dod
   });
   $("#rdr-back").addEventListener("click",()=>{if(RK.ch!==null)renderChapterList();else go("books");});
   window.openReader=openReader;
-  renderQod();
 })();
 
 /* ===== Jogos de literatura (v1.39) =====
@@ -7808,6 +7792,7 @@ document.addEventListener("click",e=>{const t=e.target.closest&&e.target.closest
 
 /* Notas de atualização: mais nova primeiro. Acrescente uma entrada a cada versão publicada (mesmo número de VERSION). */
 const NOVIDADES=[
+{v:"1.75.1",d:"2026-10-28",t:["A Frase do dia saiu da tela de Lições, a pedido. As citações continuam em Livros e no Álbum, e dá para guardar as que você gostar"]},
 {v:"1.75.0",d:"2026-10-28",t:["Jardim dos amigos: em Amigos → preferências, marque «O meu jardim» (começa desligado) e seus amigos veem a cena e quantas plantas você tem em cada estágio. Nunca as palavras","Quem é seu amigo tem o botão «Ver jardim» no cartão e pode regar o seu jardim 1 vez por dia, de brincadeira (não muda o progresso de ninguém). O cartão mostra «regou o seu jardim hoje»","Se você aceita avisos, chega uma notificação de rega, com um tom brincalhão (dá para trocar por um aviso neutro). Precisa do arquivo jardim.sql no Supabase e da função poke republicada. A Política de Privacidade foi atualizada"]},
 {v:"1.74.0",d:"2026-10-28",t:["Meu jardim agora tem «Compartilhar meu jardim»: gera um link (e uma imagem) que diz «Esse é o meu jardim de italiano/francês/inglês no Litteraria» e convida a pessoa a fazer o dela estudando e lendo no app","Quem abre o link vê o seu jardim só para olhar (cena e quantidade de frutos, flores, sementes e sombras) e um botão para começar o dele. Nada do progresso dela é alterado","Você pode pôr um nome ou apelido (opcional). O link leva só o idioma, as quantidades e esse nome, dentro do próprio endereço: nada é enviado a servidor. A Política de Privacidade foi atualizada"]},
 {v:"1.73.1",d:"2026-10-28",t:["A cena do topo do Meu jardim foi refeita: céu em degradê, sol, nuvens que passam, colinas, cerca e uma árvore que aparece com o primeiro fruto (e ganha maçãs com 3). As flores do fundo aparecem conforme suas flores e frutos aumentam","Os bichinhos agora batem as asas e passeiam pelo jardim: borboletas, abelha, passarinho e joaninha (as animações param se o aparelho estiver com «reduzir movimento»)"]},

@@ -123,23 +123,9 @@
     const d=e.target.closest&&e.target.closest("[data-cad-del]");
     if(d){S.cad.splice(+d.dataset.cadDel,1);save();openCad();}
   });
-  /* ---- frase do dia ---- */
-  let qodExtra=0;
+  /* (a Frase do dia saiu de Lições em 28/10/2026, pedido dela; `hash` fica porque outras telas usam) */
   const hash=s=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return Math.abs(h);};
-  function renderQod(){
-    const el=$("#qod");if(!el)return;
-    const L=phLang(S.lang);
-    if(!L.length){el.hidden=true;return;}
-    const d=new Date(),day=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-    const p=L[(hash(day+S.lang)+qodExtra)%L.length];
-    el.hidden=false;
-    el.innerHTML='<p class="qod-k">Frase do dia · «'+esc(BK[p.book].name)+"»</p>"+
-      '<p class="qod-s">'+esc(p.s)+" "+speakBtn(p.s)+'</p>'+
-      '<details class="qod-d"><summary>Tradução e nota</summary><p class="qod-pt">'+esc(p.pt)+'</p><p class="qod-n">'+hl(p.note)+'</p><p class="qod-src">Frase copiada do livro. Tradução e nota: Claude, sem fonte conferida.</p></details>'+
-      '<div class="row">'+favBtn(p.id)+'<button type="button" class="btn" id="qod-more">Outra frase</button></div>';
-  }
-  document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#qod-more")){qodExtra++;renderQod();}});
-  window.renderQod=renderQod;window.renderAlbum=renderAlbum;
+  window.renderAlbum=renderAlbum;
   window.phLangList=phLang;window.phBookMap=BK;window.phHash=hash;
 
   /* ---- páginas novas ---- */
@@ -476,5 +462,4 @@
   });
   $("#rdr-back").addEventListener("click",()=>{if(RK.ch!==null)renderChapterList();else go("books");});
   window.openReader=openReader;
-  renderQod();
 })();

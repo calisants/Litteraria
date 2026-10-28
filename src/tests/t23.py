@@ -11,7 +11,7 @@ try:
     pg.goto('http://localhost:8779/index.html');pg.wait_for_timeout(700)
     assert not pg.is_visible('#qod') and not pg.is_visible('#goal-txt'),'home deve estar sem meta/frase'
     pg.click('#go-games');pg.wait_for_timeout(200)
-    assert pg.is_visible('#qod') and 'Meta' in pg.inner_text('.goalbox'),'Lições deve ter meta e frase'
+    assert pg.locator('#qod').count()==0 and 'Meta' in pg.inner_text('.goalbox'),'Lições tem meta e já não tem a Frase do dia'
     # cartões: duas palavras vencidas
     keys=pg.evaluate("()=>{S.lang='en';S.rvv={};const ks=Object.keys(vIdx().en).slice(0,2);ks.forEach(k=>S.rvv['en:v|'+k]=[1,2,0]);save();return ks}")
     pg.evaluate("()=>startCards()");assert pg.is_visible('#card-show')
@@ -65,8 +65,7 @@ try:
     assert pg.evaluate("()=>JSON.stringify(S.rd)")=='{"fs":0,"bg":"pad","lh":0}'
     # cartão de citação em imagem
     pg.evaluate("()=>{closeSheet();S.lang='it';save();go('vol')}")
-    assert pg.is_visible('#qod') and pg.locator('#qod [data-img]').count()==0,'Frase do dia não tem mais «Salvar como imagem»'
-    pg.evaluate("()=>{S.fav=[document.querySelector('#qod .favbtn').dataset.fav];save();go('album')}")
+    pg.evaluate("()=>{S.fav=['principe:1'];save();go('album')}")
     assert pg.is_visible('#album-list [data-img]'),'o Álbum mantém «Salvar como imagem»'
     with pg.expect_download() as dl:
         pg.click('#album-list [data-img]')

@@ -11,13 +11,10 @@ try:
     b=p.chromium.launch();pg=b.new_context(viewport={'width':390,'height':844}).new_page();errs=[]
     pg.on('pageerror',lambda e:errs.append(str(e)));pg.on('console',lambda m:errs.append(m.text) if m.type=='error' else None)
     pg.goto('http://localhost:8776/index.html');pg.wait_for_timeout(700)
-    # frase do dia: existe nos 3 idiomas e é a mesma ao longo do dia
-    for l in ('fr','it','en'):
-        pg.evaluate("(l)=>{S.lang=l;go('vol')}",l)
-        t1=pg.inner_text('#qod');pg.evaluate("()=>go('vol')");assert t1==pg.inner_text('#qod') and 'frase do dia' in t1.lower(),l
-    pg.click('#qod-more');assert pg.is_visible('#qod .favbtn')
+    # a Frase do dia saiu de Lições (28/10/2026)
+    pg.evaluate("()=>go('vol')");assert pg.locator('#qod').count()==0
     # álbum: guardar, listar, tirar, e a leitura do salvamento descarta ids inválidos
-    pg.click('#qod .favbtn');assert pg.evaluate("()=>S.fav.length")==1
+    pg.evaluate("()=>{S.fav=['alice:1'];save()}")
     pg.evaluate("()=>go('album')");assert pg.inner_text('#album-count').startswith('1 frase')
     pg.click('#album-list .favbtn');assert pg.evaluate("()=>S.fav.length")==0 and 'vazio' in pg.inner_text('#album-list')
     pg.evaluate("()=>{S.fav=['alice:1','alice:1','x:1','alice:99','bad','peter:3'];save()}")
