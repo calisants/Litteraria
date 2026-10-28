@@ -30,14 +30,35 @@
     return '<svg viewBox="0 0 48 56" class="gd-svg gd'+lv+(wilt?" wilted":"")+'" aria-hidden="true" focusable="false">'+soil+"<g"+tilt+">"+body+"</g>"+drop+"</svg>";
   }
   window.gdPlantSvg=plant;
-  /* Visitantes do jardim: chegam conforme o número de flores e frutos (limiares: ideia de Claude, sem fonte). Bichinhos genéricos, desenhados em SVG. */
+  /* Cena do jardim (v1.73): céu com sol, nuvens, colinas, cerca e flores que aparecem conforme o jardim cresce; visitantes animados */
   const VIS=[
-    {n:3,nome:"uma borboleta",svg:'<g class="gd-fly"><path d="M56 22c-6-8-12-4-9 2 2 4 7 3 9-2zM56 22c6-8 12-4 9 2-2 4-7 3-9-2z" fill="hsl(285 65% 70%)"/><rect x="55.3" y="18" width="1.4" height="9" rx=".7" fill="hsl(25 30% 25%)"/></g>'},
-    {n:10,nome:"uma abelha",svg:'<g class="gd-fly gd-fly2"><ellipse cx="150" cy="32" rx="6" ry="4.2" fill="hsl(46 95% 58%)"/><path d="M147 28v8M151 28v8" stroke="hsl(25 30% 20%)" stroke-width="1.6"/><ellipse cx="148" cy="27" rx="3.6" ry="2.2" fill="hsl(200 60% 88%)" opacity=".85"/></g>'},
-    {n:20,nome:"outra borboleta",svg:'<g class="gd-fly gd-fly3"><path d="M206 16c-6-8-12-4-9 2 2 4 7 3 9-2zM206 16c6-8 12-4 9 2-2 4-7 3-9-2z" fill="hsl(18 85% 64%)"/><rect x="205.3" y="12" width="1.4" height="9" rx=".7" fill="hsl(25 30% 25%)"/></g>'},
-    {n:40,nome:"um passarinho",svg:'<g class="gd-fly gd-fly2"><ellipse cx="112" cy="14" rx="7" ry="4.6" fill="hsl(205 70% 62%)"/><circle cx="118.5" cy="11.5" r="3" fill="hsl(205 70% 62%)"/><path d="M121 11.5l4 1.2-4 1z" fill="hsl(35 90% 55%)"/><circle cx="119.3" cy="11" r=".8" fill="#222"/><path d="M106 14l-6-2 1 4z" fill="hsl(205 60% 50%)"/></g>'},
-    {n:80,nome:"uma joaninha",svg:'<g><ellipse cx="34" cy="60" rx="5" ry="3.8" fill="hsl(5 80% 50%)"/><path d="M34 56.4v7.2" stroke="#222" stroke-width="1"/><circle cx="32" cy="59" r=".9" fill="#222"/><circle cx="36" cy="61" r=".9" fill="#222"/><circle cx="38.6" cy="60" r="2" fill="#222"/></g>'}
+    {n:3,nome:"uma borboleta",x:70,y:58,svg:'<g class="gd-path gd-p1"><g class="gd-bfly"><g class="gd-wing"><path d="M0 0C-4-9-14-10-13-2-12 3-5 3 0 0zM0 0C-3 7-10 10-9 4-8 0-4-1 0 0z" fill="hsl(285 65% 72%)" stroke="hsl(285 40% 45%)" stroke-width=".6"/></g><g class="gd-wing gd-wr"><path d="M0 0C4-9 14-10 13-2 12 3 5 3 0 0zM0 0C3 7 10 10 9 4 8 0 4-1 0 0z" fill="hsl(285 65% 72%)" stroke="hsl(285 40% 45%)" stroke-width=".6"/></g><rect x="-.8" y="-5" width="1.6" height="10" rx=".8" fill="hsl(25 30% 25%)"/></g></g>'},
+    {n:10,nome:"uma abelha",x:150,y:76,svg:'<g class="gd-path gd-p2"><g class="gd-bee"><ellipse cx="0" cy="0" rx="6.5" ry="4.5" fill="hsl(46 95% 58%)"/><path d="M-2-4.2v8.4M2 -4.2v8.4" stroke="hsl(25 30% 18%)" stroke-width="1.8"/><circle cx="-7" cy="-.6" r="2.6" fill="hsl(25 30% 18%)"/><g class="gd-wing"><ellipse cx="0" cy="-6" rx="4" ry="2.4" fill="hsl(200 60% 92%)" opacity=".85"/></g></g></g>'},
+    {n:20,nome:"outra borboleta",x:215,y:44,svg:'<g class="gd-path gd-p3"><g class="gd-bfly"><g class="gd-wing"><path d="M0 0C-4-9-14-10-13-2-12 3-5 3 0 0zM0 0C-3 7-10 10-9 4-8 0-4-1 0 0z" fill="hsl(18 90% 64%)" stroke="hsl(18 50% 35%)" stroke-width=".6"/></g><g class="gd-wing gd-wr"><path d="M0 0C4-9 14-10 13-2 12 3 5 3 0 0zM0 0C3 7 10 10 9 4 8 0 4-1 0 0z" fill="hsl(18 90% 64%)" stroke="hsl(18 50% 35%)" stroke-width=".6"/></g><rect x="-.8" y="-5" width="1.6" height="10" rx=".8" fill="hsl(25 30% 25%)"/></g></g>'},
+    {n:40,nome:"um passarinho",x:120,y:30,svg:'<g class="gd-path gd-p4"><ellipse cx="0" cy="0" rx="8" ry="5.2" fill="hsl(205 70% 62%)"/><circle cx="7" cy="-3" r="3.4" fill="hsl(205 70% 62%)"/><path d="M10-3l4.5 1.4-4.5 1.2z" fill="hsl(35 90% 55%)"/><circle cx="8" cy="-3.6" r=".9" fill="#222"/><path d="M-7 1l-8-3 1.5 5z" fill="hsl(205 55% 48%)"/><path d="M-1 0c-1-6 3-8 6-6" fill="none" stroke="hsl(205 55% 48%)" stroke-width="2" class="gd-wing"/></g>'},
+    {n:80,nome:"uma joaninha",x:148,y:115,svg:'<g class="gd-lady"><ellipse cx="0" cy="0" rx="5.4" ry="4.2" fill="hsl(5 82% 50%)"/><path d="M0-4.2v8.4" stroke="#222" stroke-width="1"/><circle cx="-2.2" cy="-1" r=".95" fill="#222"/><circle cx="2.2" cy="1.2" r=".95" fill="#222"/><circle cx="-2" cy="2" r=".8" fill="#222"/><circle cx="5.6" cy="0" r="2.2" fill="#222"/></g>'}
   ];
+  function sceneSvg(cnt,vis){
+    const gf=cnt[2]+cnt[3],fruits=cnt[3];
+    const flowers=Math.min(14,Math.round(gf*0.9));
+    let fl="";
+    for(let i=0;i<flowers;i++){
+      const x=14+((i*53)%296),y=96+((i*29)%24),h=(i*47+330)%360,s=0.8+((i*7)%5)/10;
+      fl+='<g transform="translate('+x+' '+y+') scale('+s.toFixed(2)+')"><path d="M0 0V-12" stroke="hsl(125 40% 34%)" stroke-width="1.4"/><circle cx="0" cy="-14" r="3.6" fill="hsl('+h+' 78% 72%)"/><circle cx="-3.6" cy="-12" r="2.6" fill="hsl('+h+' 78% 72%)"/><circle cx="3.6" cy="-12" r="2.6" fill="hsl('+h+' 78% 72%)"/><circle cx="0" cy="-14" r="1.8" fill="hsl(46 92% 56%)"/></g>';
+    }
+    const tree=fruits>=1?'<g transform="translate(40 92)"><rect x="-3" y="-14" width="6" height="22" rx="2" fill="hsl(28 35% 36%)"/><circle cx="0" cy="-22" r="16" fill="hsl(125 42% 38%)"/><circle cx="-9" cy="-16" r="10" fill="hsl(125 42% 42%)"/><circle cx="9" cy="-16" r="10" fill="hsl(125 40% 34%)"/>'+(fruits>=3?'<circle cx="-5" cy="-24" r="2.4" fill="hsl(5 80% 52%)"/><circle cx="6" cy="-18" r="2.4" fill="hsl(5 80% 52%)"/><circle cx="1" cy="-12" r="2.4" fill="hsl(5 80% 52%)"/>':"")+"</g>":"";
+    return '<svg viewBox="0 0 320 130" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Cena do jardim: céu, colinas e flores"><defs><linearGradient id="gdsk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="hsl(205 80% 78%)"/><stop offset="1" stop-color="hsl(48 90% 90%)"/></linearGradient></defs><rect width="320" height="130" fill="url(#gdsk)"/>'+
+      '<g class="gd-sun"><circle cx="270" cy="26" r="22" fill="hsl(46 95% 70%)" opacity=".35"/><circle cx="270" cy="26" r="13" fill="hsl(46 96% 62%)"/></g>'+
+      '<g class="gd-cloud gd-c1" fill="#fff" opacity=".85"><ellipse cx="60" cy="24" rx="20" ry="7"/><ellipse cx="74" cy="19" rx="13" ry="7"/><ellipse cx="48" cy="20" rx="10" ry="6"/></g>'+
+      '<g class="gd-cloud gd-c2" fill="#fff" opacity=".7"><ellipse cx="170" cy="40" rx="16" ry="5.5"/><ellipse cx="182" cy="36" rx="10" ry="5.5"/></g>'+
+      '<path d="M0 100 Q50 72 110 90 T220 84 T320 88 V130H0z" fill="hsl(135 38% 62%)"/>'+
+      '<path d="M0 112 Q60 96 130 108 T260 104 T320 106 V130H0z" fill="hsl(125 42% 48%)"/>'+
+      tree+
+      '<g stroke="hsl(30 30% 62%)" stroke-width="2" opacity=".9"><path d="M230 116v-12M240 116v-12M250 116v-12M260 116v-12M226 109h38M226 114h38" fill="none"/></g>'+
+      fl+
+      '<path d="M0 122 Q80 114 160 121 T320 119 V130H0z" fill="hsl(125 40% 38%)"/>'+
+      vis.map(v=>'<g transform="translate('+v.x+' '+v.y+')">'+v.svg+'</g>').join("")+"</svg>";
+  }
   function groups(){
     const lang=S.lang,out=[],seen={};
     Object.keys(VOCAB[lang]||{}).forEach(cat=>{
@@ -58,7 +79,7 @@
     G.forEach(g=>{total+=g.total;g.items.forEach(x=>{cnt[x.i.lv]++;met++;if(x.i.wilt)wilted++;});});
     const due=typeof dueWords==="function"?dueWords().length:0;
     const gf=cnt[2]+cnt[3],vis=VIS.filter(v=>gf>=v.n),nv=VIS.find(v=>gf<v.n);
-    let h='<div class="gd-sky" aria-hidden="true"><svg viewBox="0 0 320 70" preserveAspectRatio="none"><circle cx="268" cy="24" r="12" fill="hsl(46 95% 62%)"/>'+vis.map(v=>v.svg).join("")+'<path d="M0 70 V52 Q40 40 80 50 T160 48 T240 50 T320 44 V70z" fill="hsl(125 38% 52%)" opacity=".55"/><path d="M0 70 V60 Q50 52 100 59 T200 58 T320 56 V70z" fill="hsl(125 40% 42%)" opacity=".7"/></svg></div>';
+    let h='<div class="gd-sky">'+sceneSvg(cnt,vis)+'</div>';
     const tile=(lv,n,lab)=>'<div class="gd-tile gd'+lv+'">'+plant(lv,330,false)+'<b>'+n+'</b><span>'+lab+'</span></div>';
     h+='<div class="gd-sum">'+tile(3,cnt[3],cnt[3]===1?"fruto":"frutos")+tile(2,cnt[2],cnt[2]===1?"flor":"flores")+tile(1,cnt[1],cnt[1]===1?"semente":"sementes")+tile(0,cnt[0],cnt[0]===1?"sombra":"sombras")+"</div>";
     h+='<p class="help gd-prog">'+met+" de "+total+" palavras de "+LNAME[S.lang]+' já chegaram ao jardim.</p><div class="gd-bar" aria-hidden="true"><span style="width:'+Math.round(100*met/Math.max(1,total))+'%"></span></div>';

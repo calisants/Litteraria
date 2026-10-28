@@ -606,7 +606,7 @@ svg{display:block}
 .jd-tok{padding:2px 3px;min-height:36px;border:0;border-bottom:2px dotted var(--muted);background:none;color:inherit;font:inherit;cursor:pointer}
 
 /* Meu jardim (v1.68) */
-.gd-sky{margin:0 -4px 10px;border-radius:var(--radius);overflow:hidden;background:linear-gradient(hsl(200 70% 86%),hsl(150 40% 90%));height:84px}
+.gd-sky{margin:0 -4px 10px;border-radius:var(--radius);overflow:hidden;background:linear-gradient(hsl(200 70% 86%),hsl(150 40% 90%));height:130px}
 .gd-sky svg{display:block;width:100%;height:100%}
 .gd-sum{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:4px 0 10px}
 .gd-tile{display:flex;flex-direction:column;align-items:center;padding:6px 2px 8px;border:var(--bw) solid var(--line);border-radius:var(--radius);background:var(--surface)}
@@ -639,8 +639,17 @@ svg{display:block}
 @keyframes gdsway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
 .gd-in{width:100%;min-height:48px;padding:6px 10px;font-size:1.1rem;border:var(--bw) solid var(--box);border-radius:var(--radius);background:var(--surface);color:var(--ink)}
 .gd-vis{margin:4px 0 8px}
-@media (prefers-reduced-motion:no-preference){.gd-fly{animation:gdfly 5s ease-in-out infinite}.gd-fly2{animation-duration:7s}.gd-fly3{animation-duration:6s;animation-delay:-2s}}
-@keyframes gdfly{0%,100%{transform:translate(0,0)}25%{transform:translate(6px,-4px)}50%{transform:translate(12px,2px)}75%{transform:translate(5px,5px)}}
+@media (prefers-reduced-motion:no-preference){
+.gd-path{animation:gdwander 9s ease-in-out infinite}.gd-p2{animation-duration:6s}.gd-p3{animation-duration:11s;animation-delay:-3s}.gd-p4{animation-duration:14s}
+.gd-wing{transform-box:fill-box;transform-origin:center bottom;animation:gdflap .5s ease-in-out infinite}.gd-wr{transform-origin:center bottom}
+.gd-cloud{animation:gdcloud 40s linear infinite alternate}.gd-c2{animation-duration:55s}
+.gd-sun{transform-box:fill-box;transform-origin:center;animation:gdsun 6s ease-in-out infinite alternate}
+.gd-lady{animation:gdlady 12s ease-in-out infinite}}
+@keyframes gdwander{0%,100%{transform:translate(0,0)}25%{transform:translate(28px,-10px)}50%{transform:translate(52px,6px)}75%{transform:translate(24px,12px)}}
+@keyframes gdflap{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.45)}}
+@keyframes gdcloud{from{transform:translateX(-14px)}to{transform:translateX(22px)}}
+@keyframes gdsun{from{transform:scale(1)}to{transform:scale(1.08)}}
+@keyframes gdlady{0%,100%{transform:translateX(0)}50%{transform:translateX(26px)}}
 .toast{position:fixed;left:16px;right:16px;bottom:84px;z-index:60;background:var(--ink);color:var(--bg);padding:12px 14px;border-radius:12px;font-size:.95rem;box-shadow:0 4px 16px #0004}
 #voice-box .bad{color:var(--bad,#b3261e);font-weight:600}
 </style>
