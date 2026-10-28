@@ -7,8 +7,8 @@
   const bits=n=>{let c=0;while(n){c+=n&1;n>>=1;}return c;};
   const dn=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5);};
   /* estágio sem mexer no estado (igual a ensure() de jardim.js, só leitura) */
-  function info(e){
-    const lang=S.lang,w=e.w.toLowerCase(),key=lang+":"+w.slice(0,40),g=S.gd&&S.gd[key];
+  function info(e,lg){
+    const lang=lg||S.lang,w=e.w.toLowerCase(),key=lang+":"+w.slice(0,40),g=S.gd&&S.gd[key];
     const sk=(S.sk[lang]||{})[w];
     if(g)return {lv:g[0],wilt:!!g[4],days:g[3]||0,forms:bits(g[2]||0),last:g[1]||0,met:true};
     if(!sk)return null;
@@ -70,6 +70,8 @@
     out.forEach((g,k)=>{g.hue=(k*47+330)%360;g.items.sort((a,b)=>b.i.lv-a.i.lv);});
     return out;
   }
+  /* quantidades por estágio de um idioma (só leitura); usadas por «Compartilhar» e por Amigos */
+  window.gdCounts=function(lang){const c=[0,0,0,0];Object.keys(VOCAB[lang]||{}).forEach(cat=>VOCAB[lang][cat].forEach(e=>{const i=info(e,lang);if(i)c[i.lv]++;}));return c;};
   let G=[],LAST={cnt:[0,0,0,0],met:0,total:0};
   window.gdLast=()=>LAST;window.gdSceneSvg=(cnt,gf)=>sceneSvg(cnt,VIS.filter(v=>(gf!=null?gf:cnt[2]+cnt[3])>=v.n));
   function render(){

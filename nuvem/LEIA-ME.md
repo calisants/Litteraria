@@ -40,3 +40,9 @@ Limites no banco: só amigos aceitos, sem bloqueio, 1 por amigo por dia, 5 receb
 1. SQL Editor: rode `nuvem/avisos.sql` (depois de `amigos.sql`, `cutucar.sql`, `amigos2.sql` e `desafio.sql`). Pode rodar mais de uma vez.
 2. Edge Functions → `poke` → cole o conteúdo novo de `nuvem/poke/index.ts` → Deploy. (Mesmo nome, mesmos segredos VAPID.)
 Avisos: «te convidou para ser amigo», «aceitou o seu convite», «te desafiou», «aceitou o seu desafio». Só chegam a quem aceita avisos (a caixa «Aceitar avisos dos amigos») e tem as notificações ligadas no aparelho. Limites: 1 de cada tipo por pessoa por dia e 10 por dia recebidos; cutucadas continuam com os seus 5 por dia.
+
+## Jardim dos amigos e rega (v1.75)
+1. SQL Editor: rode `nuvem/jardim.sql` (depois de `amigos.sql`, `cutucar.sql`, `amigos2.sql`, `desafio.sql` e `avisos.sql`). Pode rodar mais de uma vez.
+2. Edge Functions → `poke` → cole o conteúdo novo de `nuvem/poke/index.ts` → Deploy (agora aceita `kind: "water"`).
+3. No app: Amigos → «O que meus amigos veem e preferências» → marque «O meu jardim» (começa desligado). Quem é amigo aceito e tem o jardim visível ganha o botão «🌱 Ver jardim» no cartão e pode «Regar» 1 vez por dia (máx. 5 regas por dia no jardim de cada pessoa).
+Só quantidades por estágio (sombra, semente, flor, fruto) por idioma vão ao servidor, nunca palavras. Regar não muda o progresso de ninguém. O aviso é brincalhão por padrão; quem desmarca «Avisos de rega em tom brincalhão» recebe um aviso neutro. Sem o passo 1, o app avisa «O servidor ainda não tem o jardim dos amigos instalado (jardim.sql)»; sem o passo 2 a rega é registrada, mas a notificação não chega.
